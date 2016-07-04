@@ -1,0 +1,33 @@
+.inverse-element {
+  background-color: @navbar-default-bg;
+  color: @white;
+
+  .btn-link {
+    .hover-animation(background-color);
+
+    &:hover, &:focus {
+      outline: none;
+    }
+
+    &:active {
+      background-color: @dark-blue-hover;
+    }
+  }
+
+  .form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:focus, &:hover {
+      outline: none;
+      box-shadow: none;
+      background: @greyish-brown-hover;
+    }
+
+    .hover-animation(background);
+
+    color: @navbar-default-color;
+    border: 0px;
+    background: @greyish-brown;
+  }
+}

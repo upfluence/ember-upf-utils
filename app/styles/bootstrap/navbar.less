@@ -1,0 +1,39 @@
+@navbar-height: 80px;
+@navbar-border-radius: 0px;
+
+@navbar-default-bg: @dark-blue;
+@navbar-default-color: @white;
+@navbar-default-link-color: @white;
+
+body {
+  padding-top: @navbar-height;
+}
+
+.no-padding-left {
+  padding-left: 0px;
+}
+
+.navbar {
+  .navbar-brand {
+    padding-top: 35px;
+    font-size: 35px;
+  }
+
+  z-index: 3;
+
+  box-shadow: 0 2px 4px 0 #777;
+
+  .form-control {
+    border-right: 1px solid @navbar-grey !important;
+
+    &:focus, &:hover {
+      background: @dark-blue-hover !important;
+    }
+
+    &:last-child {
+      border-right: 0px !important;
+    }
+
+    background: @dark-blue !important;
+  }
+}

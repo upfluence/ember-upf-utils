@@ -1,0 +1,28 @@
+.top-panel {
+  .img-shadow();
+  position: fixed;
+  border-top: 1px solid @navbar-grey;
+  z-index: 3;
+
+  left: 0px;
+  right: 0px;
+
+  overflow: hidden;
+
+  transition: top .5s ease-out;
+
+  &.top-panel-open {
+    top: @navbar-height;
+  }
+
+
+  top: -100vh;
+  height: 100vh;
+  padding-bottom: 0px;
+
+  .bottom-right {
+    position: absolute;
+    bottom: @padding-large-vertical;
+    right: @padding-large-horizontal;
+  }
+}

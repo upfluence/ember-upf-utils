@@ -1,0 +1,9 @@
+.grid-display(@selector, @color) {
+  > @{selector} {
+    border-left: 1px solid @color;
+  }
+
+  > @{selector}:first-child {
+    border-left: none;
+  }
+}
