@@ -2,20 +2,6 @@
 /* global require, module */
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
-
-EmberAddon.prototype.treeForPublic = function(tree) {
-  this._requireBuildPackages();
-
-  if (!tree) {
-    return tree;
-  }
-
-  return this.pickFiles(tree, {
-    srcDir: '/',
-    destDir: 'assets/' + this.moduleName()
-  }
-}
-
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     // Add options here
