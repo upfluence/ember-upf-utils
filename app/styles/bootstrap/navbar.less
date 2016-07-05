@@ -15,6 +15,20 @@
 
   box-shadow: 0 2px 4px 0 #777;
 
+  .nav {
+    li {
+      .hover-animation(background-color);
+
+      &.active, &:hover {
+        a {
+          cursor: pointer;
+          color: white !important;
+        }
+        background-color: @dark-blue-hover;
+      }
+    }
+  }
+
   .form-control {
     border-right: 1px solid @navbar-grey !important;
 
