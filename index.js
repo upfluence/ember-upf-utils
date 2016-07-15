@@ -1,6 +1,8 @@
 /* jshint node: true */
 'use strict';
 
+var Funnel = require('broccoli-funnel');
+
 module.exports = {
   name: 'ember-upf-utils',
 
@@ -11,7 +13,7 @@ module.exports = {
       return tree;
     }
 
-    return this.pickFiles(tree, {
+    return new Funnel(tree, {
       srcDir: '/',
       destDir: 'assets/' + this.moduleName()
     });
