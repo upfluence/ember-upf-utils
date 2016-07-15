@@ -1,0 +1,86 @@
+.profile-description {
+
+  // Messing with positioning to show shadows around influencer image
+  margin-top: -10px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 3px;
+
+  img {
+    .img-shadow;
+    height: 134px;
+    width: 159px;
+  }
+
+  .media-heading {
+    margin-bottom: 10px;
+  }
+
+  .media-body {
+    h4, p.addr {
+      .text-ellipsis();
+    }
+  }
+
+  a, p {
+    font-size: 12px;
+  }
+
+  p {
+    max-height: 60px;
+  }
+
+  .desc {
+    color: @warm-grey;
+  }
+
+  .selection-container {
+    position: relative;
+    cursor: pointer;
+
+    .hover-animation(transform);
+    &:hover, &:active {
+      transform: scale(1.05);
+    }
+
+    &.toggled {
+      .selection-overlay {
+        opacity: 1.0;
+        cursor: pointer;
+
+        background-color: @overlay-blue;
+
+        i.fa {
+          opacity: 1.0;
+        }
+      }
+    }
+
+    .selection-overlay {
+      .hover-animation(opacity);
+      .position-absolute(0,0,0,0);
+      opacity: 0.0;
+      text-align: center;
+
+      background-color: @overlay-grey;
+
+      &:hover, &:active {
+        opacity: 1.0;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+     }
+
+      &:active {
+        background-color: @overlay-grey-active;
+      }
+
+      i.fa {
+        .hover-animation(opacity);
+        color: @white;
+        margin-top: 20px;
+        opacity: 0.0;
+        font-size: 100px;
+        font-size: 80px;
+      }
+    }
+  }
+}
