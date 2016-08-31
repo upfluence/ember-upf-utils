@@ -6,9 +6,9 @@ export default Ember.Component.extend({
   classNames: ['modal', 'fade'],
 
   didInsertElement() {
-    $(this.element).modal({keyboard: false, backdrop: 'static'});
+    this.$(this.element).modal({keyboard: false, backdrop: 'static'});
   },
   willDestroyElement() {
-    $(this.element).modal('hide');
+    this.$(this.element).modal('hide');
   }
 });

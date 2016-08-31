@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = function(/* environment, appConfig */) {
-  return { };
+  return { modulePrefix: 'ember-upf-utils', };
 };
