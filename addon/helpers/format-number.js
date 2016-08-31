@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 var formats = [
   {
     value: 1e3,
@@ -32,4 +34,7 @@ var formatNumber = function formatNumber(params) {
   }
 };
 
-export default formatNumber;
+
+export { formatNumber };
+
+export default Ember.Helper.helper(formatNumber);
