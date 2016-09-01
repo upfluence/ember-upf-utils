@@ -1,0 +1,42 @@
+.card {
+  .element-shadow();
+
+  display: block;
+  padding: @padding-large-vertical @padding-large-horizontal;
+  margin: @grid-gutter-width/2;
+  border: 1px solid @another-other-grey;
+  background-color: white;
+
+  .actions {
+    .btn {
+      margin: 4px 0;
+    }
+  }
+
+  &.errors, .errors {
+    color: @scarlet;
+  }
+
+  .content {
+    margin-top: @padding-large-vertical;
+  }
+
+  .header {
+    &.with-margin {
+      margin-bottom: @padding-large-vertical;
+    }
+
+    h1 {
+      display: inline;
+    }
+
+    h1, h2, h3, h4, h5 {
+      margin: 0px;
+    }
+
+    img {
+      vertical-align: baseline;
+      margin-right: 5px;
+    }
+  }
+}
