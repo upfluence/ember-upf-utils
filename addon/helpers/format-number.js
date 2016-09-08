@@ -17,7 +17,7 @@ var formatNumber = function formatNumber(params) {
   var number = params[0];
 
   if (number === null || number === undefined) {
-    return "N/A";
+    return "—";
   }
 
   var format = formats.filter(format => {
