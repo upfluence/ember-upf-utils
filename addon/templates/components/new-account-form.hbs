@@ -1,0 +1,39 @@
+<div class="form-group">
+  <label>Email</label>
+    {{input placeholder='Enter Email'
+            value=model.email
+            class="form-control"}}
+</div>
+<div class="form-group">
+  <label>First Name</label>
+  {{input placeholder='Enter first name'
+          value=model.firstName
+          class="form-control"}}
+</div>
+<div class="form-group">
+  <label>Last Name</label>
+  {{input placeholder='Enter last name'
+          value=model.lastName
+          class="form-control"}}
+</div>
+<div class="form-group">
+  <label>Avatar Url</label>
+  {{input placeholder='Enter your avatar url'
+          value=model.avatarUrl
+          class="form-control"}}
+</div>
+<div class="form-group">
+  <label>Password</label>
+  {{input placeholder='Password'
+          type="password"
+          value=model.password
+          class="form-control"}}
+</div>
+<div class="form-group">
+  <label>Password confirmation</label>
+  {{input placeholder='Password'
+          type="password"
+          value=model.passwordConfirm
+          class="form-control"}}
+</div>
+{{errors-list errors=model.errors}}
