@@ -32,7 +32,7 @@ export default Ember.Component.extend({
 
   showFeedback: computed.or('showErrors', 'showWarnings', 'showSuccess').readOnly(),
   showErrors: computed.and('notValidating', 'hasContent', 'hasErrors').readOnly(),
-  showWarnings: computed.and('shouldDisplayValidations', 'hasWarnings', 'isValid').readOnly(),
+  showWarnings: computed.and('shouldDisplayValidations', 'hasWarnings').readOnly(),
   showSuccess: computed.and('shouldDisplayValidations', 'hasNoWarnings', 'isValid').readOnly(),
 
   init() {
