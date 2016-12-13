@@ -9,7 +9,7 @@ var formats = [
     sym: 'M'
   }, {
     value: 1e9,
-    sym: 'G'
+    sym: 'B'
   }
 ];
 
