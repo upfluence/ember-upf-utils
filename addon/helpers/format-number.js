@@ -25,6 +25,10 @@ var formatNumber = function formatNumber(params) {
   }).pop();
 
   if (format) {
+    if (Math.round(number / format.value) < 10) {
+      return (number / format.value).toFixed(1) + format.sym;
+    }
+
     return Math.round(number / format.value) + format.sym;
   }
   if (typeof number === "number") {
