@@ -1,6 +1,6 @@
 .inverse-element {
-  background-color: @navbar-default-bg;
-  color: @white;
+  background-color: @inverse-bg;
+  color: @inverse-color;
 
   .btn-link {
     .hover-animation(background-color);
@@ -10,7 +10,7 @@
     }
 
     &:active {
-      background-color: @dark-blue-hover;
+      background-color: @inverse-btn-active-color;
     }
   }
 
@@ -21,13 +21,13 @@
     &:focus, &:hover {
       outline: none;
       box-shadow: none;
-      background: @greyish-brown-hover;
+      background: @inverse-form-focus-bg;
     }
 
     .hover-animation(background);
 
-    color: @navbar-default-color;
+    color: @inverse-form-color;
     border: 0px;
-    background: @greyish-brown;
+    background: @inverse-form-bg;
   }
 }

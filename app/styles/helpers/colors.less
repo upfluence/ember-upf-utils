@@ -6,9 +6,17 @@
   .progress-bar {
     background-color: @color;
   }
+
+  .progress-icon {
+    color: @color;
+  }
 }
 
-.color-facebook {
+.color-blog, .color-pencil-square-o {
+  .color-scheme-social(@blog-color);
+}
+
+.color-facebook, .color-facebook-official {
   .color-scheme-social(@facebook-color);
 }
 
