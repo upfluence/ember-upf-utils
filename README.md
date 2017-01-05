@@ -41,7 +41,7 @@ $> npm install ember-upf-utils
 
 Generates a header. The header can be customized by using the `application-header/right`, `application-header/left` and `application-header/center` components.
 
-**Exemple**
+##### Exemple
 ```xml
 {{#layout/application-header}}
 	{{#layout/application-header/right}}
@@ -49,3 +49,6 @@ Generates a header. The header can be customized by using the `application-heade
 	{{/layout/application-header/right}}
 {{/layout/application-header}}
 ```
+
+##### Customization
+`application-header` can take a `class="..."` parameter if you need to style the header.
