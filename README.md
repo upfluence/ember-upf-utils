@@ -51,4 +51,8 @@ Generates a header. The header can be customized by using the `application-heade
 ```
 
 ##### Customization
+| Parameter name | value |
+|:--------:|--------|
+|  class="toto"      | Applies the class `toto` to the header |
+| left-offset="80px" | Set an 80px wide offset on the left |
 `application-header` can take a `class="..."` parameter if you need to style the header.
