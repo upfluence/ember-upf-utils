@@ -1,13 +1,34 @@
 .__application-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  left: 60px;
+  height: 80px;
   z-index: 4;
-  padding-right: 10px;
+  padding-right: 0;
   border-bottom: solid 2px #e5e7e9;
+  position: relative;
 
   .__application-header-content {
-    flex: 1;
+    position: absolute;
+    height: 100%;
+
+    &.left {
+      width: 40%;
+      display: flex;
+      align-items: center;
+    }
+
+    &.center {
+      width: 20%;
+      left: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &.right {
+      width: 40%;
+      left: 60%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
   }
 }
