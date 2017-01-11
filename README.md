@@ -1,6 +1,6 @@
 # Ember-upf-utils
 
-This README outlines the details of collaborating on this Ember addon.
+Ember Upfluence Utilities. This repository contains a load of shared code which can be found throughout many Upfluence Software services.
 
 ## Installation
 
@@ -8,19 +8,50 @@ This README outlines the details of collaborating on this Ember addon.
 * `npm install`
 * `bower install`
 
-## Running
+## Developing
 
-* `ember serve`
-* Visit your app at http://localhost:4200.
+**Styles** are stored in `app/styles`.
+**Components** and **Templates** are stored in `addon/components`. *(Pod Structure)*
 
-## Running Tests
+#### Compiling
+*Let's say you are working on **search** *
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+```bash
+# in upfluence/ember-upf-utils
+$> ember build
+```
 
-## Building
+In `upfluence/facade-web/package.json` replace :
+```json
+"ember-upf-utils": "upfluence/ember-upf-utils",
+```
+by :
+```json
+"ember-upf-utils": "file:../ember-upf-utils"
+```
 
-* `ember build`
+```bash
+# In the service using it
+$> npm uninstall ember-upf-utils
+$> npm install ember-upf-utils
+```
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+## Components
+### Header
+
+Generates a header. The header can be customized by using the `application-header/right`, `application-header/left` and `application-header/center` components.
+
+##### Exemple
+```xml
+{{#layout/application-header}}
+	{{#layout/application-header/right}}
+		<div>Some content</div>
+	{{/layout/application-header/right}}
+{{/layout/application-header}}
+```
+
+##### Customization
+| Parameter name | value |
+|:--------:|--------|
+|  class="toto"      | Applies the class `toto` to the header |
+| left-offset="80px" | Set an 80px wide offset on the left |
