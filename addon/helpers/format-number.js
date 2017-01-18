@@ -32,6 +32,10 @@ var formatNumber = function formatNumber(params) {
     return Math.round(number / format.value) + format.sym;
   }
   if (typeof number === "number") {
+    if (number >= 100) {
+      return number.toFixed();
+    }
+
     return parseFloat(number.toFixed(2));
   } else {
     return number;
