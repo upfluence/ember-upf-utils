@@ -27,7 +27,7 @@ export default Ember.Component.extend({
     ).inboxURL;
   }),
 
-  listURL: Ember.computed('facadeURL', function() {
+  listURL: Ember.computed('inboxURL', function() {
     return `${this.get('inboxURL')}/mailings`;
   }),
 
