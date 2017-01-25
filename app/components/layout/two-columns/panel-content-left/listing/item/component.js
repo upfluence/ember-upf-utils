@@ -1,0 +1,1 @@
+export { default } from 'ember-upf-utils/components/layout/two-columns/panel-content-left/listing/item/component';

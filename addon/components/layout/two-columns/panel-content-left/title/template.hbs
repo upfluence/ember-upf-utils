@@ -1,0 +1,12 @@
+<h3>{{title}}</h3>
+{{#if editAllowed }}
+  {{#if isEditing}}
+    <div role="button" {{action 'exitEditMode'}} class="edit-button">
+      <div class="icon">{{fa-icon exitEditIcon}}</div>
+    </div>
+  {{else}}
+    <div role="button" {{action 'enterEditMode'}} class="edit-button">
+      <div class="icon">{{fa-icon editIcon}}</div>
+    </div>
+  {{/if}}
+{{/if}}
