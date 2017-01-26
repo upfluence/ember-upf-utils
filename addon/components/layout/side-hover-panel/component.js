@@ -4,7 +4,7 @@ let $ = Ember.$;
 
 export default Ember.Component.extend({
   layout,
-  classNames: ['__side-hover-panel'],
+  classNames: ['__side-hover-panel', 'hidden'],
   
   // Those are the parameters that you can override
   backdropAction: null,
@@ -25,6 +25,7 @@ export default Ember.Component.extend({
 
     // Insert panel
     Ember.run.later(() => {
+      this.$().removeClass('hidden');
       this.setSide();
     });
 
