@@ -1,0 +1,23 @@
+.__table-fluid {
+  .__table-fluid-row {
+    .content-block();
+    .grid-display(div, @table-fluid-border-color);
+    .hover-animation(border-left-color);
+
+    height: @table-fluid-row-height;
+
+    > div {
+      height: @table-fluid-row-column-height;
+    }
+
+    &:hover {
+      background-color: @table-fluid-hover-bg;
+      border-left-color: @table-fluid-hover-border-color;
+    }
+
+    &.active {
+      background-color: @table-fluid-active-bg;
+      border-left-color: @table-fluid-active-border-color !important;
+    }
+  }
+}
