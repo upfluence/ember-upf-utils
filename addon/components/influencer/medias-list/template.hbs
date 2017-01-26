@@ -1,0 +1,6 @@
+{{#each medias as |media|}}
+  <p class="color-{{media.type}} community-row">
+    {{fa-icon media.icon}}
+    {{format-number media.communitySize}}<span class="hidden-sm visible-lg-lg"> {{media.communitySlug}}</span>
+  </p>
+{{/each}}

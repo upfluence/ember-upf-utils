@@ -1,0 +1,1 @@
+export { default } from 'ember-upf-utils/components/influencer/profile-description/component';
