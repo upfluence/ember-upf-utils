@@ -1,7 +1,7 @@
 {{#if item.isEditing}}
   <div class="input">{{input value=item.name}}</div>
   <div {{action 'onDelete'}} role="button" class="delete-button">
-    {{fa-icon 'minus-circle'}}
+    {{fa-icon deleteIcon}}
   </div>
 {{else}}
   {{#link-to itemRoutePath item.id class="link"}}
@@ -9,8 +9,8 @@
       {{item.name}}
     </div>
     {{#if hasCount}}
-    {{!-- We'll probably remove this since it's displayed in the details page --}}
-      <div class="count" title="This list contains {{item.count}} influencers">{{item.count}}</div>
+      {{!-- We'll probably remove this since it's displayed in the details page --}}
+      <div class="count" title="{{countTitleComputed}}">{{item.count}}</div>
     {{/if}}
   {{/link-to}}
 {{/if}}

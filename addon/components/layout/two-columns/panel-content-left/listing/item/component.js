@@ -9,8 +9,15 @@ export default Ember.Component.extend({
   itemRoutePath: null,
 
   deleteAction: null,
+  deleteIcon: 'minus-circle',
+
+  countTitle: '{{count}}',
 
   hasCount: Ember.computed.gte('item.count', 0),
+
+  countTitleComputed: Ember.computed('countTitle', 'item.count', function () {
+    return this.get('countTitle').replace('{{count}}', this.get('item.count'));
+  }),
 
   actions: {
     onDelete() {

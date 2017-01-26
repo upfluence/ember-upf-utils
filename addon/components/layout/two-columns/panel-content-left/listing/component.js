@@ -8,5 +8,8 @@ export default Ember.Component.extend({
   items: null,
   itemRoutePath: null,
 
-  deleteAction: null
+  deleteAction: null,
+  deleteIcon: 'minus-circle',
+
+  countTitle: '{{count}}'
 });
