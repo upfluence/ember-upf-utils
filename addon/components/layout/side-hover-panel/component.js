@@ -24,8 +24,9 @@ export default Ember.Component.extend({
     hover_panel.addClass(this.get('stickTo') + "_align");
 
     // Set animationsaddClass
-    if (this.get('shouldAnimate') === true)
+    if (this.get('shouldAnimate') === true) {
       hover_panel.addClass('animate');
+    }
 
     // Insert panel
     Ember.run.later(() => {
@@ -33,8 +34,9 @@ export default Ember.Component.extend({
     });
 
     // Insert backdrop
-    if (this.get('backdropAction') != null)
+    if (this.get('backdropAction') != null) {
       this.$('.panel-backdrop').removeClass('hidden');
+    }
 
     // Set panel dimensions
     hover_panel.css({
