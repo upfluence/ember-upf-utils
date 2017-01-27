@@ -1,0 +1,8 @@
+{{#each orderedMedias as |media|}}
+  {{#if media.type}}
+    {{influencer/er-gauge-list/er-gauge media=media.data
+      icon=media.icon
+      type=media.type
+      meta=media.meta}}
+  {{/if}}
+{{/each}}

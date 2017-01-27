@@ -1,0 +1,1 @@
+export { default } from 'ember-upf-utils/components/influencer/medias-list/component';
