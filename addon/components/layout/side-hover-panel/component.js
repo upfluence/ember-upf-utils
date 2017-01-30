@@ -53,7 +53,7 @@ export default Ember.Component.extend({
   willDestroyElement() {
     // Re-enable scrolling
     if (this.get("disableScrolling") === true) {
-      $('body').removeClass('prevent-scrolling');
+      $('body').removeClass('disable-scrolling');
     }
   },
 
