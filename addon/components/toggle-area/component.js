@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   layout,
   classNames: ['__toggle-area'],
   classNameBindings: ['value:toggled'],
+  value: false,
 
   click() {
     this.toggleProperty('value');
