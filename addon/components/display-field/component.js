@@ -9,6 +9,7 @@ export default Ember.Component.extend({
         .replace("<<not-applicable>>", "")
         .replace("Nenjiang River, China", "")
         .replace("NenjiangRiver,China", "")
+        // Formalize the spacing around comma
         .replace(new RegExp(",\s?", 'g'), ', ');
     } else {
       return "";
