@@ -3,6 +3,6 @@ import layout from './template';
 
 export default Ember.Component.extend({
   layout,
-  classNames: ['media', 'profile-description'],
+  classNames: ['profile-description'],
   isSelectable: true
 });
