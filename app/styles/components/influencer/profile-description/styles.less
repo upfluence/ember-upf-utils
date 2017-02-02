@@ -1,36 +1,36 @@
 .profile-description {
+  display: flex;
+  font-size: 12px;
 
-  // Messing with positioning to show shadows around influencer image
-  margin-top: -10px !important;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 3px;
+  .profile-picture {
+    padding-right: 10px;
 
-  img {
-    .img-shadow;
-    height: 134px;
-    width: 159px;
-  }
 
-  .media-heading {
-    margin-bottom: 10px;
-  }
-
-  .media-body {
-    h4, p.addr {
-      .text-ellipsis();
+    img {
+      .img-shadow;
+      width: 150px;
+      height: 150px;
     }
   }
 
-  a, p {
-    font-size: 12px;
+  .profile-description-title {
+    margin-bottom: 10px;
   }
 
-  p {
-    max-height: 60px;
+  .profile-description-content {
+    display: inline-block;
+
+    h4, .addr {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 
   .desc {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 50px;
     color: @warm-grey;
   }
 }
