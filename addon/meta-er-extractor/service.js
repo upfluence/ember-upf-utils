@@ -3,38 +3,38 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   meta: {},
 
-  facebookMeta: ( function() {
+  facebookMeta: Ember.computed('meta.statsErFacebookMin', 'meta.statsErFacebookMax', function() {
     return Ember.Object.create({
       erMin: this.get('meta.statsErFacebookMin'),
       erMax: this.get('meta.statsErFacebookMax')
     });
-  }).property('meta.statsErFacebookMin', 'meta.statsErFacebookMax'),
+  }),
 
-  twitterMeta: ( function() {
+  twitterMeta: Ember.computed('meta.statsErTwitterMin', 'meta.statsErTwitterMax', function() {
     return Ember.Object.create({
       erMin: this.get('meta.statsErTwitterMin'),
       erMax: this.get('meta.statsErTwitterMax')
     });
-  }).property('meta.statsErTwitterMin', 'meta.statsErTwitterMax'),
+  }),
 
-  pinterestMeta: ( function() {
+  pinterestMeta: Ember.computed('meta.statsErPinterestMin', 'meta.statsErPinterestMax', function() {
     return Ember.Object.create({
       erMin: this.get('meta.statsErPinterestMin'),
       erMax: this.get('meta.statsErPinterestMax')
     });
-  }).property('meta.statsErPinterestMin', 'meta.statsErPinterestMax'),
+  }),
 
-  youtubeMeta: ( function() {
+  youtubeMeta: Ember.computed('meta.statsErYoutubeMin', 'meta.statsErYoutubeMax', function() {
     return Ember.Object.create({
       erMin: this.get('meta.statsErYoutubeMin'),
       erMax: this.get('meta.statsErYoutubeMax')
     });
-  }).property('meta.statsErYoutubeMin', 'meta.statsErYoutubeMax'),
+  }),
 
-  instagramMeta: ( function() {
+  instagramMeta: Ember.computed('meta.statsErInstagramMin', 'meta.statsErInstagramMax', function() {
     return Ember.Object.create({
       erMin: this.get('meta.statsErInstagramMin'),
       erMax: this.get('meta.statsErInstagramMax')
     });
-  }).property('meta.statsErInstagramMin', 'meta.statsErInstagramMax')
+  })
 });
