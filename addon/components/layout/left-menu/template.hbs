@@ -19,13 +19,11 @@
         </div>
       </a>
 
-      {{#if session.isAuthenticated}}
-        <a class="logout-btn" {{action 'logout'}}>
-          <div class="menu-button">
-            {{fa-icon 'power-off'}}
-          </div>
-        </a>
-      {{/if}}
+      <a class="logout-btn" {{action 'logout'}}>
+        <div class="menu-button">
+          {{fa-icon 'power-off'}}
+        </div>
+      </a>
     </div>
   </div>
 {{/if}}
