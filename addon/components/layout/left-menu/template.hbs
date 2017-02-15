@@ -1,29 +1,29 @@
-<div class="content">
-  <div>
-    <a href={{searchURL}}>
-      <div class="menu-button">
-        {{fa-icon 'search'}}
-      </div>
-    </a>
+{{#if session.isAuthenticated}}
+  <div class="content">
+    <div>
+      <a href={{searchURL}}>
+        <div class="menu-button">
+          {{fa-icon 'search'}}
+        </div>
+      </a>
 
-    <a href={{listURL}}>
-      <div class="menu-button">
-        {{fa-icon 'list-ul'}}
-      </div>
-    </a>
+      <a href={{listURL}}>
+        <div class="menu-button">
+          {{fa-icon 'list-ul'}}
+        </div>
+      </a>
 
-    <a href={{mailingURL}}>
-      <div class="menu-button">
-        {{fa-icon 'envelope'}}
-      </div>
-    </a>
+      <a href={{mailingURL}}>
+        <div class="menu-button">
+          {{fa-icon 'envelope'}}
+        </div>
+      </a>
 
-    {{#if session.isAuthenticated}}
       <a class="logout-btn" {{action 'logout'}}>
         <div class="menu-button">
           {{fa-icon 'power-off'}}
         </div>
       </a>
-    {{/if}}
+    </div>
   </div>
-</div>
+{{/if}}
