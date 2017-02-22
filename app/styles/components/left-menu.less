@@ -1,6 +1,6 @@
 .__left-menu {
   .active {
-    div {
+    & > div {
       border-left-color: @dark-sky-blue !important;
       i { color: @dark-sky-blue!important; }
     }
@@ -12,6 +12,7 @@
   }
 
   .menu-button {
+    position: relative;
     border-left: 6px solid transparent;
     padding: 10px 0;
     text-align: center;
