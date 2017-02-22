@@ -14,11 +14,19 @@ export default Ember.Component.extend({
   }),
 
   searchURL: Ember.computed('facadeURL', function() {
-    return `${this.get('facadeURL')}/influencers`;
+    if (this.get('facadeURL')) {
+      return `${this.get('facadeURL')}/influencers`;
+    }
+
+    return 'influencers';
   }),
 
   listURL: Ember.computed('facadeURL', function() {
-    return `${this.get('facadeURL')}/lists`;
+    if (this.get('facadeURL')) {
+      return `${this.get('facadeURL')}/lists`;
+    }
+
+    return 'lists';
   }),
 
   inboxURL: Ember.computed(function() {
@@ -28,7 +36,11 @@ export default Ember.Component.extend({
   }),
 
   mailingURL: Ember.computed('inboxURL', function() {
-    return `${this.get('inboxURL')}/mailings`;
+    if (this.get('inboxURL')) {
+      return `${this.get('inboxURL')}/mailings`;
+    }
+
+    return 'mailings';
   }),
 
   actions: {

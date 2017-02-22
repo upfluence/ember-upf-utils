@@ -1,23 +1,23 @@
 {{#if session.isAuthenticated}}
   <div class="content">
     <div>
-      <a href={{searchURL}}>
+      {{#smart-link-to link=searchURL}}
         <div class="menu-button">
           {{fa-icon 'search'}}
         </div>
-      </a>
+      {{/smart-link-to}}
 
-      <a href={{listURL}}>
+      {{#smart-link-to link=listURL}}
         <div class="menu-button">
           {{fa-icon 'list-ul'}}
         </div>
-      </a>
+      {{/smart-link-to}}
 
-      <a href={{mailingURL}}>
+      {{#smart-link-to link=mailingURL}}
         <div class="menu-button">
           {{fa-icon 'envelope'}}
         </div>
-      </a>
+      {{/smart-link-to}}
 
       <a class="logout-btn" {{action 'logout'}}>
         <div class="menu-button">
