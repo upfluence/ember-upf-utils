@@ -6,6 +6,10 @@ var Funnel = require('broccoli-funnel');
 module.exports = {
   name: 'ember-upf-utils',
 
+  isDevelopingAddon: function() {
+      return true;
+  },
+
   treeForPublic: function(tree) {
     this._requireBuildPackages();
 
