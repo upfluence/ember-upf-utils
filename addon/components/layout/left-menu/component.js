@@ -4,8 +4,28 @@ import layout from './template';
 export default Ember.Component.extend({
   layout,
   classNames: ['__left-menu'],
+  hasFacade: false,
+  hasInbox: false,
+
+
+  init() {
+    this._super();
+    this.get('currentUser').fetch().then((payload) => {
+      if (payload.user.granted_scopes.includes('inbox_client')) {
+        this.set('hasInbox', true);
+      }
+
+      if (payload.user.granted_scopes.includes('facade_web')) {
+        this.set('hasFacade', true);
+      }
+    }).catch(() => {
+      this.set('hasFacade', true);
+      this.set('hasInbox', true);
+    });
+  },
 
   session: Ember.inject.service(),
+  currentUser: Ember.inject.service(),
 
   facadeURL: Ember.computed(function() {
     return Ember.getOwner(this).resolveRegistration(
