@@ -35,7 +35,7 @@ export default Ember.Component.extend({
 
   searchURL: Ember.computed('facadeURL', function() {
     if (this.get('facadeURL')) {
-      return `${this.get('facadeURL')}/influencers`;
+      return `${this.get('facadeURL')}influencers`;
     }
 
     return 'influencers';
@@ -43,7 +43,7 @@ export default Ember.Component.extend({
 
   listURL: Ember.computed('facadeURL', function() {
     if (this.get('facadeURL')) {
-      return `${this.get('facadeURL')}/lists`;
+      return `${this.get('facadeURL')}lists`;
     }
 
     return 'lists';
@@ -57,7 +57,7 @@ export default Ember.Component.extend({
 
   mailingURL: Ember.computed('inboxURL', function() {
     if (this.get('inboxURL')) {
-      return `${this.get('inboxURL')}/mailings`;
+      return `${this.get('inboxURL')}mailings`;
     }
 
     return 'mailings';
