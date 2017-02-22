@@ -4,9 +4,12 @@ import layout from './template';
 export default Ember.Component.extend({
   layout,
   classNames: ['__left-menu'],
+
+  session: Ember.inject.service(),
+  currentUser: Ember.inject.service(),
+
   hasFacade: false,
   hasInbox: false,
-
 
   init() {
     this._super();
@@ -23,9 +26,6 @@ export default Ember.Component.extend({
       this.set('hasInbox', true);
     });
   },
-
-  session: Ember.inject.service(),
-  currentUser: Ember.inject.service(),
 
   facadeURL: Ember.computed(function() {
     return Ember.getOwner(this).resolveRegistration(
