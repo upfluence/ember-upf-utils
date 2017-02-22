@@ -1,24 +1,28 @@
 {{#if session.isAuthenticated}}
   <div class="content">
     <div>
-      {{#smart-link-to link=searchURL}}
-        <div class="menu-button">
-          {{fa-icon 'search'}}
-        </div>
-      {{/smart-link-to}}
+      {{#if hasFacade}}
+        {{#smart-link-to link=searchURL}}
+          <div class="menu-button">
+            {{fa-icon 'search'}}
+          </div>
+        {{/smart-link-to}}
 
-      {{#smart-link-to link=listURL}}
-        <div class="menu-button">
-          {{fa-icon 'list-ul'}}
-        </div>
-      {{/smart-link-to}}
+        {{#smart-link-to link=listURL}}
+          <div class="menu-button">
+            {{fa-icon 'list-ul'}}
+          </div>
+        {{/smart-link-to}}
+      {{/if}}
 
-      {{#smart-link-to link=mailingURL}}
-        <div class="menu-button">
-          <div class="feature-status-label">&beta;eta</div>
-          {{fa-icon 'envelope'}}
-        </div>
-      {{/smart-link-to}}
+      {{#if hasInbox}}
+        {{#smart-link-to link=mailingURL}}
+          <div class="menu-button">
+            <div class="feature-status-label">&beta;eta</div>
+            {{fa-icon 'envelope'}}
+          </div>
+        {{/smart-link-to}}
+      {{/if}}
 
       <a class="logout-btn" {{action 'logout'}}>
         <div class="menu-button">
