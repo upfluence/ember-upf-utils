@@ -6,17 +6,23 @@ export default Ember.Component.extend({
   classNames: ['item-chooser'],
 
   // Options
-  placeholder: 'Pick a list',
-  recordType: 'list',
-  createOptionPlaceholder: 'Create <strong>#item#</strong> list',
+  placeholder: 'Pick an item',
+  recordType: null,
+  createOptionPlaceholder: '<strong>#item#</strong>',
   multiple: false,
   canCreate: false,
-  optionValuePath: "content",
-  optionLabelPath: "content.name",
+  optionValuePath: 'content',
+  optionLabelPath: 'content.name',
 
   onBlur: null,
 
   store: Ember.inject.service(),
+
+  didReceiveAttrs() {
+    if (this.get('recordType') === null) {
+      throw new Error('[component][item-chooser] Please provide a recordType');
+    }
+  },
 
   createFunctionName: Ember.computed('canCreate', 'recordType', function() {
     return this.get('canCreate') && this.get('recordType') ? 'create' : null;
