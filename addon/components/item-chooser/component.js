@@ -29,7 +29,7 @@ export default Ember.Component.extend({
   }),
 
   optionCreateFunction(value, escape) {
-    const compiled = this.get('createOptionPlaceholder')
+    let compiled = this.get('createOptionPlaceholder')
       .replace('#item#', escape(value.input));
     return `<div class="create">${compiled}</div>`;
   },
