@@ -6,7 +6,7 @@ export default Mixin.create({
   extractErrors(store, typeClass, payload, id) {
     this._super(arguments);
 
-    var  errorsPayload = {};
+    let errorsPayload = {};
 
     typeClass.eachAttribute((name) => {
       let key = this.keyForAttribute(name, 'deserialize');
@@ -15,7 +15,7 @@ export default Mixin.create({
           let { resource, field, code } = error.detail;
           return `${resource}.${field}.${code}`;
         }
-      }).filter(val => val !== undefined );
+      }).filter(val => val !== undefined);
     });
 
     return errorsPayload;
