@@ -1,13 +1,12 @@
 import Ember from 'ember';
+import Configuration from 'ember-upf-utils/configuration';
 
 export default Ember.Service.extend({
   ajax: Ember.inject.service(),
   session: Ember.inject.service(),
 
   meURL: Ember.computed('session.data.authenticated.access_token', function() {
-    const url = Ember.getOwner(this).resolveRegistration(
-      'config:environment'
-    ).identityMeURL;
+    const url = Configuration.meURL;
     const token = encodeURIComponent(
       this.get('session.data.authenticated.access_token')
     );
