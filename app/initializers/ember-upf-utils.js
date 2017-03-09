@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import ENV from '../config/environment';
 import Configuration from 'ember-upf-utils/configuration';
 
