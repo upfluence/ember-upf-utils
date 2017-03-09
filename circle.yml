@@ -9,12 +9,17 @@ machine:
     - phantomjs -v
 
 dependencies:
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   override:
-    - npm install
-    - bower install
-  cache_directories:
-    - "node_modules"
-    - "bower_components"
+    - yarn
+
 test:
   override:
     - echo "temporary disabled"
+
+deployment:
+  npm:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - npm publish
