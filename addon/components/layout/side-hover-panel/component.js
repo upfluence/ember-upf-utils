@@ -5,7 +5,7 @@ let $ = Ember.$;
 export default Ember.Component.extend({
   layout,
   classNames: ['__side-hover-panel'],
-  
+
   // Those are the parameters that you can override
   backdropAction: null,
   side: "right",
@@ -52,6 +52,8 @@ export default Ember.Component.extend({
 
   willDestroyElement() {
     // Re-enable scrolling
+    this.$('.hover-panel').remove();
+    this.$('.panel-backdrop').addClass('hidden');
     if (this.get("disableScrolling") === true) {
       $('body').removeClass('disable-scrolling');
     }
