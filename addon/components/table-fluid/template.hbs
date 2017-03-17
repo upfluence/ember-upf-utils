@@ -1,5 +1,18 @@
-<div class="col-xs-12">
-  {{#each rowValues as |rowValue|}}
-    {{yield rowValue}}
-  {{/each}}
-</div>
+{{#ember-native-scrollable
+  content-size=_contentSize
+  scroll-left=_scrollLeft
+  scroll-top=_scrollTop
+  scrollChange=(action "scrollChange")
+  clientSizeChange=(action "clientSizeChange")}}
+  <div class="table-fluid-content">
+    {{~#each _cells as |cell|~}}
+      <div style={{{cell.style}}}>{{yield cell.item cell.index }}</div>
+    {{~/each~}}
+  </div>
+
+  {{#unless isReached}}
+    <div class="table-fluid-loader">
+      {{ loading-spinner class="custom-spinner" }}
+    </div>
+  {{/unless}}
+{{/ember-native-scrollable}}
