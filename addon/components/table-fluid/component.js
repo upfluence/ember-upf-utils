@@ -20,7 +20,7 @@ export default EmberCollection.extend({
       return this.get('items.reachedInfinity');
   }),
 
-  _ : Ember.observer('_contentSize.height', function() {
+  _: Ember.observer('_contentSize.height', function() {
     this.set('_bottomReached', false);
   }),
 
