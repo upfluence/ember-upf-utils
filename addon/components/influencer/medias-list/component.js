@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   layout,
   classNames: ['__medias-list'],
 
-  blog: Ember.computed('model', function() {
+  blog: Ember.computed('profile.blog.visits', function() {
     return {
       type: 'blog',
       icon: "pencil-square-o",
@@ -14,7 +14,7 @@ export default Ember.Component.extend({
     };
   }),
 
-  facebook: Ember.computed('model', function() {
+  facebook: Ember.computed('profile.facebook.fans', function() {
     return {
       type: 'facebook',
       icon: "facebook-official",
@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     };
   }),
 
-  twitter: Ember.computed('model', function() {
+  twitter: Ember.computed('profile.twitter.followers', function() {
     return {
       type: 'twitter',
       icon: "twitter",
@@ -32,7 +32,7 @@ export default Ember.Component.extend({
     };
   }),
 
-  instagram: Ember.computed('model', function() {
+  instagram: Ember.computed('profile.instagram.followers', function() {
     return {
       type: 'instagram',
       icon: "instagram",
@@ -41,7 +41,7 @@ export default Ember.Component.extend({
     };
   }),
 
-  youtube: Ember.computed('model', function() {
+  youtube: Ember.computed('profile.youtube.followers', function() {
     return {
       type: 'youtube',
       icon: "youtube-play",
@@ -50,7 +50,7 @@ export default Ember.Component.extend({
     };
   }),
 
-  pinterest: Ember.computed('model', function() {
+  pinterest: Ember.computed('profile.pinterest.followers', function() {
     return {
       type: 'pinterest',
       icon: "pinterest-p",
