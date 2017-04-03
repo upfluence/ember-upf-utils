@@ -1,28 +1,8 @@
-.__left-menu {
-  float: left;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 10; // Above the header
-  width: @left-menu-size;
-  height: 100%;
-
-  .content {
-    height: 100%;
-    background-color: @left-menu-color;
-  }
-
-  .feature-status-label {
-    color: @left-menu-color;
-    position: absolute;
-    right: 2px;
-    top: 2px;
-    font-size: 10px;
-    background: @brand-primary;
-    padding: 1px 3px;
-    border-radius: 3px;
-    letter-spacing: 1px;
-    font-size: 8px;
-    border: 2px solid @left-menu-color;
+.app-header--sidebar {
+  .header-item--active {
+    border: 1px solid fadeout(@upf-primary-white, 80);
+    border-left: 4px solid @upf-primary-orange;
+    border-right: 1px solid @upf-primary-dark-purple;
+    width: calc(100% + 1px);
   }
 }
