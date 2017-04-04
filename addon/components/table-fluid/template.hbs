@@ -8,11 +8,7 @@
     {{yield}}
   {{/yield-slot}}
 
-  <div class="table-fluid-content">
-    {{~#each _cells as |cell|~}}
-      <div style={{{cell.style}}}>{{yield cell.item cell.index}}</div>
-    {{~/each~}}
-  </div>
+  {{yield _cells}}
 
   {{#unless isReached}}
     <div class="table-fluid-loader">
