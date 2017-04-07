@@ -1,34 +1,33 @@
 {{#if session.isAuthenticated}}
-  <div class="content">
-    <div>
-      {{#if hasFacade}}
-        {{#smart-link-to link=searchURL}}
-          <div class="menu-button">
-            {{fa-icon 'search'}}
-          </div>
+  <section class='app-header__top'>
+    {{#if hasFacade}}
+      <div class='header-item'>
+        {{#smart-link-to link=searchURL class='upf-link--reset'}}
+          {{fa-icon 'search'}}
         {{/smart-link-to}}
+      </div>
 
-        {{#smart-link-to link=listURL}}
-          <div class="menu-button">
-            {{fa-icon 'list-ul'}}
-          </div>
+      <div class='header-item'>
+        {{#smart-link-to link=listURL class='upf-link--reset'}}
+          {{fa-icon 'list-ul'}}
         {{/smart-link-to}}
-      {{/if}}
+      </div>
+    {{/if}}
 
-      {{#if hasInbox}}
-        {{#smart-link-to link=mailingURL}}
-          <div class="menu-button">
-            <div class="feature-status-label">&beta;eta</div>
-            {{fa-icon 'envelope'}}
-          </div>
+    {{#if hasInbox}}
+      <div class='header-item'>
+        {{#smart-link-to link=mailingURL class='upf-link--reset'}}
+          {{fa-icon 'envelope'}}
         {{/smart-link-to}}
-      {{/if}}
+      </div>
+    {{/if}}
+  </section>
 
-      <a class="logout-btn" {{action 'logout'}}>
-        <div class="menu-button">
+  <section class='app-header__bottom'>
+    <div class='header-item'>
+      <a class="logout-btn upf-link--reset" {{action 'logout'}}>
           {{fa-icon 'power-off'}}
-        </div>
       </a>
     </div>
-  </div>
+  </section>
 {{/if}}

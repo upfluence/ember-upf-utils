@@ -1,4 +1,9 @@
 .__table-fluid {
+  > div {
+    position: relative !important;
+    overflow: auto !important;
+  }
+
   .__table-fluid-row {
     .content-block();
     .grid-display(div, @table-fluid-border-color);
@@ -8,6 +13,7 @@
 
     > div {
       height: @table-fluid-row-column-height;
+      position: relative !important;
     }
 
     &:hover {
@@ -29,15 +35,4 @@
 .table-fluid-loader {
   position: relative;
   width: 100%;
-}
-
-.has-stats {
-  // Need something more clean !!!
-  .table-fluid-content{
-    top: 180px;
-  }
-
-  .table-fluid-loader {
-    bottom: -180px;
-  }
 }

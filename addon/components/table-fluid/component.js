@@ -1,15 +1,21 @@
 import Ember from 'ember';
 import layout from './template';
-import EmberCollection from 'ember-collection/components/ember-collection'
+import EmberCollection from 'ember-collection/components/ember-collection';
+import SlotsMixin from 'ember-block-slots';
 
-export default EmberCollection.extend({
+const {
+  computed,
+  observer
+} = Ember;
+
+export default EmberCollection.extend(SlotsMixin, {
   layout,
   classNames: ['__table-fluid'],
   triggerOffset: 600,
   onBottomReach: null,
   _bottomReached: false,
 
-  isReached: Ember.computed(
+  isReached: computed(
     'items.reachedInfinity',
     '_bottomReached', function() {
       // Check infinity
@@ -20,13 +26,13 @@ export default EmberCollection.extend({
       return this.get('items.reachedInfinity');
   }),
 
-  _: Ember.observer('_contentSize.height', function() {
+  _: observer('_contentSize.height', function() {
     this.set('_bottomReached', false);
   }),
 
   _bottomIsReached(scrollTop) {
     let pos = this._contentSize.height - this._clientHeight - scrollTop;
-    return  pos <= this.get('triggerOffset');
+    return pos <= this.get('triggerOffset');
   },
 
   actions: {

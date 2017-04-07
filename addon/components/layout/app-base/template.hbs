@@ -1,5 +1,9 @@
-{{layout/left-menu}}
+{{#app-base headerStyle='sidebar'}}
+  {{#app-header headerStyle='sidebar'}}
+    {{layout/left-menu}}
+  {{/app-header}}
 
-<div class="layout-right-section">
-  {{yield}}
-</div>
+  <div class="layout-right-section">
+    {{yield}}
+  </div>
+{{/app-base}}
