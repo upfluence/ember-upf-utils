@@ -1,4 +1,4 @@
-<div class="profile-picture">
+<div class='profile-description__avatar padding-right-xx-sm'>
   {{#if isSelectable}}
     {{#toggle-area value=profile.selected}}
       <img src={{profile.avatar_url}}>
@@ -7,10 +7,19 @@
     <img src={{profile.avatar_url}}>
   {{/if}}
 </div>
-<div class="profile-description-content">
-  <h4 class="profile-description-title">{{profile.name}} {{#if profile.isNew}}<span class="label label-primary">New</span>{{/if}}</h4>
+
+<div class="profile-description__content">
+  <span class='text-size-5 text-style-bold wrapped-text'>
+    {{profile.name}}
+    {{#if profile.isNew}}
+      <span class="label label-primary">New</span>
+    {{/if}}
+  </span>
+
   {{display-field url=profile.email_link value=profile.email}}
-  <p class="addr">{{display-field value=profile.address}}</p>
-  <p class="desc">{{profile.description}}</p>
+  <p class='text-size-4 wrapped-text'>{{display-field value=profile.address}}</p>
+  <p class='description text-size-4 text-color-default-light'>
+    {{profile.description}}
+  </p>
   {{yield}}
 </div>
