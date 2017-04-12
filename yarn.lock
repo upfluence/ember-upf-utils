@@ -588,7 +588,7 @@ broccoli-config-replace@^1.1.2:
     debug "^2.2.0"
     fs-extra "^0.24.0"
 
-broccoli-file-creator@^1.0.0:
+broccoli-file-creator@^1.0.0, broccoli-file-creator@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/broccoli-file-creator/-/broccoli-file-creator-1.1.1.tgz#1b35b67d215abdfadd8d49eeb69493c39e6c3450"
   dependencies:
@@ -1353,6 +1353,21 @@ ember-ajax@^2.0.1:
   dependencies:
     ember-cli-babel "^5.1.5"
 
+ember-block-slots@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/ember-block-slots/-/ember-block-slots-1.1.9.tgz#ff718785dfbc2b7ed74e6bfe64f34be9cc3ff169"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-htmlbars "^1.0.3"
+    ember-prop-types ">=2.0.0 <4.0.0"
+    ember-runtime-enumerable-includes-polyfill "^1.0.1"
+
+ember-cli-active-link-wrapper@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-active-link-wrapper/-/ember-cli-active-link-wrapper-0.3.2.tgz#43582f6b1c157ab9f0a5a5f66348e5a3b65de1dc"
+  dependencies:
+    ember-cli-babel "^5.1.5"
+
 ember-cli-app-version@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ember-cli-app-version/-/ember-cli-app-version-1.0.1.tgz#d135eba75f30e791d8a5e5844f1251dcbcc40438"
@@ -1716,6 +1731,13 @@ ember-factory-for-polyfill@^1.1.0:
     ember-cli-babel "^5.1.7"
     ember-cli-version-checker "^1.2.0"
 
+ember-get-config@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.1.tgz#a1325cceefcb4534c78fc6ccb2be87a3feda6817"
+  dependencies:
+    broccoli-file-creator "^1.1.1"
+    ember-cli-babel "^5.1.6"
+
 ember-getowner-polyfill@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.0.0.tgz#f847ceabd97ab97e9e9d279c382400a4d407a9d6"
@@ -1739,6 +1761,14 @@ ember-inflector@^1.9.4:
 ember-load-initializers@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/ember-load-initializers/-/ember-load-initializers-0.5.1.tgz#76e3db23c111dbdcd3ae6f687036bf0b56be0cbe"
+
+"ember-prop-types@>=2.0.0 <4.0.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-3.11.0.tgz#0ef0a5350d9757a5bea89a634456c7e9ce84207a"
+  dependencies:
+    ember-cli-babel "^5.1.8"
+    ember-get-config "0.2.1"
+    npm-install-security-check "^1.0.0"
 
 ember-qunit@^0.4.18:
   version "0.4.22"
@@ -1771,7 +1801,7 @@ ember-router-generator@^1.0.0:
   dependencies:
     recast "^0.11.3"
 
-ember-runtime-enumerable-includes-polyfill@^1.0.0:
+ember-runtime-enumerable-includes-polyfill@^1.0.0, ember-runtime-enumerable-includes-polyfill@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/ember-runtime-enumerable-includes-polyfill/-/ember-runtime-enumerable-includes-polyfill-1.0.4.tgz#16a7612e347a2edf07da8b2f2f09dbfee70deba0"
   dependencies:
@@ -3456,6 +3486,10 @@ npm-install-checks@~1.0.7:
   dependencies:
     npmlog "0.1 || 1 || 2"
     semver "^2.3.0 || 3.x || 4 || 5"
+
+npm-install-security-check@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/npm-install-security-check/-/npm-install-security-check-1.0.4.tgz#ec419cc8280eb37abb0d879f4aef7f03b9990b08"
 
 "npm-package-arg@^3.0.0 || ^4.0.0", npm-package-arg@^4.0.0, npm-package-arg@^4.1.1:
   version "4.2.1"
