@@ -20,6 +20,7 @@
   "dependencies": {
     "broccoli-funnel": "^1.0.6",
     "ember-block-slots": "^1.1.9",
+    "ember-cli-active-link-wrapper": "^0.3.2",
     "ember-cli-babel": "^5.1.6",
     "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",

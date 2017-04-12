@@ -1,6 +1,6 @@
 .inverse-element {
-  background-color: @inverse-bg;
-  color: @inverse-color;
+  background-color: @upf-primary-dark-purple;
+  color: @color-text-contrast;
 
   .btn-link {
     .hover-animation(background-color);
@@ -10,24 +10,26 @@
     }
 
     &:active {
-      background-color: @inverse-btn-active-color;
+      background-color: @color-text-contrast;
     }
   }
 
-  .form-control {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  input[type="text"]::placeholder {
+    color: @color-text-contrast;
+    font-family: @font-text-body;
+  }
+
+  .upf-input,
+  .upf-select,
+  .selectize-input {
+    color: @color-text-contrast;
+    background-color: @upf-primary-rock-blue;
+    border-color: @upf-primary-rock-blue;
 
     &:focus, &:hover {
       outline: none;
       box-shadow: none;
-      background: @inverse-form-focus-bg;
+      background: @upf-primary-rock-blue;
     }
-
-    .hover-animation(background);
-
-    color: @inverse-form-color;
-    border: 0px;
-    background: @inverse-form-bg;
   }
 }

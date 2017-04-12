@@ -1,39 +1,43 @@
+//
+// Utility class for wrapping text and add an ellipsis to its end
+//
+.wrapped-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+//
+// An Influencer's Description wrapper.
+//
 .profile-description {
   display: flex;
-  font-size: 12px;
 
-  .profile-picture {
-    padding-right: 10px;
+  //
+  // An Influencer's Profile Picture.
+  //
+  .profile-description__avatar {
     flex-shrink: 0;
 
-
     img {
-      .img-shadow;
       width: 150px;
       height: 150px;
     }
   }
 
-  .profile-description-title {
-    margin-bottom: 10px;
-  }
-
-  .profile-description-content {
+  //
+  // The description section of an influencer row.
+  //
+  .profile-description__content {
     display: inline-block;
     flex: 1;
     min-width: 0;
 
-    h4, .addr {
+    .description {
       text-overflow: ellipsis;
-      white-space: nowrap;
       overflow: hidden;
+      height: 50px;
     }
   }
-
-  .desc {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    height: 50px;
-    color: @warm-grey;
-  }
 }
+

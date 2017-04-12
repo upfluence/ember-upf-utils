@@ -1,25 +1,29 @@
 {{#if session.isAuthenticated}}
   <section class='app-header__top'>
     {{#if hasFacade}}
-      <div class='header-item'>
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
         {{#smart-link-to link=searchURL class='upf-link--reset'}}
           {{fa-icon 'search'}}
         {{/smart-link-to}}
-      </div>
+      {{/active-link}}
 
-      <div class='header-item'>
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
         {{#smart-link-to link=listURL class='upf-link--reset'}}
           {{fa-icon 'list-ul'}}
         {{/smart-link-to}}
-      </div>
+      {{/active-link}}
     {{/if}}
 
     {{#if hasInbox}}
-      <div class='header-item'>
+
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
         {{#smart-link-to link=mailingURL class='upf-link--reset'}}
           {{fa-icon 'envelope'}}
         {{/smart-link-to}}
-      </div>
+      {{/active-link}}
     {{/if}}
   </section>
 
