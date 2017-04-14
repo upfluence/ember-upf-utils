@@ -3,6 +3,9 @@ import layout from './template';
 
 export default Ember.Component.extend({
   layout,
+
+  classNames: ['wrapped-text'],
+
   cleanedValue: Ember.computed('value', function() {
     if(this.get('value')) {
       return this.get('value')
