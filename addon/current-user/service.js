@@ -6,16 +6,20 @@ export default Ember.Service.extend({
   session: Ember.inject.service(),
   raven: Ember.inject.service(),
 
-  _: Ember.observe('meURL', function() {
-    if (window.Raven !== null) {
-      this.fetch().then((payload) => {
-        window.Raven.setUserContext({
-          email: payload.user.email,
-          id: payload.user.id
-        })
-      });
-    }
-  }),
+  init() {
+    this._super();
+
+    Ember.run.next(() => {
+      if (window.Raven !== null) {
+        this.fetch().then((payload) => {
+          window.Raven.setUserContext({
+            email: payload.user.email,
+            id: payload.user.id
+          })
+        });
+      }
+    });
+  },
 
   meURL: Ember.computed('session.data.authenticated.access_token', function() {
     const url = Configuration.meURL;
