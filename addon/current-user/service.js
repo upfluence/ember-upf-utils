@@ -15,7 +15,7 @@ export default Ember.Service.extend({
         })
       });
     }
-  })
+  }),
 
   meURL: Ember.computed('session.data.authenticated.access_token', function() {
     const url = Configuration.meURL;
