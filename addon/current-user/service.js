@@ -23,10 +23,13 @@ export default Service.extend({
           });
         }
 
-        this.get('intercom').set('user.email', user.email);
-        this.get('intercom').set(
-          'user.name', `${user.first_name} ${user.last_name}`
-        );
+        if (window.Intercom !== null) {
+          window.Intercom('update', {
+            email: user.email,
+            name: `${user.first_name} ${user.last_name}`,
+            user_id: user.id
+          });
+        }
       });
     });
   },
