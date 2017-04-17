@@ -1,27 +1,37 @@
 import Ember from 'ember';
 import Configuration from 'ember-upf-utils/configuration';
 
-export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
-  session: Ember.inject.service(),
-  raven: Ember.inject.service(),
+const { computed, Service, inject, run } = Ember;
+
+export default Service.extend({
+  ajax: inject.service(),
+  session: inject.service(),
+  raven: inject.service(),
+  intercom: inject.service(),
 
   init() {
     this._super();
 
-    Ember.run.next(() => {
-      if (window.Raven !== null) {
-        this.fetch().then((payload) => {
+    run.next(() => {
+      this.fetch().then((payload) => {
+        let user = payload.user;
+
+        if (window.Raven !== null) {
           window.Raven.setUserContext({
-            email: payload.user.email,
-            id: payload.user.id
-          })
-        });
-      }
+            email: user.email,
+            id: user.id
+          });
+        }
+
+        this.get('intercom').set('user.email', user.email);
+        this.get('intercom').set(
+          'user.name', `${user.first_name} ${user.last_name}`
+        );
+      });
     });
   },
 
-  meURL: Ember.computed('session.data.authenticated.access_token', function() {
+  meURL: computed('session.data.authenticated.access_token', function() {
     const url = Configuration.meURL;
     const token = encodeURIComponent(
       this.get('session.data.authenticated.access_token')
