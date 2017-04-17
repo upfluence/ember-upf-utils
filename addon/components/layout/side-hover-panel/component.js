@@ -16,21 +16,18 @@ export default Ember.Component.extend({
   stickTo: "right",
 
   didInsertElement() {
-    // limit the amount of work for the brower
-    this.$().detach().prependTo($(document.body));
-
-    let hover_panel = this.$('.hover-panel');
-    hover_panel.addClass(this.get('side') + "_side");
-    hover_panel.addClass(this.get('stickTo') + "_align");
+    let hoverPanel = this.$('.hover-panel');
+    hoverPanel.addClass(this.get('side') + "_side");
+    hoverPanel.addClass(this.get('stickTo') + "_align");
 
     // Set animationsaddClass
     if (this.get('shouldAnimate') === true) {
-      hover_panel.addClass('animate');
+      hoverPanel.addClass('animate');
     }
 
     // Insert panel
     Ember.run.later(() => {
-      hover_panel.addClass(this.get('side') + "_transform");
+      hoverPanel.addClass(this.get('side') + "_transform");
     });
 
     // Insert backdrop
@@ -39,7 +36,7 @@ export default Ember.Component.extend({
     }
 
     // Set panel dimensions
-    hover_panel.css({
+    hoverPanel.css({
         'width': this.get('width'),
         'height': this.get('height')
     });
