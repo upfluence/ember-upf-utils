@@ -2,19 +2,13 @@ machine:
   node:
     version: 5.5.0
 
-  pre:
-    - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-    - tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-    - sudo mv phantomjs /usr/local/bin/phantomjs
-    - phantomjs -v
-
 dependencies:
   override:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
 test:
   override:
-    - echo "temporary disabled"
+    - ember build
 
 deployment:
   npm:
