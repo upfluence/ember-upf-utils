@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Configuration from 'ember-upf-utils/configuration';
 
-const { computed, Service, inject, run } = Ember;
+const { computed, Service, inject, isNone, run } = Ember;
 
 export default Service.extend({
   ajax: inject.service(),
@@ -15,14 +15,14 @@ export default Service.extend({
       this.fetch().then((payload) => {
         let user = payload.user;
 
-        if (window.Raven !== null) {
+        if (!isNone(window.Raven)){
           window.Raven.setUserContext({
             email: user.email,
             id: user.id
           });
         }
 
-        if (window.Intercom !== null) {
+        if (!isNone(window.Intercom)){
           window.Intercom('update', {
             email: user.email,
             name: `${user.first_name} ${user.last_name}`,
