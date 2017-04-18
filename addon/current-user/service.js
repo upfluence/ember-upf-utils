@@ -7,7 +7,6 @@ export default Service.extend({
   ajax: inject.service(),
   session: inject.service(),
   raven: inject.service(),
-  intercom: inject.service(),
 
   init() {
     this._super();
