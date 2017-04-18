@@ -1,6 +1,6 @@
 {
   "name": "ember-upf-utils",
-  "version": "0.0.30",
+  "version": "0.2.10",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
