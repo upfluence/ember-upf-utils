@@ -6,7 +6,6 @@ const { computed, Service, inject, isNone, run } = Ember;
 export default Service.extend({
   ajax: inject.service(),
   session: inject.service(),
-  raven: inject.service(),
 
   init() {
     this._super();
