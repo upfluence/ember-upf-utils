@@ -16,9 +16,6 @@ export default Ember.Component.extend({
   stickTo: "right",
 
   didInsertElement() {
-    // limit the amount of work for the brower
-    this.$().detach().prependTo($(document.body));
-
     let hover_panel = this.$('.hover-panel');
     hover_panel.addClass(this.get('side') + "_side");
     hover_panel.addClass(this.get('stickTo') + "_align");
