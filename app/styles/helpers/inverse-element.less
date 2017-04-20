@@ -2,6 +2,24 @@
   background-color: @upf-primary-dark-purple;
   color: @color-text-contrast;
 
+  .upf-btn--reversed {
+    background-color: transparent;
+    border: 1px solid fade(white, 20%);
+    color: @inverse-color;
+
+    &:hover {
+      background-color: @inverse-color;
+      color: white;
+      border: 1px solid transparent;
+    }
+  }
+
+  .upf-btn--regular {
+    background-color: @inverse-color;
+    color: white;
+    border: 1px solid transparent;
+  }
+
   .btn-link {
     .hover-animation(background-color);
 
@@ -23,13 +41,13 @@
   .upf-select,
   .selectize-input {
     color: @color-text-contrast;
-    background-color: @upf-primary-rock-blue;
-    border-color: @upf-primary-rock-blue;
+    background-color: fade(white, 10%);
+    border: 0;
 
     &:focus, &:hover {
       outline: none;
       box-shadow: none;
-      background: @upf-primary-rock-blue;
+      background: @inverse-color;
     }
   }
 }
