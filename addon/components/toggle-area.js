@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import layout from './template';
 
-export default Ember.Component.extend({
-  layout,
+const { Component } = Ember;
+
+export default Component.extend({
   classNames: ['__toggle-area'],
   classNameBindings: ['value:toggled'],
   value: false,
