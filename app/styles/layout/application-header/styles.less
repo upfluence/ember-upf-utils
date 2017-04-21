@@ -5,32 +5,20 @@
   z-index: 4;
   padding-right: 0;
   border-bottom: solid 2px #e5e7e9;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
 
   .__application-header-content {
-    position: absolute;
-    top: 0;
-    height: 100%;
-
-    &.left {
-      width: 40%;
-      display: flex;
-      align-items: center;
-    }
+    align-items: center;
+    display: flex;
 
     &.center {
-      width: 20%;
-      left: 40%;
-      display: flex;
       justify-content: center;
-      align-items: center;
     }
 
     &.right {
-      width: 40%;
-      left: 60%;
-      display: flex;
       justify-content: flex-end;
-      align-items: center;
     }
   }
 }
