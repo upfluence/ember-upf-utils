@@ -79,9 +79,9 @@
 <div id="{{concat elementId '-campaign-dashboard__campaign-stats'}}"
      class='row campaign-dashboard__campaign-stat-blocks {{if isInList "carousel slide"}}'
      data-wrap=false data-interval=false>
-
   <div class='row {{if isInList "carousel-inner"}}'>
-    <div class='{{if isInList "item active"}} upf-stat-block campaign-dashboard__campaign-stat {{statsSizeClass}}'>
+    <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
       <span class='upf-stat-block__title'>
         {{t 'campaign.dashboard.sourcing.recruitmentTitle'}}
       </span>
@@ -106,7 +106,8 @@
       </div>
     </div>
 
-    <div class='{{if isInList "item"}} upf-stat-block campaign-dashboard__campaign-stat {{statsSizeClass}}'>
+    <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
       <span class='upf-stat-block__title'>
         {{t 'campaign.dashboard.sourcing.selectionTitle'}}
       </span>
@@ -133,7 +134,8 @@
       </div>
     </div>
 
-    <div class='{{if isInList "item"}} upf-stat-block campaign-dashboard__campaign-stat {{statsSizeClass}}'>
+    <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
       <span class='upf-stat-block__title'>
         {{t 'campaign.dashboard.contributions.title'}}
       </span>
@@ -159,7 +161,8 @@
     </div>
 
     {{#unless isClientFacing}}
-      <div class='{{if isInList "item"}} upf-stat-block campaign-dashboard__campaign-stat {{statsSizeClass}}'>
+      <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
         <span class='upf-stat-block__title'>
           {{t 'campaign.dashboard.payments.title'}}
         </span>

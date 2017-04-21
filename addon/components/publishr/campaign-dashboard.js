@@ -5,14 +5,6 @@ const { Component, computed } = Ember;
 export default Component.extend({
   classNames: ['campaign-dashboard'],
 
-  statsSizeClass: computed('isInList', function() {
-    if (this.get('isInList')) {
-      return 'col-xs-12';
-    }
-
-    return 'col-xs-4';
-  }),
-
   campaignTags: computed('isInList', 'campaign.tags', function() {
     if (this.get('isInList')) {
       return this.get('campaign.tags').slice(0, 3);
