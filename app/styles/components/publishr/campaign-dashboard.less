@@ -1,0 +1,105 @@
+/*
+ * Styles for the Campaign Dashboard
+ */
+
+// (& => campaign-dashboard)
+.campaign-dashboard {
+  background-color: @upf-primary-white;
+  border: 1px solid @upf-gray;
+  border-radius: @default-radius;
+
+  min-height: 370px;
+  margin: 1%;
+  overflow: hidden;
+  padding: 1% 0;
+}
+
+.campaign-dashboard__campaign-logo {
+  width: 100%;
+}
+
+.campaign-dashboard__campaign-name {
+  .text-size-7;
+}
+
+.campaign-dashboard__campaign-tags {}
+.campaign-dashboard__campaign-tags__tag {
+  margin-top: 1%;
+  margin-right: 1%;
+}
+
+.campaign-dashboard__campaign-status {
+  .upf-align--right;
+
+  .upf-tag {
+    position: absolute;
+    right: 5%;
+  }
+}
+
+.campaign-dashboard__sourcing-objectives {
+  margin-top: 1em;
+  position: relative;
+}
+
+.campaign-dashboard__campaign-stat-blocks {
+  margin-top: 2.5em;
+}
+
+//
+// We use left borders as separator between stats blocks.
+// But we don't want them if it's the first or last stat block or if the stats blocks
+// are part of a Carousel Slider (which items are set using the .item class.
+//
+.campaign-dashboard__campaign-stat {
+  margin-top: 1em;
+}
+.campaign-dashboard__campaign-stat:not(:first-child):not(:last-child):not(.item) {
+  border-left: 1px solid @upf-gray;
+}
+
+//
+// Custom Carousel for when the Campaign Dashboard component is used in a of
+// campaigns.
+//
+// This is styled there as I (Philippe Ndiaye, talking) think there is not
+// enough cases to judge whether this is something common to all products or
+// not.
+//
+.carousel-control.left, .carousel-control.right {
+  background-image: none;
+  outline: none;
+  display: flex;
+  text-shadow: none;
+  margin-top: 2em;
+
+  .fa {
+    color: @upf-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    &:hover {
+      box-shadow: none;
+      color: @upf-gray-dark;
+    }
+  }
+}
+
+//
+// Custom Progress
+// Same as Carousel. This is used only there, and we don't have enough elements
+// to get it moved to OSS.
+.progress {
+  .upf-align--center;
+  .text-size-3;
+  background-color: @upf-gray;
+  border-radius: @default-radius;
+  box-shadow: none;
+  height: 13px;
+}
+
+.progress-bar {
+  background-color: @upf-feedback-success;
+}

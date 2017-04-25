@@ -1,0 +1,202 @@
+<div class='col-md-12'>
+  <div class='row'>
+    {{#link-to 'campaigns.details' campaign.id class='upf-link--reset'}}
+      <div class='col-xs-1'>
+        <img src={{campaign.logoUrl}} alt={{campaign.title}}
+             class='campaign-dashboard__campaign-logo' />
+      </div>
+    {{/link-to}}
+
+    <div class='col-xs-9'>
+      {{#link-to 'campaigns.details' campaign.id class='upf-link--reset'}}
+        <span class='col-xs-12 campaign-dashboard__campaign-name'>
+          {{campaign.title}}
+        </span>
+      {{/link-to}}
+
+      <p class='col-xs-12 text-color-default-light'>
+        {{format-date campaign.createdAt 'MMM DD, YYYY'}}
+      </p>
+
+      <div class='col-xs-9 campaign-dashboard__campaign-tags'>
+        {{#each campaignTags as |campaignTag|}}
+          <span class='upf-tag campaign-dashboard__campaign-tags__tag'>
+            <span class='upf-tag__text'>
+              {{campaignTag.label}}
+            </span>
+          </span>
+        {{/each}}
+      </div>
+
+      <div class='col-xs-9 campaign-dashboard__sourcing-objectives'>
+        <div class='row'>
+          <div class='col-xs-6'>
+            <span class='text-style-bold'>
+              {{t 'campaign.dashboard.sourced_objective_label'}}
+            </span>
+            <div class='progress'>
+              <div class='progress-bar' role='progressbar'
+                   aria-valuenow={{totalSourcedToPercent}}
+                   aria-valuemin='0' aria-valuemax='100'
+                   style='width: {{totalSourcedToPercent}}%;'>
+              </div>
+              <span class='progress-type'>
+                {{campaign.totalSourced}} / {{campaign.targetSourced}}
+              </span>
+            </div>
+          </div>
+
+          <div class='col-xs-6'>
+            <span class='text-style-bold'>
+              {{t 'campaign.dashboard.interested_objective_label'}}
+            </span>
+            <div class='progress'>
+              <div class='progress-bar' role='progressbar'
+                   aria-valuenow={{totalInterestedToPercent}}
+                   aria-valuemin='0' aria-valuemax='100'
+                   style='width: {{totalInterestedToPercent}}%;'>
+              </div>
+              <span class='progress-type'>
+                {{campaign.totalInterested}} / {{campaign.targetInterested}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-xs-2 pull-right'>
+      <div class='campaign-dashboard__campaign-status'>
+        <span class='text-style-bold'>{{t 'campaign.dashboard.status_label'}}</span>
+        <div class='upf-tag upf-tag--orange'>
+          <span class='upf-tag__text'>{{campaign.status}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="{{concat elementId '-campaign-dashboard__campaign-stats'}}"
+     class='row campaign-dashboard__campaign-stat-blocks {{if isInList "carousel slide"}}'
+     data-wrap=false data-interval=false>
+  <div class='row {{if isInList "carousel-inner"}}'>
+    <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
+      <span class='upf-stat-block__title'>
+        {{t 'campaign.dashboard.sourcing.recruitmentTitle'}}
+      </span>
+
+      <p class='upf-stat-block__description'>
+        {{t 'campaign.dashboard.sourcing.totalSourced'
+            sourced=campaign.totalSourced}}
+      </p>
+
+      <div class='upf-stat-block__stats'>
+        {{standard-stat number=campaign.totalInterested size='sm'
+                        title=(t 'campaign.dashboard.sourcing.interested')
+                        class='upf-stat-block__stat'}}
+
+        {{standard-stat number=campaign.totalSelected size='sm'
+                        title=(t 'campaign.dashboard.sourcing.selected')
+                        class='upf-stat-block__stat'}}
+
+        {{standard-stat number=campaign.totalNotInterested size='sm'
+                        title=(t 'campaign.dashboard.sourcing.not_interested')
+                        class='upf-stat-block__stat'}}
+      </div>
+    </div>
+
+    <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
+      <span class='upf-stat-block__title'>
+        {{t 'campaign.dashboard.sourcing.selectionTitle'}}
+      </span>
+
+      <p class='upf-stat-block__description'>
+        {{t 'campaign.dashboard.sourcing.selectionDescription'}}
+      </p>
+
+      <div class='upf-stat-block__stats'>
+        {{standard-stat number=totalUnknown size='sm'
+                        title=(t 'campaign.dashboard.sourcing.selectedUnknown')
+                        class='upf-stat-block__stat'}}
+
+        {{standard-stat number=totalOk size='sm'
+                        title=(t 'campaign.dashboard.sourcing.selectedOk')
+                        class='upf-stat-block__stat'}}
+
+        {{standard-stat number=totalGood size='sm'
+                        title=(t 'campaign.dashboard.sourcing.selectedGood')
+                        class='upf-stat-block__stat'}}
+        {{standard-stat number=totalGreat size='sm'
+                        title=(t 'campaign.dashboard.sourcing.selectedGreat')
+                        class='upf-stat-block__stat'}}
+      </div>
+    </div>
+
+    <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
+      <span class='upf-stat-block__title'>
+        {{t 'campaign.dashboard.contributions.title'}}
+      </span>
+
+      <p class='upf-stat-block__description'>
+        {{t 'campaign.dashboard.contributions.description'
+            targetPublished=campaign.targetPublished}}
+      </p>
+
+      <div class='upf-stat-block__stats'>
+        {{standard-stat number=campaign.totalWithDraft size='sm'
+                        title=(t 'campaign.dashboard.contributions.drafting')
+                        class='upf-stat-block__stat'}}
+
+        {{standard-stat number=campaign.totalReadyForPublication size='sm'
+                        title=(t 'campaign.dashboard.contributions.ready_for_publication')
+                        class='upf-stat-block__stat'}}
+
+        {{standard-stat number=campaign.totalPublished size='sm'
+                        title=(t 'campaign.dashboard.contributions.published')
+                        class='upf-stat-block__stat'}}
+      </div>
+    </div>
+
+    {{#unless isClientFacing}}
+      <div class='{{if isInList "item active col-xs-12" "col-xs-4"}} upf-stat-block
+                campaign-dashboard__campaign-stat'>
+        <span class='upf-stat-block__title'>
+          {{t 'campaign.dashboard.payments.title'}}
+        </span>
+
+        <p class='upf-stat-block__description'>
+          {{t 'campaign.dashboard.payments.description'
+              totalAdminApproved=campaign.totalAdminApproved}}
+        </p>
+
+        <div class='upf-stat-block__stats'>
+          {{standard-stat number=campaign.totalAuthorizedForPayment size='sm'
+                          title=(t 'campaign.dashboard.payments.authorized_for_payment')
+                          class='upf-stat-block__stat'}}
+
+          {{standard-stat number=campaign.totalPaymentRequestSubmitted size='sm'
+                          title=(t 'campaign.dashboard.payments.payment_request_submitted')
+                          class='upf-stat-block__stat'}}
+
+          {{standard-stat number=campaign.totalPayed size='sm'
+                          title=(t 'campaign.dashboard.payments.payed')
+                          class='upf-stat-block__stat'}}
+        </div>
+      </div>
+    {{/unless}}
+  </div>
+
+  {{#if isInList}}
+    <a class='left carousel-control' href='#{{concat elementId '-campaign-dashboard__campaign-stats'}}'
+       role='button' data-slide='prev'>
+      {{fa-icon 'chevron-left'}}
+    </a>
+    <a class='right carousel-control' href='#{{concat elementId '-campaign-dashboard__campaign-stats'}}'
+       role='button' data-slide='next'>
+      {{fa-icon 'chevron-right'}}
+    </a>
+  {{/if}}
+</div>
