@@ -8,14 +8,28 @@
     {{/link-to}}
 
     <div class='col-xs-9'>
-      {{#link-to 'campaigns.details' campaign.id class='upf-link--reset'}}
-        <span class='col-xs-12 campaign-dashboard__campaign-name'>
-          {{campaign.title}}
-        </span>
-      {{/link-to}}
+      <span class='col-xs-12 campaign-dashboard__campaign-name'>
+        {{campaign.title}}
 
-      <p class='col-xs-12 text-color-default-light'>
-        {{format-date campaign.createdAt 'MMM DD, YYYY'}}
+        {{#if showViewDetailsLink}}
+          {{#link-to 'campaigns.details' campaign.id class='upf-btn upf-btn--orange upf-btn--x-small'}}
+            {{t 'campaign.dashboard.view_details'}}
+          {{/link-to}}
+        {{/if}}
+      </span>
+
+      <p class='col-xs-12 text-size-5'>
+        <span class='text-style-bold'>
+          {{t 'campaign.dashboard.status_label'}}
+        </span>
+        <span class='campaign-dashboard__campaign-status'>
+          {{campaign.status}}
+        </span> <br>
+
+        <span class='text-style-bold'>
+          {{t 'campaign.dashboard.created_on_label'}}
+        </span>
+        <span>{{format-date campaign.createdAt 'MMM DD, YYYY'}}</span>
       </p>
 
       <div class='col-xs-9 campaign-dashboard__campaign-tags'>
@@ -67,10 +81,6 @@
 
     <div class='col-xs-2 pull-right'>
       <div class='campaign-dashboard__campaign-status'>
-        <span class='text-style-bold'>{{t 'campaign.dashboard.status_label'}}</span>
-        <div class='upf-tag upf-tag--orange'>
-          <span class='upf-tag__text'>{{campaign.status}}</span>
-        </div>
       </div>
     </div>
   </div>
