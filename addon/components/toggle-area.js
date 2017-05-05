@@ -11,15 +11,9 @@ export default Component.extend({
     this.toggleProperty('value');
 
     if(this.get('callbackAction')) {
-      this.send('runCallback');
+      this.sendAction('callbackAction');
     }
 
     return false; // Don't propagate the event any further
-  },
-
-  actions: {
-    runCallback: function() {
-      this.get('_targetObject').send(this.get('callbackAction'));
-    }
   }
 });
