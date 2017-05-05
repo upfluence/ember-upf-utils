@@ -3,7 +3,7 @@
     <img class="media-object" src={{profile.avatar_url}}>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{profile.name}}{{#if displayLink}} - <a href="{{link}}" target="_blank">{{fa-icon 'bar-chart'}}</a>{{/if}}</h4>
+    <h4 class="media-heading">{{profile.name}}{{#if displayLink}} - {{#smart-link-to link=link}}{{fa-icon 'bar-chart'}}{{/smart-link-to}}{{/if}}</h4>
     {{#display-field url=profile.email_link value=profile.email}}
       {{#if profile.email}}&#183;&nbsp;{{/if}}{{profile.address}}
     {{/display-field}}

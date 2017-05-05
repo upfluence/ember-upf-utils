@@ -38,6 +38,12 @@ export default Ember.Component.extend({
     ).facadeURL;
   }),
 
+  analyticsURL: Ember.computed(function() {
+    return Ember.getOwner(this).resolveRegistration(
+      'config:environment'
+    ).analyticsURL;
+  }),
+
   searchURL: Ember.computed('facadeURL', function() {
     if (this.get('facadeURL')) {
       return `${this.get('facadeURL')}influencers`;
@@ -46,12 +52,12 @@ export default Ember.Component.extend({
     return 'influencers';
   }),
 
-  analyticsURL: Ember.computed('facadeURL', function() {
-    if (this.get('facadeURL')) {
-      return `${this.get('facadeURL')}analytics`;
+  streamsURL: Ember.computed('analyticsURL', function() {
+    if (this.get('analyticsURL')) {
+      return `${this.get('analyticsURL')}streams`;
     }
 
-    return 'influencers';
+    return 'streams';
   }),
 
   listURL: Ember.computed('facadeURL', function() {

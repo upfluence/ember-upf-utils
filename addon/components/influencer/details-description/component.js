@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   }),
 
   link: Ember.computed('facadeURL', 'profile.id', function() {
-    return `${this.get('facadeURL')}influencers/${this.get('profile.id')}`
+    return `${this.get('facadeURL')}influencers/${this.get('profile.id')}`;
   }),
 
   actions: {
