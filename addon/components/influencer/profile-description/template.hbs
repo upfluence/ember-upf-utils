@@ -1,6 +1,8 @@
 <div class='profile-description__avatar padding-right-xx-sm'>
   {{#if isSelectable}}
-    {{#toggle-area value=_selected callbackAction=toggleAction}}
+    {{#toggle-area value=_selected
+      callbackAction=toggleAction
+      icon=selectedIcon}}
       <img src={{profile.avatar_url}}>
     {{/toggle-area}}
   {{else}}

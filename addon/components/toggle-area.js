@@ -5,6 +5,7 @@ const { Component } = Ember;
 export default Component.extend({
   classNames: ['__toggle-area'],
   classNameBindings: ['value:toggled'],
+  icon: 'check',
   value: false,
 
   click() {

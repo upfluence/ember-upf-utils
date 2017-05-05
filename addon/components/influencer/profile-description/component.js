@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   isSelectable: true,
   toggleAction: null,
   selected: null,
+  selectedIcon: 'check',
 
   // Avoid BC break with profile.selected
   _selected: Ember.computed('selected', 'profile.selected', {
@@ -14,7 +15,7 @@ export default Ember.Component.extend({
       return this.get('selected') || this.get('profile.selected');
     },
     set(_, value) {
-      //selected not set
+      // selected not set
       if (this.get('selected') === null) {
         this.set('profile.selected', value);
       } else {
