@@ -10,6 +10,7 @@ export default Ember.Component.extend({
 
   hasFacade: false,
   hasInbox: false,
+  hasAnalytics: false,
 
   init() {
     this._super();
@@ -20,6 +21,10 @@ export default Ember.Component.extend({
 
       if (payload.user.granted_scopes.includes('facade_web')) {
         this.set('hasFacade', true);
+      }
+
+      if (payload.user.granted_scopes.includes('analytics_web')) {
+        this.set('hasAnalytics', true);
       }
     }).catch(() => {
       this.set('hasFacade', true);
@@ -33,12 +38,26 @@ export default Ember.Component.extend({
     ).facadeURL;
   }),
 
+  analyticsURL: Ember.computed(function() {
+    return Ember.getOwner(this).resolveRegistration(
+      'config:environment'
+    ).analyticsURL;
+  }),
+
   searchURL: Ember.computed('facadeURL', function() {
     if (this.get('facadeURL')) {
       return `${this.get('facadeURL')}influencers`;
     }
 
     return 'influencers';
+  }),
+
+  streamsURL: Ember.computed('analyticsURL', function() {
+    if (this.get('analyticsURL')) {
+      return `${this.get('analyticsURL')}streams`;
+    }
+
+    return 'streams';
   }),
 
   listURL: Ember.computed('facadeURL', function() {

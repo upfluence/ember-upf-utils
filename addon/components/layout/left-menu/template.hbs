@@ -17,11 +17,19 @@
     {{/if}}
 
     {{#if hasInbox}}
-
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
         {{#smart-link-to link=mailingURL class='upf-link--reset'}}
           {{fa-icon 'envelope'}}
+        {{/smart-link-to}}
+      {{/active-link}}
+    {{/if}}
+
+    {{#if hasAnalytics}}
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
+        {{#smart-link-to link=streamsURL class='upf-link--reset'}}
+          {{fa-icon 'pie-chart'}}
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
