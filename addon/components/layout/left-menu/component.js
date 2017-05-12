@@ -12,24 +12,27 @@ export default Ember.Component.extend({
   hasInbox: false,
   hasAnalytics: false,
 
-  init() {
+  didInsertElement() {
     this._super();
-    this.get('currentUser').fetch().then((payload) => {
-      if (payload.user.granted_scopes.includes('inbox_client')) {
+    this.get('currentUser').fetch().then(
+      (payload) => {
+        if (payload.user.granted_scopes.includes('inbox_client')) {
+          this.set('hasInbox', true);
+        }
+
+        if (payload.user.granted_scopes.includes('facade_web')) {
+          this.set('hasFacade', true);
+        }
+
+        if (payload.user.granted_scopes.includes('analytics_web')) {
+          this.set('hasAnalytics', true);
+        }
+      },
+      () => {
+        this.set('hasFacade', true);
         this.set('hasInbox', true);
       }
-
-      if (payload.user.granted_scopes.includes('facade_web')) {
-        this.set('hasFacade', true);
-      }
-
-      if (payload.user.granted_scopes.includes('analytics_web')) {
-        this.set('hasAnalytics', true);
-      }
-    }).catch(() => {
-      this.set('hasFacade', true);
-      this.set('hasInbox', true);
-    });
+    );
   },
 
   facadeURL: Ember.computed(function() {
