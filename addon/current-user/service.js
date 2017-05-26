@@ -6,6 +6,8 @@ const { computed, Service, inject, isNone, run } = Ember;
 export default Service.extend({
   ajax: inject.service(),
   session: inject.service(),
+  _cachedUrl: null,
+  _cachedUser: null,
 
   init() {
     this._super();
@@ -42,6 +44,13 @@ export default Service.extend({
   }),
 
   fetch() {
-    return this.get('ajax').request(this.get('meURL'));
+    if (this._cachedUrl === this.get('meURL')) {
+      // return the current promise
+      return this._cachedUser;
+    }
+
+    this._cachedUrl = this.get('meURL');
+
+    return this._cachedUser = this.get('ajax').request(this.get('meURL'));
   }
 });
