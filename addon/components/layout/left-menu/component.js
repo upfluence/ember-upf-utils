@@ -6,34 +6,29 @@ export default Ember.Component.extend({
   classNames: ['__left-menu'],
 
   session: Ember.inject.service(),
-  currentUser: Ember.inject.service(),
+  userScopes: [],
 
-  hasFacade: false,
-  hasInbox: false,
+  hasFacade: true,
+  hasInbox: true,
   hasAnalytics: false,
 
-  didInsertElement() {
-    this._super();
-    this.get('currentUser').fetch().then(
-      (payload) => {
-        if (payload.user.granted_scopes.includes('inbox_client')) {
-          this.set('hasInbox', true);
-        }
+  _: Ember.observer('userScopes', function() {
+    if (!this.get('userScopes.length')) {
+      return;
+    }
 
-        if (payload.user.granted_scopes.includes('facade_web')) {
-          this.set('hasFacade', true);
-        }
+    if (!this.get('userScopes').includes('inbox_client')) {
+      this.set('hasInbox', false);
+    }
 
-        if (payload.user.granted_scopes.includes('analytics_web')) {
-          this.set('hasAnalytics', true);
-        }
-      },
-      () => {
-        this.set('hasFacade', true);
-        this.set('hasInbox', true);
-      }
-    );
-  },
+    if (!this.get('userScopes').includes('facade_web')) {
+      this.set('hasFacade', false);
+    }
+
+    if (this.get('userScopes').includes('analytics_web')) {
+      this.set('hasAnalytics', true);
+    }
+  }),
 
   facadeURL: Ember.computed(function() {
     return Ember.getOwner(this).resolveRegistration(
