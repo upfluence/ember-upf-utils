@@ -14,7 +14,7 @@ export default Ember.Component.extend({
       ({ user }) => {
         this.set('user', user);
 
-        if (user.extra.company_logo) {
+        if (user.extra && user.extra.company_logo) {
           this.set('applicationLogo', user.extra.company_logo);
         }
       },
