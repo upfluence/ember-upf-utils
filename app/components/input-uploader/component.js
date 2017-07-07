@@ -1,0 +1,1 @@
+export { default } from 'ember-upf-utils/components/input-uploader/component';

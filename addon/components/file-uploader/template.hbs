@@ -1,1 +1,24 @@
-{{yield}}
+{{#if error}}
+  <div class="upf-alert upf-alert--error">
+    <span class="upf-alert__text">
+      {{error}}
+    </span>
+  </div>
+{{/if}}
+
+{{#if _onUpload}}
+  <div class="upf-align--center"><i class="fa fa-spinner fa-spin"></i> {{_file.name}}</div>
+  <div class="upload-progress-bar">
+    <div class="upload-progress" style="width: {{_progress}}%"></div>
+  </div>
+{{else}}
+  {{input-uploader
+    model=model
+    attribute=attribute
+    method=method
+    beforeUpload=(action 'beforeUpload')
+    didUpload=(action 'didUpload')
+    onProgress=(action 'onProgress')
+    didError=(action 'didError')
+  }}
+{{/if}}
