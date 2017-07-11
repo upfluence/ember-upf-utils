@@ -1016,7 +1016,7 @@ broccoli-debug@^0.6.1, broccoli-debug@^0.6.2:
     symlink-or-copy "^1.1.8"
     tree-sync "^1.2.2"
 
-broccoli-file-creator@^1.0.0, broccoli-file-creator@^1.1.1:
+broccoli-file-creator@^1.0.0, broccoli-file-creator@^1.0.1, broccoli-file-creator@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/broccoli-file-creator/-/broccoli-file-creator-1.1.1.tgz#1b35b67d215abdfadd8d49eeb69493c39e6c3450"
   dependencies:
@@ -1197,7 +1197,7 @@ broccoli-sri-hash@^2.1.0:
     sri-toolbox "^0.2.0"
     symlink-or-copy "^1.0.1"
 
-broccoli-stew@^1.2.0, broccoli-stew@^1.3.3:
+broccoli-stew@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.4.0.tgz#1bdb0a1804d62a419d190abc26acb3c91878154d"
   dependencies:
@@ -1213,7 +1213,7 @@ broccoli-stew@^1.2.0, broccoli-stew@^1.3.3:
     rsvp "^3.0.16"
     walk-sync "^0.3.0"
 
-broccoli-stew@^1.4.2:
+broccoli-stew@^1.3.3, broccoli-stew@^1.4.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.5.0.tgz#d7af8c18511dce510e49d308a62e5977f461883c"
   dependencies:
@@ -2196,6 +2196,15 @@ ember-getowner-polyfill@^1.0.1, ember-getowner-polyfill@^1.1.0, ember-getowner-p
     ember-cli-version-checker "^1.2.0"
     ember-factory-for-polyfill "^1.1.0"
 
+ember-i18n@^5.0.0:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/ember-i18n/-/ember-i18n-5.0.2.tgz#3de05014e632b53a1b48d84d4a0d2ff261b8ebfc"
+  dependencies:
+    broccoli-funnel "^1.0.6"
+    ember-cli-babel "^5.1.7"
+    ember-cli-version-checker "^1.2.0"
+    ember-getowner-polyfill "^1.2.2"
+
 ember-inflector@^1.9.4:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/ember-inflector/-/ember-inflector-1.11.0.tgz#99baae18e2bee53cfa97d8db1d739280289a174f"
@@ -2306,6 +2315,21 @@ ember-try@^0.2.9:
     rsvp "^3.0.17"
     semver "^5.1.0"
     sync-exec "^0.6.2"
+
+ember-upf-i18n-yml@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/ember-upf-i18n-yml/-/ember-upf-i18n-yml-0.0.1.tgz#aaeb1aa4e7b3ec0688bf2adc46dadffef49ee95c"
+  dependencies:
+    ember-i18n "^5.0.0"
+    js-yaml "3.8.2"
+
+ember-uploader@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/ember-uploader/-/ember-uploader-1.2.3.tgz#7e8bf0d8c2d1f4298d8c78189ecb11a8d0ad49dc"
+  dependencies:
+    broccoli-file-creator "^1.0.1"
+    broccoli-merge-trees "^1.0.0"
+    ember-cli-babel "^5.1.6"
 
 ember-validators@^0.1.2:
   version "0.1.2"
@@ -3180,7 +3204,7 @@ js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
 
-js-yaml@^3.2.5, js-yaml@^3.2.7, js-yaml@^3.6.1:
+js-yaml@3.8.2, js-yaml@^3.2.5, js-yaml@^3.2.7, js-yaml@^3.6.1:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.8.2.tgz#02d3e2c0f6beab20248d412c352203827d786721"
   dependencies:
