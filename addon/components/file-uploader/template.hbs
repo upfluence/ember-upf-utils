@@ -12,13 +12,16 @@
     <div class="upload-progress" style="width: {{_progress}}%"></div>
   </div>
 {{else}}
-  {{input-uploader
-    model=model
-    attribute=attribute
-    method=method
-    beforeUpload=(action 'beforeUpload')
-    didUpload=(action 'didUpload')
-    onProgress=(action 'onProgress')
-    didError=(action 'didError')
-  }}
+  <div class="file-uploader__btn upf-btn upf-btn--orange">
+    <span>{{text}}</span>
+    {{input-uploader
+      model=model
+      attribute=attribute
+      method=method
+      beforeUpload=(action 'beforeUpload')
+      didUpload=(action 'didUpload')
+      onProgress=(action 'onProgress')
+      didError=(action 'didError')
+    }}
+  </div>
 {{/if}}

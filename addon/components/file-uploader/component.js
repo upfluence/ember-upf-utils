@@ -9,6 +9,8 @@ export default Ember.Component.extend({
   method: 'PUT',
   attribute: 'file',
 
+  text: 'Add an file',
+
   // Actions
   didUpload: '',
   onProgress: '',
