@@ -14,7 +14,6 @@ export default Ember.Component.extend({
   text: 'Add an file',
 
   allowedExtensions: null,
-  isValid: false,
   twoStep: false,
 
   // Since this doesn't work well, this is disable by defaut.
@@ -24,6 +23,7 @@ export default Ember.Component.extend({
   didUpload: '',
   onProgress: '',
   didError: '',
+  didValidationError: '',
 
   _onUpload: false,
   _percent: 0,
@@ -38,19 +38,36 @@ export default Ember.Component.extend({
     );
   }),
 
-  hasFile: Ember.computed('_file', function () {
+  hasFile: Ember.computed('_file', function() {
     return !Ember.isEmpty(this.get('_file.name'));
   }),
 
-  isValid: Ember.computed('hasFile', function () {
+  isValid: Ember.computed('hasFile', function() {
+    let errors = [];
+
     if (!this.get('hasFile')) {
-      return false;
+      errors.push({
+        type: 'no_file',
+        message: 'No file to upload.'
+      });
     }
 
     let exts = this.get('_allowedExtensions');
 
-    return Ember.isBlank(exts) ||
-      exts.includes(this._getExtension(this.get('_file.name')));
+    if (!Ember.isBlank(exts) && !exts.includes(this._getExtension(this.get('_file.name')))) {
+      errors.push({
+        type: 'no_file',
+        message: 'The extension of the file is invalid.'
+      });
+    }
+
+    if (!errors) {
+      return true;
+    }
+
+    this.sendAction('didValidationError', errors);
+
+    return false;
   }),
 
   actions: {
@@ -102,13 +119,13 @@ export default Ember.Component.extend({
         if (jqXHR.responseText) {
           try {
             payload = JSON.parse(jqXHR.responseText);
-          } catch (e) {
+          } catch(e) {
             // silent
           }
         }
 
         this.set('_onUpload', false);
-        // dispatch payload from backend
+        // dispatch payload from backend
         this.sendAction('didError', payload, errorThrown);
       })
     ;
@@ -120,13 +137,13 @@ export default Ember.Component.extend({
   },
 
   _getExtension(filename) {
-    let extension_matchers = [
+    let extensionMatchers = [
       new RegExp(/^(.+)\.(tar\.([glx]?z|bz2))$/),
       new RegExp(/^(.+)\.([^\.]+)$/)
     ];
 
-    for (let i = 0; i < extension_matchers.length; i++) {
-      let match = extension_matchers[i].exec(filename);
+    for (let i = 0; i < extensionMatchers.length; i++) {
+      let match = extensionMatchers[i].exec(filename);
       if (match) {
         return match[2];
       }
@@ -147,5 +164,5 @@ export default Ember.Component.extend({
     this.set('_onUpload', false);
     this.set('_file', null);
     this.set('_percent', 0);
-  },
+  }
 });
