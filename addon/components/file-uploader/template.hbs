@@ -1,27 +1,25 @@
-{{#if error}}
-  <div class="upf-alert upf-alert--error">
-    <span class="upf-alert__text">
-      {{error}}
-    </span>
-  </div>
-{{/if}}
-
 {{#if _onUpload}}
-  <div class="upf-align--center"><i class="fa fa-spinner fa-spin"></i> {{_file.name}}</div>
-  <div class="upload-progress-bar">
-    <div class="upload-progress" style="width: {{_progress}}%"></div>
+  <div class="upload-progress-contianer">
+    <div class="upf-align--center">
+      <i class="fa fa-spinner fa-spin"></i> {{_file.name}}
+    </div>
+    {{#if useProgress}}
+      <div class="upload-progress-bar">
+        <div class="upload-progress" style="width: {{_progress}}%"></div>
+      </div>
+    {{/if}}
   </div>
+{{else if hasFile}}
+  {{_file.name}}
+  <button class="upf-btn upf-btn--orange" disabled={{not isValid}} {{action 'upload'}}>
+    <span>Upload</span>
+  </button>
+  <button class="btn btn-default pointer" {{action 'clear'}}>
+    <i class="fa fa-times"></i>
+  </button>
 {{else}}
   <div class="file-uploader__btn upf-btn upf-btn--orange">
     <span>{{text}}</span>
-    {{input-uploader
-      model=model
-      attribute=attribute
-      method=method
-      beforeUpload=(action 'beforeUpload')
-      didUpload=(action 'didUpload')
-      onProgress=(action 'onProgress')
-      didError=(action 'didError')
-    }}
+    {{input-uploader onFile=(action 'onFile')}}
   </div>
 {{/if}}
