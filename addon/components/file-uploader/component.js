@@ -15,11 +15,13 @@ export default Ember.Component.extend({
 
   allowedExtensions: null,
   twoStep: false,
+  extra: {},
 
   // Since this doesn't work well, this is disable by defaut.
   useProgress: false,
 
   // Actions
+  beforeUpload: '',
   didUpload: '',
   onProgress: '',
   didError: '',
@@ -61,7 +63,7 @@ export default Ember.Component.extend({
       });
     }
 
-    if (!errors) {
+    if (Ember.isBlank(errors)) {
       return true;
     }
 
@@ -124,15 +126,22 @@ export default Ember.Component.extend({
           }
         }
 
+        this.set('_file', null);
         this.set('_onUpload', false);
         // dispatch payload from backend
         this.sendAction('didError', payload, errorThrown);
       })
     ;
 
+    let extra = this.get('extra');
+
     if (!Ember.isEmpty(this.get('_file'))) {
+      this.sendAction('beforeUpload', this.get('_file'));
       this.set('_onUpload', true);
-      uploader.upload(this.get('_file'));
+      uploader.upload(this.get('_file'), {
+        ...extra,
+        allowed_extensions: this.get('allowedExtensions'),
+      });
     }
   },
 
