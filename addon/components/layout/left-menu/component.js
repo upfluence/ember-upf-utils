@@ -11,6 +11,7 @@ export default Ember.Component.extend({
   hasFacade: true,
   hasInbox: true,
   hasAnalytics: false,
+  hasPublishr: false,
 
   _: Ember.observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
@@ -27,6 +28,10 @@ export default Ember.Component.extend({
 
     if (this.get('userScopes').includes('analytics_web')) {
       this.set('hasAnalytics', true);
+    }
+
+    if (this.get('userScopes').includes('publishr_admin')) {
+      this.set('hasPublishr', true);
     }
   }),
 

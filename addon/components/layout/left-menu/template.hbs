@@ -33,6 +33,20 @@
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
+
+    {{#if hasPublishr}}
+      <div class='header-item'>
+        {{#smart-link-to link=publishrURL class='upf-link--reset'}}
+          {{fa-icon 'fa-bullhorn'}}
+        {{/smart-link-to}}
+      </div>
+    {{/if}}
+
+    <div class='header-item'>
+      {{#smart-link-to link='http://help.upfluence.co' class='upf-link--reset'}}
+        {{fa-icon 'fa-question'}}
+      {{/smart-link-to}}
+    </div>
   </section>
 
   <section class='app-header__bottom'>
