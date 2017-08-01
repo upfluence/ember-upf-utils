@@ -11,6 +11,7 @@ export default Ember.Component.extend({
   hasFacade: true,
   hasInbox: true,
   hasAnalytics: false,
+  hasPublishr: false,
 
   _: Ember.observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
@@ -27,6 +28,10 @@ export default Ember.Component.extend({
 
     if (this.get('userScopes').includes('analytics_web')) {
       this.set('hasAnalytics', true);
+    }
+
+    if (this.get('userScopes').includes('publishr_admin')) {
+      this.set('hasPublishr', true);
     }
   }),
 
@@ -72,12 +77,26 @@ export default Ember.Component.extend({
     ).inboxURL;
   }),
 
+  publishrURL: Ember.computed(function() {
+    return Ember.getOwner(this).resolveRegistration(
+      'config:environment'
+    ).publishrURL;
+  }),
+
   mailingURL: Ember.computed('inboxURL', function() {
     if (this.get('inboxURL')) {
       return `${this.get('inboxURL')}mailings`;
     }
 
     return 'mailings';
+  }),
+
+  publishrCampaignsURL: Ember.computed('publishrURL', function() {
+    return `${this.get('publishrURL')}campaigns`;
+  }),
+
+  publishrPaymentsURL: Ember.computed('publishrURL', function() {
+    return `${this.get('publishrURL')}payments`;
   }),
 
   actions: {

@@ -33,9 +33,29 @@
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
+
+    {{#if hasPublishr}}
+      <div class='header-item'>
+        {{#smart-link-to link=publishrCampaignsURL class='upf-link--reset'}}
+          {{fa-icon 'fa-bullhorn'}}
+        {{/smart-link-to}}
+      </div>
+
+      <div class='header-item'>
+        {{#smart-link-to link=publishrPaymentsURL class='upf-link--reset'}}
+          {{fa-icon 'fa-usd'}}
+        {{/smart-link-to}}
+      </div>
+    {{/if}}
   </section>
 
   <section class='app-header__bottom'>
+    <div class='header-item'>
+      {{#smart-link-to link='http://help.upfluence.co' class='upf-link--reset'}}
+        {{fa-icon 'fa-question'}}
+      {{/smart-link-to}}
+    </div>
+
     <div class='header-item'>
       <a class="logout-btn upf-link--reset" {{action 'logout'}}>
           {{fa-icon 'power-off'}}
