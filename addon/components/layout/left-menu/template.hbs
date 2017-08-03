@@ -1,3 +1,4 @@
+dwadawdwadw
 {{#if session.isAuthenticated}}
   <section class='app-header__top'>
     {{#if hasFacade}}
@@ -35,30 +36,32 @@
     {{/if}}
 
     {{#if hasPublishr}}
-      <div class='header-item'>
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
         {{#smart-link-to link=publishrCampaignsURL class='upf-link--reset'}}
           {{fa-icon 'fa-bullhorn'}}
         {{/smart-link-to}}
-      </div>
+      {{/active-link}}
 
-      <div class='header-item'>
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
         {{#smart-link-to link=publishrPaymentsURL class='upf-link--reset'}}
           {{fa-icon 'fa-usd'}}
         {{/smart-link-to}}
-      </div>
+      {{/active-link}}
     {{/if}}
   </section>
 
   <section class='app-header__bottom'>
     <div class='header-item'>
-      {{#smart-link-to link='http://help.upfluence.co' class='upf-link--reset'}}
+      <a href="http://help.upfluence.co" class="upf-link--reset">
         {{fa-icon 'fa-question'}}
-      {{/smart-link-to}}
+      </a>
     </div>
 
     <div class='header-item'>
       <a class="logout-btn upf-link--reset" {{action 'logout'}}>
-          {{fa-icon 'power-off'}}
+        {{fa-icon 'power-off'}}
       </a>
     </div>
   </section>
