@@ -138,10 +138,12 @@ export default Ember.Component.extend({
     if (!Ember.isEmpty(this.get('_file'))) {
       this.sendAction('beforeUpload', this.get('_file'));
       this.set('_onUpload', true);
+      /* jshint ignore:start */
       uploader.upload(this.get('_file'), {
         ...extra,
-        allowed_extensions: this.get('allowedExtensions'),
+        allowed_extensions: this.get('allowedExtensions')
       });
+      /* jshint ignore:end */
     }
   },
 

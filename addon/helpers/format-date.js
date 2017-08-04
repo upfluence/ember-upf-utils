@@ -1,3 +1,4 @@
+/* global moment */
 import Ember from 'ember';
 
 export function formatDate(params) {
