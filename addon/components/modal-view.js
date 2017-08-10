@@ -3,10 +3,10 @@ import layout from '../templates/components/modal-view';
 
 export default Ember.Component.extend({
   layout,
-  classNames: ['modal', 'fade'],
+  classNames: ['modal', 'fade', 'test'],
 
   didInsertElement() {
-    this.$(this.element).modal({keyboard: false, backdrop: 'static'});
+    this.$(this.element).modal({keyboard: true, backdrop: 'static'});
   },
   willDestroyElement() {
     this.$(this.element).modal('hide');
