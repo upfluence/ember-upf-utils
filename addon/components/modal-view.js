@@ -9,8 +9,8 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.$().modal({keyboard: true, backdrop: 'static'});
+    this.$().on('hide.bs.modal', () => {
+      this.triggerAction({ action:'closeModal' });
+    })
   },
-  willDestroyElement() {
-    this.$(this.element).modal('hide');
-  }
 });
