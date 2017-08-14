@@ -8,9 +8,9 @@ export default Ember.Component.extend({
   tabindex: -1,
 
   didInsertElement() {
-    this.$().modal({keyboard: true, backdrop: 'static'});
+    this.$().modal({ keyboard: true, backdrop: 'static' });
     this.$().on('hide.bs.modal', () => {
-      this.triggerAction({ action:'closeModal' });
-    })
+      this.triggerAction({ action: 'closeModal' });
+    });
   },
 });
