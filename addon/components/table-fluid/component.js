@@ -14,6 +14,7 @@ export default EmberCollection.extend(SlotsMixin, {
   triggerOffset: 600,
   onBottomReach: null,
   _bottomReached: false,
+  loading: false,
 
   isReached: computed(
     'items.reachedInfinity',
@@ -37,6 +38,10 @@ export default EmberCollection.extend(SlotsMixin, {
 
   actions: {
     scrollChange(scrollLeft, scrollTop) {
+      if (this.get('loading')) {
+        return;
+      }
+
       if (scrollLeft !== this._scrollLeft ||
         scrollTop !== this._scrollTop) {
         this.set('_scrollLeft', scrollLeft);
