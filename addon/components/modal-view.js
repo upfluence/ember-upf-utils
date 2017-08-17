@@ -6,18 +6,25 @@ export default Ember.Component.extend({
   classNames: ['modal', 'fade'],
   attributeBindings: ['tabindex'],
   tabindex: -1,
-  exitHandled: false,
 
   didInsertElement() {
-    this.$().modal({ keyboard: true, backdrop: 'static' });
-    this.$().on('hide.bs.modal', () => {
-      this.set('exitHandled', true);
-      this.sendAction('closeAction');
+    this.$().modal({ backdrop: 'static' });
+
+    this.$().keyup((e) => {
+      if (e.which === 27) {
+        this.closeModal(e);
+      }
     });
+
+    this.$('button#close-x').click((e) => this.closeModal(e));
   },
+
+  closeModal(e) {
+    e.preventDefault();
+    this.sendAction('closeAction');
+  },
+
   willDestroyElement() {
-    if (!this.get('exitHandled')) {
-      this.$(this.element).modal('hide');
-    }
+    this.$(this.element).modal('hide');
   }
 });
