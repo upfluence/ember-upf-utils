@@ -1,4 +1,4 @@
-& {
+.light-background, .dark-background {
   // Smaller input select on dark backgrond
   .selectize-input {
     padding: 0 @spacing-sm 0 @spacing-xxx-sm;
@@ -38,36 +38,35 @@
   .selectize-control.single .selectize-input:after {
     border-color: rgba(255, 255, 255, 0.75) transparent transparent transparent;
   }
+}
 
-  // Smaller input select on light backgrond
+// Smaller input select on light backgrond
+.light-background {
+  .selectize-input {
+    border: 0.5px solid rgba(0, 0, 0, 0.75) !important;
+    color: rgba(0, 0, 0, 0.75) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
 
-  .light-background {
-    .selectize-input {
-      border: 0.5px solid rgba(0, 0, 0, 0.75) !important;
-      color: rgba(0, 0, 0, 0.75) !important;
-      background-color: rgba(255, 255, 255, 1) !important;
-
-      &:hover{
-        border: 0.5px solid rgba(0, 0, 0, 1) !important;
-        color: rgba(0, 0, 0, 1) !important;
-      }
-    }
-
-    .focus {
+    &:hover{
       border: 0.5px solid rgba(0, 0, 0, 1) !important;
       color: rgba(0, 0, 0, 1) !important;
     }
+  }
 
-    .selected{
-      background-color: rgba(255, 255, 255, 0) !important;
-    }
+  .focus {
+    border: 0.5px solid rgba(0, 0, 0, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
+  }
 
-    .selectize-control.single .selectize-input:after{
-      border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
-    }
+  .selected{
+    background-color: rgba(255, 255, 255, 0) !important;
+  }
 
-    .selectize-dropdown.single{
-      border: 0.5px solid rgba(0, 0, 0, 1) !important;
-    }
+  .selectize-control.single .selectize-input:after{
+    border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+  }
+
+  .selectize-dropdown.single{
+    border: 0.5px solid rgba(0, 0, 0, 1) !important;
   }
 }
