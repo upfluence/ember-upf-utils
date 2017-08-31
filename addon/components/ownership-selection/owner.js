@@ -1,5 +1,5 @@
 export default [
-  'user',
+  'user this is a longer text',
   'team',
   'company'
 ];
