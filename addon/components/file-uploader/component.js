@@ -95,6 +95,7 @@ export default Ember.Component.extend({
       paramName: this.get('attribute').underscore(),
       paramNamespace: this.get('model.constructor.modelName').underscore(),
       ajaxSettings: {
+        dataType: 'json',
         headers: {
           'Authorization':
             `Bearer ${this.get('session.data.authenticated.access_token')}`
