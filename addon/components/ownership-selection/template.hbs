@@ -1,14 +1,6 @@
-<div class="dark-background">
-{{ember-selectize content=owners selection=owner
-                  optionValuePath='content.id'
-                  optionLabelPath= (t campaign.owner.team)
-                  sortField='content.id'
-                  multiple=false}}
-</div><br/>
-<div class="light-background">
-{{ember-selectize content=owners selection=owner
-                  optionValuePath='content.id'
-                  optionLabelPath= (t campaign.owner.team)
-                  sortField='content.id'
-                  multiple=false}}
-</div>
+{{#if display}}
+  {{ember-selectize content=ownerships selection=ownership
+                    optionValuePath='content.id'
+                    optionLabelPath='content.name'
+                    multiple=false}}
+{{/if}}
