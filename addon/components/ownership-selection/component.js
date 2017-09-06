@@ -14,7 +14,6 @@ export default Ember.Component.extend({
   ownerships: [],
 
   didInsertElement() {
-    console.log(this.get('entity.ownedBy'));
     this.get('currentUser').fetch().then((payload) => {
       this.get('ownerships').pushObject(
         { id: `user:${payload.user.id}`, name: payload.user.first_name }
