@@ -1,0 +1,6 @@
+{{#if display}}
+  {{ember-selectize content=ownerships selection=ownership
+                    optionValuePath='content.id'
+                    optionLabelPath='content.name'
+                    multiple=false}}
+{{/if}}
