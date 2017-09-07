@@ -1,6 +1,14 @@
 {{#if display}}
+  {{#if _toggled}}
   {{ember-selectize content=ownerships selection=ownership
                     optionValuePath='content.id'
                     optionLabelPath='content.name'
                     multiple=false}}
+  {{else}}
+    <div class="share-cta">
+      <a {{action 'toggle'}}>
+        <i class="fa fa-user-plus" aria-hidden="true"></i> share with...
+      </a>
+    </div>
+  {{/if}}
 {{/if}}

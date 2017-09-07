@@ -12,6 +12,7 @@ export default Ember.Component.extend({
 
   display: false,
   ownerships: [],
+  _toggled: false,
 
   didInsertElement() {
     this.get('currentUser').fetch().then((payload) => {
@@ -42,10 +43,26 @@ export default Ember.Component.extend({
     });
   },
 
-  _: observer('ownership', function() {
+  _1: observer('entity.name', function() {
+    this.set('_toggled', false);
+    this.set(
+      'ownership',
+      this.get('ownerships').find((item) => {
+        return item.id === this.get('entity.ownedBy');
+      })
+    );
+  }),
+
+  _2: observer('ownership', function() {
     if (this.get('entity.ownedBy') !== this.get('ownership.id')) {
       this.set('entity.ownedBy', this.get('ownership.id'));
-      this.get('entity').save();
+      this.get('entity').save().then( () => this.toggleProperty('_toggled'));
     }
-  })
+  }),
+
+  actions: {
+    toggle() {
+      this.toggleProperty('_toggled');
+    }
+  }
 });
