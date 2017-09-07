@@ -19,17 +19,17 @@ export default Ember.Component.extend({
         { id: `user:${payload.user.id}`, name: payload.user.first_name }
       );
 
-      payload.companies.forEach((company) => {
-        this.set('display', true);
-        this.get('ownerships').pushObject(
-          { id: `company:${company.id}`, name: company.name }
-        );
-      });
-
       payload.teams.forEach((team) => {
         this.set('display', true);
         this.get('ownerships').pushObject(
           { id: `team:${team.id}`, name: team.name }
+        );
+      });
+
+      payload.companies.forEach((company) => {
+        this.set('display', true);
+        this.get('ownerships').pushObject(
+          { id: `company:${company.id}`, name: company.name }
         );
       });
 
