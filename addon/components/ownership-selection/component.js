@@ -16,9 +16,12 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.get('currentUser').fetch().then((payload) => {
-      this.get('ownerships').pushObject(
-        { id: `user:${payload.user.id}`, name: payload.user.first_name }
-      );
+      payload.companies.forEach((company) => {
+        this.set('display', true);
+        this.get('ownerships').pushObject(
+          { id: `company:${company.id}`, name: company.name }
+        );
+      });
 
       payload.teams.forEach((team) => {
         this.set('display', true);
@@ -27,12 +30,9 @@ export default Ember.Component.extend({
         );
       });
 
-      payload.companies.forEach((company) => {
-        this.set('display', true);
-        this.get('ownerships').pushObject(
-          { id: `company:${company.id}`, name: company.name }
-        );
-      });
+      this.get('ownerships').pushObject(
+        { id: `user:${payload.user.id}`, name: payload.user.first_name }
+      );
 
       this.set(
         'ownership',
