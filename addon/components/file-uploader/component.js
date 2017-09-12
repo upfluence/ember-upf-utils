@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import EmberUploader from 'ember-uploader';
+import Configuration from 'ember-upf-utils/configuration';
 import layout from './template';
 
 export default Ember.Component.extend({
@@ -90,10 +91,7 @@ export default Ember.Component.extend({
 
   _upload() {
     let uploader = EmberUploader.Uploader.create({
-      url: this.get('url'),
-      method: this.get('method'),
-      paramName: this.get('attribute').underscore(),
-      paramNamespace: this.get('model.constructor.modelName').underscore(),
+      url: Configuration.uploaderUrl,
       ajaxSettings: {
         dataType: 'json',
         headers: {
@@ -134,12 +132,12 @@ export default Ember.Component.extend({
       })
     ;
 
-    let extra = this.get('extra');
 
     if (!Ember.isEmpty(this.get('_file'))) {
       this.sendAction('beforeUpload', this.get('_file'));
       this.set('_onUpload', true);
       /* jshint ignore:start */
+      let extra = this.get('extra');
       uploader.upload(this.get('_file'), {
         ...extra,
         allowed_extensions: this.get('allowedExtensions')

@@ -7,6 +7,7 @@ const DEFAULTS = {
   loginUrl: 'http://localhost:4001/login',
   logoutRedirectUrl: 'http://localhost:4000/',
   oauthUrl: 'http://localhost:9000/token',
+  uploaderUrl: 'http://localhost:8080/upload',
   meURL: 'http://localhost:9000/me',
   oauthClientId: 'auth_client',
   scope: ['facade_web']
@@ -25,6 +26,7 @@ export default {
   storeDomain: DEFAULTS.storeDomain,
   loginUrl: DEFAULTS.loginUrl,
   oauthUrl: DEFAULTS.oauthUrl,
+  uploaderUrl: DEFAULTS.uploaderUrl,
   logoutRedirectUrl: DEFAULTS.logoutRedirectUrl,
   oauthClientId: DEFAULTS.oauthClientId,
   meURL: DEFAULTS.meURL,
