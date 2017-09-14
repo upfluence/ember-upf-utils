@@ -1,0 +1,1 @@
+export { default } from 'ember-upf-utils/components/drag-and-drop/component';
