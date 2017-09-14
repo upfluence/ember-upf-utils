@@ -90,16 +90,7 @@ export default Ember.Component.extend({
   },
 
   _upload() {
-    let uploader = EmberUploader.Uploader.create({
-      url: Configuration.uploaderUrl,
-      ajaxSettings: {
-        dataType: 'json',
-        headers: {
-          'Authorization':
-            `Bearer ${this.get('session.data.authenticated.access_token')}`
-        }
-      }
-    });
+    let uploader = this._getUploader();
 
     uploader
       .on('didUpload', (e) => {
@@ -169,6 +160,33 @@ export default Ember.Component.extend({
 
     return this.get('allowedExtensions').split(',');
   }),
+
+  // Ensure the BC
+  _getUploader() {
+    let options = {
+      ajaxSettings: {
+        dataType: 'json',
+        headers: {
+          'Authorization':
+            `Bearer ${this.get('session.data.authenticated.access_token')}`
+        }
+      }
+    };
+
+    // BC
+    if (this.get('model')) {
+      options.url = this.get('url');
+      options.method = this.get('method');
+      options.paramName = this.get('attribute').underscore();
+      options.paramNamespace = this.get(
+        'model.constructor.modelName'
+      ).underscore();
+    } else {
+      options.url = Configuration.uploaderUrl;
+    }
+
+    return EmberUploader.Uploader.create(options);
+  },
 
   _clear() {
     this.set('_onUpload', false);
