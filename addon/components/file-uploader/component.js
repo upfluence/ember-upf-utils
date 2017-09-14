@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import EmberUploader from 'ember-uploader';
+import Configuration from 'ember-upf-utils/configuration';
 import layout from './template';
 
 export default Ember.Component.extend({
@@ -89,19 +90,7 @@ export default Ember.Component.extend({
   },
 
   _upload() {
-    let uploader = EmberUploader.Uploader.create({
-      url: this.get('url'),
-      method: this.get('method'),
-      paramName: this.get('attribute').underscore(),
-      paramNamespace: this.get('model.constructor.modelName').underscore(),
-      ajaxSettings: {
-        dataType: 'json',
-        headers: {
-          'Authorization':
-            `Bearer ${this.get('session.data.authenticated.access_token')}`
-        }
-      }
-    });
+    let uploader = this._getUploader();
 
     uploader
       .on('didUpload', (e) => {
@@ -134,12 +123,12 @@ export default Ember.Component.extend({
       })
     ;
 
-    let extra = this.get('extra');
 
     if (!Ember.isEmpty(this.get('_file'))) {
       this.sendAction('beforeUpload', this.get('_file'));
       this.set('_onUpload', true);
       /* jshint ignore:start */
+      let extra = this.get('extra');
       uploader.upload(this.get('_file'), {
         ...extra,
         allowed_extensions: this.get('allowedExtensions')
@@ -171,6 +160,33 @@ export default Ember.Component.extend({
 
     return this.get('allowedExtensions').split(',');
   }),
+
+  // Ensure the BC
+  _getUploader() {
+    let options = {
+      ajaxSettings: {
+        dataType: 'json',
+        headers: {
+          'Authorization':
+            `Bearer ${this.get('session.data.authenticated.access_token')}`
+        }
+      }
+    };
+
+    // BC
+    if (this.get('model')) {
+      options.url = this.get('url');
+      options.method = this.get('method');
+      options.paramName = this.get('attribute').underscore();
+      options.paramNamespace = this.get(
+        'model.constructor.modelName'
+      ).underscore();
+    } else {
+      options.url = Configuration.uploaderUrl;
+    }
+
+    return EmberUploader.Uploader.create(options);
+  },
 
   _clear() {
     this.set('_onUpload', false);
