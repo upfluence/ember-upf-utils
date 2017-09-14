@@ -82,6 +82,10 @@ export default Component.extend({
     return false;
   }),
 
+  willDestroy() {
+    this._clear();
+  },
+
   actions: {
     clear() {
       this._clear();
@@ -104,7 +108,6 @@ export default Component.extend({
     uploader
       .on('didUpload', (e) => {
         this.sendAction('didUpload', e);
-        this._clear();
       })
       .on('progress', (e) => {
         if (!this.get('useProgress')) {
