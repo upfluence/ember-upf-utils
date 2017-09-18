@@ -144,7 +144,7 @@ export default Ember.Component.extend({
     ];
 
     for (let i = 0; i < extensionMatchers.length; i++) {
-      let match = extensionMatchers[i].exec(filename);
+      let match = extensionMatchers[i].exec(filename.toLowerCase());
       if (match) {
         return match[2];
       }
