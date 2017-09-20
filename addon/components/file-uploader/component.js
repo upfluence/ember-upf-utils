@@ -3,11 +3,13 @@ import EmberUploader from 'ember-uploader';
 import Configuration from 'ember-upf-utils/configuration';
 import layout from './template';
 
-export default Ember.Component.extend({
+const { Component, inject, observer, computed, isEmpty, isBlank } = Ember;
+
+export default Component.extend({
   layout,
   classNames: ['file-uploader'],
-  store: Ember.inject.service(),
-  session: Ember.inject.service(),
+  store: inject.service(),
+  session: inject.service(),
 
   method: 'PUT',
   attribute: 'file',
@@ -32,7 +34,14 @@ export default Ember.Component.extend({
   _percent: 0,
   _file: null,
 
-  url: Ember.computed('model.id', function() {
+  _: observer('file', function() {
+    if (this.get('_onUpload')) {
+      return;
+    }
+    this.send('onFile', this.get('file'));
+  }),
+
+  url: computed('model.id', function() {
     return this.get(
       'store'
     ).adapterFor(this.get('model.constructor.modelName')).buildURL(
@@ -41,11 +50,11 @@ export default Ember.Component.extend({
     );
   }),
 
-  hasFile: Ember.computed('_file', function() {
-    return !Ember.isEmpty(this.get('_file.name'));
+  hasFile: computed('_file', function() {
+    return !isEmpty(this.get('_file.name'));
   }),
 
-  isValid: Ember.computed('hasFile', function() {
+  isValid: computed('hasFile', function() {
     let errors = [];
 
     if (!this.get('hasFile')) {
@@ -57,14 +66,14 @@ export default Ember.Component.extend({
 
     let exts = this.get('_allowedExtensions');
 
-    if (!Ember.isBlank(exts) && !exts.includes(this._getExtension(this.get('_file.name')))) {
+    if (!isBlank(exts) && !exts.includes(this._getExtension(this.get('_file.name')))) {
       errors.push({
         type: 'no_file',
         message: 'The extension of the file is invalid.'
       });
     }
 
-    if (Ember.isBlank(errors)) {
+    if (isBlank(errors)) {
       return true;
     }
 
@@ -72,6 +81,10 @@ export default Ember.Component.extend({
 
     return false;
   }),
+
+  willDestroy() {
+    this._clear();
+  },
 
   actions: {
     clear() {
@@ -95,7 +108,6 @@ export default Ember.Component.extend({
     uploader
       .on('didUpload', (e) => {
         this.sendAction('didUpload', e);
-        this._clear();
       })
       .on('progress', (e) => {
         if (!this.get('useProgress')) {
@@ -123,8 +135,7 @@ export default Ember.Component.extend({
       })
     ;
 
-
-    if (!Ember.isEmpty(this.get('_file'))) {
+    if (!isEmpty(this.get('_file'))) {
       this.sendAction('beforeUpload', this.get('_file'));
       this.set('_onUpload', true);
       /* jshint ignore:start */
@@ -153,8 +164,8 @@ export default Ember.Component.extend({
     return null;
   },
 
-  _allowedExtensions: Ember.computed('allowedExtensions', function() {
-    if (Ember.isBlank(this.get('allowedExtensions'))) {
+  _allowedExtensions: computed('allowedExtensions', function() {
+    if (isBlank(this.get('allowedExtensions'))) {
       return [];
     }
 
