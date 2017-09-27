@@ -1,1 +1,1 @@
-export { default, signUrl } from 'ember-upf-utils/sign-url/helper';
+export { default } from 'ember-upf-utils/helpers/sign-url';
