@@ -19,6 +19,7 @@ export default Component.extend({
   allowedExtensions: null,
   twoStep: false,
   extra: {},
+  headers: {},
 
   // Since this doesn't work well, this is disable by defaut.
   useProgress: false,
@@ -174,10 +175,13 @@ export default Component.extend({
 
   // Ensure the BC
   _getUploader() {
+    /* jshint ignore:start */
+    let headers = this.get('headers');
     let options = {
       ajaxSettings: {
         dataType: 'json',
         headers: {
+          ...headers,
           'Authorization':
             `Bearer ${this.get('session.data.authenticated.access_token')}`
         }
@@ -197,6 +201,7 @@ export default Component.extend({
     }
 
     return EmberUploader.Uploader.create(options);
+    /* jshint ignore:end */
   },
 
   _clear() {
