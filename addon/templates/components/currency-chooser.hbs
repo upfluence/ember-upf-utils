@@ -1,7 +1,5 @@
 {{#x-select value=value default="USD" class='upf-select' action=(action "updateCurrency") as |xs|}}
-  {{#xs.option value="USD"}}USD{{/xs.option}}
-  {{#xs.option value="EUR"}}EUR{{/xs.option}}
-  {{#xs.option value="GBP"}}GBP{{/xs.option}}
-  {{#xs.option value="CHF"}}CHF{{/xs.option}}
-  {{#xs.option value="THB"}}THB{{/xs.option}}
+  {{#each isoCodes as |code|}}
+    {{#xs.option value=code}}{{code}}{{/xs.option}}
+  {{/each}}
 {{/x-select}}
