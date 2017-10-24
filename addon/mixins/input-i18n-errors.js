@@ -3,7 +3,6 @@ import { translationMacro as t } from 'ember-i18n';
 
 const {
   Mixin,
-  inject,
   observer
 } = Ember;
 
