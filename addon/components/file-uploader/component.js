@@ -109,6 +109,10 @@ export default Component.extend({
     uploader
       .on('didUpload', (e) => {
         this.sendAction('didUpload', e);
+
+        if(!this.isDestroyed) {
+          this._clear();
+        }
       })
       .on('progress', (e) => {
         if (!this.get('useProgress')) {
