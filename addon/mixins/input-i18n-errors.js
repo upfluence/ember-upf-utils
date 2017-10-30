@@ -1,13 +1,15 @@
 import Ember from 'ember';
-import { translationMacro as t } from 'ember-i18n';
 
 const {
   Mixin,
-  observer
+  observer,
+  inject
 } = Ember;
 
 export default Mixin.create({
+  i18n: inject.service(),
+
   _: observer('_error', function() {
-    this.set('error', t(this.get('_error')));
+    this.set('error', this.get('i18n').t(this.get('_error')));
   })
 });
