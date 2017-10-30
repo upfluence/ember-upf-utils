@@ -52,5 +52,29 @@ export default Service.extend({
     this._cachedUrl = this.get('meURL');
 
     return this._cachedUser = this.get('ajax').request(this.get('meURL'));
+  },
+
+  fetchOwnerships() {
+    return this.fetch().then((payload) => {
+      let ownerships = [];
+
+      payload.companies.forEach((company) => {
+        ownerships.push(
+          { id: `company:${company.id}`, name: company.name }
+        );
+      });
+
+      payload.teams.forEach((team) => {
+        ownerships.push(
+          { id: `team:${team.id}`, name: team.name }
+        );
+      });
+
+      ownerships.push(
+        { id: `user:${payload.user.id}`, name: payload.user.first_name }
+      );
+
+      return ownerships;
+    });
   }
 });
