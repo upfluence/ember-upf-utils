@@ -419,6 +419,12 @@ babel-plugin-ember-modules-api-polyfill@^1.4.1:
   dependencies:
     ember-rfc176-data "^0.2.0"
 
+babel-plugin-ember-modules-api-polyfill@^2.0.1:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-2.2.0.tgz#debf833715a338b5b4f695b5cd788ca4eed71f11"
+  dependencies:
+    ember-rfc176-data "^0.3.0"
+
 babel-plugin-eval@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-eval/-/babel-plugin-eval-1.0.1.tgz#a2faed25ce6be69ade4bfec263f70169195950da"
@@ -820,6 +826,10 @@ backo2@1.0.2:
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
+
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
 
 base64-arraybuffer@0.1.5:
   version "0.1.5"
@@ -1864,6 +1874,23 @@ ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.4.1, e
     clone "^2.0.0"
     ember-cli-version-checker "^2.0.0"
 
+ember-cli-babel@^6.8.1:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.2.tgz#eac2785964f4743f4c815cd53c6288f00cc087d7"
+  dependencies:
+    amd-name-resolver "0.0.7"
+    babel-plugin-debug-macros "^0.1.11"
+    babel-plugin-ember-modules-api-polyfill "^2.0.1"
+    babel-plugin-transform-es2015-modules-amd "^6.24.0"
+    babel-polyfill "^6.16.0"
+    babel-preset-env "^1.5.1"
+    broccoli-babel-transpiler "^6.1.2"
+    broccoli-debug "^0.6.2"
+    broccoli-funnel "^1.0.0"
+    broccoli-source "^1.1.0"
+    clone "^2.0.0"
+    ember-cli-version-checker "^2.0.0"
+
 ember-cli-broccoli-sane-watcher@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/ember-cli-broccoli-sane-watcher/-/ember-cli-broccoli-sane-watcher-2.0.4.tgz#f43f42f75b7509c212fb926cd9aea86ae19264c6"
@@ -2262,15 +2289,15 @@ ember-factory-for-polyfill@^1.1.0:
   dependencies:
     ember-cli-version-checker "^1.2.0"
 
-ember-fetch@^1.4.2:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-1.6.0.tgz#cf93d3f7049c593f14d11b6f0924b746303b7812"
+"ember-fetch@^2.1.0 || ^3.0.0":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-3.4.3.tgz#fb8ba73148bb2399a82b037e4fdf9a953cd496ba"
   dependencies:
     broccoli-funnel "^1.2.0"
     broccoli-stew "^1.4.2"
     broccoli-templater "^1.0.0"
-    ember-cli-babel "^6.0.0"
-    node-fetch "^2.0.0-alpha.3"
+    ember-cli-babel "^6.8.1"
+    node-fetch "^2.0.0-alpha.9"
     whatwg-fetch "^2.0.3"
 
 ember-get-config@^0.2.2:
@@ -2346,6 +2373,10 @@ ember-rfc176-data@^0.2.0:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.2.7.tgz#bd355bc9b473e08096b518784170a23388bc973b"
 
+ember-rfc176-data@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.1.tgz#6a5a4b8b82ec3af34f3010965fa96b936ca94519"
+
 ember-router-generator@^1.0.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/ember-router-generator/-/ember-router-generator-1.2.3.tgz#8ed2ca86ff323363120fc14278191e9e8f1315ee"
@@ -2359,15 +2390,18 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     ember-cli-babel "^6.0.0"
     ember-cli-version-checker "^1.1.6"
 
-ember-simple-auth@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.3.0.tgz#3e72338eb5953843d113a3b39191bf538bfb1dce"
+ember-simple-auth@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.4.0.tgz#b989fb94a334ca1634e62f9ca99b0b94f16167ec"
   dependencies:
+    base-64 "^0.1.0"
     broccoli-file-creator "^1.1.1"
+    broccoli-funnel "^1.2.0"
+    broccoli-merge-trees "^2.0.0"
     ember-cli-babel "^6.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cookies "^0.0.13"
-    ember-fetch "^1.4.2"
+    ember-fetch "^2.1.0 || ^3.0.0"
     ember-getowner-polyfill "^1.1.0"
     silent-error "^1.0.0"
 
@@ -3917,9 +3951,9 @@ node-fetch@^1.3.3:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.0.0-alpha.3:
-  version "2.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.0.0-alpha.8.tgz#f586cf6730ce30431c7d4528ce561d81add8ba90"
+node-fetch@^2.0.0-alpha.9:
+  version "2.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.0.0-alpha.9.tgz#990c0634f510f76449a0d6f6eaec96b22f273628"
 
 node-int64@^0.4.0:
   version "0.4.0"
