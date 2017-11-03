@@ -20,7 +20,6 @@ export default Component.extend({
   hasInbox: true,
   hasAnalytics: false,
   hasPublishr: false,
-  isLogged: computed.bool('user.id'),
 
   _: observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
