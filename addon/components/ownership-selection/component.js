@@ -15,28 +15,15 @@ export default Ember.Component.extend({
   _toggled: false,
 
   didInsertElement() {
-    this.get('currentUser').fetch().then((payload) => {
-      payload.companies.forEach((company) => {
+    this.get('currentUser').fetchOwnerships().then((ownerships) => {
+      if (ownerships.length > 1) {
         this.set('display', true);
-        this.get('ownerships').pushObject(
-          { id: `company:${company.id}`, name: company.name }
-        );
-      });
+      }
 
-      payload.teams.forEach((team) => {
-        this.set('display', true);
-        this.get('ownerships').pushObject(
-          { id: `team:${team.id}`, name: team.name }
-        );
-      });
-
-      this.get('ownerships').pushObject(
-        { id: `user:${payload.user.id}`, name: payload.user.first_name }
-      );
-
+      this.set('ownerships', ownerships);
       this.set(
         'ownership',
-        this.get('ownerships').find((item) => {
+        ownerships.find((item) => {
           return item.id === this.get('entity.ownedBy');
         })
       );

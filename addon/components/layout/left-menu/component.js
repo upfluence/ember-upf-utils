@@ -1,11 +1,19 @@
 import Ember from 'ember';
 import layout from './template';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  computed,
+  observer,
+  getOwner,
+  inject
+} = Ember;
+
+export default Component.extend({
   layout,
   classNames: ['__left-menu'],
 
-  session: Ember.inject.service(),
+  session: inject.service(),
   userScopes: [],
 
   hasFacade: true,
@@ -13,7 +21,7 @@ export default Ember.Component.extend({
   hasAnalytics: false,
   hasPublishr: false,
 
-  _: Ember.observer('userScopes', function() {
+  _: observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
       return;
     }
@@ -35,19 +43,25 @@ export default Ember.Component.extend({
     }
   }),
 
-  facadeURL: Ember.computed(function() {
+  facadeURL: computed(function() {
     return Ember.getOwner(this).resolveRegistration(
       'config:environment'
     ).facadeURL;
   }),
 
-  analyticsURL: Ember.computed(function() {
-    return Ember.getOwner(this).resolveRegistration(
+  analyticsURL: computed(function() {
+    return getOwner(this).resolveRegistration(
       'config:environment'
     ).analyticsURL;
   }),
 
-  searchURL: Ember.computed('facadeURL', function() {
+  identityURL: computed(function() {
+    return getOwner(this).resolveRegistration(
+      'config:environment'
+    ).identityURL;
+  }),
+
+  searchURL: computed('facadeURL', function() {
     if (this.get('facadeURL')) {
       return `${this.get('facadeURL')}influencers`;
     }
@@ -55,7 +69,7 @@ export default Ember.Component.extend({
     return 'influencers';
   }),
 
-  streamsURL: Ember.computed('analyticsURL', function() {
+  streamsURL: computed('analyticsURL', function() {
     if (this.get('analyticsURL')) {
       return `${this.get('analyticsURL')}streams`;
     }
@@ -63,7 +77,7 @@ export default Ember.Component.extend({
     return 'streams';
   }),
 
-  listURL: Ember.computed('facadeURL', function() {
+  listURL: computed('facadeURL', function() {
     if (this.get('facadeURL')) {
       return `${this.get('facadeURL')}lists`;
     }
@@ -71,19 +85,27 @@ export default Ember.Component.extend({
     return 'lists';
   }),
 
-  inboxURL: Ember.computed(function() {
-    return Ember.getOwner(this).resolveRegistration(
+  inboxURL: computed(function() {
+    return getOwner(this).resolveRegistration(
       'config:environment'
     ).inboxURL;
   }),
 
-  publishrURL: Ember.computed(function() {
-    return Ember.getOwner(this).resolveRegistration(
+  accountUrl: computed(function() {
+    if (this.get('identityURL')) {
+      return `${this.get('identityURL')}accounts/${this.get('user.id')}`;
+    }
+
+    return `accounts/${this.get('user.id')}`;
+  }),
+
+  publishrURL: computed(function() {
+    return getOwner(this).resolveRegistration(
       'config:environment'
     ).publishrURL;
   }),
 
-  mailingURL: Ember.computed('inboxURL', function() {
+  mailingURL: computed('inboxURL', function() {
     if (this.get('inboxURL')) {
       return `${this.get('inboxURL')}mailings`;
     }
@@ -91,11 +113,11 @@ export default Ember.Component.extend({
     return 'mailings';
   }),
 
-  publishrCampaignsURL: Ember.computed('publishrURL', function() {
+  publishrCampaignsURL: computed('publishrURL', function() {
     return `${this.get('publishrURL')}campaigns`;
   }),
 
-  publishrPaymentsURL: Ember.computed('publishrURL', function() {
+  publishrPaymentsURL: computed('publishrURL', function() {
     return `${this.get('publishrURL')}payments`;
   }),
 
