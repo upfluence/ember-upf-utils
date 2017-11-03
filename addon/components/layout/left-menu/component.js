@@ -96,7 +96,7 @@ export default Component.extend({
       return `${this.get('identityURL')}accounts/me`;
     }
 
-    return `accounts/${this.get('user.id')}`;
+    return `accounts/me`;
   }),
 
   publishrURL: computed(function() {
