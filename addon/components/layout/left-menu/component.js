@@ -93,7 +93,7 @@ export default Component.extend({
 
   accountUrl: computed(function() {
     if (this.get('identityURL')) {
-      return `${this.get('identityURL')}accounts/${this.get('user.id')}`;
+      return `${this.get('identityURL')}accounts/me`;
     }
 
     return `accounts/${this.get('user.id')}`;
