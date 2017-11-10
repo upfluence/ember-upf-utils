@@ -1,6 +1,4 @@
 .light-background, .dark-background {
-  height: 36px;
-
   // Smaller input select on dark backgrond
   .selectize-input {
     padding: 5px 35px 0 15px;
@@ -70,5 +68,20 @@
 
   .selectize-dropdown.single{
     border: 0.5px solid rgba(0, 0, 0, 1) !important;
+  }
+}
+
+.ember-selectize--small {
+  height: 30px;
+
+  .selectize-input {
+    min-height: 30px;
+    height: 30px;
+    line-height: 20px;
+  }
+
+  .selectize-dropdown { background-color: transparent; border: none; }
+  .selectize-dropdown-content {
+    .upf-dropdown;
   }
 }

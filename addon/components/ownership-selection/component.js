@@ -11,7 +11,6 @@ export default Component.extend({
   layout,
   light: false,
   currentUser: inject.service(),
-  classNames: ['margin-right-xx-sm'],
   classNameBindings: ['light:light-background:dark-background'],
 
   display: false,
