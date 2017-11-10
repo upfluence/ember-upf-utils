@@ -1,15 +1,14 @@
 {{#if display}}
   {{#if _toggled}}
-  {{ember-selectize content=ownerships selection=ownership
-                    optionValuePath='content.id'
-                    optionLabelPath='content.name'
-                    placeholder='Share with'
-                    multiple=false}}
+    {{ember-selectize content=ownerships selection=ownership
+                      classNames='ember-selectize--small'
+                      optionValuePath='content.id'
+                      optionLabelPath='content.name'
+                      placeholder='Share with'
+                      multiple=false}}
   {{else}}
-    <div class="share-cta">
-      <a {{action 'toggle'}} class="upf-btn upf-btn--orange--reversed">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; Share
-      </a>
-    </div>
+    <button {{action 'toggle'}} class='upf-btn upf-btn--small upf-btn--orange--reversed'>
+      <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; Share
+    </button>
   {{/if}}
 {{/if}}
