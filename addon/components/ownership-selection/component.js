@@ -1,13 +1,16 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { observer, inject } = Ember;
+const {
+  Component,
+  observer,
+  inject
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   light: false,
   currentUser: inject.service(),
-  classNames: ['margin-right-xx-sm'],
   classNameBindings: ['light:light-background:dark-background'],
 
   display: false,

@@ -1,10 +1,15 @@
 import Ember from 'ember';
 import layout from './template';
-let $ = Ember.$;
 
-export default Ember.Component.extend({
+const {
+  $,
+  Component
+} = Ember;
+
+export default Component.extend({
   layout,
   classNames: ['__side-hover-panel'],
+  classNameBindings: ['isOverContent:__side-hover-panel--over-content'],
 
   // Those are the parameters that you can override
   backdropAction: null,
