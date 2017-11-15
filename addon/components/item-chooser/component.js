@@ -11,9 +11,10 @@ export default Ember.Component.extend({
   createOptionPlaceholder: '<strong>#item#</strong>',
   multiple: false,
   canCreate: false,
+  didCreate: '',
   optionValuePath: 'content',
   optionLabelPath: 'content.name',
-
+  sortField: 'name',
   onBlur: null,
 
   store: Ember.inject.service(),
@@ -27,12 +28,6 @@ export default Ember.Component.extend({
   createFunctionName: Ember.computed('canCreate', 'recordType', function() {
     return this.get('canCreate') && this.get('recordType') ? 'create' : null;
   }),
-
-  optionCreateFunction(value, escape) {
-    let compiled = this.get('createOptionPlaceholder')
-      .replace('#item#', escape(value.input));
-    return `<div class="create">${compiled}</div>`;
-  },
 
   actions: {
     create(itemName) {
@@ -50,6 +45,16 @@ export default Ember.Component.extend({
         this.set('selection', item);
         this.$('input').blur();
       }
+
+      if (this.get('didCreate')) {
+        this.sendAction('didCreate', item);
+      }
+    },
+
+    optionCreate(value, escape) {
+      let compiled = this.get('createOptionPlaceholder')
+        .replace('#item#', escape(value.input));
+      return `<div class="create">${compiled}</div>`;
     }
   }
 });
