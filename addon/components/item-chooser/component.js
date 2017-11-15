@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   createOptionPlaceholder: '<strong>#item#</strong>',
   multiple: false,
   canCreate: false,
-  saveNewItem: false,
+  didCreate: '',
   optionValuePath: 'content',
   optionLabelPath: 'content.name',
   sortField: 'name',
@@ -46,8 +46,8 @@ export default Ember.Component.extend({
         this.$('input').blur();
       }
 
-      if (this.get('saveNewItem')) {
-        item.save();
+      if (this.get('didCreate')) {
+        this.sendAction('didCreate', item);
       }
     },
 
