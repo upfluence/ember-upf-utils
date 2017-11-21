@@ -9,14 +9,14 @@
   </div>
 {{else if hasFile}}
   {{_file.name}}
-  <button class="upf-btn upf-btn--orange" disabled={{not isValid}} {{action 'upload'}}>
+  <button class="upf-btn upf-btn--secondary upf-btn--x-small" disabled={{not isValid}} {{action 'upload'}}>
     <span>Upload</span>
   </button>
-  <button class="btn btn-default pointer" {{action 'clear'}}>
+  <button class="upf-btn upf-btn--orange--reversed upf-btn--x-small" {{action 'clear'}}>
     <i class="fa fa-times"></i>
   </button>
 {{else}}
-  <div class="file-uploader__btn upf-btn upf-btn--orange">
+  <div class="file-uploader__btn upf-btn upf-btn--secondary upf-btn--x-small">
     <span>{{text}}</span>
     {{input-uploader onFile=(action 'onFile')}}
   </div>
