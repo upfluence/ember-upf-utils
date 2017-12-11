@@ -5,7 +5,7 @@ const {
 } = Ember;
 
 export function percentage(input) {
-  const percentage = Math.round((input[0] / input[1]) * 100);
+  let percentage = Math.round((input[0] / input[1]) * 100);
   return (!isNaN(parseFloat(percentage)) && isFinite(percentage)) ? percentage : '— ';
 }
 
