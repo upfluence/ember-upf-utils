@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   blog: Ember.computed('profile.blog.visits', function() {
     return {
       type: 'blog',
-      icon: "pencil-square-o",
+      icon: "wordpress",
       communitySize: this.get('profile.blog.visits'),
       communitySlug: '/month'
     };
