@@ -6,8 +6,7 @@ const {
 
 export function percentage(input) {
   const percentage = Math.round((input[0] / input[1]) * 100);
-  return (!isNaN(parseFloat(percentage)) && isFinite(percentage))
-         ? percentage : '— ';
+  return (!isNaN(parseFloat(percentage)) && isFinite(percentage)) ? percentage : '— ';
 }
 
 export default Helper.helper(percentage);
