@@ -1,1 +1,1 @@
-export { default, perCent } from 'ember-upf-utils/per-cent/helper';
+export { default, perCent } from 'ember-upf-utils/helpers/per-cent';
