@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   blog: Ember.computed('profile.blog.visits', function() {
     return {
       type: 'blog',
-      icon: "pencil-square-o",
+      icon: 'wordpress',
       communitySize: this.get('profile.blog.visits'),
       communitySlug: '/month'
     };
@@ -17,7 +17,7 @@ export default Ember.Component.extend({
   facebook: Ember.computed('profile.facebook.fans', function() {
     return {
       type: 'facebook',
-      icon: "facebook-official",
+      icon: 'facebook-official',
       communitySize: this.get('profile.facebook.fans'),
       communitySlug: 'fans'
     };
@@ -26,7 +26,7 @@ export default Ember.Component.extend({
   twitter: Ember.computed('profile.twitter.followers', function() {
     return {
       type: 'twitter',
-      icon: "twitter",
+      icon: 'twitter',
       communitySize: this.get('profile.twitter.followers'),
       communitySlug: 'followers'
     };
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
   instagram: Ember.computed('profile.instagram.followers', function() {
     return {
       type: 'instagram',
-      icon: "instagram",
+      icon: 'instagram',
       communitySize: this.get('profile.instagram.followers'),
       communitySlug: 'followers'
     };
@@ -44,7 +44,7 @@ export default Ember.Component.extend({
   youtube: Ember.computed('profile.youtube.followers', function() {
     return {
       type: 'youtube',
-      icon: "youtube-play",
+      icon: 'youtube-play',
       communitySize: this.get('profile.youtube.followers'),
       communitySlug: 'subscribers'
     };
@@ -53,7 +53,7 @@ export default Ember.Component.extend({
   pinterest: Ember.computed('profile.pinterest.followers', function() {
     return {
       type: 'pinterest',
-      icon: "pinterest-p",
+      icon: 'pinterest-p',
       communitySize: this.get('profile.pinterest.followers'),
       communitySlug: 'followers'
     };
