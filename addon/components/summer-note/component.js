@@ -25,10 +25,24 @@ export default SummerNoteComponent.extend({
   }),
 
   didInsertElement: function() {
+    var _toolbar = this.getToolbarOptions(this.get('toolbarOptions'));
+    var _customButtons = {};
+
+    let availableVariables = this.get('availableVariables');
+
+    if (this.get('customButtons')) {
+      this.get('customButtons').forEach(function (item, i) {
+        _customButtons['myButton' + i] = item;
+        _toolbar.push(['myButton' + i, ['myButton' + i]]);
+      });
+    }
+
     this.$('#summernote').summernote({
       disabledOptions: this.get('disabledOptions'),
       height: this.get('height'),
       dialogsInBody: true,
+      toolbar: _toolbar,
+      buttons: _customButtons,
       hint: {
         match: this.get('match'),
         search: (keyword, callback) => {
