@@ -220,5 +220,6 @@ export default [
   { id: 'EH', name: 'Western Sahara' },
   { id: 'YE', name: 'Yemen' },
   { id: 'ZM', name: 'Zambia' },
-  { id: 'ZW', name: 'Zimbabwe' }
+  { id: 'ZW', name: 'Zimbabwe' },
+  { id: 'CR', name: 'Costa Rica' }
 ];
