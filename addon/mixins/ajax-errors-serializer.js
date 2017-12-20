@@ -23,7 +23,11 @@ export default Mixin.create({
 
       let {resource, field, code} = errors[key];
 
-      defaultsErrors[validKey] = `${resource}.${field}.${code}`;
+      if (!defaultsErrors[validKey]) {
+        defaultsErrors[validKey] = [];
+      }
+
+      defaultsErrors[validKey].push(`${resource}.${field}.${code}`);
     });
 
     return defaultsErrors;
