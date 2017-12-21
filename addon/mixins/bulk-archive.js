@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
-const { Mixin } = Ember;
+const {
+  Mixin,
+  inject
+} = Ember;
 
 export default Mixin.create({
   toast: inject.service(),
@@ -29,6 +32,6 @@ export default Mixin.create({
           this._toastConfig
         );
       });
-    },
+    }
   }
 });
