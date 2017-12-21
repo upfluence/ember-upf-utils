@@ -10,7 +10,7 @@ export default Service.extend({
   store: inject.service(),
 
   _perform(method, endpoint, data) {
-    return new Ember.RSVP.Promise((resolve,reject) => {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       this.get('ajax').request(endpoint, {
         method: method,
         contentType: 'application/json',
