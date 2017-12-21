@@ -1,23 +1,49 @@
 import Ember from 'ember';
 
-const { Mixin } = Ember;
+const { Mixin, isBlank } = Ember;
 
 export default Mixin.create({
   extractErrors(store, typeClass, payload, id) {
-    this._super(arguments);
+    if (!payload || typeof payload !== 'object' || !payload.errors) {
+      return payload;
+    }
 
-    let errorsPayload = {};
+    let defaultsErrors = this._super(arguments) || {};
+
+    let errors = this.arrayToHash(payload.errors);
 
     typeClass.eachAttribute((name) => {
       let key = this.keyForAttribute(name, 'deserialize');
-      errorsPayload[key] = payload.errors.map( (error) => {
-        if (error.detail.field === name) {
-          let { resource, field, code } = error.detail;
-          return `${resource}.${field}.${code}`;
-        }
-      }).filter(val => val !== undefined);
+      // undersore / camelCase
+      let validKey = key !== name ? name : key;
+
+      if (!errors[key]) {
+        return;
+      }
+
+      let {resource, field, code} = errors[key];
+
+      if (!defaultsErrors[validKey]) {
+        defaultsErrors[validKey] = [];
+      }
+
+      defaultsErrors[validKey].push(`${resource}.${field}.${code}`);
     });
 
-    return errorsPayload;
+    return defaultsErrors;
+  },
+
+  arrayToHash(errors) {
+    if (isBlank(errors)) {
+      return {};
+    }
+
+    return errors.reduce((acc, err) => {
+      if (err.detail && err.detail.field) {
+        acc[err.detail.field] = err.detail;
+      }
+
+      return acc;
+    }, {});
   }
 });
