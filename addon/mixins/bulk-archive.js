@@ -6,6 +6,7 @@ const {
 } = Ember;
 
 export default Mixin.create({
+  entityArchiving: inject.service(),
   toast: inject.service(),
   i18n: inject.service(),
 
