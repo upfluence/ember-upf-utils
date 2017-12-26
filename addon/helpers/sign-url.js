@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Helper.extend({
-  session: Ember.inject.service(),
+const { Helper, inject, observer } = Ember;
+
+export default Helper.extend({
+  session: inject.service(),
 
   compute(params) {
     let [url] = params;
@@ -11,5 +13,9 @@ export default Ember.Helper.extend({
     );
 
     return `${url}?access_token=${token}`;
-  }
+  },
+
+  _: observer('session.data.authenticated.access_token', function() {
+    this.recompute();
+  })
 });
