@@ -5,7 +5,14 @@ const { computed } = Ember;
 
 export default SummerNoteComponent.extend({
   classNames: ['js-summer-note', 'upf-summer-note'],
-  disabledOptions: {
+  toolbarOptions: {
+    font: {
+      bold: true,
+      italic: true,
+      underline: true,
+      superscript: false,
+      subscript: false,
+    },
     table: false,
     insert: {
       video: false,
@@ -25,8 +32,10 @@ export default SummerNoteComponent.extend({
   }),
 
   didInsertElement: function() {
+    let _toolbar = this.getToolbarOptions(this.get('toolbarOptions'));
+
     this.$('#summernote').summernote({
-      disabledOptions: this.get('disabledOptions'),
+      toolbar: _toolbar,
       height: this.get('height'),
       dialogsInBody: true,
       hint: {

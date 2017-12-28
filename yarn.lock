@@ -2073,11 +2073,11 @@ ember-cli-string-utils@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
 
-ember-cli-summernote@^0.1.20:
-  version "0.1.20"
-  resolved "https://registry.yarnpkg.com/ember-cli-summernote/-/ember-cli-summernote-0.1.20.tgz#e570a6c10bd8848ea1b182bedaf4427c413d1538"
+ember-cli-summernote@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-summernote/-/ember-cli-summernote-1.5.0.tgz#e8e5ef8f7ad54a25142b62e65031d032f26cfe2a"
   dependencies:
-    ember-cli-babel "^5.1.5"
+    ember-cli-babel "^6.0.0"
 
 ember-cli-test-info@^1.0.0:
   version "1.0.0"
@@ -4795,6 +4795,10 @@ sum-up@^1.0.1:
   resolved "https://registry.yarnpkg.com/sum-up/-/sum-up-1.0.3.tgz#1c661f667057f63bcb7875aa1438bc162525156e"
   dependencies:
     chalk "^1.0.0"
+
+summernote@^0.8.9:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/summernote/-/summernote-0.8.9.tgz#366d08385e62044088579bbccfb87c2e597be81a"
 
 supports-color@^0.2.0:
   version "0.2.0"
