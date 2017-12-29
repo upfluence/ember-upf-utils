@@ -9,7 +9,7 @@ export default Mixin.create({
     if (this.$().attr('data-toggle') !== '') {
       this.$().tooltip();
     } else {
-      this.this.$('[data-toggle="tooltip"]').tooltip();
+      this.$('[data-toggle="tooltip"]').tooltip();
     }
   }
 });
