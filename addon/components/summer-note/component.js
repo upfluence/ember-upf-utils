@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import SummerNoteComponent from 'ember-cli-summernote/components/summer-note';
 
-const { computed } = Ember;
+const {
+  computed,
+  get
+} = Ember;
 
 export default SummerNoteComponent.extend({
   classNames: ['js-summer-note', 'upf-summer-note'],
@@ -33,11 +36,14 @@ export default SummerNoteComponent.extend({
 
   didInsertElement: function() {
     let _toolbar = this.getToolbarOptions(this.get('toolbarOptions'));
+    let _callbacks      = get(this, 'callbacks');
+    _callbacks.onChange = this.get('onChange').bind(this);
 
     this.$('#summernote').summernote({
       toolbar: _toolbar,
       height: this.get('height'),
       dialogsInBody: true,
+      callbacks: _callbacks,
       hint: {
         match: this.get('match'),
         search: (keyword, callback) => {
