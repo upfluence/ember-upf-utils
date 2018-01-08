@@ -30,6 +30,15 @@ export default Service.extend({
             user_id: user.id
           });
         }
+
+        if (!isNone(window.analytics)) {
+          window.analytics.identify(user.id, {
+            email: user.email,
+            name: `${user.first_name} ${user.last_name}`,
+            scopes: user.granted_scopes,
+            extra: user.extra,
+          });
+        }
       });
     });
   },
