@@ -12,7 +12,7 @@
     <div class="row margin-bottom-sm">
       <div class="col-xs-6 col-xs-offset-3">
         <div class="text-size-5 text-color-default-lighter margin-bottom-xxx-sm">
-          {{t 'export.file.data'}}
+          Data
         </div>
         <div class="btn-group upf-radio-group">
           {{#each types as |type|}}
@@ -27,7 +27,7 @@
   <div class="row">
     <div class="col-xs-6 col-xs-offset-3">
       <div class="text-size-5 text-color-default-lighter margin-bottom-xxx-sm">
-        {{t 'export.file.file_format'}}
+        File Format
       </div>
       <div class="btn-group upf-radio-group ">
         {{#each-in formats as |value label|}}
@@ -41,6 +41,6 @@
 
 <div class='modal-footer'>
   <button {{action 'submit'}} disabled={{btnLocked}} class='margin-left-xx-sm upf-btn upf-btn--primary'>
-    {{t 'export.file.cta'}}
+    Download File
   </button>
 </div>

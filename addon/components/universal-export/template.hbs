@@ -2,12 +2,12 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
             id='close-x'><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">{{t 'export.title' count=selectedCount}}</h4>
+    <h4 class="modal-title">Export Influencers</h4>
   </div>
 
   <ul class="nav nav-tabs">
     <li class={{if listSelected "active" ""}} role="button" {{action 'setCurrent' 'list'}}>
-      <a>{{t 'export.type.list'}}</a>
+      <a>List</a>
     </li>
 
     {{#if tabs.campaign}}
@@ -18,19 +18,19 @@
 
     {{#if tabs.mailing}}
       <li class={{if mailingSelected "active" ""}} role="button" {{action 'setCurrent' 'mailing'}}>
-        <a>{{t 'export.type.emailing'}}</a>
+        <a>Emailing</a>
       </li>
     {{/if}}
 
     {{#if tabs.stream}}
       <li class={{if streamSelected "active" ""}} role="button" {{action 'setCurrent' 'stream'}}>
-        <a>{{t 'export.type.monitor'}}</a>
+        <a>Monitor</a>
       </li>
     {{/if}}
 
     {{#if tabs.basic_file}}
       <li class={{if fileSelected "active" ""}} role="button" {{action 'setCurrent' 'file'}}>
-        <a>{{t 'export.type.file'}}</a>
+        <a>File</a>
       </li>
     {{/if}}
   </ul>
