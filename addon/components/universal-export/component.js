@@ -120,7 +120,7 @@ export default Component.extend({
           'Success',
           this._toastConfig
         );
-        this._exported(`Exported to ${to.split(' ')[0]}`)
+        this._exported(`Exported to ${to.split(' ')[0]}`);
       });
     },
 

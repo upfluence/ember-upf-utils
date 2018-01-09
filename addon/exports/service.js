@@ -4,7 +4,6 @@ import Configuration from 'ember-upf-utils/configuration';
 const {
   Service,
   computed,
-  getOwner,
   inject,
   isEmpty
 } = Ember;
