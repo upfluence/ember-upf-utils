@@ -19,6 +19,7 @@ export default Component.extend({
   exports: inject.service(),
   currentUser: inject.service(),
   store: inject.service(),
+
   selectedFormat: 'csv',
   selectedType: 'short',
 
