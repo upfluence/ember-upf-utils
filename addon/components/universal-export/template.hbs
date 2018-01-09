@@ -1,0 +1,55 @@
+{{#modal-as-component hidden=hidden}}
+  <div class="modal-header modal-header__borderless">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            id='close-x'><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Export Influencers</h4>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li class={{if listSelected "active" ""}} role="button" {{action 'setCurrent' 'list'}}>
+      <a>List</a>
+    </li>
+
+    {{#if tabs.campaign}}
+      <li class={{if publishrSelected "active" ""}} role="button" {{action 'setCurrent' 'publishr'}}>
+        <a>{{t 'export.type.workflow'}}</a>
+      </li>
+    {{/if}}
+
+    {{#if tabs.mailing}}
+      <li class={{if mailingSelected "active" ""}} role="button" {{action 'setCurrent' 'mailing'}}>
+        <a>Emailing</a>
+      </li>
+    {{/if}}
+
+    {{#if tabs.stream}}
+      <li class={{if streamSelected "active" ""}} role="button" {{action 'setCurrent' 'stream'}}>
+        <a>Monitor</a>
+      </li>
+    {{/if}}
+
+    {{#if tabs.basic_file}}
+      <li class={{if fileSelected "active" ""}} role="button" {{action 'setCurrent' 'file'}}>
+        <a>File</a>
+      </li>
+    {{/if}}
+  </ul>
+
+  {{#if fileSelected}}
+    {{universal-export/file closeModal=closeModal enableFullFileExport=tabs.full_file
+                                     selectedCount=selectedInfluencerIds.length}}
+  {{else if listSelected}}
+    {{universal-export/list lists=lists closeModal=closeModal}}
+  {{else if publishrSelected}}
+    {{universal-export/publishr closeModal=closeModal
+                                         selectedInfluencerIds=selectedInfluencerIds}}
+  {{else if mailingSelected}}
+    {{universal-export/mailing closeModal=closeModal
+                                        selectedCount=selectedCount
+                                        errors=mailingExportErrors}}
+  {{else if streamSelected}}
+    {{universal-export/stream closeModal=closeModal
+                                       selectedCount=selectedCount
+                                       errors=streamExportErrors}}
+  {{/if}}
+{{/modal-as-component}}

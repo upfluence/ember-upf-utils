@@ -1,0 +1,46 @@
+<div class='modal-body text-center'>
+  {{#if hasMultiType}}
+    {{#if limitReached}}
+      <div class='danger text-danger'>
+        <h4>
+          You don't have enough exports credit for more than
+          <strong>{{exportLimit.left}}</strong> influencers
+        </h4>
+      </div>
+    {{/if}}
+
+    <div class="row margin-bottom-sm">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="text-size-5 text-color-default-lighter margin-bottom-xxx-sm">
+          Data
+        </div>
+        <div class="btn-group upf-radio-group">
+          {{#each types as |type|}}
+            {{radio-button value=type.key currentValue=selectedType
+              label=type.label options=types onCheck='typeChanged'}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="text-size-5 text-color-default-lighter margin-bottom-xxx-sm">
+        File Format
+      </div>
+      <div class="btn-group upf-radio-group ">
+        {{#each-in formats as |value label|}}
+          {{radio-button value=value currentValue=selectedFormat label=label
+                         options=formats onCheck='formatChanged'}}
+        {{/each-in}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='modal-footer'>
+  <button {{action 'submit'}} disabled={{btnLocked}} class='margin-left-xx-sm upf-btn upf-btn--primary'>
+    Download File
+  </button>
+</div>

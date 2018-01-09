@@ -8,6 +8,7 @@ const DEFAULTS = {
   logoutRedirectUrl: 'http://localhost:4000/',
   oauthUrl: 'http://localhost:9000/token',
   uploaderUrl: 'http://localhost:8080/upload',
+  exportUrl: 'http://localhost:9001/export',
   meURL: 'http://localhost:9000/me',
   oauthClientId: 'auth_client',
   scope: ['facade_web']
@@ -27,6 +28,7 @@ export default {
   loginUrl: DEFAULTS.loginUrl,
   oauthUrl: DEFAULTS.oauthUrl,
   uploaderUrl: DEFAULTS.uploaderUrl,
+  exportUrl: DEFAULTS.exportUrl,
   logoutRedirectUrl: DEFAULTS.logoutRedirectUrl,
   oauthClientId: DEFAULTS.oauthClientId,
   meURL: DEFAULTS.meURL,

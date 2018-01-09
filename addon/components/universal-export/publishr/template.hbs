@@ -1,0 +1,14 @@
+<div class="modal-body text-center">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      {{item-chooser items=campaigns selection=campaign optionValuePath='content.id'
+                     placeholder='Pick a campaign'}}
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  {{#loading-button campaign slowAction='submit' initiallyDisabled=disabledCampaignExport
+                    class='margin-left-xx-sm upf-btn upf-btn--primary'}}
+    Export Influencers
+  {{/loading-button}}
+</div>
