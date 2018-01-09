@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
 
   didReceiveAttrs() {
-    if (this.get('recordType') === null) {
+    if (this.get('canCreate') && this.get('recordType') === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },
