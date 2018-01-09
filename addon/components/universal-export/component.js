@@ -1,5 +1,6 @@
 /*globals ga*/
 import Ember from 'ember';
+import layout from './template';
 
 const {
   Component,
@@ -9,6 +10,8 @@ const {
 } = Ember;
 
 export default Component.extend({
+  layout,
+
   selectionStorage: inject.service(),
   exports: inject.service(),
   publishr: inject.service(),
