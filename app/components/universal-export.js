@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/universal-export'
+export { default } from 'ember-upf-utils/components/universal-export/component';
