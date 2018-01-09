@@ -4,7 +4,8 @@ import AuthorizedAjaxMixin from 'ember-upf-utils/mixins/authorized-ajax';
 
 const {
   Service,
-  computed
+  computed,
+  getOwner
 } = Ember;
 
 export default AjaxService.extend(AuthorizedAjaxMixin, {
