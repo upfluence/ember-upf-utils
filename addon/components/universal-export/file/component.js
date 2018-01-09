@@ -1,5 +1,6 @@
 /*globals ga*/
 import Ember from 'ember';
+import layout from './template';
 
 const { Component, computed, inject } = Ember;
 
@@ -14,6 +15,7 @@ const Limit = function(limit, spent) {
 };
 
 export default Component.extend({
+  layout,
   exports: inject.service(),
   currentUser: inject.service(),
   store: inject.service(),

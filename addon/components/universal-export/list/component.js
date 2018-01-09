@@ -1,9 +1,11 @@
 /*globals ga*/
 import Ember from 'ember';
+import layout from './template';
 
 const { Component, computed, inject, isBlank } = Ember;
 
 export default Component.extend({
+  layout,
   exports: inject.service(),
 
   disabledExport: computed('currentList', function() {
