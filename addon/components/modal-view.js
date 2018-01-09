@@ -1,14 +1,32 @@
 import Ember from 'ember';
 import layout from '../templates/components/modal-view';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  observer
+} = Ember;
+
+export default Component.extend({
   layout,
   classNames: ['modal', 'fade'],
   attributeBindings: ['tabindex'],
+
   tabindex: -1,
+  toggleable: false,
+  hidden: false,
+
+  _: observer('hidden', function() {
+    if (this.get('hidden')) {
+      this.$().modal('hide');
+    } else {
+      this.$().modal({ backdrop: 'static' });
+    }
+  }),
 
   didInsertElement() {
-    this.$().modal({ backdrop: 'static' });
+    if(!this.get('hidden')) {
+      this.$().modal({ backdrop: 'static' });
+    }
 
     this.$().keyup((e) => {
       if (e.which === 27) {
