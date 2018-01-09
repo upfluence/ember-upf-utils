@@ -11,7 +11,6 @@ const {
 export default Service.extend({
   store: inject.service(),
   session: inject.service(),
-  bulk: inject.service(),
   ajax: inject.service(),
 
   _exportURL: computed(function() {
