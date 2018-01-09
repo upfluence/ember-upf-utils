@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Configuration from 'ember-upf-utils/configuration';
 
 const {
   Service,
@@ -15,11 +16,7 @@ export default Service.extend({
   ajax: inject.service(),
 
   _exportURL: computed(function() {
-    let baseURL = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).exportURL;
-
-    return `${baseURL}/api/v1`;
+    return `${Configuration.exportUrl}/api/v1`;
   }),
 
   exportToEntities(exportingFrom, exportingTo, influencerIds) {
