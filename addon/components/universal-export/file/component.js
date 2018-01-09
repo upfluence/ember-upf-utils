@@ -6,8 +6,8 @@ const { Component, computed, inject } = Ember;
 
 const Limit = function(limit, spent) {
   return {
-    spent: spent,
-    limit: limit,
+    spent,
+    limit,
     left: computed(function() {
       return limit - spent;
     })

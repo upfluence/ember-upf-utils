@@ -22,7 +22,8 @@ export default Component.extend({
     'selectedInfluencerIds',
     function() {
       return isEmpty(this.get('campaign'));
-  }),
+    }
+  ),
 
   actions: {
     submit(params, defer) {
