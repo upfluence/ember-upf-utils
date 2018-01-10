@@ -18,8 +18,8 @@ export default Component.extend({
   _model: '',
 
   items: computed('_model', function() {
-    return this.get('store').findAll(this.get('_model')).then((items) => {
-      return items.rejectBy('archived');
+    return this.get('exports').fetchEntities(this.get('_model'), (items) => {
+      return items;
     });
   }),
 

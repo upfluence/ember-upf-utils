@@ -6,6 +6,7 @@ const {
   Component,
   inject,
   computed,
+  get,
   getOwner
 } = Ember;
 
@@ -53,7 +54,7 @@ export default Component.extend({
   selectedCount: computed('selectedInfluencerIds', function() {
     let idsCount = this.get('selectedInfluencerIds.length');
     if (idsCount === 0) {
-      idsCount = this.get('currentEntity.count');
+      idsCount = get(this.get('currentEntity'), 'count');
     }
     return idsCount;
   }),

@@ -48,8 +48,7 @@
                                         selectedCount=selectedCount
                                         errors=mailingExportErrors}}
   {{else if streamSelected}}
-    {{universal-export/stream closeModal=closeModal
-                                       selectedCount=selectedCount
-                                       errors=streamExportErrors}}
+    {{universal-export/stream closeModal=closeModal selectedCount=selectedCount
+                              errors=streamExportErrors}}
   {{/if}}
 {{/modal-view}}
