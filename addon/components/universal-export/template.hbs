@@ -39,14 +39,12 @@
     {{universal-export/file closeModal=closeModal enableFullFileExport=tabs.full_file
                                      selectedCount=selectedInfluencerIds.length}}
   {{else if listSelected}}
-    {{universal-export/list lists=lists closeModal=closeModal}}
+    {{universal-export/list closeModal=closeModal selectedCount=selectedCount}}
   {{else if publishrSelected}}
     {{universal-export/publishr closeModal=closeModal
                                          selectedInfluencerIds=selectedInfluencerIds}}
   {{else if mailingSelected}}
-    {{universal-export/mailing closeModal=closeModal
-                                        selectedCount=selectedCount
-                                        errors=mailingExportErrors}}
+    {{universal-export/mailing closeModal=closeModal selectedCount=selectedCount}}
   {{else if streamSelected}}
     {{universal-export/stream closeModal=closeModal selectedCount=selectedCount
                               errors=streamExportErrors}}
