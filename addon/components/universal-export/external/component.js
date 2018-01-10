@@ -17,6 +17,7 @@ export default Component.extend({
   current: null,
 
   _model: '',
+  _canCreate: true,
 
   disabledExport: computed('current', 'selectedCount', function() {
     return !this.get('current') || !this.get('selectedCount');

@@ -41,12 +41,10 @@
   {{else if listSelected}}
     {{universal-export/list closeModal=closeModal selectedCount=selectedCount}}
   {{else if publishrSelected}}
-    {{universal-export/publishr closeModal=closeModal
-                                         selectedInfluencerIds=selectedInfluencerIds}}
+    {{universal-export/publishr closeModal=closeModal selectedCount=selectedCount}}
   {{else if mailingSelected}}
     {{universal-export/mailing closeModal=closeModal selectedCount=selectedCount}}
   {{else if streamSelected}}
-    {{universal-export/stream closeModal=closeModal selectedCount=selectedCount
-                              errors=streamExportErrors}}
+    {{universal-export/stream closeModal=closeModal selectedCount=selectedCount}}
   {{/if}}
 {{/modal-view}}
