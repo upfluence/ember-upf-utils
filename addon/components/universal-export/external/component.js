@@ -39,11 +39,10 @@ export default Component.extend({
 
     submit(params, defer) {
       let item = params[0];
-      let itemModelName = item._internalModel.modelName;
 
       this.triggerAction({
         action: 'performExport',
-        actionContext: [`${itemModelName}:${item.get('id')}`, defer]
+        actionContext: [`${this.get('_model')}:${item.id}`, defer]
       });
     }
   }
