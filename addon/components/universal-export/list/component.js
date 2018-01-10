@@ -12,7 +12,11 @@ export default Component.extend({
     return isBlank(this.get('currentList'));
   }),
 
-  items: computed.filterBy('lists', 'archived', false),
+  items: computed(function() {
+    return this.get('exports').fetchEntities('list', (items) => {
+      return items;
+    });
+  }),
 
   actions: {
     closeModal() {
@@ -25,7 +29,7 @@ export default Component.extend({
 
       this.triggerAction({
         action: 'performExport',
-        actionContext: [`list:${list.get('id')}`, defer]
+        actionContext: [`list:${list.id}`, defer]
       });
     }
   }
