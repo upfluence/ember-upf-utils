@@ -6,8 +6,8 @@ const {
 } = Ember;
 
 export default Mixin.create({
-  identifier: computed('id', function () {
-    const id = this.get('id');
+  identifier: computed('id', function() {
+    let id = this.get('id');
 
     if (id) {
       return id;

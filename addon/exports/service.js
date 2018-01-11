@@ -85,7 +85,6 @@ export default Service.extend({
 
   createEntity(data, callback) {
     let url = `${this.get('_exportURL')}/entities`;
-    let accessToken = this.get('session.data.authenticated.access_token');
 
     return this.get('ajax').request(url, {
       method: 'POST',

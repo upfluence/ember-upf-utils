@@ -6,5 +6,5 @@ export default ExternalExport.extend({
   _model: 'campaign',
   _canCreate: false,
 
-  placeholder: 'Pick an influencer campaign',
+  placeholder: 'Pick an influencer campaign'
 });

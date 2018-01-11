@@ -44,7 +44,7 @@ export default Component.extend({
 
     didCreateItem(item) {
       let _i = this.get('items');
-      _i.pushObject(item)
+      _i.pushObject(item);
       this.set('items', _i);
     },
 
@@ -52,14 +52,14 @@ export default Component.extend({
       let item = params[0];
       // Object si pas object
 
-      new Ember.RSVP.Promise((resolve, reject) => {
+      new RSVP.Promise((resolve, _) => {
         if (item.get('isNew')) {
           let data = {
             type: this.get('_model'),
-            name: item.get('name'),
-          }
+            name: item.get('name')
+          };
           return this.get('exports').createEntity(data, (id) => {
-            resolve(id)
+            resolve(id);
           });
         } else {
           resolve(item.get('id'));
