@@ -5,6 +5,7 @@ import layout from './template';
 
 const {
   Component,
+  RSVP,
   computed,
   inject,
   observer
@@ -53,8 +54,12 @@ export default Component.extend({
 
       new Ember.RSVP.Promise((resolve, reject) => {
         if (item.get('isNew')) {
-          return item.save().then((f) => {
-            resolve(item.get('id'));
+          let data = {
+            type: this.get('_model'),
+            name: item.get('name'),
+          }
+          return this.get('exports').createEntity(data, (id) => {
+            resolve(id)
           });
         } else {
           resolve(item.get('id'));
