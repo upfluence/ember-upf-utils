@@ -1,8 +1,18 @@
 import Ember from 'ember';
 import layout from './template';
+import ExportEntity from 'ember-upf-utils/export-entity/model';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  inject,
+  computed,
+  isBlank
+} = Ember;
+
+export default Component.extend({
   layout,
+
+  store: inject.service(),
   classNames: ['item-chooser'],
 
   // Options
@@ -16,8 +26,8 @@ export default Ember.Component.extend({
   optionLabelPath: 'content.name',
   sortField: 'name',
   onBlur: null,
+  recordTypeIsModel: false,
 
-  store: Ember.inject.service(),
 
   didReceiveAttrs() {
     if (this.get('canCreate') && this.get('recordType') === null) {
@@ -25,19 +35,24 @@ export default Ember.Component.extend({
     }
   },
 
-  createFunctionName: Ember.computed('canCreate', 'recordType', function() {
+  createFunctionName: computed('canCreate', 'recordType', function() {
     return this.get('canCreate') && this.get('recordType') ? 'create' : null;
   }),
 
   actions: {
     create(itemName) {
-      if (Ember.isBlank(itemName)) {
+      if (isBlank(itemName)) {
         return;
       }
 
-      let item = this.get('store').createRecord(this.get('recordType'), {
-        name: itemName
-      });
+      let item = null;
+      if (this.get('recordTypeIsModel')) {
+        item = this.get('store').createRecord(this.get('recordType'), {
+          name: itemName
+        });
+      } else {
+        item = new ExportEntity({ name: itemName });
+      }
 
       if (this.get('multiple')) {
         this.get('selection').pushObject(item);

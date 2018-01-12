@@ -6,6 +6,7 @@ const {
   Component,
   inject,
   computed,
+  get,
   getOwner
 } = Ember;
 
@@ -14,8 +15,6 @@ export default Component.extend({
 
   selectionStorage: inject.service(),
   exports: inject.service(),
-  publishr: inject.service(),
-  currentUser: inject.service(),
   toast: inject.service(),
 
   _toastConfig: {
@@ -53,7 +52,7 @@ export default Component.extend({
   selectedCount: computed('selectedInfluencerIds', function() {
     let idsCount = this.get('selectedInfluencerIds.length');
     if (idsCount === 0) {
-      idsCount = this.get('currentEntity.count');
+      idsCount = get(this.get('currentEntity'), 'count');
     }
     return idsCount;
   }),
@@ -101,6 +100,15 @@ export default Component.extend({
     }
   },
 
+  _onSuccessfullExport(to) {
+    let [type, id] = to.split(':');
+    let callbackFuncName = `${type}CreationCallback`;
+
+    if (this.get(callbackFuncName)) {
+      this.sendAction(callbackFuncName, type, id);
+    }
+  },
+
   actions: {
     setCurrent(tab) {
       this.set('currentWindow', tab);
@@ -115,6 +123,7 @@ export default Component.extend({
         this.get('selectedInfluencerIds')
       ).then(() => {
         defer.resolve();
+        this._onSuccessfullExport(to);
         this.get('toast').success(
           'The influencers have been exported',
           'Success',

@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       {{item-chooser items=items selection=current recordType=_model
-                     canCreate=true optionValuePath='content.identifier'
+                     recordTypeIsModel=false canCreate=_canCreate
+                     optionValuePath='content.identifier'
                      createOptionPlaceholder=createOptionPlaceholder
-                     placeholder=placeholder}}
+                     didCreate=(action 'didCreateItem') placeholder=placeholder}}
 
       {{#if errors}}
         <div class="alert alert-danger">
