@@ -29,8 +29,8 @@ export default Component.extend({
   }),
 
   didInsertElement() {
-    this.get('exports').fetchEntities(this.get('_model'), (_items) => {
-      this.set('items', _items.map((item) => {
+    this.get('exports').fetchEntities(this.get('_model'), (response) => {
+      this.set('items', response.entities.map((item) => {
         return new ExportEntity(item);
       }));
     });
@@ -58,8 +58,8 @@ export default Component.extend({
             type: this.get('_model'),
             name: item.get('name')
           };
-          return this.get('exports').createEntity(data, (id) => {
-            resolve(id);
+          return this.get('exports').createEntity(data, (response) => {
+            resolve(response.entity.id);
           });
         } else {
           resolve(item.get('id'));
