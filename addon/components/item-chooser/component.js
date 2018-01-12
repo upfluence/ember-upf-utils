@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from './template';
+import ExportEntity from 'ember-upf-utils/export-entity/model';
 
 const {
   Component,
@@ -25,6 +26,7 @@ export default Component.extend({
   optionLabelPath: 'content.name',
   sortField: 'name',
   onBlur: null,
+  recordTypeIsModel: false,
 
 
   didReceiveAttrs() {
@@ -43,9 +45,14 @@ export default Component.extend({
         return;
       }
 
-      let item = this.get('store').createRecord(this.get('recordType'), {
-        name: itemName
-      });
+      let item = null;
+      if (this.get('recordTypeIsModel')) {
+        item = this.get('store').createRecord(this.get('recordType'), {
+          name: itemName
+        });
+      } else {
+        item = new ExportEntity({ name: itemName });
+      }
 
       if (this.get('multiple')) {
         this.get('selection').pushObject(item);

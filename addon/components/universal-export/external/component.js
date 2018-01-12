@@ -53,7 +53,7 @@ export default Component.extend({
       // Object si pas object
 
       new RSVP.Promise((resolve, _) => {
-        if (item.get('isNew')) {
+        if (!item.get('id')) {
           let data = {
             type: this.get('_model'),
             name: item.get('name')
