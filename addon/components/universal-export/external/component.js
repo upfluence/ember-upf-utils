@@ -50,7 +50,6 @@ export default Component.extend({
 
     submit(params, defer) {
       let item = params[0];
-      // Object si pas object
 
       new RSVP.Promise((resolve, _) => {
         if (!item.get('id')) {
