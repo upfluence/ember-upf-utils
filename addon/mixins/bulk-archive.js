@@ -19,7 +19,7 @@ export default Mixin.create({
 
   actions: {
     bulkArchive(archivalAction) {
-      this.triggerAction({ action: 'toggleContentChanging' });
+      this.triggerAction({ action: 'setContentChanging', actionContext: true });
       this.get('entityArchiving').bulkToggleArchive(
         this.get('entityArchivingName'),
         this.get('selectedItems').mapBy('id'),
@@ -27,9 +27,15 @@ export default Mixin.create({
       ).then(() => {
         this.get('selectedItems').map((item) => item.set('selected', false));
         this.get('collection').removeObjects(this.get('selectedItems'));
-        this.triggerAction({ action: 'toggleContentChanging' });
+        this.triggerAction({
+          action: 'setContentChanging',
+          actionContext: false
+        });
       }).catch(() => {
-        this.triggerAction({ action: 'toggleContentChanging' });
+        this.triggerAction({
+          action: 'setContentChanging',
+          actionContext: false
+        });
         this.get('toast').error(
           this.get('i18n').t(this.get('archivalError')),
           this.get('i18n').t(this.get('archivalErrorTitle')),
