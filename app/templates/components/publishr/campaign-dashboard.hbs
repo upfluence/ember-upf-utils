@@ -2,14 +2,14 @@
   <div class='row'>
     {{#link-to 'campaigns.details' campaign.id class='upf-link--reset'}}
       <div class='col-xs-1'>
-        <img src={{campaign.logoUrl}} alt={{campaign.title}}
+        <img src={{campaign.logoUrl}} alt={{campaign.name}}
              class='campaign-dashboard__campaign-logo' />
       </div>
     {{/link-to}}
 
     <div class='col-xs-9'>
       <span class='col-xs-12 campaign-dashboard__campaign-name'>
-        {{campaign.title}}
+        {{campaign.name}}
 
         {{#if showViewDetailsLink}}
           {{#link-to 'campaigns.details' campaign.id class='upf-btn upf-btn--orange upf-btn--x-small'}}
