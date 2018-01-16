@@ -49,9 +49,9 @@ export default Component.extend({
     });
   },
 
-  selectedCount: computed('selectedInfluencerIds', function() {
+  selectedCount: computed('selectedInfluencerIds', 'currentEntity', function() {
     let idsCount = this.get('selectedInfluencerIds.length');
-    if (idsCount === 0) {
+    if (idsCount === 0 && this.get('currentEntity')) {
       idsCount = get(this.get('currentEntity'), 'count');
     }
     return idsCount;
