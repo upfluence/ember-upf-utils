@@ -49,6 +49,8 @@ export default Component.extend({
     });
   },
 
+  selectedInfluencerIds: computed.mapBy('selectedInfluencers', 'id'),
+
   selectedCount: computed('selectedInfluencerIds', 'currentEntity', function() {
     let idsCount = this.get('selectedInfluencerIds.length');
     if (idsCount === 0 && this.get('currentEntity')) {
