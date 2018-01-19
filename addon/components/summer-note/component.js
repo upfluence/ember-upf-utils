@@ -40,6 +40,7 @@ export default SummerNoteComponent.extend({
     _callbacks.onChange = this.get('onChange').bind(this);
 
     this.$('#summernote').summernote({
+      disableDragAndDrop: true,
       toolbar: _toolbar,
       height: this.get('height'),
       dialogsInBody: true,
