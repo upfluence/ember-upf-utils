@@ -93,10 +93,8 @@ export default Component.extend({
     return `${this.get('analyticsURL')}streams/${stream.id}`;
   },
 
-  _exported(eventName, closeModal = true) {
-    ga('send', 'event', 'Export', 'Submit', eventName);
-    this._toggleSelectedInfluencers();
-    this.get('selectionStorage').clear();
+  _exported(closeModal = true) {
+    this.sendAction('didExport');
     if (closeModal) {
       this.sendAction('closeModal');
     }
@@ -131,14 +129,12 @@ export default Component.extend({
           'Success',
           this._toastConfig
         );
-        this._exported(`Exported to ${to.split(' ')[0]}`);
+        this._exported();
       });
     },
 
     performFileExport(format, type) {
       let exportingFrom = `${this.get('currentEntityType')}:${this.get('currentEntity.id')}`;
-      let eventName = format === 'csv' ? 'CSV Export' : 'Excel Export';
-
       let url = this.get('exports').getFileExportURL(
         exportingFrom,
         format,
@@ -147,7 +143,7 @@ export default Component.extend({
       );
 
       window.open(url, '_blank');
-      this._exported(eventName);
+      this._exported();
     }
   }
 });
