@@ -3,9 +3,18 @@ import Ember from 'ember';
 
 const STORE_KEY = '__upf-selected';
 const DATA_LIFETIME = 24 * 60 * 60; // 1 day
+const {
+  Service,
+  computed,
+  observer,
+  run
+} = Ember;
 
-export default Ember.Service.extend({
+export default Service.extend({
+  storageScope: null,
+
   init() {
+    this._super();
     this._store = window.localStorage;
     this._cache = {};
     this._length = 0;
@@ -13,9 +22,18 @@ export default Ember.Service.extend({
     this.load();
   },
 
-  length: Ember.computed.alias('_length'),
+  _: observer('storageScope', function() {
+    this._loaded = false;
+    this.load();
+  }),
 
-  all: Ember.computed('_length', function() {
+  setContext(scope) {
+    this.set('storageScope', scope);
+  },
+
+  length: computed.alias('_length'),
+
+  all: computed('_length', function() {
     return Object.keys(this._cache);
   }),
 
@@ -32,34 +50,43 @@ export default Ember.Service.extend({
     let data = this._load();
 
     // Invalid data
-    if (this._is_expired(data.date) && data.ids.length > 0) {
+    let currentScopeIds = data.ids.filter((id) => {
+      return id.split(':')[0] === this.get('storageScope');
+    });
+    if (this._is_expired(data.date) && currentScopeIds.length > 0) {
       this.clear();
 
       return;
     }
 
-    data.ids.forEach((v) => this._cache[v] = true);
-    this._length = data.ids.length;
+    currentScopeIds.forEach((v) => this._cache[v] = true);
+    this._length = currentScopeIds.length;
   },
 
   has(id) {
-    return this._cache[id] || false;
+    return this._cache[`${this.get('storageScope')}:${id}`] || false;
   },
 
   add(id) {
-    this._cache[id] = true;
+    this._cache[`${this.get('storageScope')}:${id}`] = true;
 
-    Ember.run.debounce(this, this._persist, 300);
+    run.debounce(this, this._persist, 300);
   },
 
   remove(id) {
-    delete this._cache[id];
+    delete this._cache[`${this.get('storageScope')}:${id}`];
 
-    Ember.run.debounce(this, this._persist, 300);
+    run.debounce(this, this._persist, 300);
   },
 
   clear() {
-    this._cache = {};
+    Object.keys(this._cache).forEach((key) => {
+      let [scope, _] = key;
+      if (scope === this.get('storageScope')) {
+        delete this._cache[key];
+      }
+    });
+
     this._persist();
   },
 
@@ -77,7 +104,10 @@ export default Ember.Service.extend({
     };
 
     this._store.setItem(STORE_KEY, JSON.stringify(data));
-    this.set('_length', data.length);
+    let currentScopeIds = data.ids.filter((id) => {
+      return id.split(':')[0] === this.get('storageScope');
+    });
+    this.set('_length', currentScopeIds.length);
   },
 
   _is_expired(date) {
