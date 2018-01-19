@@ -135,8 +135,6 @@ export default Component.extend({
 
     performFileExport(format, type) {
       let exportingFrom = `${this.get('currentEntityType')}:${this.get('currentEntity.id')}`;
-      let eventName = format === 'csv' ? 'CSV Export' : 'Excel Export';
-
       let url = this.get('exports').getFileExportURL(
         exportingFrom,
         format,
