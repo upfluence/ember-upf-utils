@@ -6,7 +6,7 @@ const {
   inject
 } = Ember;
 
-export default Mixin.create(ApplicationRouteMixin, {
+export default Mixin.create({
   selectionStorage: inject.service(),
 
   selected: computed('selectionStorage.storageScope', {
