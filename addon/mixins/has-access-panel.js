@@ -24,13 +24,16 @@ export default Mixin.create(UpfTableSearchMixin, {
   },
 
   populateAccessPanel() {
-    this.set(
-      'accessPanelEntities',
-      this.get(this.get('accessPanelConfig.model')).filterBy(
-        'archived',
-        this.get('displayArchived')
-      )
-    );
+    let model = this.get('accessPanelConfig.model');
+    this.get('store').query(
+      model,
+      { archived: this.get('displayArchived') }
+    ).then((entities) => {
+      console.log(entities);
+      this.set(
+        'accessPanelEntities', entities
+      );
+    });
   },
 
   actions: {
