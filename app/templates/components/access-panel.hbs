@@ -1,0 +1,11 @@
+{{#layout/side-hover-panel side='top' stickTo='left' width='40%' height='100%'
+                           isOverContent=true backdropAction=esc}}
+  <div class='access-panel col-xs-12'>
+    {{#upf-table collection=collection columns=columns hasSelection=true
+                classNames='upf-table__container--compact'
+                hasSearch=true hasToggleableColumns=false
+                onRowClickCallback=onRowClickCallback
+                contextualActionsComponent=contextualActionsComponent}}
+    {{/upf-table}}
+  </div>
+{{/layout/side-hover-panel}}

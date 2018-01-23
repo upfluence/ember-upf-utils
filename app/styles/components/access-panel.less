@@ -1,0 +1,14 @@
+.access-panel {
+  background-color: @upf-primary-white;
+  box-shadow: 5px 0px 0px 0px fade(@upf-primary-white, 50%);
+  height: calc(~'100% - 48px'); // Fixes table not displaying the last line if many
+  overflow: auto;
+
+  .upf-datatable {
+    position: relative;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
