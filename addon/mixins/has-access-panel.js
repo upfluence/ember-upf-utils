@@ -15,6 +15,8 @@ export default Mixin.create(UpfTableSearchMixin, {
   searchAttribute: 'name',
 
   init() {
+    this.set('accessPanelEntities', []);
+
     [
       `${this.get('accessPanelConfig.model')}.@each.archived`,
       'displayAccessPanel',
@@ -32,7 +34,6 @@ export default Mixin.create(UpfTableSearchMixin, {
       model,
       { archived: this.get('displayArchived') }
     ).then((entities) => {
-      console.log(entities);
       this.set('accessPanelEntities', entities);
     });
   },
