@@ -2,9 +2,7 @@ import Ember from 'ember';
 import UpfTableSearchMixin from 'oss-components/mixins/upf-table-search';
 
 const {
-  Mixin,
-  computed,
-  observer
+  Mixin
 } = Ember;
 
 export default Mixin.create(UpfTableSearchMixin, {
