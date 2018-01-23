@@ -2,10 +2,13 @@ import Ember from 'ember';
 import UpfTableSearchMixin from 'oss-components/mixins/upf-table-search';
 
 const {
-  Mixin
+  Mixin,
+  inject
 } = Ember;
 
 export default Mixin.create(UpfTableSearchMixin, {
+  store: inject.service(),
+
   displayArchived: false,
   displayAccessPanel: false,
   searchCollection: 'accessPanelEntities',
@@ -30,9 +33,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       { archived: this.get('displayArchived') }
     ).then((entities) => {
       console.log(entities);
-      this.set(
-        'accessPanelEntities', entities
-      );
+      this.set('accessPanelEntities', entities);
     });
   },
 
