@@ -45,6 +45,8 @@ export default Mixin.create(UpfTableSearchMixin, {
   actions: {
     toggleAccessPanel() {
       this.toggleProperty('displayAccessPanel');
+      this.set('displayArchived', false);
+      this.set('searchQuery', '');
     },
 
     toggleDisplayArchived() {
@@ -53,12 +55,15 @@ export default Mixin.create(UpfTableSearchMixin, {
 
     esc() {
       this.set('displayAccessPanel', false);
+      this.set('displayArchived', false);
+      this.set('searchQuery', '');
       this.transitionToRoute(this.get('accessPanelConfig.backRoute'));
     },
 
     goToEntity(entity) {
-      this.set('searchQuery', '');
       this.set('displayAccessPanel', false);
+      this.set('displayArchived', false);
+      this.set('searchQuery', '');
       this.transitionToRoute(
         this.get('accessPanelConfig.backRoute'),
         entity.get('id')
