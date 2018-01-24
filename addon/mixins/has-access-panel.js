@@ -13,6 +13,7 @@ export default Mixin.create(UpfTableSearchMixin, {
   displayAccessPanel: false,
   searchCollection: 'accessPanelEntities',
   searchAttribute: 'name',
+  contentLoading: false,
 
   init() {
     this.set('accessPanelEntities', []);
@@ -30,11 +31,14 @@ export default Mixin.create(UpfTableSearchMixin, {
 
   populateAccessPanel() {
     let model = this.get('accessPanelConfig.model');
+
+    this.set('contentLoading', true);
     this.get('store').query(
       model,
       { archived: this.get('displayArchived') }
     ).then((entities) => {
       this.set('accessPanelEntities', entities);
+      this.set('contentLoading', false);
     });
   },
 
