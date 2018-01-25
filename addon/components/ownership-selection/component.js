@@ -9,13 +9,11 @@ const {
 
 export default Component.extend({
   layout,
-  light: false,
+
   currentUser: inject.service(),
-  classNameBindings: ['light:light-background:dark-background'],
 
   display: false,
   ownerships: [],
-  _toggled: false,
 
   didInsertElement() {
     this.get('currentUser').fetchOwnerships().then((ownerships) => {
@@ -46,7 +44,6 @@ export default Component.extend({
   _2: observer('ownership', function() {
     if (this.get('entity.ownedBy') !== this.get('ownership.id')) {
       this.set('entity.ownedBy', this.get('ownership.id'));
-      this.get('entity').save().then( () => this.toggleProperty('_toggled'));
     }
   }),
 
