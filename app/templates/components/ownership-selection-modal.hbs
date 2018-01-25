@@ -1,0 +1,22 @@
+{{#modal-view hidden=hidden closeAction=closeModal}}
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id='close-x'>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">{{header}}</h4>
+  </div>
+
+  <div class='modal-body text-center'>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        {{ownership-selection light=true entity=model}}
+      </div>
+    </div>
+  </div>
+
+  <div class='modal-footer'>
+    <button {{action 'updateOwnership'}} class='margin-left-xx-sm upf-btn upf-btn--primary'>
+      {{cta}}
+    </button>
+  </div>
+{{/modal-view}}
