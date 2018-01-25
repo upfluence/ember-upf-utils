@@ -1,19 +1,18 @@
 import Ember from 'ember';
 
-const { Service, inject } = Ember;
+const { Service, String, inject } = Ember;
 
 export default Service.extend({
   ajax: inject.service(),
 
   update(model, modelId, ownedBy) {
-    return this.get('ajax').request(`/${model}/${modelId}`, {
+    let payload = {};
+    payload[`${model}`] = { owned_by: ownedBy };
+
+    return this.get('ajax').request(`/${String.pluralize(model)}/${modelId}`, {
       method: 'PUT',
       contentType: 'application/json',
-      data: JSON.stringify({
-        campaign: {
-          owned_by: ownedBy
-        }
-      })
+      data: JSON.stringify(payload)
     });
   }
 });
