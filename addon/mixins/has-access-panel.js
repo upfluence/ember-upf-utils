@@ -37,6 +37,9 @@ export default Mixin.create(UpfTableSearchMixin, {
       model,
       { archived: this.get('displayArchived') }
     ).then((entities) => {
+      let current = entities.findBy('currentlyOpened', true);
+      entities.removeObject(current);
+      entities.unshiftObject(current.get('_internalModel'));
       this.set('accessPanelEntities', entities);
       this.set('contentLoading', false);
     });
