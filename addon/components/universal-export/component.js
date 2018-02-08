@@ -32,6 +32,7 @@ export default Component.extend({
   },
 
   currentWindow: 'list',
+  filters: [],
 
   init() {
     this._super();
@@ -120,7 +121,8 @@ export default Component.extend({
       this.get('exports').exportToEntities(
         exportingFrom,
         to,
-        this.get('selectedInfluencerIds')
+        this.get('selectedInfluencerIds'),
+        this.get('filters'),
       ).then(() => {
         defer.resolve();
         this._onSuccessfullExport(to);
@@ -139,7 +141,8 @@ export default Component.extend({
         exportingFrom,
         format,
         type,
-        this.get('selectedInfluencerIds')
+        this.get('selectedInfluencerIds'),
+        this.get('filters')
       );
 
       window.open(url, '_blank');

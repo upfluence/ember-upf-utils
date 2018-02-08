@@ -17,11 +17,11 @@ export default Service.extend({
     return `${Configuration.exportUrl}/api/v1`;
   }),
 
-  exportToEntities(exportingFrom, exportingTo, influencerIds) {
+  exportToEntities(exportingFrom, exportingTo, influencerIds, filters) {
     let payload = { to: exportingTo };
 
     if (isEmpty(influencerIds)) {
-      payload.source = { from: exportingFrom };
+      payload.source = { from: exportingFrom, filters: filters };
     } else {
       payload.source = { influencer_ids: influencerIds };
     }
@@ -36,13 +36,14 @@ export default Service.extend({
     });
   },
 
-  getFileExportURL(from, fileFormat, fileType, influencerIds) {
+  getFileExportURL(from, fileFormat, fileType, influencerIds, filters) {
     let baseUrl = `${this.get('_exportURL')}/export/file`;
     let params = [
       'from=' + from,
       'influencer_ids=' + influencerIds.join(','),
       'format=' + fileFormat,
       'type=' + fileType,
+      Ember.$.param({ filters: filters }),
       'access_token=' + encodeURIComponent(
         this.get('session.data.authenticated.access_token')
       )
