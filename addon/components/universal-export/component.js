@@ -126,11 +126,21 @@ export default Component.extend({
       ).then(() => {
         defer.resolve();
         this._onSuccessfullExport(to);
-        this.get('toast').success(
-          'The influencers have been exported',
-          'Success',
-          this._toastConfig
-        );
+
+        if (data.status === 'scheduled') {
+          this.get('toast').info(
+            `${data.total} influencers are being exported.`,
+            'Export in progress',
+            this._toastConfig
+          );
+        } else {
+          this.get('toast').success(
+            `${data.total} influencers have been exported.`,
+            'Export completed',
+            this._toastConfig
+          );
+        }
+
         this._exported();
       });
     },
