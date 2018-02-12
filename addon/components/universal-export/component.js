@@ -123,7 +123,7 @@ export default Component.extend({
         to,
         this.get('selectedInfluencerIds'),
         this.get('filters'),
-      ).then(() => {
+      ).then((data) => {
         defer.resolve();
         this._onSuccessfullExport(to);
 
