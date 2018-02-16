@@ -2,16 +2,16 @@
   <section class='app-header__top'>
     {{#if hasFacade}}
       {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
-        {{#smart-link-to link=searchURL class='upf-link--reset'}}
-          {{fa-icon 'search'}}
+                     activeClass='header-item--active '}}
+        {{#smart-link-to link=searchURL}}
+          <span class='upf-icon upf-icon--search'></span>
         {{/smart-link-to}}
       {{/active-link}}
 
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=listURL class='upf-link--reset'}}
-          {{fa-icon 'list-ul'}}
+        {{#smart-link-to link=listURL}}
+          <span class='upf-icon upf-icon--list'></span>
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
@@ -19,17 +19,8 @@
     {{#if hasInbox}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=mailingURL class='upf-link--reset'}}
-          {{fa-icon 'envelope'}}
-        {{/smart-link-to}}
-      {{/active-link}}
-    {{/if}}
-
-    {{#if hasAnalytics}}
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
-        {{#smart-link-to link=streamsURL class='upf-link--reset'}}
-          {{fa-icon 'pie-chart'}}
+        {{#smart-link-to link=mailingURL cssClass='notification--small'}}
+            <span class='upf-icon upf-icon--inbox'></span>
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
@@ -37,15 +28,24 @@
     {{#if hasPublishr}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=publishrCampaignsURL class='upf-link--reset'}}
-          {{fa-icon 'fa-bullhorn'}}
+        {{#smart-link-to link=publishrCampaignsURL cssClass='notification--small'}}
+          <span class='upf-icon upf-icon--workflow'></span>
         {{/smart-link-to}}
       {{/active-link}}
 
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=publishrPaymentsURL class='upf-link--reset'}}
-          {{fa-icon 'fa-usd'}}
+        {{#smart-link-to link=publishrPaymentsURL}}
+          <span class='upf-icon upf-icon--finance'></span>
+        {{/smart-link-to}}
+      {{/active-link}}
+    {{/if}}
+
+    {{#if hasAnalytics}}
+      {{#active-link tagName='div' class='header-item'
+                     activeClass='header-item--active'}}
+        {{#smart-link-to link=streamsURL cssClass='notification--small'}}
+          <span class='upf-icon upf-icon--monitor'></span>
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
@@ -54,19 +54,19 @@
   <section class='app-header__bottom'>
     <div class='header-item'>
       <a href="http://help.upfluence.co" class="upf-link--reset">
-        {{fa-icon 'fa-question'}}
+        <span class='upf-icon upf-icon--help'></span>
       </a>
     </div>
 
     <div class='header-item'>
       <a class="upf-link--reset" href="{{accountUrl}}">
-        {{fa-icon 'cog'}}
+        <span class='upf-icon upf-icon--cog'></span>
       </a>
     </div>
 
     <div class='header-item'>
       <a class="logout-btn upf-link--reset" {{action 'logout'}}>
-        {{fa-icon 'power-off'}}
+        <span class='upf-icon upf-icon--exit'></span>
       </a>
     </div>
   </section>
