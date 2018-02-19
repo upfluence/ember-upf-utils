@@ -2,11 +2,10 @@ import DS from 'ember-data';
 
 const {
   Model,
-  attr,
-  belongsTo
+  attr
 } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
   type: attr('string'),
   timestamp: attr('date')
 });
