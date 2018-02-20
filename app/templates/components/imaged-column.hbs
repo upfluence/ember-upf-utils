@@ -1,0 +1,14 @@
+{{#if imageSrc}}
+  {{#lazy-image url=imageSrc height=_imageSize width=_imageSize class=_imageSizeClass}}
+  {{/lazy-image}}
+{{else}}
+  <div class="{{_imageSizeClass}} upf-image--alt">
+    <span>{{{imageAltText}}}</span>
+  </div>
+{{/if}}
+
+ &nbsp; {{text}}
+
+{{#if item.hasNotifications}}
+  <span class='upf-notification--inline'></span>
+{{/if}}
