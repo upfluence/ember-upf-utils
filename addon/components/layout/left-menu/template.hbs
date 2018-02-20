@@ -10,7 +10,8 @@
 
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=listURL}}
+        {{#smart-link-to link=listURL
+                         cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
           <span class='upf-icon upf-icon--list'></span>
         {{/smart-link-to}}
       {{/active-link}}
@@ -19,8 +20,9 @@
     {{#if hasInbox}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=mailingURL cssClass='upf-notification--corner'}}
-            <span class='upf-icon upf-icon--inbox'></span>
+        {{#smart-link-to link=mailingURL
+                         cssClass=(if hasInboxNotifications 'upf-notification--corner')}}
+          <span class='upf-icon upf-icon--inbox'></span>
         {{/smart-link-to}}
       {{/active-link}}
     {{/if}}
@@ -28,7 +30,8 @@
     {{#if hasPublishr}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=publishrCampaignsURL cssClass='upf-notification--corner'}}
+        {{#smart-link-to link=publishrCampaignsURL
+                         cssClass=(if hasPublishrNotifications 'upf-notification--corner')}}
           <span class='upf-icon upf-icon--workflow'></span>
         {{/smart-link-to}}
       {{/active-link}}
@@ -44,7 +47,8 @@
     {{#if hasAnalytics}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=streamsURL cssClass='upf-notification--corner'}}
+        {{#smart-link-to link=streamsURL
+                         cssClass=(if hasAnalyticsNotification 'upf-notification--corner')}}
           <span class='upf-icon upf-icon--monitor'></span>
         {{/smart-link-to}}
       {{/active-link}}

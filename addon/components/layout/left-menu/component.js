@@ -21,6 +21,11 @@ export default Component.extend({
   hasAnalytics: false,
   hasPublishr: false,
 
+  hasFacadeNotifications: false,
+  hasInboxNotifications: false,
+  hasAnalyticsNotifications: false,
+  hasPublishrNotifications: false,
+
   _: observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
       return;
