@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from './template';
-import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 
 const {
   Component,
@@ -10,7 +9,7 @@ const {
   inject
 } = Ember;
 
-export default Component.extend(TooltipActivationMixin, {
+export default Component.extend({
   layout,
   classNames: ['__left-menu'],
 
