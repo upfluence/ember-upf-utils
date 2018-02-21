@@ -3,6 +3,7 @@ import layout from './template';
 
 const {
   Component,
+  String,
   computed,
   observer,
   getOwner,
@@ -20,11 +21,6 @@ export default Component.extend({
   hasInbox: true,
   hasAnalytics: false,
   hasPublishr: false,
-
-  hasFacadeNotifications: false,
-  hasInboxNotifications: false,
-  hasAnalyticsNotifications: false,
-  hasPublishrNotifications: false,
 
   _: observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
@@ -46,6 +42,18 @@ export default Component.extend({
     if (this.get('userScopes').includes('publishr_admin')) {
       this.set('hasPublishr', true);
     }
+  }),
+
+  _1: observer('user', function() {
+    [
+      'has_facade_notifications', 'has_inbox_notifications',
+      'has_publishr_notifications', 'has_analytics_notifications'
+    ].forEach((notifPresence) => {
+      this.set(
+        String.camelize(notifPresence),
+        this.get('user')[notifPresence]
+      )
+    })
   }),
 
   facadeURL: computed(function() {
