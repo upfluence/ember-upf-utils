@@ -52,8 +52,8 @@ export default Component.extend({
       this.set(
         String.camelize(notifPresence),
         this.get('user')[notifPresence]
-      )
-    })
+      );
+    });
   }),
 
   facadeURL: computed(function() {
