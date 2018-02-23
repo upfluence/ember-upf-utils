@@ -3,6 +3,7 @@ import Configuration from 'ember-upf-utils/configuration';
 
 const {
   Service,
+  RSVP,
   computed,
   inject
 } = Ember;
@@ -19,14 +20,17 @@ export default Service.extend({
     return `${Configuration.meURL}/notifications/mark_as_read?access_token=${token}`;
   }),
 
-  markAsRead(model, notificationType) {
-    let uuids = model.get('notifications').filterBy(
-      'type', notificationType
-    ).mapBy('id');
+  markAsRead(model, notificationTypes) {
+    let notifications = model.get('notifications').filter((notification) => {
+      return notificationTypes.includes(notification.get('type'));
+    });
 
-    this.get('ajax').request(this.get('notificationReadURL'), {
-      method: 'POST',
-      data: { uuids }
+    return new RSVP.Promise((resolve, reject) => {
+      this.get('ajax').request(this.get('notificationReadURL'), {
+        method: 'POST',
+        data: { uuids: notifications.mapBy('id') }
+      }).then((user) => resolve(notifications))
+        .catch((e) => reject(e));
     });
   }
 });
