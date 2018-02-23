@@ -20,11 +20,13 @@ export default Service.extend({
   }),
 
   markAsRead(model, notificationType) {
-    let uuids = model.get('notifications').filterBy('type', notificationType)
-                                          .mapBy('id');
+    let uuids = model.get('notifications').filterBy(
+      'type', notificationType
+    ).mapBy('id');
+
     this.get('ajax').request(this.get('notificationReadURL'), {
       method: 'POST',
       data: { uuids }
-    })
+    });
   }
 });
