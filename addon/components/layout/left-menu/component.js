@@ -47,7 +47,8 @@ export default Component.extend({
   _1: observer('user', function() {
     [
       'has_facade_notifications', 'has_inbox_notifications',
-      'has_publishr_notifications', 'has_analytics_notifications'
+      'has_publishr_notifications', 'has_analytics_notifications',
+      'has_payments_notifications'
     ].forEach((notifPresence) => {
       this.set(
         String.camelize(notifPresence),
