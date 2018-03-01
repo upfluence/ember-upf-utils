@@ -20,8 +20,23 @@ export default Service.extend({
     return `${Configuration.meURL}/notifications/mark_as_read?access_token=${token}`;
   }),
 
-  markAsRead(model, notificationTypes) {
-    let notifications = model.get('notifications').filter((notification) => {
+  _extractNotifications(modelOrCollection) {
+    let argIsArray = modelOrCollection instanceof Array
+    if (argIsArray) {
+      return modelOrCollection.map((m) => {
+        return m.get('notifications').toArray();
+      }).reduce((acc, notifications) => {
+        acc = acc.concat(notifications);
+        return acc;
+      }, []);
+    } else {
+      return modelOrCollection.get('notifications');
+    }
+  },
+
+  markAsRead(modelOrCollection, notificationTypes) {
+    let notifications = this._extractNotifications(modelOrCollection);
+    notifications = notifications.filter((notification) => {
       return notificationTypes.includes(notification.get('type'));
     });
 
