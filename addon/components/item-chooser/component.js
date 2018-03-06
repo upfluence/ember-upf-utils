@@ -30,13 +30,13 @@ export default Component.extend({
 
 
   didReceiveAttrs() {
-    if (this.get('canCreate') && this.get('recordType') === null) {
+    if (this.get('canCreate') && this.get('recordTypeIsModel') && this.get('recordType') === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },
 
-  createFunctionName: computed('canCreate', 'recordType', function() {
-    return this.get('canCreate') && this.get('recordType') ? 'create' : null;
+  createFunctionName: computed('canCreate', function() {
+    return this.get('canCreate') ? 'create' : null;
   }),
 
   actions: {

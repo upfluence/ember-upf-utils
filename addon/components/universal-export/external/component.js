@@ -58,6 +58,15 @@ export default Component.extend({
             name: item.get('name')
           };
           return this.get('exports').createEntity(data, (response) => {
+            let element = this.get('items').find((e) => {
+              return !e.get('id') && e.get('name') === response.entity.name;
+            });
+
+            if (element) {
+              // Assign id to the model
+              element.set('id', response.entity.id);
+            }
+
             resolve(response.entity.id);
           });
         } else {
