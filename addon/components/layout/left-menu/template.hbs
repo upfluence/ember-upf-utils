@@ -2,13 +2,6 @@
   <section class='app-header__top'>
     {{#if hasFacade}}
       {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active '}}
-        {{#smart-link-to link=searchURL}}
-          <span class='upf-icon upf-icon--search'></span>
-        {{/smart-link-to}}
-      {{/active-link}}
-
-      {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
         {{#smart-link-to link=listURL
                          cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
