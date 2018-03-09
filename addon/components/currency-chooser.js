@@ -4,6 +4,7 @@ import isoCodes from '../utils/iso-codes';
 
 export default Ember.Component.extend({
   layout,
+  classNames: ['upf-currency-chooser'],
   isoCodes: isoCodes,
 
   actions: {
