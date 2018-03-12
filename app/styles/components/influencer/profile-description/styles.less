@@ -13,18 +13,14 @@
 //
 .profile-description {
   display: flex;
+  align-items: center;
 
   //
   // An Influencer's Profile Picture.
   //
-  .profile-description__avatar {
-    flex-shrink: 0;
-
-    img {
-      width: 182px;
-      height: 182px;
-    }
-  }
+  /*.profile-description__avatar {*/
+    /*flex-shrink: 0;*/
+  /*}*/
 
   //
   // The description section of an influencer row.
@@ -33,6 +29,7 @@
     display: inline-block;
     flex: 1;
     min-width: 0;
+    padding-left: @spacing-xx-sm;
 
     .description {
       text-overflow: ellipsis;
@@ -42,3 +39,7 @@
   }
 }
 
+.upf-image--round-108 {
+  height: 108px;
+  width: 108px;
+}
