@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { Component, computed } = Ember;
+const { Component, computed } = Ember;
 
 export default Component.extend({
   layout,

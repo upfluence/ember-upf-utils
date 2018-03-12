@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { Component } = Ember;
+const { Component } = Ember;
 
 export default Component.extend({
   layout,
@@ -13,12 +13,10 @@ export default Component.extend({
 
   actions: {
     leftSideClick() {
-      console.log('clicked on left side');
       this.sendAction('leftClick');
     },
 
     rightSideClick() {
-      console.log('clicked on right side');
       this.sendAction('rightClick');
     }
   }
