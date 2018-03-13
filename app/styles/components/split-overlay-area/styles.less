@@ -15,7 +15,7 @@
     .left-side, .right-side {
       .hover-animation(opacity);
 
-      background-color: fadeout(@upf-primary-black, 40%);
+      background-color: fadeout(@upf-primary-black, 80%);
       opacity: 0;
       text-align: center;
       display: flex;
@@ -25,24 +25,17 @@
       i.fa {
         opacity: 0;
         font-size: 24/@rem;
+        color: @upf-primary-white;
       }
     }
 
     .left-side {
       .position-absolute(0,0,0,50%);
       border-right: 1px solid @upf-primary-white;
-
-      i.fa {
-        color: @upf-feedback-error;
-      }
     }
 
     .right-side {
       .position-absolute(0,0,50%,0%);
-
-      i.fa {
-        color: @upf-feedback-success;
-      }
     }
 
     &:hover .left-side, &:active .left-side,
@@ -58,14 +51,12 @@
 
 .split-overlay-area--left-toggled .split-overlay:hover {
   .left-side {
-    background-color: fadeout(@upf-feedback-error, 30);
-    i.fa { color: @upf-primary-white; }
+    background-color: fadeout(@upf-primary-rock-blue, 30%);
   }
 }
 
 .split-overlay-area--right-toggled .split-overlay:hover {
   .right-side {
-    background-color: fadeout(@upf-feedback-success, 30);
-    i.fa { color: @upf-primary-white; }
+    background-color: fadeout(@upf-primary-bright-purple, 30%);
   }
 }
