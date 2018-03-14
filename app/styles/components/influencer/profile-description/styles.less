@@ -8,28 +8,22 @@
   display: block;
 }
 
-//
-// An Influencer's Description wrapper.
-//
 .profile-description {
   display: flex;
   align-items: center;
+  height: 128px;
 
-  //
-  // An Influencer's Profile Picture.
-  //
-  /*.profile-description__avatar {*/
-    /*flex-shrink: 0;*/
-  /*}*/
+  .profile-description__avatar {
+    padding-right: @spacing-xx-sm
+  }
 
-  //
-  // The description section of an influencer row.
-  //
   .profile-description__content {
     display: inline-block;
     flex: 1;
+    align-self: flex-start;
+
     min-width: 0;
-    padding-left: @spacing-xx-sm;
+    padding: @spacing-xxx-sm 0 0 @spacing-xx-sm;
 
     .description {
       text-overflow: ellipsis;

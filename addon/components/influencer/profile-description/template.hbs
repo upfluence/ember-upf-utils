@@ -1,4 +1,4 @@
-<div class='profile-description__avatar padding-right-xx-sm'>
+<div class='profile-description__avatar'>
   {{#if isSelectable}}
     {{#if (eq overlayType 'selection')}}
       {{#toggle-area value=_selected callbackAction=toggleAction icon=selectedIcon}}
@@ -25,6 +25,12 @@
 
     {{#if profile.isNew}}
       <span class="label label-primary">New</span>
+    {{/if}}
+
+    {{#if profileRoutePath}}
+      {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
+        &nbsp; {{fa-icon 'pencil' class='text-color-bright-purple'}}
+      {{/link-to}}
     {{/if}}
   </span>
 
