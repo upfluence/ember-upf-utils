@@ -17,7 +17,13 @@
 
 <div class="profile-description__content">
   <span class='text-size-5 text-color-bright-purple text-style-bold wrapped-text'>
-    {{profile.name}}
+    {{#if profileRoutePath}}
+      {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
+        <span class='text-color-bright-purple'>{{profile.name}}</span>
+      {{/link-to}}
+    {{else}}
+      {{profile.name}}
+    {{/if}}
 
     {{#if hasNotifications}}
       <span class='upf-notification--inline'></span>
