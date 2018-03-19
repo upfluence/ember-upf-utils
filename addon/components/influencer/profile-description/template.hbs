@@ -28,7 +28,8 @@
     {{/if}}
 
     {{#if profileRoutePath}}
-      {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
+      {{#link-to profileRoutePath profile.id
+                 class='upf-link--reset profile-description__action'}}
         &nbsp; {{fa-icon 'pencil' class='text-color-bright-purple'}}
       {{/link-to}}
     {{/if}}
