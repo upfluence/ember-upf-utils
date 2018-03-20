@@ -25,6 +25,13 @@
       {{profile.name}}
     {{/if}}
 
+    {{#if presentInLists}}
+      {{#influencer/profile-lists profile=profile
+                                  classNames='profile-description__action'}}
+        &nbsp; <span class='upf-icon upf-icon--list'></span>
+      {{/influencer/profile-lists}}
+    {{/if}}
+
     {{#if hasNotifications}}
       <span class='upf-notification--inline'></span>
     {{/if}}

@@ -18,12 +18,6 @@ export default Component.extend({
     return `border-bottom: 1px solid #efefef; ${this.get('cell.style')}`;
   }),
 
-/*  _: observer('active', function() {*/
-    //if (this.get('activityReactionAction')) {
-      //this.sendAction(this.get('activityReactionAction'), this.get('active'));
-    //}
-  /*}),*/
-
   mouseEnter() {
     this.set('active', true)
   },

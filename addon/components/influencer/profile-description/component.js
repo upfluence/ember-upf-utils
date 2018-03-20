@@ -13,6 +13,8 @@ export default Component.extend({
   selectedIcon: 'check',
   overlayType: 'selection',
 
+  presentInLists: computed.gt('profile.lists.length', 0),
+
   // Avoid BC break with profile.selected
   _selected: computed('selected', 'profile.selected', {
     get() {
