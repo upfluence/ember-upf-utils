@@ -8,31 +8,22 @@
   display: block;
 }
 
-//
-// An Influencer's Description wrapper.
-//
 .profile-description {
   display: flex;
+  align-items: center;
+  height: @table-fluid-row-height;
 
-  //
-  // An Influencer's Profile Picture.
-  //
   .profile-description__avatar {
-    flex-shrink: 0;
-
-    img {
-      width: 182px;
-      height: 182px;
-    }
+    padding-right: @spacing-xx-sm
   }
 
-  //
-  // The description section of an influencer row.
-  //
   .profile-description__content {
     display: inline-block;
     flex: 1;
+    align-self: flex-start;
+
     min-width: 0;
+    padding: @spacing-xxx-sm 0 0 @spacing-xx-sm;
 
     .description {
       text-overflow: ellipsis;
@@ -40,5 +31,17 @@
       height: 50px;
     }
   }
+
+  .profile-description__action {
+    opacity: 0;
+  }
 }
 
+.table-fluid-content__row--active .profile-description__action {
+  opacity: 1;
+}
+
+.upf-image--round-108 {
+  height: 108px;
+  width: 108px;
+}

@@ -11,7 +11,26 @@
 
   {{#unless isReached}}
     <div class="table-fluid-loader">
-      {{loading-spinner class="custom-spinner"}}
+      <div class='col-xs-12 col-sm-8 col-md-5 col-lg-4'>
+        <div class='profile-description'>
+          <div class='profile-description__avatar'>
+            <div class="upf-image upf-image--round-108"></div>
+          </div>
+          <div class='profile-description__content'>
+            <div class='placeholder-line'></div>
+            <div class='placeholder-line margin-top-xxx-sm'></div>
+            <div class='placeholder-line margin-top-xxx-sm'></div>
+            <div class='placeholder-line margin-top-xxx-sm'></div>
+            <div class='placeholder-line margin-top-xxx-sm'></div>
+            <div class='placeholder-line margin-top-xxx-sm'></div>
+          </div>
+        </div>
+      </div>
+      <div class='visible-lg col-lg-4'>
+        <div class='placeholder-image'></div>
+        <div class='placeholder-image'></div>
+        <div class='placeholder-image'></div>
+      </div>
     </div>
   {{/unless}}
 {{/ember-native-scrollable}}
