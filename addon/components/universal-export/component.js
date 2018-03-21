@@ -70,32 +70,10 @@ export default Component.extend({
     });
   },
 
-  inboxURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).inboxURL;
-  }),
-
-  analyticsURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).analyticsURL;
-  }),
-
-  _mailingUrl(mailing, isNew) {
-    if (!isNew) {
-      return `${this.get('inboxURL')}mailings/${mailing.id}`;
-    }
-
-    return `${this.get('inboxURL')}mailings/edit/${mailing.id}`;
-  },
-
-  _streamUrl(stream) {
-    return `${this.get('analyticsURL')}streams/${stream.id}`;
-  },
-
   _exported(closeModal = true) {
-    this.sendAction('didExport');
+    if (this.get('didExport')) {
+      this.sendAction('didExport');
+    }
     if (closeModal) {
       this.sendAction('closeModal');
     }
