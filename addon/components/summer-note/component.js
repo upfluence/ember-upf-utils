@@ -32,6 +32,20 @@ export default SummerNoteComponent.extend({
       fullscreen: false
     }
   },
+  uploaderHeaders: {},
+  uploaderOptions: computed('uploaderHeaders', function() {
+    return {
+      ajaxSettings: {
+        dataType: 'json',
+        headers: {
+          ...this.get('uploaderHeaders'),
+          'Authorization':
+            `Bearer ${this.get('session.data.authenticated.access_token')}`
+        }
+      },
+      url: Configuration.uploaderUrl
+    };
+  }),
 
   match: /\B{{(\w*)$/,
 
@@ -65,31 +79,22 @@ export default SummerNoteComponent.extend({
       },
       callbacks: {
         onImageUpload(files, editor, $editable) {
-          console.log('Uploading...');
-          console.log(files);
-          let headers = {};
-          let options = {
-            ajaxSettings: {
-              dataType: 'json',
-              headers: {
-                ...headers,
-                'Authorization':
-                  `Bearer ${_self.get('session.data.authenticated.access_token')}`
-              }
-            }
-          };
-          options.url = Configuration.uploaderUrl;
-          let uploader = EmberUploader.Uploader.create(options);
-          uploader.upload(files[0]);
-          console.log(uploader)
-          //$summernote.summernote('insertNode', imgNode)
+          let uploader = EmberUploader.Uploader.create(
+            _self.get('uploaderOptions')
+          );
+          uploader
+            .on('didUpload', (e) => {
+              self.$('#summernote').summernote('insertImage', e.artifact.url)
+            })
+          Array.prototype.forEach.call(files, (file) => {
+            uploader.upload(file, { privacy: 'public' });
+          });
         }
       }
     });
     this.$('.dropdown-toggle').dropdown();
 
     this.$().on('clear', () => this.$('#summernote').summernote('code', ''));
-
     this._super();
   }
 });
