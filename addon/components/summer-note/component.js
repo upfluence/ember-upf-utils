@@ -34,6 +34,7 @@ export default SummerNoteComponent.extend({
   },
   uploaderHeaders: {},
   uploaderOptions: computed('uploaderHeaders', function() {
+    /* jshint ignore:start */
     return {
       ajaxSettings: {
         dataType: 'json',
@@ -45,6 +46,7 @@ export default SummerNoteComponent.extend({
       },
       url: Configuration.uploaderUrl
     };
+    /* jshint ignore:end */
   }),
 
   match: /\B{{(\w*)$/,
