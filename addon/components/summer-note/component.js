@@ -65,7 +65,6 @@ export default SummerNoteComponent.extend({
       toolbar: _toolbar,
       height: this.get('height'),
       dialogsInBody: true,
-      callbacks: _callbacks,
       hint: {
         match: this.get('match'),
         search: (keyword, callback) => {
@@ -79,20 +78,22 @@ export default SummerNoteComponent.extend({
         }
       },
       callbacks: {
-        onImageUpload(files, editor, $editable) {
+        ..._callbacks,
+        onImageUpload(files) {
           let uploader = EmberUploader.Uploader.create(
             _self.get('uploaderOptions')
           );
           uploader
             .on('didUpload', (e) => {
-              self.$('#summernote').summernote('insertImage', e.artifact.url)
-            })
+              self.$('#summernote').summernote('insertImage', e.artifact.url);
+            });
           Array.prototype.forEach.call(files, (file) => {
             uploader.upload(file, { privacy: 'public' });
           });
         }
       }
     });
+
     this.$('.dropdown-toggle').dropdown();
 
     this.$().on('clear', () => this.$('#summernote').summernote('code', ''));
