@@ -51,6 +51,14 @@ export default SummerNoteComponent.extend({
     };
     /* jshint ignore:end */
   }),
+  uploader: computed('uploaderOptions', function() {
+    let uploader = EmberUploader.Uploader.create(this.get('uploaderOptions'));
+    uploader
+      .on('didUpload', (e) => {
+        this.$('#summernote').summernote('insertImage', e.artifact.url);
+      });
+    return uploader;
+  }),
 
   match: /\B{{(\w*)$/,
 
@@ -61,7 +69,7 @@ export default SummerNoteComponent.extend({
   uploadFile(file) {
     let fileExtension = file.name.split('.').slice(-1).pop()
     if (this.get('uploadAllowedExtensions').includes(fileExtension)) {
-      uploader.upload(file, { privacy: 'public' });
+      this.get('uploader').upload(file, { privacy: 'public' });
     } else {
       let extsWording = this.get('uploadAllowedExtensions').join(', ');
       this.get('toast').info(
@@ -96,13 +104,6 @@ export default SummerNoteComponent.extend({
       callbacks: {
         ..._callbacks,
         onImageUpload(files) {
-          let uploader = EmberUploader.Uploader.create(
-            _self.get('uploaderOptions')
-          );
-          uploader
-            .on('didUpload', (e) => {
-              self.$('#summernote').summernote('insertImage', e.artifact.url);
-            });
           Array.prototype.forEach.call(files, (file) => _self.uploadFile(file))
         }
       }
