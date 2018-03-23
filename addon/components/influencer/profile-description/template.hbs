@@ -1,10 +1,15 @@
 <div class='profile-description__avatar padding-right-xx-sm'>
   {{#if isSelectable}}
-    {{#toggle-area value=_selected
-      callbackAction=toggleAction
-      icon=selectedIcon}}
-      <img src={{profile.avatar_url}}>
-    {{/toggle-area}}
+    {{#if (eq overlayType 'selection')}}
+      {{#toggle-area value=_selected callbackAction=toggleAction icon=selectedIcon}}
+        <img src={{profile.avatar_url}} class="upf-image upf-image--round-108">
+      {{/toggle-area}}
+    {{else if (eq overlayType 'splitOverlay')}}
+      {{#split-overlay-area rightClick=rightClickAction leftClick=leftClickAction
+                            rightToggled=rightToggled leftToggled=leftToggled}}
+        <img src={{profile.avatar_url}} class="upf-image upf-image--round-108">
+      {{/split-overlay-area}}
+    {{/if}}
   {{else}}
     <img src={{profile.avatar_url}}>
   {{/if}}
