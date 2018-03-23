@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { LinkComponent } = Ember;
+const { LinkComponent } = Ember;
 
 export default LinkComponent.extend({
   layout,
