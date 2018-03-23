@@ -1,9 +1,22 @@
 import Ember from 'ember';
 import layout from './template';
 
-export default Ember.LinkComponent.extend({
+const { LinkComponent } = Ember;
+
+export default LinkComponent.extend({
   layout,
   tagName: 'div',
   classNames: ['__table-fluid-row', 'row-link', 'container-fluid'],
-  activeClass: 'active'
+  classNameBindings: ['active:__table-fluid-row--active'],
+  activeClass: 'active',
+
+  active: false,
+
+  mouseEnter() {
+    this.set('active', true);
+  },
+
+  mouseLeave() {
+    this.set('active', false);
+  }
 });
