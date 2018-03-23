@@ -10,6 +10,7 @@ const {
 } = Ember;
 
 export default SummerNoteComponent.extend({
+  toast: inject.service(),
   session: inject.service(),
 
   classNames: ['js-summer-note', 'upf-summer-note'],
@@ -32,6 +33,8 @@ export default SummerNoteComponent.extend({
       fullscreen: false
     }
   },
+
+  uploadAllowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
   uploaderHeaders: {},
   uploaderOptions: computed('uploaderHeaders', function() {
     /* jshint ignore:start */
@@ -54,6 +57,19 @@ export default SummerNoteComponent.extend({
   availableVariables: computed('customVariables', function() {
     return (this.get('customVariables') || []).uniq();
   }),
+
+  uploadFile(file) {
+    let fileExtension = file.name.split('.').slice(-1).pop()
+    if (this.get('uploadAllowedExtensions').includes(fileExtension)) {
+      uploader.upload(file, { privacy: 'public' });
+    } else {
+      let extsWording = this.get('uploadAllowedExtensions').join(', ');
+      this.get('toast').info(
+        `Allowed image formats are: ${extsWording}`,
+        `Issue uploading ${file.name}`,
+      );
+    }
+  },
 
   didInsertElement: function() {
     let _self = this;
@@ -87,9 +103,7 @@ export default SummerNoteComponent.extend({
             .on('didUpload', (e) => {
               self.$('#summernote').summernote('insertImage', e.artifact.url);
             });
-          Array.prototype.forEach.call(files, (file) => {
-            uploader.upload(file, { privacy: 'public' });
-          });
+          Array.prototype.forEach.call(files, (file) => _self.uploadFile(file))
         }
       }
     });
