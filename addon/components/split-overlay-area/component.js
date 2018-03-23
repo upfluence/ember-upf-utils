@@ -12,18 +12,20 @@ export default Component.extend({
   ],
 
   mouseMove(e) {
-    if (e.target.className.includes('left-side') ||
-        e.target.className.includes('fa-close')) {
+    let onLeftSide = (e.target.className.includes('left-side')
+      || e.target.className.includes('fa-close'));
+    let onRightSide = (e.target.className.includes('right-side')
+      || e.target.className.includes('fa-check'));
+    if (onLeftSide) {
       this.$('.right-side').addClass('right-side--neutral');
       this.$('.left-side').removeClass('left-side--neutral');
-    } else if (e.target.className.includes('right-side') ||
-               e.target.className.includes('fa-check')) {
+    } else if (onRightSide) {
       this.$('.left-side').addClass('left-side--neutral');
       this.$('.right-side').removeClass('right-side--neutral');
     }
   },
 
-  mouseLeave(e) {
+  mouseLeave() {
     this.$('.right-side').removeClass('right-side--neutral');
     this.$('.left-side').removeClass('left-side--neutral');
   },
