@@ -21,7 +21,7 @@ export default Service.extend({
   }),
 
   _extractNotifications(modelOrCollection) {
-    let argIsArray = modelOrCollection instanceof Array
+    let argIsArray = modelOrCollection instanceof Array;
     if (argIsArray) {
       return modelOrCollection.map((m) => {
         return m.get('notifications').toArray();
@@ -44,7 +44,7 @@ export default Service.extend({
       this.get('ajax').request(this.get('notificationReadURL'), {
         method: 'POST',
         data: { uuids: notifications.mapBy('id') }
-      }).then((user) => resolve(notifications))
+      }).then(() => resolve(notifications))
         .catch((e) => reject(e));
     });
   }

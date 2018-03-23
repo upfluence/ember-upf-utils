@@ -1,4 +1,3 @@
-/*globals ga*/
 import ExternalExport from 'ember-upf-utils/components/universal-export/external/component';
 
 

@@ -179,15 +179,14 @@ export default Component.extend({
 
   // Ensure the BC
   _getUploader() {
-    /* jshint ignore:start */
     let headers = this.get('headers');
+    let token = this.get('session.data.authenticated.access_token');
     let options = {
       ajaxSettings: {
         dataType: 'json',
         headers: {
           ...headers,
-          'Authorization':
-            `Bearer ${this.get('session.data.authenticated.access_token')}`
+          'Authorization': `Bearer ${token}`
         }
       }
     };
@@ -205,7 +204,6 @@ export default Component.extend({
     }
 
     return EmberUploader.Uploader.create(options);
-    /* jshint ignore:end */
   },
 
   _clear() {
