@@ -14,7 +14,7 @@ export default Component.extend({
   method: 'PUT',
   attribute: 'file',
 
-  text: 'Add a file',
+  text: 'Upload File',
 
   allowedExtensions: null,
   twoStep: false,
