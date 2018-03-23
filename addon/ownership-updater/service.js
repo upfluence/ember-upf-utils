@@ -9,10 +9,13 @@ export default Service.extend({
     let payload = {};
     payload[`${model}`] = { owned_by: ownedBy };
 
-    return this.get('ajax').request(`/${String.pluralize(model)}/${modelId}`, {
-      method: 'PUT',
-      contentType: 'application/json',
-      data: JSON.stringify(payload)
-    });
+    return this.get('ajax').request(
+      `/${Ember.String.pluralize(model)}/${modelId}`,
+      {
+        method: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(payload)
+      }
+    );
   }
 });
