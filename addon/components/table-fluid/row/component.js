@@ -19,10 +19,10 @@ export default Component.extend({
   }),
 
   mouseEnter() {
-    this.set('active', true)
+    this.set('active', true);
   },
 
   mouseLeave() {
-    this.set('active', false)
+    this.set('active', false);
   }
 });
