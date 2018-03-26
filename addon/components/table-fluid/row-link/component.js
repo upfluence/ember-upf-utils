@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { LinkComponent } = Ember;
+const { LinkComponent, observer } = Ember;
 
 export default LinkComponent.extend({
   layout,
@@ -11,6 +11,10 @@ export default LinkComponent.extend({
   activeClass: 'active',
 
   active: false,
+
+  _: observer('activeCell', function() {
+    this.set('active', this.get('activeCell'));
+  }),
 
   mouseEnter() {
     this.set('active', true);
