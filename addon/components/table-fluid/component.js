@@ -25,7 +25,8 @@ export default EmberCollection.extend(SlotsMixin, {
       }
 
       return this.get('items.reachedInfinity');
-  }),
+    }
+  ),
 
   _: observer('_contentSize.height', function() {
     this.set('_bottomReached', false);
