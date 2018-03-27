@@ -1,0 +1,95 @@
+.neutral-overlay {
+  background: linear-gradient(
+    to bottom,
+    fadeout(@upf-primary-black, 95%),
+    fadeout(@upf-primary-black, 60%),
+    fadeout(@upf-primary-black, 95%)
+  );
+}
+
+.split-overlay-area {
+  position: relative;
+  cursor: pointer;
+
+  .hover-animation(transform);
+
+  &:hover, &:active {
+    img {
+      border-radius: @default-radius;
+    }
+  }
+
+  .split-overlay {
+    .left-side, .right-side {
+      .hover-animation(opacity);
+
+      background: fadeout(@upf-primary-black, 80%);
+      opacity: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      i.fa {
+        opacity: 0;
+        font-size: 24/@rem;
+        color: @upf-primary-white;
+      }
+    }
+
+    .left-side {
+      .position-absolute(0,0,0,50%);
+      border-right: 1px solid @upf-primary-white;
+
+      &:hover {
+        background-color: fadeout(@upf-primary-rock-blue, 30%);
+      }
+    }
+
+    .right-side {
+      .position-absolute(0,0,50%,0%);
+
+      &:hover {
+        background-color: fadeout(@upf-primary-bright-purple, 30%);
+      }
+    }
+
+    &:hover .left-side, &:active .left-side,
+    &:hover .right-side, &:active .right-side {
+      opacity: 1;
+
+      i {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.table-fluid-content__row--active .split-overlay-area,
+.__table-fluid-row--active .split-overlay-area {
+  img {
+    border-radius: @default-radius;
+  }
+
+  .left-side:not(:hover), .right-side:not(:hover) {
+    .neutral-overlay;
+    opacity: 1;
+    i.fa { opacity: 1; }
+  }
+}
+
+.table-fluid-content__row--active .split-overlay-area--left-toggled,
+.__table-fluid-row--active .split-overlay-area--left-toggled {
+  .split-overlay .left-side:not(.left-side--neutral) {
+    background: none;
+    background-color: fadeout(@upf-primary-rock-blue, 30%);
+  }
+}
+
+.table-fluid-content__row--active .split-overlay-area--right-toggled,
+.__table-fluid-row--active .split-overlay-area--right-toggled {
+  .split-overlay .right-side:not(.right-side--neutral) {
+    background: none;
+    background-color: fadeout(@upf-primary-bright-purple, 30%);
+  }
+}

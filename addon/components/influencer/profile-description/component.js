@@ -1,16 +1,22 @@
 import Ember from 'ember';
 import layout from './template';
 
-export default Ember.Component.extend({
+const { Component, computed } = Ember;
+
+export default Component.extend({
   layout,
   classNames: ['profile-description'],
+
   isSelectable: true,
   toggleAction: null,
   selected: null,
   selectedIcon: 'check',
+  overlayType: 'selection',
+
+  presentInLists: computed.gt('profile.lists.length', 0),
 
   // Avoid BC break with profile.selected
-  _selected: Ember.computed('selected', 'profile.selected', {
+  _selected: computed('selected', 'profile.selected', {
     get() {
       return this.get('selected') || this.get('profile.selected');
     },
