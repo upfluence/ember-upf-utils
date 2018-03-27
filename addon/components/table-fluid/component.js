@@ -3,7 +3,7 @@ import layout from './template';
 import EmberCollection from 'ember-collection/components/ember-collection';
 import SlotsMixin from 'ember-block-slots';
 import { EKMixin } from 'ember-keyboard';
-import { keyUp, keyDown } from 'ember-keyboard';
+import { getCode, keyUp, keyDown } from 'ember-keyboard';
 
 const {
   computed,
@@ -42,28 +42,46 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   },
 
   currentlyActiveCell: computed('_cells.@each.isActive', function() {
-    return this.get('_cells').find((cell) => cell.isActive);
+    let cell = this.get('_cells').find((cell) => cell.isActive);
+    return {
+      cell,
+      index: this.get('_cells').indexOf(cell)
+    };
   }),
 
-  keyUpListener: on(keyDown('ArrowUp'), function() {
-    let activeCellIndex = this.get('_cells').indexOf(this.get('currentlyActiveCell'));
-    let previousCell = this.get('_cells')[activeCellIndex - 1];
+  keyboardMapping: on(
+    keyDown('ArrowUp'), keyDown('ArrowDown'),
+    keyDown('ArrowLeft'), keyDown('ArrowRight'),
+    function(e) {
+      const key = getCode(e);
+      let { cell, index } = this.get('currentlyActiveCell');
+      let totalCells = this.get('_cells').length;
+      switch (key) {
+        case 'ArrowUp':
+        case 'ArrowDown':
+          let canNavigate = (key === 'ArrowUp') ? index > 0 : index < totalCells;
 
-    if (activeCellIndex > 0) {
-      set(this.get('currentlyActiveCell'), 'isActive', false);
-      set(previousCell, 'isActive', true);
+          if (canNavigate) {
+            const direction = (key === 'ArrowUp') ? -1 : 1;
+            let goToCell = this.get('_cells')[index + direction];
+            set(cell, 'isActive', false);
+            set(goToCell, 'isActive', true);
+          }
+
+          break;
+        case 'ArrowLeft':
+        case 'ArrowRight':
+          set(cell, 'isActive', false);
+          set(this.get('_cells')[index + 1], 'isActive', true);
+          this.get('_cells').splice(index, 1);
+          this.sendAction('keyboardArrowAction', cell.item, key);
+
+          break;
+        default:
+          break;
+      }
     }
-  }),
-
-  keyDownListener: on(keyDown('ArrowDown'), function() {
-    let activeCellIndex = this.get('_cells').indexOf(this.get('currentlyActiveCell'));
-    let nextCell = this.get('_cells')[activeCellIndex + 1];
-
-    if (activeCellIndex < this.get('_cells').length) {
-      set(this.get('currentlyActiveCell'), 'isActive', false);
-      set(nextCell, 'isActive', true);
-    }
-  }),
+  ),
 
   didInsertElement() {
     set(this.get('_cells')[0], 'isActive', true);
