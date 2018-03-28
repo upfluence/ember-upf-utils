@@ -14,6 +14,9 @@ export default LinkComponent.extend({
 
   _: observer('activeCell', function() {
     this.set('active', this.get('activeCell'));
+    if (this.get('activeCell')) {
+      document.getElementById(this.elementId).scrollIntoView();
+    }
   }),
 
   mouseEnter() {
