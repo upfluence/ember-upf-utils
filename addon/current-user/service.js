@@ -1,13 +1,16 @@
 import Ember from 'ember';
 import Configuration from 'ember-upf-utils/configuration';
 
-const { computed, Service, inject, isNone, run } = Ember;
+const { computed, Service, inject, isNone, run, RSVP } = Ember;
 
 export default Service.extend({
   ajax: inject.service(),
   session: inject.service(),
   _cachedUrl: null,
   _cachedUser: null,
+  _fetchPromise: null,
+
+  logged: computed.notEmpty('session.data.authenticated.access_token'),
 
   init() {
     this._super();
@@ -53,14 +56,29 @@ export default Service.extend({
   }),
 
   fetch() {
-    if (this._cachedUrl === this.get('meURL')) {
-      // return the current promise
-      return this._cachedUser;
+    let timeout = 1000; // 1 second
+    let start = new Date().getTime();
+
+    if (this._fetchPromise)  {
+      return this._fetchPromise;
     }
 
-    this._cachedUrl = this.get('meURL');
+    return this._fetchPromise = new RSVP.Promise((resolve) => {
+      let fn = () => {
+        if (new Date().getTime() - start > timeout) {
+          throw new Error('Unable to load user');
+        }
 
-    return this._cachedUser = this.get('ajax').request(this.get('meURL'));
+        if (this.get('logged')) {
+          resolve(this._fetch());
+        } else {
+          // just in case of delais to load authenticated data
+          run.next(this, fn);
+        }
+      };
+
+      fn();
+    });
   },
 
   fetchOwnerships() {
@@ -85,5 +103,16 @@ export default Service.extend({
 
       return ownerships;
     });
+  },
+
+  _fetch() {
+    if (this._cachedUrl === this.get('meURL')) {
+      // return the current promise
+      return this._cachedUser;
+    }
+
+    this._cachedUrl = this.get('meURL');
+
+    return this._cachedUser = this.get('ajax').request(this.get('meURL'));
   }
 });
