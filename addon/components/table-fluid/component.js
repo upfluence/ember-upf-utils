@@ -59,7 +59,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       switch (key) {
         case 'ArrowUp':
         case 'ArrowDown':
-          let canNavigate = (key === 'ArrowUp') ? index > 0 : index < totalCells;
+          let canNavigate = (key === 'ArrowUp') ? index > 0 : index+1 < totalCells;
 
           if (canNavigate) {
             const direction = (key === 'ArrowUp') ? -1 : 1;
