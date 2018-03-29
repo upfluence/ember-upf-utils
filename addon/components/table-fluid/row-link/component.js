@@ -20,7 +20,9 @@ export default LinkComponent.extend({
     this.set('active', this.get('activeCell'));
     if (this.get('activeCell')) {
       run.later(() => {
-        document.getElementById(this.elementId).scrollIntoView();
+        document.getElementById(this.elementId).scrollIntoView({
+          block: 'center'
+        });
       }, 100)
     }
   }),
