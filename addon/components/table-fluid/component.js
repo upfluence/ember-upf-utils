@@ -8,6 +8,7 @@ const {
   computed,
   observer,
   on,
+  run,
   set
 } = Ember;
 
@@ -35,12 +36,29 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     this.set('_bottomReached', false);
   }),
 
+  _1: observer('shouldResetActiveCells', function() {
+    if (this.get('keyboardActivated')) {
+      run.later(() => {
+        this._resetCurrentlyActiveCell();
+      }, 100);
+    }
+  }),
+
   _bottomIsReached(scrollTop) {
     let pos = this._contentSize.height - this._clientHeight - scrollTop;
     return pos <= this.get('triggerOffset');
   },
 
-  currentlyActiveCell: computed('_cells.@each.isActive', function() {
+  _resetCurrentlyActiveCell() {
+    this.get('_cells').map((cell) => set(cell, 'isActive', false));
+    let firstCell = this.get('_cells').find((cell) => cell.index === 0);
+
+    if(firstCell) {
+      set(firstCell, 'isActive', true);
+    }
+  },
+
+  currentlyActiveCell: computed('_cells', '_cells.@each.isActive', function() {
     return this.get('_cells').find((cell) => cell.isActive);
   }),
 
@@ -48,14 +66,14 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     keyDown('ArrowUp'), keyDown('ArrowDown'),
     keyDown('ArrowLeft'), keyDown('ArrowRight'),
     function(e) {
-      const key = getCode(e);
+      let key = getCode(e);
       let cell = this.get('currentlyActiveCell');
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
           let direction = (key === 'ArrowDown') ? 1 : -1;
           let goToCell = this.get('_cells').find((x) => {
-            return x.index === cell.index + direction
+            return x.index === cell.index + direction;
           });
 
           if (goToCell) {
@@ -85,13 +103,10 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }
   ),
 
-  init() {
-    this._super();
-    this.set('keyboardActivated', true);
-  },
-
-  didRender() {
-    set(this.get('_cells')[0], 'isActive', true);
+  didInsertElement() {
+    if (this.get('keyboardActivated')) {
+      this._resetCurrentlyActiveCell();
+    }
   },
 
   actions: {
