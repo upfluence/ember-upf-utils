@@ -2,8 +2,7 @@ import Ember from 'ember';
 import layout from './template';
 import EmberCollection from 'ember-collection/components/ember-collection';
 import SlotsMixin from 'ember-block-slots';
-import { EKMixin } from 'ember-keyboard';
-import { getCode, keyUp, keyDown } from 'ember-keyboard';
+import { EKMixin, getCode, keyDown, keyUp } from 'ember-keyboard';
 
 const {
   computed,
@@ -42,11 +41,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   },
 
   currentlyActiveCell: computed('_cells.@each.isActive', function() {
-    let cell = this.get('_cells').find((cell) => cell.isActive);
-    return {
-      cell,
-      index: this.get('_cells').indexOf(cell)
-    };
+    return this.get('_cells').find((cell) => cell.isActive);
   }),
 
   keyboardMapping: on(
@@ -54,16 +49,16 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     keyDown('ArrowLeft'), keyDown('ArrowRight'),
     function(e) {
       const key = getCode(e);
-      let { cell, index } = this.get('currentlyActiveCell');
-      let totalCells = this.get('_cells').length;
+      let cell = this.get('currentlyActiveCell');
       switch (key) {
-        case 'ArrowUp':
         case 'ArrowDown':
-          let canNavigate = (key === 'ArrowUp') ? index > 0 : index+1 < totalCells;
+        case 'ArrowUp':
+          let direction = (key === 'ArrowDown') ? 1 : -1;
+          let goToCell = this.get('_cells').find((x) => {
+            return x.index === cell.index + direction
+          });
 
-          if (canNavigate) {
-            const direction = (key === 'ArrowUp') ? -1 : 1;
-            let goToCell = this.get('_cells')[index + direction];
+          if (goToCell) {
             set(cell, 'isActive', false);
             set(goToCell, 'isActive', true);
           }
@@ -71,10 +66,17 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
           break;
         case 'ArrowLeft':
         case 'ArrowRight':
-          set(cell, 'isActive', false);
-          set(this.get('_cells')[index + 1], 'isActive', true);
-          this.get('_cells').splice(index, 1);
           this.sendAction('keyboardArrowAction', cell.item, key);
+
+          set(cell, 'isActive', false);
+          let afterDeletionCell = this.get('_cells').find((x) => {
+            return x.index === cell.index + 1 || x.index === cell.index - 1;
+          });
+
+          if (afterDeletionCell) {
+            set(afterDeletionCell, 'isActive', true);
+          };
+          this.get('_cells').removeObject(cell);
 
           break;
         default:
@@ -83,9 +85,13 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }
   ),
 
-  didInsertElement() {
-    set(this.get('_cells')[0], 'isActive', true);
+  init() {
+    this._super();
     this.set('keyboardActivated', true);
+  },
+
+  didRender() {
+    set(this.get('_cells')[0], 'isActive', true);
   },
 
   actions: {
