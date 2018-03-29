@@ -1,7 +1,11 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { LinkComponent, observer } = Ember;
+const {
+  LinkComponent,
+  observer,
+  run
+} = Ember;
 
 export default LinkComponent.extend({
   layout,
@@ -15,7 +19,9 @@ export default LinkComponent.extend({
   _: observer('activeCell', function() {
     this.set('active', this.get('activeCell'));
     if (this.get('activeCell')) {
-      document.getElementById(this.elementId).scrollIntoView();
+      run.later(() => {
+        document.getElementById(this.elementId).scrollIntoView();
+      }, 100)
     }
   }),
 
