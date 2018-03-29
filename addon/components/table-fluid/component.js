@@ -62,6 +62,35 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     return this.get('_cells').find((cell) => cell.isActive);
   }),
 
+  _getNextCell(fromCell) {
+    return this.get('_cells').reduce(function(acc, v) {
+      if (!acc && v.index > fromCell.index) {
+        acc = v;
+      } else if (v.index > fromCell.index && v.index < acc.index) {
+        acc = v;
+      }
+
+      return acc;
+    }, null);
+  },
+
+  _getPreviousCell(fromCell) {
+    return this.get('_cells').reduce(function(acc, v) {
+      if (!acc && v.index < fromCell.index) {
+        acc = v;
+      } else if (v.index < fromCell.index && v.index > acc.index) {
+        acc = v;
+      }
+
+      return acc;
+    }, null);
+  },
+
+  _switchCellsActiveState(fromCell, toCell) {
+    set(fromCell, 'isActive', false);
+    set(toCell, 'isActive', true);
+  },
+
   keyboardMapping: on(
     keyDown('ArrowUp'), keyDown('ArrowDown'),
     keyDown('ArrowLeft'), keyDown('ArrowRight'),
@@ -71,29 +100,27 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
-          let direction = (key === 'ArrowDown') ? 1 : -1;
-          let goToCell = this.get('_cells').find((x) => {
-            return x.index === cell.index + direction;
-          });
+          let goToCell = (key === 'ArrowDown') ? this._getNextCell(cell) :
+            this._getPreviousCell(cell);
 
           if (goToCell) {
-            set(cell, 'isActive', false);
-            set(goToCell, 'isActive', true);
+            this._switchCellsActiveState(cell, goToCell);
           }
 
           break;
         case 'ArrowLeft':
         case 'ArrowRight':
-          this.sendAction('keyboardArrowAction', cell.item, key);
-
           set(cell, 'isActive', false);
-          let afterDeletionCell = this.get('_cells').find((x) => {
-            return x.index === cell.index + 1 || x.index === cell.index - 1;
+          var direction = (cell.index+1 < this.get('_cells.length')) ? 1 : -1;
+          var goToCell = this.get('_cells').find((x) => {
+            return x.index === cell.index + direction;
           });
 
-          if (afterDeletionCell) {
-            set(afterDeletionCell, 'isActive', true);
+          if (goToCell) {
+            set(goToCell, 'isActive', true);
           };
+
+          this.sendAction('keyboardArrowAction', cell.item, key);
           this.get('_cells').removeObject(cell);
 
           break;
