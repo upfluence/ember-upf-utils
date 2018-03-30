@@ -32,6 +32,8 @@ export default LinkComponent.extend({
   },
 
   mouseLeave() {
-    this.set('active', false);
+    if (!this.get('activeCell')) {
+      this.set('active', false);
+    }
   }
 });
