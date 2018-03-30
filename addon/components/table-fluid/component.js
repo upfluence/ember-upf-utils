@@ -37,10 +37,10 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   }),
 
   _1: observer('shouldResetActiveCells', function() {
-    if (this.get('keyboardActivated')) {
+    if (this.get('keyboardActivated') && this.get('items')) {
       run.later(() => {
         this._resetCurrentlyActiveCell();
-      }, 100);
+      }, 200);
     }
   }),
 
@@ -110,18 +110,21 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
           break;
         case 'ArrowLeft':
         case 'ArrowRight':
-          set(cell, 'isActive', false);
-          var direction = (cell.index+1 < this.get('_cells.length')) ? 1 : -1;
-          var goToCell = this.get('_cells').find((x) => {
-            return x.index === cell.index + direction;
+
+
+          this.sendAction('keyboardArrowAction', cell.item, key, () => {
+            set(cell, 'isActive', false);
+            this.get('_cells').removeObject(cell);
+
+            var direction = (cell.index+1 < this.get('_cells.length')) ? 1 : -1;
+            var goToCell = this.get('_cells').find((x) => {
+              return x.index === cell.index + direction;
+            });
+
+            if (goToCell) {
+              set(goToCell, 'isActive', true);
+            };
           });
-
-          if (goToCell) {
-            set(goToCell, 'isActive', true);
-          };
-
-          this.sendAction('keyboardArrowAction', cell.item, key);
-          this.get('_cells').removeObject(cell);
 
           break;
         default:
