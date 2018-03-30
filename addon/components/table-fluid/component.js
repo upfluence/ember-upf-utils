@@ -116,14 +116,14 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
             set(cell, 'isActive', false);
             this.get('_cells').removeObject(cell);
 
-            let totalCells = this.get('_cells.length')
+            let totalCells = this.get('_cells.length');
             let direction = (cell.index + 1 < totalCells) ? 1 : -1;
             let goToCell = this.get('_cells').find((x) => {
               return x.index === cell.index + direction;
             });
 
             if (goToCell) {
-              set(goToCell, 'isActive', true)
+              set(goToCell, 'isActive', true);
             };
           });
 
