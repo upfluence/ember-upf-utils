@@ -56,7 +56,7 @@ export default Service.extend({
   }),
 
   fetch() {
-    let timeout = 1000; // 1 second
+    let timeout = 3000; // 3 seconds
     let start = new Date().getTime();
 
     if (this._fetchPromise)  {
