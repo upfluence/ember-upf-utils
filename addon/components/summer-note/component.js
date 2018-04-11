@@ -101,6 +101,15 @@ export default SummerNoteComponent.extend({
           return `{{${item}}}`;
         }
       },
+      onCreateLink(link) {
+        if (link.indexOf('{{') === 0) {
+          return link;
+        }
+
+        // BC
+        return /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(linkUrl)
+          ? linkUrl : 'http://' + linkUrl;
+      },
       callbacks: {
         ..._callbacks,
         onImageUpload(files) {
