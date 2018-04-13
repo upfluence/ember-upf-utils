@@ -107,8 +107,8 @@ export default SummerNoteComponent.extend({
         }
 
         // BC
-        return /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(linkUrl)
-          ? linkUrl : 'http://' + linkUrl;
+        return /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(link)
+          ? link : 'http://' + link;
       },
       callbacks: {
         ..._callbacks,
