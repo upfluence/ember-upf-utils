@@ -13,12 +13,6 @@
 
   .hover-animation(transform);
 
-  &:hover, &:active {
-    img {
-      border-radius: @default-radius;
-    }
-  }
-
   .split-overlay {
     .left-side, .right-side {
       .hover-animation(opacity);
@@ -66,11 +60,8 @@
 }
 
 .table-fluid-content__row--active .split-overlay-area,
-.__table-fluid-row--active .split-overlay-area {
-  img {
-    border-radius: @default-radius;
-  }
-
+.__table-fluid-row--active .split-overlay-area,
+.split-overlay-area.shepherd-enabled {
   .left-side:not(:hover), .right-side:not(:hover) {
     .neutral-overlay;
     opacity: 1;
