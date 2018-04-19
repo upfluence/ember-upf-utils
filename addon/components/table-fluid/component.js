@@ -62,8 +62,8 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     return this.get('_cells').find((cell) => cell.isActive);
   }),
 
-  _getNextCell(fromCell) {
-    return this.get('_cells').reduce(function(acc, v) {
+  _getNextCell: function(ctx, fromCell) {
+    return ctx.get('_cells').reduce(function(acc, v) {
       if (!acc && v.index > fromCell.index) {
         acc = v;
       } else if (v.index > fromCell.index && v.index < acc.index) {
@@ -74,8 +74,8 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }, null);
   },
 
-  _getPreviousCell(fromCell) {
-    return this.get('_cells').reduce(function(acc, v) {
+  _getPreviousCell: function(ctx, fromCell) {
+    return ctx.get('_cells').reduce(function(acc, v) {
       if (!acc && v.index < fromCell.index) {
         acc = v;
       } else if (v.index < fromCell.index && v.index > acc.index) {
@@ -100,8 +100,8 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
-          let goToCell = (key === 'ArrowDown') ? this._getNextCell(cell) :
-            this._getPreviousCell(cell);
+          let goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell) :
+            this._getPreviousCell(this, cell);
 
           if (goToCell) {
             this._switchCellsActiveState(cell, goToCell);
@@ -110,20 +110,16 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
           break;
         case 'ArrowLeft':
         case 'ArrowRight':
-
-
+          let totalCells = this.get('_cells.length');
+          let directionFn = (cell.index + 1 < totalCells) ? this._getNextCell : this._getPreviousCell;
+          let nextCell = directionFn(this, cell);
           this.sendAction('keyboardArrowAction', cell.item, key, () => {
             set(cell, 'isActive', false);
+
             this.get('_cells').removeObject(cell);
 
-            let totalCells = this.get('_cells.length');
-            let direction = (cell.index + 1 < totalCells) ? 1 : -1;
-            let goToCell = this.get('_cells').find((x) => {
-              return x.index === cell.index + direction;
-            });
-
-            if (goToCell) {
-              set(goToCell, 'isActive', true);
+            if (nextCell) {
+              set(nextCell, 'isActive', true);
             };
           });
 
