@@ -2,7 +2,7 @@ import Ember from 'ember';
 import OnbardingSteps from 'facade-web/resources/onboarding';
 
 const SHEPHERD_DEFAULT_CLASSES = 'shepherd upf-shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text';
-const { Component, computed, inject, run } = Ember;
+const { Component, computed, inject } = Ember;
 
 export default Component.extend({
   tour: inject.service(),
