@@ -6,7 +6,6 @@
   .__table-fluid-row {
     .content-block();
     .grid-display(div, @table-fluid-border-color);
-    .hover-animation(border-left-color);
 
     height: @table-fluid-row-height;
 
@@ -16,13 +15,11 @@
     }
 
     &:hover {
-      background-color: @table-fluid-hover-bg;
-      border-left-color: @table-fluid-hover-border-color;
+      background-color: @another-grey;
     }
 
     &.active {
-      background-color: @table-fluid-active-bg;
-      border-left-color: @table-fluid-active-border-color !important;
+      background-color: @another-grey;
     }
   }
 }
