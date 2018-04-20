@@ -62,7 +62,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     return this.get('_cells').find((cell) => cell.isActive);
   }),
 
-  _getNextCell: function(ctx, fromCell) {
+  _getNextCell(ctx, fromCell) {
     return ctx.get('_cells').reduce(function(acc, v) {
       if (!acc && v.index > fromCell.index) {
         acc = v;
@@ -74,7 +74,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }, null);
   },
 
-  _getPreviousCell: function(ctx, fromCell) {
+  _getPreviousCell(ctx, fromCell) {
     return ctx.get('_cells').reduce(function(acc, v) {
       if (!acc && v.index < fromCell.index) {
         acc = v;
@@ -100,8 +100,8 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
-          let goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell) :
-            this._getPreviousCell(this, cell);
+          let goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell)
+            : this._getPreviousCell(this, cell);
 
           if (goToCell) {
             this._switchCellsActiveState(cell, goToCell);
@@ -111,7 +111,8 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
         case 'ArrowLeft':
         case 'ArrowRight':
           let totalCells = this.get('_cells.length');
-          let directionFn = (cell.index + 1 < totalCells) ? this._getNextCell : this._getPreviousCell;
+          let directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
+            : this._getPreviousCell;
           let nextCell = directionFn(this, cell);
           this.sendAction('keyboardArrowAction', cell.item, key, () => {
             set(cell, 'isActive', false);
