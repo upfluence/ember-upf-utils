@@ -1248,7 +1248,7 @@ broccoli-sri-hash@^2.1.0:
     sri-toolbox "^0.2.0"
     symlink-or-copy "^1.0.1"
 
-broccoli-stew@^1.0.0, broccoli-stew@^1.2.0, broccoli-stew@^1.3.3, broccoli-stew@^1.4.2:
+broccoli-stew@^1.0.0, broccoli-stew@^1.2.0, broccoli-stew@^1.3.3, broccoli-stew@^1.4.2, broccoli-stew@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.5.0.tgz#d7af8c18511dce510e49d308a62e5977f461883c"
   dependencies:
@@ -1614,6 +1614,10 @@ convert-source-map@^1.1.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.5.0.tgz#9acd70851c6d5dfdd93d9282e5edf94a03ff46b5"
 
+convert-source-map@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.5.1.tgz#b8278097b9bc229365de5c62cf5fcaed8b5599e5"
+
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
@@ -1771,6 +1775,10 @@ detective@^4.3.1:
 diff@^3.2.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.3.0.tgz#056695150d7aa93237ca7e378ac3b1682b7963b9"
+
+disable-scroll@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/disable-scroll/-/disable-scroll-0.3.0.tgz#486d309ec9873edb18aec7891c5576bf8b506c59"
 
 dom-serializer@0:
   version "0.1.0"
@@ -2002,6 +2010,17 @@ ember-cli-moment-shim@3.0.1:
     lodash.defaults "^4.1.0"
     moment "^2.13.0"
     moment-timezone "^0.5.0"
+
+ember-cli-node-assets@0.2.2, ember-cli-node-assets@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.2.tgz#d2d55626e7cc6619f882d7fe55751f9266022708"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.1.1"
+    broccoli-source "^1.1.0"
+    debug "^2.2.0"
+    lodash "^4.5.1"
+    resolve "^1.1.7"
 
 ember-cli-normalize-entity-name@^1.0.0:
   version "1.0.0"
@@ -2390,6 +2409,17 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     ember-cli-babel "^6.0.0"
     ember-cli-version-checker "^1.1.6"
 
+ember-shepherd@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ember-shepherd/-/ember-shepherd-3.1.0.tgz#c1bc9fed40050ac122aac829ef9dd9b5e141aff5"
+  dependencies:
+    disable-scroll "0.3.0"
+    ember-cli-babel "^6.6.0"
+    ember-cli-node-assets "0.2.2"
+    ember-tether "1.0.0-beta.0"
+    fastboot-transform "^0.1.2"
+    tether-shepherd "1.8.1"
+
 ember-simple-auth@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-1.4.0.tgz#b989fb94a334ca1634e62f9ca99b0b94f16167ec"
@@ -2416,6 +2446,14 @@ ember-test-helpers@^0.5.32:
   resolved "https://registry.yarnpkg.com/ember-test-helpers/-/ember-test-helpers-0.5.34.tgz#c8439108d1cba1d7d838c212208a5c4061471b83"
   dependencies:
     klassy "^0.1.3"
+
+ember-tether@1.0.0-beta.0:
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/ember-tether/-/ember-tether-1.0.0-beta.0.tgz#fd9f46427e3ed138110b1c21e4be815338c02aa8"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-node-assets "^0.2.2"
+    tether "^1.4.0"
 
 ember-try-config@^2.0.1:
   version "2.1.0"
@@ -2766,6 +2804,13 @@ fast-sourcemap-concat@^1.0.1:
     rsvp "^3.0.14"
     source-map "^0.4.2"
     source-map-url "^0.3.0"
+
+fastboot-transform@^0.1.2:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.3.tgz#7dea0b117594afd8772baa6c9b0919644e7f7dcd"
+  dependencies:
+    broccoli-stew "^1.5.0"
+    convert-source-map "^1.5.1"
 
 faye-websocket@~0.10.0:
   version "0.10.0"
@@ -3708,6 +3753,10 @@ lodash@^4.14.0, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1, lodash@^4.7.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
+lodash@^4.5.1:
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
 longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
@@ -4447,6 +4496,12 @@ resolve@^1.1.2, resolve@^1.1.6, resolve@^1.3.0, resolve@^1.3.3, resolve@^1.4.0:
   dependencies:
     path-parse "^1.0.5"
 
+resolve@^1.1.7:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.7.1.tgz#aadd656374fd298aee895bc026b8297418677fd3"
+  dependencies:
+    path-parse "^1.0.5"
+
 restore-cursor@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/restore-cursor/-/restore-cursor-1.0.1.tgz#34661f46886327fed2991479152252df92daa541"
@@ -4888,6 +4943,16 @@ testem@^1.15.0:
     styled_string "0.0.1"
     tap-parser "^5.1.0"
     xmldom "^0.1.19"
+
+tether-shepherd@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/tether-shepherd/-/tether-shepherd-1.8.1.tgz#4fd9b2fdd9059f04b6c4249456d5ae145a3e9223"
+  dependencies:
+    tether "^1.0.1"
+
+tether@^1.0.1, tether@^1.4.0:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.4.tgz#9dc6eb2b3e601da2098fd264e7f7a8b264de1125"
 
 "textextensions@1 || 2":
   version "2.1.0"
