@@ -29,6 +29,7 @@
     "ember-collection": "^1.0.0-alpha.7",
     "ember-cp-validations": "3.1.2",
     "ember-i18n": "^5.0.0",
+    "ember-shepherd": "^3.1.0",
     "ember-simple-auth": "1.4.0",
     "ember-uploader": "^1.2.3",
     "emberx-select": "^3.0.1",
