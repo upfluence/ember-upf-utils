@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export class FullWidthLayout
 {
-  constructor(itemCount, height) {
+  constructor(itemCount, height, transitioning) {
     let positions = [];
     for (var i = 0; i < itemCount; i++) {
       positions.push({
@@ -15,6 +15,7 @@ export class FullWidthLayout
     }
     this.positions = positions;
     this.bin = new ShelfFirst(positions, 100);
+    this.transitioning = transitioning;
   }
 
   contentSize(clientWidth/*, clientHeight*/) {
@@ -50,10 +51,15 @@ export class FullWidthLayout
     let height = this.heightAt(itemIndex, 100, clientHeight);
     let x = Math.floor((pos.x / 100) * clientWidth);
     let baseStyle = formatPercentageStyle({x:x, y:pos.y}, width, height)
-    return `${baseStyle} transition: transform 0.2s ease-out`;
+
+    if(this.transitioning) {
+      return `${baseStyle} transition: transform 0.2s ease-out`;
+    }
+
+    return `${baseStyle}`;
   }
 }
 
 export default Ember.Helper.helper(function (params/*, hash*/) {
-  return new FullWidthLayout(params[0], params[1]);
+  return new FullWidthLayout(params[0], params[1], params[2]);
 });
