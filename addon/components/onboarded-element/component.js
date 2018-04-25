@@ -6,6 +6,8 @@ const { Component, computed, inject } = Ember;
 export default Component.extend({
   tour: inject.service(),
 
+  classNames: ['onboarded-element'],
+
   dictionary: null,
   defaultDictionary: {},
   dictionaryToUse: computed.or('dictionary', 'defaultDictionary'),
@@ -13,6 +15,8 @@ export default Component.extend({
   stepsToRun: computed('steps', function() {
     return this.get('steps').split(',').map((step) => {
       return this.get('dictionaryToUse').get(step);
+    }).filter((step) => {
+      return !window.localStorage.getItem(`${step.id}-shown`);
     });
   }),
 
