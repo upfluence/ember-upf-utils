@@ -35,7 +35,9 @@ export default SummerNoteComponent.extend({
   },
 
   uploadAllowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-  uploaderHeaders: {},
+  uploaderHeaders: {
+    'Scope': Configuration.scope[0]
+  },
   uploaderOptions: computed('uploaderHeaders', function() {
     /* jshint ignore:start */
     return {
