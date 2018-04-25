@@ -52,13 +52,17 @@ export default Component.extend({
 
   selectedInfluencerIds: computed.mapBy('selectedInfluencers', 'id'),
 
-  selectedCount: computed('selectedInfluencerIds', 'currentEntity', function() {
-    let idsCount = this.get('selectedInfluencerIds.length');
-    if (idsCount === 0 && this.get('currentEntity')) {
-      idsCount = get(this.get('currentEntity'), 'count');
+  selectedCount: computed(
+    'selectedInfluencerIds',
+    'currentEntity',
+    'currentEntity.count', function() {
+      let idsCount = this.get('selectedInfluencerIds.length');
+      if (idsCount === 0 && this.get('currentEntity')) {
+        idsCount = get(this.get('currentEntity'), 'count');
+      }
+      return idsCount;
     }
-    return idsCount;
-  }),
+  ),
 
   _getSelectedInfluencers() {
     return this.get('influencers').filterBy('selected');
