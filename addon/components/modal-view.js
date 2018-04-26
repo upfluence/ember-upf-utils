@@ -28,9 +28,13 @@ export default Component.extend({
       this.$().modal({ backdrop: 'static' });
     }
 
-    this.$().keyup((e) => {
+    this.$('.modal-content').keyup((e) => {
       if (e.which === 27) {
         this.closeModal(e);
+      }
+
+      if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+          this.$('.modal-footer .upf-btn--primary').click();
       }
     });
 
