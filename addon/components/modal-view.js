@@ -32,6 +32,10 @@ export default Component.extend({
       if (e.which === 27) {
         this.closeModal(e);
       }
+
+      if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+        this.$('.modal-footer .upf-btn--primary').click();
+      }
     });
 
     this.$('button#close-x').click((e) => this.closeModal(e));
