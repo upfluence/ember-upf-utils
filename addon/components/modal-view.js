@@ -28,7 +28,7 @@ export default Component.extend({
       this.$().modal({ backdrop: 'static' });
     }
 
-    this.$('.modal-content').keyup((e) => {
+    this.$().keyup((e) => {
       if (e.which === 27) {
         this.closeModal(e);
       }
