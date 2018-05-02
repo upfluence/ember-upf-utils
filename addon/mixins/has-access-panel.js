@@ -14,6 +14,7 @@ export default Mixin.create(UpfTableSearchMixin, {
   searchCollection: 'accessPanelEntities',
   searchAttribute: 'name',
   contentLoading: false,
+  shouldReloadAccessPanel: false,
 
   init() {
     this.set('accessPanelEntities', []);
@@ -21,7 +22,8 @@ export default Mixin.create(UpfTableSearchMixin, {
     [
       `${this.get('accessPanelConfig.model')}.@each.archived`,
       'displayAccessPanel',
-      'displayArchived'
+      'displayArchived',
+      'shouldReloadAccessPanel',
     ].forEach((property) => {
       this.addObserver(property, this, this.populateAccessPanel);
     });
@@ -45,6 +47,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       }
       this.set('accessPanelEntities', entities);
       this.set('contentLoading', false);
+      this.set('shouldReloadAccessPanel', false);
     });
   },
 
