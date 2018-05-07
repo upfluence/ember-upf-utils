@@ -124,6 +124,12 @@ export default Component.extend({
     ).publishrURL;
   }),
 
+  _publishrClientURL: computed(function() {
+    return getOwner(this).resolveRegistration(
+      'config:environment'
+    ).publishrClientURL;
+  }),
+
   mailingURL: computed('inboxURL', function() {
     if (this.get('inboxURL')) {
       return `${this.get('inboxURL')}mailings`;
@@ -140,9 +146,9 @@ export default Component.extend({
     return `${this.get('publishrURL')}payments`;
   }),
 
-  publishrClientURL: computed('publishrURL', function() {
-    if (this.get('publishrURL')) {
-      return `${this.get('publishrURL')}campaigns`;
+  publishrClientURL: computed('_publishrClientURL', function() {
+    if (this.get('_publishrClientURL')) {
+      return `${this.get('_publishrClientURL')}campaigns`;
     }
 
     return 'campaigns';
