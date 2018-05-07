@@ -87,8 +87,18 @@ export default SummerNoteComponent.extend({
     let _callbacks      = get(this, 'callbacks');
     _callbacks.onChange = this.get('onChange').bind(this);
 
+    let _customButtons = {};
+    let arrayOfCustomButtons = get(this, 'customButtons');
+    if (arrayOfCustomButtons) {
+      arrayOfCustomButtons.forEach(function (item, i, /*arr*/) {
+        _customButtons['myButton' + i] = item;
+        _toolbar.push(['myButton' + i, ['myButton' + i]]);
+      });
+    }
+
     this.$('#summernote').summernote({
       toolbar: _toolbar,
+      buttons: _customButtons,
       height: this.get('height'),
       dialogsInBody: true,
       hint: {
