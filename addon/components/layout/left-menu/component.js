@@ -21,6 +21,7 @@ export default Component.extend({
   hasInbox: true,
   hasAnalytics: false,
   hasPublishr: false,
+  hasPublishrClient: false,
 
   _: observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
@@ -41,6 +42,10 @@ export default Component.extend({
 
     if (this.get('userScopes').includes('publishr_admin')) {
       this.set('hasPublishr', true);
+    }
+
+    if (this.get('userScopes').includes('publishr_client')) {
+      this.set('hasPublishrClient', true);
     }
   }),
 
@@ -119,6 +124,12 @@ export default Component.extend({
     ).publishrURL;
   }),
 
+  _publishrClientURL: computed(function() {
+    return getOwner(this).resolveRegistration(
+      'config:environment'
+    ).publishrClientURL;
+  }),
+
   mailingURL: computed('inboxURL', function() {
     if (this.get('inboxURL')) {
       return `${this.get('inboxURL')}mailings`;
@@ -133,6 +144,14 @@ export default Component.extend({
 
   publishrPaymentsURL: computed('publishrURL', function() {
     return `${this.get('publishrURL')}payments`;
+  }),
+
+  publishrClientURL: computed('_publishrClientURL', function() {
+    if (this.get('_publishrClientURL')) {
+      return `${this.get('_publishrClientURL')}campaigns`;
+    }
+
+    return 'campaigns';
   }),
 
   actions: {
