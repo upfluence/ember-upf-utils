@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const SHEPHERD_DEFAULT_CLASSES = 'shepherd upf-shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text';
-const { Component, computed, inject } = Ember;
+const { Component, computed, inject, run } = Ember;
 
 export default Component.extend({
   tour: inject.service(),
@@ -29,7 +29,9 @@ export default Component.extend({
     this.get('tour').set('steps', this.get('stepsToRun'));
 
     if (this.get('autostart')) {
-      this.get('tour').start();
+      run.later(() => {
+        this.get('tour').start();
+      }, 1000);
     }
   }
 });
