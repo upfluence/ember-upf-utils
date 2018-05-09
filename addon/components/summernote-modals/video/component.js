@@ -3,17 +3,19 @@ import Configuration from 'ember-upf-utils/configuration';
 
 import layout from './template';
 
-const { Component, computed, run } = Ember;
+const {
+  Component,
+  computed,
+  run
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   videoUrl: null,
 
   allowedExtentions: ['mp4,mov,avi,3gp'],
-  uploaderHeaders: {
-    'Scope': Configuration.scope[0],
-  },
+  uploaderHeaders: { Scope: Configuration.scope[0] },
 
   noVideoUploaded: computed.empty('videoUrl'),
 
@@ -46,7 +48,6 @@ export default Ember.Component.extend({
     },
 
     videoUploaded({ artifact }) {
-      console.log(artifact.url)
       this.set('videoUrl', artifact.url);
     }
   }

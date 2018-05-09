@@ -1,9 +1,10 @@
+/* global $ */
 import Ember from 'ember';
 import layout from './template';
 
-const { Component } = Ember;
+const { Component } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   summernoteContext: null,
@@ -15,12 +16,12 @@ export default Ember.Component.extend({
     let self = this;
 
     let VideoUploadButton = (context) => {
-      let ui = $.summernote.ui;
+      let { ui } = $.summernote;
 
-      var button = ui.button({
+      let button = ui.button({
         contents: '<i class="fa fa-video-camera"/></i>',
         tooltip: 'Insert a video',
-        click: function () {
+        click() {
           self.set('summernoteContext', context);
           self.send('toggleVideoUpload');
         }
