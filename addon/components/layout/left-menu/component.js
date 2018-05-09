@@ -148,7 +148,7 @@ export default Component.extend({
 
   publishrClientURL: computed('_publishrClientURL', function() {
     if (this.get('_publishrClientURL')) {
-      return `${this.get('_publishrClientURL')}campaigns`;
+      return `${this.get('_publishrClientURL')}/campaigns`;
     }
 
     return 'campaigns';
