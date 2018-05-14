@@ -19,36 +19,40 @@ export default Component.extend({
 
   noVideoUploaded: computed.empty('videoUrl'),
 
-  _buildVideoNode(url) {
+  _buildVideoNode(url, contentType) {
     let videoNode = document.createElement('video');
     let videoSourceNode = document.createElement('source');
 
     videoNode.setAttribute('width', '100%');
     videoNode.setAttribute('controls', true);
     videoSourceNode.setAttribute('src', url);
+    videoSourceNode.setAttribute('type', contentType);
 
     videoNode.appendChild(videoSourceNode);
     return videoNode;
   },
 
   actions: {
-    insertVideo(_, defer) {
-      run.later(() => {
-        defer.resolve();
-      }, 200);
-
+    insertVideo() {
       this.get('editor-context').invoke(
-        'editor.insertNode', this._buildVideoNode(this.get('videoUrl'))
+        'editor.insertNode', this._buildVideoNode(
+          this.get('videoUrl'), this.get('videoType')
+        )
       );
       this.sendAction('closeModal');
+      this.send('resetVideoUpload');
     },
 
-    resetVideoUrl() {
+    resetVideoUpload() {
       this.set('videoUrl', null);
+      this.set('videoType', null);
+      this.set('videoName', null);
     },
 
     videoUploaded({ artifact }) {
       this.set('videoUrl', artifact.url);
+      this.set('videoType', artifact.content_type);
+      this.set('videoName', artifact.filename);
     }
   }
 });

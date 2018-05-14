@@ -7,14 +7,14 @@
   <label>Upload a video:</label>
   {{file-uploader allowedExtensions=allowedExtensions method='POST'
                   extra=uploaderExtra headers=uploaderHeaders
-                  beforeUpload=(action 'resetVideoUrl')
+                  beforeUpload=(action 'resetVideoUpload')
                   didUpload=(action 'videoUploaded')}}
+  {{#if videoName}}{{videoName}}{{/if}}
 </div>
 
 <div class='modal-footer'>
-  {{#loading-button slowAction='insertVideo' initiallyDisabled=noVideoUploaded
-                    disabled=noVideoUploaded
-                    class='margin-left-xx-sm upf-btn upf-btn--primary'}}
+  <button {{action 'insertVideo'}} disabled={{noVideoUploaded}}
+          class='margin-left-xx-sm upf-btn upf-btn--primary'>
     Insert Video
-  {{/loading-button}}
+  </button>
 </div>
