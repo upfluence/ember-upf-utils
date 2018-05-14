@@ -7,7 +7,7 @@
     {{else if (eq overlayType 'splitOverlay')}}
       {{#split-overlay-area rightClick=rightClickAction leftClick=leftClickAction
                             rightToggled=rightToggled leftToggled=leftToggled}}
-        <img src={{profile.avatar_url}}>
+        <img src={{profile.avatar_url}} class="upf-image upf-image--round-108">
       {{/split-overlay-area}}
     {{/if}}
   {{else}}
@@ -16,11 +16,24 @@
 </div>
 
 <div class="profile-description__content">
-  <span class='text-size-5 text-style-bold wrapped-text'>
-    {{profile.name}}
+  <span class='text-size-5 text-color-bright-purple text-style-bold wrapped-text'>
+    {{#if profileRoutePath}}
+      {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
+        <span class='text-color-bright-purple'>{{profile.name}}</span>
+      {{/link-to}}
+    {{else}}
+      {{profile.name}}
+   {{/if}}
 
     {{#if hasNotifications}}
       <span class='upf-notification--inline'></span>
+    {{/if}}
+
+    {{#if profileRoutePath}}
+      {{#link-to profileRoutePath profile.id
+                 class='upf-link--reset profile-description__action'}}
+        &nbsp; {{fa-icon 'pencil' class='text-color-bright-purple'}}
+      {{/link-to}}
     {{/if}}
 
     {{#if profile.isNew}}
@@ -28,10 +41,15 @@
     {{/if}}
   </span>
 
-  {{display-field url=profile.email_link value=profile.email}}
-  <p class='text-size-4'>{{display-field value=profile.address}}</p>
   <p class='description text-size-4 text-color-default-light'>
     {{profile.description}}
   </p>
+
+  {{#if profile.address}}
+    <p class='text-size-4 text-color-default-lighter'>
+      {{display-field value=profile.address icon="map-marker"}}
+    </p>
+  {{/if}}
+
   {{yield}}
 </div>
