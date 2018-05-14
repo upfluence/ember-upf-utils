@@ -3,7 +3,8 @@
   <h4>Insert a video</h4>
 </div>
 
-<div class='modal-body text-center margin-top-x-sm margin-bottom-x-sm padding'>
+<div class='modal-body margin-top-x-sm margin-bottom-x-sm padding'>
+  <label>Upload a video:</label>
   {{file-uploader allowedExtensions=allowedExtensions method='POST'
                   extra=uploaderExtra headers=uploaderHeaders
                   beforeUpload=(action 'resetVideoUrl')
