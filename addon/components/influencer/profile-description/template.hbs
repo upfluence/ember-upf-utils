@@ -23,6 +23,13 @@
       <span class='upf-notification--inline'></span>
     {{/if}}
 
+    {{#if exportInfluencer}}
+      <a {{action exportInfluencer bubbles=false}}
+         class="profile-description__action upf-link--reset">
+        &nbsp; Export Influencer
+      </a>
+    {{/if}}
+
     {{#if profile.isNew}}
       <span class="label label-primary">New</span>
     {{/if}}

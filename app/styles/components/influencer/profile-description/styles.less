@@ -41,5 +41,20 @@
       height: 50px;
     }
   }
+
+  .profile-description__action {
+    color: @upf-primary-bright-purple;
+    font-size: 16/@rem;
+    opacity: 0;
+
+    &:hover {
+      cursor: pointer;
+      color: @upf-primary-bright-purple;
+    }
+  }
 }
 
+.table-fluid-content__row--active .profile-description__action,
+.__table-fluid-row--active .profile-description__action {
+  opacity: 1;
+}
