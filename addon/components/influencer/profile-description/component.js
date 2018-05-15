@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation'
 import layout from './template';
 
 const { Component, computed } = Ember;
 
-export default Component.extend({
+export default Component.extend(TooltipActivationMixin, {
   layout,
   classNames: ['profile-description'],
 
