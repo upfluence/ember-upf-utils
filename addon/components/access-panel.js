@@ -23,7 +23,7 @@ export default Component.extend({
           if (mutation.target.classList.contains('expanding-search--opened')) {
             this.$(mutation.target).prev().css('display', 'none');
           } else {
-            run.later(() => {
+            run.next(() => {
               this.$(mutation.target).prev().css('display', 'inline');
             }, 500);
           }
