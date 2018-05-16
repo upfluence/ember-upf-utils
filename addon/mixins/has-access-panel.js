@@ -16,6 +16,9 @@ export default Mixin.create(UpfTableSearchMixin, {
   contentLoading: false,
   shouldReloadAccessPanel: false,
 
+  page: 1,
+  meta: {},
+
   init() {
     this.set('accessPanelEntities', []);
 
@@ -24,6 +27,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       'displayAccessPanel',
       'displayArchived',
       'shouldReloadAccessPanel',
+      'page'
     ].forEach((property) => {
       this.addObserver(property, this, this.populateAccessPanel);
     });
@@ -37,7 +41,7 @@ export default Mixin.create(UpfTableSearchMixin, {
     this.set('contentLoading', true);
     this.get('store').query(
       model,
-      { archived: this.get('displayArchived') }
+      { archived: this.get('displayArchived'), page: this.get('page') }
     ).then((entities) => {
       let current = entities.findBy('currentlyOpened', true);
 
@@ -45,6 +49,8 @@ export default Mixin.create(UpfTableSearchMixin, {
         entities.removeObject(current);
         entities.unshiftObject(current.get('_internalModel'));
       }
+
+      this.set('meta', entities.get('meta'));
       this.set('accessPanelEntities', entities);
       this.set('contentLoading', false);
       this.set('shouldReloadAccessPanel', false);
@@ -78,6 +84,10 @@ export default Mixin.create(UpfTableSearchMixin, {
         this.get('accessPanelConfig.backRoute'),
         entity.get('id')
       );
+    },
+
+    didPageChange(page) {
+      this.set('page', page);
     }
   }
 });

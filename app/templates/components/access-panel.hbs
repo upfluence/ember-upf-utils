@@ -2,7 +2,9 @@
                            isOverContent=true backdropAction=esc}}
   <div class='access-panel col-xs-12'>
     {{#upf-table collection=collection columns=columns hasSelection=hasSelection
-                classNames='upf-table__container--compact'
+                classNames='upf-table__container--compact' hasPagination=hasPagination
+                currentPage=currentPage perPage=perPage itemCount=itemCount
+                itemTotal=itemTotal totalPages=totalPages didPageChange=didPageChange
                 hasSearch=hasSearch hasToggleableColumns=false
                 onRowClickCallback=onRowClickCallback
                 contentChanging=contentLoading
