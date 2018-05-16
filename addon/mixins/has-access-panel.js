@@ -27,7 +27,8 @@ export default Mixin.create(UpfTableSearchMixin, {
       'displayAccessPanel',
       'displayArchived',
       'shouldReloadAccessPanel',
-      'page'
+      'page',
+      'searchQuery'
     ].forEach((property) => {
       this.addObserver(property, this, this.populateAccessPanel);
     });
@@ -41,7 +42,11 @@ export default Mixin.create(UpfTableSearchMixin, {
     this.set('contentLoading', true);
     this.get('store').query(
       model,
-      { archived: this.get('displayArchived'), page: this.get('page') }
+      {
+        archived: this.get('displayArchived'),
+        page: this.get('page'),
+        s: this.get('searchQuery')
+      }
     ).then((entities) => {
       let current = entities.findBy('currentlyOpened', true);
 
