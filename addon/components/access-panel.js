@@ -19,8 +19,8 @@ export default Component.extend({
   didInsertElement() {
     let observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type == "attributes") {
-          if(mutation.target.classList.contains('expanding-search--opened')) {
+        if (mutation.type == 'attributes') {
+          if (mutation.target.classList.contains('expanding-search--opened')) {
             this.$(mutation.target).prev().css('display', 'none');
           } else {
             run.later(() => {
