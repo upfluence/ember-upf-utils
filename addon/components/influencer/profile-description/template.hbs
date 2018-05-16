@@ -1,13 +1,13 @@
-<div class='profile-description__avatar padding-right-xx-sm'>
+<div class='profile-description__avatar'>
   {{#if isSelectable}}
     {{#if (eq overlayType 'selection')}}
       {{#toggle-area value=_selected callbackAction=toggleAction icon=selectedIcon}}
-        <img src={{profile.avatar_url}} class="upf-image upf-image--round-108">
+        <img src={{profile.avatar_url}}>
       {{/toggle-area}}
     {{else if (eq overlayType 'splitOverlay')}}
       {{#split-overlay-area rightClick=rightClickAction leftClick=leftClickAction
                             rightToggled=rightToggled leftToggled=leftToggled}}
-        <img src={{profile.avatar_url}} class="upf-image upf-image--round-108">
+        <img src={{profile.avatar_url}}>
       {{/split-overlay-area}}
     {{/if}}
   {{else}}
@@ -16,40 +16,38 @@
 </div>
 
 <div class="profile-description__content">
-  <span class='text-size-5 text-color-bright-purple text-style-bold wrapped-text'>
-    {{#if profileRoutePath}}
-      {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
-        <span class='text-color-bright-purple'>{{profile.name}}</span>
-      {{/link-to}}
-    {{else}}
-      {{profile.name}}
-   {{/if}}
+  {{#if profileRoutePath}}
+    {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
+      <div class='profile-description__content--title'>
+        {{profile.name}}
+      </div>
+    {{/link-to}}
+  {{else}}
+    {{profile.name}}
+  {{/if}}
 
-    {{#if hasNotifications}}
-      <span class='upf-notification--inline'></span>
-    {{/if}}
+  {{#if hasNotifications}}
+    <span class='upf-notification--inline'></span>
+  {{/if}}
 
-    {{#if profileRoutePath}}
-      {{#link-to profileRoutePath profile.id
-                 class='upf-link--reset profile-description__action'}}
-        &nbsp; {{fa-icon 'pencil' class='text-color-bright-purple'}}
-      {{/link-to}}
-    {{/if}}
+  {{#if profile.address}}
+    {{display-field value=profile.address icon="map-marker"}}
+  {{/if}}
 
-    {{#if profile.isNew}}
-      <span class="label label-primary">New</span>
-    {{/if}}
-  </span>
+  {{#if profileRoutePath}}
+    {{#link-to profileRoutePath profile.id
+               class='upf-link--reset profile-description__action'}}
+      &nbsp; {{fa-icon 'pencil' class='text-color-bright-purple'}}
+    {{/link-to}}
+  {{/if}}
+
+  {{#if profile.isNew}}
+    <span class="label label-primary">New</span>
+  {{/if}}
 
   <p class='description text-size-4 text-color-default-light'>
     {{profile.description}}
   </p>
-
-  {{#if profile.address}}
-    <p class='text-size-4 text-color-default-lighter'>
-      {{display-field value=profile.address icon="map-marker"}}
-    </p>
-  {{/if}}
 
   {{yield}}
 </div>
