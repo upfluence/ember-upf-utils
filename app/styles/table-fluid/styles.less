@@ -15,8 +15,7 @@
 
   .__table-fluid-row {
     /*.content-block();*/
-    .grid-display(div, @table-fluid-border-color);
-
+    border-top: 1px solid @table-fluid-border-color;
     height: @table-fluid-row-height;
 
     > div {
@@ -26,6 +25,7 @@
 
     &:hover {
       background-color: @another-grey;
+      border-bottom: 1px solid @another-grey;
     }
 
     &.active {
