@@ -3,8 +3,10 @@ import layout from './template';
 
 export default Ember.Component.extend({
   layout,
-
-  classNames: ['wrapped-text'],
+  classNames: ['wrapped-text',
+               'profile-description__content--location',
+               'text-size-4',
+               'text-color-default-lighter'],
 
   cleanedValue: Ember.computed('value', function() {
     if(this.get('value')) {
