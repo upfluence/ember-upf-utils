@@ -48,7 +48,7 @@ export default Mixin.create(UpfTableSearchMixin, {
         s: this.get('searchQuery')
       }
     ).then((entities) => {
-      let current = entities.findBy('currentlyOpened', true);
+      let current = this.get('model')
 
       if (current) {
         entities.removeObject(current);
