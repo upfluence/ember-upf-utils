@@ -1,23 +1,19 @@
-//
-// Utility class for wrapping text and add an ellipsis to its end
-//
-.wrapped-text {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-}
+@unit-width : 350px;
+@avatar-size : 179px;
+@avatar-left-border : 1px;
+@title-width : 220px;
 
 .profile-description {
-  width: 530px;
+  width: @unit-width;
   height: @table-fluid-row-height;
-  display: inline-block;
+  display: inline;
   vertical-align: top;
+  line-height: 1.4;
 
   .profile-description__avatar {
     display: inline-block;
     vertical-align: top;
-    margin-left: 1px;
+    border-left: 1px solid transparent;
 
     img {
       border-radius: @default-radius;
@@ -26,10 +22,17 @@
   }
 
   .profile-description__content {
-    width: 340px;
-    position: relative;
+    width: @unit-width - @avatar-size - @avatar-left-border;
     display: inline-block;
     vertical-align: top;
+    padding: @spacing-xx-sm 0 0 @spacing-x-sm;
+
+    .description {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      height: 60px;
+      padding: @spacing-xxx-sm 0;
+    }
   }
 
   .profile-lists {
@@ -39,48 +42,52 @@
     right: 0;
   }
 
-  .profile-description__content {
-    display: inline-block;
-    vertical-align: baseline;
-
-    min-width: 0;
-    padding: @spacing-xx-sm 0 0 @spacing-x-sm;
-
-    .description {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      height: 50px;
-    }
-  }
-
   .profile-description__content--title {
     color: @color-text-light;
     font-family: @font-text-title;
     font-size: 22/@rem;
+    line-height: 22/@rem;
     padding-right: @spacing-xxx-sm;
-    display: inline;
-    vertical-align: baseline;
+    display: inline-block;
+    vertical-align: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: @title-width;
+    white-space: nowrap;
   }
 
   .profile-description__content--location {
-    vertical-align: baseline;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: @color-text;
+    padding-top: @spacing-xxx-sm;
 
     i {
       color: @upf-primary-bright-purple;
     }
   }
 
+  .profile-description__content--new {
+    color: @upf-primary-bright-purple;
+    border: 1px solid @upf-primary-bright-purple;
+    padding: 0px 2px;
+    border-radius: @default-radius;
+  }
+
   .profile-description__action {
     opacity: 0;
+    line-height: 18/@rem;
+    padding-left: @spacing-xxx-sm;
   }
 }
 
 .active .profile-description__action {
   opacity: 1;
+  font-size: 16/@rem;
+  color: @upf-primary-bright-purple;
 }
 
 .profile-description__avatar, .profile-description__avatar img {
-  height: 179px;
-  width: 179px;
+  height: @avatar-size;
+  width: @avatar-size;
 }

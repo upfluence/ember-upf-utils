@@ -17,10 +17,11 @@
 
 <div class="profile-description__content">
   {{#if profileRoutePath}}
-    {{#link-to profileRoutePath profile.id class='upf-link--reset'}}
-      <div class='profile-description__content--title'>
-        {{profile.name}}
-      </div>
+    {{#link-to profileRoutePath
+               profile.id
+               class='profile-description__content--title upf-link--reset'
+               title=profile.name}}
+      {{profile.name}}
     {{/link-to}}
   {{else}}
     {{profile.name}}
@@ -30,24 +31,42 @@
     <span class='upf-notification--inline'></span>
   {{/if}}
 
-  {{#if profile.address}}
-    {{display-field value=profile.address icon="map-marker"}}
+  {{#if profile.isNew}}
+    <span class="profile-description__content--new">new</span>
+  {{/if}}
+
+  {{#if profileRoutePath}}
+    <span class="profile-description__content--new">new</span>
   {{/if}}
 
   {{#if profileRoutePath}}
     {{#link-to profileRoutePath profile.id
                class='upf-link--reset profile-description__action'}}
-      &nbsp; {{fa-icon 'pencil' class='text-color-bright-purple'}}
+      <i class="upf-icon upf-icon--influencers"></i>
+    {{/link-to}}
+  {{/if}}
+  
+  {{#if profileRoutePath}}
+    {{#link-to profileRoutePath profile.id
+               class='upf-link--reset profile-description__action'}}
+      {{fa-icon 'pencil'}}
     {{/link-to}}
   {{/if}}
 
-  {{#if profile.isNew}}
-    <span class="label label-primary">New</span>
+  {{#if profileRoutePath}}
+    {{#link-to profileRoutePath profile.id
+               class='upf-link--reset profile-description__action'}}
+      <i class="upf-icon upf-icon--messages"></i>
+    {{/link-to}}
   {{/if}}
 
-  <p class='description text-size-4 text-color-default-light'>
+  {{#if profile.address}}
+    {{display-field value=profile.address icon="map-marker"}}
+  {{/if}}
+
+  <div class='description text-size-4 text-color-default-light' title='{{profile.description}}'>
     {{profile.description}}
-  </p>
+  </div>
 
   {{yield}}
 </div>
