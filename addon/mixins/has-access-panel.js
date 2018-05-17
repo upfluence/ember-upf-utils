@@ -37,6 +37,10 @@ export default Mixin.create(UpfTableSearchMixin, {
   },
 
   populateAccessPanel() {
+    if (!this.get('displayAccessPanel')) {
+      return;
+    }
+
     let model = this.get('accessPanelConfig.model');
 
     this.set('contentLoading', true);
