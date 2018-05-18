@@ -10,7 +10,7 @@ export default Ember.Component.extend({
       type: 'blog',
       icon: 'wordpress',
       communitySize: this.get('profile.blog.visits'),
-      communitySlug: '/month'
+      communitySlug: 'monthly visits',
     };
   }),
 
