@@ -4,15 +4,18 @@ const { Component } = Ember;
 
 export default Component.extend({
   classNames: ['__toggle-area'],
-  classNameBindings: ['value:toggled'],
+  classNameBindings: ['value:toggled', 'static:__toggle-area--static'],
   icon: 'check',
   value: false,
+  static: false,
 
   click() {
-    this.toggleProperty('value');
+    if (!this.get('static')) {
+      this.toggleProperty('value');
 
-    if(this.get('callbackAction')) {
-      this.sendAction('callbackAction');
+      if(this.get('callbackAction')) {
+        this.sendAction('callbackAction');
+      }
     }
 
     return false; // Don't propagate the event any further

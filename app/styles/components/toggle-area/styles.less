@@ -1,8 +1,5 @@
 .__toggle-area {
   position: relative;
-  cursor: pointer;
-
-  .hover-animation(transform);
 
   &:hover, &:active {
     transform: scale(1.05);
@@ -11,7 +8,6 @@
   &.toggled {
     .selection-overlay {
       opacity: 1;
-      cursor: pointer;
 
       i.fa {
         opacity: 1;
@@ -31,6 +27,31 @@
 
     background-color: fadeout(@upf-primary-bright-purple, 30);
 
+    i.fa {
+      .hover-animation(opacity);
+      color: @white;
+      opacity: 0.0;
+      font-size: 80px;
+    }
+  }
+}
+
+.__toggle-area:not(.__toggle-area--static) {
+  .hover-animation(transform);
+  cursor: pointer;
+
+  &.toggled {
+    .selection-overlay {
+      opacity: 1;
+      cursor: pointer;
+
+      i.fa {
+        opacity: 1;
+      }
+    }
+  }
+
+  .selection-overlay {
     &:hover, &:active {
       opacity: 1;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
@@ -38,13 +59,6 @@
 
     &:active {
       background-color: fadeout(@upf-primary-bright-purple, 30);
-    }
-
-    i.fa {
-      .hover-animation(opacity);
-      color: @white;
-      opacity: 0.0;
-      font-size: 80px;
     }
   }
 }
