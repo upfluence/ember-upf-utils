@@ -1,7 +1,7 @@
 @unit-width : 350px;
 @avatar-size : 179px;
 @avatar-left-border : 1px;
-@title-width : 220px;
+@title-width : 275px;
 
 .profile-description {
   width: @unit-width;
@@ -27,61 +27,73 @@
     vertical-align: top;
     padding: @spacing-xx-sm 0 0 @spacing-x-sm;
 
+    .profile-description__content--title {
+      color: @color-text-light;
+      font-family: @font-text-title;
+      font-size: 22/@rem;
+      line-height: 22/@rem;
+      padding-right: @spacing-xxx-sm;
+      display: inline-block;
+      vertical-align: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: @title-width;
+      white-space: nowrap;
+    }
+
+    .secondary-line {
+      padding-top: 0.8em;
+
+      .profile-description__content--new {
+        color: @upf-primary-bright-purple;
+        border: 1px solid @upf-primary-bright-purple;
+        padding: 0px 2px;
+        border-radius: @default-radius;
+        user-select: none;
+      }
+
+      .profile-description__action {
+        line-height: 24/@rem;
+      }
+
+      .profile-description__content--location {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: @color-text;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 24/@rem;
+
+        &:not(:only-child) {
+          padding-left: @spacing-xx-sm;
+        }
+
+        i {
+          color: @upf-primary-bright-purple;
+        }
+      }
+    }
+
     .description {
       text-overflow: ellipsis;
       overflow: hidden;
       height: 60px;
-      padding: @spacing-xxx-sm 0;
+      padding: @spacing-xx-sm 0;
+      clear: both;
     }
-  }
 
-  .profile-lists {
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    right: 0;
-  }
-
-  .profile-description__content--title {
-    color: @color-text-light;
-    font-family: @font-text-title;
-    font-size: 22/@rem;
-    line-height: 22/@rem;
-    padding-right: @spacing-xxx-sm;
-    display: inline-block;
-    vertical-align: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: @title-width;
-    white-space: nowrap;
-  }
-
-  .profile-description__content--location {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: @color-text;
-    padding-top: @spacing-xxx-sm;
-
-    i {
-      color: @upf-primary-bright-purple;
+    .profile-description__action {
+      opacity: 0;
+      line-height: 18/@rem;
+      padding-left: @spacing-xxx-sm;
     }
-  }
-
-  .profile-description__content--new {
-    color: @upf-primary-bright-purple;
-    border: 1px solid @upf-primary-bright-purple;
-    padding: 0px 2px;
-    border-radius: @default-radius;
-  }
-
-  .profile-description__action {
-    opacity: 0;
-    line-height: 18/@rem;
-    padding-left: @spacing-xxx-sm;
   }
 }
 
-.active .profile-description__action {
+.active
+.profile-description
+.profile-description__action {
   opacity: 1;
   font-size: 16/@rem;
   color: @upf-primary-bright-purple;
