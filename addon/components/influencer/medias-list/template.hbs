@@ -1,6 +1,24 @@
-{{#each medias as |media|}}
-  <p class="color-{{media.type}} community-row text-size-5">
-    {{fa-icon media.icon}} {{format-number media.communitySize}}
-    <span class="hidden-sm visible-lg-lg">{{media.communitySlug}}</span>
-  </p>
+{{#each orderedMedias as |media|}}
+  <div class='community-row text-size-6 text-color-default-light'>
+    <div class='community-row--line'>
+      <span class='color-{{media.type}}'>{{fa-icon media.icon}}</span>
+      <span title={{media.communitySlug}}
+            data-toggle='tooltip'
+            data-placement='bottom'>
+        {{format-number media.communitySize}}
+      </span>
+    </div>
+    <div class='community-row--line  text-size-5'>
+      {{fa-icon 'refresh'}}
+      {{#if media.model.engagement_rate}}
+        <span title='engagement' data-toggle='tooltip' data-placement='bottom'>
+          {{per-cent media.model.engagement_rate}}
+        </span>
+      {{else}}
+        <span title='engagements' data-toggle='tooltip' data-placement='bottom'>
+          {{format-number media.model.averageFacebookShares}}/post
+        </span>
+      {{/if}}
+    </div>
+  </div>
 {{/each}}

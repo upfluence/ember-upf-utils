@@ -1,65 +1,76 @@
 import Ember from 'ember';
 import layout from './template';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  computed
+} = Ember;
+
+export default Component.extend({
   layout,
   classNames: ['__medias-list'],
 
-  blog: Ember.computed('profile.blog.visits', function() {
+  blog: computed('profile.blog.visits', function() {
     return {
       type: 'blog',
       icon: 'wordpress',
       communitySize: this.get('profile.blog.visits'),
       communitySlug: 'monthly visits',
+      meta: this.get('meta.blogMeta')
     };
   }),
 
-  facebook: Ember.computed('profile.facebook.fans', function() {
+  facebook: computed('profile.facebook.fans', function() {
     return {
       type: 'facebook',
       icon: 'facebook-official',
       communitySize: this.get('profile.facebook.fans'),
-      communitySlug: 'fans'
+      communitySlug: 'fans',
+      meta: this.get('meta.facebookMeta')
     };
   }),
 
-  twitter: Ember.computed('profile.twitter.followers', function() {
+  twitter: computed('profile.twitter.followers', function() {
     return {
       type: 'twitter',
       icon: 'twitter',
       communitySize: this.get('profile.twitter.followers'),
-      communitySlug: 'followers'
+      communitySlug: 'followers',
+      meta: this.get('meta.twitterMeta')
     };
   }),
 
-  instagram: Ember.computed('profile.instagram.followers', function() {
+  instagram: computed('profile.instagram.followers', function() {
     return {
       type: 'instagram',
       icon: 'instagram',
       communitySize: this.get('profile.instagram.followers'),
-      communitySlug: 'followers'
+      communitySlug: 'followers',
+      meta: this.get('meta.instagramMeta')
     };
   }),
 
-  youtube: Ember.computed('profile.youtube.followers', function() {
+  youtube: computed('profile.youtube.followers', function() {
     return {
       type: 'youtube',
       icon: 'youtube-play',
       communitySize: this.get('profile.youtube.followers'),
-      communitySlug: 'subscribers'
+      communitySlug: 'subscribers',
+      meta: this.get('meta.youtubeMeta')
     };
   }),
 
-  pinterest: Ember.computed('profile.pinterest.followers', function() {
+  pinterest: computed('profile.pinterest.followers', function() {
     return {
       type: 'pinterest',
       icon: 'pinterest-p',
       communitySize: this.get('profile.pinterest.followers'),
-      communitySlug: 'followers'
+      communitySlug: 'followers',
+      meta: this.get('meta.pinterestMeta')
     };
   }),
 
-  medias: Ember.computed(
+  orderedMedias: computed(
     'blog',
     'facebook',
     'twitter',
@@ -77,6 +88,26 @@ export default Ember.Component.extend({
       ].filter(e => e.communitySize != null) // Filter medias that are empty
         .sort((a, b) => a.communitySize - b.communitySize) // Sort them
         .reverse()
-        .splice(0, 5); // Take only the 5 first elements
-    })
+        .splice(0, 3)
+        .map((media) => {
+          media['model'] = this.get('profile').get(media['type']);
+          return media;
+        }); // Take only the 3 first elements
+    }),
+
+
+
+    position: computed(
+      'meta.erMin',
+      'meta.erMax',
+      'media.averageFacebookShares', function() {
+        if (this.get('media.engagement_rate')) {
+          return (this.get('media.engagement_rate') - (this.get('meta.erMin') / (this.get('meta.erMax') - this.get('meta.erMin')))) * 2000;
+        } else if (this.get('media.averageFacebookShares')) {
+          return this.get('media.averageFacebookShares') * 2;
+        } else {
+          return 0;
+        }
+      }
+    )
 });
