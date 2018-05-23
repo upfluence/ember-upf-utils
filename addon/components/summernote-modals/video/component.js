@@ -25,6 +25,7 @@ export default Component.extend({
 
     videoNode.setAttribute('width', '100%');
     videoNode.setAttribute('controls', true);
+    videoNode.setAttribute('src', url);
     videoSourceNode.setAttribute('src', url);
     videoSourceNode.setAttribute('type', contentType);
 
