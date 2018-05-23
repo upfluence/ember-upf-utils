@@ -54,6 +54,10 @@ export default Mixin.create(UpfTableSearchMixin, {
     ).then((entities) => {
       let current = this.get('model');
 
+      if (this.get('accessPanelConfig.nestedModel')) {
+        current = current['model'];
+      }
+
       if (current) {
         entities.removeObject(current);
         entities.unshiftObject(current.get('_internalModel'));
