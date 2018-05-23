@@ -5,8 +5,7 @@ import layout from './template';
 
 const {
   Component,
-  computed,
-  run
+  computed
 } = Ember;
 
 export default Component.extend({
@@ -20,9 +19,11 @@ export default Component.extend({
   noVideoUploaded: computed.empty('videoUrl'),
 
   _buildVideoNode(url, contentType) {
+    let container = document.createElement('div');
     let videoNode = document.createElement('video');
     let videoSourceNode = document.createElement('source');
 
+    container.setAttribute('style', 'width: 95%');
     videoNode.setAttribute('width', '100%');
     videoNode.setAttribute('controls', true);
     videoNode.setAttribute('src', url);
@@ -30,7 +31,9 @@ export default Component.extend({
     videoSourceNode.setAttribute('type', contentType);
 
     videoNode.appendChild(videoSourceNode);
-    return videoNode;
+    container.appendChild(videoNode);
+    container.appendChild(document.createElement('br'));
+    return container;
   },
 
   actions: {
