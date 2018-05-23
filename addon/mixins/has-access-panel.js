@@ -55,7 +55,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       let current = this.get('model');
 
       if (this.get('accessPanelConfig.nestedModel')) {
-        current = current['model'];
+        current = current[model];
       }
 
       if (current) {
