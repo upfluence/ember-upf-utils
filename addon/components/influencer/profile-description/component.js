@@ -35,6 +35,18 @@ export default Component.extend(
 
         return value;
       }
+    }),
+
+    displayLists: computed('profile.lists', function () {
+      if (this.get('profile.lists').length > 1) {
+        return true
+      }
+    }),
+
+    listNames: computed('profile.lists', function () {
+      return 'Also in these lists:<br />' + this.get('profile.lists').map((list) => {
+        return list.get('name') + '<br />';
+      }).join('')
     })
   }
 );

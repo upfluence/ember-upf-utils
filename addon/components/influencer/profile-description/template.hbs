@@ -31,42 +31,59 @@
     <span class='upf-notification--inline'></span>
   {{/if}}
 
-  {{#if profile.isNew}}
-    <span class="profile-description__content--new">new</span>
-  {{/if}}
+  <div class="profile-description__content--right">
+    {{#if exportInfluencer}}
+      <a {{action exportInfluencer bubbles=false}}
+          class="profile-description__action upf-link--reset"
+          title="Export Influencer"
+          data-toggle="tooltip"
+          data-placement="bottom">
+        {{fa-icon "share"}}
+      </a>
+    {{/if}}
 
-  {{#if profileRoutePath}}
-    <span class="profile-description__content--new">new</span>
-  {{/if}}
+    {{#if profileRoutePath}}
+      <span title='Edit Influencer' data-toggle='tooltip' data-placement='bottom'>
+        {{#link-to profileRoutePath profile.id
+                   class='upf-link--reset profile-description__action'}}
+          {{fa-icon 'pencil'}}
+        {{/link-to}}
+      </span>
 
-  {{#if profileRoutePath}}
-    {{#link-to profileRoutePath profile.id
-               class='upf-link--reset profile-description__action'}}
-      <i class="upf-icon upf-icon--influencers"></i>
-    {{/link-to}}
-  {{/if}}
-  
-  {{#if profileRoutePath}}
-    {{#link-to profileRoutePath profile.id
-               class='upf-link--reset profile-description__action'}}
-      {{fa-icon 'pencil'}}
-    {{/link-to}}
-  {{/if}}
+      <span title='Message Influencer' data-toggle='tooltip' data-placement='bottom'>
+        {{#link-to profileRoutePath profile.id
+                   class='upf-link--reset profile-description__action'}}
+          <i class="upf-icon upf-icon--messages"></i>
+        {{/link-to}}
+      </span>
+    {{/if}}
+  </div>
 
-  {{#if profileRoutePath}}
-    {{#link-to profileRoutePath profile.id
-               class='upf-link--reset profile-description__action'}}
-      <i class="upf-icon upf-icon--messages"></i>
-    {{/link-to}}
-  {{/if}}
+  <div class="secondary-line">
+    {{#if profile.isNew}}
+      <span class="profile-description__content--new pull-left">new</span>
+    {{/if}}
 
-  {{#if profile.address}}
-    {{display-field value=profile.address icon="map-marker"}}
-  {{/if}}
+    {{#if displayLists}}
+      <span title={{listNames}}
+            data-toggle='tooltip'
+            data-placement='bottom'
+            data-html='true'
+            class='profile-description__action pull-left'>
+        <i class="upf-icon upf-icon--influencers"></i>
+      </span>
+    {{/if}}
+
+    {{#if profile.address}}
+      {{display-field value=profile.address icon="map-marker"}}
+    {{/if}}
+  </div>
 
   <div class='description text-size-4 text-color-default-light' title='{{profile.description}}'>
     {{profile.description}}
   </div>
+
+  {{influencer/medias-list profile=profile meta=meta}}
 
   {{yield}}
 </div>
