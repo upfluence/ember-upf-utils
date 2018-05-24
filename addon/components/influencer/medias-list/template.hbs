@@ -9,7 +9,9 @@
       </span>
     </div>
     <div class='community-row--line  text-size-5'>
-      {{fa-icon 'refresh'}}
+      <span class='text-color-default-lighter text-size-3'>
+        {{fa-icon 'exchange'}}
+      </span>
       {{#if media.model.engagement_rate}}
         <span title='engagement' data-toggle='tooltip' data-placement='bottom'>
           {{per-cent media.model.engagement_rate}}
