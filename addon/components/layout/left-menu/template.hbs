@@ -13,7 +13,7 @@
     {{#if hasInbox}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=mailingURL
+        {{#smart-link-to link=inboxURL
                          cssClass=(if hasInboxNotifications 'upf-notification--corner')}}
           <span class='upf-icon upf-icon--inbox'></span>
         {{/smart-link-to}}

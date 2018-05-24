@@ -130,14 +130,6 @@ export default Component.extend({
     ).publishrClientURL;
   }),
 
-  mailingURL: computed('inboxURL', function() {
-    if (this.get('inboxURL')) {
-      return `${this.get('inboxURL')}mailings`;
-    }
-
-    return 'mailings';
-  }),
-
   publishrCampaignsURL: computed('publishrURL', function() {
     return `${this.get('publishrURL')}campaigns`;
   }),
