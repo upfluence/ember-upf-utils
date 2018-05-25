@@ -44,9 +44,9 @@ export default Component.extend(
     }),
 
     listNames: computed('profile.lists', function () {
-      return 'Also in these lists:<br />' + this.get('profile.lists').map((list) => {
-        return list.get('name') + '<br />';
-      }).join('')
+      return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
+        return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
+      }).join('') + '</div>';
     })
   }
 );
