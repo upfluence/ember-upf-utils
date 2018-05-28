@@ -5,7 +5,8 @@ const {
   Service,
   RSVP,
   computed,
-  inject
+  inject,
+  isArray
 } = Ember;
 
 export default Service.extend({
@@ -21,8 +22,7 @@ export default Service.extend({
   }),
 
   _extractNotifications(modelOrCollection) {
-    let argIsArray = modelOrCollection instanceof Array;
-    if (argIsArray) {
+    if (isArray(modelOrCollection)) {
       return modelOrCollection.map((m) => {
         return m.get('notifications').toArray();
       }).reduce((acc, notifications) => {
