@@ -105,9 +105,16 @@ export default Component.extend({
   }),
 
   inboxURL: computed(function() {
-    return getOwner(this).resolveRegistration(
+    let url = getOwner(this).resolveRegistration(
       'config:environment'
     ).inboxURL;
+
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
+
+    // Since application is a valid route this will active the icon
+    return module === 'inbox-client' ? 'application' : url;
   }),
 
   accountUrl: computed(function() {
