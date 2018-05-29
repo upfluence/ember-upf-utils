@@ -55,22 +55,26 @@
   width: 100%;
 
   .profile-description__avatar {
-    .upf-image { .skeleton-effect; }
+    .skeleton-effect;
+    margin-left: 1px;
   }
 
   .placeholder-line {
     .skeleton-effect;
-    height: 10px;
-    width: 85%;
-  }
-
-  .placeholder-line:first-child, .placeholder-line:last-child {
+    display: block;
+    margin: @spacing-xxx-sm 0 @spacing-x-sm 0;
+    height: 12px;
+    border-radius: 6px;
     width: 50%;
   }
 
   .placeholder-image {
     .skeleton-effect;
-    height: calc(@table-fluid-row-height - 1px);
-    width: @table-fluid-row-height;
+    height: @image-size;
+    width: @image-size;
+
+    &:not(:first-child) {
+      margin-left: 1.5em;
+    }
   }
 }
