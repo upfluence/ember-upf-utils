@@ -37,11 +37,11 @@ export default Component.extend(
       }
     }),
 
-    displayLists: computed('profile.lists', function () {
-      if (this.get('profile.lists').length > 1) {
-        return true
-      }
-    }),
+    // displayLists: computed('profile.lists', function () {
+    //   if (this.get('profile.lists').length > 1) {
+    //     return true
+    //   }
+    // }),
 
     listNames: computed('profile.lists', function () {
       return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
