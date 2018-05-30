@@ -44,15 +44,17 @@
 
     {{#if profileRoutePath}}
       <span title='Edit Influencer' data-toggle='tooltip' data-placement='bottom'>
-        {{#link-to profileRoutePath profile.id
-                   class='upf-link--reset profile-description__action'}}
+        {{#link-to (concat sidePanelBasePath ".profile") profile.id
+                   class='upf-link--reset profile-description__action'
+                   bubbles=false}}
           {{fa-icon 'pencil'}}
         {{/link-to}}
       </span>
 
       <span title='Message Influencer' data-toggle='tooltip' data-placement='bottom'>
-        {{#link-to profileRoutePath profile.id
-                   class='upf-link--reset profile-description__action'}}
+        {{#link-to (concat sidePanelBasePath ".mailings.conversations") profile.id
+                   class='upf-link--reset profile-description__action'
+                   bubbles=false}}
           <i class="upf-icon upf-icon--messages"></i>
         {{/link-to}}
       </span>
