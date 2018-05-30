@@ -6,12 +6,11 @@
 .profile-description {
   width: @unit-width;
   height: @table-fluid-row-height;
-  display: inline;
-  vertical-align: top;
+  float: left;
   line-height: 1.4;
 
   .profile-description__avatar {
-    display: inline-block;
+    float: left;
     vertical-align: top;
     border-left: 1px solid transparent;
 
@@ -22,8 +21,9 @@
   }
 
   .profile-description__content {
+    float: left;
     width: @unit-width - @avatar-size - @avatar-left-border;
-    display: inline-block;
+    height: @table-fluid-row-height;
     vertical-align: top;
     padding: @spacing-xx-sm 0 0 @spacing-x-sm;
 
@@ -42,7 +42,7 @@
 
     .profile-description__action {
       opacity: 0;
-      line-height: 18/@rem;
+      line-height: 24/@rem;
       padding-left: @spacing-xxx-sm;
       cursor: pointer;
     }
