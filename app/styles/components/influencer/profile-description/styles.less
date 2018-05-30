@@ -1,18 +1,17 @@
-@unit-width : 350px;
+@unit-width : 530px;
 @avatar-size : 179px;
 @avatar-left-border : 1px;
 @title-width : 250px;
 
 .profile-description {
-  width: @unit-width;
+  flex: 0 0 @unit-width;
   height: @table-fluid-row-height;
-  float: left;
   line-height: 1.4;
 
   .profile-description__avatar {
     float: left;
     vertical-align: top;
-    border-left: 1px solid transparent;
+    border-left: @avatar-left-border solid transparent;
 
     img {
       border-radius: @default-radius;
