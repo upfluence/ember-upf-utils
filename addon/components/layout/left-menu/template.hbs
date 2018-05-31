@@ -3,8 +3,7 @@
     {{#if hasFacade}}
       {{#active-link tagName='div' class='header-item'
                      activeClass='header-item--active'}}
-        {{#smart-link-to link=listURL
-                         cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
+        {{#smart-link-to link=listURL}}
           <span class='upf-icon upf-icon--search'></span>
         {{/smart-link-to}}
       {{/active-link}}
