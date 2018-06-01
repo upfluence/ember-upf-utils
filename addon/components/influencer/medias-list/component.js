@@ -93,21 +93,6 @@ export default Component.extend({
           media['model'] = this.get('profile').get(media['type']);
           return media;
         }); // Take only the 3 first elements
-    }),
-
-
-
-    position: computed(
-      'meta.erMin',
-      'meta.erMax',
-      'media.averageFacebookShares', function() {
-        if (this.get('media.engagement_rate')) {
-          return (this.get('media.engagement_rate') - (this.get('meta.erMin') / (this.get('meta.erMax') - this.get('meta.erMin')))) * 2000;
-        } else if (this.get('media.averageFacebookShares')) {
-          return this.get('media.averageFacebookShares') * 2;
-        } else {
-          return 0;
-        }
-      }
-    )
+    }
+  )
 });
