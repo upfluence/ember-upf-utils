@@ -70,7 +70,7 @@ export default SummerNoteComponent.extend({
 
   uploadFile(file) {
     let fileExtension = file.name.split('.').slice(-1).pop()
-    if (this.get('uploadAllowedExtensions').includes(fileExtension)) {
+    if (this.get('uploadAllowedExtensions').includes(fileExtension.toLowerCase())) {
       this.get('uploader').upload(file, { privacy: 'public' });
     } else {
       let extsWording = this.get('uploadAllowedExtensions').join(', ');

@@ -105,9 +105,16 @@ export default Component.extend({
   }),
 
   inboxURL: computed(function() {
-    return getOwner(this).resolveRegistration(
+    let url = getOwner(this).resolveRegistration(
       'config:environment'
     ).inboxURL;
+
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
+
+    // Since application is a valid route this will active the icon
+    return module === 'inbox-client' ? 'application' : url;
   }),
 
   accountUrl: computed(function() {
@@ -128,14 +135,6 @@ export default Component.extend({
     return getOwner(this).resolveRegistration(
       'config:environment'
     ).publishrClientURL;
-  }),
-
-  mailingURL: computed('inboxURL', function() {
-    if (this.get('inboxURL')) {
-      return `${this.get('inboxURL')}mailings`;
-    }
-
-    return 'mailings';
   }),
 
   publishrCampaignsURL: computed('publishrURL', function() {

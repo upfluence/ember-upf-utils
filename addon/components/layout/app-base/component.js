@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   currentUser: Ember.inject.service(),
   user: null,
   applicationLogo: null,
+  indexRoute: 'index',
 
   didInsertElement() {
     this._super();

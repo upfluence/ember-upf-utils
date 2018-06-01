@@ -25,8 +25,9 @@ export default Mixin.create({
         this.get('selectedItems').mapBy('id'),
         archivalAction
       ).then(() => {
+        let selectedItems = this.get('selectedItems');
         this.get('selectedItems').map((item) => item.set('selected', false));
-        this.get('collection').removeObjects(this.get('selectedItems'));
+        this.get('collection').removeObjects(selectedItems);
         this.triggerAction({
           action: 'setContentChanging',
           actionContext: false

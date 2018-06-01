@@ -7,5 +7,12 @@ export default Component.extend({
   hasSearch: true,
   hasPolymorphicColumns: true,
   onRowClickCallback: 'goToEntity',
-  contentLoading: false
+  contentLoading: false,
+
+  hasPagination: null,
+  currentPage: 1,
+  totalPages: 1,
+  perPage: 1,
+  itemTotal: 0,
+  itemCount: 0
 });

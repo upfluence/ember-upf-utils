@@ -70,6 +70,15 @@ export default Component.extend({
     };
   }),
 
+  twitch: computed('profile.twitch.followers', function() {
+    return {
+      type: 'twitch',
+      icon: 'twitch',
+      communitySize: this.get('profile.twitch.followers'),
+      communitySlug: 'followers'
+    };
+  }),
+
   orderedMedias: computed(
     'blog',
     'facebook',
@@ -77,6 +86,7 @@ export default Component.extend({
     'youtube',
     'instagram',
     'pinterest',
+    'twitch',
     function() {
       return [
         this.get('blog'),
@@ -84,9 +94,14 @@ export default Component.extend({
         this.get('twitter'),
         this.get('youtube'),
         this.get('instagram'),
-        this.get('pinterest')
+        this.get('pinterest'),
+        this.get('twitch'),
       ].filter(e => e.communitySize != null) // Filter medias that are empty
-        .sort((a, b) => a.communitySize - b.communitySize) // Sort them
+        .sort((a, b) => {
+          if (a.type === 'twitch') { return -1; }
+          if (b.type === 'twitch') { return 1; }
+          return a.communitySize - b.communitySize;
+        }) // Sort them
         .reverse()
         .splice(0, 3)
         .map((media) => {

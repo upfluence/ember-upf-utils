@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation'
 import layout from './template';
 import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 
