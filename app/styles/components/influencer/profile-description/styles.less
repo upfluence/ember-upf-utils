@@ -1,44 +1,94 @@
-//
-// Utility class for wrapping text and add an ellipsis to its end
-//
-.wrapped-text {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-}
+@unit-width : 530px;
+@avatar-size : 179px;
+@avatar-left-border : 1px;
+@title-width : 250px;
 
-//
-// An Influencer's Description wrapper.
-//
 .profile-description {
-  display: flex;
+  flex: 0 0 @unit-width;
+  height: @table-fluid-row-height;
+  line-height: 1.4;
 
-  //
-  // An Influencer's Profile Picture.
-  //
   .profile-description__avatar {
-    flex-shrink: 0;
+    float: left;
+    vertical-align: top;
+    border-left: @avatar-left-border solid transparent;
 
     img {
       border-radius: @default-radius;
-      height: 182px;
-      width: 182px;
+      display: inline-block;
     }
   }
 
-  //
-  // The description section of an influencer row.
-  //
   .profile-description__content {
-    display: inline-block;
-    flex: 1;
-    min-width: 0;
+    float: left;
+    width: @unit-width - @avatar-size - @avatar-left-border;
+    height: @table-fluid-row-height;
+    vertical-align: top;
+    padding: @spacing-xx-sm 0 0 @spacing-x-sm;
+
+    .profile-description__content--title {
+      color: @color-text-light;
+      font-family: @font-text-title;
+      font-size: 22/@rem;
+      line-height: 22/@rem;
+      display: inline-block;
+      vertical-align: inherit;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: @title-width;
+      white-space: nowrap;
+    }
+
+    .profile-description__action {
+      opacity: 0;
+      line-height: 24/@rem;
+      padding-left: @spacing-xxx-sm;
+      cursor: pointer;
+    }
+
+    .profile-description__content--right {
+      display: inline-block;
+      padding-left: @spacing-xxx-sm;
+    }
+
+    .secondary-line {
+      padding-top: 0.8em;
+
+      .profile-description__content--new {
+        color: @upf-primary-bright-purple;
+        border: 1px solid @upf-primary-bright-purple;
+        padding: 0px 2px;
+        margin-right: @spacing-xx-sm;
+        border-radius: @default-radius;
+        user-select: none;
+      }
+
+      .profile-description__action {
+        opacity: 1;
+        padding: 0 @spacing-xx-sm 0 0;
+      }
+
+      .profile-description__content--location {
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        color: @color-text;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 24/@rem;
+
+        i {
+          color: @upf-primary-bright-purple;
+        }
+      }
+    }
 
     .description {
       text-overflow: ellipsis;
       overflow: hidden;
-      height: 50px;
+      height: 30px;
+      margin: @spacing-xx-sm 0;
+      clear: both;
     }
   }
 
@@ -54,7 +104,15 @@
   }
 }
 
-.table-fluid-content__row--active .profile-description__action,
-.__table-fluid-row--active .profile-description__action {
+.active
+.profile-description
+.profile-description__action {
   opacity: 1;
+  font-size: 16/@rem;
+  color: @upf-primary-bright-purple;
+}
+
+.profile-description__avatar, .profile-description__avatar img {
+  height: @avatar-size;
+  width: @avatar-size;
 }

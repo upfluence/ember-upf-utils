@@ -1,8 +1,11 @@
 import Ember from 'ember';
-import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation'
 import layout from './template';
+import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 
-const { Component, computed } = Ember;
+const {
+  Component,
+  computed
+} = Ember;
 
 export default Component.extend(TooltipActivationMixin, {
   layout,
@@ -31,5 +34,11 @@ export default Component.extend(TooltipActivationMixin, {
 
       return value;
     }
+  }),
+
+  listNames: computed('profile.lists', function () {
+    return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
+      return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
+    }).join('') + '</div>';
   })
 });
