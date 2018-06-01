@@ -16,16 +16,11 @@
 </div>
 
 <div class="profile-description__content">
-  {{#if profileRoutePath}}
-    {{#link-to profileRoutePath
-               profile.id
-               class='profile-description__content--title upf-link--reset'
-               title=profile.name}}
-      {{profile.name}}
-    {{/link-to}}
-  {{else}}
+  {{#link-to (concat sidePanelBasePath ".profile") profile.id
+             class='profile-description__content--title upf-link--reset'
+             title=profile.name}}
     {{profile.name}}
-  {{/if}}
+  {{/link-to}}
 
   {{#if hasNotifications}}
     <span class='upf-notification--inline'></span>
@@ -42,23 +37,21 @@
       </a>
     {{/if}}
 
-    {{#if profileRoutePath}}
-      <span title='Edit Influencer' data-toggle='tooltip' data-placement='bottom'>
-        {{#link-to (concat sidePanelBasePath ".profile") profile.id
-                   class='upf-link--reset profile-description__action'
-                   bubbles=false}}
-          {{fa-icon 'pencil'}}
-        {{/link-to}}
-      </span>
+    <span title='Edit Influencer' data-toggle='tooltip' data-placement='bottom'>
+      {{#link-to (concat sidePanelBasePath ".profile") profile.id
+                 class='upf-link--reset profile-description__action'
+                 bubbles=false}}
+        {{fa-icon 'pencil'}}
+      {{/link-to}}
+    </span>
 
-      <span title='Message Influencer' data-toggle='tooltip' data-placement='bottom'>
-        {{#link-to (concat sidePanelBasePath ".mailings.conversations") profile.id
-                   class='upf-link--reset profile-description__action'
-                   bubbles=false}}
-          <i class="upf-icon upf-icon--messages"></i>
-        {{/link-to}}
-      </span>
-    {{/if}}
+    <span title='Message Influencer' data-toggle='tooltip' data-placement='bottom'>
+      {{#link-to (concat sidePanelBasePath ".mailings.conversations") profile.id
+                 class='upf-link--reset profile-description__action'
+                 bubbles=false}}
+        <i class="upf-icon upf-icon--messages"></i>
+      {{/link-to}}
+    </span>
   </div>
 
   <div class="secondary-line">
@@ -68,14 +61,6 @@
 
     {{#if profile.address}}
       {{display-field value=profile.address icon="map-marker"}}
-    {{/if}}
-
-    {{#if exportInfluencer}}
-      <a {{action exportInfluencer bubbles=false}}
-        class="profile-description__action upf-link--reset" title="Export Influencer"
-        data-toggle="tooltip" data-placement="bottom">
-       &nbsp; {{fa-icon "share"}}
-      </a>
     {{/if}}
   </div>
 

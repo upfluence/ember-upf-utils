@@ -19,12 +19,6 @@ export default Component.extend(TooltipActivationMixin, {
 
   presentInLists: computed.gt('profile.lists.length', 0),
 
-  profileRoutePath: computed('sidePanelBasePath', function() {
-    if (this.get('sidePanelBasePath')) {
-      return `${this.get('sidePanelBasePath')}.profile`;
-    }
-  }),
-
   // Avoid BC break with profile.selected
   _selected: computed('selected', 'profile.selected', {
     get() {
