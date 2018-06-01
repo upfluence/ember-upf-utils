@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation'
 import layout from './template';
 import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 
@@ -8,46 +7,44 @@ const {
   computed
 } = Ember;
 
-export default Component.extend(
-  TooltipActivationMixin, {
-    layout,
-    classNames: ['profile-description'],
+export default Component.extend(TooltipActivationMixin, {
+  layout,
+  classNames: ['profile-description'],
 
-    isSelectable: true,
-    toggleAction: null,
-    selected: null,
-    selectedIcon: 'check',
-    overlayType: 'selection',
+  isSelectable: true,
+  toggleAction: null,
+  selected: null,
+  selectedIcon: 'check',
+  overlayType: 'selection',
 
-    presentInLists: computed.gt('profile.lists.length', 0),
+  presentInLists: computed.gt('profile.lists.length', 0),
 
-    profileRoutePath: computed('sidePanelBasePath', function() {
-      if (this.get('sidePanelBasePath')) {
-        return `${this.get('sidePanelBasePath')}.profile`;
+  profileRoutePath: computed('sidePanelBasePath', function() {
+    if (this.get('sidePanelBasePath')) {
+      return `${this.get('sidePanelBasePath')}.profile`;
+    }
+  }),
+
+  // Avoid BC break with profile.selected
+  _selected: computed('selected', 'profile.selected', {
+    get() {
+      return this.get('selected') || this.get('profile.selected');
+    },
+    set(_, value) {
+      // selected not set
+      if (this.get('selected') === null) {
+        this.set('profile.selected', value);
+      } else {
+        this.set('selected', value);
       }
-    }),
 
-    // Avoid BC break with profile.selected
-    _selected: computed('selected', 'profile.selected', {
-      get() {
-        return this.get('selected') || this.get('profile.selected');
-      },
-      set(_, value) {
-        // selected not set
-        if (this.get('selected') === null) {
-          this.set('profile.selected', value);
-        } else {
-          this.set('selected', value);
-        }
+      return value;
+    }
+  }),
 
-        return value;
-      }
-    }),
-
-    listNames: computed('profile.lists', function () {
-      return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
-        return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
-      }).join('') + '</div>';
-    })
-  }
-);
+  listNames: computed('profile.lists', function () {
+    return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
+      return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
+    }).join('') + '</div>';
+  })
+});
