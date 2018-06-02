@@ -2,7 +2,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { Component } = Ember;
+const { Component, isEmpty } = Ember;
 
 export default Component.extend({
   layout,
@@ -30,7 +30,9 @@ export default Component.extend({
       return button.render();
     };
 
-    this.customButtons.push(VideoUploadButton);
+    if (isEmpty(this.get('customButtons'))) {
+      this.customButtons.push(VideoUploadButton);
+    }
 
     this._super();
   },
