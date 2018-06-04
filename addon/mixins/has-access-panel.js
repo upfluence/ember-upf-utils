@@ -96,7 +96,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       this.transitionToRoute(
         this.get('accessPanelConfig.backRoute'),
         entity.get('id'),
-        { queryParams:  this.get('accessPanelConfig.backRouteParams') }
+        { queryParams: this.get('accessPanelConfig.backRouteParams') }
       );
     },
 
