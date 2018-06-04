@@ -95,7 +95,8 @@ export default Mixin.create(UpfTableSearchMixin, {
       entity.set('currentlyOpened', true);
       this.transitionToRoute(
         this.get('accessPanelConfig.backRoute'),
-        entity.get('id')
+        entity.get('id'),
+        { queryParams: this.get('accessPanelConfig.backRouteParams') }
       );
     },
 
