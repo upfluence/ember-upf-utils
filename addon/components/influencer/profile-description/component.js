@@ -39,7 +39,7 @@ export default Component.extend(TooltipActivationMixin, {
     }
   }),
 
-  listNames: computed('profile.lists', function () {
+  listNames: computed('profile.lists', function() {
     return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
       return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
     }).join('') + '</div>';
