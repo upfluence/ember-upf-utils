@@ -137,6 +137,11 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }
   },
 
+  _needsRevalidate() {
+    if (this.isDestroyed || this.isDestroying) { return; }
+    this._super();
+  },
+
   actions: {
     scrollChange(scrollLeft, scrollTop) {
       if (this.get('loading')) {
