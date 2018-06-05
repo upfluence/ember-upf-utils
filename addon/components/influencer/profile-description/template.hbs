@@ -45,13 +45,15 @@
       {{/link-to}}
     </span>
 
-    <span title='Message Influencer' data-toggle='tooltip' data-placement='bottom'>
-      {{#link-to (concat sidePanelBasePath ".mailings.conversations") profile.id
-                 class='upf-link--reset profile-description__action'
-                 bubbles=false}}
-        <i class="upf-icon upf-icon--messages"></i>
-      {{/link-to}}
-    </span>
+    {{#if displayContact}}
+      <span title='Contact Influencer' data-toggle='tooltip' data-placement='bottom'>
+        {{#link-to (concat sidePanelBasePath ".mailings.conversations") profile.id
+                   class='upf-link--reset profile-description__action'
+                   bubbles=false}}
+          <i class="upf-icon upf-icon--messages"></i>
+        {{/link-to}}
+      </span>
+    {{/if}}
   </div>
 
   <div class="secondary-line">
