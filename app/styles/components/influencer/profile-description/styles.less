@@ -1,16 +1,17 @@
 @unit-width : 530px;
 @avatar-size : 179px;
 @avatar-left-border : 1px;
-@title-width : 250px;
+@title-width : 230px;
+@global-padding: 20px;
 
 .profile-description {
   flex: 0 0 @unit-width;
   height: @table-fluid-row-height;
   line-height: 1.4;
+  padding: @global-padding 0 0 @global-padding;
 
   .profile-description__avatar {
     float: left;
-    vertical-align: top;
     border-left: @avatar-left-border solid transparent;
 
     img {
@@ -21,10 +22,9 @@
 
   .profile-description__content {
     float: left;
-    width: @unit-width - @avatar-size - @avatar-left-border;
-    height: @table-fluid-row-height;
+    width: @unit-width - @avatar-size - @global-padding - @avatar-left-border;
+    padding-left: @spacing-x-sm;
     vertical-align: top;
-    padding: @spacing-xx-sm 0 0 @spacing-x-sm;
 
     .profile-description__content--title {
       color: @color-text;
@@ -85,11 +85,9 @@
     }
 
     .description {
-      text-overflow: ellipsis;
       overflow: hidden;
-      height: 30px;
       margin: @spacing-xx-sm 0;
-      clear: both;
+      max-height: 48px;
     }
   }
 
