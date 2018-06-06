@@ -9,6 +9,7 @@ const DEFAULTS = {
   oauthUrl: 'http://localhost:9000/token',
   uploaderUrl: 'http://localhost:8080/upload',
   exportUrl: 'http://localhost:9001/export',
+  activityUrl: 'https://activity.upfluence.co',
   meURL: 'http://localhost:9000/me',
   oauthClientId: 'auth_client',
   scope: ['facade_web']
@@ -29,6 +30,7 @@ export default {
   oauthUrl: DEFAULTS.oauthUrl,
   uploaderUrl: DEFAULTS.uploaderUrl,
   exportUrl: DEFAULTS.exportUrl,
+  activityUrl: DEFAULTS.activityUrl,
   logoutRedirectUrl: DEFAULTS.logoutRedirectUrl,
   oauthClientId: DEFAULTS.oauthClientId,
   meURL: DEFAULTS.meURL,
