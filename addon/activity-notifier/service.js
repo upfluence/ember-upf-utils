@@ -28,7 +28,7 @@ export default Service.extend({
 
   _isRunning: false,
   _inFetch: false,
-  _wait: 40 * 1000, // 40 seconds
+  _wait: 5 * 1000, // 5 seconds
   _from: 0,
   _environment: null,
   _scope: null,
@@ -75,7 +75,7 @@ export default Service.extend({
   },
 
   buildUrl() {
-    return `${Configuration.activityUrl}/notifications`;
+    return `${Configuration.activityUrl}notifications`;
   },
 
   buildArgs() {
