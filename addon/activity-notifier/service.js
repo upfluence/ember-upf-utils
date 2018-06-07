@@ -130,7 +130,7 @@ export default Service.extend({
   },
 
   renderNotification(title, message) {
-    this.get('toast').success(message, title);
+    this.get('toast').info(message, title);
   },
 
   token: computed.alias('session.data.authenticated.access_token'),
