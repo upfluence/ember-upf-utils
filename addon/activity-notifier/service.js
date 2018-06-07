@@ -8,6 +8,19 @@ const NOTIFICATIONS = {
   conversation_email_received: true,
 };
 
+const messageWithAvatar = function(avatarUrl, message) {
+  return `
+    <div class="row">
+      <div class="col-xs-2 text-center">
+        <img class="upf-image upf-image--round-48" src="${avatarUrl}">
+      </div>
+      <div class="col-xs-10">
+        ${message}
+      </div>
+    </div>
+  `;
+};
+
 export default Service.extend({
   ajax: inject.service(),
   session: inject.service(),
@@ -95,15 +108,21 @@ export default Service.extend({
       case 'mailing_email_received':
         return [
           'Email received in mailing',
-          `You have a new message from ${data.influencer_name} in the 
-           ${data.entity_name} campaign! 
-           <a href="${data.entity_url}" target="_blank">Reply now</a>`
+          messageWithAvatar(
+            data.influencer_avatar,
+            `You have a new message from <b>${data.influencer_name}</b> in the
+             <b>${data.entity_name}</b> campaign! 
+             <a href="${data.entity_url}" target="_blank">Reply now</a>`
+          )
         ];
       case 'conversation_email_received':
         return [
           'Email received',
-          `${data.influencer_name} has replied to your message! 
-           <a href="${data.entity_url}" target="_blank">Respond now</a>`
+          messageWithAvatar(
+            data.influencer_avatar,
+            `<b>${data.influencer_name}</b> has replied to your message! 
+            <a href="${data.entity_url}" target="_blank">Respond now</a>`
+          )
         ];
       default:
         throw `Can not display "${notification.notification_type}" notification`;
