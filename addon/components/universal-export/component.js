@@ -6,6 +6,7 @@ const {
   Component,
   inject,
   computed,
+  defineProperty,
   get,
   getOwner
 } = Ember;
@@ -44,9 +45,13 @@ export default Component.extend({
     });
 
     ['file', 'list', 'publishr', 'mailing', 'stream'].forEach((e) => {
-      this.set(`${e}Selected`, computed('currentWindow', function() {
-        return this.get('currentWindow') === e;
-      }));
+      defineProperty(
+        this,
+        `${e}Selected`,
+        computed('currentWindow', function() {
+          return this.get('currentWindow') === e;
+        })
+      );
     });
   },
 
