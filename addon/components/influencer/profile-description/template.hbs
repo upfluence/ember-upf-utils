@@ -2,16 +2,16 @@
   {{#if isSelectable}}
     {{#if (eq overlayType 'selection')}}
       {{#toggle-area value=_selected callbackAction=toggleAction icon=selectedIcon}}
-        <img src={{profile.avatar_url}}>
+        <img src={{profile.avatar_url}} onerror="this.src='assets/images/no-image.svg'"/>
       {{/toggle-area}}
     {{else if (eq overlayType 'splitOverlay')}}
       {{#split-overlay-area rightClick=rightClickAction leftClick=leftClickAction
                             rightToggled=rightToggled leftToggled=leftToggled}}
-        <img src={{profile.avatar_url}}>
+        <img src={{profile.avatar_url}} onerror="this.src='assets/images/no-image.svg'"/>
       {{/split-overlay-area}}
     {{/if}}
   {{else}}
-    <img src={{profile.avatar_url}}>
+    <img src={{profile.avatar_url}} onerror="this.src='assets/images/no-image.svg'"/>
   {{/if}}
 </div>
 
