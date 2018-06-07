@@ -1,6 +1,5 @@
 @unit-width : 530px;
 @avatar-size : 179px;
-@avatar-left-border : 1px;
 @title-width : 230px;
 @global-padding: 20px;
 
@@ -12,7 +11,6 @@
 
   .profile-description__avatar {
     float: left;
-    border-left: @avatar-left-border solid transparent;
 
     img {
       border-radius: @default-radius;
@@ -22,7 +20,7 @@
 
   .profile-description__content {
     float: left;
-    width: @unit-width - @avatar-size - @global-padding - @avatar-left-border;
+    width: @unit-width - @avatar-size - @global-padding;
     padding-left: @spacing-x-sm;
     vertical-align: top;
 
