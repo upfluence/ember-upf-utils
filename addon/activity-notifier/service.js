@@ -10,11 +10,11 @@ const NOTIFICATIONS = {
 
 const messageWithAvatar = function(avatarUrl, message) {
   return `
-    <div class="row">
-      <div class="col-xs-2 text-center">
+    <div class="activity_notification-wappper">
+      <div class="activity_notification-avatar">
         <img class="upf-image upf-image--round-48" src="${avatarUrl}">
       </div>
-      <div class="col-xs-10">
+      <div class="activity_notification-message">
         ${message}
       </div>
     </div>
@@ -70,7 +70,7 @@ export default Service.extend({
         this._timer = run.later(this, this.fetchNotifications, this.waitTime());
       }
     ).finally(
-      () => { this._inFetch = false }
+      () => { this._inFetch = false; }
     );
   },
 
