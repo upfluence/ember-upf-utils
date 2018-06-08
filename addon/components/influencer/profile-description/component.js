@@ -45,9 +45,7 @@ export default Component.extend(TooltipActivationMixin, {
     }).join('') + '</div>';
   }),
 
-  displayContact: computed('profile.email', 'hasInbox', function () {
-    return ((this.get('profile.email') && this.get('hasInbox')) ? true : false);
-  }),
+  displayContact: computed.and('profile.email', 'hasInbox'),
 
   didInsertElement() {
     this.get('currentUser').fetch().then((payload) => {
