@@ -9,9 +9,11 @@ const DEFAULTS = {
   oauthUrl: 'http://localhost:9000/token',
   uploaderUrl: 'http://localhost:8080/upload',
   exportUrl: 'http://localhost:9001/export',
+  activityUrl: 'https://localhost:9002/',
   meURL: 'http://localhost:9000/me',
   oauthClientId: 'auth_client',
-  scope: ['facade_web']
+  scope: ['facade_web'],
+  notificationWait: 5,
 };
 
 export default {
@@ -29,10 +31,12 @@ export default {
   oauthUrl: DEFAULTS.oauthUrl,
   uploaderUrl: DEFAULTS.uploaderUrl,
   exportUrl: DEFAULTS.exportUrl,
+  activityUrl: DEFAULTS.activityUrl,
   logoutRedirectUrl: DEFAULTS.logoutRedirectUrl,
   oauthClientId: DEFAULTS.oauthClientId,
   meURL: DEFAULTS.meURL,
   scope: DEFAULTS.scope,
+  notificationWait: DEFAULTS.notificationWait,
 
   load(config) {
     for (let property in this) {
