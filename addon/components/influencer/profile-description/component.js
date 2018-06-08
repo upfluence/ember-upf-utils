@@ -4,10 +4,13 @@ import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 
 const {
   Component,
-  computed
+  computed,
+  inject
 } = Ember;
 
 export default Component.extend(TooltipActivationMixin, {
+  currentUser: inject.service(),
+
   layout,
   classNames: ['profile-description'],
 
@@ -36,9 +39,17 @@ export default Component.extend(TooltipActivationMixin, {
     }
   }),
 
-  listNames: computed('profile.lists', function () {
+  listNames: computed('profile.lists', function() {
     return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
       return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
     }).join('') + '</div>';
-  })
+  }),
+
+  displayContact: computed.and('profile.email', 'hasInbox'),
+
+  didInsertElement() {
+    this.get('currentUser').fetch().then((payload) => {
+      this.set('hasInbox', payload.user.granted_scopes.includes('inbox_client'));
+    });
+  }
 });

@@ -57,10 +57,12 @@
   position: relative;
   height: @table-fluid-row-height !important;
   width: 100%;
+  display: flex;
+  border-top: 1px solid @table-fluid-border-color;
 
   .profile-description__avatar {
     .skeleton-effect;
-    margin-left: 1px;
+    margin-top: 1px;
   }
 
   .placeholder-line {
@@ -76,9 +78,10 @@
     .skeleton-effect;
     height: @image-size;
     width: @image-size;
+    margin: 1px 0 25px 0;
 
     &:not(:first-child) {
-      margin-left: 1.5em;
+      margin-left: 10px;
     }
   }
 }

@@ -1,33 +1,41 @@
 @unit-width : 530px;
-@avatar-size : 179px;
-@avatar-left-border : 1px;
-@title-width : 250px;
+@avatar-size : 180px;
+@title-width : 230px;
+@global-padding: 20px;
 
 .profile-description {
   flex: 0 0 @unit-width;
   height: @table-fluid-row-height;
   line-height: 1.4;
+  padding: @global-padding 0 0 @global-padding;
 
   .profile-description__avatar {
     float: left;
-    vertical-align: top;
-    border-left: @avatar-left-border solid transparent;
 
     img {
       border-radius: @default-radius;
       display: inline-block;
     }
+
+    img:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      background-image: url(/assets/images/no-image.svg); // backup image
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
 
   .profile-description__content {
     float: left;
-    width: @unit-width - @avatar-size - @avatar-left-border;
-    height: @table-fluid-row-height;
+    width: @unit-width - @avatar-size - @global-padding;
+    padding-left: @spacing-x-sm;
     vertical-align: top;
-    padding: @spacing-xx-sm 0 0 @spacing-x-sm;
 
     .profile-description__content--title {
-      color: @color-text-light;
+      color: @color-text;
       font-family: @font-text-title;
       font-size: 22/@rem;
       line-height: 22/@rem;
@@ -37,6 +45,7 @@
       text-overflow: ellipsis;
       max-width: @title-width;
       white-space: nowrap;
+      text-transform: capitalize;
     }
 
     .profile-description__action {
@@ -84,11 +93,9 @@
     }
 
     .description {
-      text-overflow: ellipsis;
       overflow: hidden;
-      height: 30px;
       margin: @spacing-xx-sm 0;
-      clear: both;
+      max-height: 48px;
     }
   }
 
@@ -112,7 +119,7 @@
   color: @upf-primary-bright-purple;
 }
 
-.profile-description__avatar, .profile-description__avatar img {
+.profile-description__avatar, .profile-description__avatar img, .profile-description__avatar img:before  {
   height: @avatar-size;
   width: @avatar-size;
 }
