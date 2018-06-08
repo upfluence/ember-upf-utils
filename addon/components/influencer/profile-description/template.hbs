@@ -2,16 +2,16 @@
   {{#if isSelectable}}
     {{#if (eq overlayType 'selection')}}
       {{#toggle-area value=_selected callbackAction=toggleAction icon=selectedIcon}}
-        <img src={{profile.avatar_url}} onerror="this.src='assets/images/no-image.svg'"/>
+        <img src={{profile.avatar_url}}/>
       {{/toggle-area}}
     {{else if (eq overlayType 'splitOverlay')}}
       {{#split-overlay-area rightClick=rightClickAction leftClick=leftClickAction
                             rightToggled=rightToggled leftToggled=leftToggled}}
-        <img src={{profile.avatar_url}} onerror="this.src='assets/images/no-image.svg'"/>
+        <img src={{profile.avatar_url}}/>
       {{/split-overlay-area}}
     {{/if}}
   {{else}}
-    <img src={{profile.avatar_url}} onerror="this.src='assets/images/no-image.svg'"/>
+    <img src={{profile.avatar_url}}/>
   {{/if}}
 </div>
 
@@ -56,14 +56,13 @@
     {{/if}}
   </div>
 
-  <div class="secondary-line">
+  <div class="secondary-line clearfix">
     {{#if profile.isNew}}
       <span class="profile-description__content--new pull-left">new</span>
     {{/if}}
     {{#if profile.address}}
       {{display-field value=profile.address icon="map-marker"}}
     {{/if}}
-    <div style="clear: both;"></div>
   </div>
 
   <div class='description text-size-4 text-color-default-light' title='{{profile.description}}'>

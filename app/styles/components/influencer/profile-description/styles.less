@@ -1,5 +1,5 @@
 @unit-width : 530px;
-@avatar-size : 179px;
+@avatar-size : 180px;
 @title-width : 230px;
 @global-padding: 20px;
 
@@ -15,6 +15,16 @@
     img {
       border-radius: @default-radius;
       display: inline-block;
+    }
+
+    img:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      background-image: url(/assets/images/no-image.svg); // backup image
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 
@@ -109,7 +119,7 @@
   color: @upf-primary-bright-purple;
 }
 
-.profile-description__avatar, .profile-description__avatar img {
+.profile-description__avatar, .profile-description__avatar img, .profile-description__avatar img:before  {
   height: @avatar-size;
   width: @avatar-size;
 }
