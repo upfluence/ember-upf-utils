@@ -28,7 +28,7 @@ export default Service.extend({
 
   _isRunning: false,
   _inFetch: false,
-  _wait: 5 * 1000, // 5 seconds
+  _defaultWait: 5,
   _from: 0,
   _environment: null,
   _scope: null,
@@ -67,7 +67,7 @@ export default Service.extend({
       (p) => {
         this._from = p.next;
         this.displayNotifications(p.notifications);
-        this._timer = run.later(this, this.fetchNotifications, this._wait);
+        this._timer = run.later(this, this.fetchNotifications, this.waitTime());
       }
     ).finally(
       () => { this._inFetch = false }
@@ -90,6 +90,10 @@ export default Service.extend({
     }
 
     return query;
+  },
+
+  waitTime() {
+    return (Configuration.notificationWait || this._defaultWait) * 1000;
   },
 
   displayNotifications(notifications) {

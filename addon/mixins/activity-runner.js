@@ -7,7 +7,6 @@ export default Mixin.create({
 
   init() {
     this._super();
-
-    run.later(this, () => this.get('activityNotifier').start(), 2000);
+    run.later(this, () => this.get('activityNotifier').start(), 3000);
   }
 });
