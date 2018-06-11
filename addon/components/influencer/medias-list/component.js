@@ -15,8 +15,7 @@ export default Component.extend({
       type: 'blog',
       icon: 'wordpress',
       communitySize: this.get('profile.blog.visits'),
-      communitySlug: 'monthly visits',
-      meta: this.get('meta.blogMeta')
+      communitySlug: 'monthly visits'
     };
   }),
 
@@ -25,8 +24,7 @@ export default Component.extend({
       type: 'facebook',
       icon: 'facebook-official',
       communitySize: this.get('profile.facebook.fans'),
-      communitySlug: 'fans',
-      meta: this.get('meta.facebookMeta')
+      communitySlug: 'fans'
     };
   }),
 
@@ -35,8 +33,7 @@ export default Component.extend({
       type: 'twitter',
       icon: 'twitter',
       communitySize: this.get('profile.twitter.followers'),
-      communitySlug: 'followers',
-      meta: this.get('meta.twitterMeta')
+      communitySlug: 'followers'
     };
   }),
 
@@ -45,8 +42,7 @@ export default Component.extend({
       type: 'instagram',
       icon: 'instagram',
       communitySize: this.get('profile.instagram.followers'),
-      communitySlug: 'followers',
-      meta: this.get('meta.instagramMeta')
+      communitySlug: 'followers'
     };
   }),
 
@@ -55,8 +51,7 @@ export default Component.extend({
       type: 'youtube',
       icon: 'youtube-play',
       communitySize: this.get('profile.youtube.followers'),
-      communitySlug: 'subscribers',
-      meta: this.get('meta.youtubeMeta')
+      communitySlug: 'subscribers'
     };
   }),
 
@@ -65,8 +60,7 @@ export default Component.extend({
       type: 'pinterest',
       icon: 'pinterest-p',
       communitySize: this.get('profile.pinterest.followers'),
-      communitySlug: 'followers',
-      meta: this.get('meta.pinterestMeta')
+      communitySlug: 'followers'
     };
   }),
 
