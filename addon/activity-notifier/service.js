@@ -133,6 +133,15 @@ export default Service.extend({
             <a href="${data.entity_url}" target="_blank">Respond now</a>`
           )
         ];
+      case 'direct_message_received':
+        return [
+          'Direct message received',
+          messageWithAvatar(
+            data.influencer_avatar,
+            `<b>${data.influencer_name}</b> has replied to your direct message! 
+            <a href="${data.entity_url}" target="_blank">Respond now</a>`
+          )
+        ];
       default:
         throw `Can not display "${notification.notification_type}" notification`;
     }
