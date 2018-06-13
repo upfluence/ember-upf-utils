@@ -36,6 +36,8 @@ export default Service.extend({
 
   start() {
     if (this._isRunning || !this.get('hasToken')) {
+      this.stop();
+
       return;
     }
 
@@ -50,7 +52,10 @@ export default Service.extend({
 
   stop() {
     this._isRunning = false;
-    run.cancel(this._timer);
+
+    if (this._timer) {
+      run.cancel(this._timer);
+    }
   },
 
   fetchNotifications() {
@@ -141,6 +146,6 @@ export default Service.extend({
   hasToken: computed.notEmpty('token'),
 
   _: observer('hasToken', function() {
-    this.run();
+    this.start();
   })
 });
