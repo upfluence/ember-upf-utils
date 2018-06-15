@@ -1,4 +1,5 @@
 import Ember from 'ember';
+ import { pluralize } from 'ember-inflector';
 
 const { Service, String, inject } = Ember;
 
@@ -10,7 +11,7 @@ export default Service.extend({
     payload[`${model}`] = { owned_by: ownedBy };
 
     return this.get('ajax').request(
-      `/${Ember.String.pluralize(model)}/${modelId}`,
+      `/${pluralize(model)}/${modelId}`,
       {
         method: 'PUT',
         contentType: 'application/json',
