@@ -9,16 +9,11 @@ const NOTIFICATIONS = {
 };
 
 const messageWithAvatar = function(avatarUrl, message) {
-  return `
-    <div class="activity_notification-wappper">
-      <div class="activity_notification-avatar">
-        <img class="upf-image upf-image--round-48" src="${avatarUrl}">
-      </div>
-      <div class="activity_notification-message">
-        ${message}
-      </div>
-    </div>
-  `;
+  return [
+    `<img class="toast-title__avatar" src="${avatarUrl}" />
+     <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+    message
+  ];
 };
 
 export default Service.extend({
@@ -115,40 +110,34 @@ export default Service.extend({
 
     switch(notification.notification_type) {
       case 'mailing_email_received':
-        return [
-          'Email received in mailing',
-          messageWithAvatar(
-            data.influencer_avatar,
-            `You have a new message from <b>${data.influencer_name}</b> in the
-             <b>${data.entity_name}</b> campaign! 
-             <a href="${data.entity_url}" target="_blank">Reply now</a>`
-          )
-        ];
+        return messageWithAvatar(
+          data.influencer_avatar,
+          `You have a new message from <b>${data.influencer_name}</b> in the
+           <b>${data.entity_name}</b> campaign! 
+           <a href="${data.entity_url}" target="_blank">Reply now</a>`
+        );
       case 'conversation_email_received':
-        return [
-          'Email received',
-          messageWithAvatar(
-            data.influencer_avatar,
-            `<b>${data.influencer_name}</b> has replied to your message! 
-            <a href="${data.entity_url}" target="_blank">Respond now</a>`
-          )
-        ];
+        return messageWithAvatar(
+          data.influencer_avatar,
+          `<b>${data.influencer_name}</b> has replied to your message! 
+           <a href="${data.entity_url}" target="_blank">Respond now</a>`
+        );
       case 'direct_message_received':
-        return [
-          'Direct message received',
-          messageWithAvatar(
-            data.influencer_avatar,
-            `<b>${data.influencer_name}</b> has replied to your direct message! 
-            <a href="${data.entity_url}" target="_blank">Respond now</a>`
-          )
-        ];
+        return messageWithAvatar(
+          data.influencer_avatar,
+          `<b>${data.influencer_name}</b> has replied to your direct message! 
+           <a href="${data.entity_url}" target="_blank">Respond now</a>`
+        );
       default:
         throw `Can not display "${notification.notification_type}" notification`;
     }
   },
 
   renderNotification(title, message) {
-    this.get('toast').info(message, title);
+    this.get('toast').info(message, title, {
+      timeOut: 0,
+      extendedTimeOut: 0
+    });
   },
 
   token: computed.alias('session.data.authenticated.access_token'),
