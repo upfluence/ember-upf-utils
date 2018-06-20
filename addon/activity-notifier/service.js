@@ -128,6 +128,18 @@ export default Service.extend({
           `<b>${data.influencer_name}</b> has replied to your direct message! 
            <a href="${data.entity_url}" target="_blank">Respond now</a>`
         );
+      case 'publishr_application_received':
+        return messageWithAvatar(
+          data.influencer_avatar,
+          `<b>${data.influencer_name}</b> has applied to your <b>${data.campaign_name}</b> campaign!
+           <a href="${data.url}" target="_blank">Review the application now</a>`
+        );
+      case 'publishr_draft_created':
+        return messageWithAvatar(
+          data.influencer_avatar,
+          `A new draft has been created by <b>${data.influencer_name}</b> for the <b>${data.campaign_name}</b> campaign!
+           <a href="${data.url}" target="_blank">Review the draft now</a>`
+        );
       default:
         throw `Can not display "${notification.notification_type}" notification`;
     }
