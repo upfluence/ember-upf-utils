@@ -140,8 +140,6 @@ export default Service.extend({
           `A new draft has been created by <b>${data.influencer_name}</b> for the <b>${data.campaign_name}</b> campaign!
            <a href="${data.url}" target="_blank">Review the draft now</a>`
         );
-      default:
-        throw `Can not display "${notification.notification_type}" notification`;
     }
   },
 
