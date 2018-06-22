@@ -3,17 +3,12 @@ import Configuration from 'ember-upf-utils/configuration';
 
 const { Service, run, inject, computed, observer, getOwner } = Ember;
 
-const NOTIFICATIONS = {
-  mailing_email_received: true,
-  conversation_email_received: true,
-};
-
 const messageWithAvatar = function(avatarUrl, message) {
-  return [
-    `<img class="toast-title__avatar" src="${avatarUrl}" />
+  return {
+    title: `<img class="toast-title__avatar" src="${avatarUrl}" />
      <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
-    message
-  ];
+    message: message
+  };
 };
 
 export default Service.extend({
@@ -97,11 +92,14 @@ export default Service.extend({
   },
 
   displayNotifications(notifications) {
-    notifications.filter(
-      (n) => NOTIFICATIONS[n.notification_type]
-    ).forEach((n) => {
-      let [title, message] = this.buildNotification(n);
-      this.renderNotification(title, message);
+    notifications.forEach((n) => {
+      let d = this.buildNotification(n);
+
+      if (!d) {
+        return;
+      }
+
+      this.renderNotification(d.title, d.message);
     });
   },
 
@@ -140,6 +138,8 @@ export default Service.extend({
           `A new draft has been created by <b>${data.influencer_name}</b> for the <b>${data.campaign_name}</b> campaign!
            <a href="${data.url}" target="_blank">Review the draft now</a>`
         );
+      default:
+        return null;
     }
   },
 
