@@ -128,13 +128,13 @@ export default Service.extend({
       case 'publishr_application_received':
         return messageWithAvatar(
           data.influencer_avatar,
-          `New application by <b>${data.influencer_name}</b> in  <b>${data.campaign_name}</b>
+          `Application by <b>${data.influencer_name}</b> in  <b>${data.campaign_name}</b>
            <a href="${data.url}" target="_blank">See application</a>`
         );
       case 'publishr_draft_created':
         return messageWithAvatar(
           data.influencer_avatar,
-          `New draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
+          `Draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
            <a href="${data.url}" target="_blank">Review</a>`
         );
       default:
