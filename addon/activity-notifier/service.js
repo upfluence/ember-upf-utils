@@ -110,33 +110,32 @@ export default Service.extend({
       case 'mailing_email_received':
         return messageWithAvatar(
           data.influencer_avatar,
-          `You have a new message from <b>${data.influencer_name}</b> in the
-           <b>${data.entity_name}</b> campaign! 
-           <a href="${data.entity_url}" target="_blank">Reply now</a>`
+          `Email from <b>${data.influencer_name}</b>
+          <a href="${data.entity_url}" target="_blank">Reply</a>`
         );
       case 'conversation_email_received':
         return messageWithAvatar(
           data.influencer_avatar,
-          `<b>${data.influencer_name}</b> has replied to your message! 
-           <a href="${data.entity_url}" target="_blank">Respond now</a>`
+          `Email from <b>${data.influencer_name}</b>
+           <a href="${data.entity_url}" target="_blank">Reply</a>`
         );
       case 'direct_message_received':
         return messageWithAvatar(
           data.influencer_avatar,
-          `<b>${data.influencer_name}</b> has replied to your direct message! 
-           <a href="${data.entity_url}" target="_blank">Respond now</a>`
+          `Message from <b>${data.influencer_name}</b>
+           <a href="${data.entity_url}" target="_blank">Reply</a>`
         );
       case 'publishr_application_received':
         return messageWithAvatar(
           data.influencer_avatar,
-          `<b>${data.influencer_name}</b> has applied to your <b>${data.campaign_name}</b> campaign!
-           <a href="${data.url}" target="_blank">Review the application now</a>`
+          `Application by <b>${data.influencer_name}</b> in  <b>${data.campaign_name}</b>
+           <a href="${data.url}" target="_blank">See application</a>`
         );
       case 'publishr_draft_created':
         return messageWithAvatar(
           data.influencer_avatar,
-          `A new draft has been created by <b>${data.influencer_name}</b> for the <b>${data.campaign_name}</b> campaign!
-           <a href="${data.url}" target="_blank">Review the draft now</a>`
+          `Draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
+           <a href="${data.url}" target="_blank">Review</a>`
         );
       default:
         return null;
