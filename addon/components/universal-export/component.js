@@ -7,8 +7,7 @@ const {
   inject,
   computed,
   defineProperty,
-  get,
-  getOwner
+  get
 } = Ember;
 
 export default Component.extend({
@@ -25,6 +24,7 @@ export default Component.extend({
     tapToDismiss: true
   },
   tabs: {
+    list: false,
     basic_file: true, // Using underscore case to match API response here
     full_file: false,
     mailing: false,
@@ -32,17 +32,26 @@ export default Component.extend({
     stream: false
   },
 
-  currentWindow: 'list',
+  currentWindow: null,
   filters: [],
 
   init() {
     this._super();
 
+    let defaultTab = null;
+
     this.get('exports').getAvailableExports().then((availableExports) => {
       Object.keys(this.get('tabs')).forEach((tab) => {
+        if (!defaultTab && availableExports[tab]) {
+          defaultTab = tab;
+        }
+
         this.set(`tabs.${tab}`, availableExports[tab]);
       });
     });
+
+    // Be default this forEach before should set list as default tab
+    this.set('currentWindow', defaultTab || 'basic_file');
 
     ['file', 'list', 'publishr', 'mailing', 'stream'].forEach((e) => {
       defineProperty(

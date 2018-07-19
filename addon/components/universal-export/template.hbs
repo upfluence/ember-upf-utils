@@ -6,9 +6,11 @@
   </div>
 
   <ul class="nav nav-tabs">
-    <li class={{if listSelected "active" ""}} role="button" {{action 'setCurrent' 'list'}}>
-      <a>List</a>
-    </li>
+    {{#if tabs.list}}
+        <li class={{if listSelected "active" ""}} role="button" {{action 'setCurrent' 'list'}}>
+          <a>List</a>
+        </li>
+    {{/if}}
 
     {{#if tabs.campaign}}
       <li class={{if publishrSelected "active" ""}} role="button" {{action 'setCurrent' 'publishr'}}>
