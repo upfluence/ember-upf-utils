@@ -1,5 +1,5 @@
 {
-  "name": "ember-upf-utils",
+  "name": "@upfluence/ember-upf-utils",
   "version": "1.0.34",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
