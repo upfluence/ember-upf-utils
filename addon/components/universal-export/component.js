@@ -32,15 +32,15 @@ export default Component.extend({
     stream: false
   },
 
-  currentWindow: null,
+  currentWindow: 'file',
   filters: [],
 
   init() {
     this._super();
 
-    let defaultTab = null;
-
     this.get('exports').getAvailableExports().then((availableExports) => {
+      let defaultTab = null;
+
       Object.keys(this.get('tabs')).forEach((tab) => {
         if (!defaultTab && availableExports[tab]) {
           defaultTab = tab;
@@ -48,10 +48,14 @@ export default Component.extend({
 
         this.set(`tabs.${tab}`, availableExports[tab]);
       });
+
+      if (['full_file', 'basic_file'].includes(defaultTab)) {
+        defaultTab = 'file'
+      }
+
+      this.set('currentWindow', defaultTab || 'file');
     });
 
-    // Be default this forEach before should set list as default tab
-    this.set('currentWindow', defaultTab || 'basic_file');
 
     ['file', 'list', 'publishr', 'mailing', 'stream'].forEach((e) => {
       defineProperty(
