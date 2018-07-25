@@ -55,11 +55,11 @@ export default Service.extend({
     return `${url}?access_token=${token}`;
   }),
 
-  fetch() {
+  fetch(force=false) {
     let timeout = 3000; // 3 seconds
     let start = new Date().getTime();
 
-    if (this._fetchPromise)  {
+    if (!force && this._fetchPromise)  {
       return this._fetchPromise;
     }
 
@@ -70,7 +70,7 @@ export default Service.extend({
         }
 
         if (this.get('logged')) {
-          resolve(this._fetch());
+          resolve(this._fetch(force));
         } else {
           // just in case of delais to load authenticated data
           run.next(this, fn);
@@ -105,14 +105,19 @@ export default Service.extend({
     });
   },
 
-  _fetch() {
-    if (this._cachedUrl === this.get('meURL')) {
-      // return the current promise
-      return this._cachedUser;
+  _fetch(force) {
+    if (force) {
+      return this.get('ajax').request(this.get('meURL'));
+    } else {
+      if (this._cachedUrl === this.get('meURL')) {
+        // return the current promise
+        return this._cachedUser;
+      }
+
+      this._cachedUrl = this.get('meURL');
+
+      return this._cachedUser = this.get('ajax').request(this.get('meURL'));
     }
 
-    this._cachedUrl = this.get('meURL');
-
-    return this._cachedUser = this.get('ajax').request(this.get('meURL'));
   }
 });
