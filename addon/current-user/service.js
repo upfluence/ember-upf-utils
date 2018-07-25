@@ -55,11 +55,15 @@ export default Service.extend({
     return `${url}?access_token=${token}`;
   }),
 
-  fetch(force=false) {
+  fetch(force = false) {
     let timeout = 3000; // 3 seconds
     let start = new Date().getTime();
 
-    if (!force && this._fetchPromise)  {
+    if (force) {
+      this.clear();
+    }
+
+    if (this._fetchPromise)  {
       return this._fetchPromise;
     }
 
@@ -70,7 +74,7 @@ export default Service.extend({
         }
 
         if (this.get('logged')) {
-          resolve(this._fetch(force));
+          resolve(this._fetch());
         } else {
           // just in case of delais to load authenticated data
           run.next(this, fn);
@@ -79,6 +83,12 @@ export default Service.extend({
 
       fn();
     });
+  },
+
+  clear() {
+    this.set('_fetchPromise', null);
+    this.set('_cachedUser', null);
+    this.set('_cachedUrl', null);
   },
 
   fetchOwnerships() {
@@ -105,19 +115,14 @@ export default Service.extend({
     });
   },
 
-  _fetch(force) {
-    if (force) {
-      return this.get('ajax').request(this.get('meURL'));
-    } else {
-      if (this._cachedUrl === this.get('meURL')) {
-        // return the current promise
-        return this._cachedUser;
-      }
-
-      this._cachedUrl = this.get('meURL');
-
-      return this._cachedUser = this.get('ajax').request(this.get('meURL'));
+  _fetch() {
+    if (this._cachedUrl === this.get('meURL')) {
+      // return the current promise
+      return this._cachedUser;
     }
 
+    this._cachedUrl = this.get('meURL');
+
+    return this._cachedUser = this.get('ajax').request(this.get('meURL'));
   }
 });
