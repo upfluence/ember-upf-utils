@@ -55,9 +55,13 @@ export default Service.extend({
     return `${url}?access_token=${token}`;
   }),
 
-  fetch() {
+  fetch(force = false) {
     let timeout = 3000; // 3 seconds
     let start = new Date().getTime();
+
+    if (force) {
+      this.clear();
+    }
 
     if (this._fetchPromise)  {
       return this._fetchPromise;
@@ -79,6 +83,12 @@ export default Service.extend({
 
       fn();
     });
+  },
+
+  clear() {
+    this.set('_fetchPromise', null);
+    this.set('_cachedUser', null);
+    this.set('_cachedUrl', null);
   },
 
   fetchOwnerships() {
