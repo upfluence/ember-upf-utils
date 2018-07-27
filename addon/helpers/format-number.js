@@ -16,7 +16,7 @@ var formats = [
 var formatNumber = function formatNumber(params) {
   var number = params[0];
 
-  if (number === null || number === undefined) {
+  if (number === null || number === undefined || isNaN(number)) {
     return "—";
   }
 
