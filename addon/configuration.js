@@ -11,6 +11,7 @@ const DEFAULTS = {
   exportUrl: 'http://localhost:9001/export',
   activityUrl: 'https://localhost:9002/',
   meURL: 'http://localhost:9000/me',
+  currencyURL: 'http://localhost:9000/currency',
   oauthClientId: 'auth_client',
   scope: ['facade_web'],
   notificationWait: 5,
@@ -35,6 +36,7 @@ export default {
   logoutRedirectUrl: DEFAULTS.logoutRedirectUrl,
   oauthClientId: DEFAULTS.oauthClientId,
   meURL: DEFAULTS.meURL,
+  currencyURL: DEFAULTS.currencyURL,
   scope: DEFAULTS.scope,
   notificationWait: DEFAULTS.notificationWait,
 
