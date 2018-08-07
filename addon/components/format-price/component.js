@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from './template';
-import { formatNumber } from 'ember-upf-utils/helpers/format-number';
+import { formatPrice } from 'ember-upf-utils/helpers/format-price';
 
 const { Component, inject, computed } = Ember;
 
@@ -11,24 +11,25 @@ export default Component.extend({
   currency: inject.service(),
 
   price: null,
-  currencyDetails: {},
+  currencyData: {},
   useFormatter: false,
 
-  init() {
+  didInsertElement() {
     this._super();
 
-    this.get('currency').fetch().then((currency) => {
-      this.set('currencyDetails', currency);
-    })
+    this.get('currency').fetch().then((data) => {
+      this.set('currencyData', data);
+    });
   },
 
-  formattedPrice: computed('price', 'currencyDetails.@each', function() {
-    let price = this.getWithDefault('price', 0) * this.getWithDefault('currencyDetails.exchange_rate', 1);
-
-    if (this.get('useFormatter')) {
-      price = formatNumber([price]);
-    }
-
-    return `${this.get('currencyDetails.symbol')}${price}`;
+  formattedPrice: computed('price', 'currencyData@each', function() {
+    return formatPrice(
+      [this.get('price')],
+      {
+        rate: this.get('currencyData.rate'),
+        currency: this.get('currencyData.currency'),
+        useFormatter: this.get('useFormatter'),
+      }
+    );
   })
 });
