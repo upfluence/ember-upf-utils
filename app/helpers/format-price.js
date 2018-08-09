@@ -1,0 +1,1 @@
+export { default, formatPrice } from 'ember-upf-utils/helpers/format-price';
