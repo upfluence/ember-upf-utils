@@ -1,35 +1,14 @@
 import Ember from 'ember';
 import layout from './template';
-import { formatPrice } from 'ember-upf-utils/helpers/format-price';
+import CurrencyDataLoaderMixin, { price } from 'ember-upf-utils/mixins/currency-data-loader';
 
-const { Component, inject, computed } = Ember;
+const { Component } = Ember;
 
-export default Component.extend({
+export default Component.extend(CurrencyDataLoaderMixin, {
   layout,
   tagName: '',
 
-  currency: inject.service(),
-
-  price: null,
-  currencyData: {},
   useFormatter: false,
 
-  didInsertElement() {
-    this._super();
-
-    this.get('currency').fetch().then((data) => {
-      this.set('currencyData', data);
-    });
-  },
-
-  formattedPrice: computed('price', 'currencyData@each', function() {
-    return formatPrice(
-      [this.get('price')],
-      {
-        rate: this.get('currencyData.rate'),
-        currency: this.get('currencyData.currency'),
-        useFormatter: this.get('useFormatter'),
-      }
-    );
-  })
+  formattedPrice: price('price', 'useFormatter')
 });
