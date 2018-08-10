@@ -15,6 +15,10 @@ export function price(dependentKey, useFormatter) {
   }
 
   args.push(function() {
+    if (this.get('currencyData') === null) {
+      throw "'price' computed must be used with the CurrencyDataLoaderMixin";
+    }
+
     return formatPrice(
       [get(this, dependentKey)],
       {
