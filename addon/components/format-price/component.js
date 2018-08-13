@@ -9,7 +9,7 @@ export default Component.extend(CurrencyDataLoaderMixin, {
   tagName: '',
 
   useFormatter: false,
-  rounded: false,
+  roundPrecision: 2,
 
   didInsertElement() {
     defineProperty(
@@ -19,7 +19,7 @@ export default Component.extend(CurrencyDataLoaderMixin, {
         'price',
         {
           useFormatter: this.get('useFormatter'),
-          rounded: this.get('rounded')
+          roundPrecision: this.get('roundPrecision')
         }
       )
     )

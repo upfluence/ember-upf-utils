@@ -8,7 +8,7 @@ const defaultOptions = {
   rate: 1,
   currency: 'USD',
   useFormatter: false,
-  roundPrecision: 0,
+  roundPrecision: 2,
 };
 
 export function formatPrice(params, namedArgs) {
@@ -20,13 +20,7 @@ export function formatPrice(params, namedArgs) {
   if (options.useFormatter) {
     return `${(symbolMap[currency] || '$')}${formatNumber([price])}`;
   } else if (options.roundPrecision >= 0) {
-    let precision = 1;
-
-    if (options.roundPrecision === 0) {
-      precision = options.roundPrecision * 10;
-    }
-
-    price = Math.round(price * precision) / precision;
+    price = price.toFixed(options.roundPrecision);
   }
 
   return formatMoneyHelper([price, currency]);
