@@ -1,4 +1,3 @@
-/*globals ga*/
 import Ember from 'ember';
 import layout from './template';
 
@@ -50,7 +49,7 @@ export default Component.extend({
       });
 
       if (['full_file', 'basic_file'].includes(defaultTab)) {
-        defaultTab = 'file'
+        defaultTab = 'file';
       }
 
       this.set('currentWindow', defaultTab || 'file');

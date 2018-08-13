@@ -50,7 +50,7 @@ export class FullWidthLayout
     let width = this.positions[itemIndex].percent;
     let height = this.heightAt(itemIndex, 100, clientHeight);
     let x = Math.floor((pos.x / 100) * clientWidth);
-    let baseStyle = formatPercentageStyle({x:x, y:pos.y}, width, height)
+    let baseStyle = formatPercentageStyle({x:x, y:pos.y}, width, height);
 
     if(this.transitioning) {
       return `${baseStyle} transition: transform 0.2s ease-out`;

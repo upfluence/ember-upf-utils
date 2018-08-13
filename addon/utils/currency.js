@@ -19,4 +19,4 @@ export default {
   'INR': '₹',
   'BRL': 'R$',
   'ZAR': 'R'
-}
+};

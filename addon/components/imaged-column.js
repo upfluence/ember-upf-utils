@@ -16,8 +16,8 @@ export default Component.extend({
   imageAltText: computed('item', 'column', function() {
     let text = get(this.get('item'), this.get('column.textProperty')).trim().toLowerCase();
     return text.replace(/\s[^a-z]/gi, '').split(' ').reduce((acc, word) => {
-      let trademarkSign = acc.length > 0 && acc[acc.length-1].startsWith('t')
-                                         && word.startsWith('m');
+      let trademarkSign = acc.length > 0 && acc[acc.length-1].startsWith('t') && word.startsWith('m');
+
       if (!trademarkSign) {
         acc.push(word[0]);
       }

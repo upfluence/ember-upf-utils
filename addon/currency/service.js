@@ -16,7 +16,7 @@ export default Service.extend({
         return {
           currency: user.currency || defaultData.currency,
           rate: user.currency_rate || defaultData.rate
-        }
+        };
       },
       () => defaultData
     );

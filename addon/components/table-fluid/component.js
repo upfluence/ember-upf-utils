@@ -2,7 +2,7 @@ import Ember from 'ember';
 import layout from './template';
 import EmberCollection from 'ember-collection/components/ember-collection';
 import SlotsMixin from 'ember-block-slots';
-import { EKMixin, getCode, keyDown, keyUp } from 'ember-keyboard';
+import { EKMixin, getCode, keyDown } from 'ember-keyboard';
 
 const {
   computed,
@@ -121,7 +121,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
 
             if (nextCell) {
               set(nextCell, 'isActive', true);
-            };
+            }
           });
 
           break;

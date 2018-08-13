@@ -51,7 +51,7 @@ export default Component.extend({
     submit(params, defer) {
       let item = params[0];
 
-      new RSVP.Promise((resolve, _) => {
+      new RSVP.Promise((resolve) => {
         if (!item.get('id')) {
           let data = {
             type: this.get('_model'),

@@ -3,7 +3,7 @@ import Ember from 'ember';
 const { Mixin, isBlank } = Ember;
 
 export default Mixin.create({
-  extractErrors(store, typeClass, payload, id) {
+  extractErrors(store, typeClass, payload/*, id */) {
     if (!payload || typeof payload !== 'object' || !payload.errors) {
       return payload;
     }

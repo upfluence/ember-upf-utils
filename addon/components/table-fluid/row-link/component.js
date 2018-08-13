@@ -23,7 +23,7 @@ export default LinkComponent.extend({
         document.getElementById(this.elementId).scrollIntoView({
           block: 'center'
         });
-      }, 100)
+      }, 100);
     }
   }),
 

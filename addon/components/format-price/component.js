@@ -2,7 +2,7 @@ import Ember from 'ember';
 import layout from './template';
 import CurrencyDataLoaderMixin, { price } from 'ember-upf-utils/mixins/currency-data-loader';
 
-const { Component } = Ember;
+const { Component, defineProperty } = Ember;
 
 export default Component.extend(CurrencyDataLoaderMixin, {
   layout,
@@ -22,6 +22,6 @@ export default Component.extend(CurrencyDataLoaderMixin, {
           roundPrecision: this.get('roundPrecision')
         }
       )
-    )
+    );
   }
 });

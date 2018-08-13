@@ -81,7 +81,7 @@ export default Service.extend({
 
   clear() {
     Object.keys(this._cache).forEach((key) => {
-      let [scope, _] = key;
+      let [scope] = key.split(':');
       if (scope === this.get('storageScope')) {
         delete this._cache[key];
       }
