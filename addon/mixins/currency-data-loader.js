@@ -27,7 +27,10 @@ export function price(dependentKey, options = {}) {
 export default Mixin.create({
   _currency: inject.service('currency'),
 
-  currencyData: {},
+  currencyData: {
+    rate: 1,
+    currency: 'USD'
+  },
 
   didInsertElement() {
     this._super();
