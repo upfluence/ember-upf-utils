@@ -3,16 +3,8 @@ import { formatPrice } from 'ember-upf-utils/helpers/format-price';
 
 const { Mixin, inject, computed, get } = Ember;
 
-export function price(dependentKey, useFormatter) {
+export function price(dependentKey, options = {}) {
   let args = [dependentKey, 'currencyData.{currency,rate}'];
-  let _useFormatter = false;
-  let isString = typeof useFormatter === 'string';
-
-  if (isString) {
-    args.push(useFormatter);
-  } else if (typeof useFormatter === 'boolean') {
-    _useFormatter = useFormatter;
-  }
 
   args.push(function() {
     if (this.get('currencyData') === null) {
@@ -22,9 +14,9 @@ export function price(dependentKey, useFormatter) {
     return formatPrice(
       [get(this, dependentKey)],
       {
+        ...options,
         rate: get(this, 'currencyData.rate'),
-        currency: get(this, 'currencyData.currency'),
-        useFormatter: isString ? get(this, useFormatter) : _useFormatter
+        currency: get(this, 'currencyData.currency')
       }
     );
   });

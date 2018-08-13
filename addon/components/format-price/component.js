@@ -9,6 +9,19 @@ export default Component.extend(CurrencyDataLoaderMixin, {
   tagName: '',
 
   useFormatter: false,
+  rounded: false,
 
-  formattedPrice: price('price', 'useFormatter')
+  didInsertElement() {
+    defineProperty(
+      this,
+      'formattedPrice',
+      price(
+        'price',
+        {
+          useFormatter: this.get('useFormatter'),
+          rounded: this.get('rounded')
+        }
+      )
+    )
+  }
 });
