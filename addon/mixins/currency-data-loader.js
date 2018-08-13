@@ -4,9 +4,7 @@ import { formatPrice } from 'ember-upf-utils/helpers/format-price';
 const { Mixin, inject, computed, get } = Ember;
 
 export function price(dependentKey, options = {}) {
-  let args = [dependentKey, 'currencyData.{currency,rate}'];
-
-  args.push(function() {
+  return computed(dependentKey, 'currencyData.{currency,rate}', function() {
     if (this.get('currencyData') === null) {
       throw "'price' computed must be used with the CurrencyDataLoaderMixin";
     }
@@ -20,8 +18,6 @@ export function price(dependentKey, options = {}) {
       }
     );
   });
-
-  return computed(...args);
 }
 
 export default Mixin.create({

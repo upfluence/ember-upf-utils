@@ -13,17 +13,17 @@ const defaultOptions = {
 
 export function formatPrice(params, namedArgs) {
   let price = params[0];
-  let options = { ...defaultOptions, namedArgs};
+  let options = { ...defaultOptions, ...namedArgs};
 
-  price = price * rate;
+  price = price * options.rate;
 
   if (options.useFormatter) {
-    return `${(symbolMap[currency] || '$')}${formatNumber([price])}`;
+    return `${(symbolMap[options.currency] || '$')}${formatNumber([price])}`;
   } else if (options.roundPrecision >= 0) {
     price = price.toFixed(options.roundPrecision);
   }
 
-  return formatMoneyHelper([price, currency]);
+  return formatMoneyHelper([price, options.currency]);
 }
 
 export default Helper.helper(formatPrice);
