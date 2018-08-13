@@ -4,20 +4,26 @@ import { formatMoneyHelper } from 'oss-components/helpers/format-money';
 import symbolMap from 'ember-upf-utils/utils/currency';
 
 const { Helper } = Ember;
+const defaultOptions = {
+  rate: 1,
+  currency: 'USD',
+  useFormatter: false,
+  roundPrecision: 2,
+};
 
 export function formatPrice(params, namedArgs) {
   let price = params[0];
-  let rate = namedArgs.rate || 1;
-  let currency = namedArgs.currency || 'USD';
-  let useFormatter = namedArgs.useFormatter || false;
+  let options = { ...defaultOptions, ...namedArgs};
 
-  price = price * rate;
+  price = price * options.rate;
 
-  if (useFormatter) {
-    return `${(symbolMap[currency] || '$')}${formatNumber([price])}`;
+  if (options.useFormatter) {
+    return `${(symbolMap[options.currency] || '$')}${formatNumber([price])}`;
+  } else if (options.roundPrecision >= 0) {
+    price = price.toFixed(options.roundPrecision);
   }
 
-  return formatMoneyHelper([price, currency]);
+  return formatMoneyHelper([price, options.currency]);
 }
 
 export default Helper.helper(formatPrice);
