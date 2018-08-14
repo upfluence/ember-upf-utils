@@ -17,10 +17,14 @@ export function formatPrice(params, namedArgs = {}) {
 
   price = price * options.rate;
 
+  if (options.roundPrecision > 0) {
+    price = price.toFixed(options.roundPrecision);
+  } else if (options.roundPrecision === 0) {
+    price = Math.ceil(price);
+  }
+
   if (options.useFormatter) {
     return `${(symbolMap[options.currency] || '$')}${formatNumber([price])}`;
-  } else if (options.roundPrecision >= 0) {
-    price = price.toFixed(options.roundPrecision);
   }
 
   return formatMoneyHelper([price, options.currency]);
