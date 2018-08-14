@@ -11,7 +11,7 @@ const defaultOptions = {
   roundPrecision: 2,
 };
 
-export function formatPrice(params, namedArgs) {
+export function formatPrice(params, namedArgs = {}) {
   let price = params[0];
   let options = { ...defaultOptions, ...namedArgs};
 

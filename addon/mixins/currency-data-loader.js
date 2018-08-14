@@ -9,12 +9,16 @@ export function price(dependentKey, options = {}) {
       throw "'price' computed must be used with the CurrencyDataLoaderMixin";
     }
 
+    let base = {
+      rate: get(this, 'currencyData.rate'),
+      currency: get(this, 'currencyData.currency')
+    };
+
     return formatPrice(
       [get(this, dependentKey)],
       {
-        ...options,
-        rate: get(this, 'currencyData.rate'),
-        currency: get(this, 'currencyData.currency')
+        ...base,
+        ...options // Allow to override rate / currency
       }
     );
   });

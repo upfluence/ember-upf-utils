@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import layout from './template';
-import CurrencyDataLoaderMixin, { price } from 'ember-upf-utils/mixins/currency-data-loader';
+import CurrencyDataLoaderMixin from 'ember-upf-utils/mixins/currency-data-loader';
+import { formatPrice } from 'ember-upf-utils/helpers/format-price';
 
-const { Component, defineProperty } = Ember;
+const { Component, computed } = Ember;
 
 export default Component.extend(CurrencyDataLoaderMixin, {
   layout,
@@ -11,17 +12,12 @@ export default Component.extend(CurrencyDataLoaderMixin, {
   useFormatter: false,
   roundPrecision: 2,
 
-  didInsertElement() {
-    defineProperty(
-      this,
-      'formattedPrice',
-      price(
-        'price',
-        {
-          useFormatter: this.get('useFormatter'),
-          roundPrecision: this.get('roundPrecision')
-        }
-      )
-    );
-  }
+  formattedPrice: computed('price', 'currencyData.{currency,rate}', 'useFormatter', 'roundPrecision', function() {
+    return formatPrice([this.get('price')], {
+      rate: this.get('currencyData.rate'),
+      currency: this.get('currencyData.currency'),
+      useFormatter: this.get('useFormatter'),
+      roundPrecision: this.get('roundPrecision')
+    });
+  })
 });
