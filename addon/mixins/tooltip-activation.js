@@ -4,7 +4,10 @@ const { Mixin, run } = Ember;
 
 const _rebuildTooltip = function() {
   run.debounce(this, function() {
-    this.$('[data-toggle="tooltip"]').tooltip('fixTitle');
+    let $els = this.$('[data-toggle="tooltip"]');
+    if ($els.length > 0) {
+      $els.tooltip('fixTitle');
+    }
   }, 200);
 };
 
