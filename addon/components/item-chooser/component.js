@@ -27,7 +27,7 @@ export default Component.extend({
   sortField: 'name',
   onBlur: null,
   recordTypeIsModel: false,
-
+  disabled: false,
 
   didReceiveAttrs() {
     if (this.get('canCreate') && this.get('recordTypeIsModel') && this.get('recordType') === null) {
