@@ -80,9 +80,9 @@
           <div class='__left-menu__user-image'>
             {{#if user}}
               {{#if user.avatar_url}}
-                <img {{action "openUserMenu"}} src={{user.avatar_url}} class="upf-image upf-image--round-36"/>
+                <img src={{user.avatar_url}} class="upf-image upf-image--round-36"/>
               {{else}}
-                <div {{action "openUserMenu"}} class="upf-image upf-image--round-36 upf-image--alt">
+                <div class="upf-image upf-image--round-36 upf-image--alt">
                   <span>{{name-initials user.fullName}}</span>
                 </div>
               {{/if}}
