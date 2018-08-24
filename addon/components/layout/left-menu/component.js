@@ -23,6 +23,12 @@ export default Component.extend({
   hasPublishr: false,
   hasPublishrClient: false,
 
+  userInfos: {
+    property: 'avatar_url',
+    textProperty: 'fullName',
+    imageSize: '36'
+  },
+
   _: observer('userScopes', function() {
     if (!this.get('userScopes.length')) {
       return;
@@ -60,6 +66,15 @@ export default Component.extend({
         this.get('user')[notifPresence]
       );
     });
+  }),
+
+  _2: observer('user', function() {
+    let { first_name, last_name } = this.get('user');
+    if (first_name || last_name) {
+      this.set('user.fullName', `${first_name} ${last_name}`);
+    } else {
+      this.set('user.fullName', 'Anonymous User');
+    }
   }),
 
   facadeURL: computed(function() {
@@ -154,8 +169,18 @@ export default Component.extend({
   }),
 
   actions: {
+    goToSettings() {
+      window.location = this.get('accountUrl');
+    },
+
     logout() {
       this.get('session').invalidate();
+    },
+
+    openUserMenu() {
+      this.$('.__left-menu__user-menu').toggleClass(
+        '__left-menu__user-menu--opened'
+      );
     }
   }
 });
