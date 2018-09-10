@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const { computed } = Ember;
 
 export default Ember.Object.extend({
   fullName: computed('first_name', 'last_name', function() {
