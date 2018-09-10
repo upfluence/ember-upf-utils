@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import User from 'ember-upf-utils/types/user';
 import layout from './template';
 
 const { Component, inject } = Ember;
@@ -15,7 +16,7 @@ export default Component.extend({
     this._super();
     this.get('currentUser').fetch().then(
       ({ user, companies }) => {
-        this.set('user', Ember.Object.create(user));
+        this.set('user', User.create(user));
         this.set('companies', companies);
 
         if (user.extra && user.extra.company_logo) {
