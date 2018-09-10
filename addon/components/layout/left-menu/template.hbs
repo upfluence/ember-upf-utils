@@ -64,16 +64,46 @@
       </a>
     </div>
 
-    <div class='header-item'>
-      <a class="upf-link--reset" href="{{accountUrl}}">
-        <span class='upf-icon upf-icon--cog'></span>
-      </a>
-    </div>
+    <div class="header-item">
+      {{#if user}}
+        {{#if user.avatar_url}}
+          <img {{action "openUserMenu"}} src={{user.avatar_url}} class="margin-bottom-xx-sm upf-image upf-image--round-36"/>
+        {{else}}
+          <div {{action "openUserMenu"}} class="upf-image upf-image--round-36 upf-image--alt margin-bottom-xx-sm">
+            <span>{{name-initials user.fullName}}</span>
+          </div>
+        {{/if}}
+      {{/if}}
 
-    <div class='header-item'>
-      <a class="logout-btn upf-link--reset" {{action 'logout'}}>
-        <span class='upf-icon upf-icon--exit'></span>
-      </a>
+      <ul class="__left-menu__user-menu">
+        <li>
+          <div class='__left-menu__user-image'>
+            {{#if user}}
+              {{#if user.avatar_url}}
+                <img src={{user.avatar_url}} class="upf-image upf-image--round-36"/>
+              {{else}}
+                <div class="upf-image upf-image--round-36 upf-image--alt">
+                  <span>{{name-initials user.fullName}}</span>
+                </div>
+              {{/if}}
+            {{/if}}
+           </div>
+          <div class='__left-menu__user-info'>
+            <div>{{user.first_name}} {{user.last_name}}</div>
+            <div>
+              {{#each companies as |company|}}
+                {{company.name}}
+              {{/each}}
+            </div>
+          </div>
+        </li>
+        <li {{action "goToSettings"}}>
+          <span class='upf-icon upf-icon--cog'></span> &nbsp; Account Settings
+        </li>
+        <li {{action "logout"}}>
+          <span class='upf-icon upf-icon--exit'></span> &nbsp; Log out
+        </li>
+      </ul>
     </div>
   </section>
 {{/if}}

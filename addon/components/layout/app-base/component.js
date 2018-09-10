@@ -1,10 +1,13 @@
 import Ember from 'ember';
+import User from 'ember-upf-utils/types/user';
 import layout from './template';
 
-export default Ember.Component.extend({
+const { Component, inject } = Ember;
+
+export default Component.extend({
   layout,
 
-  currentUser: Ember.inject.service(),
+  currentUser: inject.service(),
   user: null,
   applicationLogo: null,
   indexRoute: 'index',
@@ -12,8 +15,9 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super();
     this.get('currentUser').fetch().then(
-      ({ user }) => {
-        this.set('user', user);
+      ({ user, companies }) => {
+        this.set('user', User.create(user));
+        this.set('companies', companies);
 
         if (user.extra && user.extra.company_logo) {
           this.set('applicationLogo', user.extra.company_logo);
