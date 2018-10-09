@@ -21,5 +21,9 @@ module.exports = {
       srcDir: '/',
       destDir: 'assets/' + this.moduleName()
     });
+  },
+
+  options: {
+    autoImport:{}
   }
 };
