@@ -1,12 +1,12 @@
 
-import { colorLighten } from 'dummy/helpers/color-lighten';
+import { lightenColor } from 'dummy/helpers/lighten-color';
 import { module, test } from 'qunit';
 
-module('Unit | Helper | color lighten');
+module('Unit | Helper | lighten color');
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  let result = colorLighten([42]);
+  let result = lightenColor([42]);
   assert.ok(result);
 });
 

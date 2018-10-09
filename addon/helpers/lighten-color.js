@@ -4,7 +4,7 @@ import less from 'less/dist/less';
 const { Helper } = Ember;
 const lighten = less.functions.functionRegistry.get('lighten');
 
-export function colorLighten(params/*, hash*/) {
+export function lightenColor(params/*, hash*/) {
   let [color, amount] = params;
 
   if (color[0] === "#") {
@@ -14,4 +14,4 @@ export function colorLighten(params/*, hash*/) {
   return lighten(less.color(color), { value: amount }).toRGB();
 }
 
-export default Helper.helper(colorLighten);
+export default Helper.helper(lightenColor);
