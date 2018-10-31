@@ -17,9 +17,11 @@
     {{/each}}
   </div>
 
-  <div class="margin-top-xxx-sm">
-    {{publishr/draft-comment-box draft=draft}}
-  </div>
+  {{#if commentable}}
+    <div class="margin-top-xxx-sm">
+      {{publishr/draft-comment-box draft=draft}}
+    </div>
+  {{/if}}
 {{else if draft.draftMediaCollectionAttachment}}
   {{publishr/draft-media-list mediaCollection=draft.draftMediaCollectionAttachment}}
 {{else if draft.draftYoutubeVideoAttachment}}
