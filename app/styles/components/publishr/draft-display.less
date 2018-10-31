@@ -1,0 +1,104 @@
+@draft-media-card-width: 320px;
+@draft-media-card-height: 300px;
+
+.draft-display {
+}
+
+.draft-display__youtube-video-description {
+  display: flex;
+  margin-top: @spacing-xxx-sm;
+
+  & > div {
+    margin-left: @spacing-xx-sm;
+    width: 80%;
+  }
+}
+
+.draft-display__comment {
+  background-color: @upf-gray-light;
+  border: 1px solid lighten(@upf-gray, 15%);
+  border-radius: @default-radius;
+  color: @color-text-light;
+
+  display: flex;
+
+  margin-top: @spacing-xx-sm;
+  padding: @spacing-xx-sm;
+}
+
+.draft-display__comment--resolved {
+  background-color: @upf-feedback-success;
+  border: 1px solid @upf-feedback-success;
+}
+
+.draft-display__add-comment {
+  textarea {
+    height: 80px;
+    width: 100%;
+
+    resize: vertical;
+  }
+}
+
+/**
+* Draft Media List
+* This concerns the media collections display
+*/
+
+.draft-media-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  min-height: max-content;
+  width: 100%;
+}
+
+.draft-media-card {
+  border: 1px lighten(@upf-gray, 15%) solid;
+  cursor: pointer;
+  width: @draft-media-card-width;
+  margin: @spacing-xx-sm @spacing-x-sm;
+}
+
+.draft-media-card--selected {
+  border: 2px @upf-primary-bright-purple solid;
+}
+
+.draft-media-card__image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: @draft-media-card-height;
+}
+
+.draft-media-card__video {
+  height: @draft-media-card-height;
+  display: flex;
+  flex-grow: 1;
+
+  video {
+    width: 100%;
+    z-index: 1;
+  }
+
+  .overlay {
+    background-color: fadeout(@upf-primary-black, 50%);
+    color: @upf-primary-white;
+    cursor: pointer;
+    font-size: 36/@rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    height: @draft-media-card-height;
+    width: @draft-media-card-width;
+    z-index: 2;
+  }
+}
+
+.draft-media-card__caption {
+  color: @color-text-light;
+  padding: @spacing-xx-sm;
+}

@@ -1,0 +1,9 @@
+{{#input-wrapper}}
+  <label>Comment</label>
+  {{textarea value=comment.text class="col-xs-12 upf-input upf-input--textarea"}}
+{{/input-wrapper}}
+<div class="margin-top-sm upf-align--right">
+  <button {{action "addComment"}} disabled={{not savable}} class="upf-btn upf-btn--primary upf-btn--small">
+    Add Comment
+  </button>
+</div>

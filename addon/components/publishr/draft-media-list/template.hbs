@@ -1,0 +1,35 @@
+{{#each mediaCollection.draftMedias as |media index|}}
+  <div {{action "viewMedia" media}} class="draft-media-card {{if (eq selectedMedia media) 'draft-media-card--selected'}}" >
+    {{#if (eq media.type "image")}}
+      <div class="draft-media-card__image" style="background-image: url({{media.url}})"></div>
+    {{else}}
+      <div class="draft-media-card__video">
+        <div {{action "viewMedia" media}} class="overlay">
+          {{fa-icon "play"}}
+        </div>
+
+        <video><source src={{media.url}}></video>
+      </div>
+    {{/if}}
+
+    <div class="draft-media-card__caption">
+      {{#if media.caption}}
+        {{media.caption}}
+      {{else}}
+        No Caption
+      {{/if}}
+    </div>
+  </div>
+{{/each}}
+
+{{#if selectedMedia}}
+  {{#modal-view hidden=(not selectedMedia) closeAction=(action "unselectMedia")}}
+    {{#if (eq selectedMedia.type "image")}}
+      <img src={{selectedMedia.url}} width="100%" />
+    {{else}}
+      <video width="100%" controls playsinline autoplay muted loop>
+        <source src={{selectedMedia.url}} type={{selectedMedia.contentType}}>
+      </video>
+    {{/if}}
+  {{/modal-view}}
+{{/if}}
