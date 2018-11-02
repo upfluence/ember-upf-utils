@@ -16,17 +16,15 @@ export default Component.extend({
 
   classNames: ['draft-display__add-comment'],
 
-  savable: computed.notEmpty('comment.text'),
-
-  init() {
-    this.set('comment', this.get('store').createRecord('draft-comment'));
-    this._super();
-  },
+  commentText: '',
+  savable: computed.notEmpty('commentText'),
 
   actions: {
     addComment() {
-      this.get('draft.draftComments').pushObject(this.get('comment'));
-      this.get('draft').save();
+      this.get('store').createRecord('draft-comment', {
+        draft: this.get('draft'),
+        text: this.get('commentText')
+      }).save().then(() => this.set('commentText', ''));
     }
   }
 });
