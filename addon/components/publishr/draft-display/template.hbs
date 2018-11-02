@@ -6,22 +6,6 @@
   {{else}}
     {{{draft.draftArticleAttachment.body}}}
   {{/if}}
-
-  <div class="margin-top-xxx-sm">
-    {{#each draft.draftComments as |draftComment i|}}
-      {{#if draftComment.id}}
-        <div class="draft-display__comment {{if draftComment.resolved 'draft-display__comment--resolved'}}">
-          {{draftComment.text}}
-        </div>
-      {{/if}}
-    {{/each}}
-  </div>
-
-  {{#if commentable}}
-    <div class="margin-top-xxx-sm">
-      {{publishr/draft-comment-box draft=draft}}
-    </div>
-  {{/if}}
 {{else if draft.draftMediaCollectionAttachment}}
   {{publishr/draft-media-list mediaCollection=draft.draftMediaCollectionAttachment}}
 {{else if draft.draftYoutubeVideoAttachment}}
@@ -35,5 +19,30 @@
         {{draft.draftYoutubeVideoAttachment.caption}}
       </div>
     </div>
+  </div>
+{{/if}}
+
+<div class="margin-top-xxx-sm">
+  {{#each draft.draftComments as |draftComment i|}}
+    {{#if draftComment.id}}
+      <div class="draft-display__comment {{if draftComment.resolved 'draft-display__comment--resolved'}}">
+        <img src={{draftComment.owner.avatar_url}} class="upf-image upf-image--round-36">
+        <div class="margin-left-xxx-sm">
+          <p>
+            <span class="text-style-bold">{{draftComment.owner.name}}</span> <br />
+            <span class="text-color-default-light">
+              {{format-date draftComment.createdAt 'MMM DD, YYYY'}}
+            </span>
+          </p>
+          <p class="text-color-default-light margin-top-xxx-sm">{{draftComment.text}}</p>
+        </div>
+      </div>
+    {{/if}}
+  {{/each}}
+</div>
+
+{{#if commentable}}
+  <div class="margin-top-xxx-sm">
+    {{publishr/draft-comment-box draft=draft}}
   </div>
 {{/if}}

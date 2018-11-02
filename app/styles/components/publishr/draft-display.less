@@ -23,7 +23,15 @@
   display: flex;
 
   margin-top: @spacing-xx-sm;
-  padding: @spacing-xx-sm;
+  padding: @spacing-xx-sm @spacing-xx-sm 0 @spacing-xx-sm;
+
+  img {
+    margin-right: @spacing-xx-sm;
+  }
+
+  .owner {
+    flex-grow: 1;
+  }
 }
 
 .draft-display__comment--resolved {
@@ -35,6 +43,8 @@
   textarea {
     height: 80px;
     width: 100%;
+
+    margin-bottom: @spacing-xxx-sm;
 
     resize: vertical;
   }
