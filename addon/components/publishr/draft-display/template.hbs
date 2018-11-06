@@ -1,58 +1,63 @@
-{{#if draft.draftArticleAttachment}}
-  {{#if editable}}
-    {{upf-editor height=500 btnSize=bs-sm content=(readonly draft.draftArticleAttachment.body)
-                 onContentChange=(action 'onContentChange')
-                 uploaderHeaders=uploaderHeaders uploaderExtra=uploaderExtra}}
-  {{else}}
-    {{{draft.draftArticleAttachment.body}}}
-  {{/if}}
-{{else if draft.draftMediaCollectionAttachment}}
-  {{publishr/draft-media-list mediaCollection=draft.draftMediaCollectionAttachment}}
-{{else if draft.draftYoutubeVideoAttachment}}
-  <iframe width="100%" height="450" src={{draft.draftYoutubeVideoAttachment.embeddedURL}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  <div class="draft-display__youtube-video-description">
-    <img src={{draft.contribution.supplier.influencer.avatarUrl}} class="upf-image upf-image--round-48">
-    <div class="text-color-default-light">
-      <div class="text-size-6 text-style-bold">{{draft.contribution.supplier.influencer.name}}</div>
-      <div class="text-color-default-lighter">{{format-date draft.createdAt 'MMM DD, YYYY'}}</div>
-      <div class="margin-top-xxx-sm">
-        {{draft.draftYoutubeVideoAttachment.caption}}
-      </div>
-    </div>
-  </div>
-{{/if}}
-
-<div class="margin-top-xxx-sm">
-  {{#each draft.draftComments as |draftComment i|}}
-    {{#if draftComment.id}}
-      <div class="draft-display__comment {{if draftComment.resolved 'draft-display__comment--resolved'}}">
-        <img src={{draftComment.owner.avatar_url}} class="upf-image upf-image--round-36">
-        <div class="margin-left-xxx-sm">
-          <div class="draft-display__comment-header">
-            <div class="owner-infos">
-              <span class="text-style-bold">{{draftComment.owner.name}}</span>
-              <span class="text-color-default-light">
-                {{format-date draftComment.createdAt 'MMM DD, YYYY'}}
-              </span>
-            </div>
-            {{#if commentable}}
-              <a {{action "removeComment" draftComment}} class="remove-comment text-color-error">
-                {{fa-icon "trash"}}
-              </a>
-            {{/if}}
-          </div>
-
-          <div class="text-color-default-light margin-top-xxx-sm">
-            {{draftComment.text}}
-          </div>
+<div class="draft-display__content">
+  {{#if draft.draftArticleAttachment}}
+    {{#if editable}}
+      {{upf-editor height=500 btnSize=bs-sm content=(readonly draft.draftArticleAttachment.body)
+                   onContentChange=(action 'onContentChange')
+                   uploaderHeaders=uploaderHeaders uploaderExtra=uploaderExtra}}
+    {{else}}
+      {{{draft.draftArticleAttachment.body}}}
+    {{/if}}
+  {{else if draft.draftMediaCollectionAttachment}}
+    {{publishr/draft-media-list mediaCollection=draft.draftMediaCollectionAttachment}}
+  {{else if draft.draftYoutubeVideoAttachment}}
+    <iframe width="100%" height="450" src={{draft.draftYoutubeVideoAttachment.embeddedURL}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="draft-display__youtube-video-description">
+      <img src={{draft.contribution.supplier.influencer.avatarUrl}} class="upf-image upf-image--round-48">
+      <div class="text-color-default-light">
+        <div class="text-size-6 text-style-bold">{{draft.contribution.supplier.influencer.name}}</div>
+        <div class="text-color-default-lighter">{{format-date draft.createdAt 'MMM DD, YYYY'}}</div>
+        <div class="margin-top-xxx-sm">
+          {{draft.draftYoutubeVideoAttachment.caption}}
         </div>
       </div>
-    {{/if}}
-  {{/each}}
+    </div>
+  {{/if}}
 </div>
 
-{{#if commentable}}
+<div class="draft-display__comments">
   <div class="margin-top-xxx-sm">
-    {{publishr/draft-comment-box draft=draft}}
+    {{#each draft.draftComments as |draftComment i|}}
+      {{#if draftComment.id}}
+        <div class="draft-display__comment {{if draftComment.resolved 'draft-display__comment--resolved'}}">
+          <img src={{draftComment.owner.avatar_url}} class="upf-image upf-image--round-36">
+          <div class="margin-left-xxx-sm">
+            <div class="draft-display__comment-header">
+              <div class="owner-infos">
+                <span class="text-style-bold">{{draftComment.owner.name}}</span>
+                <span class="text-color-default-lighter" data-toggle="tooltip"
+                      title={{format-date draftComment.createdAt 'MMMM Do, YYYY'}}>
+                  {{draftComment.relativeCreatedAt}}
+                </span>
+              </div>
+              {{#if commentable}}
+                <a {{action "removeComment" draftComment}} class="remove-comment text-color-error">
+                  {{fa-icon "trash"}}
+                </a>
+              {{/if}}
+            </div>
+
+            <div class="text-color-default-light">
+              {{draftComment.text}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
   </div>
-{{/if}}
+
+  {{#if commentable}}
+    <div class="margin-top-xxx-sm">
+      {{publishr/draft-comment-box draft=draft}}
+    </div>
+  {{/if}}
+</div>
