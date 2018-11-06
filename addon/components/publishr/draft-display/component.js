@@ -22,5 +22,9 @@ export default Component.extend({
     onContentChange(text) {
       this.set('draft.draftArticleAttachment.body', text);
     },
+
+    removeComment(comment) {
+      comment.destroyRecord();
+    }
   }
 });
