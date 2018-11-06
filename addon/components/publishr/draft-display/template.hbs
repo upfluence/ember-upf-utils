@@ -35,9 +35,11 @@
                 {{format-date draftComment.createdAt 'MMM DD, YYYY'}}
               </span>
             </div>
-            <a {{action "removeComment" draftComment}} class="remove-comment text-color-error">
-              {{fa-icon "trash"}}
-            </a>
+            {{#if commentable}}
+              <a {{action "removeComment" draftComment}} class="remove-comment text-color-error">
+                {{fa-icon "trash"}}
+              </a>
+            {{/if}}
           </div>
 
           <div class="text-color-default-light margin-top-xxx-sm">
