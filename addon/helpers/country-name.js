@@ -6,7 +6,13 @@ const {
 } = Ember;
 
 export function countryName(countryCode) {
-  return CountryCodes.find((item) => item.id === countryCode[0]).name;
+  let country = CountryCodes.find((item) => item.id === countryCode[0]);
+
+  if (country) {
+    return country.name;
+  }
+
+  return '—';
 }
 
 export default Helper.helper(countryName);
