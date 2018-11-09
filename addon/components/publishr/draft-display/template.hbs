@@ -39,7 +39,7 @@
                   {{draftComment.relativeCreatedAt}}
                 </span>
               </div>
-              {{#if commentable}}
+              {{#if (and commentable (eq draftComment.owner.id currentUser.id))}}
                 <a {{action "removeComment" draftComment}} class="remove-comment text-color-error">
                   {{fa-icon "trash"}}
                 </a>

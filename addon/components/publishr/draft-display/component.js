@@ -2,10 +2,12 @@ import Ember from 'ember';
 import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 import layout from './template';
 
-const { Component } = Ember;
+const { Component, inject } = Ember;
 
 export default Component.extend(TooltipActivationMixin, {
   layout,
+
+  _currentUser: inject.service('currentUser'),
 
   classNames: ['draft-display'],
 
@@ -17,6 +19,13 @@ export default Component.extend(TooltipActivationMixin, {
 
   uploaderExtra: {
     'privacy': 'public'
+  },
+
+  init() {
+    this._super();
+    this.get('_currentUser').fetch().then(({ user }) => {
+      this.set('currentUser', user);
+    });
   },
 
   actions: {
