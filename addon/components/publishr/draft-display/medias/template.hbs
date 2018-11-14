@@ -1,6 +1,6 @@
-{{#if (gt mediaCollection.draftMedias.length 1)}}
+{{#if (gt item.draftMedias.length 1)}}
   <ol class="carousel-indicators">
-    {{#each mediaCollection.draftMedias as |dm index|}}
+    {{#each item.draftMedias as |dm index|}}
       <li data-target="{{concat "#" elementId}}" data-slide-to={{index}} class="{{if (eq index 0) 'active'}}">
         {{fa-icon "circle"}}
       </li>
@@ -9,7 +9,7 @@
 {{/if}}
 
 <div class="carousel-inner" role="listbox">
-  {{#each mediaCollection.draftMedias as |media index|}}
+  {{#each item.draftMedias as |media index|}}
     <div class="draft-media-card item {{if (eq index 0) 'active'}}">
       {{#if (eq media.type "image")}}
         <div class="draft-media-card__image">

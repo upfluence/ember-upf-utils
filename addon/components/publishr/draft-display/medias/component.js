@@ -11,19 +11,7 @@ export default Component.extend({
 
   dataRide: 'carousel',
 
-  selectedMedia: null,
-
   didInsertElement() {
     this.$('.carousel').carousel({ interval: false });
-  },
-
-  actions: {
-    viewMedia(media) {
-      this.set('selectedMedia', media);
-    },
-
-    unselectMedia() {
-      this.set('selectedMedia', null);
-    }
   }
 });

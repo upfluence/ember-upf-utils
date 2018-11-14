@@ -1,0 +1,41 @@
+{{#each draft.draftComments as |draftComment|}}
+  {{#if draftComment.id}}
+    <div class="draft-display__comment {{if draftComment.resolved 'draft-display__comment--resolved'}}">
+      <img src={{draftComment.owner.avatar_url}} class="upf-image upf-image--round-36">
+      <div class="margin-left-xxx-sm">
+        <div class="draft-display__comment-header">
+          <div class="owner-infos">
+            <span class="text-style-bold">{{draftComment.owner.name}}</span>
+            <span class="text-color-default-lighter" data-toggle="tooltip"
+                  title={{format-date draftComment.createdAt 'MMMM Do, YYYY'}}>
+              {{draftComment.relativeCreatedAt}}
+            </span>
+          </div>
+          {{#if (and commentable (eq draftComment.owner.id currentUser.id))}}
+            <a {{action "removeComment" draftComment}} class="remove-comment text-color-error">
+              {{fa-icon "trash"}}
+            </a>
+          {{/if}}
+        </div>
+
+        <div class="text-color-default-light">
+          {{draftComment.text}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+{{/each}}
+
+{{#if commentable}}
+  <div class="margin-top-xxx-sm draft-display__add-comment">
+    {{#input-wrapper}}
+      <label>Comment</label>
+      {{textarea value=commentText class="col-xs-12 upf-input upf-input--textarea"}}
+    {{/input-wrapper}}
+    <div class="upf-align--right">
+      <button {{action "addComment"}} disabled={{not savableComment}} class="upf-btn upf-btn--primary upf-btn--small">
+        Add Comment
+      </button>
+    </div>
+  </div>
+{{/if}}
