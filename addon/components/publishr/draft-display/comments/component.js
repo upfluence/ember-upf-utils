@@ -1,13 +1,18 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { Component, computed, inject } = Ember;
+const {
+  Component,
+  computed,
+  inject
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   _currentUser: inject.service('currentUser'),
   store: inject.service(),
+  toast: inject.service(),
 
   classNames: ['draft-display__comments'],
 
@@ -26,7 +31,13 @@ export default Ember.Component.extend({
       this.get('store').createRecord('draft-comment', {
         draft: this.get('draft'),
         text: this.get('commentText')
-      }).save().then(() => this.set('commentText', ''));
+      }).save().then(() => {
+        this.set('commentText', '')
+      }).catch(() => {
+        this.get('toast').error(
+          'Something wrong happened trying to add your commment.'
+        );
+      });
     },
 
     removeComment(comment) {
