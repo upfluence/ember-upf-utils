@@ -27,7 +27,7 @@ export default Component.extend({
   },
 
   actions: {
-    addComment() {
+    addComment(_, defer) {
       this.get('store').createRecord('draft-comment', {
         draft: this.get('draft'),
         text: this.get('commentText')
@@ -37,7 +37,7 @@ export default Component.extend({
         this.get('toast').error(
           'Something wrong happened trying to add your commment.'
         );
-      });
+      }).finally(() => defer.resolve());
     },
 
     removeComment(comment) {
