@@ -20,15 +20,21 @@ export default Component.extend({
 
   countryCode: null,
   countryCodes: computed('selection.[]', {
-    get() { return this.get('selection').map(x => x.id); },
+    get() {
+      return this.get('selection').map((x) => x.id);
+    },
+
     set(_, value) {
-      this.set('selection', (value || []).map(v => CountryCodes.find(x => x.id === v)));
+      this.set('selection', (value || []).map((v) => {
+        return CountryCodes.find((x) => x.id === v);
+      }));
+
       return value;
     }
   }),
 
   actions: {
-    selectCountry(value, e, _) {
+    selectCountry(value) {
       this.set('countryCode', value);
     }
   }
