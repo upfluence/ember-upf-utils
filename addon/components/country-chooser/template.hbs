@@ -1,0 +1,13 @@
+<label>{{label}}</label>
+{{#if multiple}}
+  {{ember-selectize plugins="remove_button" content=codes optionValuePath="content.id"
+                    optionLabelPath="content.name" selection=selection multiple=true
+                    placeholder='-'}}
+{{else}}
+  {{#x-select value=countryCode action="selectCountry" required=required class='form-control upf-select' as |xs|}}
+    <option>-</option>
+    {{#each codes as |code|}}
+      {{#xs.option value=code.id}}{{code.name}}{{/xs.option}}
+    {{/each}}
+  {{/x-select}}
+{{/if}}
