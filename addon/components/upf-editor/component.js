@@ -8,6 +8,7 @@ export default Component.extend({
   layout,
 
   summernoteContext: null,
+  activatedCustomButtons: 'VideoUploadButton,PDFUploadButton',
   customButtons: [],
 
   hideVideoUploadModal: true,
@@ -16,7 +17,7 @@ export default Component.extend({
   init() {
     let self = this;
 
-    let VideoUploadButton = (context) => {
+    this.VideoUploadButton = (context) => {
       let { ui } = $.summernote;
 
       return ui.button({
@@ -29,7 +30,7 @@ export default Component.extend({
       }).render();
     };
 
-    let PDFUploadButton = (context) => {
+    this.PDFUploadButton = (context) => {
       let { ui } = $.summernote;
 
       return ui.button({
@@ -43,7 +44,7 @@ export default Component.extend({
     };
 
     if (isEmpty(this.get('customButtons'))) {
-      [VideoUploadButton, PDFUploadButton].forEach((customButton) => {
+      this.get('activatedCustomButtons').split(',').map((x) => this[x]).forEach((customButton) => {
         this.customButtons.push(customButton);
       });
     }
