@@ -30,7 +30,7 @@ export default Component.extend({
     };
 
     let PDFUploadButton = (context) => {
-      let { ui } = $.summernote;
+      let { ui } = $.summernote;
 
       return ui.button({
         contents: '<i class="fa fa-file-pdf-o"></i>',
@@ -40,11 +40,10 @@ export default Component.extend({
           self.send('togglePDFUpload');
         }
       }).render();
-    }
+    };
 
     if (isEmpty(this.get('customButtons'))) {
       [VideoUploadButton, PDFUploadButton].forEach((customButton) => {
-        console.log(customButton)
         this.customButtons.push(customButton);
       });
     }
