@@ -11,6 +11,7 @@ export default Component.extend({
   customButtons: [],
 
   hideVideoUploadModal: true,
+  hidePDFUploadModal: true,
 
   init() {
     let self = this;
@@ -18,20 +19,34 @@ export default Component.extend({
     let VideoUploadButton = (context) => {
       let { ui } = $.summernote;
 
-      let button = ui.button({
+      return ui.button({
         contents: '<i class="fa fa-video-camera"/></i>',
         tooltip: 'Insert a video',
         click() {
           self.set('summernoteContext', context);
           self.send('toggleVideoUpload');
         }
-      });
-
-      return button.render();
+      }).render();
     };
 
+    let PDFUploadButton = (context) => {
+      let { ui } = $.summernote;
+
+      return ui.button({
+        contents: '<i class="fa fa-file-pdf-o"></i>',
+        tooltip: 'Insert a PDF file',
+        click() {
+          self.set('summernoteContext', context);
+          self.send('togglePDFUpload');
+        }
+      }).render();
+    }
+
     if (isEmpty(this.get('customButtons'))) {
-      this.customButtons.push(VideoUploadButton);
+      [VideoUploadButton, PDFUploadButton].forEach((customButton) => {
+        console.log(customButton)
+        this.customButtons.push(customButton);
+      });
     }
 
     this._super();
@@ -44,6 +59,10 @@ export default Component.extend({
 
     toggleVideoUpload() {
       this.toggleProperty('hideVideoUploadModal');
+    },
+
+    togglePDFUpload() {
+      this.toggleProperty('hidePDFUploadModal');
     }
   }
 });

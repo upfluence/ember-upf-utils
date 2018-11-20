@@ -7,3 +7,8 @@
                             uploaderExtra=uploaderExtra
                             closeModal=(action "toggleVideoUpload")}}
 {{/modal-view}}
+
+{{#modal-view hidden=hidePDFUploadModal closeAction=(action "togglePDFUpload")}}
+  {{summernote-modals/pdf editor-context=summernoteContext uploaderHeaders=uploaderHeaders
+                          uploaderExtra=uploaderExtra closeModal=(action "togglePDFUpload")}}
+{{/modal-view}}
