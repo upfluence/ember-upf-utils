@@ -8,44 +8,46 @@ export default Component.extend({
   layout,
 
   summernoteContext: null,
-  activatedCustomButtons: 'VideoUploadButton,PDFUploadButton',
-  customButtons: [],
+  customButtons: 'video,pdf',
+  _customButtonsFuncs: [],
 
   hideVideoUploadModal: true,
   hidePDFUploadModal: true,
 
   init() {
     let self = this;
+    let { ui } = $.summernote;
 
-    this.VideoUploadButton = (context) => {
-      let { ui } = $.summernote;
+    let uploadBtns = {
+      video: (context) => {
 
-      return ui.button({
-        contents: '<i class="fa fa-video-camera"/></i>',
-        tooltip: 'Insert a video',
-        click() {
-          self.set('summernoteContext', context);
-          self.send('toggleVideoUpload');
-        }
-      }).render();
-    };
+        return ui.button({
+          contents: '<i class="fa fa-video-camera"/></i>',
+          tooltip: 'Insert a video',
+          click() {
+            self.set('summernoteContext', context);
+            self.send('toggleVideoUpload');
+          }
+        }).render();
+      },
 
-    this.PDFUploadButton = (context) => {
-      let { ui } = $.summernote;
+      pdf: (context) => {
+        return ui.button({
+          contents: '<i class="fa fa-file-pdf-o"></i>',
+          tooltip: 'Insert a PDF file',
+          click() {
+            self.set('summernoteContext', context);
+            self.send('togglePDFUpload');
+          }
+        }).render();
+      }
+    }
 
-      return ui.button({
-        contents: '<i class="fa fa-file-pdf-o"></i>',
-        tooltip: 'Insert a PDF file',
-        click() {
-          self.set('summernoteContext', context);
-          self.send('togglePDFUpload');
-        }
-      }).render();
-    };
-
-    if (isEmpty(this.get('customButtons'))) {
-      this.get('activatedCustomButtons').split(',').map((x) => this[x]).forEach((customButton) => {
-        this.customButtons.push(customButton);
+    if (isEmpty(this.get('_customButtons'))) {
+      Object.keys(uploadBtns).filter((x) => {
+        return this.get('customButtons').split(',').contains(x);
+      }).map((x) => uploadBtns[x]).forEach((customButton) => {
+        this.get('_customButtonsFuncs').push(customButton);
       });
     }
 
