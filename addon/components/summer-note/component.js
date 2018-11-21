@@ -89,11 +89,15 @@ export default SummerNoteComponent.extend({
 
     let _customButtons = {};
     let arrayOfCustomButtons = get(this, 'customButtons');
+
     if (arrayOfCustomButtons) {
-      arrayOfCustomButtons.forEach(function (item, i, /*arr*/) {
-        _customButtons['myButton' + i] = item;
-        _toolbar.push(['myButton' + i, ['myButton' + i]]);
-      });
+      let plugins = arrayOfCustomButtons.reduce((acc, v) => {
+        acc[v.name] = v
+        return acc;
+      }, {});
+
+      $.extend($.summernote.plugins, plugins);
+      _toolbar.push(['insert', Object.keys(plugins)]);
     }
 
     this.$('#summernote').summernote({
@@ -129,6 +133,7 @@ export default SummerNoteComponent.extend({
         }
       }
     });
+
 
     this.$('.dropdown-toggle').dropdown();
 
