@@ -41,7 +41,7 @@ export default Component.extend({
           }
         }).render();
       }
-    }
+    };
 
     if (isEmpty(this.get('_customButtons'))) {
       Object.keys(uploadBtns).filter((x) => {
