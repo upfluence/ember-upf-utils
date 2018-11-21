@@ -20,8 +20,8 @@ export default Component.extend({
 
     let uploadBtns = {
       videoUpload: (context) => {
-        context.memo('button.videoUpload', function () {
-           return ui.button({
+        context.memo('button.videoUpload', function() {
+          return ui.button({
             contents: '<i class="fa fa-video-camera"/></i>',
             tooltip: 'Insert Video',
             click: () => {
@@ -33,7 +33,7 @@ export default Component.extend({
       },
 
       pdfUpload: (context) => {
-        context.memo('button.pdfUpload', function () {
+        context.memo('button.pdfUpload', function() {
           return ui.button({
             contents: '<i class="fa fa-file-pdf-o"></i>',
             tooltip: 'Insert a PDF file',
