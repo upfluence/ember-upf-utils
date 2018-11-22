@@ -1,7 +1,13 @@
 {{#each draft.draftComments as |draftComment|}}
   {{#if draftComment.id}}
     <div class="draft-display__comment {{if draftComment.resolved 'draft-display__comment--resolved'}}">
-      <img src={{draftComment.owner.avatar_url}} class="upf-image upf-image--round-36">
+      {{#if draftComment.owner.avatar_url}}
+        <img src={{draftComment.owner.avatar_url}} class="upf-image upf-image--round-36">
+      {{else}}
+        <figure class="upf-image upf-image--round-36 upf-image--alt">
+          <span>{{name-initials draftComment.owner.name}}</span>
+        </figure>
+      {{/if}}
       <div class="margin-left-xxx-sm">
         <div class="draft-display__comment-header">
           <div class="owner-infos">
