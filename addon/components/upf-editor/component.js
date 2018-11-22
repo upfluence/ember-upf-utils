@@ -8,7 +8,7 @@ export default Component.extend({
   layout,
 
   summernoteContext: null,
-  customButtons: 'video,pdf',
+  customButtons: 'videoUpload,pdfUpload',
   _customButtonsFuncs: [],
 
   hideVideoUploadModal: true,
@@ -19,27 +19,30 @@ export default Component.extend({
     let { ui } = $.summernote;
 
     let uploadBtns = {
-      video: (context) => {
-
-        return ui.button({
-          contents: '<i class="fa fa-video-camera"/></i>',
-          tooltip: 'Insert a video',
-          click() {
-            self.set('summernoteContext', context);
-            self.send('toggleVideoUpload');
-          }
-        }).render();
+      videoUpload: (context) => {
+        context.memo('button.videoUpload', function() {
+          return ui.button({
+            contents: '<i class="fa fa-video-camera"/></i>',
+            tooltip: 'Insert Video',
+            click: () => {
+              self.set('summernoteContext', context);
+              self.send('toggleVideoUpload');
+            }
+          }).render();
+        });
       },
 
-      pdf: (context) => {
-        return ui.button({
-          contents: '<i class="fa fa-file-pdf-o"></i>',
-          tooltip: 'Insert a PDF file',
-          click() {
-            self.set('summernoteContext', context);
-            self.send('togglePDFUpload');
-          }
-        }).render();
+      pdfUpload: (context) => {
+        context.memo('button.pdfUpload', function() {
+          return ui.button({
+            contents: '<i class="fa fa-file-pdf-o"></i>',
+            tooltip: 'Insert a PDF file',
+            click() {
+              self.set('summernoteContext', context);
+              self.send('togglePDFUpload');
+            }
+          }).render();
+        });
       }
     };
 
