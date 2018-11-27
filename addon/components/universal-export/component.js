@@ -26,6 +26,7 @@ export default Component.extend({
     list: false,
     basic_file: true, // Using underscore case to match API response here
     full_file: false,
+    overlap_file: false,
     mailing: false,
     campaign: false,
     stream: false
