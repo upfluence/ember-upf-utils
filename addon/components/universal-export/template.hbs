@@ -39,7 +39,7 @@
 
   {{#if fileSelected}}
     {{universal-export/file closeModal=closeModal enableFullFileExport=tabs.full_file
-                                     selectedCount=selectedInfluencerIds.length}}
+                            enableOverlapFileExport=tabs.overlap_file selectedCount=selectedInfluencerIds.length}}
   {{else if listSelected}}
     {{universal-export/list closeModal=closeModal selectedCount=selectedCount}}
   {{else if publishrSelected}}

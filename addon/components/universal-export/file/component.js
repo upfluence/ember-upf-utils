@@ -42,6 +42,12 @@ export default Component.extend({
       short: new Limit(-1, 0)
     });
 
+    if (this.get('enableOverlapFileExport')) {
+      if (!this.get('types').findBy('key', 'overlap')) {
+        this.get('types').pushObject({ key: 'overlap', label: 'Overlap' });
+      }
+    }
+
     if (this.get('enableFullFileExport')) {
       if (!this.get('types').findBy('key', 'full')) {
         this.get('types').pushObject({ key: 'full', label: 'All' });
