@@ -48,7 +48,7 @@ export default Component.extend({
 
     if (isEmpty(this.get('_customButtons'))) {
       Object.keys(uploadBtns).filter((x) => {
-        return this.get('customButtons').split(',').contains(x);
+        return this.get('customButtons').split(',').includes(x);
       }).map((x) => uploadBtns[x]).forEach((customButton) => {
         this.get('_customButtonsFuncs').push(customButton);
       });
