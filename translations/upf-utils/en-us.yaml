@@ -1,0 +1,4 @@
+upf_utils:
+  publishr:
+    draft_display:
+      no_caption: 'No Caption'

@@ -29,7 +29,7 @@
     "ember-cli-smart-link-to": "^2.1.0",
     "ember-collection": "^1.0.0-alpha.7",
     "ember-cp-validations": "offirgolan/ember-cp-validations#master",
-    "ember-i18n": "^5.0.0",
+    "ember-intl": "^3.5.0",
     "ember-shepherd": "^3.1.0",
     "ember-simple-auth": "1.4.0",
     "ember-tether": "^1.0.0-beta.2",
