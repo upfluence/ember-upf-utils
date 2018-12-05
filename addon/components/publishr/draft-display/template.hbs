@@ -2,4 +2,6 @@
   {{component draftDisplayComponent item=draft.draftAttachable}}
 </div>
 
-{{publishr/draft-display/comments draft=draft commentable=commentable}}
+{{#unless contentOnly}}
+  {{publishr/draft-display/comments draft=draft commentable=commentable}}
+{{/unless}}

@@ -8,9 +8,13 @@ export default Component.extend(TooltipActivationMixin, {
   layout,
 
   classNames: ['draft-display'],
-  classNameBindings: ['editable:draft-display--editable'],
+  classNameBindings: [
+    'editable:draft-display--editable',
+    'contentOnly:draft-display--content-only'
+  ],
 
   editable: false,
+  contentOnly: false,
 
   draftDisplayComponent: computed('draft.draftAttachableType', function() {
     switch (this.get('draft.draftAttachableType')) {
