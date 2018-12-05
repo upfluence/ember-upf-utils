@@ -2264,7 +2264,7 @@ ember-cli-htmlbars-inline-precompile@^0.3.1:
     semver "^5.3.0"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.1, ember-cli-htmlbars@^1.0.3:
+ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.3:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.3.5.tgz#65be9678b274b5e7861d7f75c188780af7ef9d13"
   dependencies:
@@ -2555,13 +2555,13 @@ ember-cli@^2.12.1:
     walk-sync "^0.3.0"
     yam "0.0.22"
 
-ember-collection@^1.0.0-alpha.7:
-  version "1.0.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/ember-collection/-/ember-collection-1.0.0-alpha.7.tgz#172c2ddaa7d3482fac0781686b434c9c9c42d79a"
+ember-collection@^1.0.0-alpha.9:
+  version "1.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/ember-collection/-/ember-collection-1.0.0-alpha.9.tgz#30fa340a58f4154cef1cda54f11041c5a2cd2e6c"
   dependencies:
-    ember-cli-babel "^5.1.5"
-    ember-cli-htmlbars "^1.0.1"
-    layout-bin-packer "^1.2.0"
+    ember-cli-babel "^6.8.2"
+    ember-cli-htmlbars "^2.0.1"
+    layout-bin-packer "^1.4.0"
 
 ember-cookies@^0.0.13:
   version "0.0.13"
@@ -4276,7 +4276,7 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-layout-bin-packer@^1.2.0:
+layout-bin-packer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/layout-bin-packer/-/layout-bin-packer-1.4.0.tgz#4115a8e0089ee2a3ff53386ca70fdc16e8b95e07"
   dependencies:
