@@ -59,8 +59,8 @@ export default Mixin.create(UpfTableSearchMixin, {
       }
 
       if (current) {
-        entities.removeObject(current);
-        entities.unshiftObject(current.get('_internalModel'));
+        entities.content.removeObject(current);
+        entities.content.unshiftObject(current.get('_internalModel'));
       }
 
       this.set('meta', entities.get('meta'));
