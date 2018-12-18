@@ -2,7 +2,12 @@ import Ember from 'ember';
 import ExportEntity from 'ember-upf-utils/export-entity/model';
 import layout from './template';
 
-const { Component, computed, inject, isBlank } = Ember;
+const {
+  Component,
+  computed,
+  inject,
+  isBlank
+} = Ember;
 
 export default Component.extend({
   layout,
@@ -41,7 +46,6 @@ export default Component.extend({
       }
 
       if (this.get('didCreate')) {
-        console.log(this.get('didCreate'))
         this.didCreate(item);
       }
 
