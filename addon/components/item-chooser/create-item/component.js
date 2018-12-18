@@ -14,7 +14,7 @@ export default Component.extend({
 
   store: inject.service(),
 
-  classNames: ['ember-basic-dropdown-content__create-item', 'padding-xx-sm'],
+  classNames: ['ember-basic-dropdown-content__create-item'],
 
   formattedCreateButtonText: computed('searchTerm', function() {
     return this.get('createButtonTextTemplate').replace(
