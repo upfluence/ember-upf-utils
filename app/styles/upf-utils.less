@@ -15,6 +15,7 @@
 
 @import 'bootstrap/screens';
 @import 'bootstrap/jumbotron';
+@import 'ember-power-select';
 
 @import 'components/summer-note';
 @import 'components/spinner';
@@ -37,3 +38,40 @@
 @import 'layout/side-hover-panel/styles';
 
 @import 'table-fluid/styles';
+
+
+.ember-power-select-trigger.ember-basic-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: @default-radius;
+  height: @input-size-default;
+  padding-left: 8px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.ember-power-select-search input {
+  .upf-input;
+  .upf-input--small;
+}
+
+.ember-power-select-options::-webkit-scrollbar {
+  display: none;
+}
+
+.ember-power-select-option {
+  padding: @spacing-xxx-sm;
+  text-align: left;
+}
+
+.ember-basic-dropdown-content__create-item {
+  background-color: @upf-gray-light;
+  padding: @spacing-xx-sm;
+}
+
+.selectize-control.multi .selectize-input.has-items {
+  padding-top: 7px;
+}
