@@ -1,5 +1,6 @@
 {{#if display}}
-  {{ember-selectize content=ownerships selection=ownership classNames='ember-selectize--small'
-                    optionValuePath='content.id' optionLabelPath='content.name'
-                    placeholder='Share with' multiple=false}}
+  {{#power-select options=ownerships selected=ownership onchange=(action (mut ownership))
+                 renderInPlace=true searchEnabled=false placeholder="Share with" as |o|}}
+    {{o.name}}
+  {{/power-select}}
 {{/if}}
