@@ -1,10 +1,9 @@
 {{#power-select options=items selected=selection onchange=(action (mut selection))
-                placeholder=placeholder renderInPlace=true disabled=disabled
-                searchField=sortField oninput=(action "updateSearchTerm")
-                afterOptionsComponent=(component createItemComponent searchTerm=searchTerm
-                                                 createButtonTextTemplate=createOptionPlaceholder
-                                                 recordTypeIsModel=recordTypeIsModel recordType=recordType
-                                                 selection=selection mutliple=mutliple
-                                                 didCreate=(action didCreate)) as |item|}}
+  placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
+  afterOptionsComponent=(if createItemComponent (
+                          component createItemComponent searchTerm=searchTerm createButtonTextTemplate=createOptionPlaceholder
+                                    recordTypeIsModel=recordTypeIsModel recordType=recordType selection=selection mutliple=mutliple
+                                    didCreate=(action didCreate))
+                        ) as |item|}}
   {{get item optionLabelPath}}
 {{/power-select}}
