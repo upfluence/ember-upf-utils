@@ -1,6 +1,5 @@
 {{#if imageSrc}}
-  {{#lazy-image url=imageSrc height=_imageSize width=_imageSize class=_imageSizeClass}}
-  {{/lazy-image}}
+  {{img-lazy url=imageSrc height=_imageSize width=_imageSize class=_imageSizeClass}}
 {{else}}
   <div class="{{_imageSizeClass}} upf-image--alt">
     <span>{{{imageAltText}}}</span>
