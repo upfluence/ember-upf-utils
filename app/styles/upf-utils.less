@@ -41,16 +41,30 @@
 
 
 .ember-power-select-trigger.ember-basic-dropdown-trigger {
+  border-radius: @default-radius;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: @default-radius;
   height: @input-size-default;
   padding-left: 8px;
+  text-align: left;
+
+  .ember-power-select-placeholder,
+  .ember-power-select-selected-item {
+    width: 100%;
+  }
+
+  .ember-power-select-status-icon {
+    display: none;
+  }
 
   &:focus {
     outline: none;
   }
+}
+
+.ember-power-select-multiple-trigger.ember-basic-dropdown-trigger {
+  justify-content: start;
 }
 
 .ember-power-select-search input {
@@ -62,9 +76,17 @@
   display: none;
 }
 
-.ember-power-select-option {
+.ember-power-select-option,
+.ember-power-select-multiple-option {
+  color: @color-text;
+  border-radius: @default-radius;
   padding: @spacing-xxx-sm;
   text-align: left;
+
+  &[aria-current=true] {
+    background-color: @upf-gray-light;
+    color: @color-text;
+  }
 }
 
 .ember-basic-dropdown-content__create-item {

@@ -18,10 +18,10 @@ export default Component.extend({
   createOptionPlaceholder: '#item#',
   multiple: false,
   canCreate: false,
-  didCreate: '',
-  optionValuePath: 'content',
+  didCreate: null,
+  optionValuePath: null,
   optionLabelPath: 'name',
-  sortField: 'name',
+  sortField: 'name', // TODO: Rename this to searchField
   onBlur: null,
   recordTypeIsModel: false,
   disabled: false,
