@@ -1,6 +1,7 @@
 {{#if multiple}}
-  {{#power-select-multiple options=items selected=selection placeholder=placeholder
-    renderInPlace=true disabled=disabled onchange=(action (mut selection)) as |item|}}
+  {{#power-select-multiple options=items selected=(unless disabled selection) placeholder=placeholder
+                           renderInPlace=true disabled=disabled searchField=sortField
+                           onchange=(action (mut selection)) as |item|}}
     {{get item optionLabelPath}}
   {{/power-select-multiple}}
 {{else}}
