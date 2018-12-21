@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: @input-size-default;
+  min-height: @input-size-default;
   padding-left: 8px;
   text-align: left;
 
@@ -74,6 +74,12 @@
 
 .ember-power-select-options::-webkit-scrollbar {
   display: none;
+}
+
+.ember-power-select-multiple-options {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .ember-power-select-option,
