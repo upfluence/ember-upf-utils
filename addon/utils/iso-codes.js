@@ -18,5 +18,6 @@ export default [
   'RUB',
   'INR',
   'BRL',
-  'ZAR'
+  'ZAR',
+  'IDR'
 ];
