@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from './template';
 import CurrencyDataLoaderMixin from 'ember-upf-utils/mixins/currency-data-loader';
 import { formatPrice } from 'ember-upf-utils/helpers/format-price';
-
-const { Component, computed } = Ember;
 
 export default Component.extend(CurrencyDataLoaderMixin, {
   layout,

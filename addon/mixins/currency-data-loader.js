@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
+import { get, computed } from '@ember/object';
 import { formatPrice } from 'ember-upf-utils/helpers/format-price';
-
-const { Mixin, inject, computed, get } = Ember;
 
 export function price(dependentKey, options = {}) {
   return computed(dependentKey, 'currencyData.{currency,rate}', function() {
@@ -25,7 +25,7 @@ export function price(dependentKey, options = {}) {
 }
 
 export default Mixin.create({
-  _currency: inject.service('currency'),
+  _currency: service('currency'),
 
   currencyData: {
     rate: 1,

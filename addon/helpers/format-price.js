@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
 import { formatNumber } from 'ember-upf-utils/helpers/format-number';
 import { formatMoneyHelper } from 'oss-components/helpers/format-money';
 import symbolMap from 'ember-upf-utils/utils/currency';
 
-const { Helper } = Ember;
 const defaultOptions = {
   rate: 1,
   currency: 'USD',

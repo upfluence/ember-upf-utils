@@ -1,14 +1,12 @@
 /* globals window */
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+
+import Service from '@ember/service';
+import { observer, computed } from '@ember/object';
+import { run } from '@ember/runloop';
 
 const STORE_KEY = '__upf-selected';
 const DATA_LIFETIME = 24 * 60 * 60; // 1 day
-const {
-  Service,
-  computed,
-  observer,
-  run
-} = Ember;
 
 export default Service.extend({
   storageScope: null,
@@ -31,7 +29,7 @@ export default Service.extend({
     this.set('storageScope', scope);
   },
 
-  length: computed.alias('_length'),
+  length: alias('_length'),
 
   all: computed('_length', function() {
     return Object.keys(this._cache);

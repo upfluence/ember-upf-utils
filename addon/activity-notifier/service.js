@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { alias, notEmpty } from '@ember/object/computed';
+import Service, { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
+import { observer } from '@ember/object';
+import { getOwner } from '@ember/application';
 import Configuration from 'ember-upf-utils/configuration';
-
-const { Service, run, inject, computed, observer, getOwner } = Ember;
 
 const messageWithAvatar = function(avatarUrl, message) {
   return {
@@ -12,9 +14,9 @@ const messageWithAvatar = function(avatarUrl, message) {
 };
 
 export default Service.extend({
-  ajax: inject.service(),
-  session: inject.service(),
-  toast: inject.service(),
+  ajax: service(),
+  session: service(),
+  toast: service(),
 
   _isRunning: false,
   _inFetch: false,
@@ -149,8 +151,8 @@ export default Service.extend({
     });
   },
 
-  token: computed.alias('session.data.authenticated.access_token'),
-  hasToken: computed.notEmpty('token'),
+  token: alias('session.data.authenticated.access_token'),
+  hasToken: notEmpty('token'),
 
   _: observer('hasToken', function() {
     this.start();

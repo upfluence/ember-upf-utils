@@ -1,6 +1,6 @@
+import { helper as buildHelper } from '@ember/component/helper';
 import ShelfFirst from 'layout-bin-packer/shelf-first';
 import { formatPercentageStyle } from 'ember-collection/utils/style-generators';
-import Ember from 'ember';
 
 export class FullWidthLayout
 {
@@ -60,6 +60,6 @@ export class FullWidthLayout
   }
 }
 
-export default Ember.Helper.helper(function (params/*, hash*/) {
+export default buildHelper(function (params/*, hash*/) {
   return new FullWidthLayout(params[0], params[1], params[2]);
 });

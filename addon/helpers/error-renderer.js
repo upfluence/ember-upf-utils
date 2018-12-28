@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Helper from '@ember/component/helper';
 
-export default Ember.Helper.extend({
-  i18n: Ember.inject.service(),
+export default Helper.extend({
+  i18n: service(),
 
   compute(params) {
     let [error] = params;

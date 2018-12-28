@@ -1,14 +1,10 @@
-import Ember from 'ember';
-
-const {
-  Mixin,
-  inject
-} = Ember;
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 
 export default Mixin.create({
-  entityArchiving: inject.service(),
-  toast: inject.service(),
-  i18n: inject.service(),
+  entityArchiving: service(),
+  toast: service(),
+  i18n: service(),
 
   _toastConfig: {
     timeOut: 0,

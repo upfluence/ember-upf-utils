@@ -1,10 +1,13 @@
+import Service, { inject as service } from '@ember/service';
 import Ember from 'ember';
- import { pluralize } from 'ember-inflector';
+import { pluralize } from 'ember-inflector';
 
-const { Service, String, inject } = Ember;
+const {
+  String
+} = Ember;
 
 export default Service.extend({
-  ajax: inject.service(),
+  ajax: service(),
 
   update(model, modelId, ownedBy) {
     let payload = {};

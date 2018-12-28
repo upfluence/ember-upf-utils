@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { observer } from '@ember/object';
 import layout from '../templates/components/modal-view';
-
-const {
-  Component,
-  observer
-} = Ember;
 
 export default Component.extend({
   layout,

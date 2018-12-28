@@ -1,20 +1,19 @@
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { observer, computed } from '@ember/object';
+import { getOwner } from '@ember/application';
 import Ember from 'ember';
 import layout from './template';
 
 const {
-  Component,
-  String,
-  computed,
-  observer,
-  getOwner,
-  inject
+  String
 } = Ember;
 
 export default Component.extend({
   layout,
   classNames: ['__left-menu'],
 
-  session: inject.service(),
+  session: service(),
   userScopes: [],
 
   hasFacade: true,
@@ -78,7 +77,7 @@ export default Component.extend({
   }),
 
   facadeURL: computed(function() {
-    return Ember.getOwner(this).resolveRegistration(
+    return getOwner(this).resolveRegistration(
       'config:environment'
     ).facadeURL;
   }),

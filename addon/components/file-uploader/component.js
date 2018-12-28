@@ -1,15 +1,16 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { computed, observer } from '@ember/object';
+import { isBlank, isEmpty } from '@ember/utils';
 import EmberUploader from 'ember-uploader';
 import Configuration from 'ember-upf-utils/configuration';
 import layout from './template';
 
-const { Component, inject, observer, computed, isEmpty, isBlank } = Ember;
-
 export default Component.extend({
   layout,
   classNames: ['file-uploader'],
-  store: inject.service(),
-  session: inject.service(),
+  store: service(),
+  session: service(),
 
   method: 'PUT',
   attribute: 'file',

@@ -1,13 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import UpfTableSearchMixin from 'oss-components/mixins/upf-table-search';
 
-const {
-  Mixin,
-  inject
-} = Ember;
-
 export default Mixin.create(UpfTableSearchMixin, {
-  store: inject.service(),
+  store: service(),
 
   displayArchived: false,
   displayAccessPanel: false,

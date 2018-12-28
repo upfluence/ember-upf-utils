@@ -1,0 +1,4 @@
+[2,"inject",4,"addon/current-user/service.js","import Configuration from 'ember-upf-utils/configuration';\n\nconst { computed, Service, inject, isNone, run, RSVP } = Ember;\n\nexport default Service.extend({"]
+[2,"inject",3,"addon/currency/service.js","import Ember from 'ember';\n\nconst { Service, inject } = Ember;\n\nconst defaultData = {"]
+[2,"inject",5,"addon/entity-archiving/service.js","const {\n  Service,\n  inject\n} = Ember;\n"]
+[2,"inject",4,"addon/activity-notifier/service.js","import Configuration from 'ember-upf-utils/configuration';\n\nconst { Service, run, inject, computed, observer, getOwner } = Ember;\n\nconst messageWithAvatar = function(avatarUrl, message) {"]

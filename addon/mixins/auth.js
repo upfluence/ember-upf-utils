@@ -1,3 +1,5 @@
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
@@ -6,8 +8,8 @@ import Ember from 'ember';
 import Configuration from 'ember-upf-utils/configuration';
 
 
-const UnifiedAuthenticatedRouteMixin = Ember.Mixin.create({
-  session: Ember.inject.service(),
+const UnifiedAuthenticatedRouteMixin = Mixin.create({
+  session: service(),
 
   beforeModel(transition) {
     if (!this.get('session.isAuthenticated')) {
@@ -19,8 +21,8 @@ const UnifiedAuthenticatedRouteMixin = Ember.Mixin.create({
   }
 });
 
-const UnifiedApplicationRouteMixin = Ember.Mixin.create(ApplicationRouteMixin, {
-  session: Ember.inject.service(),
+const UnifiedApplicationRouteMixin = Mixin.create(ApplicationRouteMixin, {
+  session: service(),
 
   sessionInvalidated() {
     if (!Ember.testing) {

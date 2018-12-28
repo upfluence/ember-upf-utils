@@ -1,13 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import User from 'ember-upf-utils/types/user';
 import layout from './template';
-
-const { Component, inject } = Ember;
 
 export default Component.extend({
   layout,
 
-  currentUser: inject.service(),
+  currentUser: service(),
   user: null,
   applicationLogo: null,
   indexRoute: 'index',

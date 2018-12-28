@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import layout from '../templates/components/logout-button';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['navbar-form', 'navbar-right'],
 
-  session: Ember.inject.service(),
+  session: service(),
 
   actions: {
     logout() {

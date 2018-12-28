@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { getWithDefault } = Ember;
+import { typeOf } from '@ember/utils';
+import $ from 'jquery';
+import { getWithDefault } from '@ember/object';
 
 const DEFAULTS = {
   storeDomain: 'localhost',
@@ -18,7 +18,7 @@ const DEFAULTS = {
 
 export default {
   formattedLoginUrl() {
-    let params = Ember.$.param({
+    let params = $.param({
       scope: this.scope,
       redirect: window.location.href
     });
@@ -40,7 +40,7 @@ export default {
 
   load(config) {
     for (let property in this) {
-      if (this.hasOwnProperty(property) && Ember.typeOf(this[property]) !== 'function') {
+      if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
         this[property] = getWithDefault(config, property, DEFAULTS[property]);
       }
     }

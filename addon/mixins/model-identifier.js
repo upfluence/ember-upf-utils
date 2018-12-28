@@ -1,9 +1,5 @@
-import Ember from 'ember';
-
-const {
-  Mixin,
-  computed
-} = Ember;
+import Mixin from '@ember/object/mixin';
+import { computed } from '@ember/object';
 
 export default Mixin.create({
   identifier: computed('id', function() {

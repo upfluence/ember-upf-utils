@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import Configuration from 'ember-upf-utils/configuration';
 import layout from './template';
-
-const { Component } = Ember;
 
 export default Component.extend({
   layout,

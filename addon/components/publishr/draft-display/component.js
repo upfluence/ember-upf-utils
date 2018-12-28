@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
 import layout from './template';
-
-const { Component, computed } = Ember;
 
 export default Component.extend(TooltipActivationMixin, {
   layout,

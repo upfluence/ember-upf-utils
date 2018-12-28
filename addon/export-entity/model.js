@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import ModelIdentifier from 'ember-upf-utils/mixins/model-identifier';
 
-export default Ember.Object.extend(ModelIdentifier);
+export default EmberObject.extend(ModelIdentifier);

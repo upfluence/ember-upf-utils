@@ -1,23 +1,19 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { notEmpty } from '@ember/object/computed';
+import Component from '@ember/component';
 import layout from './template';
-
-const {
-  Component,
-  computed,
-  inject
-} = Ember;
 
 export default Component.extend({
   layout,
 
-  _currentUser: inject.service('currentUser'),
-  store: inject.service(),
-  toast: inject.service(),
+  _currentUser: service('currentUser'),
+  store: service(),
+  toast: service(),
 
   classNames: ['draft-display__comments'],
 
   commentText: '',
-  savableComment: computed.notEmpty('commentText'),
+  savableComment: notEmpty('commentText'),
 
   init() {
     this._super();

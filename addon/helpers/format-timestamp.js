@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 import moment from 'moment';
 
 let formatTimestamp = (timestamp) => moment.unix(timestamp).calendar();
 
-let FormatTimestampHelper = Ember.Helper.helper(formatTimestamp);
+let FormatTimestampHelper = buildHelper(formatTimestamp);
 
 export { formatTimestamp };
 

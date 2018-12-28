@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { Helper } = Ember;
+import Helper from '@ember/component/helper';
 
 let perMille = function(value) {
   if (value) { return `${(value * 1000).toFixed(2)}‰`; } else { return value; }

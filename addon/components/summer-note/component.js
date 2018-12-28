@@ -1,17 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { get, computed } from '@ember/object';
 import SummerNoteComponent from 'ember-cli-summernote/components/summer-note';
 import EmberUploader from 'ember-uploader';
 import Configuration from 'ember-upf-utils/configuration';
 
-const {
-  computed,
-  get,
-  inject
-} = Ember;
-
 export default SummerNoteComponent.extend({
-  toast: inject.service(),
-  session: inject.service(),
+  toast: service(),
+  session: service(),
 
   classNames: ['js-summer-note', 'upf-summer-note'],
   toolbarOptions: {

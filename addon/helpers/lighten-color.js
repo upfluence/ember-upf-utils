@@ -1,6 +1,5 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
 import tinycolor from 'tinycolor';
-const { Helper } = Ember;
 
 export function lightenColor(params/*, hash*/) {
   let [color, amount] = params;

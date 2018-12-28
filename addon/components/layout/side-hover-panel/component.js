@@ -1,10 +1,7 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import $ from 'jquery';
+import Component from '@ember/component';
 import layout from './template';
-
-const {
-  $,
-  Component
-} = Ember;
 
 export default Component.extend({
   layout,
@@ -31,7 +28,7 @@ export default Component.extend({
     }
 
     // Insert panel
-    Ember.run.later(() => {
+    later(() => {
       hoverPanel.addClass(this.get('side') + "_transform");
     });
 

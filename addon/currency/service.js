@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { Service, inject } = Ember;
+import Service, { inject as service } from '@ember/service';
 
 const defaultData = {
   currency: 'USD',
@@ -8,7 +6,7 @@ const defaultData = {
 };
 
 export default Service.extend({
-  currentUser: inject.service(),
+  currentUser: service(),
 
   fetch() {
     return this.get('currentUser').fetch().then(

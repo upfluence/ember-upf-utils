@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 
 var formats = [
   {
@@ -45,4 +45,4 @@ var formatNumber = function formatNumber(params) {
 
 export { formatNumber };
 
-export default Ember.Helper.helper(formatNumber);
+export default buildHelper(formatNumber);

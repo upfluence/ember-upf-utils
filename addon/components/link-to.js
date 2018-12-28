@@ -1,6 +1,4 @@
-import Ember from 'ember';
+import LinkComponent from '@ember/routing/link-component';
 import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
-
-const { LinkComponent } = Ember;
 
 export default LinkComponent.reopen(TooltipActivationMixin);

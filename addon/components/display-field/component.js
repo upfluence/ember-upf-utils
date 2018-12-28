@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from './template';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: [
     'wrapped-text',
@@ -10,7 +11,7 @@ export default Ember.Component.extend({
     'text-color-default-lighter'
   ],
 
-  cleanedValue: Ember.computed('value', function() {
+  cleanedValue: computed('value', function() {
     if(this.get('value')) {
       return this.get('value')
         .replace("<<not-applicable>>", "")

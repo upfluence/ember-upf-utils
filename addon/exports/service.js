@@ -1,17 +1,13 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Service, { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import Configuration from 'ember-upf-utils/configuration';
 
-const {
-  Service,
-  computed,
-  inject,
-  isEmpty
-} = Ember;
-
 export default Service.extend({
-  store: inject.service(),
-  session: inject.service(),
-  ajax: inject.service(),
+  store: service(),
+  session: service(),
+  ajax: service(),
 
   _exportURL: computed(function() {
     return `${Configuration.exportUrl}/api/v1`;
@@ -43,7 +39,7 @@ export default Service.extend({
       'influencer_ids=' + influencerIds.join(','),
       'format=' + fileFormat,
       'type=' + fileType,
-      Ember.$.param({ filters: filters }),
+      $.param({ filters: filters }),
       'access_token=' + encodeURIComponent(
         this.get('session.data.authenticated.access_token')
       )

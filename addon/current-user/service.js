@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { notEmpty } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import Service, { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
+import { run } from '@ember/runloop';
+import RSVP from 'rsvp';
 import Configuration from 'ember-upf-utils/configuration';
 
-const { computed, Service, inject, isNone, run, RSVP } = Ember;
-
 export default Service.extend({
-  ajax: inject.service(),
-  session: inject.service(),
+  ajax: service(),
+  session: service(),
   _cachedUrl: null,
   _cachedUser: null,
   _fetchPromise: null,
 
-  logged: computed.notEmpty('session.data.authenticated.access_token'),
+  logged: notEmpty('session.data.authenticated.access_token'),
 
   init() {
     this._super();

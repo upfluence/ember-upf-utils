@@ -1,8 +1,8 @@
 /* global $ */
-import Ember from 'ember';
-import layout from './template';
+import Component from '@ember/component';
 
-const { Component, isEmpty } = Ember;
+import { isEmpty } from '@ember/utils';
+import layout from './template';
 
 export default Component.extend({
   layout,

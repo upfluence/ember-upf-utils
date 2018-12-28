@@ -1,8 +1,10 @@
 /*globals ga*/
-import Ember from 'ember';
-import layout from './template';
+import { inject as service } from '@ember/service';
 
-const { Component, computed, inject } = Ember;
+import { gt } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import layout from './template';
 
 const Limit = function(limit, spent) {
   return {
@@ -16,9 +18,9 @@ const Limit = function(limit, spent) {
 
 export default Component.extend({
   layout,
-  exports: inject.service(),
-  currentUser: inject.service(),
-  store: inject.service(),
+  exports: service(),
+  currentUser: service(),
+  store: service(),
 
   selectedFormat: 'csv',
   selectedType: 'short',
@@ -62,7 +64,7 @@ export default Component.extend({
     }
   },
 
-  hasMultiType: computed.gt('types.length', 1),
+  hasMultiType: gt('types.length', 1),
 
   limitReached: computed(
     'selectedType',

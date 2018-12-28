@@ -1,9 +1,16 @@
-import Ember from 'ember';
+import {
+  notEmpty,
+  not,
+  or,
+  and,
+  readOnly,
+  alias
+} from '@ember/object/computed';
+import Component from '@ember/component';
+import { defineProperty } from '@ember/object';
 import layout from '../templates/components/validated-input';
 
-const { computed, defineProperty } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['form-group'],
   classNameBindings: [
@@ -20,20 +27,20 @@ export default Ember.Component.extend({
 
   showValidations: false,
 
-  hasLabel: computed.notEmpty('label').readOnly(),
+  hasLabel: notEmpty('label').readOnly(),
 
-  hasContent: computed.notEmpty('value').readOnly(),
-  notValidating: computed.not('validation.isValidating').readOnly(),
-  shouldDisplayValidations: computed.or('showValidations', 'hasContent').readOnly(),
-  hasWarnings: computed.notEmpty('validation.warnings').readOnly(),
-  hasNoWarnings: computed.not('hasWarnings').readOnly(),
-  hasErrors: computed.notEmpty('validation.errors').readOnly(),
-  isValid: computed.and('hasContent', 'validation.isTruelyValid').readOnly(),
+  hasContent: notEmpty('value').readOnly(),
+  notValidating: not('validation.isValidating').readOnly(),
+  shouldDisplayValidations: or('showValidations', 'hasContent').readOnly(),
+  hasWarnings: notEmpty('validation.warnings').readOnly(),
+  hasNoWarnings: not('hasWarnings').readOnly(),
+  hasErrors: notEmpty('validation.errors').readOnly(),
+  isValid: and('hasContent', 'validation.isTruelyValid').readOnly(),
 
-  showFeedback: computed.or('showErrors', 'showWarnings', 'showSuccess').readOnly(),
-  showErrors: computed.and('notValidating', 'hasContent', 'hasErrors').readOnly(),
-  showWarnings: computed.and('shouldDisplayValidations', 'hasWarnings').readOnly(),
-  showSuccess: computed.and('shouldDisplayValidations', 'hasNoWarnings', 'isValid').readOnly(),
+  showFeedback: or('showErrors', 'showWarnings', 'showSuccess').readOnly(),
+  showErrors: and('notValidating', 'hasContent', 'hasErrors').readOnly(),
+  showWarnings: and('shouldDisplayValidations', 'hasWarnings').readOnly(),
+  showSuccess: and('shouldDisplayValidations', 'hasNoWarnings', 'isValid').readOnly(),
 
   init() {
     this._super(...arguments);
@@ -41,11 +48,11 @@ export default Ember.Component.extend({
     defineProperty(
       this,
       'validation',
-      computed.readOnly(`model.validations.attrs.${this.get('valuePath')}`)
+      readOnly(`model.validations.attrs.${this.get('valuePath')}`)
     );
 
     defineProperty(
-      this, 'value', computed.alias(`model.${this.get('valuePath')}`)
+      this, 'value', alias(`model.${this.get('valuePath')}`)
     );
   },
 
