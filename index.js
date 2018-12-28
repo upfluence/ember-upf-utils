@@ -6,7 +6,7 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
-  name: 'ember-upf-utils',
+  name: require('./package').name,
 
   isDevelopingAddon: function() {
     return true;
@@ -38,5 +38,5 @@ module.exports = {
     });
 
     return new MergeTrees([vendorTree, tinyTree]);
-  },
+  }
 };
