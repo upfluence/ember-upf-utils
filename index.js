@@ -12,6 +12,12 @@ module.exports = {
     return true;
   },
 
+  options: {
+    babel: {
+      plugins: ['transform-object-rest-spread']
+    }
+  },
+
   treeForPublic: function(tree) {
     this._requireBuildPackages();
 
