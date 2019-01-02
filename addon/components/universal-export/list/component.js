@@ -1,4 +1,4 @@
-import ExternalExport from 'ember-upf-utils/components/universal-export/external/component';
+import ExternalExport from '@upfluence/ember-upf-utils/components/universal-export/external/component';
 
 
 export default ExternalExport.extend({

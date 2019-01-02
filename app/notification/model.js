@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/notification/model';
+export { default } from '@upfluence/ember-upf-utils/notification/model';

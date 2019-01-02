@@ -1,1 +1,1 @@
-export { default, FullWidthLayout } from 'ember-upf-utils/helpers/full-width-layout';
+export { default, FullWidthLayout } from '@upfluence/ember-upf-utils/helpers/full-width-layout';

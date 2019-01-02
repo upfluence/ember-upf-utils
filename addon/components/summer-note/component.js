@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
 import SummerNoteComponent from 'ember-cli-summernote/components/summer-note';
 import EmberUploader from 'ember-uploader';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default SummerNoteComponent.extend({
   toast: service(),

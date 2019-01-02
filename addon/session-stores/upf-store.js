@@ -1,5 +1,5 @@
 import Cookie from 'ember-simple-auth/session-stores/cookie';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default Cookie.extend({
   cookieName: 'upfluence-auth',

@@ -3,7 +3,7 @@ import { gt, and } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import layout from './template';
-import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
+import TooltipActivationMixin from '@upfluence/ember-upf-utils/mixins/tooltip-activation';
 
 export default Component.extend(TooltipActivationMixin, {
   currentUser: service(),

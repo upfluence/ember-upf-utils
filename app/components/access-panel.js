@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/access-panel';
+export { default } from '@upfluence/ember-upf-utils/components/access-panel';

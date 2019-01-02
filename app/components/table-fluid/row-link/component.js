@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/table-fluid/row-link/component';
+export { default } from '@upfluence/ember-upf-utils/components/table-fluid/row-link/component';

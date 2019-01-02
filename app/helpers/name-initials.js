@@ -1,1 +1,1 @@
-export { default, nameInitials } from 'ember-upf-utils/helpers/name-initials';
+export { default, nameInitials } from '@upfluence/ember-upf-utils/helpers/name-initials';

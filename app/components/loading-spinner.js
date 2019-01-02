@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/loading-spinner';
+export { default } from '@upfluence/ember-upf-utils/components/loading-spinner';

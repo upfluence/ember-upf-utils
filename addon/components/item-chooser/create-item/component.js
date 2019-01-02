@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import ExportEntity from 'ember-upf-utils/export-entity/model';
+import ExportEntity from '@upfluence/ember-upf-utils/export-entity/model';
 import layout from './template';
 
 export default Component.extend({

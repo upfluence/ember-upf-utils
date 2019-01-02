@@ -1,8 +1,8 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import layout from './template';
-import CurrencyDataLoaderMixin from 'ember-upf-utils/mixins/currency-data-loader';
-import { formatPrice } from 'ember-upf-utils/helpers/format-price';
+import CurrencyDataLoaderMixin from '@upfluence/ember-upf-utils/mixins/currency-data-loader';
+import { formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';
 
 export default Component.extend(CurrencyDataLoaderMixin, {
   layout,

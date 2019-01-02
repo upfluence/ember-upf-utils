@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
-import { nameInitials } from 'ember-upf-utils/helpers/name-initials';
+import { nameInitials } from '@upfluence/ember-upf-utils/helpers/name-initials';
 
 export default Component.extend({
   tagName: 'span',

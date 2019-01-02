@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/helpers/sign-url';
+export { default } from '@upfluence/ember-upf-utils/helpers/sign-url';

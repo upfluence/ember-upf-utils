@@ -1,7 +1,7 @@
 import { inject as service } from '@ember/service';
 import Mixin from '@ember/object/mixin';
 import { get, computed } from '@ember/object';
-import { formatPrice } from 'ember-upf-utils/helpers/format-price';
+import { formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';
 
 export function price(dependentKey, options = {}) {
   return computed(dependentKey, 'currencyData.{currency,rate}', function() {

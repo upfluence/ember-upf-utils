@@ -1,5 +1,5 @@
 import Helper from '@ember/component/helper';
-import CountryCodes from 'ember-upf-utils/resources/country-codes';
+import CountryCodes from '@upfluence/ember-upf-utils/resources/country-codes';
 
 export function countryName(countryCode) {
   let country = CountryCodes.find((item) => item.id === countryCode[0]);

@@ -3,7 +3,7 @@ import Service, { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 import { observer } from '@ember/object';
 import { getOwner } from '@ember/application';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 const messageWithAvatar = function(avatarUrl, message) {
   return {

@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/validated-input';
+export { default } from '@upfluence/ember-upf-utils/components/validated-input';

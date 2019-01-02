@@ -5,7 +5,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import Ember from 'ember';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 
 const UnifiedAuthenticatedRouteMixin = Mixin.create({

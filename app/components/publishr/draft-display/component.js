@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/publishr/draft-display/component';
+export { default } from '@upfluence/ember-upf-utils/components/publishr/draft-display/component';

@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
+import TooltipActivationMixin from '@upfluence/ember-upf-utils/mixins/tooltip-activation';
 import layout from './template';
 
 export default Component.extend(TooltipActivationMixin, {

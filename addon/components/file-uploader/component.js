@@ -3,7 +3,7 @@ import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { isBlank, isEmpty } from '@ember/utils';
 import EmberUploader from 'ember-uploader';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 import layout from './template';
 
 export default Component.extend({

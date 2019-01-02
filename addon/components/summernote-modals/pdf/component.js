@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 import layout from './template';
 
 export default Component.extend({

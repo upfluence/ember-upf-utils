@@ -1,1 +1,1 @@
-export { default, formatPrice } from 'ember-upf-utils/helpers/format-price';
+export { default, formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';

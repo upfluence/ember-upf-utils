@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import User from 'ember-upf-utils/types/user';
+import User from '@upfluence/ember-upf-utils/types/user';
 import layout from './template';
 
 export default Component.extend({

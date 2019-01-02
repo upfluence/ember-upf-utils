@@ -2,7 +2,7 @@ import $ from 'jquery';
 import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default Service.extend({
   store: service(),

@@ -1,2 +1,2 @@
-import ErrorRenderer from 'ember-upf-utils/helpers/error-renderer';
+import ErrorRenderer from '@upfluence/ember-upf-utils/helpers/error-renderer';
 export default ErrorRenderer;

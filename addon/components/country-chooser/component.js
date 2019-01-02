@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import CountryCodes from 'ember-upf-utils/resources/country-codes';
+import CountryCodes from '@upfluence/ember-upf-utils/resources/country-codes';
 import layout from './template';
 
 export default Component.extend({

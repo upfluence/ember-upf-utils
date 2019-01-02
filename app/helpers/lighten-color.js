@@ -1,1 +1,1 @@
-export { default, lightenColor } from 'ember-upf-utils/helpers/lighten-color';
+export { default, lightenColor } from '@upfluence/ember-upf-utils/helpers/lighten-color';

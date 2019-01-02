@@ -4,7 +4,7 @@ import Service, { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import { run } from '@ember/runloop';
 import RSVP from 'rsvp';
-import Configuration from 'ember-upf-utils/configuration';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default Service.extend({
   ajax: service(),

@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/types/user';
+export { default } from '@upfluence/ember-upf-utils/types/user';

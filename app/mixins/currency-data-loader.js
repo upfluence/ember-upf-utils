@@ -1,1 +1,1 @@
-export { default, price } from 'ember-upf-utils/mixins/currency-data-loader';
+export { default, price } from '@upfluence/ember-upf-utils/mixins/currency-data-loader';
