@@ -1,8 +1,9 @@
 <label>{{label}}</label>
 {{#if multiple}}
-  {{ember-selectize plugins="remove_button" content=codes optionValuePath="content.id"
-                    optionLabelPath="content.name" selection=selection multiple=true
-                    placeholder='-'}}
+  {{#power-select-multiple options=codes selected=selection placeholder="-" searchField="name"
+                           renderInPlace=true onchange=(action (mut selection)) as |code|}}
+    {{code.name}}
+  {{/power-select-multiple}}
 {{else}}
   {{#x-select value=countryCode action="selectCountry" required=required class='form-control upf-select' as |xs|}}
     <option>-</option>

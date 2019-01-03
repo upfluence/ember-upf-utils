@@ -1,4 +1,17 @@
-{{ember-selectize content=items selection=selection multiple=multiple disabled=disabled
-                  optionValuePath=optionValuePath optionLabelPath=optionLabelPath
-                  optionCreateFunction=(action 'optionCreate') create-item=createFunctionName
-                  on-blur=onBlur placeholder=placeholder sortField=sortField}}
+{{#if multiple}}
+  {{#power-select-multiple options=items selected=(unless disabled selection) placeholder=placeholder
+                           renderInPlace=true disabled=disabled searchField=sortField
+                           onchange=(action (mut selection)) as |item|}}
+    {{get item optionLabelPath}}
+  {{/power-select-multiple}}
+{{else}}
+  {{#power-select options=items selected=selection onchange=(action (mut selection)) value=optionValuePath
+    placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
+    afterOptionsComponent=(if createItemComponent (
+                            component createItemComponent searchTerm=searchTerm createButtonTextTemplate=createOptionPlaceholder
+                                      recordTypeIsModel=recordTypeIsModel recordType=recordType selection=selection mutliple=mutliple
+                                      didCreate=(if didCreate (action didCreate)))
+                          ) as |item|}}
+    {{get item optionLabelPath}}
+  {{/power-select}}
+{{/if}}

@@ -15,6 +15,7 @@
 
 @import 'bootstrap/screens';
 @import 'bootstrap/jumbotron';
+@import 'ember-power-select';
 
 @import 'components/summer-note';
 @import 'components/spinner';
@@ -30,10 +31,16 @@
 @import 'components/onboarded-element';
 @import 'components/activity-notifier';
 @import 'components/left-menu';
+@import 'components/table-fluid';
 @import 'components/publishr/draft-display';
 
 @import 'layout/app-base/styles';
 @import 'layout/application-header/styles';
 @import 'layout/side-hover-panel/styles';
 
-@import 'table-fluid/styles';
+@import 'vendor/power-select';
+
+// TODO: remove once we got rid of Selectize completely
+.selectize-control.multi .selectize-input.has-items {
+  padding-top: 7px;
+}

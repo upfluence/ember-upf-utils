@@ -9,7 +9,7 @@ module.exports = {
   name: 'ember-upf-utils',
 
   isDevelopingAddon: function() {
-      return true;
+    return true;
   },
 
   treeForPublic: function(tree) {
