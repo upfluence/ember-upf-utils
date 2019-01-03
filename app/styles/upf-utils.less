@@ -31,75 +31,16 @@
 @import 'components/onboarded-element';
 @import 'components/activity-notifier';
 @import 'components/left-menu';
+@import 'components/table-fluid';
 @import 'components/publishr/draft-display';
 
 @import 'layout/app-base/styles';
 @import 'layout/application-header/styles';
 @import 'layout/side-hover-panel/styles';
 
-@import 'table-fluid/styles';
+@import 'vendor/power-select';
 
-
-.ember-power-select-trigger.ember-basic-dropdown-trigger {
-  border-radius: @default-radius;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: @input-size-default;
-  padding-left: 8px;
-  text-align: left;
-
-  .ember-power-select-placeholder,
-  .ember-power-select-selected-item {
-    width: 100%;
-  }
-
-  .ember-power-select-status-icon {
-    display: none;
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.ember-power-select-multiple-trigger.ember-basic-dropdown-trigger {
-  justify-content: start;
-}
-
-.ember-power-select-search input {
-  .upf-input;
-  .upf-input--small;
-}
-
-.ember-power-select-options::-webkit-scrollbar {
-  display: none;
-}
-
-.ember-power-select-multiple-options {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.ember-power-select-option,
-.ember-power-select-multiple-option {
-  color: @color-text;
-  border-radius: @default-radius;
-  padding: @spacing-xxx-sm;
-  text-align: left;
-
-  &[aria-current=true] {
-    background-color: @upf-gray-light;
-    color: @color-text;
-  }
-}
-
-.ember-basic-dropdown-content__create-item {
-  background-color: @upf-gray-light;
-  padding: @spacing-xx-sm;
-}
-
+// TODO: remove once we got rid of Selectize completely
 .selectize-control.multi .selectize-input.has-items {
   padding-top: 7px;
 }
