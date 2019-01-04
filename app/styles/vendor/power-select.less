@@ -38,12 +38,16 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  height: @input-size-sm;
+  width: 100%;
 }
 
 .ember-power-select-option,
 .ember-power-select-multiple-option {
-  color: @color-text;
+  background-color: @upf-gray-light;
+  border: 1px solid lighten(@upf-gray, 15%);
   border-radius: @default-radius;
+  color: @color-text;
   padding: @spacing-xxx-sm;
   text-align: left;
 
