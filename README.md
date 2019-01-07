@@ -7,11 +7,9 @@ Ember Upfluence Utilities. This repository contains a load of shared code which 
 Installation
 ------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 * `git clone` this repository
 * `npm install`
 
-<<<<<<< HEAD
 ## Developing
 
 **Styles** are stored in `app/styles`.
