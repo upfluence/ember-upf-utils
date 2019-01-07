@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import ActivityRunnerMixin from 'ember-upf-utils/mixins/activity-runner';
+import ActivityRunnerMixin from '@upfluence/ember-upf-utils/mixins/activity-runner';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | activity runner', function() {

@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import AuthorizedAjaxMixin from 'ember-upf-utils/mixins/authorized-ajax';
+import AuthorizedAjaxMixin from '@upfluence/ember-upf-utils/mixins/authorized-ajax';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | authorized ajax', function() {

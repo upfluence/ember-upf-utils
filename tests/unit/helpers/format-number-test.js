@@ -1,4 +1,4 @@
-import { formatNumber } from 'ember-upf-utils/helpers/format-number';
+import { formatNumber } from '@upfluence/ember-upf-utils/helpers/format-number';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | format number', function() {

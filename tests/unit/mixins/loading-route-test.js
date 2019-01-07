@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import LoadingRouteMixin from 'ember-upf-utils/mixins/loading-route';
+import LoadingRouteMixin from '@upfluence/ember-upf-utils/mixins/loading-route';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | loading route', function() {
