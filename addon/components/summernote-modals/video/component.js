@@ -1,12 +1,8 @@
-import Ember from 'ember';
-import Configuration from 'ember-upf-utils/configuration';
+import { empty } from '@ember/object/computed';
+import Component from '@ember/component';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 import layout from './template';
-
-const {
-  Component,
-  computed
-} = Ember;
 
 export default Component.extend({
   layout,
@@ -16,7 +12,7 @@ export default Component.extend({
   allowedExtentions: ['mp4,mov,avi,3gp'],
   uploaderHeaders: { Scope: Configuration.scope[0] },
 
-  noVideoUploaded: computed.empty('videoUrl'),
+  noVideoUploaded: empty('videoUrl'),
 
   _buildVideoNode(url, contentType) {
     let container = document.createElement('div');

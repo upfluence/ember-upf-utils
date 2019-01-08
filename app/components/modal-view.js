@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/modal-view';
+export { default } from '@upfluence/ember-upf-utils/components/modal-view';

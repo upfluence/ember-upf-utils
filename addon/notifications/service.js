@@ -1,17 +1,12 @@
-import Ember from 'ember';
-import Configuration from 'ember-upf-utils/configuration';
-
-const {
-  Service,
-  RSVP,
-  computed,
-  inject,
-  isArray
-} = Ember;
+import Service, { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default Service.extend({
-  ajax: inject.service(),
-  session: inject.service(),
+  ajax: service(),
+  session: service(),
 
   notificationReadURL: computed('session.data.authenticated.access_token', function() {
     let token = encodeURIComponent(

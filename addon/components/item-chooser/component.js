@@ -1,11 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
 import layout from './template';
-
-const {
-  Component,
-  computed,
-  isBlank
-} = Ember;
 
 export default Component.extend({
   layout,

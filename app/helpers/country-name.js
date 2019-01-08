@@ -1,1 +1,1 @@
-export { default, countryName } from 'ember-upf-utils/helpers/country-name';
+export { default, countryName } from '@upfluence/ember-upf-utils/helpers/country-name';

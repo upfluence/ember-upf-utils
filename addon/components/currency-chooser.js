@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/components/currency-chooser';
 import isoCodes from '../utils/iso-codes';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames: ['upf-currency-chooser'],
   isoCodes: isoCodes,

@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { or } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
 
 const SHEPHERD_DEFAULT_CLASSES = 'shepherd upf-shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text';
-const { Component, computed, inject, run } = Ember;
 
 export default Component.extend({
-  tour: inject.service(),
+  tour: service(),
 
   classNames: ['onboarded-element'],
 
   dictionary: null,
   defaultDictionary: {},
-  dictionaryToUse: computed.or('dictionary', 'defaultDictionary'),
+  dictionaryToUse: or('dictionary', 'defaultDictionary'),
 
   stepsToRun: computed('steps', function() {
     return this.get('steps').split(',').map((step) => {

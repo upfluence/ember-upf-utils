@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/session-stores/upf-store';
+export { default } from '@upfluence/ember-upf-utils/session-stores/upf-store';

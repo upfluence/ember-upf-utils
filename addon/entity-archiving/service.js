@@ -1,16 +1,12 @@
-import Ember from 'ember';
-
-const {
-  Service,
-  inject
-} = Ember;
+import { Promise } from 'rsvp';
+import Service, { inject as service } from '@ember/service';
 
 export default Service.extend({
-  ajax: inject.service(),
-  store: inject.service(),
+  ajax: service(),
+  store: service(),
 
   _perform(method, endpoint, data) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.get('ajax').request(endpoint, {
         method: method,
         contentType: 'application/json',

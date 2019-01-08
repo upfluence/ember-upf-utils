@@ -1,18 +1,14 @@
-import Ember from 'ember';
-import ExportEntity from 'ember-upf-utils/export-entity/model';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import ExportEntity from '@upfluence/ember-upf-utils/export-entity/model';
 import layout from './template';
-
-const {
-  Component,
-  computed,
-  inject,
-  isBlank
-} = Ember;
 
 export default Component.extend({
   layout,
 
-  store: inject.service(),
+  store: service(),
 
   classNames: ['ember-basic-dropdown-content__create-item'],
 

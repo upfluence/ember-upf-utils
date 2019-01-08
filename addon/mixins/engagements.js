@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
-  engagements: Ember.computed('likes', 'shares', 'facebookShares', function() {
+export default Mixin.create({
+  engagements: computed('likes', 'shares', 'facebookShares', function() {
     return this.get('availableEngagements').map((n) => this.get(n));
   })
 });

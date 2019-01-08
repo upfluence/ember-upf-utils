@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/mixins/has-access-panel';
+export { default } from '@upfluence/ember-upf-utils/mixins/has-access-panel';

@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { scheduleOnce } from '@ember/runloop';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   _notifyInfinityModelLoading() {
     if (!this.get('infinityModelLoading')) { return; }
-    return Ember.run.scheduleOnce('afterRender', this, 'infinityModelLoading');
+    return scheduleOnce('afterRender', this, 'infinityModelLoading');
   },
 
   _loadNextPage() {

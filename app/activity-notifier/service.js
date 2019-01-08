@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/activity-notifier/service';
+export { default } from '@upfluence/ember-upf-utils/activity-notifier/service';

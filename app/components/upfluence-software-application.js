@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/upfluence-software-application';
+export { default } from '@upfluence/ember-upf-utils/components/upfluence-software-application';

@@ -1,5 +1,5 @@
 /* global moment */
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
 
 export function formatDate(params) {
   let rawDate = params[0];
@@ -7,4 +7,4 @@ export function formatDate(params) {
   return moment(rawDate).format(format);
 }
 
-export default Ember.Helper.helper(formatDate);
+export default buildHelper(formatDate);

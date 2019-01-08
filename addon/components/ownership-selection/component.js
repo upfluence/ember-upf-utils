@@ -1,16 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { observer } from '@ember/object';
 import layout from './template';
-
-const {
-  Component,
-  observer,
-  inject
-} = Ember;
 
 export default Component.extend({
   layout,
 
-  currentUser: inject.service(),
+  currentUser: service(),
 
   display: false,
   ownerships: [],

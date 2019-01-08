@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/resources/country-codes';
+export { default } from '@upfluence/ember-upf-utils/resources/country-codes';

@@ -1,11 +1,7 @@
-import Ember from 'ember';
+import LinkComponent from '@ember/routing/link-component';
+import { observer } from '@ember/object';
+import { run } from '@ember/runloop';
 import layout from './template';
-
-const {
-  LinkComponent,
-  observer,
-  run
-} = Ember;
 
 export default LinkComponent.extend({
   layout,

@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/mixins/tooltip-activation';
+export { default } from '@upfluence/ember-upf-utils/mixins/tooltip-activation';

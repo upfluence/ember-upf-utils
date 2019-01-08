@@ -1,38 +1,39 @@
-import Ember from 'ember';
+import EmberObject, { computed } from '@ember/object';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
+export default Service.extend({
   meta: {},
 
-  facebookMeta: Ember.computed('meta.statsErFacebookMin', 'meta.statsErFacebookMax', function() {
-    return Ember.Object.create({
+  facebookMeta: computed('meta.statsErFacebookMin', 'meta.statsErFacebookMax', function() {
+    return EmberObject.create({
       erMin: this.get('meta.statsErFacebookMin'),
       erMax: this.get('meta.statsErFacebookMax')
     });
   }),
 
-  twitterMeta: Ember.computed('meta.statsErTwitterMin', 'meta.statsErTwitterMax', function() {
-    return Ember.Object.create({
+  twitterMeta: computed('meta.statsErTwitterMin', 'meta.statsErTwitterMax', function() {
+    return EmberObject.create({
       erMin: this.get('meta.statsErTwitterMin'),
       erMax: this.get('meta.statsErTwitterMax')
     });
   }),
 
-  pinterestMeta: Ember.computed('meta.statsErPinterestMin', 'meta.statsErPinterestMax', function() {
-    return Ember.Object.create({
+  pinterestMeta: computed('meta.statsErPinterestMin', 'meta.statsErPinterestMax', function() {
+    return EmberObject.create({
       erMin: this.get('meta.statsErPinterestMin'),
       erMax: this.get('meta.statsErPinterestMax')
     });
   }),
 
-  youtubeMeta: Ember.computed('meta.statsErYoutubeMin', 'meta.statsErYoutubeMax', function() {
-    return Ember.Object.create({
+  youtubeMeta: computed('meta.statsErYoutubeMin', 'meta.statsErYoutubeMax', function() {
+    return EmberObject.create({
       erMin: this.get('meta.statsErYoutubeMin'),
       erMax: this.get('meta.statsErYoutubeMax')
     });
   }),
 
-  instagramMeta: Ember.computed('meta.statsErInstagramMin', 'meta.statsErInstagramMax', function() {
-    return Ember.Object.create({
+  instagramMeta: computed('meta.statsErInstagramMin', 'meta.statsErInstagramMax', function() {
+    return EmberObject.create({
       erMin: this.get('meta.statsErInstagramMin'),
       erMax: this.get('meta.statsErInstagramMax')
     });

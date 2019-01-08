@@ -1,15 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { gt, and } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from './template';
-import TooltipActivationMixin from 'ember-upf-utils/mixins/tooltip-activation';
-
-const {
-  Component,
-  computed,
-  inject
-} = Ember;
+import TooltipActivationMixin from '@upfluence/ember-upf-utils/mixins/tooltip-activation';
 
 export default Component.extend(TooltipActivationMixin, {
-  currentUser: inject.service(),
+  currentUser: service(),
 
   layout,
   classNames: ['profile-description'],
@@ -20,7 +17,7 @@ export default Component.extend(TooltipActivationMixin, {
   selectedIcon: 'check',
   overlayType: 'selection',
 
-  presentInLists: computed.gt('profile.lists.length', 0),
+  presentInLists: gt('profile.lists.length', 0),
 
   // Avoid BC break with profile.selected
   _selected: computed('selected', 'profile.selected', {
@@ -45,7 +42,7 @@ export default Component.extend(TooltipActivationMixin, {
     }).join('') + '</div>';
   }),
 
-  displayContact: computed.and('profile.email', 'hasInbox'),
+  displayContact: and('profile.email', 'hasInbox'),
 
   didInsertElement() {
     this.get('currentUser').fetch().then((payload) => {

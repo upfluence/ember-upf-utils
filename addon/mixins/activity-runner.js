@@ -1,9 +1,9 @@
-import Ember from 'ember';
-
-const { Mixin, inject, run } = Ember;
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
+import { run } from '@ember/runloop';
 
 export default Mixin.create({
-  activityNotifier: inject.service(),
+  activityNotifier: service(),
 
   init() {
     this._super();

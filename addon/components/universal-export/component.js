@@ -1,20 +1,15 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { mapBy } from '@ember/object/computed';
+import Component from '@ember/component';
+import { get, defineProperty, computed } from '@ember/object';
 import layout from './template';
-
-const {
-  Component,
-  inject,
-  computed,
-  defineProperty,
-  get
-} = Ember;
 
 export default Component.extend({
   layout,
 
-  selectionStorage: inject.service(),
-  exports: inject.service(),
-  toast: inject.service(),
+  selectionStorage: service(),
+  exports: service(),
+  toast: service(),
 
   _toastConfig: {
     timeOut: 0,
@@ -68,7 +63,7 @@ export default Component.extend({
     });
   },
 
-  selectedInfluencerIds: computed.mapBy('selectedInfluencers', 'id'),
+  selectedInfluencerIds: mapBy('selectedInfluencers', 'id'),
 
   selectedCount: computed(
     'selectedInfluencerIds',

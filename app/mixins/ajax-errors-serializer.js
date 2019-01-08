@@ -1,2 +1,2 @@
-import AjaxErrorsSerializer from 'ember-upf-utils/mixins/ajax-errors-serializer';
+import AjaxErrorsSerializer from '@upfluence/ember-upf-utils/mixins/ajax-errors-serializer';
 export default AjaxErrorsSerializer;

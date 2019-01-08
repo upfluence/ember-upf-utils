@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/ownership-selection/component';
+export { default } from '@upfluence/ember-upf-utils/components/ownership-selection/component';

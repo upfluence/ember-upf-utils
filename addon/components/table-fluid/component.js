@@ -1,16 +1,10 @@
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
+import { set, observer, computed } from '@ember/object';
 import layout from './template';
 import EmberCollection from 'ember-collection/components/ember-collection';
 import SlotsMixin from 'ember-block-slots';
 import { EKMixin, getCode, keyDown } from 'ember-keyboard';
-
-const {
-  computed,
-  observer,
-  on,
-  run,
-  set
-} = Ember;
 
 export default EmberCollection.extend(SlotsMixin, EKMixin, {
   layout,

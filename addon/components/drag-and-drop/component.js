@@ -1,8 +1,9 @@
 /* global document */
-import Ember from 'ember';
-import layout from './template';
+import Component from '@ember/component';
 
-const { Component, computed, $ } = Ember;
+import { computed } from '@ember/object';
+import $ from 'jquery';
+import layout from './template';
 
 export default Component.extend({
   layout,

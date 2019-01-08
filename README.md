@@ -2,11 +2,13 @@
 
 Ember Upfluence Utilities. This repository contains a load of shared code which can be found throughout many Upfluence Software services.
 
-## Installation
+[Short description of the addon.]
+
+Installation
+------------------------------------------------------------------------------
 
 * `git clone` this repository
 * `npm install`
-* `bower install`
 
 ## Developing
 
@@ -36,22 +38,26 @@ $> npm uninstall ember-upf-utils
 $> npm install ember-upf-utils
 ```
 
-## Components
-### Header
+### Linting
 
-Generates a header. The header can be customized by using the `application-header/right`, `application-header/left` and `application-header/center` components.
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
-##### Exemple
-```xml
-{{#layout/application-header}}
-	{{#layout/application-header/right}}
-		<div>Some content</div>
-	{{/layout/application-header/right}}
-{{/layout/application-header}}
-```
+### Running tests
 
-##### Customization
-| Parameter name | value |
-|:--------:|--------|
-|  class="toto"      | Applies the class `toto` to the header |
-| left-offset="80px" | Set an 80px wide offset on the left |
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `ember try:each` – Runs the test suite against multiple Ember versions
+
+### Running the dummy application
+
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).

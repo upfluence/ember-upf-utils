@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/entity-archiving/service';
+export { default } from '@upfluence/ember-upf-utils/entity-archiving/service';

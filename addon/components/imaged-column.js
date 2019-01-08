@@ -1,11 +1,6 @@
-import Ember from 'ember';
-import { nameInitials } from 'ember-upf-utils/helpers/name-initials';
-
-const {
-  Component,
-  computed,
-  get
-} = Ember;
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { nameInitials } from '@upfluence/ember-upf-utils/helpers/name-initials';
 
 export default Component.extend({
   tagName: 'span',

@@ -1,11 +1,7 @@
-import Ember from 'ember';
-import CountryCodes from 'ember-upf-utils/resources/country-codes';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import CountryCodes from '@upfluence/ember-upf-utils/resources/country-codes';
 import layout from './template';
-
-const {
-  Component,
-  computed
-} = Ember;
 
 export default Component.extend({
   layout,

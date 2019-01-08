@@ -1,1 +1,1 @@
-export { default } from 'ember-upf-utils/components/influencer/medias-list/component';
+export { default } from '@upfluence/ember-upf-utils/components/influencer/medias-list/component';

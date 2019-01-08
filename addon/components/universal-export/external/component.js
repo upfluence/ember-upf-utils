@@ -1,20 +1,16 @@
 /* globals ga */
-import Ember from 'ember';
-import ExportEntity from 'ember-upf-utils/export-entity/model';
-import layout from './template';
+import { inject as service } from '@ember/service';
 
-const {
-  Component,
-  RSVP,
-  computed,
-  inject,
-  observer
-} = Ember;
+import Component from '@ember/component';
+import RSVP from 'rsvp';
+import { observer, computed } from '@ember/object';
+import ExportEntity from '@upfluence/ember-upf-utils/export-entity/model';
+import layout from './template';
 
 export default Component.extend({
   layout,
-  exports: inject.service(),
-  store: inject.service(),
+  exports: service(),
+  store: service(),
   current: null,
 
   _model: '',
