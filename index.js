@@ -15,6 +15,10 @@ module.exports = {
   options: {
     babel: {
       plugins: ['transform-object-rest-spread']
+    },
+
+    'ember-cli-babel': {
+      includePolyfill: true
     }
   },
 
