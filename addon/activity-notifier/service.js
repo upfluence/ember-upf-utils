@@ -139,6 +139,12 @@ export default Service.extend({
           `Draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
            <a href="${data.url}" target="_blank">Review</a>`
         );
+      case 'list_recommendation':
+        return messageWithAvatar(
+          data.influencer_avatar,
+          `You have recommendations for list <b>${data.list_name}</b>
+           <a href="${data.url}" target="_blank">View</a>`
+        );
       default:
         return null;
     }
