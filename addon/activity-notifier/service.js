@@ -148,7 +148,7 @@ export default Service.extend({
         );
       case 'list_recommendation':
         return messageWithoutAvatar(
-          `You have <b>${data.count}</b> recommendations for list <b>${data.list_name}</b>
+          `You have <b>${data.count}</b> recommendations for your list <b>${data.list_name}</b>
            <a href="${data.url}" target="_blank">View</a>`
         );
       default:
