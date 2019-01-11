@@ -5,7 +5,7 @@ import { observer } from '@ember/object';
 import { getOwner } from '@ember/application';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
-const messageWithAvatar = function(avatarUrl, message) {
+const notificationMessageWithAvatar = function(avatarUrl, message) {
   return {
     title: `<img class="toast-title__avatar" src="${avatarUrl}" />
      <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
@@ -117,38 +117,38 @@ export default Service.extend({
 
     switch(notification.notification_type) {
       case 'mailing_email_received':
-        return messageWithAvatar(
+        return notificationMessageWithAvatar(
           data.influencer_avatar,
           `Email from <b>${data.influencer_name}</b>
           <a href="${data.entity_url}" target="_blank">Reply</a>`
         );
       case 'conversation_email_received':
-        return messageWithAvatar(
+        return notificationMessageWithAvatar(
           data.influencer_avatar,
           `Email from <b>${data.influencer_name}</b>
            <a href="${data.entity_url}" target="_blank">Reply</a>`
         );
       case 'direct_message_received':
-        return messageWithAvatar(
+        return notificationMessageWithAvatar(
           data.influencer_avatar,
           `Message from <b>${data.influencer_name}</b>
            <a href="${data.entity_url}" target="_blank">Reply</a>`
         );
       case 'publishr_application_received':
-        return messageWithAvatar(
+        return notificationMessageWithAvatar(
           data.influencer_avatar,
           `Application by <b>${data.influencer_name}</b> in  <b>${data.campaign_name}</b>
            <a href="${data.url}" target="_blank">See application</a>`
         );
       case 'publishr_draft_created':
-        return messageWithAvatar(
+        return notificationMessageWithAvatar(
           data.influencer_avatar,
           `Draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
            <a href="${data.url}" target="_blank">Review</a>`
         );
       case 'list_recommendation':
-        return messageWithoutAvatar(
-          `You have <b>${data.count}</b> recommendations for your list <b>${data.list_name}</b>
+        return notificationMmessage(
+          `You have <b>${data.count}</b> new recommendations for your <b>${data.list_name}</b> list
            <a href="${data.url}" target="_blank">View</a>`
         );
       default:
