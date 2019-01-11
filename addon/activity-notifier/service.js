@@ -149,7 +149,7 @@ export default Service.extend({
       case 'list_recommendation':
         return messageWithoutAvatar(
           `You have <b>${data.count}</b> recommendations for list <b>${data.list_name}</b>
-           <a href="software.upfluence.co/lists/${data.list_id}?status=suggested" target="_blank">View</a>`
+           <a href="${data.url}" target="_blank">View</a>`
         );
       default:
         return null;
