@@ -13,6 +13,13 @@ const messageWithAvatar = function(avatarUrl, message) {
   };
 };
 
+const messageWithoutAvatar = function(message) {
+  return {
+    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+    message: message
+  };
+};
+
 export default Service.extend({
   ajax: service(),
   session: service(),
@@ -140,10 +147,9 @@ export default Service.extend({
            <a href="${data.url}" target="_blank">Review</a>`
         );
       case 'list_recommendation':
-        return messageWithAvatar(
-          data.influencer_avatar,
-          `You have recommendations for list <b>${data.list_name}</b>
-           <a href="${data.url}" target="_blank">View</a>`
+        return messageWithoutAvatar(
+          `You have <b>${data.count}</b> recommendations for list <b>${data.list_name}</b>
+           <a href="software.upfluence.co/lists/${data.list_id}?status=suggested" target="_blank">View</a>`
         );
       default:
         return null;
