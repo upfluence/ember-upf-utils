@@ -1,13 +1,14 @@
 import RSVP from 'rsvp';
 import EmberObject, { computed } from '@ember/object';
 import Service, { inject as service } from '@ember/service';
-import { camelize } from '@ember/string';
+import { camelize, underscore } from '@ember/string';
 
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default Service.extend({
   ajax: service(),
   session: service(),
+  currentUser: service(),
 
   _fetchFeatureFlagsPromise: null,
 
@@ -19,8 +20,19 @@ export default Service.extend({
   }),
 
   allow(requestedFeature) {
-    return this._fetchFeatureFlags().then((featureFlags) => {
-      return EmberObject.create(featureFlags).get(requestedFeature);
+    let [scope, feature] = requestedFeature.split('.');
+    return this.currentUser.fetch().then(({ user }) => {
+      let hasScope = user.granted_scopes.includes(underscore(scope));
+
+      if (!feature) {
+        return hasScope;
+      }
+
+      if (hasScope) {
+        return this._fetchFeatureFlags().then((featureFlags) => {
+          return EmberObject.create(featureFlags).get(requestedFeature);
+        });
+      }
     });
   },
 
