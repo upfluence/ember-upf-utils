@@ -1,7 +1,7 @@
 import RSVP from 'rsvp';
 import EmberObject, { computed } from '@ember/object';
-import Service, { inject as service } from '@ember/service';
-import { camelize, underscore } from '@ember/string';
+import Service, { inject as service } from '@ember/service';
+import { camelize, underscore } from '@ember/string';
 
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
@@ -21,18 +21,18 @@ export default Service.extend({
 
   allow(requestedFeature) {
     let [scope, feature] = requestedFeature.split('.');
-    return this.currentUser.fetch().then(({ user }) => {
+
+    return this.currentUser.fetch().then(({ user }) => {
+      if (scope === 'audience') return false;
       let hasScope = user.granted_scopes.includes(underscore(scope));
 
-      if (!feature) {
+      if (!feature || !hasScope) {
         return hasScope;
       }
 
-      if (hasScope) {
-        return this._fetchFeatureFlags().then((featureFlags) => {
-          return EmberObject.create(featureFlags).get(requestedFeature);
-        });
-      }
+      return this._fetchFeatureFlags().then((featureFlags) => {
+        return featureFlags.get(requestedFeature);
+      });
     });
   },
 
@@ -43,16 +43,16 @@ export default Service.extend({
 
     return this._fetchFeatureFlagsPromise = new RSVP.Promise((resolve) => {
       return this.ajax.request(this._featureURL).then((features) => {
-        resolve(this._formatFeatureFlags(features));
+        resolve(EmberObject.create(this._formatFeatureFlags(features)));
       });
     })
   },
 
   _formatFeatureFlags(flags) {
     return Object.keys(flags).reduce((acc, scope) => {
-      acc[camelize(scope)] = flags[scope].reduce((acc, flagName) => {
-        acc[camelize(flagName)] = true;
-        return acc;
+      acc[camelize(scope)] = flags[scope].reduce((camelizedScopes, flagName) => {
+        camelizedScopes[camelize(flagName)] = true;
+        return camelizedScopes;
       }, {})
       return acc
     }, {});
