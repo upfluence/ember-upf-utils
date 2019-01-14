@@ -23,7 +23,6 @@ export default Service.extend({
     let [scope, feature] = requestedFeature.split('.');
 
     return this.currentUser.fetch().then(({ user }) => {
-      if (scope === 'audience') return false;
       let hasScope = user.granted_scopes.includes(underscore(scope));
 
       if (!feature || !hasScope) {
