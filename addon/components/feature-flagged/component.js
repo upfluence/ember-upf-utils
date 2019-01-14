@@ -5,9 +5,10 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-  classNames: ['feature-flagged'],
 
   featureFlagsManager: service(),
+
+  tagName: '',
 
   didInsertElement() {
     this.featureFlagsManager.allow(this.requestedFeature).then((allowedFeature) => {
