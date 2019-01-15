@@ -16,45 +16,12 @@ export default Component.extend({
   classNames: ['__left-menu'],
 
   session: service(),
-  userScopes: [],
-
-  hasFacade: true,
-  hasInbox: true,
-  hasAnalytics: false,
-  hasPublishr: false,
-  hasPublishrClient: false,
 
   userInfos: {
     property: 'avatar_url',
     textProperty: 'fullName',
     imageSize: '36'
   },
-
-  _: observer('userScopes', function() {
-    if (!this.get('userScopes.length')) {
-      return;
-    }
-
-    if (!this.get('userScopes').includes('inbox_client')) {
-      this.set('hasInbox', false);
-    }
-
-    if (!this.get('userScopes').includes('facade_web')) {
-      this.set('hasFacade', false);
-    }
-
-    if (this.get('userScopes').includes('analytics_web')) {
-      this.set('hasAnalytics', true);
-    }
-
-    if (this.get('userScopes').includes('publishr_admin')) {
-      this.set('hasPublishr', true);
-    }
-
-    if (this.get('userScopes').includes('publishr_client')) {
-      this.set('hasPublishrClient', true);
-    }
-  }),
 
   _1: observer('user', function() {
     [

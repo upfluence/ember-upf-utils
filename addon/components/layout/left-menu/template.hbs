@@ -1,61 +1,88 @@
 {{#if session.isAuthenticated}}
-  <section class='app-header__top'>
-    {{#if hasFacade}}
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
-        {{#smart-link-to link=listURL
-                         cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
-          <span class='upf-icon upf-icon--search'></span>
+  <section class="app-header__top">
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "facade_web"}}
+        {{#smart-link-to link=listURL cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
+          <span class="upf-icon upf-icon--search"></span>
         {{/smart-link-to}}
-      {{/active-link}}
-    {{/if}}
-
-    {{#if hasInbox}}
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
-        {{#smart-link-to link=inboxURL
-                         cssClass=(if hasInboxNotifications 'upf-notification--corner')}}
-          <span class='upf-icon upf-icon--inbox'></span>
+      {{else}}
+        {{#smart-link-to link=(concat listURL "upgrade")}}
+          <span class="upf-icon upf-icon--search"></span>
+          {{fa-icon "lock"}}
         {{/smart-link-to}}
-      {{/active-link}}
-    {{/if}}
+      {{/feature-flagged}}
+    {{/active-link}}
 
-    {{#if hasPublishr}}
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "inbox_client"}}
+        {{#smart-link-to link=inboxURL}}
+          <span class="upf-icon upf-icon--inbox"></span>
+        {{/smart-link-to}}
+      {{else}}
+        {{#smart-link-to link=(concat inboxURL "upgrade")}}
+          <span class="upf-icon upf-icon--inbox"></span>
+          {{fa-icon "lock"}}
+        {{/smart-link-to}}
+      {{/feature-flagged}}
+    {{/active-link}}
+
+
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "publishr_admin"}}
         {{#smart-link-to link=publishrCampaignsURL
-                         cssClass=(if hasPublishrNotifications 'upf-notification--corner')}}
-          <span class='upf-icon upf-icon--workflow'></span>
+                         cssClass=(if hasPublishrNotifications "upf-notification--corner")}}
+          <span class="upf-icon upf-icon--workflow"></span>
         {{/smart-link-to}}
-      {{/active-link}}
+      {{else}}
+        {{#smart-link-to link=(concat publishrCampaignsURL "/upgrade")}}
+          <span class="upf-icon upf-icon--workflow"></span>
+          {{fa-icon "lock"}}
+        {{/smart-link-to}}
+      {{/feature-flagged}}
+    {{/active-link}}
 
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
+
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "publishr_payments"}}
         {{#smart-link-to link=publishrPaymentsURL
-                         cssClass=(if hasPaymentsNotifications 'upf-notification--corner')}}
-          <span class='upf-icon upf-icon--finance'></span>
+                         cssClass=(if hasPaymentsNotifications "upf-notification--corner")}}
+          <span class="upf-icon upf-icon--finance"></span>
         {{/smart-link-to}}
-      {{/active-link}}
-    {{/if}}
+      {{else}}
+        {{#smart-link-to link=(concat publishrPaymentsURL "/upgrade")}}
+          <span class="upf-icon upf-icon--finance"></span>
+          {{fa-icon "lock"}}
+        {{/smart-link-to}}
+      {{/feature-flagged}}
+    {{/active-link}}
 
-    {{#if hasPublishrClient}}
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "publishr_client"}}
         {{#smart-link-to link=publishrClientURL}}
-          <span class='upf-icon upf-icon--influencers'></span>
+          <span class="upf-icon upf-icon--influencers"></span>
         {{/smart-link-to}}
-      {{/active-link}}
-    {{/if}}
+      {{else}}
+        {{#smart-link-to link=(concat publishrClientURL "/upgrade")}}
+          <span class="upf-icon upf-icon--influencers"></span>
+          {{fa-icon "lock"}}
+        {{/smart-link-to}}
+      {{/feature-flagged}}
+    {{/active-link}}
 
-    {{#if hasAnalytics}}
-      {{#active-link tagName='div' class='header-item'
-                     activeClass='header-item--active'}}
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "analytics_web"}}
         {{#smart-link-to link=streamsURL
-                         cssClass=(if hasAnalyticsNotifications 'upf-notification--corner')}}
-          <span class='upf-icon upf-icon--monitor'></span>
+                         cssClass=(if hasAnalyticsNotifications "upf-notification--corner")}}
+          <span class="upf-icon upf-icon--monitor"></span>
         {{/smart-link-to}}
-      {{/active-link}}
-    {{/if}}
+      {{else}}
+        {{#smart-link-to link=(concat streamsURL "/upgrade")
+                         cssClass=(if hasAnalyticsNotifications "upf-notification--corner")}}
+          <span class="upf-icon upf-icon--monitor"></span>
+          {{fa-icon "lock"}}
+        {{/smart-link-to}}
+      {{/feature-flagged}}
+    {{/active-link}}
   </section>
 
   <section class='app-header__bottom'>
