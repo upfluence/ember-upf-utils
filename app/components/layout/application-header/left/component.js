@@ -1,1 +1,0 @@
-export { default } from '@upfluence/ember-upf-utils/components/layout/application-header/left/component';
