@@ -1,13 +1,10 @@
-import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
 import Component from '@ember/component';
 import { observer, computed } from '@ember/object';
-import { getOwner } from '@ember/application';
-import Ember from 'ember';
-import layout from './template';
+import { inject as service } from '@ember/service';
+import { camelize } from '@ember/string';
 
-const {
-  String
-} = Ember;
+import layout from './template';
 
 const CANNY_URL = 'https://upfluence.canny.io/feature-requests';
 
@@ -30,7 +27,7 @@ export default Component.extend({
       'has_payments_notifications'
     ].forEach((notifPresence) => {
       this.set(
-        String.camelize(notifPresence),
+        camelize(notifPresence),
         this.get('user')[notifPresence]
       );
     });

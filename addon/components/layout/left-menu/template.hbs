@@ -105,7 +105,7 @@
 
       <ul class="__left-menu__user-menu">
         <li>
-          <div class='__left-menu__user-image'>
+          <div class="__left-menu__user-image">
             {{#if user}}
               {{#if user.avatar_url}}
                 <img src={{user.avatar_url}} class="upf-image upf-image--round-36"/>
@@ -116,7 +116,7 @@
               {{/if}}
             {{/if}}
            </div>
-          <div class='__left-menu__user-info'>
+          <div class="__left-menu__user-info">
             <div>{{user.first_name}} {{user.last_name}}</div>
             <div>
               {{#each companies as |company|}}
@@ -131,10 +131,10 @@
         </li>
 
         <li {{action "goToSettings"}}>
-          <span class='upf-icon upf-icon--cog'></span> &nbsp; Account Settings
+          <span class="upf-icon upf-icon--cog"></span> &nbsp; Account Settings
         </li>
         <li {{action "logout"}}>
-          <span class='upf-icon upf-icon--exit'></span> &nbsp; Log out
+          <span class="upf-icon upf-icon--exit"></span> &nbsp; Log out
         </li>
       </ul>
     </div>
