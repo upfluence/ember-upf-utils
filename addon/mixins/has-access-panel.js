@@ -49,14 +49,15 @@ export default Mixin.create(UpfTableSearchMixin, {
       }
     ).then((entities) => {
       let current = this.get('model');
+      entities = entities.toArray();
 
       if (this.get('accessPanelConfig.nestedModel')) {
         current = current[model];
       }
 
       if (current) {
-        entities.content.removeObject(current);
-        entities.content.unshiftObject(current.get('_internalModel'));
+        entities.removeObject(current);
+        entities.splice(0, 0, current);
       }
 
       this.set('meta', entities.get('meta'));
