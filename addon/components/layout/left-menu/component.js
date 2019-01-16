@@ -2,7 +2,7 @@ import { getOwner } from '@ember/application';
 import Component from '@ember/component';
 import { observer, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { camelize } from '@ember/string';
+import { camelize } from '@ember/string';
 
 import layout from './template';
 
