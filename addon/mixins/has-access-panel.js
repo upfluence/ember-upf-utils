@@ -1,5 +1,6 @@
-import { inject as service } from '@ember/service';
+import EmberObject from '@ember/object';
 import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
 import UpfTableSearchMixin from 'oss-components/mixins/upf-table-search';
 
 export default Mixin.create(UpfTableSearchMixin, {
@@ -49,6 +50,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       }
     ).then((entities) => {
       let current = this.get('model');
+      let meta = entities.meta;
       entities = entities.toArray();
 
       if (this.get('accessPanelConfig.nestedModel')) {
@@ -60,7 +62,7 @@ export default Mixin.create(UpfTableSearchMixin, {
         entities.splice(0, 0, current);
       }
 
-      this.set('meta', entities.get('meta'));
+      this.set('meta', meta);
       this.set('accessPanelEntities', entities);
       this.set('contentLoading', false);
       this.set('shouldReloadAccessPanel', false);
