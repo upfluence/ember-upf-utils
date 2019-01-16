@@ -19,10 +19,10 @@
           <span class="upf-icon upf-icon--inbox"></span>
         {{/smart-link-to}}
       {{else}}
-        {{#smart-link-to link=(concat inboxURL "upgrade")}}
+        <a {{action "openUpgradeModal"}}>
           <span class="upf-icon upf-icon--inbox"></span>
           {{fa-icon "lock"}}
-        {{/smart-link-to}}
+        </a>
       {{/feature-flagged}}
     {{/active-link}}
 
@@ -139,4 +139,33 @@
       </ul>
     </div>
   </section>
+
+  {{#modal-view size="modal-lg" hidden=hidden closeAction=(action "openUpgradeModal")}}
+    <div class="padding-sm upf-align--center">
+      <h2>Get more power and features</h2>
+
+      <p class="text-size-6">
+        With Upfluence (Silver / Gold ), you and your team can maximize the power of
+        Influencer Marketing
+      </p>
+
+      <div class="row padding-sm">
+        <div class="col-xs-4">
+          Screenshot #1
+        </div>
+
+        <div class="col-xs-4">
+          Screenshot #2
+        </div>
+
+        <div class="col-xs-4">
+          Screenshot #3
+        </div>
+      </div>
+
+      <a {{action "goToSettings"}} class="upf-btn upf-btn--primary">
+        Upgrade
+      </a>
+    </div>
+  {{/modal-view}}
 {{/if}}

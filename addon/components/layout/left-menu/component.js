@@ -20,6 +20,8 @@ export default Component.extend({
     imageSize: '36'
   },
 
+  hideUpgradeModal: false,
+
   _1: observer('user', function() {
     [
       'has_facade_notifications', 'has_inbox_notifications',
@@ -150,6 +152,10 @@ export default Component.extend({
       this.$('.__left-menu__user-menu').toggleClass(
         '__left-menu__user-menu--opened'
       );
+    },
+
+    openUpgradeModal(upgradeTo) {
+      this.toggleProperty('hideUpgradeModal');
     }
   }
 });
