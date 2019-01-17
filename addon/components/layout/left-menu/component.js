@@ -20,7 +20,7 @@ export default Component.extend({
     imageSize: '36'
   },
 
-  hideUpgradeModal: false,
+  hideUpgradeModal: true,
 
   _1: observer('user', function() {
     [
