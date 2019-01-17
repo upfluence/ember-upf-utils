@@ -22,6 +22,12 @@ module.exports = {
     }
   },
 
+  contentFor(type, config) {
+    if (config.canny && config.canny.enabled && type === 'body-footer') {
+      return "<script type='text/javascript' src='https://canny.io/sdk.js'></script>";
+    }
+  },
+
   treeForPublic: function(tree) {
     this._requireBuildPackages();
 

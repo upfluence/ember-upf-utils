@@ -9,6 +9,8 @@ const {
   String
 } = Ember;
 
+const CANNY_URL = 'https://upfluence.canny.io';
+
 export default Component.extend({
   layout,
   classNames: ['__left-menu'],
@@ -167,9 +169,27 @@ export default Component.extend({
     return 'campaigns';
   }),
 
+  didInsertElement() {
+    let params = {
+      id: this.user.id,
+      name: this.user.fullName,
+      email: this.user.email,
+      avatarURL: this.user.avatar_url
+    }
+
+    window.Canny('identify', {
+      appID: '5c3df0a379dc78412072bf5c',
+      user: params
+    });
+  },
+
   actions: {
     goToSettings() {
       window.location = this.get('accountUrl');
+    },
+
+    openCanny() {
+      window.open(CANNY_URL, '_blank');
     },
 
     logout() {
