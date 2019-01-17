@@ -5,6 +5,14 @@ import { observer } from '@ember/object';
 import { getOwner } from '@ember/application';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
+
+const notificationMessage = function(message) {
+  return {
+    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+    message: message
+  };
+};
+
 const notificationMessageWithAvatar = function(avatarUrl, message) {
   return {
     title: `<img class="toast-title__avatar" src="${avatarUrl}" />
@@ -13,12 +21,6 @@ const notificationMessageWithAvatar = function(avatarUrl, message) {
   };
 };
 
-const messageWithoutAvatar = function(message) {
-  return {
-    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
-    message: message
-  };
-};
 
 export default Service.extend({
   ajax: service(),
@@ -147,7 +149,7 @@ export default Service.extend({
            <a href="${data.url}" target="_blank">Review</a>`
         );
       case 'list_recommendation':
-        return notificationMmessage(
+        return notificationMessage(
           `You have <b>${data.count}</b> new recommendations for your <b>${data.list_name}</b> list
            <a href="${data.url}" target="_blank">View</a>`
         );
