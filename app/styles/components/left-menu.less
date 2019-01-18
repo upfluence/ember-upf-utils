@@ -43,9 +43,18 @@
     transition: background-color .2s ease;
     text-align: left;
 
+    .fa.fa-microphone {
+      color: @upf-primary-bright-purple;
+    }
+
     &:hover {
       background-color: @upf-primary-bright-purple;
       color: @upf-primary-white;
+
+      .fa {
+        color: @upf-primary-white;
+      }
+
     }
 
     &:first-child {

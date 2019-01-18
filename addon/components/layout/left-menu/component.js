@@ -9,6 +9,8 @@ const {
   String
 } = Ember;
 
+const CANNY_URL = 'https://upfluence.canny.io/feature-requests';
+
 export default Component.extend({
   layout,
   classNames: ['__left-menu'],
@@ -170,6 +172,10 @@ export default Component.extend({
   actions: {
     goToSettings() {
       window.location = this.get('accountUrl');
+    },
+
+    openCanny() {
+      window.open(CANNY_URL, '_blank');
     },
 
     logout() {
