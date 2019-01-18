@@ -1,5 +1,4 @@
 import Service, { inject as service } from '@ember/service';
-import Ember from 'ember';
 import { pluralize } from 'ember-inflector';
 
 export default Service.extend({

@@ -4,7 +4,7 @@ import Service from '@ember/service';
 export default Service.extend({
   meta: {},
 
-  facebookMeta: computed('meta.statsErFacebookMin', 'meta.statsErFacebookMax', function() {
+  facebookMeta: computed('meta.{statsErFacebookMin,statsErFacebookMax}', function() {
     return EmberObject.create({
       erMin: this.get('meta.statsErFacebookMin'),
       erMax: this.get('meta.statsErFacebookMax')
