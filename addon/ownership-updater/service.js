@@ -2,10 +2,6 @@ import Service, { inject as service } from '@ember/service';
 import Ember from 'ember';
 import { pluralize } from 'ember-inflector';
 
-const {
-  String
-} = Ember;
-
 export default Service.extend({
   ajax: service(),
 
