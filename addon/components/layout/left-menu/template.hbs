@@ -6,10 +6,10 @@
           <span class="upf-icon upf-icon--search"></span>
         {{/smart-link-to}}
       {{else}}
-        {{#smart-link-to link=(concat listURL "upgrade")}}
+        <a {{action "openUpgradeModal"}}>
           <span class="upf-icon upf-icon--search"></span>
           {{fa-icon "lock"}}
-        {{/smart-link-to}}
+        </a>
       {{/feature-flagged}}
     {{/active-link}}
 
@@ -26,7 +26,6 @@
       {{/feature-flagged}}
     {{/active-link}}
 
-
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
       {{#feature-flagged "publishr_admin"}}
         {{#smart-link-to link=publishrCampaignsURL
@@ -34,13 +33,12 @@
           <span class="upf-icon upf-icon--workflow"></span>
         {{/smart-link-to}}
       {{else}}
-        {{#smart-link-to link=(concat publishrCampaignsURL "/upgrade")}}
+        <a {{action "openUpgradeModal"}}>
           <span class="upf-icon upf-icon--workflow"></span>
           {{fa-icon "lock"}}
-        {{/smart-link-to}}
+        </a>
       {{/feature-flagged}}
     {{/active-link}}
-
 
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
       {{#feature-flagged "publishr_payments"}}
@@ -49,10 +47,10 @@
           <span class="upf-icon upf-icon--finance"></span>
         {{/smart-link-to}}
       {{else}}
-        {{#smart-link-to link=(concat publishrPaymentsURL "/upgrade")}}
+        <a {{action "openUpgradeModal"}}>
           <span class="upf-icon upf-icon--finance"></span>
           {{fa-icon "lock"}}
-        {{/smart-link-to}}
+        </a>
       {{/feature-flagged}}
     {{/active-link}}
 
@@ -62,10 +60,10 @@
           <span class="upf-icon upf-icon--influencers"></span>
         {{/smart-link-to}}
       {{else}}
-        {{#smart-link-to link=(concat publishrClientURL "/upgrade")}}
+        <a {{action "openUpgradeModal"}}>
           <span class="upf-icon upf-icon--influencers"></span>
           {{fa-icon "lock"}}
-        {{/smart-link-to}}
+        </a>
       {{/feature-flagged}}
     {{/active-link}}
 
@@ -76,11 +74,10 @@
           <span class="upf-icon upf-icon--monitor"></span>
         {{/smart-link-to}}
       {{else}}
-        {{#smart-link-to link=(concat streamsURL "/upgrade")
-                         cssClass=(if hasAnalyticsNotifications "upf-notification--corner")}}
+        <a {{action "openUpgradeModal"}}>
           <span class="upf-icon upf-icon--monitor"></span>
           {{fa-icon "lock"}}
-        {{/smart-link-to}}
+        </a>
       {{/feature-flagged}}
     {{/active-link}}
   </section>
