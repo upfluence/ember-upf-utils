@@ -1,13 +1,10 @@
 import { isEmpty } from '@ember/utils';
-import EmberUploader from 'ember-uploader';
-import layout from './template';
+import FileField from 'ember-uploader/components/file-field';
 
-export default EmberUploader.FileField.extend({
-  layout,
-
+export default FileField.extend({
   filesDidChange(files) {
-    if (!isEmpty(files)) {
-      this.sendAction('onFile', files[0]);
+    if (!isEmpty(files) && this.onFile) {
+      this.onFile(files[0]);
     }
   }
 });
