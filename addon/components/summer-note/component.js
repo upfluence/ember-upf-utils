@@ -1,7 +1,7 @@
 import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
 import SummerNoteComponent from 'ember-cli-summernote/components/summer-note';
-import EmberUploader from 'ember-uploader';
+import Uploader from '@upfluence/ember-upf-utils/uploader';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default SummerNoteComponent.extend({
@@ -29,10 +29,13 @@ export default SummerNoteComponent.extend({
     }
   },
 
-  uploadAllowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+  uploadAllowedExtensions: 'jpg,jpeg,png,gif',
+  uploadMaxSize: null,
+
   uploaderHeaders: {
     'Scope': Configuration.scope[0]
   },
+
   uploaderOptions: computed('uploaderHeaders', function() {
     /* jshint ignore:start */
     return {
@@ -44,36 +47,36 @@ export default SummerNoteComponent.extend({
             `Bearer ${this.get('session.data.authenticated.access_token')}`
         }
       },
-      url: Configuration.uploaderUrl
+      url: Configuration.uploaderUrl,
+      allowedExtensions: this.uploadAllowedExtensions,
+      maxSize: this.uploadMaxSize
     };
     /* jshint ignore:end */
   }),
+
   uploader: computed('uploaderOptions', function() {
-    let uploader = EmberUploader.Uploader.create(this.get('uploaderOptions'));
+    let uploader = Uploader.create(this.get('uploaderOptions'));
     uploader
+      .on('didValidationError', (error) => {
+        this.get('toast').error(
+          error.message || 'Your file is invalid. Please check the requirements.'
+        );
+      })
       .on('didUpload', (e) => {
         this.$('#summernote').summernote('insertImage', e.artifact.url);
       });
+
     return uploader;
   }),
 
   match: /\B{{(\w*)$/,
 
   availableVariables: computed('customVariables', function() {
-    return (this.get('customVariables') || []).uniq();
+    return (this.customVariables || []).uniq();
   }),
 
   uploadFile(file) {
-    let fileExtension = file.name.split('.').slice(-1).pop()
-    if (this.get('uploadAllowedExtensions').includes(fileExtension.toLowerCase())) {
-      this.get('uploader').upload(file, { privacy: 'public' });
-    } else {
-      let extsWording = this.get('uploadAllowedExtensions').join(', ');
-      this.get('toast').info(
-        `Allowed image formats are: ${extsWording}`,
-        `Issue uploading ${file.name}`,
-      );
-    }
+    this.get('uploader').upload(file, { privacy: 'public' });
   },
 
   didInsertElement: function() {
@@ -87,7 +90,8 @@ export default SummerNoteComponent.extend({
 
     if (arrayOfCustomButtons) {
       let plugins = arrayOfCustomButtons.reduce((acc, v) => {
-        acc[v.name] = v
+        acc[v.name] = v;
+
         return acc;
       }, {});
 

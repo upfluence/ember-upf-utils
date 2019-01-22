@@ -1,9 +1,11 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
+import { notEmpty } from '@ember/object/computed';
 import { isBlank, isEmpty } from '@ember/utils';
-import EmberUploader from 'ember-uploader';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
+import { formatNumber } from '@upfluence/ember-upf-utils/helpers/format-number';
+import Uploader from '@upfluence/ember-upf-utils/uploader';
 import layout from './template';
 
 export default Component.extend({
@@ -11,12 +13,14 @@ export default Component.extend({
   classNames: ['file-uploader'],
   store: service(),
   session: service(),
+  toast: service(),
 
   method: 'PUT',
   attribute: 'file',
 
   text: 'Upload File',
 
+  maxSize: null,
   allowedExtensions: null,
   twoStep: false,
   extra: {},
@@ -26,63 +30,31 @@ export default Component.extend({
   useProgress: false,
 
   // Actions
-  beforeUpload: '',
-  didUpload: '',
-  onProgress: '',
-  didError: '',
-  didValidationError: '',
+  beforeUpload: null,
+  didUpload: null,
+  onProgress: null,
+  didError: null,
+  didValidationError: null,
+  file: null,
 
   _onUpload: false,
+  _isValid: true,
   _percent: 0,
-  _file: null,
 
   _: observer('file', function() {
-    if (this.get('_onUpload')) {
-      return;
-    }
-    this.send('onFile', this.get('file'));
+    this._upload();
   }),
 
   url: computed('model.id', function() {
-    return this.get(
-      'store'
-    ).adapterFor(this.get('model.constructor.modelName')).buildURL(
+    return this.store.adapterFor(
+      this.get('model.constructor.modelName')
+    ).buildURL(
       this.get('model.constructor.modelName'),
       this.get('model.id')
     );
   }),
 
-  hasFile: computed('_file', function() {
-    return !isEmpty(this.get('_file.name'));
-  }),
-
-  isValid: computed('hasFile', function() {
-    let errors = [];
-
-    if (!this.get('hasFile')) {
-      errors.push({
-        type: 'no_file',
-        message: 'No file to upload.'
-      });
-    }
-
-    let exts = this.get('_allowedExtensions');
-
-    if (!isBlank(exts) && !exts.includes(this._getExtension(this.get('_file.name')))) {
-      errors.push({
-        type: 'no_file',
-        message: 'The extension of the file is invalid.'
-      });
-    }
-
-    if (isBlank(errors)) {
-      return true;
-    }
-
-    this.sendAction('didValidationError', errors);
-
-    return false;
-  }),
+  hasFile: notEmpty('file.name'),
 
   willDestroy() {
     this._clear();
@@ -93,11 +65,7 @@ export default Component.extend({
       this._clear();
     },
     onFile(file) {
-      this.set('_file', file);
-
-      if (!this.get('twoStep') && this.get('isValid')) {
-        this._upload();
-      }
+      this.set('file', file);
     },
     upload() {
       this._upload();
@@ -105,28 +73,53 @@ export default Component.extend({
   },
 
   _upload() {
+    if (this._onUpload) {
+      return;
+    }
+
     let uploader = this._getUploader();
 
     uploader
+      .on('beforeUpload', (file) => {
+        this.set('_onUpload', true);
+        if (this.beforeUpload) {
+          this.beforeUpload(file);
+        }
+      })
       .on('didUpload', (e) => {
-        this.sendAction('didUpload', e);
+        if (this.didUpload) {
+          this.didUpload(e);
+        }
 
         if(!this.isDestroyed) {
           this._clear();
         }
       })
       .on('progress', (e) => {
-        if (!this.get('useProgress')) {
+        if (!this.useProgress) {
           return;
         }
 
         this.set('_percent', e.percent);
-        this.sendAction('onProgress', e);
+        if (this.onProgress) {
+          this.onProgress(e);
+        }
+      })
+      .on('didValidationError', (error) => {
+        this.set('_onUpload', false);
+        this.set('_isValid', false);
+        this.toast.info(
+          error || 'Your file is invalid. Please check the requirements.'
+        );
+
+        if (this.didValidationError) {
+          this.didValidationError(error);
+        }
       })
       .on('didError', (jqXHR, textStatus, errorThrown) => {
         let payload = null;
 
-        if (jqXHR.responseText) {
+        if (jqXHR && jqXHR.responseText) {
           try {
             payload = JSON.parse(jqXHR.responseText);
           } catch(e) {
@@ -134,69 +127,45 @@ export default Component.extend({
           }
         }
 
-        this.set('_file', null);
+        this.set('file', null);
         this.set('_onUpload', false);
         // dispatch payload from backend
-        this.sendAction('didError', payload, errorThrown);
+
+        if (this.didError) {
+          this.didError(payload, errorThrown);
+        }
       })
     ;
 
-    if (!isEmpty(this.get('_file'))) {
-      this.sendAction('beforeUpload', this.get('_file'));
-      this.set('_onUpload', true);
+    if (!isEmpty(this.file)) {
       /* jshint ignore:start */
-      let extra = this.get('extra');
-      uploader.upload(this.get('_file'), {
-        ...extra,
-        allowed_extensions: this.get('allowedExtensions')
+      uploader.upload(this.file, {
+        ...this.extra,
+        allowedExtensions: this.allowedExtensions,
+        maxSize: this.maxSize,
       });
       /* jshint ignore:end */
     }
   },
 
-  _getExtension(filename) {
-    let extensionMatchers = [
-      new RegExp(/^(.+)\.(tar\.([glx]?z|bz2))$/),
-      new RegExp(/^(.+)\.([^\.]+)$/)
-    ];
-
-    for (let i = 0; i < extensionMatchers.length; i++) {
-      let match = extensionMatchers[i].exec(filename.toLowerCase());
-      if (match) {
-        return match[2];
-      }
-    }
-
-    return null;
-  },
-
-  _allowedExtensions: computed('allowedExtensions', function() {
-    if (isBlank(this.get('allowedExtensions'))) {
-      return [];
-    }
-
-    return this.get('allowedExtensions').split(',');
-  }),
-
   // Ensure the BC
   _getUploader() {
-    let headers = this.get('headers');
     let token = this.get('session.data.authenticated.access_token');
     let options = {
       ajaxSettings: {
         dataType: 'json',
         headers: {
-          ...headers,
+          ...this.headers,
           'Authorization': `Bearer ${token}`
         }
       }
     };
 
     // BC
-    if (this.get('model')) {
-      options.url = this.get('url');
-      options.method = this.get('method');
-      options.paramName = this.get('attribute').underscore();
+    if (this.model) {
+      options.url = this.url;
+      options.method = this.method;
+      options.paramName = this.attribute.underscore();
       options.paramNamespace = this.get(
         'model.constructor.modelName'
       ).underscore();
@@ -204,12 +173,13 @@ export default Component.extend({
       options.url = Configuration.uploaderUrl;
     }
 
-    return EmberUploader.Uploader.create(options);
+    return Uploader.create(options);
   },
 
   _clear() {
+    this.set('file', null);
     this.set('_onUpload', false);
-    this.set('_file', null);
+    this.set('_isValid', true);
     this.set('_percent', 0);
   }
 });
