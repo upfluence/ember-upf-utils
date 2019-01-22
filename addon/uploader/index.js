@@ -25,7 +25,7 @@ const fileExtensionValidatorFactory = function(extensions) {
       return true;
     }
 
-    let exts = exts.split(',');
+    let exts = extensions.split(',');
     let ext = getExtension(file.name);
 
     if (ext && exts.includes(ext)) {
