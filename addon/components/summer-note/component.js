@@ -30,6 +30,7 @@ export default SummerNoteComponent.extend({
   },
 
   uploadAllowedExtensions: 'jpg,jpeg,png,gif',
+  uploadMaxSize: null,
 
   uploaderHeaders: {
     'Scope': Configuration.scope[0]
@@ -47,7 +48,8 @@ export default SummerNoteComponent.extend({
         }
       },
       url: Configuration.uploaderUrl,
-      allowedExtensions: this.uploadAllowedExtensions
+      allowedExtensions: this.uploadAllowedExtensions,
+      maxSize: this.uploadMaxSize
     };
     /* jshint ignore:end */
   }),
