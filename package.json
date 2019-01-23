@@ -35,8 +35,8 @@
     "ember-tether": "^1.0.0-beta.2",
     "ember-uploader": "^2.x",
     "emberx-select": "^3.0.1",
-    "summernote": "^0.8.9",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "ember-cli-summernote": "^1.5.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
@@ -49,7 +49,6 @@
     "ember-cli-jshint": "^1.0.0",
     "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.1",
-    "ember-cli-summernote": "^1.5.0",
     "ember-cli-template-lint": "^1.0.0-beta.1",
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^2.1.0",
