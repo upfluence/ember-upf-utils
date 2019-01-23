@@ -19,7 +19,7 @@ export default Component.extend({
     let { ui } = $.summernote;
 
     let uploadBtns = {
-      videoUpload: (context) => {
+      videoUpload: function(context) {
         context.memo('button.videoUpload', function() {
           return ui.button({
             contents: '<i class="fa fa-video-camera"/></i>',
@@ -32,7 +32,7 @@ export default Component.extend({
         });
       },
 
-      pdfUpload: (context) => {
+      pdfUpload: function(context) {
         context.memo('button.pdfUpload', function() {
           return ui.button({
             contents: '<i class="fa fa-file-pdf-o"></i>',
@@ -46,11 +46,11 @@ export default Component.extend({
       }
     };
 
-    if (isEmpty(this.get('_customButtons'))) {
+    if (isEmpty(this._customButtonsFuncs)) {
       Object.keys(uploadBtns).filter((x) => {
-        return this.get('customButtons').split(',').includes(x);
+        return this.customButtons.split(',').includes(x);
       }).map((x) => uploadBtns[x]).forEach((customButton) => {
-        this.get('_customButtonsFuncs').push(customButton);
+        this._customButtonsFuncs.push(customButton);
       });
     }
 

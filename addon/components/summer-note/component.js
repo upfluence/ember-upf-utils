@@ -95,7 +95,7 @@ export default SummerNoteComponent.extend({
         return acc;
       }, {});
 
-      $.extend($.summernote.plugins, plugins);
+      Object.assign($.summernote.plugins, plugins);
       _toolbar.push(['insert', Object.keys(plugins)]);
     }
 
@@ -132,7 +132,6 @@ export default SummerNoteComponent.extend({
         }
       }
     });
-
 
     this.$('.dropdown-toggle').dropdown();
 
