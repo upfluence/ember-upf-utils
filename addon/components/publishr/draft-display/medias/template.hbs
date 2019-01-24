@@ -2,7 +2,7 @@
   <ol class="carousel-indicators">
     {{#each item.draftMedias as |dm index|}}
       <li data-target="{{concat "#" elementId}}" data-slide-to={{index}} class="{{if (eq index 0) 'active'}}">
-        {{fa-icon "circle"}}
+        <i class="fa fa-circle"></i>
       </li>
     {{/each}}
   </ol>

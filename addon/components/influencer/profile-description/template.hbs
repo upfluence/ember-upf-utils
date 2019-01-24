@@ -30,10 +30,10 @@
     {{#if exportInfluencer}}
       <a {{action exportInfluencer bubbles=false}}
           class="profile-description__action upf-link--reset"
-          title="Export Influencer"
+          title="Move Influencer"
           data-toggle="tooltip"
           data-placement="bottom">
-        {{fa-icon "share"}}
+        <i class="fa fa-share"></i>
       </a>
     {{/if}}
 
@@ -41,7 +41,7 @@
       {{#link-to (concat sidePanelBasePath ".profile") profile.id
                  class='upf-link--reset profile-description__action'
                  bubbles=false}}
-        {{fa-icon 'pencil'}}
+        <i class="fa fa-pencil"></i>
       {{/link-to}}
     </span>
 

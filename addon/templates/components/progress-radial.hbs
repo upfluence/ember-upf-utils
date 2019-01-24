@@ -1,7 +1,9 @@
 <div class="overlay">
   {{#if icon}}
-      <p class="progress-icon">{{fa-icon icon}}</p>
-      <p>{{displayValue}}</p>
+    <p class="progress-icon">
+      <i class="fa fa-{{icon}}"></i>
+    </p>
+    <p>{{displayValue}}</p>
   {{else}}
       <p>{{displayValue}}</p>
   {{/if}}

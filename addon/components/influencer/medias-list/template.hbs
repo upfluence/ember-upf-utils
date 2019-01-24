@@ -1,7 +1,7 @@
 {{#each orderedMedias as |media|}}
   <div class='community-row text-size-6 text-color-default-light'>
     <div class='community-row--line'>
-      <span class='color-{{media.type}}'>{{fa-icon media.icon}}</span>
+      <span class='color-{{media.type}}'><i class="fa fa-{{media.icon}}"></i></span>
       <span title={{media.communitySlug}}
             data-toggle='tooltip'
             data-placement='bottom'>
@@ -10,7 +10,7 @@
     </div>
     <div class='community-row--line  text-size-5'>
       <span class='text-color-default-lighter text-size-3'>
-        {{fa-icon 'exchange'}}
+        <i class="fa fa-exchange"></i>
       </span>
       {{#if media.model.engagementRate}}
         <span title='engagement' data-toggle='tooltip' data-placement='bottom'>

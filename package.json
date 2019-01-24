@@ -24,6 +24,7 @@
     "ember-cli-htmlbars-inline-precompile": "^0.4",
     "ember-cli-moment-shim": "3.0.1",
     "ember-cli-smart-link-to": "^2.1.0",
+    "ember-cli-summernote": "^1.5.1",
     "ember-collection": "^1.0.0-alpha.9",
     "ember-cp-validations": "offirgolan/ember-cp-validations#master",
     "ember-i18n": "^5.0.0",
@@ -35,8 +36,7 @@
     "ember-tether": "^1.0.0-beta.2",
     "ember-uploader": "^2.x",
     "emberx-select": "^3.0.1",
-    "tinycolor2": "^1.4.1",
-    "ember-cli-summernote": "^1.5.1"
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",

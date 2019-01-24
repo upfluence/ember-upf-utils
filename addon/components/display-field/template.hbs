@@ -1,6 +1,9 @@
 {{#if url}}
   <a href={{url}} target="_blank">{{cleanedValue}}</a>
 {{else}}
-  {{#if icon}}{{fa-icon icon}}{{/if}} {{if cleanedValue cleanedValue}}
+  {{#if icon}}
+    <i class="fa fa-{{icon}}"></i>
+  {{/if}} {{if cleanedValue cleanedValue}}
 {{/if}}
+
 {{yield}}
