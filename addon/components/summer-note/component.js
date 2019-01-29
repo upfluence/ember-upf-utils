@@ -136,6 +136,7 @@ export default SummerNoteComponent.extend({
     this.$('.dropdown-toggle').dropdown();
 
     this.$().on('clear', () => this.$('#summernote').summernote('code', ''));
-    this._super();
+    this.$('#summernote').summernote('code', this.get('content'));
+    this._super(...arguments);
   }
 });
