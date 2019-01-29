@@ -59,11 +59,6 @@
         {{#smart-link-to link=publishrClientURL}}
           <span class="upf-icon upf-icon--influencers"></span>
         {{/smart-link-to}}
-      {{else}}
-        <a {{action "openUpgradeModal"}} role="upgrade">
-          <span class="upf-icon upf-icon--influencers"></span>
-          {{fa-icon "lock"}}
-        </a>
       {{/feature-flagged}}
     {{/active-link}}
 

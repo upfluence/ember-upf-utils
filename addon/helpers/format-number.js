@@ -17,7 +17,7 @@ var formatNumber = function formatNumber(params) {
   var number = params[0];
 
   if (number === null || number === undefined || isNaN(number)) {
-    return "--";
+    return '-';
   }
 
   var format = formats.filter(format => {
@@ -31,7 +31,7 @@ var formatNumber = function formatNumber(params) {
 
     return Math.round(number / format.value) + format.sym;
   }
-  if (typeof number === "number") {
+  if (typeof number === 'number') {
     if (number >= 100) {
       return number.toFixed();
     }
