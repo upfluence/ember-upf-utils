@@ -7,6 +7,7 @@ import { camelize } from '@ember/string';
 import layout from './template';
 
 const CANNY_URL = 'https://upfluence.canny.io/feature-requests';
+const CALENDLY_BASE_URL = 'https://calendly.com/software_booking/upfluence-software-30-minute-demo';
 
 export default Component.extend({
   layout,
@@ -20,7 +21,16 @@ export default Component.extend({
     imageSize: '36'
   },
 
-  hideUpgradeModal: true,
+  hideUpgradeModal: false,
+  calendlyParams: {
+    'utm_source': 'upfluence-software',
+    'utm_medium': 'software',
+    'utm_campaign': 'upsell'
+  },
+
+  calendlyURL: computed('calendlyParams', function() {
+    return `${CALENDLY_BASE_URL}?${$.param(this.calendlyParams)}`;
+  }),
 
   _1: observer('user', function() {
     [
