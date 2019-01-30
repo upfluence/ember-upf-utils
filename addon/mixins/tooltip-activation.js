@@ -3,7 +3,7 @@ import { run } from '@ember/runloop';
 
 const _rebuildTooltip = function() {
   run.debounce(this, function() {
-    let $els = this.$('[data-toggle="tooltip"]');
+    let $els = this.$('[data-toggle="tooltip"]') || [];
     if ($els.length > 0) {
       $els.tooltip('fixTitle');
     }
