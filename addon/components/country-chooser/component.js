@@ -8,30 +8,38 @@ export default Component.extend({
 
   classNames: ['form-element', 'country-chooser'],
   codes: CountryCodes,
-  selection: [],
 
   label: 'Country',
+  placeholder: '-',
   required: false,
   multiple: true,
+  dark: false,
 
-  countryCode: null,
-  countryCodes: computed('selection.[]', {
+  _selection: null,
+
+  countryCode: computed('_selection', {
     get() {
-      return this.get('selection').map((x) => x.id);
+      return (this._selection || {}).id;
     },
 
     set(_, value) {
-      this.set('selection', (value || []).map((v) => {
-        return CountryCodes.find((x) => x.id === v);
-      }));
+      this.set('_selection', CountryCodes.find((x) => x.id === value));
 
       return value;
     }
   }),
 
-  actions: {
-    selectCountry(value) {
-      this.set('countryCode', value);
+  countryCodes: computed('_selection.[]', {
+    get() {
+      return (this._selection || []).map((x) => x.id);
+    },
+
+    set(_, value) {
+      this.set('_selection', (value || []).map((v) => {
+        return CountryCodes.find((x) => x.id === v);
+      }));
+
+      return value;
     }
-  }
+  })
 });
