@@ -45,6 +45,8 @@ export default Component.extend({
         this.didCreate(item);
       }
 
+      this.select.actions.close();
+
       defer.resolve();
     }
   }

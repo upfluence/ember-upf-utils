@@ -1,14 +1,3 @@
 <label>{{label}}</label>
-{{#if multiple}}
-  {{#power-select-multiple options=codes selected=selection placeholder="-" searchField="name"
-                           renderInPlace=true onchange=(action (mut selection)) as |code|}}
-    {{code.name}}
-  {{/power-select-multiple}}
-{{else}}
-  {{#x-select value=countryCode action="selectCountry" required=required class='form-control upf-select' as |xs|}}
-    <option>-</option>
-    {{#each codes as |code|}}
-      {{#xs.option value=code.id}}{{code.name}}{{/xs.option}}
-    {{/each}}
-  {{/x-select}}
-{{/if}}
+{{item-chooser items=codes multiple=multiple placeholder=placeholder searchField="name"
+               selection=_selection class=(if dark "item-chooser--dark")}}

@@ -14,7 +14,7 @@ export default Component.extend({
   createOptionPlaceholder: '#item#',
   multiple: false,
   canCreate: false,
-  didCreate: null,
+  didCreate: 'defaultCreate',
   optionValuePath: null,
   optionLabelPath: 'name',
   sortField: 'name', // TODO: Rename this to searchField
@@ -40,6 +40,10 @@ export default Component.extend({
   actions: {
     updateSearchTerm(term) {
       this.set('searchTerm', term);
+    },
+
+    defaultCreate() {
+      //default action
     }
   }
 });

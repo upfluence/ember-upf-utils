@@ -1,11 +1,23 @@
-.__item-chooser {
+.item-chooser {
   flex: 1;
 
-  .close-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  &--dark {
+    .ember-power-select-trigger {
+      color: @upf-primary-rock-blue;
+      background-color: @upf-gray-light;
+      box-shadow: none;
+      border: 1px solid @upf-gray;
+    }
+
+    .ember-power-select-multiple-option {
+      color: @upf-primary-rock-blue;
+      background-color: @upf-primary-white;
+      border-color: @upf-gray-dark;
+    }
+  }
+
+  .ember-power-select-multiple-remove-btn {
+    float: right;
+    padding-left: 5px;
   }
 }
