@@ -48,5 +48,13 @@ module.exports = {
     });
 
     return new MergeTrees([vendorTree, tinyTree]);
+  },
+
+  contentFor(type, config) {
+    // Since emberjs dont nest contentFor call on sub addon
+    // this add the google script for the ember-cli-google-analytics
+    if (type === 'body-footer') {
+      return '<script async src="https://www.google-analytics.com/analytics.js"></script>';
+    }
   }
 };
