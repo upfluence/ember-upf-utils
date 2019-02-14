@@ -13,6 +13,12 @@ module.exports = function(environment, appConfig) {
     }
   };
 
+  appConfig['ember-cli-google'] = {
+    analytics: {
+      trackerId: 'UA-41488471-4',
+    }
+  };
+
   return {
     modulePrefix: 'ember-upf-utils'
   };
