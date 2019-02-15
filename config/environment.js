@@ -1,4 +1,5 @@
 /*jshint node:true*/
+/*global process*/
 'use strict';
 
 module.exports = function(environment, appConfig) {
@@ -15,7 +16,7 @@ module.exports = function(environment, appConfig) {
 
   appConfig['ember-cli-google'] = {
     analytics: {
-      trackerId: 'UA-41488471-4',
+      trackerId: process.env.GA_WEB_PROPERTY_ID || 'no-token',
     }
   };
 
