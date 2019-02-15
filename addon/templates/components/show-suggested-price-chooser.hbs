@@ -1,0 +1,5 @@
+{{#x-select value=value default="on" class='upf-select' action=(action "updateShowSuggestedPrice") as |xs|}}
+  {{#each selectStateSuggestedPrice as |state|}}
+    {{#xs.option value=state}}{{state}}{{/xs.option}}
+  {{/each}}
+{{/x-select}}
