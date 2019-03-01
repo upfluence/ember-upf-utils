@@ -49,7 +49,7 @@ export default Service.extend({
 
   _formatFeatureFlags(flags) {
     return Object.keys(flags).reduce((acc, scope) => {
-      acc[camelize(scope)] = flags[scope].reduce((camelizedScopes, flagName) => {
+      acc[camelize(scope)] = (flags[scope] || []).reduce((camelizedScopes, flagName) => {
         camelizedScopes[camelize(flagName)] = true;
         return camelizedScopes;
       }, {})
