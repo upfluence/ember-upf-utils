@@ -6,7 +6,7 @@
           <span class="upf-icon upf-icon--search"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "openUpgradeModal"}}>
+        <a {{action "goToBilling"}}>
           <span class="upf-icon upf-icon--search"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -19,7 +19,7 @@
           <span class="upf-icon upf-icon--inbox"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "openUpgradeModal"}} role="upgrade">
+        <a {{action "goToBilling"}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -33,7 +33,7 @@
           <span class="upf-icon upf-icon--workflow"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "openUpgradeModal"}} role="upgrade">
+        <a {{action "goToBilling"}} role="upgrade">
           <span class="upf-icon upf-icon--workflow"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -47,7 +47,7 @@
           <span class="upf-icon upf-icon--finance"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "openUpgradeModal"}} role="upgrade">
+        <a {{action "goToBilling"}} role="upgrade">
           <span class="upf-icon upf-icon--finance"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -69,7 +69,7 @@
           <span class="upf-icon upf-icon--monitor"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "openUpgradeModal"}} role="upgrade">
+        <a {{action "goToBilling"}} role="upgrade">
           <span class="upf-icon upf-icon--monitor"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -131,24 +131,4 @@
       </ul>
     </div>
   </section>
-
-  {{#modal-view size="modal-lg" hidden=hideUpgradeModal closeAction=(action "openUpgradeModal")}}
-    <div class="padding-sm upf-align--center">
-      <h2>Get more power and features</h2>
-
-      <p class="text-size-6">
-        Upgrade you and your team can maximize the power of
-        Influencer Marketing
-      </p>
-
-      <div class="row padding-sm">
-        <div class="calendly-booking">
-          <!-- Calendly inline widget begin -->
-          <div class="calendly-inline-widget" data-url={{calendlyURL}} style="min-width:320px;height:100vh;"></div>
-          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-          <!-- Calendly inline widget end -->
-        </div>
-      </div>
-    </div>
-  {{/modal-view}}
 {{/if}}

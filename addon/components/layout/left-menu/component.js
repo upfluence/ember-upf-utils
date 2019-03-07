@@ -21,17 +21,6 @@ export default Component.extend({
     imageSize: '36'
   },
 
-  hideUpgradeModal: false,
-  calendlyParams: {
-    'utm_source': 'upfluence-software',
-    'utm_medium': 'software',
-    'utm_campaign': 'upsell'
-  },
-
-  calendlyURL: computed('calendlyParams', function() {
-    return `${CALENDLY_BASE_URL}?${$.param(this.calendlyParams)}`;
-  }),
-
   _1: observer('user', function() {
     [
       'has_facade_notifications', 'has_inbox_notifications',
@@ -164,8 +153,8 @@ export default Component.extend({
       );
     },
 
-    openUpgradeModal(upgradeTo) {
-      this.toggleProperty('hideUpgradeModal');
+    goToBilling() {
+      window.location = `${this.identityURL}accounts/billing`;
     }
   }
 });
