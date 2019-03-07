@@ -4,17 +4,13 @@
 @import 'helpers/animations';
 @import 'helpers/absolute';
 @import 'helpers/colors';
-@import 'helpers/fixed';
 @import 'helpers/text-ellipsis';
 @import 'helpers/inverse-element';
-@import 'helpers/grid-display';
-@import 'helpers/overflow';
-@import 'helpers/content-block';
 @import 'helpers/disable-scrolling';
-@import 'helpers/card';
+@import 'helpers/card'; // TODO: check if always needed
 
-@import 'bootstrap/screens';
-@import 'bootstrap/jumbotron';
+@import 'bootstrap/screens'; // TODO: check if always needed
+@import 'bootstrap/jumbotron'; // TODO: check if always needed
 @import 'ember-power-select';
 
 @import 'components/summer-note';
@@ -36,7 +32,6 @@
 @import 'components/publishr/draft-display';
 
 @import 'layout/app-base/styles';
-@import 'layout/application-header/styles';
 @import 'layout/side-hover-panel/styles';
 
 @import 'vendor/power-select';
@@ -44,4 +39,22 @@
 // TODO: remove once we got rid of Selectize completely
 .selectize-control.multi .selectize-input.has-items {
   padding-top: 7px;
+}
+
+.header-item {
+  a[role="upgrade"] {
+    color: @color-text-contrast-light !important;
+  }
+
+  .fa.fa-lock {
+    color: @color-text-contrast-light;
+    font-size: 14/@rem;
+    position: absolute;
+    right: 20%;
+    top: 20%;
+  }
+}
+
+.calendly-inline-widget {
+  .spinner { display: none; }
 }

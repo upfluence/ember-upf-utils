@@ -1,4 +1,3 @@
-import EmberObject from '@ember/object';
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
 import UpfTableSearchMixin from 'oss-components/mixins/upf-table-search';

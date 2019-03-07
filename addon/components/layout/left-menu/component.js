@@ -1,60 +1,25 @@
-import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
 import Component from '@ember/component';
 import { observer, computed } from '@ember/object';
-import { getOwner } from '@ember/application';
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { camelize } from '@ember/string';
+
 import layout from './template';
 
-const {
-  String
-} = Ember;
-
 const CANNY_URL = 'https://upfluence.canny.io/feature-requests';
+const CALENDLY_BASE_URL = 'https://calendly.com/software_booking/upfluence-software-30-minute-demo';
 
 export default Component.extend({
   layout,
   classNames: ['__left-menu'],
 
   session: service(),
-  userScopes: [],
-
-  hasFacade: true,
-  hasInbox: true,
-  hasAnalytics: false,
-  hasPublishr: false,
-  hasPublishrClient: false,
 
   userInfos: {
     property: 'avatar_url',
     textProperty: 'fullName',
     imageSize: '36'
   },
-
-  _: observer('userScopes', function() {
-    if (!this.get('userScopes.length')) {
-      return;
-    }
-
-    if (!this.get('userScopes').includes('inbox_client')) {
-      this.set('hasInbox', false);
-    }
-
-    if (!this.get('userScopes').includes('facade_web')) {
-      this.set('hasFacade', false);
-    }
-
-    if (this.get('userScopes').includes('analytics_web')) {
-      this.set('hasAnalytics', true);
-    }
-
-    if (this.get('userScopes').includes('publishr_admin')) {
-      this.set('hasPublishr', true);
-    }
-
-    if (this.get('userScopes').includes('publishr_client')) {
-      this.set('hasPublishrClient', true);
-    }
-  }),
 
   _1: observer('user', function() {
     [
@@ -63,7 +28,7 @@ export default Component.extend({
       'has_payments_notifications'
     ].forEach((notifPresence) => {
       this.set(
-        String.camelize(notifPresence),
+        camelize(notifPresence),
         this.get('user')[notifPresence]
       );
     });
@@ -186,6 +151,10 @@ export default Component.extend({
       this.$('.__left-menu__user-menu').toggleClass(
         '__left-menu__user-menu--opened'
       );
+    },
+
+    goToBilling() {
+      window.location = `${this.identityURL}accounts/billing`;
     }
   }
 });
