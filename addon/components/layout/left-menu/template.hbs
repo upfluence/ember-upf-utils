@@ -41,7 +41,7 @@
     {{/active-link}}
 
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
-      {{#feature-flagged "publishr_payments"}}
+      {{#feature-flagged "publishr_admin"}}
         {{#smart-link-to link=publishrPaymentsURL
                          cssClass=(if hasPaymentsNotifications "upf-notification--corner")}}
           <span class="upf-icon upf-icon--finance"></span>
