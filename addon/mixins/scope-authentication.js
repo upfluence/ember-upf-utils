@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { reject, resolve } from 'rsvp';
+import { resolve } from 'rsvp';
 import { inject as service } from '@ember/service';
 
 export default Mixin.create({
@@ -14,9 +14,9 @@ export default Mixin.create({
         transition.abort();
         this.transitionTo(this.notAllowedRoute);
         resolve();
+      } else {
+        return this._super(...arguments);
       }
-
-      this._super(...arguments);
     });
   }
 });
