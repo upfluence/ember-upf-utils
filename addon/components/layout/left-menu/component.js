@@ -149,7 +149,7 @@ export default Component.extend({
       this.get('session').invalidate();
     },
 
-    openUserMenu() {
+    toggleUserMenu() {
       this.$('.__left-menu__user-menu').toggleClass(
         '__left-menu__user-menu--opened'
       );
