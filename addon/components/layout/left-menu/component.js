@@ -7,13 +7,14 @@ import { camelize } from '@ember/string';
 import layout from './template';
 
 const CANNY_URL = 'https://upfluence.canny.io/feature-requests';
-const CALENDLY_BASE_URL = 'https://calendly.com/software_booking/upfluence-software-30-minute-demo';
 
 export default Component.extend({
   layout,
   classNames: ['__left-menu'],
 
   session: service(),
+
+  hideUpgradeModal: true,
 
   userInfos: {
     property: 'avatar_url',
@@ -27,10 +28,7 @@ export default Component.extend({
       'has_publishr_notifications', 'has_analytics_notifications',
       'has_payments_notifications'
     ].forEach((notifPresence) => {
-      this.set(
-        camelize(notifPresence),
-        this.get('user')[notifPresence]
-      );
+      this.set(camelize(notifPresence), this.get('user')[notifPresence]);
     });
   }),
 
@@ -155,6 +153,10 @@ export default Component.extend({
       this.$('.__left-menu__user-menu').toggleClass(
         '__left-menu__user-menu--opened'
       );
+    },
+
+    toggleUpgradeModal() {
+      this.toggleProperty('hideUpgradeModal');
     },
 
     goToBilling() {
