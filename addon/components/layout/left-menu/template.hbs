@@ -122,6 +122,13 @@
           &nbsp;<i class="fa fa-microphone"></i> &nbsp; Feature Requests
         </li>
 
+
+        {{#if (gt accountSubscriptions.length 0)}}
+          <li {{action "openUserlane"}}>
+            &nbsp;<i class="fa fa-university"></i> &nbsp; Tutorials
+          </li>
+        {{/if}}
+
         <li {{action "goToSettings"}}>
           <span class="upf-icon upf-icon--cog"></span> &nbsp; Account Settings
         </li>

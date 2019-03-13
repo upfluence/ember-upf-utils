@@ -14,9 +14,10 @@ export default Component.extend({
   didInsertElement() {
     this._super();
     this.get('currentUser').fetch().then(
-      ({ user, companies }) => {
+      ({ user, companies, account_subscriptions }) => {
         this.set('user', User.create(user));
         this.set('companies', companies);
+        this.set('accountSubscriptions', account_subscriptions)
 
         if (user.extra && user.extra.company_logo) {
           this.set('applicationLogo', user.extra.company_logo);

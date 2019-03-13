@@ -143,6 +143,10 @@ export default Component.extend({
       window.open(CANNY_URL, '_blank');
     },
 
+    openUserlane() {
+      window.Userlane('openAssistant');
+    },
+
     logout() {
       this.get('session').invalidate();
     },
