@@ -143,6 +143,7 @@ export default Component.extend({
     },
 
     openUserlane() {
+      this.send('toggleUserMenu');
       window.Userlane('openAssistant');
     },
 

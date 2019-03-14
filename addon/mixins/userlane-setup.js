@@ -6,6 +6,7 @@ export default Mixin.create({
   currentUser: service(),
 
   beforeModel() {
+    this._super(...arguments);
     this.currentUser.fetch().then(({ user, account_subscriptions }) => {
       let userlaneParams = {
         name: `${user.first_name} ${user.last_name}`,
