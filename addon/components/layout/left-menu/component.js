@@ -157,12 +157,7 @@ export default Component.extend({
     },
 
     toggleUpgradeModal(upgradeTo) {
-      if (upgradeTo) {
-        this.set('upgradeTo', upgradeTo);
-      } else {
-        this.set('upgradeTo', null);
-      }
-
+      this.set('upgradeTo', upgradeTo);
       this.toggleProperty('hideUpgradeModal');
     }
   }
