@@ -15,6 +15,7 @@ export default Component.extend({
   session: service(),
 
   hideUpgradeModal: true,
+  upgradeTo: null,
 
   userInfos: {
     property: 'avatar_url',
@@ -155,12 +156,14 @@ export default Component.extend({
       );
     },
 
-    toggleUpgradeModal() {
-      this.toggleProperty('hideUpgradeModal');
-    },
+    toggleUpgradeModal(upgradeTo) {
+      if (upgradeTo) {
+        this.set('upgradeTo', upgradeTo);
+      } else {
+        this.set('upgradeTo', null);
+      }
 
-    goToBilling() {
-      window.location = `${this.identityURL}accounts/billing`;
+      this.toggleProperty('hideUpgradeModal');
     }
   }
 });

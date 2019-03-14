@@ -19,7 +19,7 @@
           <span class="upf-icon upf-icon--inbox"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "toggleUpgradeModal"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "bulk_emailing"}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -69,7 +69,7 @@
           <span class="upf-icon upf-icon--monitor"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "toggleUpgradeModal"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "monitor"}} role="upgrade">
           <span class="upf-icon upf-icon--monitor"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -140,20 +140,6 @@
   </section>
 {{/if}}
 
-{{#modal-view hidden=hideUpgradeModal closeAction=(action "toggleUpgradeModal")}}
-  <div class="modal-header modal-header__borderless">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-            id='close-x'><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">Upgrade Plan</h4>
-  </div>
-
-  <div class="modal-body upf-align--center">
-    <div class="text-size-6 padding-xx-sm">
-      Seems like your current plan does not include this feature
-    </div>
-
-    <button {{action "goToBilling"}} class="upf-btn upf-btn--primary">
-      Upgrade
-    </button>
-  </div>
-{{/modal-view}}
+{{upgrade-modal
+  to=upgradeTo hidden=hideUpgradeModal
+  closeAction=(action "toggleUpgradeModal")}}
