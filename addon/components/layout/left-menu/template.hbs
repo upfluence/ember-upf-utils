@@ -6,7 +6,7 @@
           <span class="upf-icon upf-icon--search"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "goToBilling"}}>
+        <a {{action "toggleUpgradeModal"}}>
           <span class="upf-icon upf-icon--search"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -19,7 +19,7 @@
           <span class="upf-icon upf-icon--inbox"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "goToBilling"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "bulk_emailing"}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -33,7 +33,7 @@
           <span class="upf-icon upf-icon--workflow"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "goToBilling"}} role="upgrade">
+        <a {{action "toggleUpgradeModal"}} role="upgrade">
           <span class="upf-icon upf-icon--workflow"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -47,7 +47,7 @@
           <span class="upf-icon upf-icon--finance"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "goToBilling"}} role="upgrade">
+        <a {{action "toggleUpgradeModal"}} role="upgrade">
           <span class="upf-icon upf-icon--finance"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -69,7 +69,7 @@
           <span class="upf-icon upf-icon--monitor"></span>
         {{/smart-link-to}}
       {{else}}
-        <a {{action "goToBilling"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "monitor"}} role="upgrade">
           <span class="upf-icon upf-icon--monitor"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -87,9 +87,9 @@
     <div class="header-item">
       {{#if user}}
         {{#if user.avatar_url}}
-          <img {{action "openUserMenu"}} src={{user.avatar_url}} class="margin-bottom-xx-sm upf-image upf-image--round-36"/>
+          <img {{action "toggleUserMenu"}} src={{user.avatar_url}} class="margin-bottom-xx-sm upf-image upf-image--round-36"/>
         {{else}}
-          <div {{action "openUserMenu"}} class="upf-image upf-image--round-36 upf-image--alt margin-bottom-xx-sm">
+          <div {{action "toggleUserMenu"}} class="upf-image upf-image--round-36 upf-image--alt margin-bottom-xx-sm">
             <span>{{name-initials user.fullName}}</span>
           </div>
         {{/if}}
@@ -122,7 +122,6 @@
           &nbsp;<i class="fa fa-microphone"></i> &nbsp; Feature Requests
         </li>
 
-
         {{#if (gt accountSubscriptions.length 0)}}
           <li {{action "openUserlane"}}>
             &nbsp;<i class="fa fa-university"></i> &nbsp; Tutorials
@@ -132,6 +131,7 @@
         <li {{action "goToSettings"}}>
           <span class="upf-icon upf-icon--cog"></span> &nbsp; Account Settings
         </li>
+
         <li {{action "logout"}}>
           <span class="upf-icon upf-icon--exit"></span> &nbsp; Log out
         </li>
@@ -139,3 +139,7 @@
     </div>
   </section>
 {{/if}}
+
+{{upgrade-modal
+  to=upgradeTo hidden=hideUpgradeModal
+  closeAction=(action "toggleUpgradeModal")}}

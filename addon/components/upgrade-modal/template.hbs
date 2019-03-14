@@ -1,0 +1,37 @@
+{{#modal-view hidden=hidden closeAction=closeAction size="modal-lg"}}
+  <div class="modal-header modal-header__borderless">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+            id='close-x'><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Upgrade Plan</h4>
+  </div>
+
+  <div class="modal-body upf-align--center">
+    <div class="text-size-7 padding-xxx-sm">
+      Oops! Your current plan does not include this feature.
+    </div>
+
+    <div class="text-size-6">
+      {{#if (eq to "monitor")}}
+        Upgrade to <b>Upfluence Gold</b> to use <b>Upfluence Monitor</b>
+      {{else if (eq to "bulk_emailing")}}
+        Upgrade to Upfluence Silver to use Upfluence Bulk Emailing
+      {{else}}
+        Talk to our teams in order to upgrade your account
+      {{/if}}
+    </div>
+
+    {{#if to}}
+      <div class="margin-top-xxx-sm">
+        <img src="/assets/@upfluence/ember-upf-utils/images/{{to}}.png" width="90%" />
+      </div>
+
+      <button {{action "goToBilling"}} class="margin-top-md upf-btn upf-btn--primary">
+        Upgrade
+      </button>
+    {{else}}
+      <button {{action "openIntercom"}} class="margin-top-md upf-btn upf-btn--primary">
+        Contact Us
+      </button>
+    {{/if}}
+  </div>
+{{/modal-view}}

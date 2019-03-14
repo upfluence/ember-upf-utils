@@ -5,6 +5,11 @@ var path = require('path');
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
+const FOOTER_SCRIPTS = [
+  '<script async src="https://www.google-analytics.com/analytics.js"></script>',
+  '<script src="https://cdn.userlane.com/userlane.js"></script>'
+];
+
 module.exports = {
   name: require('./package').name,
 
@@ -54,7 +59,7 @@ module.exports = {
     // Since emberjs dont nest contentFor call on sub addon
     // this add the google script for the ember-cli-google-analytics
     if (type === 'body-footer') {
-      return '<script async src="https://www.google-analytics.com/analytics.js"></script>';
+      return FOOTER_SCRIPTS.join('');
     }
   }
 };
