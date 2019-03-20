@@ -131,18 +131,6 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }
   },
 
-  updateCells() {
-    const numItems = this.get('_items.length') || 0;
-
-    // no need to update cells if not items
-    if (numItems === 0) {
-      return;
-    }
-
-    this._super();
-  },
-
-
   _needsRevalidate() {
     if (this.isDestroyed || this.isDestroying) { return; }
     this._super();
@@ -150,7 +138,10 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
 
   actions: {
     scrollChange(scrollLeft, scrollTop) {
-      if (this.get('loading')) {
+      let numItems = this.get('_items.length') || 0;
+
+      // avoid scroll if no items
+      if (this.get('loading') || numItems === 0) {
         return;
       }
 
