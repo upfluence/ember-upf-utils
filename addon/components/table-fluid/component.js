@@ -131,6 +131,18 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     }
   },
 
+  updateCells() {
+    const numItems = this.get('_items.length') || 0;
+
+    // no need to update cells if not items
+    if (numItems === 0) {
+      return;
+    }
+
+    this._super();
+  },
+
+
   _needsRevalidate() {
     if (this.isDestroyed || this.isDestroying) { return; }
     this._super();
