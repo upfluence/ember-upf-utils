@@ -19,7 +19,7 @@ export default Component.extend({
 
   countryCode: computed('_selection', {
     get() {
-      return (this._selection || {}).id;
+      return (this._selection || {}).id;
     },
 
     set(_, value) {

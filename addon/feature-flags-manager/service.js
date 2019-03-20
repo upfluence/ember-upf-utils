@@ -42,7 +42,7 @@ export default Service.extend({
 
     return this._fetchFeatureFlagsPromise = new RSVP.Promise((resolve) => {
       return this.ajax.request(this._featureURL).then((features) => {
-        resolve(EmberObject.create(this._formatFeatureFlags(features || {})));
+        resolve(EmberObject.create(this._formatFeatureFlags(features || {})));
       });
     })
   },

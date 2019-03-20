@@ -138,7 +138,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
 
   actions: {
     scrollChange(scrollLeft, scrollTop) {
-      let numItems = this.get('_items.length') || 0;
+      let numItems = this.get('_items.length') || 0;
 
       // avoid scroll if no items
       if (this.get('loading') || numItems === 0) {
