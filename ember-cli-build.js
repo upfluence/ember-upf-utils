@@ -6,7 +6,21 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
-    // Add options here
+    sourcemaps: { enabled: isNotDev() },
+    minifyCSS: { enabled: isNotDev() },
+    minifyJS: {
+      enabled: isNotDev(),
+      options: {
+        mangle: false
+      }
+    },
+    fingerprint: {
+      prepend: process.env.CDN_URL,
+      enabled: process.env.CDN_URL != null,
+      extensions: [
+        'js', 'css', 'png', 'jpg', 'gif', 'map', 'ico',
+      ]
+    },
   });
 
   /*
