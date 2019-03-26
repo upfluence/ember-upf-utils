@@ -111,12 +111,6 @@ export default Component.extend({
     ).publishrURL;
   }),
 
-  _publishrClientURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).publishrClientURL;
-  }),
-
   publishrCampaignsURL: computed('publishrURL', function() {
     return `${this.get('publishrURL')}campaigns`;
   }),
@@ -126,11 +120,12 @@ export default Component.extend({
   }),
 
   publishrClientURL: computed('_publishrClientURL', function() {
-    if (this.get('_publishrClientURL')) {
-      return `${this.get('_publishrClientURL')}/campaigns`;
-    }
+    let baseURL = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).publishrClientURL || '';
 
-    return 'campaigns';
+    suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
+    return this.get('_publishrClientURL') + suffix;
   }),
 
   actions: {
