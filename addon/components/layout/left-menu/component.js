@@ -124,7 +124,7 @@ export default Component.extend({
       'config:environment'
     ).publishrClientURL || '';
 
-    suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
+    let suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
     return this.get('_publishrClientURL') + suffix;
   }),
 
