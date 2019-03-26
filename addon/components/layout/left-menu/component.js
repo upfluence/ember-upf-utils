@@ -125,7 +125,7 @@ export default Component.extend({
     ).publishrClientURL || '';
 
     let suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
-    return this.get('_publishrClientURL') + suffix;
+    return baseURL + suffix;
   }),
 
   actions: {
