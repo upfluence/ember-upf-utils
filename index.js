@@ -28,8 +28,6 @@ module.exports = {
   },
 
   treeForPublic: function(tree) {
-    this._requireBuildPackages();
-
     if (!tree) {
       return tree;
     }
