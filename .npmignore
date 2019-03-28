@@ -9,6 +9,7 @@
 /.bowerrc
 /.editorconfig
 /.ember-cli
+/.env*
 /.eslintignore
 /.eslintrc.js
 /.gitignore
@@ -29,6 +30,9 @@
 bower.json
 ember-cli-build.js
 testem.js
+/CONTRIBUTING.md
+/yarn.lock
+.gitkeep
 
 # ember-try
 /.node_modules.ember-try/

@@ -4,6 +4,14 @@ Ember Upfluence Utilities. This repository contains a load of shared code which 
 
 [Short description of the addon.]
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -54,8 +62,8 @@ $> npm install ember-upf-utils
 
 * `ember serve`
 * Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
