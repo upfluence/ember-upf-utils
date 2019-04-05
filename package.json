@@ -23,7 +23,7 @@
     "ember-cli-active-link-wrapper": "^0.5.0",
     "ember-cli-babel": "^7.1.2",
     "ember-cli-htmlbars": "^3.0.0",
-    "ember-cli-htmlbars-inline-precompile": "^0.4",
+    "ember-cli-htmlbars-inline-precompile": "^2.x",
     "ember-cli-smart-link-to": "^2.1.0",
     "ember-cli-summernote": "^1.5.1",
     "ember-collection": "^1.0.0-alpha.9",
