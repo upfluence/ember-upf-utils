@@ -27,7 +27,7 @@ export default Component.extend({
   didInsertElement() {
     this.get('exports').fetchEntities(this.get('_model'), (response) => {
       this.set('items', response.entities.map((item) => {
-        return new ExportEntity(item);
+        return ExportEntity.create(item);
       }));
     });
   },
