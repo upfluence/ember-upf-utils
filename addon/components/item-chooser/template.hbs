@@ -1,21 +1,17 @@
 {{#if multiple}}
     {{#power-select-multiple options=items selected=(unless disabled selection) placeholder=placeholder
       renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
-      onchange=(action (mut selection))
+      onchange=(action (mut selection)) onkeydown=(action "keyPress")
       afterOptionsComponent=(if createItemComponent (
-        component createItemComponent searchTerm=searchTerm createButtonTextTemplate=createOptionPlaceholder
-        recordTypeIsModel=recordTypeIsModel recordType=recordType selection=selection multiple=multiple
-        didCreate=(action didCreate))
+        component createItemComponent searchTerm=(readonly searchTerm) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
     ) as |item|}}
         {{get item optionLabelPath}}
     {{/power-select-multiple}}
 {{else}}
-    {{#power-select options=items selected=selection onchange=(action (mut selection)) value=optionValuePath
+    {{#power-select options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
        placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
        afterOptionsComponent=(if createItemComponent (
-         component createItemComponent searchTerm=searchTerm createButtonTextTemplate=createOptionPlaceholder
-         recordTypeIsModel=recordTypeIsModel recordType=recordType selection=selection multiple=multiple
-         didCreate=(action didCreate))
+         component createItemComponent searchTerm=(readonly searchTerm) createButtonTextTemplate=createOptionPlaceholder)
        ) as |item|}}
         {{get item optionLabelPath}}
     {{/power-select}}
