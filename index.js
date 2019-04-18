@@ -51,7 +51,7 @@ module.exports = {
   treeForVendor(vendorTree) {
     let content = `Ember.libraries.register('${name}', '${version}');`;
     let registerVersionTree = writeFile(
-      'ember-simple-auth/register-version.js',
+      'ember-upf-utils/register-version.js',
       content
     );
     let tinyTree = new Funnel(path.dirname(require.resolve('tinycolor2')), {
