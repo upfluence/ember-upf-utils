@@ -4,14 +4,17 @@
 var path = require('path');
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
+var writeFile = require('broccoli-file-creator');
 
 const FOOTER_SCRIPTS = [
   '<script async src="https://www.google-analytics.com/analytics.js"></script>',
   '<script src="https://cdn.userlane.com/userlane.js"></script>'
 ];
+const { name, version } = require('./package');
 
 module.exports = {
-  name: require('./package').name,
+  name,
+  version,
 
   isDevelopingAddon: function() {
     return true;
@@ -40,17 +43,23 @@ module.exports = {
 
   included: function() {
     this._super.included.apply(this, arguments);
+
     this.import('vendor/tinycolor/tinycolor.js');
     this.import('vendor/shims/tinycolor.js');
   },
 
   treeForVendor(vendorTree) {
-    var tinyTree = new Funnel(path.dirname(require.resolve('tinycolor2')), {
+    let content = `Ember.libraries.register('${name}', '${version}');`;
+    let registerVersionTree = writeFile(
+      'ember-simple-auth/register-version.js',
+      content
+    );
+    let tinyTree = new Funnel(path.dirname(require.resolve('tinycolor2')), {
       files: ['tinycolor.js'],
       destDir: '/tinycolor',
     });
 
-    return new MergeTrees([vendorTree, tinyTree]);
+    return new MergeTrees([registerVersionTree, vendorTree, tinyTree]);
   },
 
   contentFor(type, config) {
