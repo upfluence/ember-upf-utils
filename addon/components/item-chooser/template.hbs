@@ -1,17 +1,17 @@
 {{#if multiple}}
     {{#power-select-multiple options=items selected=(unless disabled selection) placeholder=placeholder
       renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
-      onchange=(action (mut selection)) onkeydown=(action "keyPress")
+      onchange=(action (mut selection)) onkeydown=(action "keyPress") registerAPI=(action (mut publicApi))
       afterOptionsComponent=(if createItemComponent (
-        component createItemComponent searchTerm=(readonly searchTerm) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
+        component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
     ) as |item|}}
         {{get item optionLabelPath}}
     {{/power-select-multiple}}
 {{else}}
     {{#power-select options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
-       placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
+       placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi))
        afterOptionsComponent=(if createItemComponent (
-         component createItemComponent searchTerm=(readonly searchTerm) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
+         component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
        ) as |item|}}
         {{get item optionLabelPath}}
     {{/power-select}}

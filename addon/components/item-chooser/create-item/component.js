@@ -6,10 +6,16 @@ export default Component.extend({
   layout,
 
   classNames: ['ember-basic-dropdown-content__create-item'],
+  classNameBindings: ['hidden'],
   createButtonTextTemplate: '',
+  publicApi: null,
 
-  formattedCreateButtonText: computed('searchTerm', function() {
-    return this.createButtonTextTemplate.replace('#item#', this.searchTerm);
+  hidden: computed('publicApi.resultsCount', function() {
+    return !this.publicApi || this.publicApi.resultsCount > 0;
+  }),
+
+  formattedCreateButtonText: computed('searchTerm', 'publicApi.searchText', function() {
+    return this.createButtonTextTemplate.replace('#item#', (this.publicApi || {}).searchText);
   }),
 
   actions: {
