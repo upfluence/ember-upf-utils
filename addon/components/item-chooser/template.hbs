@@ -11,7 +11,7 @@
     {{#power-select options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
        placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
        afterOptionsComponent=(if createItemComponent (
-         component createItemComponent searchTerm=(readonly searchTerm) createButtonTextTemplate=createOptionPlaceholder)
+         component createItemComponent searchTerm=(readonly searchTerm) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
        ) as |item|}}
         {{get item optionLabelPath}}
     {{/power-select}}
