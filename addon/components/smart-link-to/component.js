@@ -1,6 +1,6 @@
 import { getOwner } from '@ember/application';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed } from '@ember/object';
 import layout from './template';
 
 export default Component.extend({
