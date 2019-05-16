@@ -1,13 +1,7 @@
 {{#if isRoute}}
-  {{#if target}}
-    {{#link-to link class=cssClass target=target}}
-      {{yield}}{{{label}}}
-    {{/link-to}}
-  {{else}}
-    {{#link-to link class=cssClass}}
-      {{yield}}{{{label}}}
-    {{/link-to}}
-  {{/if}}
+  {{#link-to link class=cssClass target=target}}
+    {{yield}}{{{label}}}
+  {{/link-to}}
 {{else}}
   <a href={{link}} class={{cssClass}} target={{target}}>
     {{yield}}{{{label}}}
