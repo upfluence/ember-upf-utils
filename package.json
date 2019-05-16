@@ -23,7 +23,6 @@
     "ember-cli-google-analytics": "git+ssh://git@github.com/upfluence/ember-cli-google-analytics.git",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^2.x",
-    "ember-cli-smart-link-to": "^2.1.0",
     "ember-cli-summernote": "^1.5.1",
     "ember-collection": "^1.0.0-alpha.9",
     "ember-cp-validations": "offirgolan/ember-cp-validations#master",
