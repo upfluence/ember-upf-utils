@@ -17,11 +17,11 @@ export default Mixin.create({
         Object.assign(userlaneParams, {
           plan: account_subscriptions[0].plan
         });
-
-        window.Userlane('init', 32757);
-        Userlane('user', user.id);
-        Userlane('identify', user.id, userlaneParams);
       }
+
+      window.Userlane('init', 32757);
+      Userlane('user', user.id);
+      Userlane('identify', user.id, userlaneParams);
     });
   }
 });
