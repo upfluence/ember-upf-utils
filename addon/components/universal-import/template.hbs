@@ -12,7 +12,8 @@
                      recordTypeIsModel=false canCreate=_canCreate
                      optionValuePath='content.identifier'
                      createOptionPlaceholder=createOptionPlaceholder
-                     didCreate=(action 'didCreateItem') placeholder=placeholder}}
+                     didCreate=(action 'didCreateItem') placeholder=placeholder
+                     search=(action "searchEntities")}}
 
       {{#if errors}}
         <div class="alert alert-danger">
