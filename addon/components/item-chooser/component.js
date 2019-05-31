@@ -28,6 +28,7 @@ export default Component.extend({
   recordTypeIsModel: false,
   disabled: false,
   searchTerm: null,
+  search: null,
 
   didReceiveAttrs() {
     if (this.get('canCreate') && this.get('recordTypeIsModel') && this.get('recordType') === null) {

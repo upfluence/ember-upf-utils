@@ -8,7 +8,7 @@
         {{get item optionLabelPath}}
     {{/power-select-multiple}}
 {{else}}
-    {{#power-select options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
+    {{#power-select search=search options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
        placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi))
        afterOptionsComponent=(if createItemComponent (
          component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
