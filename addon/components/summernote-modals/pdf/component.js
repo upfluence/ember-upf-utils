@@ -10,21 +10,23 @@ export default Component.extend({
 
   _buildPDFNode(url) {
     let container = document.createElement('div');
+    let spacing = document.createElement('br');
 
-    let embed = document.createElement('iframe');
-    embed.setAttribute(
-      'src', `https://docs.google.com/viewer?url=${url}&embedded=true`
-    );
-    embed.setAttribute('frameborder', 0);
-    embed.setAttribute('height', '800px;');
+    let embed = document.createElement('embed');
+    embed.setAttribute('src', url);
     embed.setAttribute('width', '100%');
+    embed.setAttribute('height', '800px');
+    embed.setAttribute('type', 'application/pdf');
 
     let embedNotSupported  = document.createElement('a');
     embedNotSupported.setAttribute('href', url);
     embedNotSupported.textContent = 'Click to open PDF';
 
+    container.append(spacing);
     container.appendChild(embed);
+    container.append(spacing);
     container.appendChild(embedNotSupported);
+    container.append(spacing);
     return container;
   },
 
