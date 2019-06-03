@@ -1,0 +1,1 @@
+export { default } from '@upfluence/ember-upf-utils/components/power-select-option/component';

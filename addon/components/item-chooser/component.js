@@ -36,6 +36,13 @@ export default Component.extend({
     }
   },
 
+  renderOptionComponent: computed('customOptionComponent', function() {
+    if (this.customOptionComponent) {
+      return 'list-item-with-icon';
+    }
+    return null;
+  }),
+
   createItemComponent: computed('canCreate', 'searchTerm', function() {
     if (this.canCreate && !isBlank(this.searchTerm)) {
       return 'item-chooser/create-item';
