@@ -24,13 +24,16 @@ export default Component.extend({
     searchEntities(keyword) {
     // call import service here
       this.get('imports').fetchKeywordResults(keyword, (response) => {
+        console.log(response);
         let allItems = [];
 
         Object.keys(response).forEach(key => {
-          response[key].map((item) => allItems.push(item));
+          response[key].map((item) => allItems.push({icon: key, item}));
+          // response[key].map((item) => allItems.push(item));
         });
 
-        this.set('items', allItems);     
+        this.set('items', allItems);
+        console.log(allItems);  
       });  
     },
   }
