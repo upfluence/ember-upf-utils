@@ -6,4 +6,14 @@
       role="option">
       <span class="upf-icon upf-icon--{{iconName}}"></span>
       {{itemName}}
+      <p style="float:right;">
+        {{#if showImportButton}}
+            <button class="upf-btn upf-btn--primary upf-btn--small" {{action "import"}}>
+                Import
+            </button>
+        {{else}}
+            0 influencers
+        {{/if}}
+      </p>
+      <div style="clear:both;"></div>
 </li>
