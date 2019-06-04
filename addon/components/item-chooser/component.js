@@ -44,7 +44,7 @@ export default Component.extend({
   }),
 
   createItemComponent: computed('canCreate', 'searchTerm', function() {
-    if (this.canCreate && !isBlank(this.searchTerm)) {
+    if (this.get('canCreate').value && !isBlank(this.searchTerm)) {
       return 'item-chooser/create-item';
     }
 
