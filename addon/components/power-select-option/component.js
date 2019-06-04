@@ -3,6 +3,8 @@ import layout from './template';
 import { computed } from '@ember/object';
 
 export default Component.extend({
+  tagName: 'li',
+  classNames: ['ember-power-select-option'],
   layout,
 
   iconName: computed('icon', function() {
