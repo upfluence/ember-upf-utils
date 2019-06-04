@@ -31,7 +31,7 @@ export default Component.extend({
   search: null,
 
   didReceiveAttrs() {
-    if (this.get('canCreate') && this.get('recordTypeIsModel') && this.get('recordType') === null) {
+    if (this.canCreate && this.get('recordTypeIsModel') && this.get('recordType') === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },
@@ -44,7 +44,7 @@ export default Component.extend({
   }),
 
   createItemComponent: computed('canCreate', 'searchTerm', function() {
-    if (this.get('canCreate').value && !isBlank(this.searchTerm)) {
+    if (this.canCreate && !isBlank(this.searchTerm)) {
       return 'item-chooser/create-item';
     }
 

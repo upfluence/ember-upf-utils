@@ -1,9 +1,9 @@
 <div class="upf-align--center padding-top-sm padding-bottom-sm">
     {{item-chooser items=items selection=current
-                    recordTypeIsModel=false
+                    recordTypeIsModel=false canCreate=_canCreate
                     optionValuePath='content.identifier'
-                    canCreate=false
                     customOptionComponent=true
                     placeholder=placeholder
-                    search=(action "searchEntities")}}
+                    search=(action "searchEntities")
+}}
 </div>

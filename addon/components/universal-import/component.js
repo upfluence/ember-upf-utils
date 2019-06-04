@@ -9,7 +9,7 @@ export default Component.extend({
   toast: service(),
 
   _model: '',
-  _canCreate: true,
+  _canCreate: false,
   items: null,
   createOptionPlaceholder: 'Create list',
   placeholder: 'Pick or create a list',
