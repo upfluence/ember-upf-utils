@@ -4,7 +4,6 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   layout,
-  showImportButton: false,
 
   iconName: computed('icon', function() {
     switch(this.icon) {
@@ -17,19 +16,5 @@ export default Component.extend({
       case 'campaign':
         return 'workflow';
     }
-  }),
-
-  mouseEnter() {
-    this.toggleProperty('showImportButton');
-  }, 
-
-  mouseLeave() {
-    this.toggleProperty('showImportButton');
-  },
-
-  actions: {
-    import() {
-      console.log('import action here from ', this.item.id);
-    }
-  }
+  })
 });
