@@ -9,7 +9,8 @@
     {{/power-select-multiple}}
 {{else}}
     {{#power-select search=search options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
-       placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi)) optionsComponent=(if renderOptionComponent (component renderOptionComponent))
+       placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi)) 
+       optionsComponent=(if renderOptionComponent (component renderOptionComponent)) 
        afterOptionsComponent=(if createItemComponent (
          component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
        ) as |item|}}
