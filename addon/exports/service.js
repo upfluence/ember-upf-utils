@@ -80,6 +80,18 @@ export default Service.extend({
     ).then(callback);
   },
 
+  searchEntities(keyword) {
+    let url = `${this.get('_exportURL')}/entities?s=${keyword}`;
+    let accessToken = this.get('session.data.authenticated.access_token');
+    return this.get('ajax').request(
+      `${url}&access_token=${encodeURIComponent(accessToken)}`
+    ).then((res) => {
+      return res;
+    }).catch((err) => {
+      console.error(err);
+    });
+  },
+
   createEntity(data, callback) {
     let url = `${this.get('_exportURL')}/entities`;
 

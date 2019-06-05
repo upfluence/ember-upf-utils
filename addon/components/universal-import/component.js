@@ -5,16 +5,16 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   layout,
 
-  imports: service(),
+  exports: service(),
 
   _model: '',
   _canCreate: false,
   items: null,
-  placeholder: 'Pick a list',
+  placeholder: 'Select a list to import influencers',
 
   actions: {
     searchEntities(keyword) {
-      this.get('imports').fetchKeywordResults(keyword, (response) => {
+      this.get('exports').searchEntities(keyword).then((res) => {
         let allItems = [];
 
         Object.keys(response).forEach(key => {
@@ -22,7 +22,7 @@ export default Component.extend({
         });
 
         this.set('items', allItems);
-      });  
-    },
+      });
+    }
   }
 });
