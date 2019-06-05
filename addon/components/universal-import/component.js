@@ -14,7 +14,7 @@ export default Component.extend({
 
   actions: {
     searchEntities(keyword) {
-      this.get('exports').searchEntities(keyword).then((res) => {
+      this.get('exports').searchEntities(keyword).then((response) => {
         let allItems = [];
 
         Object.keys(response).forEach(key => {
