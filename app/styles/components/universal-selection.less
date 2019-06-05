@@ -1,7 +1,31 @@
+.power-select-option {
+    display: flex; 
+    align-items: center;
+}
+
+.power-select-option__name {
+    font-weight: 700;
+    padding-left: @spacing-xxx-sm;
+    flex: 3;
+}
+
 .power-select-option__influencers-count {
-    float: right;
+    text-align: right;
+    color: @upf-feedback-info;
+    flex: 1;
+}
+
+.power-select-option__icon {
+    color: @upf-primary-bright-purple;
 }
 
 .clear {
     clear: both;
+}
+
+.ember-power-select-option {
+    border: 0 !important;
+    background-color: #ffffff !important;
+    padding-left: @spacing-xx-sm !important;
+    padding-right: @spacing-xx-sm !important; 
 }
