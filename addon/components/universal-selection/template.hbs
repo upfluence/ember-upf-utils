@@ -2,6 +2,6 @@
   {{#item-chooser
     items=items selection=current optionValuePath="content.identifier"
     placeholder=placeholder search=(action "searchEntities") as |opt|}}
-    {{power-select-option item=opt}}
+    {{universal-selection/option item=opt}}
   {{/item-chooser}}
 </div>
