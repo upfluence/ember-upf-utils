@@ -1,9 +1,7 @@
 <div class="upf-align--center padding-top-sm padding-bottom-sm">
-    {{item-chooser items=items selection=current
-                    recordTypeIsModel=false canCreate=_canCreate
-                    optionValuePath='content.identifier'
-                    customOptionComponent=true
-                    placeholder=placeholder
-                    search=(action "searchEntities")
-}}
+  {{#item-chooser
+    items=items selection=current optionValuePath="content.identifier"
+    placeholder=placeholder search=(action "searchEntities") as |opt|}}
+    {{power-select-option item=opt}}
+  {{/item-chooser}}
 </div>

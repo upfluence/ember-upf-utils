@@ -29,19 +29,13 @@ export default Component.extend({
   disabled: false,
   searchTerm: null,
   search: null,
+  optionsComponent: null,
 
   didReceiveAttrs() {
     if (this.canCreate && this.get('recordTypeIsModel') && this.get('recordType') === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },
-
-  renderOptionComponent: computed('customOptionComponent', function() {
-    if (this.customOptionComponent) {
-      return 'list-item-with-icon';
-    }
-    return null;
-  }),
 
   createItemComponent: computed('canCreate', 'searchTerm', function() {
     if (this.canCreate && !isBlank(this.searchTerm)) {

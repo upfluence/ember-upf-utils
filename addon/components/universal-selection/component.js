@@ -1,6 +1,8 @@
 import Component from '@ember/component';
-import layout from './template';
+import EmberObject from '@ember/object';
 import { inject as service } from '@ember/service';
+
+import layout from './template';
 
 export default Component.extend({
   layout,
@@ -8,7 +10,6 @@ export default Component.extend({
   exports: service(),
 
   _model: '',
-  _canCreate: false,
   items: null,
   placeholder: 'Select a list to import influencers',
 
@@ -18,7 +19,11 @@ export default Component.extend({
         let allItems = [];
 
         Object.keys(response).forEach(key => {
-          response[key].map((item) => allItems.push({icon: key, item}));
+          response[key].map((item) => {
+            allItems.push(
+              EmberObject.create({icon: key, item})
+            );
+          });
         });
 
         this.set('items', allItems);

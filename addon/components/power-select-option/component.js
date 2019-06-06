@@ -7,8 +7,8 @@ export default Component.extend({
   classNames: ['ember-power-select-option', 'power-select-option'],
   layout,
 
-  iconName: computed('icon', function() {
-    switch(this.icon) {
+  iconName: computed('item.option.icon', function() {
+    switch(this.item.option.icon) {
       case 'stream':
         return 'monitor';
       case 'list':
