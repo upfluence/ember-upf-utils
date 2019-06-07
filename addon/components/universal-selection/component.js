@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import EmberObject from '@ember/object';
 import { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
 
 import layout from './template';
 
@@ -14,11 +15,10 @@ export default Component.extend({
   placeholder: 'Select a list to import influencers',
   current: null,
 
-  actions: {
-    searchEntities(keyword) {
-      this.get('exports').searchEntities(keyword).then((response) => {
+  search(keyword) {
+    return new RSVP.Promise((resolve) => {
+      return this.get('exports').searchEntities(keyword).then((response) => {
         let allItems = [];
-
         Object.keys(response).forEach(key => {
           response[key].map((item) => {
             allItems.push(
@@ -26,9 +26,16 @@ export default Component.extend({
             );
           });
         });
-
-        this.set('items', allItems);
+        resolve(allItems);
       });
+    }).then((res) => {
+      return res;
+    });
+  },
+
+  actions: {
+    searchEntities(keyword) {
+      this.set('items', this.search(keyword));
     }
   }
 });
