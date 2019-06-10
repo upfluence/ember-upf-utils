@@ -12,7 +12,7 @@
     {{/if}}
   {{/power-select-multiple}}
 {{else}}
-  {{#power-select search=search options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
+  {{#power-select search=search options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
      placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi))
      optionsComponent=(if optionsComponent optionsComponent)
      afterOptionsComponent=(if createItemComponent (
