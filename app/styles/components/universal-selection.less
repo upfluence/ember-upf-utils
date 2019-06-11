@@ -34,8 +34,23 @@
     max-height: 650px;
 }
 
-.ember-power-select-selected-item {
-    .power-select-option__influencers-count {
-        text-align: center;
+.ember-power-select-selected-item, .ember-power-select-multiple-option {
+    display: inline !important;
+    border: 1px solid @upf-primary-bright-purple !important;
+    color: @upf-primary-bright-purple !important;
+    background-color: @upf-gray-light;
+    padding: 0 !important;
+
+    .power-select-option__name {
+        color: @upf-primary-bright-purple;
+        font-weight: normal;
     }
+
+    .power-select-option__influencers-count {
+        display: none;
+    }
+}
+
+.ember-power-select-multiple-remove-btn {
+    padding: 5px !important;
 }
