@@ -9,6 +9,7 @@ export default Component.extend({
   layout,
 
   exports: service(),
+  toast: service(),
 
   _model: '',
   items: null,
@@ -22,14 +23,14 @@ export default Component.extend({
         Object.keys(response).forEach(key => {
           response[key].map((item) => {
             allItems.push(
-              EmberObject.create({icon: key, item})
+              EmberObject.create({entityType: key, item})
             );
           });
         });
         resolve(allItems);
       });
-    }).then((res) => {
-      return res;
+    }).catch(() => {
+      this.get('toast').error('An error occurred, please try again');
     });
   },
 

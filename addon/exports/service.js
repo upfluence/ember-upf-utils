@@ -85,11 +85,7 @@ export default Service.extend({
     let accessToken = this.get('session.data.authenticated.access_token');
     return this.get('ajax').request(
       `${url}&access_token=${encodeURIComponent(accessToken)}`
-    ).then((res) => {
-      return res;
-    }).catch((err) => {
-      console.error(err);
-    });
+    );
   },
 
   createEntity(data, callback) {
