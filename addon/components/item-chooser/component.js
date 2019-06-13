@@ -28,9 +28,11 @@ export default Component.extend({
   recordTypeIsModel: false,
   disabled: false,
   searchTerm: null,
+  search: null,
+  optionsComponent: null,
 
   didReceiveAttrs() {
-    if (this.get('canCreate') && this.get('recordTypeIsModel') && this.get('recordType') === null) {
+    if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },

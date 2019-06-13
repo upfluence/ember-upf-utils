@@ -1,18 +1,27 @@
 {{#if multiple}}
-    {{#power-select-multiple options=items selected=(unless disabled selection) placeholder=placeholder
-      renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
-      onchange=(action (mut selection)) onkeydown=(action "keyPress") registerAPI=(action (mut publicApi))
-      afterOptionsComponent=(if createItemComponent (
-        component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
-    ) as |item|}}
-        {{get item optionLabelPath}}
-    {{/power-select-multiple}}
+  {{#power-select-multiple search=search options=items selected=(unless disabled selection) placeholder=placeholder
+    renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
+    onchange=(action (mut selection)) onkeydown=(action "keyPress") registerAPI=(action (mut publicApi))
+    optionsComponent=(if optionsComponent optionsComponent)
+    afterOptionsComponent=(if createItemComponent (
+      component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))) as |item|}}
+    {{#if (has-block)}}
+      {{yield (hash option=item)}}
+    {{else}}
+      {{get item optionLabelPath}}
+    {{/if}}
+  {{/power-select-multiple}}
 {{else}}
-    {{#power-select options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath
-       placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi))
-       afterOptionsComponent=(if createItemComponent (
-         component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
-       ) as |item|}}
-        {{get item optionLabelPath}}
-    {{/power-select}}
+  {{#power-select search=search options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
+     placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi))
+     optionsComponent=(if optionsComponent optionsComponent)
+     afterOptionsComponent=(if createItemComponent (
+       component createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
+     ) as |item|}}
+     {{#if (has-block)}}
+       {{yield (hash option=item)}}
+     {{else}}
+       {{get item optionLabelPath}}
+     {{/if}}
+  {{/power-select}}
 {{/if}}
