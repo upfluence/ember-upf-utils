@@ -21,7 +21,7 @@ export default Component.extend({
       return this.get('exports').searchEntities(keyword).then((response) => {
         let allItems = [];
         Object.keys(response).forEach(key => {
-          response[key].map((item) => {
+          response[key].forEach((item) => {
             allItems.push(
               EmberObject.create({entityType: key, item})
             );
