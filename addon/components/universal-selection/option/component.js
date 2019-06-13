@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'li',
-  classNames: ['ember-power-select-option', 'power-select-option'],
+  classNames: ['universal-selection-option'],
   layout,
 
   iconName: computed('item.option.entityType', function() {
