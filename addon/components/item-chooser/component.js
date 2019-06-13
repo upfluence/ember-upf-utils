@@ -32,7 +32,7 @@ export default Component.extend({
   optionsComponent: null,
 
   didReceiveAttrs() {
-    if (this.canCreate && this.get('recordTypeIsModel') && this.get('recordType') === null) {
+    if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },
