@@ -36,7 +36,9 @@ export default Component.extend({
 
   actions: {
     searchEntities(keyword) {
-      this.set('items', this.search(keyword));
+      this.search(keyword).then((results) => {
+        this.set('items', results);
+      });
     }
   }
 });
