@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import EmberObject from '@ember/object';
+import { debounce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
@@ -16,9 +17,9 @@ export default Component.extend({
   placeholder: 'Select a list to import influencers',
   current: null,
 
-  search(keyword) {
+  search() {
     return new RSVP.Promise((resolve) => {
-      return this.get('exports').searchEntities(keyword).then((response) => {
+      return this.get('exports').searchEntities(this.keyword).then((response) => {
         let allItems = [];
         Object.keys(response).forEach(key => {
           response[key].forEach((item) => {
@@ -27,7 +28,7 @@ export default Component.extend({
             );
           });
         });
-        resolve(allItems);
+        this.set('items', allItems);
       });
     }).catch(() => {
       this.get('toast').error('An error occurred, please try again');
@@ -36,9 +37,8 @@ export default Component.extend({
 
   actions: {
     searchEntities(keyword) {
-      this.search(keyword).then((results) => {
-        this.set('items', results);
-      });
+      this.set('keyword', keyword);
+      debounce(this, this.search, 1000);
     }
   }
 });
