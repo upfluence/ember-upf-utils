@@ -17,19 +17,23 @@ export default Component.extend({
   placeholder: 'Select a list to import influencers',
   current: null,
 
+  _performSearch(resolve) {
+    return this.get('exports').searchEntities(this.keyword).then((response) => {
+      let allItems = [];
+      Object.keys(response).forEach(key => {
+        response[key].forEach((item) => {
+          allItems.push(
+            EmberObject.create({entityType: key, item})
+          );
+        });
+      });
+      resolve(allItems);
+    });
+  },
+
   search() {
     return new RSVP.Promise((resolve) => {
-      return this.get('exports').searchEntities(this.keyword).then((response) => {
-        let allItems = [];
-        Object.keys(response).forEach(key => {
-          response[key].forEach((item) => {
-            allItems.push(
-              EmberObject.create({entityType: key, item})
-            );
-          });
-        });
-        this.set('items', allItems);
-      });
+      debounce(this, this._performSearch, resolve, 1000);
     }).catch(() => {
       this.get('toast').error('An error occurred, please try again');
     });
@@ -38,7 +42,7 @@ export default Component.extend({
   actions: {
     searchEntities(keyword) {
       this.set('keyword', keyword);
-      debounce(this, this.search, 1000);
+      this.set('items', this.search());
     }
   }
 });
