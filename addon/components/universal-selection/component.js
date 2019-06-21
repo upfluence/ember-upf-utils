@@ -12,7 +12,7 @@ export default Component.extend({
   exports: service(),
   toast: service(),
 
-  _model: '',
+  multiple: true,
   items: null,
   placeholder: 'Import influencers from...',
   current: null,
