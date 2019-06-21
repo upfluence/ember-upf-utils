@@ -14,7 +14,7 @@ export default Component.extend({
 
   _model: '',
   items: null,
-  placeholder: 'Select a list to import influencers',
+  placeholder: 'Import influencers from...',
   current: null,
 
   _performSearch(resolve) {
