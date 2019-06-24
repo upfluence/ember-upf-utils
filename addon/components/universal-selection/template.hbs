@@ -2,6 +2,6 @@
   {{#item-chooser
     multiple=multiple items=items selection=current optionValuePath="content.identifier"
     placeholder=placeholder allowClear=true search=(action "searchEntities") as |opt|}}
-    {{universal-selection/option item=opt}}
+    {{universal-selection/option item=opt.option}}
   {{/item-chooser}}
 </div>
