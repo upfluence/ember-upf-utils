@@ -47,7 +47,7 @@ export default Component.extend({
     return null;
   }),
 
-  createElement() {
+  createElement(extraAttrs = {}) {
     if (isBlank(this.searchTerm)) {
       return;
     }
@@ -58,7 +58,9 @@ export default Component.extend({
         name: this.searchTerm
       });
     } else {
-      item = ExportEntity.create({ name: this.searchTerm });
+      item = ExportEntity.create(
+        Object.assign({ name: this.searchTerm }, extraAttrs)
+      );
     }
 
     if (this.multiple) {
@@ -94,9 +96,8 @@ export default Component.extend({
       this.set('searchTerm', null);
     },
 
-    createItem(_, defer) {
-      this.createElement();
-
+    createItem(_, extraAttrs, defer) {
+      this.createElement(extraAttrs);
       defer.resolve();
     }
   }
