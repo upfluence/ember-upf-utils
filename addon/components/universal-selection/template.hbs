@@ -1,7 +1,9 @@
 <div class="upf-align--center padding-top-sm padding-bottom-sm universal-selection">
   {{#item-chooser
     multiple=multiple items=items selection=current optionValuePath="content.identifier"
-    placeholder=placeholder allowClear=true search=(action "searchEntities") as |opt|}}
+    placeholder=placeholder allowClear=true search=(action "searchEntities")
+    canCreate=canCreate createItemComponent=createItemComponent
+    didCreate=null as |opt|}}
     {{universal-selection/option item=opt.option}}
   {{/item-chooser}}
 </div>

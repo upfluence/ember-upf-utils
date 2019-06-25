@@ -15,9 +15,11 @@ export default Component.extend({
   toast: service(),
 
   multiple: true,
+  canCreate: false,
+  createItemComponent: null,
   items: null,
-  placeholder: 'Import influencers from...',
   current: null,
+  placeholder: 'Import influencers from...',
 
   _performSearch(resolve) {
     return this.get('exports').searchEntities(this.keyword).then((response) => {

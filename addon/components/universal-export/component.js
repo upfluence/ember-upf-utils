@@ -1,8 +1,10 @@
 import { inject as service } from '@ember/service';
-import { mapBy } from '@ember/object/computed';
 import Component from '@ember/component';
 import { get, defineProperty, computed } from '@ember/object';
+import { mapBy } from '@ember/object/computed';
 import layout from './template';
+
+const EXTERNAL_EXPORTS = ['list', 'mailing', 'campaign', 'stream'];
 
 export default Component.extend({
   layout,
@@ -17,14 +19,10 @@ export default Component.extend({
     closeButton: true,
     tapToDismiss: true
   },
+
   tabs: {
-    list: false,
-    basic_file: true, // Using underscore case to match API response here
-    full_file: false,
-    overlap_file: false,
-    mailing: false,
-    campaign: false,
-    stream: false
+    external: false,
+    file: true
   },
 
   currentWindow: 'file',
@@ -34,25 +32,18 @@ export default Component.extend({
     this._super();
 
     this.get('exports').getAvailableExports().then((availableExports) => {
-      let defaultTab = null;
+      this.set(
+        'tabs.external',
+        Object.keys(availableExports)
+          .filter((x) => availableExports[x])
+          .some((e) => EXTERNAL_EXPORTS.includes(e))
+      );
 
-      Object.keys(this.get('tabs')).forEach((tab) => {
-        if (!defaultTab && availableExports[tab]) {
-          defaultTab = tab;
-        }
-
-        this.set(`tabs.${tab}`, availableExports[tab]);
-      });
-
-      if (['full_file', 'basic_file'].includes(defaultTab)) {
-        defaultTab = 'file';
-      }
-
-      this.set('currentWindow', defaultTab || 'file');
+      this.set('currentWindow', this.tabs.external ? 'external' : 'file');
     });
 
 
-    ['file', 'list', 'publishr', 'mailing', 'stream'].forEach((e) => {
+    ['file', 'external'].forEach((e) => {
       defineProperty(
         this,
         `${e}Selected`,
@@ -92,7 +83,7 @@ export default Component.extend({
       this.sendAction('didExport');
     }
     if (closeModal) {
-      this.sendAction('closeModal');
+      this.closeModal();
     }
   },
 

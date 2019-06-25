@@ -1,4 +1,3 @@
-/* globals ga */
 import { inject as service } from '@ember/service';
 
 import Component from '@ember/component';
@@ -11,10 +10,11 @@ export default Component.extend({
   layout,
   exports: service(),
   store: service(),
-  current: null,
 
-  _model: '',
+  current: null,
   _canCreate: true,
+
+  placeholder: 'Export influencers to...',
 
   disabledExport: computed('current', 'selectedCount', function() {
     return !this.get('current') || !this.get('selectedCount');
@@ -24,55 +24,27 @@ export default Component.extend({
     this.set('errors', null);
   }),
 
-  didInsertElement() {
-    this.get('exports').fetchEntities(this.get('_model'), (response) => {
-      this.set('items', response.entities.map((item) => {
-        return ExportEntity.create(item);
-      }));
-    });
-  },
-
   actions: {
-    closeModal() {
-      ga('send', 'event', 'Header', 'Submit', 'Cancel');
-      this.sendAction('closeModal');
-    },
-
-    didCreateItem(item) {
-      let _i = this.get('items');
-      _i.pushObject(item);
-      this.set('items', _i);
-    },
-
     submit(params, defer) {
-      let item = params[0];
+      let [ item ] = params;
+      defer.resolve();
 
       new RSVP.Promise((resolve) => {
         if (!item.get('id')) {
           let data = {
-            type: this.get('_model'),
-            name: item.get('name')
+            type: item.type,
+            name: item.name
           };
+
           return this.get('exports').createEntity(data, (response) => {
-            let element = this.get('items').find((e) => {
-              return !e.get('id') && e.get('name') === response.entity.name;
-            });
-
-            if (element) {
-              // Assign id to the model
-              element.set('id', response.entity.id);
-            }
-
-            resolve(response.entity.id);
+            item.set('id', response.entity.id);
+            resolve(item);
           });
         } else {
-          resolve(item.get('id'));
+          resolve(item);
         }
-      }).then((id) => {
-        this.triggerAction({
-          action: 'performExport',
-          actionContext: [`${this.get('_model')}:${id}`, defer]
-        });
+      }).then((item) => {
+        this.performExport(`${item.type}:${item.id}`, defer);
       });
     }
   }

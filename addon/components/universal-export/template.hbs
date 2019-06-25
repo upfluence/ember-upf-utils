@@ -1,52 +1,32 @@
 {{#modal-view hidden=hidden closeAction=closeModal}}
   <div class="modal-header modal-header__borderless">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-            id='close-x'><span aria-hidden="true">&times;</span></button>
+            id="close-x"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">Export Influencers</h4>
   </div>
 
   <ul class="nav nav-tabs">
-    {{#if tabs.list}}
-        <li class={{if listSelected "active" ""}} role="button" {{action 'setCurrent' 'list'}}>
-          <a>List</a>
-        </li>
-    {{/if}}
-
-    {{#if tabs.campaign}}
-      <li class={{if publishrSelected "active" ""}} role="button" {{action 'setCurrent' 'publishr'}}>
-        <a>Workflow</a>
+    {{#if tabs.external}}
+      <li {{action "setCurrent" "external"}} class={{if externalSelected "active" ""}} role="button">
+        <a>External</a>
       </li>
     {{/if}}
 
-    {{#if tabs.mailing}}
-      <li class={{if mailingSelected "active" ""}} role="button" {{action 'setCurrent' 'mailing'}}>
-        <a>Emailing</a>
-      </li>
-    {{/if}}
-
-    {{#if tabs.stream}}
-      <li class={{if streamSelected "active" ""}} role="button" {{action 'setCurrent' 'stream'}}>
-        <a>Monitor</a>
-      </li>
-    {{/if}}
-
-    {{#if tabs.basic_file}}
-      <li class={{if fileSelected "active" ""}} role="button" {{action 'setCurrent' 'file'}}>
+    {{#if tabs.file}}
+      <li {{action "setCurrent" "file"}} class={{if fileSelected "active" ""}} role="button">
         <a>File</a>
       </li>
     {{/if}}
   </ul>
 
   {{#if fileSelected}}
-    {{universal-export/file closeModal=closeModal enableFullFileExport=tabs.full_file
-                            enableOverlapFileExport=tabs.overlap_file selectedCount=selectedInfluencerIds.length}}
-  {{else if listSelected}}
-    {{universal-export/list closeModal=closeModal selectedCount=selectedCount}}
-  {{else if publishrSelected}}
-    {{universal-export/publishr closeModal=closeModal selectedCount=selectedCount}}
-  {{else if mailingSelected}}
-    {{universal-export/mailing closeModal=closeModal selectedCount=selectedCount}}
-  {{else if streamSelected}}
-    {{universal-export/stream closeModal=closeModal selectedCount=selectedCount}}
+    {{universal-export/file
+      closeModal=closeModal enableFullFileExport=tabs.full_file
+      enableOverlapFileExport=tabs.overlap_file
+      selectedCount=selectedInfluencerIds.length}}
+  {{else}}
+    {{universal-export/external
+      closeModal=closeModal selectedCount=selectedCount
+      performExport=(action "performExport")}}
   {{/if}}
 {{/modal-view}}
