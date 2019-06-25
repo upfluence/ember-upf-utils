@@ -1,5 +1,8 @@
 <span class="universal-selection-option__icon text-size-6 upf-icon {{iconName}}"></span>
 <span class="universal-selection-option__name">{{item.name}}</span>
-<span class="upf-align--right text-color-info universal-selection-option__influencers-count">
-  {{item.total}} influencers
-</span>
+
+{{#if item.total}}
+  <span class="upf-align--right text-color-info universal-selection-option__influencers-count">
+    {{item.total}} influencers
+  </span>
+{{/if}}
