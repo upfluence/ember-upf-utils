@@ -29,7 +29,9 @@ export default Component.extend({
   disabled: false,
   searchTerm: null,
   search: null,
+
   optionsComponent: null,
+  createItemComponent: null,
 
   didReceiveAttrs() {
     if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {
@@ -37,9 +39,9 @@ export default Component.extend({
     }
   },
 
-  createItemComponent: computed('canCreate', 'searchTerm', function() {
+  _createItemComponent: computed('canCreate', 'searchTerm', function() {
     if (this.canCreate && !isBlank(this.searchTerm)) {
-      return 'item-chooser/create-item';
+      return this.createItemComponent || 'item-chooser/create-item';
     }
 
     return null;
