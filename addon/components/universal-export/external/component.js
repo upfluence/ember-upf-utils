@@ -27,7 +27,6 @@ export default Component.extend({
   actions: {
     submit(params, defer) {
       let [ item ] = params;
-      defer.resolve();
 
       new RSVP.Promise((resolve) => {
         if (!item.get('id')) {
