@@ -1,22 +1,22 @@
 import Component from '@ember/component';
-import layout from './template';
 import { computed } from '@ember/object';
 
+import layout from './template';
+
+const ENTITIES_ICONS = {
+  stream: 'upf-icon--monitor',
+  list: 'upf-icon--search',
+  mailing: 'upf-icon--inbox',
+  campaign: 'upf-icon--workflow'
+};
+
 export default Component.extend({
-  tagName: 'li',
-  classNames: ['universal-selection-option'],
   layout,
 
-  iconName: computed('item.option.entityType', function() {
-    switch(this.item.option.entityType) {
-      case 'stream':
-        return 'monitor';
-      case 'list':
-        return 'search';
-      case 'mailing':
-        return 'inbox';
-      case 'campaign':
-        return 'workflow';
-    }
+  tagName: 'li',
+  classNames: ['universal-selection-option'],
+
+  iconName: computed('item', function() {
+    return ENTITIES_ICONS[this.item.type];
   })
 });

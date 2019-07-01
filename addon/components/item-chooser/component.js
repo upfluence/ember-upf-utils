@@ -29,7 +29,9 @@ export default Component.extend({
   disabled: false,
   searchTerm: null,
   search: null,
+
   optionsComponent: null,
+  createItemComponent: null,
 
   didReceiveAttrs() {
     if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {
@@ -37,15 +39,15 @@ export default Component.extend({
     }
   },
 
-  createItemComponent: computed('canCreate', 'searchTerm', function() {
+  _createItemComponent: computed('canCreate', 'searchTerm', function() {
     if (this.canCreate && !isBlank(this.searchTerm)) {
-      return 'item-chooser/create-item';
+      return this.createItemComponent || 'item-chooser/create-item';
     }
 
     return null;
   }),
 
-  createElement() {
+  createElement(extraAttrs = {}) {
     if (isBlank(this.searchTerm)) {
       return;
     }
@@ -56,7 +58,9 @@ export default Component.extend({
         name: this.searchTerm
       });
     } else {
-      item = ExportEntity.create({ name: this.searchTerm });
+      item = ExportEntity.create(
+        Object.assign({ name: this.searchTerm }, extraAttrs)
+      );
     }
 
     if (this.multiple) {
@@ -92,9 +96,8 @@ export default Component.extend({
       this.set('searchTerm', null);
     },
 
-    createItem(_, defer) {
-      this.createElement();
-
+    createItem(_, extraAttrs, defer) {
+      this.createElement(extraAttrs);
       defer.resolve();
     }
   }
