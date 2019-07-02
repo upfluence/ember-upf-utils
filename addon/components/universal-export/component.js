@@ -22,7 +22,9 @@ export default Component.extend({
 
   tabs: {
     external: false,
-    file: true
+    file: true,
+    overlap_file: false,
+    full_file: false
   },
 
   currentWindow: 'file',
@@ -38,6 +40,10 @@ export default Component.extend({
           .filter((x) => availableExports[x])
           .some((e) => EXTERNAL_EXPORTS.includes(e))
       );
+
+      ['overlap_file', 'full_file'].forEach((exportType) => {
+        this.set(`tabs.${exportType}`, availableExports[exportType]);
+      });
 
       this.set('currentWindow', this.tabs.external ? 'external' : 'file');
     });
