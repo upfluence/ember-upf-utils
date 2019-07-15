@@ -26,20 +26,31 @@ export default Component.extend({
       resolve(
         Object.keys(response).reduce((acc, entityType) => {
           response[entityType].forEach((item) => {
-            acc.push(
-              ExportEntity.create({
-                id: item.id,
-                name: item.name,
-                total: item.total,
-                type: entityType,
-              })
-            );
+            acc.find((group) => {
+              if (group.groupName.toLowerCase() === entityType) {
+                group.options.push(
+                  ExportEntity.create({
+                    id: item.id,
+                    name: item.name,
+                    total: item.total,
+                    type: entityType
+                  })
+                );
+              }
+            });
           });
           return acc;
-        }, [])
-      );
+        }, [
+          { groupName: 'List', options: [] },
+          { groupName: 'Mailing', options: [] },
+          { groupName: 'Stream', options: [] },
+          { groupName: 'Campaign', options: [] }
+        ]
+      ));
     });
   },
+
+  // dont display object if there are no options!
 
   search() {
     return new RSVP.Promise((resolve) => {
