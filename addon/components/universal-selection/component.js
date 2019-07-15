@@ -25,6 +25,12 @@ export default Component.extend({
     return this.get('exports').searchEntities(this.keyword).then((response) => {
       resolve(
         Object.keys(response).reduce((acc, entityType) => {
+          if ((response[entityType].length > 0) && !acc.find((item) => acc.includes(item.type))) {
+            acc.push({
+              groupName: entityType,
+              options: []
+            })
+          }
           response[entityType].forEach((item) => {
             acc.find((group) => {
               if (group.groupName.toLowerCase() === entityType) {
@@ -40,17 +46,10 @@ export default Component.extend({
             });
           });
           return acc;
-        }, [
-          { groupName: 'List', options: [] },
-          { groupName: 'Mailing', options: [] },
-          { groupName: 'Stream', options: [] },
-          { groupName: 'Campaign', options: [] }
-        ]
+        }, []
       ));
     });
   },
-
-  // dont display object if there are no options!
 
   search() {
     return new RSVP.Promise((resolve) => {
