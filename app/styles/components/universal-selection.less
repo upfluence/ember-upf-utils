@@ -1,16 +1,28 @@
 .universal-selection {
+  .universal-selection-group:not(:first-child) {
+    .universal-selection-group__name {
+      padding-top: @spacing-x-sm;
+    }
+  }
+
   .universal-selection-option {
     display: flex;
   }
 
   .universal-selection-group__name {
-    padding: @spacing-xx-sm;
+    padding: @spacing-xxx-sm @spacing-xx-sm;
     text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  :not(.ember-power-select-multiple-option) > .universal-selection-option__name {
+    padding-left: 0;
   }
 
   .universal-selection-option__name {
-    padding-left: @spacing-xxx-sm;
     flex: 3;
+    padding-left: @spacing-x-sm;
   }
 
   .universal-selection-option__influencers-count {
