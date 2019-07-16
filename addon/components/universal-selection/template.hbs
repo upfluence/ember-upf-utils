@@ -1,5 +1,6 @@
-<div class="upf-align--center universal-selection">
+<div class="padding-top-sm padding-bottom-sm universal-selection">
   {{#item-chooser
+    groupComponent="universal-selection/group"
     multiple=multiple items=items selection=current optionValuePath="content.identifier"
     placeholder=placeholder allowClear=true search=(action "searchEntities")
     canCreate=canCreate createItemComponent=createItemComponent

@@ -27,7 +27,7 @@ export default Component.extend({
         Object.keys(response).reduce((acc, entityType) => {
           if ((response[entityType].length > 0) && !acc.find((item) => acc.includes(item.type))) {
             acc.push({
-              groupName: entityType,
+              groupName: entityType.charAt(0).toUpperCase() + entityType.slice(1),
               options: []
             })
           }
