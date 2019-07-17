@@ -1,7 +1,11 @@
 {{#if multiple}}
-  {{#power-select-multiple selectedItemComponent=selectedItemComponent groupComponent=groupComponent search=search options=items selected=(unless disabled selection) placeholder=placeholder
-    renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm")
-    onchange=(action (mut selection)) onkeydown=(action "keyPress") registerAPI=(action (mut publicApi))
+  {{#power-select-multiple selectedItemComponent=selectedItemComponent 
+    onopen=onopen groupComponent=groupComponent search=search options=items 
+    selected=(unless disabled selection) placeholder=placeholder
+    renderInPlace=true disabled=disabled searchField=sortField 
+    oninput=(action "updateSearchTerm")
+    onchange=(action (mut selection)) onkeydown=(action "keyPress") 
+    registerAPI=(action (mut publicApi))
     optionsComponent=(if optionsComponent optionsComponent)
     afterOptionsComponent=(if _createItemComponent (
       component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))) as |item|}}

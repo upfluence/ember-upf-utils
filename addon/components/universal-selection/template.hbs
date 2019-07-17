@@ -2,7 +2,9 @@
   {{#item-chooser
     groupComponent="universal-selection/group"
     selectedItemComponent="universal-selection/selected"
-    multiple=multiple items=items selection=current optionValuePath="content.identifier"
+    onopen=(action "checkOptions")
+    multiple=multiple items=items selection=current 
+    optionValuePath="content.identifier"
     placeholder=placeholder allowClear=true search=(action "searchEntities")
     canCreate=canCreate createItemComponent=createItemComponent
     didCreate=null as |opt|}}

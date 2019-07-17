@@ -62,6 +62,12 @@ export default Component.extend({
     searchEntities(keyword) {
       this.set('keyword', keyword);
       this.set('items', this.search());
+    },
+
+    checkOptions() {
+      if (!this.items) {
+        this.send('searchEntities', '');
+      }
     }
   }
 });
