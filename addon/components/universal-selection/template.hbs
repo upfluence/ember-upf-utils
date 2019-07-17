@@ -1,6 +1,10 @@
-<div class="upf-align--center universal-selection">
+<div class="padding-top-sm padding-bottom-sm universal-selection">
   {{#item-chooser
-    multiple=multiple items=items selection=current optionValuePath="content.identifier"
+    groupComponent="universal-selection/group"
+    selectedItemComponent="universal-selection/selected"
+    onopen=(action "checkOptions")
+    multiple=multiple items=items selection=current 
+    optionValuePath="content.identifier"
     placeholder=placeholder allowClear=true search=(action "searchEntities")
     canCreate=canCreate createItemComponent=createItemComponent
     didCreate=null as |opt|}}

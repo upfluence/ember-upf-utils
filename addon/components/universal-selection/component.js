@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import EmberObject from '@ember/object';
 import { debounce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
@@ -25,15 +24,25 @@ export default Component.extend({
     return this.get('exports').searchEntities(this.keyword).then((response) => {
       resolve(
         Object.keys(response).reduce((acc, entityType) => {
+          if ((response[entityType].length > 0) && !acc.find((item) => acc.includes(item.type))) {
+            acc.push({
+              groupName: entityType,
+              options: []
+            })
+          }
           response[entityType].forEach((item) => {
-            acc.push(
-              ExportEntity.create({
-                id: item.id,
-                name: item.name,
-                total: item.total,
-                type: entityType,
-              })
-            );
+            acc.find((group) => {
+              if (group.groupName === entityType) {
+                group.options.push(
+                  ExportEntity.create({
+                    id: item.id,
+                    name: item.name,
+                    total: item.total,
+                    type: entityType
+                  })
+                );
+              }
+            });
           });
           return acc;
         }, [])
@@ -53,6 +62,12 @@ export default Component.extend({
     searchEntities(keyword) {
       this.set('keyword', keyword);
       this.set('items', this.search());
+    },
+
+    checkOptions() {
+      if (!this.items) {
+        this.send('searchEntities', '');
+      }
     }
   }
 });

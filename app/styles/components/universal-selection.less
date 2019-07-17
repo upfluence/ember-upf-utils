@@ -1,12 +1,38 @@
 .universal-selection {
+  .universal-selection__selection {
+    padding-left: @spacing-xxx-sm;
+  }
+
+  .universal-selection-group:not(:first-child) {
+    .universal-selection-group__name {
+      padding-top: @spacing-x-sm;
+    }
+  }
+
+  .universal-selection-group__name {
+    padding: @spacing-xxx-sm @spacing-xx-sm;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16/@rem;
+  }
+
   .universal-selection-option {
     display: flex;
     align-items: center;
   }
 
+  .ember-power-select-option[aria-current=true], .ember-power-select-multiple-option[aria-current=true] {
+    background-color: @upf-primary-bright-purple-dark;
+    color: #ffffff;
+
+    .universal-selection-option__influencers-count {
+      color: #ffffff;
+    }
+  }
+
   .universal-selection-option__name {
-    padding-left: @spacing-xxx-sm;
     flex: 3;
+    padding-left: @spacing-xxx-sm;
   }
 
   .universal-selection-option__influencers-count {
@@ -22,8 +48,14 @@
   .ember-power-select-option {
     border: 0;
     background-color: #ffffff;
-    padding-left: @spacing-xx-sm;
+    padding-left: @spacing-sm;
     padding-right: @spacing-xx-sm;
+  }
+
+  .ember-power-select-option--search-message, 
+  .ember-power-select-option--no-matches-message,
+  .ember-power-select-option--loading-message {
+    padding-left: @spacing-xx-sm;
   }
 
   .ember-power-select-options[role="listbox"] {
