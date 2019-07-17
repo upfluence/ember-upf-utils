@@ -27,13 +27,13 @@ export default Component.extend({
         Object.keys(response).reduce((acc, entityType) => {
           if ((response[entityType].length > 0) && !acc.find((item) => acc.includes(item.type))) {
             acc.push({
-              groupName: entityType.charAt(0).toUpperCase() + entityType.slice(1),
+              groupName: entityType,
               options: []
             })
           }
           response[entityType].forEach((item) => {
             acc.find((group) => {
-              if (group.groupName.toLowerCase() === entityType) {
+              if (group.groupName === entityType) {
                 group.options.push(
                   ExportEntity.create({
                     id: item.id,
