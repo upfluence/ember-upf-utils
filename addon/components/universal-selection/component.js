@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import EmberObject from '@ember/object';
 import { debounce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
@@ -46,8 +45,8 @@ export default Component.extend({
             });
           });
           return acc;
-        }, []
-      ));
+        }, [])
+      );
     });
   },
 
