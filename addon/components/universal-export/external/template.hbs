@@ -1,5 +1,9 @@
-<div class="modal-body text-center">
-  <div class="row padding-left-xx-sm padding-right-xx-sm">
+<div class="modal-body">
+  {{#input-wrapper}}
+    <label>
+      Export a selection of influencers to a list, emailing, campaign or stream
+    </label>
+
     {{universal-selection
       current=current multiple=false placeholder=placeholder canCreate=true
       createItemComponent="universal-export/create-item"}}
@@ -11,7 +15,7 @@
         {{/each}}
       </div>
     {{/if}}
-  </div>
+  {{/input-wrapper}}
 </div>
 
 <div class="modal-footer">
