@@ -32,6 +32,9 @@ export default Component.extend({
 
   optionsComponent: null,
   createItemComponent: null,
+  selectedItemComponent: null,
+  onopen: null,
+  groupComponent: null,
 
   didReceiveAttrs() {
     if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {

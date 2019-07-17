@@ -1,5 +1,6 @@
 {{#if multiple}}
-  {{#power-select-multiple selectedItemComponent=selectedItemComponent 
+  {{#power-select-multiple 
+    selectedItemComponent=selectedItemComponent 
     onopen=onopen groupComponent=groupComponent search=search options=items 
     selected=(unless disabled selection) placeholder=placeholder
     renderInPlace=true disabled=disabled searchField=sortField 
@@ -8,7 +9,9 @@
     registerAPI=(action (mut publicApi))
     optionsComponent=(if optionsComponent optionsComponent)
     afterOptionsComponent=(if _createItemComponent (
-      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))) as |item|}}
+      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder 
+      createItem=(action "createItem")
+    )) as |item|}}
     {{#if (has-block)}}
       {{yield (hash option=item)}}
     {{else}}
@@ -16,12 +19,19 @@
     {{/if}}
   {{/power-select-multiple}}
 {{else}}
-  {{#power-select search=search options=items selected=selection onchange=(action (mut selection)) onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
-     placeholder=placeholder renderInPlace=true disabled=disabled searchField=sortField oninput=(action "updateSearchTerm") registerAPI=(action (mut publicApi))
-     optionsComponent=(if optionsComponent optionsComponent)
-     afterOptionsComponent=(if _createItemComponent (
-       component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder createItem=(action "createItem"))
-     ) as |item|}}
+  {{#power-select 
+    selectedItemComponent=selectedItemComponent 
+    onopen=onopen groupComponent=groupComponent search=search options=items 
+    selected=selection onchange=(action (mut selection)) 
+    onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
+    placeholder=placeholder renderInPlace=true disabled=disabled 
+    searchField=sortField oninput=(action "updateSearchTerm") 
+    registerAPI=(action (mut publicApi))
+    optionsComponent=(if optionsComponent optionsComponent)
+    afterOptionsComponent=(if _createItemComponent (
+      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder 
+      createItem=(action "createItem"))
+    ) as |item|}}
      {{#if (has-block)}}
        {{yield (hash option=item)}}
      {{else}}
