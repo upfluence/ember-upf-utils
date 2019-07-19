@@ -5,12 +5,12 @@
 
   .universal-selection-group:not(:first-child) {
     .universal-selection-group__name {
-      padding-top: @spacing-x-sm;
+      padding-top: @spacing-xx-sm;
     }
   }
 
   .universal-selection-group__name {
-    padding: @spacing-xxx-sm @spacing-xx-sm;
+    padding: @spacing-xxx-sm @spacing-xx-sm 0;
     text-align: left;
     font-weight: bold;
     font-size: 16/@rem;
@@ -21,8 +21,18 @@
     align-items: center;
   }
 
+  .ember-power-select-option[aria-selected="true"] {
+    background-color: @upf-primary-bright-purple;
+    color: #ffffff;
+    border-radius: 0;
+
+    .universal-selection-option__influencers-count {
+      color: #ffffff;
+    }
+  }
+
   .ember-power-select-option[aria-current=true], .ember-power-select-multiple-option[aria-current=true] {
-    background-color: @upf-primary-bright-purple-dark;
+    background-color: @upf-primary-rock-blue-dark;
     color: #ffffff;
 
     .universal-selection-option__influencers-count {
@@ -48,8 +58,7 @@
   .ember-power-select-option {
     border: 0;
     background-color: #ffffff;
-    padding-left: @spacing-sm;
-    padding-right: @spacing-xx-sm;
+    padding: 1/@rem @spacing-xx-sm 1/@rem @spacing-sm;
   }
 
   .ember-power-select-option--search-message, 
@@ -67,7 +76,9 @@
     border: 1px solid @upf-primary-bright-purple;
     color: @upf-primary-bright-purple;
     background-color: @upf-gray-light;
-    padding-left: @spacing-xxx-sm;
+
+    padding: 0.5em 0.5em 0.5em @spacing-xxx-sm;
+    border-radius: 2/@rem;
 
     .universal-selection-option__name {
       color: @upf-primary-bright-purple;
