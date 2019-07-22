@@ -32,7 +32,7 @@ export default Component.extend({
           }
           response[entityType].forEach((item) => {
             acc.find((group) => {
-              if (group.groupName === entityType && item.total !== 0) {
+              if (group.groupName === entityType && item.total > 0) {
                 group.options.push(
                   ExportEntity.create({
                     id: item.id,
