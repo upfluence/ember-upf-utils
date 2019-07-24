@@ -10,6 +10,8 @@ import layout from './template';
 export default Component.extend({
   layout,
 
+  classNames: ['universal-selection'],
+
   exports: service(),
   toast: service(),
 
@@ -18,6 +20,7 @@ export default Component.extend({
   createItemComponent: null,
   items: null,
   current: null,
+  label: null,
   placeholder: 'Import influencers from...',
 
   _performSearch(resolve) {
