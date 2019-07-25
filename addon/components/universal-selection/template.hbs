@@ -1,13 +1,15 @@
-<div class="padding-top-sm padding-bottom-sm universal-selection">
-  {{#item-chooser
-    groupComponent="universal-selection/group"
-    selectedItemComponent="universal-selection/selected"
-    onopen=(action "checkOptions")
-    multiple=multiple items=items selection=current 
-    optionValuePath="content.identifier"
-    placeholder=placeholder allowClear=true search=(action "searchEntities")
-    canCreate=canCreate createItemComponent=createItemComponent
-    didCreate=null as |opt|}}
-    {{universal-selection/option item=opt.option}}
-  {{/item-chooser}}
-</div>
+{{#if label}}
+  <label>{{label}}</label>
+{{/if}}
+
+{{#item-chooser
+  groupComponent="universal-selection/group"
+  selectedItemComponent="universal-selection/selected"
+  onopen=(action "checkOptions")
+  multiple=multiple items=items selection=current
+  optionValuePath="content.identifier"
+  placeholder=placeholder allowClear=true search=(action "searchEntities")
+  canCreate=canCreate createItemComponent=createItemComponent
+  didCreate=null as |opt|}}
+  {{universal-selection/option item=opt.option}}
+{{/item-chooser}}
