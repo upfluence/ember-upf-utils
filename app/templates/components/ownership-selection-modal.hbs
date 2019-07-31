@@ -9,6 +9,31 @@
   <div class='modal-body text-center'>
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
+            {{#item-chooser
+              selection=selectedUser items=items
+              placeholder="Search for a user or email" canCreate=true
+              search=(action "searchEntities")
+              as |opt|}}
+              <div class="team-row team-row--member">
+                <div class="team-row__avatar">
+                  {{#if opt.option.avatarUrl}}
+                    <img src={{opt.option.avatarUrl}}
+                        class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
+                  {{else}}
+                    <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
+                      <span>
+                        {{name-initials (concat opt.option.firstName " " opt.option.lastName)}}
+                      </span>
+                    </div>
+                  {{/if}}
+                </div>
+                <div class="team-row__infos">
+                  <div>{{opt.option.firstName}} {{opt.option.lastName}}</div>
+                  <div>{{opt.option.email}}</div>
+                </div>
+              </div>
+            {{/item-chooser}}
+
         {{ownership-selection light=true entity=model}}
       </div>
     </div>

@@ -1,9 +1,12 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   ownershipUpdater: service(),
   toast: service(),
+
+  selectedUser: null,
 
   _toastConfig: {
     timeOut: 0,
@@ -15,7 +18,32 @@ export default Component.extend({
   header: 'Share with',
   cta: 'Share',
 
+  items: computed('searchTerm', function() {
+    // const nonMembers = this.store.peekAll('user').filter((user) => {
+    //   return !user.teams.any((t) => t.id === this.model.get('id'));
+    // });
+
+    // if (isEmpty(this.searchTerm)) {
+    //   return nonMembers;
+    // }
+
+    // return nonMembers.filter((user) => {
+    //   const { firstName, lastName, email } = user;
+    //   return email.includes(this.searchTerm) ||
+    //   (firstName || '').includes(this.searchTerm) ||
+    //   (lastName || '').includes(this.searchTerm);
+    // });
+
+    return [
+      { firstName: 'test', lastName: 'test', email: 'test@gmail.com' }
+    ]
+  }),
+
   actions: {
+    searchEntities(text) {
+      this.set('searchTerm', text);
+    },
+
     updateOwnership() {
       this.get('ownershipUpdater').update(
         this.get('modelType'),
