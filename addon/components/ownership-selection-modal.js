@@ -5,8 +5,9 @@ import { computed } from '@ember/object';
 export default Component.extend({
   ownershipUpdater: service(),
   toast: service(),
+  currentUser: service(),
 
-  selectedUser: null,
+  selectedUsers: null,
 
   _toastConfig: {
     timeOut: 0,
@@ -19,24 +20,18 @@ export default Component.extend({
   cta: 'Share',
 
   items: computed('searchTerm', function() {
-    // const nonMembers = this.store.peekAll('user').filter((user) => {
-    //   return !user.teams.any((t) => t.id === this.model.get('id'));
-    // });
+    let members;
 
-    // if (isEmpty(this.searchTerm)) {
-    //   return nonMembers;
-    // }
+    return this.currentUser.fetchColleagues().then((res) => {
+      members = res.users
 
-    // return nonMembers.filter((user) => {
-    //   const { firstName, lastName, email } = user;
-    //   return email.includes(this.searchTerm) ||
-    //   (firstName || '').includes(this.searchTerm) ||
-    //   (lastName || '').includes(this.searchTerm);
-    // });
-
-    return [
-      { firstName: 'test', lastName: 'test', email: 'test@gmail.com' }
-    ]
+      return members.filter((user) => {
+        const { firstName, lastName, email } = user;
+        return email.includes(this.searchTerm) ||
+        (firstName || '').includes(this.searchTerm) ||
+        (lastName || '').includes(this.searchTerm);
+      });
+    });
   }),
 
   actions: {
@@ -45,17 +40,19 @@ export default Component.extend({
     },
 
     updateOwnership() {
-      this.get('ownershipUpdater').update(
-        this.get('modelType'),
-        this.get('model.id'),
-        this.get('model.ownedBy')
-      ).then(() => {
-        this.sendAction('closeModal');
-        this.get('toast').success(
-          this.get('successfulSharing'),
-          'Sharing Success',
-          this._toastConfig
-        );
+      this.currentUser.createCompositeGroup(this.selectedUsers).then(() => {
+        this.get('ownershipUpdater').update(
+          this.get('modelType'),
+          this.get('model.id'),
+          this.get('model.ownedBy')
+        ).then(() => {
+          this.sendAction('closeModal');
+          this.get('toast').success(
+            this.get('successfulSharing'),
+            'Sharing Success',
+            this._toastConfig
+          );
+        });
       });
     }
   }

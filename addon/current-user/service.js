@@ -106,18 +106,20 @@ export default Service.extend({
   },
 
   createCompositeGroup(members) {
-    // don't need to append access_token
-    // post request with the data
-    // an array of members
+    const ids = members.map((member) => {
+      return member.id;
+    });
 
     const url = Configuration.identityURL;
+    const token = encodeURIComponent(
+      this.get('session.data.authenticated.access_token')
+    );
 
-    return this.ajax.request(`${url}api/v1/composites`, {
-      type: 'POST',
-      data: {
-        composite: { members: members }
-      }
-    })
+    return this.ajax.post(`${url}api/v1/composites?access_token=${token}`, {
+      data: JSON.stringify({
+        composite: { members: ids }
+      })
+    });
   },
 
   fetchOwnerships() {
