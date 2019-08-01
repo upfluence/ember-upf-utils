@@ -7,9 +7,11 @@
   </div>
 
   <div class='modal-body text-center'>
+    Select a user and/or group to share.
+    
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-            {{#item-chooser
+            {{#item-chooser multiple=true
               selection=selectedUser items=items
               placeholder="Search for a user or email" canCreate=true
               search=(action "searchEntities")

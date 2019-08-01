@@ -94,6 +94,32 @@ export default Service.extend({
     this.set('_cachedUrl', null);
   },
 
+  fetchColleagues() {
+    const url = Configuration.identityURL;
+    const token = encodeURIComponent(
+      this.get('session.data.authenticated.access_token')
+    );
+
+    return this.ajax.request(`${url}api/v1/users?company_id=1&access_token=${token}`, {
+      type: 'GET'
+    });
+  },
+
+  createCompositeGroup(members) {
+    // don't need to append access_token
+    // post request with the data
+    // an array of members
+
+    const url = Configuration.identityURL;
+
+    return this.ajax.request(`${url}api/v1/composites`, {
+      type: 'POST',
+      data: {
+        composite: { members: members }
+      }
+    })
+  },
+
   fetchOwnerships() {
     return this.fetch().then((payload) => {
       let ownerships = [];
