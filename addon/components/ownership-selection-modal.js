@@ -28,10 +28,10 @@ export default Component.extend({
       });
 
       return members.filter((user) => {
-        const { firstName, lastName, email } = user;
+        const { first_name, last_name, email } = user;
         return email.includes(this.searchTerm) ||
-        (firstName || '').includes(this.searchTerm) ||
-        (lastName || '').includes(this.searchTerm);
+        (first_name || '').includes(this.searchTerm) ||
+        (last_name || '').includes(this.searchTerm);
       });
     });
   }),
