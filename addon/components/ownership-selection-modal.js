@@ -23,7 +23,9 @@ export default Component.extend({
     let members;
 
     return this.currentUser.fetchColleagues().then((res) => {
-      members = res.users
+      members = res.users.filter((user) => { 
+        return user.active;
+      });
 
       return members.filter((user) => {
         const { firstName, lastName, email } = user;
