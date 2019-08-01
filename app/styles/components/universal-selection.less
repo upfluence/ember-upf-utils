@@ -90,3 +90,34 @@
     }
   }
 }
+
+.team-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: @spacing-x-sm;
+
+  .ember-power-select-option > &, .ember-power-select-selected-item > & {
+    margin-bottom: 0;
+  }
+}
+
+.team-row__avatar {
+  margin-right: @spacing-xx-sm;
+}
+
+.team-row__infos {
+  flex: 3;
+}
+
+// Handle Member rows differently as they display the information in two
+// distinct rows.
+.team-row--member .team-row__infos {
+  & > div:first-child {
+    display: flex;
+    flex-direction: row;
+  }
+
+  & > div:nth-child(2) {
+    color: @upf-primary-rock-blue-light;
+  }
+}

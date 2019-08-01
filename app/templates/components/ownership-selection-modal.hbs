@@ -8,34 +8,34 @@
 
   <div class='modal-body text-center'>
     Select a user and/or group to share.
+
+    {{#item-chooser multiple=true
+      selection=selectedUsers items=items
+      placeholder="Search for a user or email" canCreate=true
+      search=(action "searchEntities")
+      as |opt|}}
+      <div class="team-row team-row--member">
+        <div class="team-row__avatar">
+          {{#if opt.option.avatarUrl}}
+            <img src={{opt.option.avatarUrl}}
+                class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
+          {{else}}
+            <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
+              <span>
+                {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
+              </span>
+            </div>
+          {{/if}}
+        </div>
+        <div class="team-row__infos">
+          <div>{{opt.option.first_name}} {{opt.option.last_name}}</div>
+          <div>{{opt.option.email}}</div>
+        </div>
+      </div>
+    {{/item-chooser}}
     
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-            {{#item-chooser multiple=true
-              selection=selectedUsers items=items
-              placeholder="Search for a user or email" canCreate=true
-              search=(action "searchEntities")
-              as |opt|}}
-              <div class="team-row team-row--member">
-                <div class="team-row__avatar">
-                  {{#if opt.option.avatarUrl}}
-                    <img src={{opt.option.avatarUrl}}
-                        class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
-                  {{else}}
-                    <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
-                      <span>
-                        {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
-                      </span>
-                    </div>
-                  {{/if}}
-                </div>
-                <div class="team-row__infos">
-                  <div>{{opt.option.first_name}} {{opt.option.last_name}}</div>
-                  <div>{{opt.option.email}}</div>
-                </div>
-              </div>
-            {{/item-chooser}}
-
         {{ownership-selection light=true entity=model}}
       </div>
     </div>
