@@ -22,6 +22,7 @@ export default Component.extend({
   current: null,
   label: null,
   placeholder: 'Import influencers from...',
+  displayEmptyEntities: false,
 
   _performSearch(resolve) {
     return this.get('exports').searchEntities(this.keyword).then((response) => {
@@ -35,7 +36,13 @@ export default Component.extend({
           }
           response[entityType].forEach((item) => {
             acc.find((group) => {
-              if (group.groupName === entityType && item.total > 0) {
+              let itemDisplayCondition = true;
+
+              if (!this.displayEmptyEntities) {
+                itemDisplayCondition = item.total > 0;
+              }
+
+              if (group.groupName === entityType && itemDisplayCondition) {
                 group.options.push(
                   ExportEntity.create({
                     id: item.id,
