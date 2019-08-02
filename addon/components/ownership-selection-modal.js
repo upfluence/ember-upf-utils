@@ -25,6 +25,7 @@ export default Component.extend({
   cta: 'Share',
 
   setDisabled: observer('selectedUsers', 'ownership', function() {
+    console.log(this.model);
     if (this.selectedUsers) {
       if (this.selectedUsers.length == 0) {
         this.set('disabledClassicSharing', false);
@@ -73,8 +74,14 @@ export default Component.extend({
 
     updateOwnership() {
       if (this.selectedUsers && this.selectedUsers.length > 0) {
-        this.currentUser.createCompositeGroup(this.selectedUsers).then(() => {
-          this.send('performCloseModal');
+        this.currentUser.createCompositeGroup(this.selectedUsers).then(({ composite }) => {
+            this.get('ownershipUpdater').update(
+            this.get('modelType'),
+            this.get('model.id'),
+            composite.ownership
+          ).then(() => {
+            this.send('performCloseModal');
+          });
         });
       } else {
         this.get('ownershipUpdater').update(
