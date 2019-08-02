@@ -62,21 +62,29 @@ export default Component.extend({
       this.set('searchTerm', text);
     },
 
+    performCloseModal() {
+      this.sendAction('closeModal');
+      this.get('toast').success(
+        this.get('successfulSharing'),
+        'Sharing Success',
+        this._toastConfig
+      );
+    },
+
     updateOwnership() {
-      this.currentUser.createCompositeGroup(this.selectedUsers).then(() => {
+      if (this.selectedUsers && this.selectedUsers.length > 0) {
+        this.currentUser.createCompositeGroup(this.selectedUsers).then(() => {
+          this.send('performCloseModal');
+        });
+      } else {
         this.get('ownershipUpdater').update(
           this.get('modelType'),
           this.get('model.id'),
           this.get('model.ownedBy')
         ).then(() => {
-          this.sendAction('closeModal');
-          this.get('toast').success(
-            this.get('successfulSharing'),
-            'Sharing Success',
-            this._toastConfig
-          );
+          this.send('performCloseModal');
         });
-      });
+      }
     }
   }
 });
