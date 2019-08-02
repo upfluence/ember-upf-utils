@@ -6,7 +6,7 @@
     <h4 class="modal-title">{{header}}</h4>
   </div>
 
-  <div class='modal-body text-center'>
+  <div class="modal-body text-center">
     Select users or groups to share.
 
     {{#item-chooser multiple=true
@@ -38,13 +38,16 @@
     
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        {{ownership-selection light=true entity=model disabled=disabledClassicSharing ownership=ownership}}
+        {{ownership-selection light=true entity=model 
+          disabled=disabledClassicSharing ownership=ownership}}
       </div>
     </div>
   </div>
 
-  <div class='modal-footer'>
-    <button {{action 'updateOwnership'}} class='margin-left-xx-sm upf-btn upf-btn--primary'>
+  <div class="modal-footer">
+    <button 
+     disabled={{not disabledClassicSharing disabledCompositeSharing}} 
+     {{action "updateOwnership"}} class="margin-left-xx-sm upf-btn upf-btn--primary">
       {{cta}}
     </button>
   </div>
