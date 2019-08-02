@@ -7,13 +7,14 @@
   </div>
 
   <div class='modal-body text-center'>
-    Select a user and/or group to share.
+    Select users or groups to share.
 
     {{#item-chooser multiple=true
       selection=selectedUsers items=items
       selectedItemComponent="universal-selection/selected-name"
       placeholder="Search for a user or email"
       search=(action "searchEntities")
+      disabled=disabledCompositeSharing
       as |opt|}}
       <div class="team-row team-row--member">
         <div class="team-row__avatar">
@@ -37,7 +38,7 @@
     
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
-        {{ownership-selection light=true entity=model}}
+        {{ownership-selection light=true entity=model disabled=disabledClassicSharing ownership=ownership}}
       </div>
     </div>
   </div>

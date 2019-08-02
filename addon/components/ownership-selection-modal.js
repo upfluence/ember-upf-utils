@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
@@ -10,6 +10,9 @@ export default Component.extend({
   currentUser: service(),
 
   selectedUsers: null,
+  ownership: null,
+  disabledClassicSharing: false,
+  disabledCompositeSharing: false,
 
   _toastConfig: {
     timeOut: 0,
@@ -20,6 +23,22 @@ export default Component.extend({
 
   header: 'Share with',
   cta: 'Share',
+
+  setDisabled: observer('selectedUsers', 'ownership', function() {
+    if (this.selectedUsers) {
+      if (this.selectedUsers.length == 0) {
+        this.set('disabledClassicSharing', false);
+      } else {
+        this.set('disabledClassicSharing', true);
+      }
+    }
+
+    if (this.ownership) {
+      this.set('disabledCompositeSharing', true);
+    } else {
+      this.set('disabledCompositeSharing', false);
+    }
+  }),
 
   items: computed('searchTerm', function() {
     let members;
