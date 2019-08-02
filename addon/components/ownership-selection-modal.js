@@ -24,8 +24,8 @@ export default Component.extend({
   items: computed('searchTerm', function() {
     let members;
 
-    return this.currentUser.fetchColleagues().then((res) => {
-      members = res.users.filter((user) => { 
+    return this.currentUser.fetchColleagues().then(( { users }) => {
+      members = users.filter((user) => { 
         return user.active;
       });
 
