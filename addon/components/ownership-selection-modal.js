@@ -3,6 +3,8 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
+  classNames: ['ownership-selection'],
+  
   ownershipUpdater: service(),
   toast: service(),
   currentUser: service(),

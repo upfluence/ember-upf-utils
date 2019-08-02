@@ -11,7 +11,8 @@
 
     {{#item-chooser multiple=true
       selection=selectedUsers items=items
-      placeholder="Search for a user or email" canCreate=true
+      selectedItemComponent="universal-selection/selected-name"
+      placeholder="Search for a user or email"
       search=(action "searchEntities")
       as |opt|}}
       <div class="team-row team-row--member">
