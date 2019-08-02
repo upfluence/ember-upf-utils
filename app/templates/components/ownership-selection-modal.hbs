@@ -6,9 +6,12 @@
     <h4 class="modal-title">{{header}}</h4>
   </div>
 
-  <div class="modal-body text-center">
-    Select users or groups to share.
-
+  <div class="modal-body upf-align--left">
+    <div class="margin-top-xx-sm text-center">
+      Select users or groups to share.
+    </div>
+    
+    <label class="margin-top-xx-sm">People</label>
     {{#item-chooser multiple=true
       selection=selectedUsers items=items
       selectedItemComponent="universal-selection/selected-name"
@@ -36,12 +39,9 @@
       </div>
     {{/item-chooser}}
     
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
-        {{ownership-selection light=true entity=model 
-          disabled=disabledClassicSharing ownership=ownership}}
-      </div>
-    </div>
+    <label class="margin-top-xx-sm">Group</label>
+    {{ownership-selection light=true entity=model 
+      disabled=disabledClassicSharing ownership=ownership}}
   </div>
 
   <div class="modal-footer">
