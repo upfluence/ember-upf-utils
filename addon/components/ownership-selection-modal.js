@@ -1,6 +1,7 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed, observer, defineProperty } from '@ember/object';
+import { computed, defineProperty } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
@@ -10,7 +11,7 @@ export default Component.extend({
   currentUser: service(),
 
   selectedUsers: null,
-  ownership: null,
+  ownership: alias('model'),
 
   _toastConfig: {
     timeOut: 0,
@@ -32,7 +33,7 @@ export default Component.extend({
   init() {
     this._super();
 
-    this.set('currentWindow', this.tabs.people ? 'people' : 'groups');
+    this.set('currentWindow', 'groups');
 
     ['people', 'groups'].forEach((e) => {
       defineProperty(
