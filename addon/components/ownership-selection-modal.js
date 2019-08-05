@@ -11,8 +11,6 @@ export default Component.extend({
 
   selectedUsers: null,
   ownership: null,
-  disabledClassicSharing: false,
-  disabledCompositeSharing: false,
 
   _toastConfig: {
     timeOut: 0,
@@ -28,39 +26,6 @@ export default Component.extend({
     people: true,
     groups: true
   },
-
-  setDisabled: observer('selectedUsers', 'ownership', function() {
-    if (this.selectedUsers) {
-      if (this.selectedUsers.length == 0) {
-        this.set('disabledClassicSharing', false);
-      } else {
-        this.set('disabledClassicSharing', true);
-      }
-    }
-
-    if (this.ownership) {
-      this.set('disabledCompositeSharing', true);
-    } else {
-      this.set('disabledCompositeSharing', false);
-    }
-  }),
-
-  items: computed('searchTerm', function() {
-    let members;
-
-    return this.currentUser.fetchColleagues().then(( { users }) => {
-      members = users.filter((user) => { 
-        return user.active;
-      });
-
-      return members.filter((user) => {
-        const { first_name, last_name, email } = user;
-        return email.includes(this.searchTerm) ||
-        (first_name || '').includes(this.searchTerm) ||
-        (last_name || '').includes(this.searchTerm);
-      });
-    });
-  }),
 
   init() {
     this._super();
@@ -81,10 +46,6 @@ export default Component.extend({
   actions: {
     setCurrent(tab) {
       this.set('currentWindow', tab);
-    },
-
-    searchEntities(text) {
-      this.set('searchTerm', text);
     },
 
     performCloseModal() {
