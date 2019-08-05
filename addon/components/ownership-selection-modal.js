@@ -57,6 +57,16 @@ export default Component.extend({
       }
     },
 
+    clearSelection() {
+      if (this.selectedUsers) {
+        this.set('selectedUsers', []);
+      } else {
+        this.set('ownership', null);
+      }
+
+      console.log(this.tabs);
+    },
+
     performCloseModal() {
       this.sendAction('closeModal');
       this.get('toast').success(

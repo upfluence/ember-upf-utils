@@ -25,6 +25,10 @@
       <div class="upf-alert upf-alert--warning margin-bottom-x-sm">
         <div class="upf-alert__text">
           <span>You already have an active selection for {{currentWindow}}. To select another tab, please clear your active selection first.</span>
+          <br><br>
+          <button class="upf-btn upf-btn--default" {{action "clearSelection"}}>
+            Clear current selection
+          </button>
         </div>
       </div>
     {{/if}}
