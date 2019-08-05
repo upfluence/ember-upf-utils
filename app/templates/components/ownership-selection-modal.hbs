@@ -21,6 +21,14 @@
   </ul>
 
   <div class="modal-body upf-align--left">
+    {{#if displayWarningMessage}}
+      <div class="upf-alert upf-alert--warning margin-bottom-x-sm">
+        <div class="upf-alert__text">
+          <span>You already have an active selection for {{currentWindow}}. To select another tab, please clear your active selection first.</span>
+        </div>
+      </div>
+    {{/if}}
+
     {{#if peopleSelected}}
       {{ownership-selection-modal/people selectedUsers=selectedUsers}}
     {{else}}

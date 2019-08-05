@@ -27,6 +27,8 @@ export default Component.extend({
     groups: true
   },
 
+  displayWarningMessage: false,
+
   init() {
     this._super();
 
@@ -45,7 +47,14 @@ export default Component.extend({
 
   actions: {
     setCurrent(tab) {
-      this.set('currentWindow', tab);
+      if ((this.selectedUsers && this.selectedUsers.length > 0) || this.ownership) {
+        this.set('displayWarningMessage', true);
+      } else {
+        this.set('currentWindow', tab);
+        if (this.displayWarningMessage) {
+          this.set('displayWarningMessage', false);
+        }
+      }
     },
 
     performCloseModal() {
