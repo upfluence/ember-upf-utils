@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed, observer } from '@ember/object';
+import { computed, observer, defineProperty } from '@ember/object';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
@@ -24,8 +24,12 @@ export default Component.extend({
   header: 'Share with',
   cta: 'Share',
 
+  tabs: {
+    people: true,
+    groups: true
+  },
+
   setDisabled: observer('selectedUsers', 'ownership', function() {
-    console.log(this.model);
     if (this.selectedUsers) {
       if (this.selectedUsers.length == 0) {
         this.set('disabledClassicSharing', false);
@@ -58,7 +62,27 @@ export default Component.extend({
     });
   }),
 
+  init() {
+    this._super();
+
+    this.set('currentWindow', this.tabs.people ? 'people' : 'groups');
+
+    ['people', 'groups'].forEach((e) => {
+      defineProperty(
+        this,
+        `${e}Selected`,
+        computed('currentWindow', function() {
+          return this.get('currentWindow') === e;
+        })
+      );
+    });
+  },
+
   actions: {
+    setCurrent(tab) {
+      this.set('currentWindow', tab);
+    },
+
     searchEntities(text) {
       this.set('searchTerm', text);
     },

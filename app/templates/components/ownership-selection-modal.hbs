@@ -1,47 +1,31 @@
 {{#modal-view hidden=hidden closeAction=closeModal}}
-  <div class="modal-header">
+  <div class="modal-header modal-header__borderless">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id='close-x'>
       <span aria-hidden="true">&times;</span>
     </button>
     <h4 class="modal-title">{{header}}</h4>
   </div>
 
+  <ul class="nav nav-tabs">
+    {{#if tabs.people}}
+      <li {{action "setCurrent" "people"}} class={{if peopleSelected "active" ""}} role="button">
+        <a>People</a>
+      </li>
+    {{/if}}
+
+    {{#if tabs.groups}}
+      <li {{action "setCurrent" "groups"}} class={{if groupsSelected "active" ""}} role="button">
+        <a>Groups</a>
+      </li>
+    {{/if}}
+  </ul>
+
   <div class="modal-body upf-align--left">
-    <div class="margin-top-xx-sm text-center">
-      Select users or groups to share.
-    </div>
-    
-    <label class="margin-top-xx-sm">People</label>
-    {{#item-chooser multiple=true
-      selection=selectedUsers items=items
-      selectedItemComponent="universal-selection/selected-name"
-      placeholder="Search for a user or email"
-      search=(action "searchEntities")
-      disabled=disabledCompositeSharing
-      as |opt|}}
-      <div class="team-row team-row--member">
-        <div class="team-row__avatar">
-          {{#if opt.option.avatarUrl}}
-            <img src={{opt.option.avatarUrl}}
-                class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
-          {{else}}
-            <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
-              <span>
-                {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
-              </span>
-            </div>
-          {{/if}}
-        </div>
-        <div class="team-row__infos">
-          <div>{{opt.option.first_name}} {{opt.option.last_name}}</div>
-          <div>{{opt.option.email}}</div>
-        </div>
-      </div>
-    {{/item-chooser}}
-    
-    <label class="margin-top-xx-sm">Group</label>
-    {{ownership-selection light=true entity=model 
-      disabled=disabledClassicSharing ownership=ownership}}
+    {{#if peopleSelected}}
+      {{ownership-selection-modal/people}}
+    {{else}}
+      {{ownership-selection-modal/groups}}
+    {{/if}}
   </div>
 
   <div class="modal-footer">

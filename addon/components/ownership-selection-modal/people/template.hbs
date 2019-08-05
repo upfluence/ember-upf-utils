@@ -1,0 +1,27 @@
+<label class="margin-top-xx-sm">People</label>
+{{#item-chooser multiple=true
+    selection=selectedUsers items=items
+    selectedItemComponent="universal-selection/selected-name"
+    placeholder="Search for a user or email"
+    search=(action "searchEntities")
+    disabled=disabledCompositeSharing
+    as |opt|}}
+    <div class="team-row team-row--member">
+    <div class="team-row__avatar">
+        {{#if opt.option.avatarUrl}}
+        <img src={{opt.option.avatarUrl}}
+            class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
+        {{else}}
+        <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
+            <span>
+            {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
+            </span>
+        </div>
+        {{/if}}
+    </div>
+    <div class="team-row__infos">
+        <div>{{opt.option.first_name}} {{opt.option.last_name}}</div>
+        <div>{{opt.option.email}}</div>
+    </div>
+    </div>
+{{/item-chooser}}
