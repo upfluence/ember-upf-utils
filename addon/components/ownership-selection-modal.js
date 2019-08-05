@@ -58,13 +58,13 @@ export default Component.extend({
     },
 
     clearSelection() {
-      if (this.selectedUsers) {
+      if (this.selectedUsers && this.selectedUsers.length > 0) {
         this.set('selectedUsers', []);
+        this.send('setCurrent', 'groups');
       } else {
         this.set('ownership', null);
+        this.send('setCurrent', 'people');
       }
-
-      console.log(this.tabs);
     },
 
     performCloseModal() {
