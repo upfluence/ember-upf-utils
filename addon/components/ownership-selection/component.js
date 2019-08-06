@@ -9,7 +9,6 @@ export default Component.extend({
   currentUser: service(),
 
   display: false,
-  // ownerships: [],
 
   didInsertElement() {
     this.get('currentUser').fetchOwnerships().then((ownerships) => {
