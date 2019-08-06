@@ -139,6 +139,12 @@ export default Service.extend({
         );
       });
 
+      payload.composites.forEach((composite) => {
+        ownerships.push(
+          { id: `composite:${composite.id}`, name: composite.name }
+        );
+      });
+
       ownerships.push(
         { id: `user:${payload.user.id}`, name: payload.user.first_name }
       );
