@@ -5,16 +5,17 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   layout,
+  
   currentUser: service(),
 
-  selectedUsers: [],
+  user: null,
 
   items: computed('searchTerm', function() {
     let members;
 
     return this.currentUser.fetchColleagues().then(({ users }) => {
       members = users.filter((user) => { 
-        return user.active;
+        return user.active && (user.id !== this.user.id);
       });
 
       return members.filter((user) => {
@@ -25,6 +26,13 @@ export default Component.extend({
       });
     });
   }),
+
+  init() {
+    this._super(...arguments);
+    this.currentUser.fetch().then((payload) => {
+      this.set('user', payload.user);
+    });
+  },
 
   actions: {
     searchEntities(text) {
