@@ -22,7 +22,7 @@
 
   <div class="modal-body upf-align--left">
     {{#if peopleSelected}}
-      {{ownership-selection-modal/people saveOwnership=(action "saveOwnership")}}
+      {{ownership-selection-modal/people selectedUsers=selectedUsers saveOwnership=(action "saveOwnership")}}
     {{else}}
       {{ownership-selection-modal/groups ownership=ownership entity=model saveOwnership=(action "saveOwnership")}}
     {{/if}}

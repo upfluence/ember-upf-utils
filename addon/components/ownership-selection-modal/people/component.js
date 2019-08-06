@@ -9,6 +9,7 @@ export default Component.extend({
   currentUser: service(),
 
   userId: null,
+  selectedUsers: null,
 
   items: computed('searchTerm', function() {
     let members;
