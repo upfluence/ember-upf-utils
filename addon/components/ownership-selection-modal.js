@@ -55,7 +55,7 @@ export default Component.extend({
     },
 
     saveOwnership(newOwnership) {
-      this.get('ownershipUpdater').update(
+      return this.get('ownershipUpdater').update(
         this.get('modelType'),
         this.get('model.id'),
         newOwnership
