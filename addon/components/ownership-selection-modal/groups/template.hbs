@@ -2,7 +2,10 @@
 {{ownership-selection light=true entity=entity ownership=ownership}}
 
 <div class="upf-align--center margin-top-x-sm">
-  {{#loading-button slowAction="updateOwnership" class="upf-btn upf-btn--primary"}}
+  {{#loading-button 
+    slowAction="updateOwnership" 
+    class="upf-btn upf-btn--primary"
+    disabled=(not hasSelectedGroup)}}
     Share with group
   {{/loading-button}}
 </div>

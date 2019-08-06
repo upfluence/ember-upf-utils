@@ -28,7 +28,10 @@
 {{/item-chooser}}
 
 <div class="upf-align--center margin-top-x-sm">
-  {{#loading-button slowAction="updateOwnership" class="upf-btn upf-btn--primary"}}
+  {{#loading-button 
+    slowAction="updateOwnership" 
+    class="upf-btn upf-btn--primary"
+    disabled=(not hasSelectedUsers)}}
     Share with people
   {{/loading-button}}
 </div>
