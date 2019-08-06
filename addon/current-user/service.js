@@ -109,9 +109,7 @@ export default Service.extend({
   },
 
   createCompositeGroup(members) {
-    const ids = members.map((member) => {
-      return member.id;
-    });
+    const ids = members.mapBy('id');
 
     const url = Configuration.identityURL;
     const token = encodeURIComponent(
