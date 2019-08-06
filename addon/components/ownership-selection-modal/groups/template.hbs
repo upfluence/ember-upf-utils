@@ -1,3 +1,7 @@
-    <label class="margin-top-xx-sm">Group</label>
-    {{ownership-selection light=true entity=entity ownership=ownership}}
-    
+<label class="margin-top-xx-sm">Group</label>
+{{ownership-selection light=true entity=entity ownership=ownership}}
+
+<button 
+  {{action "updateOwnership"}} class="margin-left-xx-sm upf-btn upf-btn--primary">
+  Share with group
+</button>

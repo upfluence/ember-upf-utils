@@ -7,10 +7,12 @@ export default Component.extend({
   layout,
   currentUser: service(),
 
+  selectedUsers: [],
+
   items: computed('searchTerm', function() {
     let members;
 
-    return this.currentUser.fetchColleagues().then(( { users }) => {
+    return this.currentUser.fetchColleagues().then(({ users }) => {
       members = users.filter((user) => { 
         return user.active;
       });
@@ -28,5 +30,11 @@ export default Component.extend({
     searchEntities(text) {
       this.set('searchTerm', text);
     },
+
+    updateOwnership() {
+      this.currentUser.createCompositeGroup(this.selectedUsers).then(({ composite }) => {
+        this.saveOwnership(composite.ownership)
+      });
+    }
   }
 });

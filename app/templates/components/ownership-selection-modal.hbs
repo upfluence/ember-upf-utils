@@ -21,29 +21,10 @@
   </ul>
 
   <div class="modal-body upf-align--left">
-    {{#if displayWarningMessage}}
-      <div class="upf-alert upf-alert--warning margin-bottom-x-sm">
-        <div class="upf-alert__text">
-          <span>You already have an active selection for {{currentWindow}}. To select another tab, please clear your active selection first.</span>
-          <br><br>
-          <button class="upf-btn upf-btn--default" {{action "clearSelection"}}>
-            Clear current selection
-          </button>
-        </div>
-      </div>
-    {{/if}}
-
     {{#if peopleSelected}}
-      {{ownership-selection-modal/people selectedUsers=selectedUsers}}
+      {{ownership-selection-modal/people saveOwnership=(action "saveOwnership")}}
     {{else}}
-      {{ownership-selection-modal/groups ownership=ownership entity=model}}
+      {{ownership-selection-modal/groups ownership=ownership entity=model saveOwnership=(action "saveOwnership")}}
     {{/if}}
-  </div>
-
-  <div class="modal-footer">
-    <button 
-     {{action "updateOwnership"}} class="margin-left-xx-sm upf-btn upf-btn--primary">
-      {{cta}}
-    </button>
   </div>
 {{/modal-view}}
