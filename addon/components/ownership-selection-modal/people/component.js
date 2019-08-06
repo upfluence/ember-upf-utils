@@ -31,9 +31,13 @@ export default Component.extend({
       this.set('searchTerm', text);
     },
 
-    updateOwnership() {
+    updateOwnership(_, defer) {
       this.currentUser.createCompositeGroup(this.selectedUsers).then(({ composite }) => {
-        this.saveOwnership(composite.ownership)
+        this.saveOwnership(composite.ownership).finally(() => {
+          defer.resolve();
+        })
+      }).finally(() => {
+        defer.resolve();
       });
     }
   }

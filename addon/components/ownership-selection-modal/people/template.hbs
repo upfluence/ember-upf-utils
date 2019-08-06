@@ -1,6 +1,8 @@
 <label class="margin-top-xx-sm">People</label>
-{{#item-chooser multiple=true
-  selection=selectedUsers items=items
+{{#item-chooser 
+  multiple=true
+  selection=selectedUsers 
+  items=items
   selectedItemComponent="universal-selection/selected-name"
   placeholder="Search for a user or email"
   search=(action "searchEntities")
@@ -9,7 +11,7 @@
     <div class="team-row__avatar">
       {{#if opt.option.avatarUrl}}
       <img src={{opt.option.avatarUrl}}
-          class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
+           class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
       {{else}}
       <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
         <span>
@@ -25,7 +27,6 @@
   </div>
 {{/item-chooser}}
 
-<button 
-  {{action "updateOwnership"}} class="margin-left-xx-sm upf-btn upf-btn--primary">
+{{#loading-button slowAction="updateOwnership" class="upf-btn upf-btn--primary"}}
   Share with people
-</button>
+{{/loading-button}}

@@ -5,8 +5,10 @@ export default Component.extend({
   layout,
 
   actions: {
-    updateOwnership() {
-      this.saveOwnership(composite.ownership)
+    updateOwnership(_, defer) {
+      this.saveOwnership(this.entity.ownedBy).finally(() => {
+        defer.resolve();
+      })
     }
   }
 });
