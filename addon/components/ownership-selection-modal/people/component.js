@@ -45,12 +45,8 @@ export default Component.extend({
 
     updateOwnership(_, defer) {
       this.currentUser.createCompositeGroup(this.selectedUsers).then(({ composite }) => {
-        this.saveOwnership(composite.ownership).finally(() => {
-          defer.resolve();
-        })
-      }).finally(() => {
-        defer.resolve();
-      });
+        this.saveOwnership(composite.ownership);
+      }).finally(defer.resolve);
     }
   }
 });

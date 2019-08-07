@@ -100,8 +100,8 @@ export default Service.extend({
       this.get('session.data.authenticated.access_token')
     );
 
-    return this._cachedUser.then((res) => {
-      const companyId = res.user.company_id;
+    return this.fetch().then((payload) => {
+      const companyId = payload.user.company_id;
       return this.ajax.request(`${url}api/v1/users?company_id=${companyId}&access_token=${token}`, {
         type: 'GET'
       });

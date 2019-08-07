@@ -11,9 +11,7 @@ export default Component.extend({
 
   actions: {
     updateOwnership(_, defer) {
-      this.saveOwnership(this.entity.ownedBy).finally(() => {
-        defer.resolve();
-      })
+      this.saveOwnership(this.entity.ownedBy).finally(defer.resolve);
     }
   }
 });
