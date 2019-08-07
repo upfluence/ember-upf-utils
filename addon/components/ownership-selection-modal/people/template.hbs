@@ -1,0 +1,37 @@
+<label class="margin-top-xx-sm">People</label>
+{{#item-chooser 
+  multiple=true
+  selection=selectedUsers 
+  items=items
+  selectedItemComponent="universal-selection/selected-name"
+  placeholder="Search for a user or email"
+  search=(action "searchEntities")
+  as |opt|}}
+  <div class="team-row team-row--member">
+    <div class="team-row__avatar">
+      {{#if opt.option.avatar_url}}
+        <img src={{opt.option.avatar_url}}
+            class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
+      {{else}}
+        <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
+          <span>
+            {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
+          </span>
+        </div>
+      {{/if}}
+    </div>
+    <div class="team-row__infos">
+      <div>{{opt.option.first_name}} {{opt.option.last_name}}</div>
+      <div>{{opt.option.email}}</div>
+    </div>
+  </div>
+{{/item-chooser}}
+
+<div class="upf-align--center margin-top-x-sm">
+  {{#loading-button 
+    slowAction="updateOwnership" 
+    class="upf-btn upf-btn--primary"
+    initiallyDisabled=noSelectedUsers}}
+    Share with people
+  {{/loading-button}}
+</div>

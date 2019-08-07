@@ -35,8 +35,6 @@ export default Component.extend({
       this.set('createableEntities', _ce);
       this.set('selectedEntityType', _ce[0]);
     });
-
-    console.log(this.createableEntities);
   },
 
   didRender() {

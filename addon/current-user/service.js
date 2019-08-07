@@ -94,6 +94,35 @@ export default Service.extend({
     this.set('_cachedUrl', null);
   },
 
+  fetchColleagues() {
+    const url = Configuration.identityURL;
+    const token = encodeURIComponent(
+      this.get('session.data.authenticated.access_token')
+    );
+
+    return this.fetch().then((payload) => {
+      const companyId = payload.user.company_id;
+      return this.ajax.request(`${url}api/v1/users?company_id=${companyId}&access_token=${token}`, {
+        type: 'GET'
+      });
+    });
+  },
+
+  createCompositeGroup(members) {
+    const ids = members.mapBy('id');
+
+    const url = Configuration.identityURL;
+    const token = encodeURIComponent(
+      this.get('session.data.authenticated.access_token')
+    );
+
+    return this.ajax.post(`${url}api/v1/composites?access_token=${token}`, {
+      data: JSON.stringify({
+        composite: { members: ids }
+      })
+    });
+  },
+
   fetchOwnerships() {
     return this.fetch().then((payload) => {
       let ownerships = [];
@@ -107,6 +136,12 @@ export default Service.extend({
       (payload.teams || []).forEach((team) => {
         ownerships.push(
           { id: `team:${team.id}`, name: team.name }
+        );
+      });
+
+      (payload.composites || []).forEach((composite) => {
+        ownerships.push(
+          { id: `composite:${composite.id}`, name: composite.name }
         );
       });
 

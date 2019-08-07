@@ -1,22 +1,30 @@
 {{#modal-view hidden=hidden closeAction=closeModal}}
-  <div class="modal-header">
+  <div class="modal-header modal-header__borderless">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id='close-x'>
       <span aria-hidden="true">&times;</span>
     </button>
     <h4 class="modal-title">{{header}}</h4>
   </div>
 
-  <div class='modal-body text-center'>
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
-        {{ownership-selection light=true entity=model}}
-      </div>
-    </div>
-  </div>
+  <ul class="nav nav-tabs">
+    {{#if tabs.groups}}
+      <li {{action "setCurrent" "groups"}} class={{if groupsSelected "active" ""}} role="button">
+        <a>Groups</a>
+      </li>
+    {{/if}}
 
-  <div class='modal-footer'>
-    <button {{action 'updateOwnership'}} class='margin-left-xx-sm upf-btn upf-btn--primary'>
-      {{cta}}
-    </button>
+    {{#if tabs.people}}
+      <li {{action "setCurrent" "people"}} class={{if peopleSelected "active" ""}} role="button">
+        <a>People</a>
+      </li>
+    {{/if}}
+  </ul>
+
+  <div class="modal-body upf-align--left">
+    {{#if peopleSelected}}
+      {{ownership-selection-modal/people selectedUsers=selectedUsers saveOwnership=(action "saveOwnership")}}
+    {{else}}
+      {{ownership-selection-modal/groups entity=model saveOwnership=(action "saveOwnership")}}
+    {{/if}}
   </div>
 {{/modal-view}}
