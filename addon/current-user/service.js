@@ -98,13 +98,13 @@ export default Service.extend({
     return this.fetch().then((payload) => {
       let ownerships = [];
 
-      payload.companies.forEach((company) => {
+      (payload.companies || []).forEach((company) => {
         ownerships.push(
           { id: `company:${company.id}`, name: company.name }
         );
       });
 
-      payload.teams.forEach((team) => {
+      (payload.teams || []).forEach((team) => {
         ownerships.push(
           { id: `team:${team.id}`, name: team.name }
         );
