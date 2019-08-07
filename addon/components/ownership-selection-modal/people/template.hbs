@@ -10,14 +10,14 @@
   <div class="team-row team-row--member">
     <div class="team-row__avatar">
       {{#if opt.option.avatar_url}}
-      <img src={{opt.option.avatar_url}}
-           class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
+        <img src={{opt.option.avatar_url}}
+            class="margin-top-xxx-sm margin-bottom-xxx-sm upf-image upf-image--round-36">
       {{else}}
-      <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
-        <span>
-          {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
-        </span>
-      </div>
+        <div class="upf-image upf-image--round-36 upf-image--alt margin-top-xxx-sm margin-bottom-xxx-sm">
+          <span>
+            {{name-initials (concat opt.option.first_name " " opt.option.last_name)}}
+          </span>
+        </div>
       {{/if}}
     </div>
     <div class="team-row__infos">
