@@ -1,13 +1,13 @@
 import Component from '@ember/component';
 import layout from './template';
-import { notEmpty } from '@ember/object/computed';
+import { empty, alias } from '@ember/object/computed';
 
 export default Component.extend({
   layout,
 
   ownership: null,
 
-  hasSelectedGroup: notEmpty('ownership'),
+  noSelectedGroup: empty('ownership'),
 
   actions: {
     updateOwnership(_, defer) {

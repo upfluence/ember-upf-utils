@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import layout from './template';
 import { computed } from '@ember/object';
-import { notEmpty } from '@ember/object/computed';
+import { empty } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
@@ -12,7 +12,7 @@ export default Component.extend({
   userId: null,
   selectedUsers: [],
 
-  hasSelectedUsers: notEmpty('selectedUsers'),
+  noSelectedUsers: empty('selectedUsers'),
 
   items: computed('searchTerm', function() {
     let members;

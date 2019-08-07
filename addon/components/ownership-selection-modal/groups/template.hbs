@@ -5,7 +5,8 @@
   {{#loading-button 
     slowAction="updateOwnership" 
     class="upf-btn upf-btn--primary"
-    disabled=(not hasSelectedGroup)}}
+    initiallyDisabled=noSelectedGroup}}
     Share with group
   {{/loading-button}}
+  {{ownership}}
 </div>
