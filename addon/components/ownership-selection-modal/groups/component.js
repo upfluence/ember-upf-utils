@@ -1,17 +1,18 @@
 import Component from '@ember/component';
 import layout from './template';
-import { empty, alias } from '@ember/object/computed';
 
 export default Component.extend({
   layout,
 
-  ownership: null,
-
-  noSelectedGroup: empty('ownership'),
+  didReceiveAttrs() {
+    if (this.entity) {
+      this.set('ownership', { id: this.entity.id, name: this.entity.name });
+    }
+  },
 
   actions: {
     updateOwnership(_, defer) {
-      this.saveOwnership(this.entity.ownedBy).finally(defer.resolve);
+      this.saveOwnership(this.ownership).finally(defer.resolve);
     }
   }
 });
