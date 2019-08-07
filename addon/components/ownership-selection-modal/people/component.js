@@ -15,18 +15,14 @@ export default Component.extend({
   noSelectedUsers: empty('selectedUsers'),
 
   items: computed('searchTerm', function() {
-    let members;
-
     return this.currentUser.fetchColleagues().then(({ users }) => {
-      members = users.filter((user) => { 
-        return user.active && (user.id !== this.userId);
-      });
-
-      return members.filter((user) => {
-        const { first_name, last_name, email } = user;
-        return email.includes(this.searchTerm) ||
-        (first_name || '').includes(this.searchTerm) ||
-        (last_name || '').includes(this.searchTerm);
+      return users.filter((user) => { 
+        if (user.active && (user.id !== this.userId)) {
+          const { first_name, last_name, email } = user;
+          return email.includes(this.searchTerm) ||
+          (first_name || '').includes(this.searchTerm) ||
+          (last_name || '').includes(this.searchTerm);
+        }
       });
     });
   }),
