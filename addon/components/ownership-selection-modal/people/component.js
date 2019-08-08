@@ -14,23 +14,34 @@ export default Component.extend({
 
   noSelectedUsers: empty('selectedUsers'),
 
+  availableUsers: [],
   items: computed('searchTerm', function() {
-    return this.currentUser.fetchColleagues().then(({ users }) => {
-      return users.filter((user) => { 
-        if (user.active && (user.id !== this.userId)) {
-          const { first_name, last_name, email } = user;
-          return email.includes(this.searchTerm) ||
-          (first_name || '').includes(this.searchTerm) ||
-          (last_name || '').includes(this.searchTerm);
-        }
-      });
+    if (!this.searchTerm) return this.availableUsers;
+
+    let searchTerm = this.searchTerm.toLowerCase();
+
+    return this.availableUsers.filter((u) => {
+      const { first_name, last_name, email } = u;
+
+      return email.toLowerCase().includes(searchTerm)
+        || (first_name || '').toLowerCase().includes(searchTerm)
+        || (last_name || '').toLowerCase().includes(searchTerm);
     });
   }),
 
   init() {
     this._super(...arguments);
+
     this.currentUser.fetch().then(({ user }) => {
-      this.set('userId', user.id);
+      const currentUserID = user.id;
+
+      return this.currentUser.fetchColleagues().then(({ users }) => {
+        this.set(
+          'availableUsers',
+          users.filter((user) => user.active && user.id !== currentUserID)
+
+        )
+      });
     });
   },
 

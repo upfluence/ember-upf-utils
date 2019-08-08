@@ -1,11 +1,8 @@
-<label class="margin-top-xx-sm">People</label>
-{{#item-chooser 
-  multiple=true
-  selection=selectedUsers 
-  items=items
+<label class="margin-top-xx-sm">People bruuh</label>
+{{#item-chooser
+  multiple=true selection=selectedUsers items=items
   selectedItemComponent="universal-selection/selected-name"
-  placeholder="Search for a user or email"
-  search=(action "searchEntities")
+  placeholder="Search for a user or email" search=(action "searchEntities")
   as |opt|}}
   <div class="team-row team-row--member">
     <div class="team-row__avatar">
@@ -28,9 +25,8 @@
 {{/item-chooser}}
 
 <div class="upf-align--center margin-top-x-sm">
-  {{#loading-button 
-    slowAction="updateOwnership" 
-    class="upf-btn upf-btn--primary"
+  {{#loading-button
+    slowAction="updateOwnership" class="upf-btn upf-btn--primary"
     initiallyDisabled=noSelectedUsers}}
     Share with people
   {{/loading-button}}

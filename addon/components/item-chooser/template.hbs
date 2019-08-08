@@ -1,11 +1,11 @@
 {{#if multiple}}
-  {{#power-select-multiple 
-    selectedItemComponent=selectedItemComponent 
-    onopen=onopen groupComponent=groupComponent search=search options=items 
+  {{#power-select-multiple
+    selectedItemComponent=selectedItemComponent
+    onopen=onopen groupComponent=groupComponent search=search options=items
     selected=(unless disabled selection) placeholder=placeholder
-    renderInPlace=true disabled=disabled searchField=sortField 
+    renderInPlace=true disabled=disabled searchField=sortField
     oninput=(action "updateSearchTerm")
-    onchange=(action (mut selection)) onkeydown=(action "keyPress") 
+    onchange=(action (mut selection)) onkeydown=(action "keyPress")
     registerAPI=(action (mut publicApi))
     optionsComponent=(if optionsComponent optionsComponent)
     afterOptionsComponent=(if _createItemComponent (
@@ -20,12 +20,12 @@
   {{/power-select-multiple}}
 {{else}}
   {{#power-select 
-    selectedItemComponent=selectedItemComponent 
-    onopen=onopen groupComponent=groupComponent search=search options=items 
-    selected=selection onchange=(action (mut selection)) 
+    selectedItemComponent=selectedItemComponent
+    onopen=onopen groupComponent=groupComponent search=search options=items
+    selected=selection onchange=(action (mut selection))
     onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
-    placeholder=placeholder renderInPlace=true disabled=disabled 
-    searchField=sortField oninput=(action "updateSearchTerm") 
+    placeholder=placeholder renderInPlace=true disabled=disabled
+    searchField=sortField oninput=(action "updateSearchTerm")
     registerAPI=(action (mut publicApi))
     optionsComponent=(if optionsComponent optionsComponent)
     afterOptionsComponent=(if _createItemComponent (
