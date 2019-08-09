@@ -18,6 +18,7 @@ export default Component.extend({
 
   header: 'Share with',
   cta: 'Share',
+  currentWindow: 'groups',
 
   tabs: {
     people: true,
@@ -26,8 +27,6 @@ export default Component.extend({
 
   init() {
     this._super();
-
-    this.set('currentWindow', 'groups');
 
     ['people', 'groups'].forEach((e) => {
       defineProperty(
@@ -38,6 +37,12 @@ export default Component.extend({
         })
       );
     });
+  },
+
+  didReceiveAttrs() {
+    if (this.model && this.model.ownedBy.startsWith('composite:')) {
+      this.set('currentWindow', 'people');
+    }
   },
 
   actions: {
