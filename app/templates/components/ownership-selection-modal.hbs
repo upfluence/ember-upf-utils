@@ -20,11 +20,9 @@
     {{/if}}
   </ul>
 
-  <div class="modal-body upf-align--left">
-    {{#if peopleSelected}}
-      {{ownership-selection-modal/people selectedUsers=selectedUsers saveOwnership=(action "saveOwnership")}}
-    {{else}}
-      {{ownership-selection-modal/groups entity=model saveOwnership=(action "saveOwnership")}}
-    {{/if}}
-  </div>
+  {{#if peopleSelected}}
+    {{ownership-selection-modal/people selectedUsers=selectedUsers saveOwnership=(action "saveOwnership")}}
+  {{else}}
+    {{ownership-selection-modal/groups entity=model saveOwnership=(action "saveOwnership")}}
+  {{/if}}
 {{/modal-view}}

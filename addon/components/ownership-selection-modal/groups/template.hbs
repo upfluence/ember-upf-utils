@@ -1,7 +1,10 @@
-<label class="margin-top-xx-sm">Group</label>
-{{ownership-selection light=true entity=entity ownership=ownership}}
+<div class="modal-body upf-align--left">
+  <label class="margin-top-xx-sm">Group</label>
+  {{ownership-selection light=true entity=entity ownership=ownership}}
+</div>
 
-<div class="upf-align--center margin-top-x-sm">
+
+<div class="modal-footer">
   {{#loading-button 
     slowAction="updateOwnership" class="upf-btn upf-btn--primary"
     initiallyDisabled=(not ownership)}}
