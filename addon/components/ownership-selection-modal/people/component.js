@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 import layout from './template';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { empty } from '@ember/object/computed';
+import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
@@ -15,19 +16,7 @@ export default Component.extend({
   noSelectedUsers: empty('selectedUsers'),
 
   availableUsers: [],
-  items: computed('searchTerm', function() {
-    if (!this.searchTerm) return this.availableUsers;
-
-    let searchTerm = this.searchTerm.toLowerCase();
-
-    return this.availableUsers.filter((u) => {
-      const { first_name, last_name, email } = u;
-
-      return email.toLowerCase().includes(searchTerm)
-        || (first_name || '').toLowerCase().includes(searchTerm)
-        || (last_name || '').toLowerCase().includes(searchTerm);
-    });
-  }),
+  items: [],
 
   init() {
     this._super(...arguments);
@@ -36,14 +25,31 @@ export default Component.extend({
       const currentUserID = user.id;
 
       return this.currentUser.fetchColleagues().then(({ users }) => {
-        this.set(
-          'availableUsers',
-          users.filter((user) => user.active && user.id !== currentUserID)
+        let coworkers = users.filter((user) => {
+          return user.active && user.id !== currentUserID
+        });
 
-        )
+        this.set('availableUsers', coworkers);
+        this.set('items', coworkers);
       });
     });
   },
+
+  _: observer('searchTerm', function() {
+    if (isEmpty(this.searchTerm)) {
+      this.set('items', this.availableUsers);
+    }
+
+    let searchTerm = this.searchTerm.toLowerCase();
+
+    this.set('items', this.availableUsers.filter((u) => {
+      const { first_name, last_name, email } = u;
+
+      return email.toLowerCase().includes(searchTerm)
+        || (first_name || '').toLowerCase().includes(searchTerm)
+        || (last_name || '').toLowerCase().includes(searchTerm);
+    }))
+  }),
 
   actions: {
     searchEntities(text) {

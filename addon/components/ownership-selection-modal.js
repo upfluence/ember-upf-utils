@@ -4,7 +4,7 @@ import { computed, defineProperty } from '@ember/object';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
-  
+
   ownershipUpdater: service(),
   toast: service(),
   currentUser: service(),
