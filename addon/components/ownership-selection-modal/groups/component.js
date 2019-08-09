@@ -12,7 +12,7 @@ export default Component.extend({
 
   actions: {
     updateOwnership(_, defer) {
-      this.saveOwnership(this.ownership).finally(defer.resolve);
+      this.saveOwnership(this.ownership.id).finally(defer.resolve);
     }
   }
 });
