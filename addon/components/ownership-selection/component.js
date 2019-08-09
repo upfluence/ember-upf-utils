@@ -16,7 +16,11 @@ export default Component.extend({
         this.set('display', true);
       }
 
-      this.set('ownerships', ownerships);
+      this.set(
+        'ownerships',
+        ownerships.filter((x) => !x.id.startsWith('composite:'))
+      );
+
       this.set(
         'ownership',
         ownerships.find((item) => {
