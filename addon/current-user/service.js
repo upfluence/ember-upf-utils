@@ -141,7 +141,11 @@ export default Service.extend({
 
       (payload.composites || []).forEach((composite) => {
         ownerships.push(
-          { id: `composite:${composite.id}`, name: composite.name }
+          {
+            id: `composite:${composite.id}`,
+            name: composite.name,
+            userIds: composite.user_ids
+          }
         );
       });
 

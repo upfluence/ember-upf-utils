@@ -31,6 +31,18 @@ export default Component.extend({
 
         this.set('availableUsers', coworkers);
         this.set('items', coworkers);
+
+        this.get('currentUser').fetchOwnerships().then((ownerships) => {
+          if (!this.entity.ownedBy.startsWith('composite:')) return;
+
+          let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
+          this.set(
+            'selectedUsers',
+            this.availableUsers.filter((x) => {
+              return currentOwnership.userIds.includes(x.id);
+            })
+          );
+        });
       });
     });
   },
