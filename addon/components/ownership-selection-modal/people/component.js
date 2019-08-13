@@ -5,6 +5,13 @@ import { empty } from '@ember/object/computed';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
+const OWNERSHIP_ENTITY_TYPES = {
+  stream: 'a Social Listening Stream',
+  mailing: 'a Mailing Campaign',
+  campaign: 'a Workflow Campaign',
+  list: 'an Influencer List'
+};
+
 export default Component.extend({
   layout,
 
@@ -17,6 +24,10 @@ export default Component.extend({
 
   availableUsers: [],
   items: [],
+
+  ownershipEntityType: computed('modelType', function() {
+    return OWNERSHIP_ENTITY_TYPES[this.modelType];
+  }),
 
   init() {
     this._super(...arguments);
