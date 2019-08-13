@@ -20,6 +20,8 @@ module.exports = function(environment, appConfig) {
     }
   };
 
+  appConfig.build_env = process.env.BUILD_ENV || 'staging';
+
   return {
     modulePrefix: 'ember-upf-utils'
   };

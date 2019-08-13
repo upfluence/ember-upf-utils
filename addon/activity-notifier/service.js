@@ -44,7 +44,7 @@ export default Service.extend({
 
     this._environment = getOwner(this).resolveRegistration(
       'config:environment'
-    ).environment;
+    ).build_env;
     this._scope = Configuration.scope[0];
     this._isRunning = true;
 
