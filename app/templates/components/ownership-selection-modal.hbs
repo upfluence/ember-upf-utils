@@ -22,12 +22,10 @@
 
   {{#if peopleSelected}}
     {{ownership-selection-modal/people
-      modelType=modelType
       entity=model selectedUsers=selectedUsers
       saveOwnership=(action "saveOwnership")}}
   {{else}}
     {{ownership-selection-modal/groups
-      modelType=modelType
       entity=model saveOwnership=(action "saveOwnership")}}
   {{/if}}
 {{/modal-view}}
