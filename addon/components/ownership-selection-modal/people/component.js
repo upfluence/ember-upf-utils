@@ -63,6 +63,23 @@ export default Component.extend({
     }))
   }),
 
+  _reloadSelected: observer('entity', function() {
+    this.get('currentUser').fetchOwnerships().then((ownerships) => {
+      let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
+      let selectedUsers;
+
+      if (currentOwnership.userIds) {
+        selectedUsers = this.availableUsers.filter((x) => {
+          return currentOwnership.userIds.includes(x.id);
+        });
+      } else {
+        selectedUsers = [];
+      }
+      
+      this.set('selectedUsers', selectedUsers);
+    });
+  }),
+
   actions: {
     searchEntities(text) {
       this.set('searchTerm', text);
