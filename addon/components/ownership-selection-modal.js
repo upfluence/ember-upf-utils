@@ -26,7 +26,7 @@ export default Component.extend({
     groups: true
   },
 
-  _resetWindow: observer('selectedUsers', function() {
+  _resetWindow: observer('entity.id', function() {
     if (isEmpty(this.selectedUsers)) {
       this.set('currentWindow', 'groups')
     }

@@ -63,7 +63,7 @@ export default Component.extend({
     });
   }),
 
-  _fetchSelectedUsers(ownerships) {
+  _setSelectedUsers(ownerships) {
     let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
     let selectedUsers;
 
