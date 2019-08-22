@@ -35,7 +35,7 @@ export default Component.extend({
         this.get('currentUser').fetchOwnerships().then((ownerships) => {
           if (!this.entity.ownedBy.startsWith('composite:')) return;
 
-          this._fetchSelectedUsers(ownerships);
+          this._setSelectedUsers(ownerships);
         });
       });
     });
@@ -59,7 +59,7 @@ export default Component.extend({
 
   _reloadSelected: observer('entity.id', function() {
     this.get('currentUser').fetchOwnerships().then((ownerships) => {
-      this._fetchSelectedUsers(ownerships);
+      this._setSelectedUsers(ownerships);
     });
   }),
 
