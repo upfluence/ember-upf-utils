@@ -63,7 +63,7 @@ export default Component.extend({
     }))
   }),
 
-  _reloadSelected: observer('entity', function() {
+  _reloadSelected: observer('entity.id', function() {
     this.get('currentUser').fetchOwnerships().then((ownerships) => {
       let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
       let selectedUsers;

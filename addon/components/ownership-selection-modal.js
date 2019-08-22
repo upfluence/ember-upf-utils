@@ -1,6 +1,7 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed, defineProperty } from '@ember/object';
+import { computed, defineProperty, observer } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
@@ -24,6 +25,12 @@ export default Component.extend({
     people: true,
     groups: true
   },
+
+  _resetWindow: observer('entity.id', function() {
+    if (isEmpty(this.selectedUsers)) {
+      this.set('currentWindow', 'groups')
+    }
+  }),
 
   init() {
     this._super();
