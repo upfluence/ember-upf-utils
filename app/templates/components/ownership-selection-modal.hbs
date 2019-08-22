@@ -23,8 +23,7 @@
   {{#if peopleSelected}}
     {{ownership-selection-modal/people entity=model 
       selectedUsers=selectedUsers
-      saveOwnership=(action "saveOwnership") 
-      currentWindow=currentWindow}}
+      saveOwnership=(action "saveOwnership")}}
   {{else}}
     {{ownership-selection-modal/groups entity=model 
       saveOwnership=(action "saveOwnership")}}
