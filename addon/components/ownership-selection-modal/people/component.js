@@ -35,13 +35,7 @@ export default Component.extend({
         this.get('currentUser').fetchOwnerships().then((ownerships) => {
           if (!this.entity.ownedBy.startsWith('composite:')) return;
 
-          let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
-          this.set(
-            'selectedUsers',
-            this.availableUsers.filter((x) => {
-              return currentOwnership.userIds.includes(x.id);
-            })
-          );
+          this._fetchSelectedUsers(ownerships);
         });
       });
     });
@@ -65,20 +59,24 @@ export default Component.extend({
 
   _reloadSelected: observer('entity.id', function() {
     this.get('currentUser').fetchOwnerships().then((ownerships) => {
-      let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
-      let selectedUsers;
-
-      if (currentOwnership.userIds) {
-        selectedUsers = this.availableUsers.filter((x) => {
-          return currentOwnership.userIds.includes(x.id);
-        });
-      } else {
-        selectedUsers = [];
-      }
-      
-      this.set('selectedUsers', selectedUsers);
+      this._fetchSelectedUsers(ownerships);
     });
   }),
+
+  _fetchSelectedUsers(ownerships) {
+    let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
+    let selectedUsers;
+
+    if (currentOwnership.userIds) {
+      selectedUsers = this.availableUsers.filter((x) => {
+        return currentOwnership.userIds.includes(x.id);
+      });
+    } else {
+      selectedUsers = [];
+    }
+    
+    this.set('selectedUsers', selectedUsers);
+  },
 
   actions: {
     searchEntities(text) {
