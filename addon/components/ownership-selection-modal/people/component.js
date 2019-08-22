@@ -77,6 +77,10 @@ export default Component.extend({
       }
       
       this.set('selectedUsers', selectedUsers);
+
+      if (isEmpty(this.selectedUsers)) {
+        this.set('currentWindow', 'groups')
+      }
     });
   }),
 
