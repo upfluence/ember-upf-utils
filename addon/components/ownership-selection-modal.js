@@ -27,7 +27,7 @@ export default Component.extend({
   },
 
   _resetWindow: observer('model.id', function() {
-    this.set('currentWindow', this.model.ownedBy.startsWith('composite:') ? 'people' : 'groups')
+    this.set('currentWindow', this.model.ownedBy.startsWith('composite:') ? 'people' : 'groups');
   }),
 
   init() {
