@@ -26,10 +26,8 @@ export default Component.extend({
     groups: true
   },
 
-  _resetWindow: observer('entity.id', function() {
-    if (isEmpty(this.selectedUsers)) {
-      this.set('currentWindow', 'groups')
-    }
+  _resetWindow: observer('model.id', function() {
+    this.set('currentWindow', this.model.ownedBy.startsWith('composite:') ? 'people' : 'groups')
   }),
 
   init() {
