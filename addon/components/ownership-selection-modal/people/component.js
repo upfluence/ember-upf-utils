@@ -33,8 +33,6 @@ export default Component.extend({
         this.set('items', coworkers);
 
         this.get('currentUser').fetchOwnerships().then((ownerships) => {
-          if (!this.entity.ownedBy.startsWith('composite:')) return;
-
           this._setSelectedUsers(ownerships);
         });
       });
@@ -64,6 +62,7 @@ export default Component.extend({
   }),
 
   _setSelectedUsers(ownerships) {
+    if (!this.entity.ownedBy.startsWith('composite:')) return;
     let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
     let selectedUsers;
 
