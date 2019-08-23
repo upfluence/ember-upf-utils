@@ -64,14 +64,12 @@ export default Component.extend({
   _setSelectedUsers(ownerships) {
     if (!this.entity.ownedBy.startsWith('composite:')) return;
     let currentOwnership = ownerships.findBy('id', this.entity.ownedBy);
-    let selectedUsers;
+    let selectedUsers = [];
 
     if (currentOwnership.userIds) {
       selectedUsers = this.availableUsers.filter((x) => {
         return currentOwnership.userIds.includes(x.id);
       });
-    } else {
-      selectedUsers = [];
     }
     
     this.set('selectedUsers', selectedUsers);
