@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed, defineProperty, observer } from '@ember/object';
-import { isEmpty } from '@ember/utils';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
@@ -70,7 +69,8 @@ export default Component.extend({
         this.get('modelType'),
         this.get('model.id'),
         newOwnership
-      ).then(() => {
+      ).then((entity) => {
+        this.model.set('ownedBy', entity[this.modelType].owned_by);
         this.send('performCloseModal');
       });
     }
