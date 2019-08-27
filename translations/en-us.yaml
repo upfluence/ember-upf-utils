@@ -1,0 +1,8 @@
+upf_utils:
+  publishr:
+    draft_display:
+      no_caption: 'No Caption'
+search:
+  cta: Show Influencers
+  clear: Clear Search
+  use_previous: Use a previous search
