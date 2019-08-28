@@ -2,19 +2,19 @@
   <div class="modal-header modal-header__borderless">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
             id="close-x"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">{{t "upf_utils.publishr.draft_display.no_caption"}}</h4>
+    <h4 class="modal-title">{{t "export_influencers.title"}}</h4>
   </div>
 
   <ul class="nav nav-tabs">
     {{#if tabs.external}}
       <li {{action "setCurrent" "external"}} class={{if externalSelected "active" ""}} role="button">
-        <a>In-App</a>
+        <a>{{t "export_influencers.tabs.in_app"}}</a>
       </li>
     {{/if}}
 
     {{#if tabs.file}}
       <li {{action "setCurrent" "file"}} class={{if fileSelected "active" ""}} role="button">
-        <a>File</a>
+        <a>{{t "export_influencers.tabs.file"}}</a>
       </li>
     {{/if}}
   </ul>

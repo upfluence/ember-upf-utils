@@ -1,7 +1,7 @@
 <div class="modal-body upf-align--center">
   {{#input-wrapper}}
     <label class="padding-xx-sm">
-      Export a selection of influencers to a list, emailing, campaign or stream
+      {{t "export_influencers.export.description"}}
     </label>
 
     {{universal-selection
@@ -23,6 +23,6 @@
   {{#loading-button
     current slowAction="submit" initiallyDisabled=disabledExport
     class="margin-left-xx-sm upf-btn upf-btn--primary"}}
-    Export Influencers
+    {{t "export_influencers.export.cta"}}
   {{/loading-button}}
 </div>

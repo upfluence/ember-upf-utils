@@ -1,8 +1,15 @@
-upf_utils:
-  publishr:
-    draft_display:
-      no_caption: 'No Caption'
-search:
-  cta: Show Influencers
-  clear: Clear Search
-  use_previous: Use a previous search
+export_influencers:
+  title: Export Influencers
+  limit_reached: "You don't have enough exports credit for more than
+  <strong>{exportLimitLeft}</strong> influencers"
+  tabs:
+    in_app: In-App
+    file: File
+  export:
+    description: Export a selection of influencers to a list, emailing, campaign or stream
+    cta: Export Influencers
+    create: "Create {searchText} {entity}"
+  file:
+    data: Data
+    file_format: File Format
+    cta: Download File
