@@ -21,11 +21,10 @@
   </ul>
 
   {{#if peopleSelected}}
-    {{ownership-selection-modal/people
-      entity=model selectedUsers=selectedUsers
+    {{ownership-selection-modal/people entity=model
       saveOwnership=(action "saveOwnership")}}
   {{else}}
-    {{ownership-selection-modal/groups
-      entity=model saveOwnership=(action "saveOwnership")}}
+    {{ownership-selection-modal/groups entity=model 
+      saveOwnership=(action "saveOwnership")}}
   {{/if}}
 {{/modal-view}}

@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed, defineProperty } from '@ember/object';
+import { computed, defineProperty, observer } from '@ember/object';
 
 export default Component.extend({
   classNames: ['ownership-selection'],
@@ -24,6 +24,11 @@ export default Component.extend({
     people: true,
     groups: true
   },
+
+  _resetWindow: observer('model.id', function() {
+    const isComposite = this.model.ownedBy.startsWith('composite:');
+    this.set('currentWindow', isComposite ? 'people' : 'groups');
+  }),
 
   init() {
     this._super();
@@ -64,7 +69,8 @@ export default Component.extend({
         this.get('modelType'),
         this.get('model.id'),
         newOwnership
-      ).then(() => {
+      ).then((entity) => {
+        this.model.set('ownedBy', entity[this.modelType].owned_by);
         this.send('performCloseModal');
       });
     }
