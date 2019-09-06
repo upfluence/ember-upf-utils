@@ -14,6 +14,7 @@ export_influencers:
     file_format: File Format
     cta: Download File
 ownership_selection:
+  placeholder: Share with
   tabs:
     groups: Groups
     people: People
@@ -35,3 +36,15 @@ upgrade_modal:
   cta:
     upgrade: Upgrade
     contact: Contact Us
+file_uploader:
+  cta: 
+    upload: Upload
+summernote_modals: 
+  video:
+    title: Insert a video
+    label: "Upload a video:"
+    cta: Insert Video
+  pdf:
+    title: Insert a PDF file
+    label: "Upload a PDF:"
+    cta: Insert PDF

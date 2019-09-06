@@ -1,6 +1,8 @@
 {{#if display}}
-  {{#power-select allowClear=true options=ownerships selected=ownership onchange=(action (mut ownership))
-                 renderInPlace=true searchEnabled=false placeholder="Share with" as |o|}}
+  {{#power-select 
+    allowClear=true options=ownerships selected=ownership 
+    onchange=(action (mut ownership)) renderInPlace=true 
+    searchEnabled=false placeholder=(t "ownership_selection.placeholder") as |o|}}
     {{o.name}}
   {{/power-select}}
 {{/if}}
