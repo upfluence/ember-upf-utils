@@ -13,3 +13,15 @@ export_influencers:
     data: Data
     file_format: File Format
     cta: Download File
+ownership_selection:
+  tabs:
+    groups: Groups
+    people: People
+  groups:
+    description: Share <b>{entityName}</b> with your whole company, one of your teams or just yourself.
+    label: Group
+    cta: Share with group
+  people:
+    description: Share <b>{entityName}</b> with selected coworkers.
+    label: People
+    cta: Share with people
