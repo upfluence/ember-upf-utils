@@ -25,3 +25,13 @@ ownership_selection:
     description: Share <b>{entityName}</b> with selected coworkers.
     label: People
     cta: Share with people
+upgrade_modal:
+  title: Upgrade Plan
+  description: Oops! Your current plan does not include this feature.
+  details:
+    monitor: Upgrade to <b>Upfluence Gold</b> to use <b>Upfluence Monitor</b>
+    bulk_emailing: Upgrade to Upfluence Silver to use Upfluence Bulk Emailing
+    default: Talk to our teams in order to upgrade your account
+  cta:
+    upgrade: Upgrade
+    contact: Contact Us
