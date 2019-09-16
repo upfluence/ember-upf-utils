@@ -42,6 +42,15 @@ export default Component.extend({
     };
   }),
 
+  tiktok: computed('profile.tiktok.followers', function() {
+    return {
+      type: 'tiktok',
+      icon: 'tiktok',
+      communitySize: this.get('profile.tiktok.followers'),
+      communitySlug: 'followers'
+    };
+  }),
+
   youtube: computed('profile.youtube.followers', function() {
     return {
       type: 'youtube',
@@ -75,6 +84,7 @@ export default Component.extend({
     'twitter',
     'youtube',
     'instagram',
+    'tiktok',
     'pinterest',
     'twitch',
     function() {
@@ -84,6 +94,7 @@ export default Component.extend({
         this.get('twitter'),
         this.get('youtube'),
         this.get('instagram'),
+        this.get('tiktok'),
         this.get('pinterest'),
         this.get('twitch'),
       ].filter(e => e.communitySize != null) // Filter medias that are empty
