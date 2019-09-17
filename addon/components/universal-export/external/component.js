@@ -14,7 +14,7 @@ export default Component.extend({
   current: null,
   _canCreate: true,
 
-  placeholder: 'Export influencers to...',
+  placeholder: 'Move to...',
 
   disabledExport: computed('current', 'selectedCount', function() {
     return !this.get('current') || !this.get('selectedCount');
