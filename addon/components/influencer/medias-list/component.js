@@ -9,7 +9,7 @@ export default Component.extend({
   blog: computed('profile.blog.visits', function() {
     return {
       type: 'blog',
-      icon: 'wordpress',
+      icon: 'fa fa-wordpress',
       communitySize: this.get('profile.blog.visits'),
       communitySlug: 'monthly visits'
     };
@@ -18,7 +18,7 @@ export default Component.extend({
   facebook: computed('profile.facebook.fans', function() {
     return {
       type: 'facebook',
-      icon: 'facebook-official',
+      icon: 'fa fa-facebook-official',
       communitySize: this.get('profile.facebook.fans'),
       communitySlug: 'fans'
     };
@@ -27,7 +27,7 @@ export default Component.extend({
   twitter: computed('profile.twitter.followers', function() {
     return {
       type: 'twitter',
-      icon: 'twitter',
+      icon: 'fa fa-twitter',
       communitySize: this.get('profile.twitter.followers'),
       communitySlug: 'followers'
     };
@@ -36,7 +36,7 @@ export default Component.extend({
   instagram: computed('profile.instagram.followers', function() {
     return {
       type: 'instagram',
-      icon: 'instagram',
+      icon: 'fa fa-instagram',
       communitySize: this.get('profile.instagram.followers'),
       communitySlug: 'followers'
     };
@@ -45,7 +45,7 @@ export default Component.extend({
   tiktok: computed('profile.tiktok.followers', function() {
     return {
       type: 'tiktok',
-      icon: 'tiktok',
+      icon: 'upf-icon-- upf-icon--tiktok fa',
       communitySize: this.get('profile.tiktok.followers'),
       communitySlug: 'followers'
     };
@@ -54,7 +54,7 @@ export default Component.extend({
   youtube: computed('profile.youtube.followers', function() {
     return {
       type: 'youtube',
-      icon: 'youtube-play',
+      icon: 'fa fa-youtube-play',
       communitySize: this.get('profile.youtube.followers'),
       communitySlug: 'subscribers'
     };
@@ -63,7 +63,7 @@ export default Component.extend({
   pinterest: computed('profile.pinterest.followers', function() {
     return {
       type: 'pinterest',
-      icon: 'pinterest-p',
+      icon: 'fa fa-pinterest-p',
       communitySize: this.get('profile.pinterest.followers'),
       communitySlug: 'followers'
     };
@@ -72,7 +72,7 @@ export default Component.extend({
   twitch: computed('profile.twitch.followers', function() {
     return {
       type: 'twitch',
-      icon: 'twitch',
+      icon: 'fa fa-twitch',
       communitySize: this.get('profile.twitch.followers'),
       communitySlug: 'followers'
     };
