@@ -1,5 +1,5 @@
 export_influencers:
-  title: Export Influencers
+  title: Move to
   limit_reached: "You don't have enough exports credit for more than
   <strong>{exportLimitLeft}</strong> influencers"
   tabs:
@@ -7,7 +7,7 @@ export_influencers:
     file: File
   export:
     description: Export a selection of influencers to a list, emailing, campaign or stream
-    cta: Export Influencers
+    cta: Move to {currentType}
     create: "Create {searchText} {entity}"
   file:
     data: Data
@@ -37,9 +37,9 @@ upgrade_modal:
     upgrade: Upgrade
     contact: Contact Us
 file_uploader:
-  cta: 
+  cta:
     upload: Upload
-summernote_modals: 
+summernote_modals:
   video:
     title: Insert a video
     label: "Upload a video:"
