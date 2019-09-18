@@ -1,6 +1,6 @@
 {
   "name": "@upfluence/ember-upf-utils",
-  "version": "2.4.6",
+  "version": "2.5.1",
   "description": "The default blueprint for ember-cli addons.",
   "scripts": {
     "build": "ember build",
@@ -31,7 +31,7 @@
     "ember-img-lazy": "^3.0.1",
     "ember-power-select": "^2.3.2",
     "ember-shepherd": "^3.1.0",
-    "ember-simple-auth": "1.5.0",
+    "ember-simple-auth": "1.9.2",
     "ember-source": "~3.8.0",
     "ember-tether": "^1.0.0-beta.2",
     "ember-uploader": "^2.x",
