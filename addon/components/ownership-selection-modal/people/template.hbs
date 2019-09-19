@@ -1,9 +1,11 @@
 <div class="modal-body upf-align--left">
   <div class="text-size-5 upf-align--center">
-    Share <b>{{entity.name}}</b> with selected coworkers.
+    {{t "ownership_selection.people.description" entityName=entity.name htmlSafe=true}}
   </div>
 
-  <label class="margin-top-xx-sm">People</label>
+  <label class="margin-top-xx-sm">
+    {{t "ownership_selection.people.label"}}
+  </label>
   {{#item-chooser
     multiple=true selection=selectedUsers items=items
     selectedItemComponent="universal-selection/selected-name"
@@ -34,6 +36,6 @@
   {{#loading-button
     slowAction="updateOwnership" class="upf-btn upf-btn--primary"
     initiallyDisabled=noSelectedUsers}}
-    Share with people
+    {{t "ownership_selection.people.cta"}}
   {{/loading-button}}
 </div>

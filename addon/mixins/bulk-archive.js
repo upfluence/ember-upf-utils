@@ -4,7 +4,7 @@ import Mixin from '@ember/object/mixin';
 export default Mixin.create({
   entityArchiving: service(),
   toast: service(),
-  i18n: service(),
+  intl: service(),
 
   _toastConfig: {
     timeOut: 0,
@@ -34,8 +34,8 @@ export default Mixin.create({
           actionContext: false
         });
         this.get('toast').error(
-          this.get('i18n').t(this.get('archivalError')),
-          this.get('i18n').t(this.get('archivalErrorTitle')),
+          this.intl.t(this.get('archivalError')),
+          this.intl.t(this.get('archivalErrorTitle')),
           this._toastConfig
         );
       });

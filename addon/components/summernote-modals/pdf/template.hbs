@@ -1,20 +1,21 @@
-<div class='modal-header'>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" id='close-x'><span aria-hidden="true">&times;</span></button>
-  <h4>Insert a PDF file</h4>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-x">
+  <span aria-hidden="true">&times;</span></button>
+  <h4>{{t "summernote_modals.pdf.title"}}</h4>
 </div>
 
-<div class='modal-body margin-top-x-sm margin-bottom-x-sm padding'>
-  <label>Upload a PDF:</label>
-  {{file-uploader allowedExtensions=allowedExtensions method='POST'
+<div class="modal-body margin-top-x-sm margin-bottom-x-sm padding">
+  <label>{{t "summernote_modals.pdf.label"}}</label>
+  {{file-uploader allowedExtensions=allowedExtensions method="POST"
                   extra=uploaderExtra headers=uploaderHeaders
-                  beforeUpload=(action 'resetPDFUpload')
-                  didUpload=(action 'pdfUploaded')}}
+                  beforeUpload=(action "resetPDFUpload")
+                  didUpload=(action "pdfUploaded")}}
   {{#if pdfName}}{{pdfName}}{{/if}}
 </div>
 
-<div class='modal-footer'>
-  <button {{action 'insertPDF'}} disabled={{noPDFUploaded}}
-          class='margin-left-xx-sm upf-btn upf-btn--primary'>
-    Insert PDF
+<div class="modal-footer">
+<button {{action "insertPDF"}} disabled={{noPDFUploaded}}
+          class="margin-left-xx-sm upf-btn upf-btn--primary">
+    {{t "summernote_modals.pdf.cta"}}
   </button>
 </div>

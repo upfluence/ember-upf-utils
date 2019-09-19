@@ -1,9 +1,11 @@
 <div class="modal-body upf-align--left">
   <div class="text-size-5 upf-align--center">
-    Share <b>{{entity.name}}</b> with your whole company, one of your teams or just yourself.
+    {{t "ownership_selection.groups.description" entityName=entity.name htmlSafe=true}}
   </div>
 
-  <label class="margin-top-xx-sm">Group</label>
+  <label class="margin-top-xx-sm">
+    {{t "ownership_selection.groups.label"}}
+  </label>
   {{ownership-selection light=true entity=entity ownership=ownership}}
 </div>
 
@@ -11,6 +13,6 @@
   {{#loading-button
     slowAction="updateOwnership" class="upf-btn upf-btn--primary"
     initiallyDisabled=(not ownership)}}
-    Share with group
+    {{t "ownership_selection.groups.cta"}}
   {{/loading-button}}
 </div>

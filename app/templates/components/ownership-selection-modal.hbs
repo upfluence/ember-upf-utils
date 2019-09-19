@@ -9,13 +9,13 @@
   <ul class="nav nav-tabs">
     {{#if tabs.groups}}
       <li {{action "setCurrent" "groups"}} class={{if groupsSelected "active" ""}} role="button">
-        <a>Groups</a>
+        <a>{{t "ownership_selection.tans.groups"}}</a>
       </li>
     {{/if}}
 
     {{#if tabs.people}}
       <li {{action "setCurrent" "people"}} class={{if peopleSelected "active" ""}} role="button">
-        <a>People</a>
+        <a>{{t "ownership_selection.tabs.people"}}</a>
       </li>
     {{/if}}
   </ul>

@@ -1,0 +1,50 @@
+export_influencers:
+  title: Move to
+  limit_reached: "You don't have enough exports credit for more than
+  <strong>{exportLimitLeft}</strong> influencers"
+  tabs:
+    in_app: In-App
+    file: File
+  export:
+    description: Export a selection of influencers to a list, emailing, campaign or stream
+    cta: Move to {currentType}
+    create: "Create {searchText} {entity}"
+  file:
+    data: Data
+    file_format: File Format
+    cta: Download File
+ownership_selection:
+  placeholder: Share with
+  tabs:
+    groups: Groups
+    people: People
+  groups:
+    description: Share <b>{entityName}</b> with your whole company, one of your teams or just yourself.
+    label: Group
+    cta: Share with group
+  people:
+    description: Share <b>{entityName}</b> with selected coworkers.
+    label: People
+    cta: Share with people
+upgrade_modal:
+  title: Upgrade Plan
+  description: Oops! Your current plan does not include this feature.
+  details:
+    monitor: Upgrade to <b>Upfluence Gold</b> to use <b>Upfluence Monitor</b>
+    bulk_emailing: Upgrade to Upfluence Silver to use Upfluence Bulk Emailing
+    default: Talk to our teams in order to upgrade your account
+  cta:
+    upgrade: Upgrade
+    contact: Contact Us
+file_uploader:
+  cta:
+    upload: Upload
+summernote_modals:
+  video:
+    title: Insert a video
+    label: "Upload a video:"
+    cta: Insert Video
+  pdf:
+    title: Insert a PDF file
+    label: "Upload a PDF:"
+    cta: Insert PDF

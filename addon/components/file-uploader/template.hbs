@@ -10,7 +10,7 @@
 {{else if hasFile}}
   {{file.name}}
   <button class="upf-btn upf-btn--secondary upf-btn--x-small" disabled={{not _isValid}} {{action 'upload'}}>
-    <span>Upload</span>
+    <span>{{t "file_uploader.cta.upload"}}</span>
   </button>
   <button class="upf-btn upf-btn--orange--reversed upf-btn--x-small" {{action 'clear'}}>
     <i class="fa fa-times"></i>

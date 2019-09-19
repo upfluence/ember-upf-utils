@@ -2,7 +2,7 @@
   {{#loading-button
     slowAction="createItem" class="btn upf-btn upf-btn--primary upf-btn--x-small"
     initiallyDisabled=noCreateableEntities}}
-    Create {{publicApi.searchText}} {{selectedEntityType}}
+    {{t "export_influencers.export.create" searchText=publicApi.searchText entity=selectedEntityType}}
   {{/loading-button}}
 
   {{#unless noCreateableEntities}}
