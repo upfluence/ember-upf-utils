@@ -47,7 +47,7 @@ export default Component.extend({
       type: 'tiktok',
       icon: 'tiktok',
       communitySize: this.get('profile.tiktok.followers'),
-      communitySlug: 'followers'
+      communitySlug: 'fans'
     };
   }),
 
