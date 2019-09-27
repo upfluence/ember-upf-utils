@@ -16,13 +16,13 @@ export default Component.extend({
     if (this.get('hidden')) {
       this.$().modal('hide');
     } else {
-      this.handleBackdrop()
+      this._setupModal();
     }
   }),
 
   didInsertElement() {
     if(!this.get('hidden')) {
-      this.handleBackdrop()
+      this._setupModal();
     }
 
     this.$().keyup((e) => {
@@ -34,9 +34,9 @@ export default Component.extend({
     this.$('button#close-x').click((e) => this.closeModal(e));
   },
 
-  handleBackdrop() {
+  _setupModal() {
     this.$().modal({
-      backdrop: isNone(this.get("backdrop")) ? "static" : this.get("backdrop")
+      backdrop: isNone(this.get('backdrop')) ? 'static' : this.get('backdrop')
     });
   },
 
