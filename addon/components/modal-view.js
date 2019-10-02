@@ -36,8 +36,8 @@ export default Component.extend({
 
   _setupModal() {
     this.$().modal({
-      backdrop: isNone(this.get('backdrop')) ? 'static' : this.get('backdrop')
-    });
+      backdrop: 'static'
+    }).appendTo("body");
   },
 
   closeModal(e) {
