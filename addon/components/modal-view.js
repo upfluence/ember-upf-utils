@@ -36,14 +36,11 @@ export default Component.extend({
 
   _setupModal() {
     //TODO IMPROVE THIS PART TO WORK WITHOUT 'CONTAINER'
+    let modal = this.$().modal({
+      backdrop: 'static'
+    })
     if(this.get('container')) {
-      this.$().modal({
-        backdrop: 'static'
-      }).appendTo("body");
-    } else {
-      this.$().modal({
-        backdrop: 'static'
-      });
+      modal.appendTo(this.get('container'))
     }
   },
 
