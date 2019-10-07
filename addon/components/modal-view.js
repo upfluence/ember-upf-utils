@@ -35,7 +35,6 @@ export default Component.extend({
   },
 
   _setupModal() {
-    //TODO IMPROVE THIS PART TO WORK WITHOUT 'CONTAINER'
     let modal = this.$().modal({
       backdrop: 'static'
     })
