@@ -11,6 +11,7 @@ export default Component.extend({
   tabindex: -1,
   toggleable: false,
   hidden: false,
+  container: null,
 
   _: observer('hidden', function() {
     if (this.get('hidden')) {
@@ -35,9 +36,13 @@ export default Component.extend({
   },
 
   _setupModal() {
-    this.$().modal({
+    let modal = this.$().modal({
       backdrop: 'static'
-    }).appendTo("body");
+    });
+
+    if(this.container) {
+      modal.appendTo(this.container);
+    }
   },
 
   closeModal(e) {
