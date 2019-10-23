@@ -138,5 +138,11 @@ export default SummerNoteComponent.extend({
     this.$().on('clear', () => this.$('#summernote').summernote('code', ''));
     this.$('#summernote').summernote('code', this.get('content'));
     this._super(...arguments);
+  },
+
+  didRender: function() {
+    $.summernote.ui.dropdownButtonContents = function(contents) {
+      return contents + ' ' + '<i class="fa fa-caret-down"></i>';
+    }
   }
 });
