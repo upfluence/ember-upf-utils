@@ -209,7 +209,6 @@ export default [
   { id: 'UA', name: 'Ukraine' },
   { id: 'AE', name: 'United Arab Emirates' },
   { id: 'GB', name: 'United Kingdom' },
-  { id: 'US', name: 'United States of America' },
   { id: 'UY', name: 'Uruguay' },
   { id: 'UZ', name: 'Uzbekistan' },
   { id: 'VU', name: 'Vanuatu' },
