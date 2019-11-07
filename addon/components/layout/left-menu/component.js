@@ -69,20 +69,14 @@ export default Component.extend({
   }),
 
   streamsURL: computed('analyticsURL', function() {
-    if (this.get('analyticsURL')) {
-      return `${this.get('analyticsURL')}streams`;
-    }
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
 
-    return 'streams';
+    return module === 'analytics-web' ? 'application' : this.analyticsURL;
   }),
 
   listURL: computed('facadeURL', function() {
-    // if (this.get('facadeURL')) {
-    //   return `${this.get('facadeURL')}lists`;
-    // }
-
-    // return 'lists';
-
     let url = getOwner(this).resolveRegistration(
       'config:environment'
     ).facadeURL;
@@ -91,7 +85,6 @@ export default Component.extend({
       'config:environment'
     ).modulePrefix;
 
-    // Since application is a valid route this will active the icon
     return module === 'facade-web' ? 'application' : url;
   }),
 
@@ -133,10 +126,16 @@ export default Component.extend({
   publishrClientURL: computed('_publishrClientURL', function() {
     let baseURL = getOwner(this).resolveRegistration(
       'config:environment'
-    ).publishrClientURL || '';
+    ).publishrClientURL || '';
+
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
 
     let suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
-    return baseURL + suffix;
+    let fullURL = baseURL + suffix;
+
+    return module === 'publishr-client-web' ? 'application' : fullURL;
   }),
 
   actions: {
