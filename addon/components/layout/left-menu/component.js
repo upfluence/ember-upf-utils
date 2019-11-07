@@ -77,11 +77,22 @@ export default Component.extend({
   }),
 
   listURL: computed('facadeURL', function() {
-    if (this.get('facadeURL')) {
-      return `${this.get('facadeURL')}lists`;
-    }
+    // if (this.get('facadeURL')) {
+    //   return `${this.get('facadeURL')}lists`;
+    // }
 
-    return 'lists';
+    // return 'lists';
+
+    let url = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).facadeURL;
+
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
+
+    // Since application is a valid route this will active the icon
+    return module === 'facade-web' ? 'application' : url;
   }),
 
   inboxURL: computed(function() {
