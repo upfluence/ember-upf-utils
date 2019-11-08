@@ -77,15 +77,11 @@ export default Component.extend({
   }),
 
   listURL: computed('facadeURL', function() {
-    let url = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).facadeURL;
-
     let module = getOwner(this).resolveRegistration(
       'config:environment'
     ).modulePrefix;
 
-    return module === 'facade-web' ? 'application' : url;
+    return module === 'facade-web' ? 'application' : this.facadeURL;
   }),
 
   inboxURL: computed(function() {
