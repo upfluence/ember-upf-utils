@@ -69,19 +69,19 @@ export default Component.extend({
   }),
 
   streamsURL: computed('analyticsURL', function() {
-    if (this.get('analyticsURL')) {
-      return `${this.get('analyticsURL')}streams`;
-    }
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
 
-    return 'streams';
+    return module === 'analytics-web' ? 'application' : this.analyticsURL;
   }),
 
   listURL: computed('facadeURL', function() {
-    if (this.get('facadeURL')) {
-      return `${this.get('facadeURL')}lists`;
-    }
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
 
-    return 'lists';
+    return module === 'facade-web' ? 'application' : this.facadeURL;
   }),
 
   inboxURL: computed(function() {
@@ -122,10 +122,16 @@ export default Component.extend({
   publishrClientURL: computed('_publishrClientURL', function() {
     let baseURL = getOwner(this).resolveRegistration(
       'config:environment'
-    ).publishrClientURL || '';
+    ).publishrClientURL || '';
+
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
 
     let suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
-    return baseURL + suffix;
+    let fullURL = baseURL + suffix;
+
+    return module === 'publishr-client-web' ? 'application' : fullURL;
   }),
 
   actions: {
