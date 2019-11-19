@@ -1,10 +1,10 @@
 <div class="modal-body text-center">
   {{#if hasMultiType}}
     {{#if limitReached}}
-      <div class="danger text-danger">
-        <h4>
-          {{t "export_influencers.limit_reached" exportLimitLeft=exportLimit.left htmlSafe=true}}
-        </h4>
+      <div class="upf-alert upf-alert--error">
+        <div class="upf-alert__text">
+          <span>{{t "export_influencers.limit_reached" exportLimitLeft=exportLimit.left htmlSafe=true}}</span>
+        </div>
       </div>
     {{/if}}
 
