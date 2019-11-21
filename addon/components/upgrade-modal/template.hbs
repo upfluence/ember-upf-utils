@@ -1,16 +1,11 @@
-{{#modal-view hidden=hidden closeAction=closeAction size="modal-lg"}}
-  <div class="modal-header modal-header__borderless">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-            id='close-x'><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">{{t "upgrade_modal.title"}}</h4>
-  </div>
-
-  <div class="modal-body upf-align--center">
-    <div class="text-size-7 padding-xxx-sm">
+{{#modal-view hidden=hidden closeAction=closeAction centered=true
+  title=(t "upgrade_modal.title")}}
+  <div class="modal-body text-center">
+    <p class="text-color-default text-size-6">
       {{t "upgrade_modal.description"}}
-    </div>
+    </p>
 
-    <div class="text-size-6">
+    <p class="text-size-4 text-color-default-lighter">
       {{#if (eq to "monitor")}}
         {{t "upgrade_modal.details.monitor" htmlSafe=true}}
       {{else if (eq to "bulk_emailing")}}
@@ -18,18 +13,18 @@
       {{else}}
         {{t "upgrade_modal.details.default"}}
       {{/if}}
-    </div>
+    </p>
 
     {{#if to}}
       <div class="margin-top-xxx-sm">
         <img src={{upgradeFeatureImagePath}} width="90%" />
       </div>
 
-      <button {{action "goToBilling"}} class="margin-top-md upf-btn upf-btn--primary">
+      <button {{action "goToBilling"}} class="upf-btn upf-btn--primary">
         {{t "upgrade_modal.cta.upgrade"}}
       </button>
     {{else}}
-      <button {{action "openIntercom"}} class="margin-top-md upf-btn upf-btn--primary">
+      <button {{action "openIntercom"}} class="upf-btn upf-btn--primary">
         {{t "upgrade_modal.cta.contact"}}
       </button>
     {{/if}}
