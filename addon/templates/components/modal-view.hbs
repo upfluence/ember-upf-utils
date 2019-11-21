@@ -3,14 +3,14 @@
     <div class="modal-header
      {{if (not title) "padding-top-sm padding-bottom-xx-sm"}}
      {{if borderlessHeader "modal-header__borderless"}}">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-x">
-        <span aria-hidden="true">&times;</span>
-      </button>
       {{#if title}}
         <div class="modal-title">
           {{title}}
         </div>
       {{/if}}
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-x">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     {{yield}}
   </div>
