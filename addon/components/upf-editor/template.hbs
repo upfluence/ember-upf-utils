@@ -1,14 +1,16 @@
 {{summer-note height=500 btnSize=btnSize content=content onContentChange=(action 'onContentChange')
               uploaderHeaders=uploaderHeaders customButtons=_customButtonsFuncs}}
 
-{{#modal-view hidden=hideVideoUploadModal closeAction=(action "toggleVideoUpload")}}
+{{#modal-view hidden=hideVideoUploadModal closeAction=(action "toggleVideoUpload")
+  title=(t "summernote_modals.video.title") centered=true}}
   {{summernote-modals/video editor-context=summernoteContext
                             uploaderHeaders=uploaderHeaders
                             uploaderExtra=uploaderExtra
                             closeModal=(action "toggleVideoUpload")}}
 {{/modal-view}}
 
-{{#modal-view hidden=hidePDFUploadModal closeAction=(action "togglePDFUpload")}}
+{{#modal-view hidden=hidePDFUploadModal closeAction=(action "togglePDFUpload")
+  title=(t "summernote_modals.pdf.title") centered=true}}
   {{summernote-modals/pdf editor-context=summernoteContext uploaderHeaders=uploaderHeaders
                           uploaderExtra=uploaderExtra closeModal=(action "togglePDFUpload")}}
 {{/modal-view}}
