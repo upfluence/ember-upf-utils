@@ -1,4 +1,4 @@
-{{#modal-view hidden=hidden closeAction=closeAction centered=true
+{{#modal-view hidden=false closeAction=closeAction centered=true
   title=(t "upgrade_modal.title")}}
   <div class="modal-body text-center">
     <p class="text-color-default text-size-6">
@@ -20,11 +20,11 @@
         <img src={{upgradeFeatureImagePath}} width="90%" />
       </div>
 
-      <button {{action "goToBilling"}} class="upf-btn upf-btn--primary">
+      <button {{action "goToBilling"}} class="margin-top-xx-sm upf-btn upf-btn--primary">
         {{t "upgrade_modal.cta.upgrade"}}
       </button>
     {{else}}
-      <button {{action "openIntercom"}} class="upf-btn upf-btn--primary">
+      <button {{action "openIntercom"}} class="margin-top-xx-sm upf-btn upf-btn--primary">
         {{t "upgrade_modal.cta.contact"}}
       </button>
     {{/if}}
