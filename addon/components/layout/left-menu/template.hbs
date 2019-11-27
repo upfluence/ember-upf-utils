@@ -1,9 +1,9 @@
 {{#if session.isAuthenticated}}
   <section class="app-header__top">
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
-        {{#smart-link-to link=crmURL}}
-          <span class="upf-icon upf-icon--crm"></span>
-        {{/smart-link-to}}
+      {{#smart-link-to link=crmURL}}
+        <span class="upf-icon upf-icon--crm"></span>
+      {{/smart-link-to}}
     {{/active-link}}
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
       {{#feature-flagged "facade_web"}}
