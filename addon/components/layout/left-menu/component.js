@@ -3,7 +3,6 @@ import Component from '@ember/component';
 import { observer, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { camelize } from '@ember/string';
-import $ from 'jquery';
 
 import layout from './template';
 
@@ -144,14 +143,6 @@ export default Component.extend({
     return module === 'publishr-client-web' ? 'application' : fullURL;
   }),
 
-  didInsertElement() {
-    $('#crm-modal').on('show.bs.modal', function () {
-        setTimeout(function(){
-          $('.modal-backdrop').addClass('modal-backdrop-crm');
-        });
-    });
-  },
-
   actions: {
     goToSettings() {
       window.location = this.get('accountUrl');
@@ -179,10 +170,6 @@ export default Component.extend({
     toggleUpgradeModal(upgradeTo) {
       this.set('upgradeTo', upgradeTo);
       this.toggleProperty('hideUpgradeModal');
-    },
-
-    toggleCrmModal() {
-      this.toggleProperty('hideCrmModal');
     }
   }
 });
