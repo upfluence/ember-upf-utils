@@ -15,7 +15,6 @@ export default Component.extend({
   session: service(),
 
   hideUpgradeModal: true,
-  hideCrmModal: true,
   upgradeTo: null,
 
   userInfos: {

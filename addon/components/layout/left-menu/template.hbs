@@ -1,16 +1,9 @@
 {{#if session.isAuthenticated}}
   <section class="app-header__top">
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
-      {{#feature-flagged "crm_web"}}
         {{#smart-link-to link=crmURL}}
           <span class="upf-icon upf-icon--crm"></span>
         {{/smart-link-to}}
-      {{else}}
-        <a {{action "toggleCrmModal"}}>
-          <span class="upf-icon upf-icon--crm"></span>
-          <i class="fa fa-lock"></i>
-        </a>
-      {{/feature-flagged}}
     {{/active-link}}
     {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
       {{#feature-flagged "facade_web"}}
