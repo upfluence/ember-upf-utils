@@ -1,11 +1,5 @@
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close" id='close-x'>
-  <span aria-hidden="true">&times;</span></button>
-  <h4>{{t "summernote_modals.video.title"}}</h4>
-</div>
-
-<div class="modal-body margin-top-x-sm margin-bottom-x-sm padding">
-  <label>{{t "summernote_modals.video.label"}}</label>
+<div class="modal-body text-center margin-top-x-sm margin-bottom-x-sm padding">
+  <p class="text-size-4 text-color-default-lighter">{{t "summernote_modals.video.label"}}</p>
   {{file-uploader allowedExtensions=allowedExtensions method="POST"
                   extra=uploaderExtra headers=uploaderHeaders
                   beforeUpload=(action "resetVideoUpload")

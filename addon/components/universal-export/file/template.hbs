@@ -1,10 +1,10 @@
-<div class='modal-body text-center'>
+<div class="modal-body text-center">
   {{#if hasMultiType}}
     {{#if limitReached}}
-      <div class='danger text-danger'>
-        <h4>
-          {{t "export_influencers.limit_reached" exportLimitLeft=exportLimit.left htmlSafe=true}}
-        </h4>
+      <div class="upf-alert upf-alert--error">
+        <div class="upf-alert__text">
+          <span>{{t "export_influencers.limit_reached" exportLimitLeft=exportLimit.left htmlSafe=true}}</span>
+        </div>
       </div>
     {{/if}}
 
@@ -16,7 +16,7 @@
         <div class="btn-group upf-radio-group">
           {{#each types as |type|}}
             {{radio-button value=type.key currentValue=selectedType
-              label=type.label options=types onCheck='typeChanged'}}
+              label=type.label options=types onCheck="typeChanged"}}
           {{/each}}
         </div>
       </div>
@@ -31,15 +31,15 @@
       <div class="btn-group upf-radio-group ">
         {{#each-in formats as |value label|}}
           {{radio-button value=value currentValue=selectedFormat label=label
-                         options=formats onCheck='formatChanged'}}
+                         options=formats onCheck="formatChanged"}}
         {{/each-in}}
       </div>
     </div>
   </div>
 </div>
 
-<div class='modal-footer'>
-  <button {{action 'submit'}} disabled={{btnLocked}} class='margin-left-xx-sm upf-btn upf-btn--primary'>
+<div class="modal-footer">
+  <button {{action "submit"}} disabled={{btnLocked}} class="margin-left-xx-sm upf-btn upf-btn--primary">
     {{t "export_influencers.file.cta"}}
   </button>
 </div>

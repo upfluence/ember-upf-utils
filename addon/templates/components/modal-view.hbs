@@ -1,5 +1,18 @@
 <div class="modal-dialog {{if centered 'modal-dialog-centered'}} {{size}}" role="document">
   <div class="modal-content">
+    {{#if (not customHeader)}}
+      <div class="modal-header
+      {{if borderlessHeader "modal-header__borderless"}}">
+        {{#if title}}
+          <div class="modal-title">
+            {{title}}
+          </div>
+        {{/if}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-x">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {{/if}}
     {{yield}}
   </div>
 </div>
