@@ -12,6 +12,10 @@ export default Component.extend({
   toggleable: false,
   hidden: false,
   container: null,
+  centered: true,
+  customHeader: false,
+  borderlessHeader: false,
+  id: null,
 
   _: observer('hidden', function() {
     if (this.get('hidden')) {
