@@ -13,7 +13,6 @@ export default Component.extend({
   hidden: false,
   container: null,
   centered: true,
-  showCloseButton: true,
   customHeader: false,
   borderlessHeader: false,
   id: null,
