@@ -1,5 +1,5 @@
 {{#modal-view hidden=hidden closeAction=closeModal centered=true
-  borderlessHeader=true title=(t "export_influencers.title")}}
+  borderlessHeader=true title=(t "export_influencers.title") container="body"}}
   <ul class="nav nav-tabs">
     {{#if tabs.external}}
       <li {{action "setCurrent" "external"}} class={{if externalSelected "active" ""}} role="button">
