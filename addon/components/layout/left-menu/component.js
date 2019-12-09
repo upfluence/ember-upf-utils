@@ -77,9 +77,11 @@ export default Component.extend({
   }),
 
   crmURL: computed(function() {
-    let { crmUrl, modulePrefix } = getOwner(this).resolveRegistration('config:environment');
+    let url = getOwner(this).resolveRegistration('config:environment').crmURL;
 
-    return modulePrefix === 'crm-web' ? 'application' : crmUrl;
+    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
+
+    return module === 'crm-web' ? 'application' : url;
   }),
 
   listURL: computed('facadeURL', function() {
