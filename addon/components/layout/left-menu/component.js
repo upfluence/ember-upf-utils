@@ -76,6 +76,12 @@ export default Component.extend({
     return module === 'analytics-web' ? 'application' : this.analyticsURL;
   }),
 
+  crmURL: computed(function() {
+    let { crmUrl, modulePrefix } = getOwner(this).resolveRegistration('config:environment');
+
+    return modulePrefix === 'crm-web' ? 'application' : crmUrl;
+  }),
+
   listURL: computed('facadeURL', function() {
     let module = getOwner(this).resolveRegistration(
       'config:environment'
