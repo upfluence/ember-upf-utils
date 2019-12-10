@@ -26,8 +26,10 @@ export default Component.extend({
   },
 
   _resetWindow: observer('model.id', function() {
-    const isComposite = this.model.ownedBy.startsWith('composite:');
-    this.set('currentWindow', isComposite ? 'people' : 'groups');
+    if (this.model) {
+      const isComposite = this.get('model.ownedBy').startsWith('composite:');
+      this.set('currentWindow', isComposite ? 'people' : 'groups');
+    }
   }),
 
   init() {
