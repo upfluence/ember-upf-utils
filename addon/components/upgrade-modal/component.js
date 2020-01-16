@@ -25,14 +25,20 @@ export default Component.extend({
     );
   }),
 
-  actions: {
-    goToBilling() {
-      window.location = `${this.identityURL}accounts/billing`;
-    },
+  ctaKey: computed('to', function() {
+    if (this.to && this.to !== 'crm') {
+      return 'upgrade_modal.cta.upgrade';
+    } else {
+      return 'upgrade_modal.cta.contact';
+    }
+  }),
 
-    openIntercom() {
-      if (window.Intercom) {
-        window.Intercom('show');
+  actions: {
+    clickedCTA() {
+      if (this.to && this.to !== 'crm') {
+        window.location = `${this.identityURL}accounts/billing`;
+      } else {
+        if (window.Intercom)window.Intercom('show');
       }
     }
   }
