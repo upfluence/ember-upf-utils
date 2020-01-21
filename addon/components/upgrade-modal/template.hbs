@@ -6,23 +6,17 @@
     </p>
 
     <p class="text-size-4 text-color-default-lighter">
-      {{#if (eq to "monitor")}}
-        {{t "upgrade_modal.details.monitor" htmlSafe=true}}
-      {{else if (eq to "bulk_emailing")}}
-        {{t "upgrade_modal.details.bulk_emailing" htmlSafe=true}}
-      {{else}}
-        {{t "upgrade_modal.details.default"}}
-      {{/if}}
+      {{description}}
     </p>
 
-    {{#if to}}
+    {{#if upgradeFeatureImagePath}}
       <div class="margin-top-xxx-sm">
         <img src={{upgradeFeatureImagePath}} width="250px" />
       </div>
     {{/if}}
 
     <button {{action "clickedCTA"}} class="margin-top-xx-sm upf-btn upf-btn--primary">
-      {{t ctaKey}}
+      {{cta}}
     </button>
   </div>
 {{/modal-view}}
