@@ -15,13 +15,14 @@ export default Component.extend({
   hidePDFUploadModal: true,
 
   init() {
+    this._super();
+
     let self = this;
-    let { ui } = $.summernote;
 
     let uploadBtns = {
       videoUpload: function(context) {
-        context.memo('button.videoUpload', function() {
-          return ui.button({
+        context.memo('button.videoUpload', () => {
+          return $.summernote.ui.button({
             contents: '<i class="fa fa-video-camera"/></i>',
             tooltip: 'Insert Video',
             click: () => {
@@ -34,7 +35,7 @@ export default Component.extend({
 
       pdfUpload: function(context) {
         context.memo('button.pdfUpload', function() {
-          return ui.button({
+          return $.summernote.ui.button({
             contents: '<i class="fa fa-file-pdf-o"></i>',
             tooltip: 'Insert a PDF file',
             click() {
@@ -53,8 +54,6 @@ export default Component.extend({
         this._customButtonsFuncs.push(customButton);
       });
     }
-
-    this._super();
   },
 
   actions: {
