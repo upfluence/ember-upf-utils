@@ -56,6 +56,12 @@ export default Component.extend({
     }
   },
 
+  didReceiveAttrs() {
+    if (this.content && this.$('#summernote')) {
+      this.$('#summernote').summernote('code', this.content);
+    }
+  },
+
   actions: {
     onContentChange(text) {
       this.sendAction('onContentChange', text);
