@@ -1,6 +1,6 @@
 /* global $ */
 import Component from '@ember/component';
-
+import { run } from '@ember/runloop';
 import { isEmpty } from '@ember/utils';
 import layout from './template';
 
@@ -53,12 +53,6 @@ export default Component.extend({
       }).map((x) => uploadBtns[x]).forEach((customButton) => {
         this._customButtonsFuncs.push(customButton);
       });
-    }
-  },
-
-  didReceiveAttrs() {
-    if (this.content && this.$('#summernote')) {
-      this.$('#summernote').summernote('code', this.content);
     }
   },
 

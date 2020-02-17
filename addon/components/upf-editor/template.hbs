@@ -1,6 +1,7 @@
 {{summer-note
-  height=500 btnSize=btnSize content=content onContentChange=(action "onContentChange")
-  uploaderHeaders=uploaderHeaders customButtons=_customButtonsFuncs}}
+  height=500 btnSize=btnSize content=(readonly content)
+  onContentChange=(action "onContentChange") uploaderHeaders=uploaderHeaders
+  customButtons=_customButtonsFuncs}}
 
 {{#modal-view
   hidden=hideVideoUploadModal closeAction=(action "toggleVideoUpload")
