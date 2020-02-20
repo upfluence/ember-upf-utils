@@ -1,13 +1,16 @@
 import { on } from '@ember/object/evented';
-import { run } from '@ember/runloop';
 import { set, observer, computed } from '@ember/object';
-import layout from './template';
-import EmberCollection from 'ember-collection/components/ember-collection';
+import { run, schedule } from '@ember/runloop';
+
 import SlotsMixin from 'ember-block-slots';
+import EmberCollection from 'ember-collection/components/ember-collection';
 import { EKMixin, getCode, keyDown } from 'ember-keyboard';
+
+import layout from './template';
 
 export default EmberCollection.extend(SlotsMixin, EKMixin, {
   layout,
+
   classNames: ['__table-fluid'],
   triggerOffset: 600,
   onBottomReach: null,
@@ -108,7 +111,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
           let directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
             : this._getPreviousCell;
           let nextCell = directionFn(this, cell);
-          this.sendAction('keyboardArrowAction', cell.item, key, () => {
+          this.keyboardArrowAction(cell.item, key, () => {
             set(cell, 'isActive', false);
 
             this.get('_cells').removeObject(cell);
@@ -129,6 +132,12 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     if (this.get('keyboardActivated')) {
       this._resetCurrentlyActiveCell();
     }
+
+    schedule('afterRender', () => {
+      if (!this.isReached) {
+        this.onBottomReach();
+      }
+    })
   },
 
   _needsRevalidate() {
@@ -145,15 +154,14 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
         return;
       }
 
-      if (scrollLeft !== this._scrollLeft ||
-        scrollTop !== this._scrollTop) {
+      if (scrollLeft !== this._scrollLeft || scrollTop !== this._scrollTop) {
         this.set('_scrollLeft', scrollLeft);
         this.set('_scrollTop', scrollTop);
         this._needsRevalidate();
 
         if (!this.get('isReached') && this._bottomIsReached(scrollTop)) {
           this.set('_bottomReached', true);
-          this.sendAction('onBottomReach');
+          this.onBottomReach();
         }
       }
     }
