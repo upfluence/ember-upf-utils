@@ -1,15 +1,14 @@
 {{#if multiple}}
   {{#power-select-multiple
-    selectedItemComponent=selectedItemComponent
+    triggerClass=triggerClass selectedItemComponent=selectedItemComponent
     onopen=onopen groupComponent=groupComponent search=search options=items
     selected=(unless disabled selection) placeholder=placeholder
     renderInPlace=true disabled=disabled searchField=sortField
-    oninput=(action "updateSearchTerm")
-    onchange=(action (mut selection)) onkeydown=(action "keyPress")
-    registerAPI=(action (mut publicApi))
+    oninput=(action "updateSearchTerm") onchange=(action (mut selection))
+    onkeydown=(action "keyPress") registerAPI=(action (mut publicApi))
     optionsComponent=(if optionsComponent optionsComponent)
     afterOptionsComponent=(if _createItemComponent (
-      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder 
+      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder
       createItem=(action "createItem")
     )) as |item|}}
     {{#if (has-block)}}
@@ -19,8 +18,8 @@
     {{/if}}
   {{/power-select-multiple}}
 {{else}}
-  {{#power-select 
-    selectedItemComponent=selectedItemComponent
+  {{#power-select
+    triggerClass=triggerClass selectedItemComponent=selectedItemComponent
     onopen=onopen groupComponent=groupComponent search=search options=items
     selected=selection onchange=(action (mut selection))
     onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
@@ -29,7 +28,7 @@
     registerAPI=(action (mut publicApi))
     optionsComponent=(if optionsComponent optionsComponent)
     afterOptionsComponent=(if _createItemComponent (
-      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder 
+      component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder
       createItem=(action "createItem"))
     ) as |item|}}
      {{#if (has-block)}}

@@ -14,6 +14,7 @@ export default Component.extend({
   required: false,
   multiple: true,
   dark: false,
+  size: null,
 
   _selection: null,
 

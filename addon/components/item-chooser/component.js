@@ -29,12 +29,19 @@ export default Component.extend({
   disabled: false,
   searchTerm: null,
   search: null,
+  size: null,
 
   optionsComponent: null,
   createItemComponent: null,
   selectedItemComponent: null,
   onopen: null,
   groupComponent: null,
+
+  triggerClass: computed('size', function() {
+    if (!this.size) return;
+
+    return `ember-power-select-trigger--${this.size}`;
+  }),
 
   didReceiveAttrs() {
     if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {
