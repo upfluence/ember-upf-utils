@@ -154,6 +154,10 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
         return;
       }
 
+      if (this.didScroll) {
+        this.didScroll(scrollLeft, scrollTop);
+      }
+
       if (scrollLeft !== this._scrollLeft || scrollTop !== this._scrollTop) {
         this.set('_scrollLeft', scrollLeft);
         this.set('_scrollTop', scrollTop);
