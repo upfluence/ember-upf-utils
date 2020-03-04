@@ -40,14 +40,10 @@ export default CookieService.extend({
       'config:environment'
     ).cookies;
 
-    let { secure, sameSite } = cookiesConfig;
-
     if (cookiesConfig) {
       Object.assign(options, cookiesConfig);
     }
 
-    console.log('=> options', options)
-    console.log('====>', serializeCookie(name, value, options))
     return serializeCookie(name, value, options);
   },
 });
