@@ -72,7 +72,6 @@ module.exports = {
         footerContent.push(emberBasicDropdown.contentFor(type, config));
       }
 
-      console.log('==> bruh', footerContent)
       return footerContent.join('');
     }
   }
