@@ -62,7 +62,18 @@ module.exports = {
     // Since emberjs dont nest contentFor call on sub addon
     // this add the google script for the ember-cli-google-analytics
     if (type === 'body-footer') {
-      return FOOTER_SCRIPTS.join('');
+      let footerContent = FOOTER_SCRIPTS;
+
+      let emberBasicDropdown = this.addons.find((addon) => {
+        return addon.name === 'ember-power-select';
+      });
+
+      if (emberBasicDropdown) {
+        footerContent.push(emberBasicDropdown.contentFor(type, config));
+      }
+
+      console.log('==> bruh', footerContent)
+      return footerContent.join('');
     }
   }
 };
