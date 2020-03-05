@@ -30,6 +30,7 @@ export default Component.extend({
   searchTerm: null,
   search: null,
   size: null,
+  renderInPlace: true,
 
   optionsComponent: null,
   createItemComponent: null,
