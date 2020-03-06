@@ -19,5 +19,6 @@ export default [
   'INR',
   'BRL',
   'ZAR',
-  'IDR'
+  'IDR',
+  'PHP'
 ];
