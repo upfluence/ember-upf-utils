@@ -1,15 +1,21 @@
 {{#if hasLabel}}
   <label>{{label}}</label>
 {{/if}}
-{{input type=type value=value placeholder=placeholder name=name autocomplete=autocomplete class="form-control"}}
+
+{{input
+  type=type value=value placeholder=placeholder name=name
+  autocomplete=autocomplete class="form-control upf-input"}}
+
 {{#if showSuccess}}
   <span class="glyphicon glyphicon-ok form-control-feedback"></span>
 {{/if}}
+
 {{#if showErrors}}
   <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-  <span class="help-block">{{v-get model valuePath 'message'}}</span>
+  <span class="help-block">{{v-get model valuePath "message"}}</span>
 {{/if}}
+
 {{#if showWarnings}}
   <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-  <span class="help-block">{{v-get model valuePath 'warningMessage'}}</span>
+  <span class="help-block">{{v-get model valuePath "warningMessage"}}</span>
 {{/if}}
