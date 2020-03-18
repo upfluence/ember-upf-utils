@@ -63,6 +63,19 @@
     {{#if profile.address}}
       {{display-field value=profile.address icon="map-marker"}}
     {{/if}}
+
+    {{#if isLdaCompliant}}
+      <span>
+        {{#if profile.address}}
+          <span>| </span>
+        {{/if}}
+        <i class="fa fa-check text-color-success"></i>
+        <span>
+          LDA Compliant
+        </span>
+      </span>
+    {{/if}}
+
   </div>
 
   <div class='description text-size-4 text-color-default-light' title='{{profile.description}}'>

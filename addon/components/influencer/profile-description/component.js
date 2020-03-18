@@ -44,6 +44,10 @@ export default Component.extend(TooltipActivationMixin, {
 
   displayContact: and('profile.email', 'hasInbox'),
 
+  isLdaCompliant: computed('medias', 'medias.instagram.audience.legal_drinking_age', function() {
+    return this.get('medias.instagram.audience.legal_drinking_age.values.21+') >= 0.716;
+  }),
+
   didInsertElement() {
     this.get('currentUser').fetch().then((payload) => {
       this.set('hasInbox', payload.user.granted_scopes.includes('inbox_client'));
