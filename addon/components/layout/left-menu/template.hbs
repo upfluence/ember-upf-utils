@@ -88,6 +88,19 @@
         </a>
       {{/feature-flagged}}
     {{/active-link}}
+
+    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+      {{#feature-flagged "acquisition_webf"}}
+        {{#smart-link-to link=acquisitionCampaignsURL}}
+          <span class="upf-icon upf-icon--acquisition"></span>
+        {{/smart-link-to}}
+      {{else}}
+        <a {{action "toggleUpgradeModal" "acquisition"}} role="upgrade">
+          <span class="upf-icon upf-icon--acquisition"></span>
+          <i class="fa fa-lock"></i>
+        </a>
+      {{/feature-flagged}}
+    {{/active-link}}
   </section>
 
   <section class='app-header__bottom'>
