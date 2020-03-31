@@ -1,5 +1,5 @@
 import { inject as service } from '@ember/service';
-import { gt, and } from '@ember/object/computed';
+import { gt, and, gte } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import layout from './template';
@@ -43,6 +43,8 @@ export default Component.extend(TooltipActivationMixin, {
   }),
 
   displayContact: and('profile.email', 'hasInbox'),
+
+  isLdaCompliant: gte('medias.instagram.audience.legal_drinking_age.values.21+', 0.716),
 
   didInsertElement() {
     this.get('currentUser').fetch().then((payload) => {
