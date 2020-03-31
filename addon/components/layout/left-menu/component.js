@@ -68,12 +68,26 @@ export default Component.extend({
     return 'influencers';
   }),
 
+  acquisitionURL: computed(function() {
+    return getOwner(this).resolveRegistration(
+      'config:environment'
+    ).acquisitionURL;
+  }),
+
   streamsURL: computed('analyticsURL', function() {
     let module = getOwner(this).resolveRegistration(
       'config:environment'
     ).modulePrefix;
 
     return module === 'analytics-web' ? 'application' : this.analyticsURL;
+  }),
+
+  acquisitionCampaignsURL: computed('acquisitionURL', function() {
+    let module = getOwner(this).resolveRegistration(
+      'config:environment'
+    ).modulePrefix;
+
+    return module === 'acquisition-web' ? 'application' : this.acquisitionURL;
   }),
 
   crmURL: computed(function() {
