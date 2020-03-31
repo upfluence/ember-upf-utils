@@ -56,7 +56,7 @@
     {{/if}}
   </div>
 
-  <div class="secondary-line clearfix">
+  <div class="secondary-line clearfix flex-row">
     {{#if profile.isNew}}
       <span class="profile-description__content--new pull-left">new</span>
     {{/if}}
@@ -67,7 +67,7 @@
     {{#if isLdaCompliant}}
       <span>
         {{#if profile.address}}
-          <span>| </span>
+          <span>&nbsp;| </span>
         {{/if}}
         <i class="fa fa-check text-color-success"></i>
         <span>

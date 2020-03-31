@@ -62,6 +62,12 @@
     .secondary-line {
       padding-top: 0.8em;
 
+      &.flex-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
       .profile-description__content--new {
         color: @upf-primary-bright-purple;
         border: 1px solid @upf-primary-bright-purple;
@@ -77,7 +83,7 @@
       }
 
       .profile-description__content--location {
-        display: inline;
+        display: block;
         text-overflow: ellipsis;
         overflow: hidden;
         color: @color-text;
