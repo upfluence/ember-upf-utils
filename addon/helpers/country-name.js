@@ -8,7 +8,7 @@ export function countryName(countryCode) {
     return country.name;
   }
 
-  return '-';
+  return countryCode || '-';
 }
 
 export default Helper.helper(countryName);
