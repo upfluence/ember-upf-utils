@@ -68,6 +68,7 @@
     "qunit-dom": "^0.8.0"
   },
   "resolutions": {
+    "@babel/helper-compilation-targets": "7.9.6",
     "bootstrap": "^3.3.7"
   },
   "keywords": [
