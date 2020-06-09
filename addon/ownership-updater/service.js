@@ -6,12 +6,17 @@ export default Service.extend({
 
   update(model, modelId, ownedBy) {
     let adapter = this.store.adapterFor(model);
+    let url = `${adapter.host}/${adapter.namespace}/${pluralize(model)}/${modelId}`;
 
     let payload = {};
     payload[model] = { owned_by: ownedBy };
 
+    if (adapter.ownershipUpdateUrl) {
+      url = adapter.ownershipUpdateUrl(modelId);
+    }
+
     return adapter.ajax(
-      `${adapter.host}/${adapter.namespace}/${pluralize(model)}/${modelId}`,
+      url,
       'PUT',
       {
         contentType: 'application/json',
