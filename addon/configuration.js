@@ -3,7 +3,6 @@ import $ from 'jquery';
 import { getWithDefault } from '@ember/object';
 
 const DEFAULTS = {
-  loginUrl: 'http://localhost:4001/login',
   uploaderUrl: 'http://localhost:8080/upload',
   exportUrl: 'http://localhost:9001/export',
   activityUrl: 'https://localhost:9002/',
@@ -14,16 +13,6 @@ const DEFAULTS = {
 };
 
 export default {
-  formattedLoginUrl() {
-    let params = $.param({
-      scope: this.scope,
-      redirect: window.location.href
-    });
-
-    return `${this.loginUrl}?${params}`;
-  },
-
-  loginUrl: DEFAULTS.loginUrl,
   uploaderUrl: DEFAULTS.uploaderUrl,
   exportUrl: DEFAULTS.exportUrl,
   activityUrl: DEFAULTS.activityUrl,
