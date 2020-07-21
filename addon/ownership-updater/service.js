@@ -1,4 +1,5 @@
 import Service, { inject as service } from '@ember/service';
+import { underscore } from '@ember/string';
 import { pluralize } from 'ember-inflector';
 
 export default Service.extend({
@@ -9,7 +10,7 @@ export default Service.extend({
     let url = `${adapter.host}/${adapter.namespace}/${pluralize(model)}/${modelId}`;
 
     let payload = {};
-    payload[model] = { owned_by: ownedBy };
+    payload[underscore(model)] = { owned_by: ownedBy };
 
     if (adapter.ownershipUpdateUrl) {
       url = adapter.ownershipUpdateUrl(modelId);
