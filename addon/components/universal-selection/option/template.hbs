@@ -1,4 +1,9 @@
 <span class="universal-selection-option__name">{{item.name}}</span>
 <span class="upf-align--right text-color-info universal-selection-option__influencers-count">
-  {{item.total}} influencers
+  {{item.total}}
+  {{#if (eq item.type "stream")}}
+    {{t "export_influencers.export.matches"}}
+  {{else}}
+    {{t "export_influencers.export.influencers"}}
+  {{/if}}
 </span>
