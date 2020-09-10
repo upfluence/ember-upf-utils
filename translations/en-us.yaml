@@ -9,6 +9,8 @@ export_influencers:
     description: Export a selection of influencers to a list, emailing, campaign or stream
     cta: Move to {currentType}
     create: "Create {searchText} {entity}"
+    influencers: influencers
+    matches: matches
   file:
     data: Data
     file_format: File Format
