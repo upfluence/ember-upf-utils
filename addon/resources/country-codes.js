@@ -192,7 +192,7 @@ export default [
   { id: 'SZ', name: 'Swaziland' },
   { id: 'SE', name: 'Sweden' },
   { id: 'SY', name: 'Syrian Arab Republic' },
-  { id: 'TW', name: 'Taiwan, Province of China' },
+  { id: 'TW', name: 'Taiwan' },
   { id: 'TJ', name: 'Tajkistan' },
   { id: 'TZ', name: 'Tanzania, United Republic of' },
   { id: 'TH', name: 'Thailand' },
