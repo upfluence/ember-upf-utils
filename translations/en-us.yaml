@@ -20,7 +20,7 @@ export_influencers:
     stream: Stream
     campaign: Campaign
     mailing: Mailing
-    discount_plan: Discount Plan
+    discount_plan: Discount Offer
 ownership_selection:
   placeholder: Share with
   tabs:
