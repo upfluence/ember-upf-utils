@@ -15,6 +15,12 @@ export_influencers:
     data: Data
     file_format: File Format
     cta: Download File
+  group_name:
+    list: List
+    stream: Stream
+    campaign: Campaign
+    mailing: Mailing
+    discount_plan: Discount Plan
 ownership_selection:
   placeholder: Share with
   tabs:

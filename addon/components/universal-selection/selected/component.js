@@ -6,7 +6,8 @@ const ENTITIES_ICONS = {
   stream: 'upf-icon--monitor',
   list: 'upf-icon--search',
   mailing: 'upf-icon--inbox',
-  campaign: 'upf-icon--workflow'
+  campaign: 'upf-icon--workflow',
+  discount_plan: 'upf-icon--crm'
 };
 
 export default Component.extend({
