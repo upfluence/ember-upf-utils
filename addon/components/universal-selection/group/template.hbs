@@ -1,6 +1,10 @@
 <div class="universal-selection-group__name text-style-capitalize">
-  <span class="universal-selection-option__icon text-size-4 upf-icon {{iconName}}">
-  </span>
-  {{group.groupName}}
+  {{#if (eq icon.type "font-awesome")}}
+    <i class="universal-selection-option__icon text-size-4 fa {{icon.name}}"></i>
+  {{else}}
+    <span class="universal-selection-option__icon text-size-4 upf-icon {{icon}}">
+    </span>
+  {{/if}}
+  {{t (concat "export_influencers.group_name." group.groupName)}}
 </div>
 {{yield}}

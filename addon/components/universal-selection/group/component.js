@@ -6,7 +6,11 @@ const ENTITIES_ICONS = {
   stream: 'upf-icon--monitor',
   list: 'upf-icon--search',
   mailing: 'upf-icon--inbox',
-  campaign: 'upf-icon--workflow'
+  campaign: 'upf-icon--workflow',
+  discount_plan: {
+    type: 'font-awesome',
+    name: 'fa-tags'
+  }
 };
 
 export default Component.extend({
@@ -14,7 +18,7 @@ export default Component.extend({
 
   classNames: ['universal-selection-group'],
 
-  iconName: computed('item', function() {
+  icon: computed('item', function() {
     return ENTITIES_ICONS[(this.group.groupName.toLowerCase())];
   })
 });
