@@ -7,7 +7,10 @@ const ENTITIES_ICONS = {
   list: 'upf-icon--search',
   mailing: 'upf-icon--inbox',
   campaign: 'upf-icon--workflow',
-  discount_plan: 'upf-icon--crm'
+  discount_plan: {
+    type: 'font-awesome',
+    name: 'fa-tags'
+  }
 };
 
 export default Component.extend({
@@ -15,7 +18,7 @@ export default Component.extend({
   tagNames: ['li'],
   classNames: ['universal-selection-option'],
 
-  iconName: computed('item', function() {
+  icon: computed('item', function() {
     return ENTITIES_ICONS[(this.option.type)];
   })
 });

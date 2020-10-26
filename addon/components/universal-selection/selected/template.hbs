@@ -1,3 +1,7 @@
-  <span class="universal-selection-option__icon text-size-4 upf-icon {{iconName}}">
-  </span> 
-  <span class="universal-selection__selection">{{option.name}}</span>
+{{#if (eq icon.type "font-awesome")}}
+  <i class="universal-selection-option__icon fa {{icon.name}}"></i>
+{{else}}
+  <span class="universal-selection-option__icon text-size-4 upf-icon {{icon}}">
+  </span>
+{{/if}}
+<span class="universal-selection__selection">{{option.name}}</span>
