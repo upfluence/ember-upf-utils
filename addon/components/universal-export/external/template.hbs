@@ -20,9 +20,13 @@
 </div>
 
 <div class="modal-footer">
+  {{log current}}
   {{#loading-button
     current slowAction="submit" initiallyDisabled=disabledExport
     class="margin-left-xx-sm upf-btn upf-btn--primary"}}
-    {{t "export_influencers.export.cta" currentType=current.type}}
+    {{t "export_influencers.export.cta"}}
+    {{#if current}}
+      {{t (concat "export_influencers.export." current.type)}}
+    {{/if}}
   {{/loading-button}}
 </div>

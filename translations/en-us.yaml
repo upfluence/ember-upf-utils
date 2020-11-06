@@ -7,7 +7,12 @@ export_influencers:
     file: File
   export:
     description: Export a selection of influencers to a list, emailing, campaign or stream
-    cta: Move to {currentType}
+    cta: Move to
+    list: list
+    stream: stream
+    campaign: campaign
+    mailing: mailing
+    discount_plan: discount offer
     create: "Create {searchText} {entity}"
     influencers: influencers
     matches: matches
