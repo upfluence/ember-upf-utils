@@ -21,11 +21,15 @@ export default {
   scope: DEFAULTS.scope,
   notificationWait: DEFAULTS.notificationWait,
 
+  __initialized__: false,
+
   load(config) {
     for (let property in this) {
       if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
         this[property] = getWithDefault(config, property, DEFAULTS[property]);
       }
     }
+
+    this.__initialized__ = true;
   }
 };
