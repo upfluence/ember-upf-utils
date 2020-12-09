@@ -6,6 +6,8 @@ import layout from './template';
 
 const EXTERNAL_EXPORTS = ['list', 'mailing', 'campaign', 'stream'];
 
+const INFLUENCER_NETWORK_MODAL_COOKIE = "upf_disable_influencer_modal";
+
 export default Component.extend({
   layout,
 
@@ -29,6 +31,16 @@ export default Component.extend({
 
   currentWindow: 'file',
   filters: [],
+  hideInfluencerNetwork: false,
+
+  hasDisabledInfluencerNetworkModal: computed(function() {
+    const cookieValue = document.cookie
+      .split('; ')
+      .find(row => row.startsWith(INFLUENCER_NETWORK_MODAL_COOKIE))
+      .split('=')[1];
+
+    return cookieValue;
+  }),
 
   init() {
     this._super();
@@ -103,8 +115,23 @@ export default Component.extend({
   },
 
   actions: {
+    dontShowInfluencerNetworkModal(disableModal) {
+      this.toggleProperty('hasDisabledInfluencerNetworkModal');
+
+      if(disableModal) {
+        document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=true`;
+        return;
+      }
+
+      document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=`;
+    },
+
     setCurrent(tab) {
       this.set('currentWindow', tab);
+    },
+
+    closeInfluencerNetworkModal() {
+      this.toggleProperty('hideInfluencerNetwork')
     },
 
     performExport(to, defer) {
@@ -131,6 +158,7 @@ export default Component.extend({
             'Export completed',
             this._toastConfig
           );
+          this.toggleProperty('hideInfluencerNetwork')
         }
 
         this._exported();
