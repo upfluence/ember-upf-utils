@@ -118,12 +118,7 @@ export default Component.extend({
     dontShowInfluencerNetworkModal(disableModal) {
       this.toggleProperty('hasDisabledInfluencerNetworkModal');
 
-      if(disableModal) {
-        document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=true`;
-        return;
-      }
-
-      document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=`;
+      document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=${disableModal ? true : ''}`;
     },
 
     setCurrent(tab) {
