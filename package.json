@@ -37,6 +37,7 @@
     "ember-tether": "^1.0.0-beta.2",
     "ember-uploader": "^2.x",
     "emberx-select": "^3.0.1",
+    "moment": "^2.29.1",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
