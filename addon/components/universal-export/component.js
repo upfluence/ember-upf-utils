@@ -29,7 +29,7 @@ export default Component.extend({
 
   currentWindow: 'file',
   filters: [],
-  hideInfluencerNetwork: false,
+  hideInfluencerNetwork: true,
 
   init() {
     this._super();
