@@ -1,0 +1,30 @@
+{{#modal-view hidden=hideInfluencerNetwork closeAction=closeInfluencerNetworkModal centered=true
+  borderlessHeader=true title=(t "influencer_network.modal.title") container="body"}}
+  <div class="modal-body text-center">
+    <p class="text-size-7">
+      <b>{{t "influencer_network.modal.title2"}}</b>
+    </p>
+    <p class="text-size-5 text-color-default-lighter padding-left-md padding-right-md">
+      {{t "influencer_network.modal.subtitle"}}
+    </p>
+
+    <div>
+      <a {{action "closeInfluencerNetworkModal"}} target="_blank" class="upf-btn upf-btn--default margin-top-x-sm margin-bottom-x-sm margin-right-xx-sm">
+        {{t "influencer_network.modal.skip"}}
+      </a>
+      <a href="http://help.upfluence.co" target="_blank" class="upf-btn upf-btn--primary margin-top-x-sm margin-bottom-x-sm">
+        {{t "influencer_network.modal.learn_more"}}
+      </a>
+    </div>
+
+    <div>
+    {{#input-wrapper class="influencer-network-checkbox"}}
+      {{#upf-checkbox value=hasDisabledInfluencerNetworkModal hasLabel=true onValueChange=(action "dontShowInfluencerNetworkModal")}}
+        <span>
+          {{t "influencer_network.modal.dont_show"}}
+        </span>
+      {{/upf-checkbox}}
+    {{/input-wrapper}}
+    </div>
+  </div>
+{{/modal-view}}
