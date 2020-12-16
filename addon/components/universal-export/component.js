@@ -140,7 +140,7 @@ export default Component.extend({
             this._toastConfig
           );
 
-          if(hasEmailRevealScope) {
+          if(this.hasEmailRevealScope) {
             this.toggleProperty('hideInfluencerNetworkModal');
           }
         }
