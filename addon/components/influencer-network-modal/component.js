@@ -24,7 +24,7 @@ export default Component.extend({
     },
 
     closeInfluencerNetworkModal() {
-      this.toggleProperty('hideInfluencerNetwork')
+      this.toggleProperty('hideInfluencerNetworkModal')
     }
   }
 });

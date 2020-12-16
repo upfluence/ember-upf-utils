@@ -29,10 +29,18 @@ export default Component.extend({
 
   currentWindow: 'file',
   filters: [],
-  hideInfluencerNetwork: true,
+  hideInfluencerNetworkModal: true,
+  hasEmailRevealScope: false,
 
   init() {
     this._super();
+
+    this.get('currentUser').fetch().then((response) => {
+      this.set(
+        'hasEmailRevealScope',
+        response.user.granted_scopes.includes('reveal_email')
+      );
+    });
 
     this.get('exports').getAvailableExports().then((availableExports) => {
       this.set(
@@ -131,7 +139,10 @@ export default Component.extend({
             'Export completed',
             this._toastConfig
           );
-          this.toggleProperty('hideInfluencerNetwork')
+
+          if(hasEmailRevealScope) {
+            this.toggleProperty('hideInfluencerNetworkModal');
+          }
         }
 
         this._exported();
