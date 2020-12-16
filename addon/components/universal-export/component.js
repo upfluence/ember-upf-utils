@@ -29,9 +29,18 @@ export default Component.extend({
 
   currentWindow: 'file',
   filters: [],
+  hideInfluencerNetworkModal: true,
+  hasEmailRevealScope: false,
 
   init() {
     this._super();
+
+    this.get('currentUser').fetch().then((response) => {
+      this.set(
+        'hasEmailRevealScope',
+        response.user.granted_scopes.includes('reveal_email')
+      );
+    });
 
     this.get('exports').getAvailableExports().then((availableExports) => {
       this.set(
@@ -47,7 +56,6 @@ export default Component.extend({
 
       this.set('currentWindow', this.tabs.external ? 'external' : 'file');
     });
-
 
     ['file', 'external'].forEach((e) => {
       defineProperty(
@@ -131,6 +139,10 @@ export default Component.extend({
             'Export completed',
             this._toastConfig
           );
+
+          if(this.hasEmailRevealScope) {
+            this.toggleProperty('hideInfluencerNetworkModal');
+          }
         }
 
         this._exported();

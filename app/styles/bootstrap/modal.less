@@ -3,3 +3,21 @@
     top: 46% !important;
     margin: 0 auto !important;
 }
+
+.influencer-network-checkbox {
+  width: 220px;
+  margin: auto;
+
+  .upf-checkbox__label {
+    position: unset;
+    margin-left: @spacing-xxx-sm;
+  }
+
+  .upf-checkbox--has-label {
+    left: unset;
+  }
+
+  .upf-checkbox__input:checked + .upf-checkbox__fake-checkbox:after {
+    left: 31px;
+  }
+}
