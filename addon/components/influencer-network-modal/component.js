@@ -22,9 +22,5 @@ export default Component.extend({
 
       document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=${disableModal ? true : ''}`;
     },
-
-    closeInfluencerNetworkModal() {
-      this.toggleProperty('hideInfluencerNetworkModal')
-    }
   }
 });
