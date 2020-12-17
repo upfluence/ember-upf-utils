@@ -12,6 +12,7 @@ export default Component.extend({
   selectionStorage: service(),
   exports: service(),
   toast: service(),
+  currentUser: service(),
 
   _toastConfig: {
     timeOut: 0,
@@ -147,6 +148,10 @@ export default Component.extend({
 
         this._exported();
       });
+    },
+
+    toggleInfluencerNetworkModal() {
+      this.toggleProperty('hideInfluencerNetworkModal')
     },
 
     performFileExport(format, type) {
