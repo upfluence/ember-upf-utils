@@ -12,7 +12,6 @@ export default Component.extend({
   selectionStorage: service(),
   exports: service(),
   toast: service(),
-  currentUser: service(),
 
   _toastConfig: {
     timeOut: 0,
@@ -30,18 +29,9 @@ export default Component.extend({
 
   currentWindow: 'file',
   filters: [],
-  hideInfluencerNetworkModal: true,
-  hasEmailRevealScope: false,
 
   init() {
     this._super();
-
-    this.get('currentUser').fetch().then((response) => {
-      this.set(
-        'hasEmailRevealScope',
-        response.user.granted_scopes.includes('reveal_email')
-      );
-    });
 
     this.get('exports').getAvailableExports().then((availableExports) => {
       this.set(
@@ -140,18 +130,10 @@ export default Component.extend({
             'Export completed',
             this._toastConfig
           );
-
-          if(this.hasEmailRevealScope) {
-            this.toggleProperty('hideInfluencerNetworkModal');
-          }
         }
 
         this._exported();
       });
-    },
-
-    toggleInfluencerNetworkModal() {
-      this.toggleProperty('hideInfluencerNetworkModal')
     },
 
     performFileExport(format, type) {
