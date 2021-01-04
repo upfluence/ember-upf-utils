@@ -1,40 +1,39 @@
 {{#if multiple}}
-  {{#power-select-multiple
-    triggerClass=triggerClass selectedItemComponent=selectedItemComponent
-    onopen=onopen groupComponent=groupComponent search=search options=items
-    selected=(unless disabled selection) placeholder=placeholder
-    renderInPlace=renderInPlace disabled=disabled searchField=sortField
-    oninput=(action "updateSearchTerm") onchange=(action (mut selection))
-    onkeydown=(action "keyPress") registerAPI=(action (mut publicApi))
-    optionsComponent=(if optionsComponent optionsComponent)
-    afterOptionsComponent=(if _createItemComponent (
+  <PowerSelectMultiple
+    @triggerClass={{triggerClass}} @selectedItemComponent={{selectedItemComponent}}
+    @onOpen={{onopen}} @groupComponent={{groupComponent}} @search={{search}} @options={{items}}
+    @selected={{unless disabled selection}} @placeholder={{placeholder}}
+    @renderInPlace={{renderInPlace}} disabled={{disabled}} searchField={{sortField}}
+    @onInput={{action "updateSearchTerm"}} @onChange={{action (mut selection)}}
+    @onKeydown={{action "keyPress"}} @registerAPI={{action (mut publicApi)}}
+    @optionsComponent={{if optionsComponent optionsComponent}}
+    @afterOptionsComponent={{if _createItemComponent (
       component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder
       createItem=(action "createItem")
-    )) as |item|}}
+    )}} as |item|>
     {{#if (has-block)}}
       {{yield (hash option=item)}}
     {{else}}
       {{get item optionLabelPath}}
     {{/if}}
-  {{/power-select-multiple}}
+  </PowerSelectMultiple>
 {{else}}
-  {{#power-select
-    triggerClass=triggerClass selectedItemComponent=selectedItemComponent
-    onopen=onopen groupComponent=groupComponent search=search options=items
-    selected=selection onchange=(action (mut selection))
-    onkeydown=(action "keyPress") value=optionValuePath allowClear=allowClear
-    placeholder=placeholder renderInPlace=renderInPlace disabled=disabled
-    searchField=sortField oninput=(action "updateSearchTerm")
-    registerAPI=(action (mut publicApi))
-    optionsComponent=(if optionsComponent optionsComponent)
-    afterOptionsComponent=(if _createItemComponent (
+  <PowerSelect
+    @triggerClass={{triggerClass}} @selectedItemComponent={{if selectedItemComponent selectedItemComponent}}
+    @onOpen={{onopen}} @groupComponent={{groupComponent}} @search={{search}} @options={{items}}
+    @selected={{selection}} @onChange={{action (mut selection)}} @onKeydown={{action "keyPress"}}
+    @value={{optionValuePath}} @allowClear={{allowClear}} @placeholder={{placeholder}}
+    renderInPlace={{renderInPlace}} disabled={{disabled}} @searchField={{sortField}}
+    @onInput={{action "updateSearchTerm"}} @registerAPI={{action (mut publicApi)}}
+    @optionsComponent=(if optionsComponent optionsComponent)
+    @afterOptionsComponent={{if _createItemComponent (
       component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder
       createItem=(action "createItem"))
-    ) as |item|}}
+    }} as |item|>
      {{#if (has-block)}}
        {{yield (hash option=item)}}
      {{else}}
        {{get item optionLabelPath}}
      {{/if}}
-  {{/power-select}}
+  </PowerSelect>
 {{/if}}
