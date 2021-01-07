@@ -3,7 +3,7 @@
     @triggerClass={{triggerClass}} @selectedItemComponent={{selectedItemComponent}}
     @onOpen={{onopen}} @groupComponent={{groupComponent}} @search={{search}} @options={{items}}
     @selected={{unless disabled selection}} @placeholder={{placeholder}}
-    @renderInPlace={{renderInPlace}} disabled={{disabled}} searchField={{sortField}}
+    @renderInPlace={{renderInPlace}} @disabled={{disabled}} searchField={{sortField}}
     @onInput={{action "updateSearchTerm"}} @onChange={{action (mut selection)}}
     @onKeydown={{action "keyPress"}} @registerAPI={{action (mut publicApi)}}
     @optionsComponent={{if optionsComponent optionsComponent}}
@@ -23,9 +23,9 @@
     @onOpen={{onopen}} @groupComponent={{groupComponent}} @search={{search}} @options={{items}}
     @selected={{selection}} @onChange={{action (mut selection)}} @onKeydown={{action "keyPress"}}
     @value={{optionValuePath}} @allowClear={{allowClear}} @placeholder={{placeholder}}
-    renderInPlace={{renderInPlace}} disabled={{disabled}} @searchField={{sortField}}
+    @renderInPlace={{renderInPlace}} @disabled={{disabled}} @searchField={{sortField}}
     @onInput={{action "updateSearchTerm"}} @registerAPI={{action (mut publicApi)}}
-    @optionsComponent=(if optionsComponent optionsComponent)
+    @optionsComponent={{if optionsComponent optionsComponent}}
     @afterOptionsComponent={{if _createItemComponent (
       component _createItemComponent publicApi=(readonly publicApi) createButtonTextTemplate=createOptionPlaceholder
       createItem=(action "createItem"))
