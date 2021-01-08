@@ -10,7 +10,7 @@ export_influencers:
     cta: Move to
     list: list
     stream: stream
-    info: The influencers you are going to move will be automatically added to your Influencer Network.
+    info: The influencers you are moving will be added to the IRM to grow your Influencer Network.
     campaign: campaign
     mailing: mailing
     discount_plan: discount offer
@@ -32,8 +32,8 @@ influencer_network:
     title: Influencer Network
     title2: Influencer has been added to your network
     subtitle: |
-                By adding this influencer to your list, it was automatically added to your Influencers Network.
-                You can access and edit your network in your IRM.
+                By adding this influencer to your list, they will be added to the IRM to grow your Influencer Network.
+                You can access and edit your Network in the IRM.
     skip: Skip
     learn_more: Learn More
     dont_show: Don't show me this again
