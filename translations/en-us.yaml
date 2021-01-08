@@ -10,7 +10,7 @@ export_influencers:
     cta: Move to
     list: list
     stream: stream
-    info: The influencers you are going to move will be automatically added to your Influencer Network.
+    info: The influencers you are moving will be added to the IRM to grow your Influencer Network.
     campaign: campaign
     mailing: mailing
     discount_plan: discount offer
