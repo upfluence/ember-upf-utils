@@ -2,7 +2,7 @@
   <PowerSelect
     @allowClear=true @options={{ownerships}} @selected={{ownership}}
     @onChange={{action (mut ownership)}} @renderInPlace=true
-    @searchEnabled=false @placeholder={{t "ownership_selection.placeholder"}} as |o|>
+    @placeholder={{t "ownership_selection.placeholder"}} as |o|>
     {{o.name}}
   </PowerSelect>
 {{/if}}
