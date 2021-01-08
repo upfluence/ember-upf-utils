@@ -1,8 +1,8 @@
 {{#if multiple}}
   <PowerSelectMultiple
     @triggerClass={{triggerClass}} @selectedItemComponent={{selectedItemComponent}}
-    @onOpen={{onopen}} @groupComponent={{groupComponent}} @search={{search}} @options={{items}}
-    @selected={{unless disabled selection}} @placeholder={{placeholder}}
+    @onOpen={{onopen}} @groupComponent={{groupComponent}} @searchEnabled="true"
+    @search={{search}} @options={{items}} @selected={{unless disabled selection}} @placeholder={{placeholder}}
     @renderInPlace={{renderInPlace}} @disabled={{disabled}} searchField={{sortField}}
     @onInput={{action "updateSearchTerm"}} @onChange={{action (mut selection)}}
     @onKeydown={{action "keyPress"}} @registerAPI={{action (mut publicApi)}}
@@ -20,9 +20,9 @@
 {{else}}
   <PowerSelect
     @triggerClass={{triggerClass}} @selectedItemComponent={{if selectedItemComponent selectedItemComponent}}
-    @onOpen={{onopen}} @groupComponent={{groupComponent}} @search={{search}} @options={{items}}
-    @selected={{selection}} @onChange={{action (mut selection)}} @onKeydown={{action "keyPress"}}
-    @value={{optionValuePath}} @allowClear={{allowClear}} @placeholder={{placeholder}}
+    @onOpen={{onopen}} @groupComponent={{groupComponent}} @searchEnabled="true"
+    @search={{search}} @options={{items}} @selected={{selection}} @onChange={{action (mut selection)}}
+    @onKeydown={{action "keyPress"}} @value={{optionValuePath}} @allowClear={{allowClear}} @placeholder={{placeholder}}
     @renderInPlace={{renderInPlace}} @disabled={{disabled}} @searchField={{sortField}}
     @onInput={{action "updateSearchTerm"}} @registerAPI={{action (mut publicApi)}}
     @optionsComponent={{if optionsComponent optionsComponent}}
