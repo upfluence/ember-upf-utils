@@ -20,4 +20,14 @@ export default class CountryChooserComponent extends Component {
   get countryCodes() {
     return (this._selection || []).map((x) => x.id);
   }
+
+  get onCountrySelection() {
+    if (!this.args.onCountrySelection) {
+      throw new Error(
+        '[component][country-chooser] Please provide a onCountrySelection action'
+      );
+    }
+
+    return this.args.onCountrySelection;
+  }
 }
