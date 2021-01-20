@@ -4,7 +4,7 @@
     @onOpen={{onopen}} @groupComponent={{groupComponent}} @searchEnabled="true"
     @search={{search}} @options={{items}} @selected={{unless disabled selection}} @placeholder={{placeholder}}
     @renderInPlace={{renderInPlace}} @disabled={{disabled}} searchField={{sortField}}
-    @onInput={{action "updateSearchTerm"}} @onChange={{action (mut selection)}}
+    @onInput={{action "updateSearchTerm"}} @onChange={{action "updateSelection"}}
     @onKeydown={{action "keyPress"}} @registerAPI={{action (mut publicApi)}}
     @optionsComponent={{if optionsComponent optionsComponent}}
     @afterOptionsComponent={{if _createItemComponent (
@@ -21,7 +21,7 @@
   <PowerSelect
     @triggerClass={{triggerClass}} @selectedItemComponent={{if selectedItemComponent selectedItemComponent}}
     @onOpen={{onopen}} @groupComponent={{groupComponent}} @searchEnabled="true"
-    @search={{search}} @options={{items}} @selected={{selection}} @onChange={{action (mut selection)}}
+    @search={{search}} @options={{items}} @selected={{selection}} @onChange={{action "updateSelection"}}
     @onKeydown={{action "keyPress"}} @value={{optionValuePath}} @allowClear={{allowClear}} @placeholder={{placeholder}}
     @renderInPlace={{renderInPlace}} @disabled={{disabled}} @searchField={{sortField}}
     @onInput={{action "updateSearchTerm"}} @registerAPI={{action (mut publicApi)}}

@@ -86,6 +86,14 @@ export default Component.extend({
   },
 
   actions: {
+    updateSelection(v) {
+      this.set('selection', v);
+
+      if (this.onSelect) {
+        this.onSelect(v);
+      }
+    },
+
     updateSearchTerm(term) {
       this.set('searchTerm', term);
     },
