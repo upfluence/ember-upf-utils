@@ -2,6 +2,15 @@
   "name": "@upfluence/ember-upf-utils",
   "version": "3.0.13",
   "description": "The default blueprint for ember-cli addons.",
+  "repository": "https://github.com/upfluence/ember-upf-utils",
+  "license": "MIT",
+  "author": "",
+  "keywords": [
+    "ember-addon"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
@@ -75,12 +84,6 @@
     "@babel/helper-compilation-targets": "7.9.6",
     "bootstrap": "^3.3.7"
   },
-  "keywords": [
-    "ember-addon"
-  ],
-  "repository": "https://github.com/upfluence/ember-upf-utils",
-  "license": "MIT",
-  "author": "",
   "directories": {
     "doc": "doc",
     "test": "tests"
