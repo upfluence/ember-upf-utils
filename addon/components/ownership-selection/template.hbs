@@ -1,8 +1,8 @@
 {{#if display}}
-  {{#power-select 
-    allowClear=true options=ownerships selected=ownership 
-    onchange=(action (mut ownership)) renderInPlace=true 
-    searchEnabled=false placeholder=(t "ownership_selection.placeholder") as |o|}}
+  <PowerSelect
+    @allowClear=true @options={{ownerships}} @selected={{ownership}}
+    @onChange={{action (mut ownership)}} @renderInPlace=true
+    @placeholder={{t "ownership_selection.placeholder"}} as |o|>
     {{o.name}}
-  {{/power-select}}
+  </PowerSelect>
 {{/if}}

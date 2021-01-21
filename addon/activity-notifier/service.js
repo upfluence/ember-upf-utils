@@ -103,7 +103,7 @@ export default Service.extend({
   },
 
   displayNotifications(notifications) {
-    notifications.forEach((n) => {
+    (notifications || []).forEach((n) => {
       let d = this.buildNotification(n);
 
       if (!d) {

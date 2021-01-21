@@ -10,6 +10,7 @@
   optionValuePath="content.identifier"
   placeholder=placeholder allowClear=true search=(action "searchEntities")
   canCreate=canCreate createItemComponent=createItemComponent
+  renderInPlace=true
   didCreate=null as |opt|}}
   {{universal-selection/option item=opt.option}}
 {{/item-chooser}}

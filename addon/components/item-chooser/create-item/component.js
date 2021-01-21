@@ -22,7 +22,7 @@ export default Component.extend({
     createItem(_, defer) {
       defer.promise.then(() => this.select.actions.close());
 
-      this.createItem(_, defer);
+      this.createItem(_, {}, defer);
     }
   }
 });
