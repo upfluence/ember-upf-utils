@@ -20,5 +20,7 @@ export default [
   'BRL',
   'ZAR',
   'IDR',
-  'PHP'
+  'PHP',
+  'COP',
+  'THB'
 ];
