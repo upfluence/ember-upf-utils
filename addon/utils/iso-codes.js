@@ -21,6 +21,5 @@ export default [
   'ZAR',
   'IDR',
   'PHP',
-  'COP',
   'THB'
 ];
