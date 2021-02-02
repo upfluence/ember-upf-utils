@@ -3,7 +3,7 @@
     @triggerClass={{triggerClass}} @selectedItemComponent={{selectedItemComponent}}
     @onOpen={{onopen}} @groupComponent={{groupComponent}} @searchEnabled="true"
     @search={{search}} @options={{items}} @selected={{unless disabled selection}} @placeholder={{placeholder}}
-    @renderInPlace={{renderInPlace}} @disabled={{disabled}} searchField={{sortField}}
+    @renderInPlace={{renderInPlace}} @disabled={{disabled}} @searchField={{sortField}}
     @onInput={{action "updateSearchTerm"}} @onChange={{action "updateSelection"}}
     @onKeydown={{action "keyPress"}} @registerAPI={{action (mut publicApi)}}
     @optionsComponent={{if optionsComponent optionsComponent}}
