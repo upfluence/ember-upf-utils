@@ -29,7 +29,7 @@ export default class CountryChooserComponent extends Component {
     return this.codes.findBy('id', this.countryCode);
   }
 
-  // This is because having a getter forces us to have a setter when wwriting a
+  // This is because having a getter forces us to have a setter when writing a
   // in an attribute. The value change is still performed.
   set _selection(v) {}
 
