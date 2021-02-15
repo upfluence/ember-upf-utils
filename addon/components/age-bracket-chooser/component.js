@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
 import layout from './template';
 
 const AUDIENCE_AGE_BRACKETS = [
@@ -24,29 +23,18 @@ export default Component.extend({
 
   _selection: null,
 
-  ageBracket: computed('_selection', {
-    get() {
-      return (this._selection || {}).name;
-    },
-
-    set(_, value) {
-      this.set('_selection', AUDIENCE_AGE_BRACKETS.find((x) => x.name === value));
-
-      return value;
+  didReceiveAttrs() {
+    if (this.multiple) {
+      this.set(
+        '_selection',
+        (this.ageBrackets || []).map((v) => {
+          return AUDIENCE_AGE_BRACKETS.findBy('name', v);
+        })
+      );
+    } else {
+      this.set(
+        '_selection', AUDIENCE_AGE_BRACKETS.findBy('name', this.ageBracket)
+      );
     }
-  }),
-
-  ageBrackets: computed('_selection.[]', {
-    get() {
-      return (this._selection || []).map((x) => x.name);
-    },
-
-    set(_, value) {
-      this.set('_selection', (value || []).map((v) => {
-        return AUDIENCE_AGE_BRACKETS.find((x) => x.name === v);
-      }));
-      
-      return value;
-    }
-  })
+  }
 });
