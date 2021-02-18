@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { observer } from '@ember/object';
-import { isNone } from '@ember/utils';
 import layout from '../templates/components/modal-view';
 
 export default Component.extend({
@@ -25,16 +24,18 @@ export default Component.extend({
     }
   }),
 
+  _handleEscapeKey(event) {
+    if (event.keyCode === 27) {
+      this.closeModal(event);
+    }
+  },
+
   didInsertElement() {
     if(!this.get('hidden')) {
       this._setupModal();
     }
 
-    this.$().keyup((e) => {
-      if (e.which === 27) {
-        this.closeModal(e);
-      }
-    });
+    this.element.addEventListener('keydown', this._handleEscapeKey.bind(this));
 
     this.$('button#close-x').click((e) => this.closeModal(e));
   },
@@ -56,5 +57,6 @@ export default Component.extend({
 
   willDestroyElement() {
     this.$(this.element).modal('hide');
+    this.element.removeEventListener('keydown', this._handleEscapeKey.bind(this));
   }
 });
