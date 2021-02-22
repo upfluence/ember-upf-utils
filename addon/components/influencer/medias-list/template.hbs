@@ -1,7 +1,14 @@
 {{#each orderedMedias as |media|}}
   <div class='community-row text-size-6 text-color-default-light'>
     <div class='community-row--line'>
-      <span class='color-{{media.type}}'><i class="fa fa-{{media.icon}}"></i></span>
+      <span class='color-{{media.type}}'>
+        <span class="fa-stack">
+          <i class="fa fa-{{media.icon}}"></i>
+          {{#if media.verified}}
+            <i class="fa fa-check fa-stack-2x"></i>
+          {{/if}}
+        </span>
+      </span>
       <span title={{media.communitySlug}}
             data-toggle='tooltip'
             data-placement='bottom'>
