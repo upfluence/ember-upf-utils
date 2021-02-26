@@ -37,7 +37,10 @@ jobs:
         steps.cache-dependencies.outputs.cache-hit != 'true'
 
     - name: Test
-      run: yarn test:ember --launch ${{ matrix.browser }}
+      uses: mydea/ember-cli-code-coverage-action@v1
+      with:
+        test-command: yarn test:ember-coverage --launch ${{ matrix.browser }}
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
   release:
     name: Release Package
