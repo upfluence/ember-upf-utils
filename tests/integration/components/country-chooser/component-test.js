@@ -7,10 +7,12 @@ module('Integration | Component | country-chooser', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it throws an error if no onCountrySelection action is passed', async function(assert) {
-    setupOnerror(() => {
-      assert.throws(function() {
-        throw new Error('[component][country-chooser] Please provide a onCo')
-      }, 'Throws as an error about missing onCountrySelection action.');
+    setupOnerror((err) => {
+      assert.equal(
+        err.message,
+        '[component][country-chooser] Please provide a onCountrySelection action',
+        'Throws as an error about missing onCountrySelection action.'
+      );
     });
 
     await render(hbs`<CountryChooser />`);
