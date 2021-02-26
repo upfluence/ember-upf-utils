@@ -16,6 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '${{ env.NODE_VERSION }}'
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -26,9 +29,6 @@ jobs:
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '${{ env.NODE_VERSION }}'
     - uses: webfactory/ssh-agent@v0.5.0
       with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
