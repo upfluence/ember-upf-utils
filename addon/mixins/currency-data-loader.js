@@ -5,7 +5,7 @@ import { formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';
 
 export function price(dependentKey, options = {}) {
   return computed(dependentKey, 'currencyData.{currency,rate}', function() {
-    if (this.get('currencyData') === null) {
+    if (this.currencyData === null) {
       throw "'price' computed must be used with the CurrencyDataLoaderMixin";
     }
 
@@ -35,6 +35,6 @@ export default Mixin.create({
   didInsertElement() {
     this._super();
 
-    this.get('_currency').fetch().then((c) => this.set('currencyData', c));
+    this._currency.fetch().then((c) => this.set('currencyData', c));
   }
 });

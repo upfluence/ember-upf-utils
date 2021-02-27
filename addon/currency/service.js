@@ -9,7 +9,7 @@ export default Service.extend({
   currentUser: service(),
 
   fetch() {
-    return this.get('currentUser').fetch().then(
+    return this.currentUser.fetch().then(
       ({ user }) => {
         return {
           currency: user.currency || defaultData.currency,

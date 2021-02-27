@@ -44,18 +44,18 @@ export default Component.extend({
       short: new Limit(-1, 0)
     });
 
-    if (this.get('enableOverlapFileExport')) {
-      if (!this.get('types').findBy('key', 'overlap')) {
-        this.get('types').pushObject({ key: 'overlap', label: 'Overlap' });
+    if (this.enableOverlapFileExport) {
+      if (!this.types.findBy('key', 'overlap')) {
+        this.types.pushObject({ key: 'overlap', label: 'Overlap' });
       }
     }
 
-    if (this.get('enableFullFileExport')) {
-      if (!this.get('types').findBy('key', 'full')) {
-        this.get('types').pushObject({ key: 'full', label: 'All' });
+    if (this.enableFullFileExport) {
+      if (!this.types.findBy('key', 'full')) {
+        this.types.pushObject({ key: 'full', label: 'All' });
       }
 
-      this.get('exports').getLimit((r) => {
+      this.exports.getLimit((r) => {
         this.set('exportLimit.full', new Limit(r.limit, r.spent));
         this.set('loaded', true);
       });
@@ -71,19 +71,19 @@ export default Component.extend({
     'exportLimit.@each.spent',
     'selectedCount',
     function() {
-      let limitPath = `exportLimit.${this.get('selectedType')}.limit`;
-      let spentPath = `exportLimit.${this.get('selectedType')}.spent`;
+      let limitPath = `exportLimit.${this.selectedType}.limit`;
+      let spentPath = `exportLimit.${this.selectedType}.spent`;
 
       if (this.get(limitPath) === -1) {
         return false;
       }
 
-      return (this.get(spentPath) + this.get('selectedCount')) > this.get(limitPath);
+      return (this.get(spentPath) + this.selectedCount) > this.get(limitPath);
     }
   ),
 
   btnLocked: computed('loaded', 'limitReached', function() {
-    return !this.get('loaded') || this.get('limitReached');
+    return !this.loaded || this.limitReached;
   }),
 
   actions: {
@@ -103,7 +103,7 @@ export default Component.extend({
     submit() {
       this.triggerAction({
         action: 'performFileExport',
-        actionContext: [this.get('selectedFormat'), this.get('selectedType')]
+        actionContext: [this.selectedFormat, this.selectedType]
       });
     }
   }

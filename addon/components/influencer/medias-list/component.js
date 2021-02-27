@@ -79,24 +79,17 @@ export default Component.extend({
   }),
 
   orderedMedias: computed(
-    'blog',
-    'facebook',
-    'twitter',
-    'youtube',
-    'instagram',
-    'tiktok',
-    'pinterest',
-    'twitch',
+    'blog', 'facebook', 'instagram', 'pinterest', 'profile', 'tiktok', 'twitch', 'twitter', 'youtube',
     function() {
       return [
-        this.get('blog'),
-        this.get('facebook'),
-        this.get('twitter'),
-        this.get('youtube'),
-        this.get('instagram'),
-        this.get('tiktok'),
-        this.get('pinterest'),
-        this.get('twitch'),
+        this.blog,
+        this.facebook,
+        this.twitter,
+        this.youtube,
+        this.instagram,
+        this.tiktok,
+        this.pinterest,
+        this.twitch,
       ].filter(e => e.communitySize != null) // Filter medias that are empty
         .sort((a, b) => {
           if (a.type === 'twitch') { return -1; }
@@ -106,7 +99,7 @@ export default Component.extend({
         .reverse()
         .splice(0, 3)
         .map((media) => {
-          media['model'] = this.get('profile').get(media['type']);
+          media['model'] = this.profile.get(media['type']);
           return media;
         }); // Take only the 3 first elements
     }

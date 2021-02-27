@@ -12,11 +12,11 @@ export default Component.extend(CurrencyDataLoaderMixin, {
   roundPrecision: 2,
 
   formattedPrice: computed('price', 'currencyData.{currency,rate}', 'useFormatter', 'roundPrecision', function() {
-    return formatPrice([this.get('price')], {
+    return formatPrice([this.price], {
       rate: this.get('currencyData.rate'),
       currency: this.get('currencyData.currency'),
-      useFormatter: this.get('useFormatter'),
-      roundPrecision: this.get('roundPrecision')
+      useFormatter: this.useFormatter,
+      roundPrecision: this.roundPrecision
     });
   })
 });

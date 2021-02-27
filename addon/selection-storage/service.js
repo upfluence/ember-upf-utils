@@ -1,4 +1,5 @@
 /* globals window */
+import { set } from '@ember/object';
 import { alias } from '@ember/object/computed';
 
 import Service from '@ember/service';
@@ -14,8 +15,8 @@ export default Service.extend({
   init() {
     this._super();
     this._store = window.localStorage;
-    this._cache = {};
-    this._length = 0;
+    set(this, '_cache', {});
+    set(this, '_length', 0);
     this._loaded = false;
     this.load();
   },
@@ -31,7 +32,7 @@ export default Service.extend({
 
   length: alias('_length'),
 
-  all: computed('_length', function() {
+  all: computed('_cache', '_length', function() {
     return Object.keys(this._cache);
   }),
 
@@ -49,7 +50,7 @@ export default Service.extend({
 
     // Invalid data
     let currentScopeIds = data.ids.filter((id) => {
-      return id.split(':')[0] === this.get('storageScope');
+      return id.split(':')[0] === this.storageScope;
     });
     if (this._is_expired(data.date) && currentScopeIds.length > 0) {
       this.clear();
@@ -58,21 +59,21 @@ export default Service.extend({
     }
 
     currentScopeIds.forEach((v) => this._cache[v] = true);
-    this._length = currentScopeIds.length;
+    set(this, '_length', currentScopeIds.length);
   },
 
   has(id) {
-    return this._cache[`${this.get('storageScope')}:${id}`] || false;
+    return this._cache[`${this.storageScope}:${id}`] || false;
   },
 
   add(id) {
-    this._cache[`${this.get('storageScope')}:${id}`] = true;
+    this._cache[`${this.storageScope}:${id}`] = true;
 
     run.debounce(this, this._persist, 300);
   },
 
   remove(id) {
-    delete this._cache[`${this.get('storageScope')}:${id}`];
+    delete this._cache[`${this.storageScope}:${id}`];
 
     run.debounce(this, this._persist, 300);
   },
@@ -80,7 +81,7 @@ export default Service.extend({
   clear() {
     Object.keys(this._cache).forEach((key) => {
       let [scope] = key.split(':');
-      if (scope === this.get('storageScope')) {
+      if (scope === this.storageScope) {
         delete this._cache[key];
       }
     });
@@ -103,7 +104,7 @@ export default Service.extend({
 
     this._store.setItem(STORE_KEY, JSON.stringify(data));
     let currentScopeIds = data.ids.filter((id) => {
-      return id.split(':')[0] === this.get('storageScope');
+      return id.split(':')[0] === this.storageScope;
     });
     this.set('_length', currentScopeIds.length);
   },

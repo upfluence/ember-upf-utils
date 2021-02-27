@@ -13,8 +13,8 @@ export default LinkComponent.extend({
   active: false,
 
   _: observer('activeCell', function() {
-    this.set('active', this.get('activeCell'));
-    if (this.get('activeCell')) {
+    this.set('active', this.activeCell);
+    if (this.activeCell) {
       run.later(() => {
         document.getElementById(this.elementId).scrollIntoView({
           block: 'center'
@@ -28,7 +28,7 @@ export default LinkComponent.extend({
   },
 
   mouseLeave() {
-    if (!this.get('activeCell')) {
+    if (!this.activeCell) {
       this.set('active', false);
     }
   }

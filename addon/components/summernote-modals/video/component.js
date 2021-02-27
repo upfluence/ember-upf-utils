@@ -36,7 +36,7 @@ export default Component.extend({
     insertVideo() {
       this.get('editor-context').invoke(
         'editor.insertNode', this._buildVideoNode(
-          this.get('videoUrl'), this.get('videoType')
+          this.videoUrl, this.videoType
         )
       );
       this.sendAction('closeModal');

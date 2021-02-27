@@ -11,7 +11,8 @@ export default Component.extend({
   display: false,
 
   didInsertElement() {
-    this.get('currentUser').fetchOwnerships().then((ownerships) => {
+    this._super(...arguments);
+    this.currentUser.fetchOwnerships().then((ownerships) => {
       if (ownerships.length > 1) {
         this.set('display', true);
       }
@@ -34,7 +35,7 @@ export default Component.extend({
     this.set('_toggled', false);
     this.set(
       'ownership',
-      this.get('ownerships').find((item) => {
+      this.ownerships.find((item) => {
         return item.id === this.get('entity.ownedBy');
       })
     );

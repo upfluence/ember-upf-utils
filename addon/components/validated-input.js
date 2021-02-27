@@ -48,11 +48,11 @@ export default Component.extend({
     defineProperty(
       this,
       'validation',
-      readOnly(`model.validations.attrs.${this.get('valuePath')}`)
+      readOnly(`model.validations.attrs.${this.valuePath}`)
     );
 
     defineProperty(
-      this, 'value', alias(`model.${this.get('valuePath')}`)
+      this, 'value', alias(`model.${this.valuePath}`)
     );
   },
 

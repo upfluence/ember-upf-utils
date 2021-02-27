@@ -4,22 +4,22 @@ import moment from 'moment';
 
 export default Mixin.create({
   fullDate: computed('timestamp', function() {
-    return new Date(this.get('timestamp') * 1000).toString();
+    return new Date(this.timestamp * 1000).toString();
   }),
 
   dayMonth: computed('timestamp', function() {
     return new Date(
-      this.get('timestamp') * 1000
+      this.timestamp * 1000
     ).toLocaleDateString(
       'en-US', {day: '2-digit', month: 'short', year: 'numeric'}
     );
   }),
 
   formattedDate: computed('timestamp', function() {
-    return moment.unix(this.get('timestamp')).format('MMMM DD, YYYY');
+    return moment.unix(this.timestamp).format('MMMM DD, YYYY');
   }),
 
   sinceDate: computed('timestamp', function() {
-    return moment(moment.unix(this.get('timestamp'))).fromNow();
+    return moment(moment.unix(this.timestamp)).fromNow();
   })
 });

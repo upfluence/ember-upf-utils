@@ -12,8 +12,8 @@ export default Component.extend({
   ],
 
   cleanedValue: computed('value', function() {
-    if(this.get('value')) {
-      return this.get('value')
+    if(this.value) {
+      return this.value
         .replace("<<not-applicable>>", "")
         .replace("Nenjiang River, China", "")
         .replace("NenjiangRiver,China", "")

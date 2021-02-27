@@ -33,7 +33,7 @@ export default Component.extend({
   init() {
     this._super();
 
-    this.get('exports').getAvailableExports().then((availableExports) => {
+    this.exports.getAvailableExports().then((availableExports) => {
       this.set(
         'tabs.external',
         Object.keys(availableExports)
@@ -53,7 +53,7 @@ export default Component.extend({
         this,
         `${e}Selected`,
         computed('currentWindow', function() {
-          return this.get('currentWindow') === e;
+          return this.currentWindow === e;
         })
       );
     });
@@ -62,19 +62,17 @@ export default Component.extend({
   selectedInfluencerIds: mapBy('selectedInfluencers', 'id'),
 
   selectedCount: computed(
-    'selectedInfluencerIds',
-    'currentEntity',
-    'currentEntity.count', function() {
+    '(this.currentEntity).count', 'currentEntity.count', 'selectedInfluencerIds.length', function() {
       let idsCount = this.get('selectedInfluencerIds.length');
-      if (idsCount === 0 && this.get('currentEntity')) {
-        idsCount = get(this.get('currentEntity'), 'count');
+      if (idsCount === 0 && this.currentEntity) {
+        idsCount = (this.currentEntity).count;
       }
       return idsCount;
     }
   ),
 
   _getSelectedInfluencers() {
-    return this.get('influencers').filterBy('selected');
+    return this.influencers.filterBy('selected');
   },
 
   _toggleSelectedInfluencers() {
@@ -84,7 +82,7 @@ export default Component.extend({
   },
 
   _exported(closeModal = true) {
-    if (this.get('didExport')) {
+    if (this.didExport) {
       this.sendAction('didExport');
     }
     if (closeModal) {
@@ -107,25 +105,25 @@ export default Component.extend({
     },
 
     performExport(to, defer) {
-      let exportingFrom = `${this.get('currentEntityType')}:${this.get('currentEntity.id')}`;
+      let exportingFrom = `${this.currentEntityType}:${this.get('currentEntity.id')}`;
 
-      this.get('exports').exportToEntities(
+      this.exports.exportToEntities(
         exportingFrom,
         to,
-        this.get('selectedInfluencerIds'),
-        this.get('filters'),
+        this.selectedInfluencerIds,
+        this.filters,
       ).then((data) => {
         defer.resolve();
         this._onSuccessfullExport(to);
 
         if (data.status === 'scheduled') {
-          this.get('toast').info(
+          this.toast.info(
             `${data.total} influencers are being exported.`,
             'Export in progress',
             this._toastConfig
           );
         } else {
-          this.get('toast').success(
+          this.toast.success(
             `${data.total} influencers have been exported.`,
             'Export completed',
             this._toastConfig
@@ -137,13 +135,13 @@ export default Component.extend({
     },
 
     performFileExport(format, type) {
-      let exportingFrom = `${this.get('currentEntityType')}:${this.get('currentEntity.id')}`;
-      let url = this.get('exports').getFileExportURL(
+      let exportingFrom = `${this.currentEntityType}:${this.get('currentEntity.id')}`;
+      let url = this.exports.getFileExportURL(
         exportingFrom,
         format,
         type,
-        this.get('selectedInfluencerIds'),
-        this.get('filters')
+        this.selectedInfluencerIds,
+        this.filters
       );
 
       window.open(url, '_blank');

@@ -18,42 +18,44 @@ export default Component.extend({
   stickTo: "right",
 
   didInsertElement() {
+    this._super(...arguments);
     let hoverPanel = this.$('.hover-panel');
-    hoverPanel.addClass(this.get('side') + "_side");
-    hoverPanel.addClass(this.get('stickTo') + "_align");
+    hoverPanel.addClass(this.side + "_side");
+    hoverPanel.addClass(this.stickTo + "_align");
 
     // Set animationsaddClass
-    if (this.get('shouldAnimate') === true) {
+    if (this.shouldAnimate === true) {
       hoverPanel.addClass('animate');
     }
 
     // Insert panel
     later(() => {
-      hoverPanel.addClass(this.get('side') + "_transform");
+      hoverPanel.addClass(this.side + "_transform");
     });
 
     // Insert backdrop
-    if (this.get('backdropAction') != null) {
+    if (this.backdropAction != null) {
       this.$('.panel-backdrop').removeClass('hidden');
     }
 
     // Set panel dimensions
     hoverPanel.css({
-        'width': this.get('width'),
-        'height': this.get('height')
+        'width': this.width,
+        'height': this.height
     });
 
     // Disable scrolling
-    if (this.get("disableScrolling") === true) {
+    if (this.disableScrolling === true) {
       $('body').addClass('disable-scrolling');
     }
   },
 
   willDestroyElement() {
+this._super(...arguments);
     // Re-enable scrolling
     this.$('.hover-panel').remove();
     this.$('.panel-backdrop').addClass('hidden');
-    if (this.get("disableScrolling") === true) {
+    if (this.disableScrolling === true) {
       $('body').removeClass('disable-scrolling');
     }
   },

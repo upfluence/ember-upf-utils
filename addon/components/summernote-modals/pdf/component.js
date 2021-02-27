@@ -34,7 +34,7 @@ export default Component.extend({
     insertPDF() {
       this.get('editor-context').invoke(
         'editor.insertNode', this._buildPDFNode(
-          this.get('pdfURL')
+          this.pdfURL
         )
       );
       this.sendAction('closeModal');

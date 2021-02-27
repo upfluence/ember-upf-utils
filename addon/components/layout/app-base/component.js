@@ -13,7 +13,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super();
-    this.get('currentUser').fetch().then(
+    this.currentUser.fetch().then(
       ({ user, companies, account_subscriptions }) => {
         this.set('user', User.create(user));
         this.set('companies', companies);

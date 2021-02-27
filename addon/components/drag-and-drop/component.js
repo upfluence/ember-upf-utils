@@ -18,8 +18,8 @@ export default Component.extend({
   _nodeCollection: $(),
 
   dragElementClass: computed('_onDragElement', 'onDragClass', function() {
-    if (this.get('_onDragElement') && this.get('onDragClass')) {
-      return this.get('onDragClass');
+    if (this._onDragElement && this.onDragClass) {
+      return this.onDragClass;
     }
   }),
 
@@ -27,8 +27,8 @@ export default Component.extend({
     '_onDragElementInZone',
     'onDragInZoneClass',
     function() {
-      if (this.get('_onDragElementInZone') && this.get('onDragInZoneClass')) {
-        return this.get('onDragInZoneClass');
+      if (this._onDragElementInZone && this.onDragInZoneClass) {
+        return this.onDragInZoneClass;
       }
     }
   ),
@@ -46,7 +46,7 @@ export default Component.extend({
   },
 
   dragEnter() {
-    if (this.get('_onDragElementInZone')) {
+    if (this._onDragElementInZone) {
       return;
     }
 
@@ -55,7 +55,7 @@ export default Component.extend({
   },
 
   dragLeave() {
-    if (!this.get('_onDragElementInZone')) {
+    if (!this._onDragElementInZone) {
       return;
     }
 
@@ -96,6 +96,7 @@ export default Component.extend({
   },
 
   willDestroyElement() {
+    this._super(...arguments);
     $(document)
       .off('dragover', false)
       .off('dragenter', this._documentDragEnter.bind(this))

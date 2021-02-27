@@ -6,6 +6,6 @@ export default Mixin.create({
   intl: service(),
 
   _: observer('_error', function() {
-    this.set('error', this.intl.t(this.get('_error')));
+    this.set('error', this.intl.t(this._error));
   })
 });

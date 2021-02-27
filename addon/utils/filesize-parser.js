@@ -69,4 +69,4 @@ export default function(input) {
   }
 
   throw unit + ' doesn\'t appear to be a valid unit';
-};
+}

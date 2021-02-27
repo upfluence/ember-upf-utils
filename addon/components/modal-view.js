@@ -17,7 +17,7 @@ export default Component.extend({
   id: null,
 
   _: observer('hidden', function() {
-    if (this.get('hidden')) {
+    if (this.hidden) {
       this.$().modal('hide');
     } else {
       this._setupModal();
@@ -31,7 +31,8 @@ export default Component.extend({
   },
 
   didInsertElement() {
-    if(!this.get('hidden')) {
+    this._super(...arguments);
+    if(!this.hidden) {
       this._setupModal();
     }
 
@@ -56,6 +57,7 @@ export default Component.extend({
   },
 
   willDestroyElement() {
+    this._super(...arguments);
     this.$(this.element).modal('hide');
     this.element.removeEventListener('keydown', this._handleEscapeKey.bind(this));
   }

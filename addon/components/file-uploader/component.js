@@ -45,7 +45,7 @@ export default Component.extend({
     this._upload();
   }),
 
-  url: computed('model.id', function() {
+  url: computed('model.constructor.modelName', 'model.id', function() {
     return this.store.adapterFor(
       this.get('model.constructor.modelName')
     ).buildURL(
@@ -57,6 +57,7 @@ export default Component.extend({
   hasFile: notEmpty('file.name'),
 
   willDestroy() {
+    this._super(...arguments);
     this._clear();
   },
 

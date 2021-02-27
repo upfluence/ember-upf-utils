@@ -7,12 +7,12 @@ export default Service.extend({
 
   _perform(method, endpoint, data) {
     return new Promise((resolve, reject) => {
-      this.get('ajax').request(endpoint, {
+      this.ajax.request(endpoint, {
         method: method,
         contentType: 'application/json',
         data: JSON.stringify(data)
       }).then((payload) => {
-        this.get('store').pushPayload(payload);
+        this.store.pushPayload(payload);
         resolve();
       }).catch((e) => reject(e));
     });

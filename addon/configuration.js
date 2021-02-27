@@ -1,3 +1,4 @@
+import { get } from '@ember/object';
 import { typeOf } from '@ember/utils';
 import $ from 'jquery';
 import { getWithDefault } from '@ember/object';
@@ -26,7 +27,7 @@ export default {
   load(config) {
     for (let property in this) {
       if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
-        this[property] = getWithDefault(config, property, DEFAULTS[property]);
+        this[property] = (get(config, property) === undefined ? DEFAULTS[property] : get(config, property));
       }
     }
 

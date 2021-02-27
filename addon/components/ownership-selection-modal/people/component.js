@@ -32,7 +32,7 @@ export default Component.extend({
         this.set('availableUsers', coworkers);
         this.set('items', coworkers);
 
-        this.get('currentUser').fetchOwnerships().then((ownerships) => {
+        this.currentUser.fetchOwnerships().then((ownerships) => {
           this._setSelectedUsers(ownerships);
         });
       });
@@ -56,7 +56,7 @@ export default Component.extend({
   }),
 
   _reloadSelected: observer('entity.id', function() {
-    this.get('currentUser').fetchOwnerships().then((ownerships) => {
+    this.currentUser.fetchOwnerships().then((ownerships) => {
       this._setSelectedUsers(ownerships);
     });
   }),

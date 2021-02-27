@@ -17,20 +17,20 @@ export default Component.extend({
 
   init() {
     this._super();
-    this.get('_currentUser').fetch().then(({ user }) => {
+    this._currentUser.fetch().then(({ user }) => {
       this.set('currentUser', user);
     });
   },
 
   actions: {
     addComment(_, defer) {
-      this.get('store').createRecord('draft-comment', {
-        draft: this.get('draft'),
-        text: this.get('commentText')
+      this.store.createRecord('draft-comment', {
+        draft: this.draft,
+        text: this.commentText
       }).save().then(() => {
         this.set('commentText', '')
       }).catch(() => {
-        this.get('toast').error(
+        this.toast.error(
           'Something wrong happened trying to add your commment.'
         );
       }).finally(() => defer.resolve());

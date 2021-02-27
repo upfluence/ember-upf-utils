@@ -18,7 +18,7 @@ export default Mixin.create({
   init() {
     this._super(...arguments);
 
-    this.get('tooltipValuesObserver').forEach((key) => {
+    this.tooltipValuesObserver.forEach((key) => {
       this.addObserver(key, _rebuildTooltip);
     });
   },

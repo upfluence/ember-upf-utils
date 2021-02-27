@@ -38,6 +38,7 @@ export default Component.extend({
   },
 
   didRender() {
+    this._super(...arguments);
     this.$('.dropdown-toggle').dropdown();
   },
 

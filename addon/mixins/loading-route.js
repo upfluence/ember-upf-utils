@@ -3,7 +3,7 @@ import Mixin from '@ember/object/mixin';
 
 export default Mixin.create({
   _notifyInfinityModelLoading() {
-    if (!this.get('infinityModelLoading')) { return; }
+    if (!this.infinityModelLoading) { return; }
     return scheduleOnce('afterRender', this, 'infinityModelLoading');
   },
 
