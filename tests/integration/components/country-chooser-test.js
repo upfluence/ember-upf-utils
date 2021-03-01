@@ -3,7 +3,9 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, setupOnerror } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { clickTrigger, selectChoose } from 'ember-power-select/test-support/helpers'
+import {
+  clickTrigger, selectChoose, typeInSearch
+} from 'ember-power-select/test-support/helpers'
 
 import CountryCodes from '@upfluence/ember-upf-utils/resources/country-codes';
 
@@ -176,5 +178,23 @@ module('Integration | Component | country-chooser', function(hooks) {
     );
 
     assert.dom('.item-chooser').hasClass('item-chooser--dark');
+  });
+
+  test('it correctly searches for countries matching a keyword', async function(assert) {
+    this.onCountrySelection = () => {};
+    this.countryCode = null;
+
+    await render(
+      hbs`<CountryChooser @onCountrySelection={{this.onCountrySelection}} />`
+    );
+    await clickTrigger();
+    await typeInSearch('aust');
+
+    const options = this.element.querySelectorAll('.ember-power-select-options li');
+
+    let matchingCountries = [];
+    options.forEach((v) => matchingCountries.push(v.innerHTML.trim()))
+
+    assert.deepEqual(matchingCountries, ['Australia', 'Austria']);
   });
 });
