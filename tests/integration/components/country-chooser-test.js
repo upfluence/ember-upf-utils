@@ -89,7 +89,9 @@ module('Integration | Component | country-chooser', function(hooks) {
   });
 
 
-  test('(multiple = false) it correctly calls the onCountrySelection function when selecting a value', async function(assert) {
+  test(
+    '(multiple = false) it correctly calls the onCountrySelection function when selecting a value', 
+     async function(assert) {
     this.onCountrySelection = (v) => {
       this.countryCode = v[0].id;
     };
