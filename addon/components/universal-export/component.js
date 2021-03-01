@@ -65,7 +65,7 @@ export default Component.extend({
     '(this.currentEntity).count', 'currentEntity.count', 'selectedInfluencerIds.length', function() {
       let idsCount = this.get('selectedInfluencerIds.length');
       if (idsCount === 0 && this.currentEntity) {
-        idsCount = (this.currentEntity).count;
+        idsCount = this.currentEntity.count;
       }
       return idsCount;
     }

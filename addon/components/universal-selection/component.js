@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { debounce } from '@ember/runloop';
+import { debounce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
