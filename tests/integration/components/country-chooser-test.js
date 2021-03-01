@@ -36,8 +36,11 @@ module('Integration | Component | country-chooser', function(hooks) {
     const options = this.element.querySelectorAll('.ember-power-select-options li');
 
     assert.equal(options.length, CountryCodes.length);
-    assert.equal(options[0].innerHTML.trim(), 'United States of America');
-    assert.equal(options[options.length - 1].innerHTML.trim(), 'Costa Rica');
+
+    let optionsCountries = [];
+    options.forEach((v) => optionsCountries.push(v.innerHTML.trim()))
+
+    assert.deepEqual(optionsCountries, CountryCodes.map((v) => v.name));
   });
 
   test('(multiple = false) it correctly initialize and set the country code', async function(assert) {
