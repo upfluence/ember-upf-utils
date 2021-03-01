@@ -50,8 +50,6 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super();
 
-    console.log('=>', this.model);
-    console.log(this.model?.name, this.model?.ownedBy);
     if (this.model && this.model.ownedBy.startsWith('composite:')) {
       this.set('currentWindow', 'people');
     }
