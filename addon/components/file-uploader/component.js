@@ -1,10 +1,13 @@
-import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import { underscore } from '@ember/string';
 import { isEmpty } from '@ember/utils';
+
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 import Uploader from '@upfluence/ember-upf-utils/uploader';
+
 import layout from './template';
 
 export default Component.extend({
@@ -165,10 +168,10 @@ export default Component.extend({
     if (this.model) {
       options.url = this.url;
       options.method = this.method;
-      options.paramName = this.attribute.underscore();
-      options.paramNamespace = this.get(
-        'model.constructor.modelName'
-      ).underscore();
+      options.paramName = underscore(this.attribute);
+      options.paramNamespace = underscore(
+        this.get('model.constructor.modelName')
+      );
     } else {
       options.url = Configuration.uploaderUrl;
     }
