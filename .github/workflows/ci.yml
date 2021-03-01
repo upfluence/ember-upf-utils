@@ -65,7 +65,7 @@ jobs:
     - name: Test
       uses: mydea/ember-cli-code-coverage-action@v1
       with:
-        test-command: yarn test:ember-coverage --launch ${{ matrix.browser }}
+        test-command: yarn test:ember-coverage
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
   release:
