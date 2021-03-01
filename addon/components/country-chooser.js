@@ -21,9 +21,7 @@ export default class CountryChooserComponent extends Component {
   get dark() { return this.args.dark || false; }
   get size() { return this.args.size || null; }
   get multiple() {
-    if (this.args.multiple == false) return this.args.multiple;
-
-    return true;
+    return this.args.multiple == false ?  this.args.multiple : true;
   }
 
   get countryCode() {
