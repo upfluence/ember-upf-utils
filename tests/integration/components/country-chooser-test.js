@@ -90,27 +90,28 @@ module('Integration | Component | country-chooser', function(hooks) {
 
 
   test(
-    '(multiple = false) it correctly calls the onCountrySelection function when selecting a value', 
-     async function(assert) {
-    this.onCountrySelection = (v) => {
-      this.countryCode = v[0].id;
-    };
-    this.countryCode = 'CA';
+    '(multiple = false) it correctly calls the onCountrySelection function when selecting a value',
+    async function(assert) {
+      this.onCountrySelection = (v) => {
+        this.countryCode = v[0].id;
+      };
+      this.countryCode = 'CA';
 
-    await render(
-      hbs`
-        <CountryChooser
-         @onCountrySelection={{this.onCountrySelection}} @multiple=false
-         @countryCode={{this.countryCode}} />
-      `
-    );
+      await render(
+        hbs`
+          <CountryChooser
+           @onCountrySelection={{this.onCountrySelection}} @multiple=false
+           @countryCode={{this.countryCode}} />
+        `
+      );
 
-    assert.dom(DROPDOWN_CLASS).exists();
+      assert.dom(DROPDOWN_CLASS).exists();
 
-    await selectChoose('.ember-power-select-trigger', 'Egypt');
+      await selectChoose('.ember-power-select-trigger', 'Egypt');
 
-    assert.equal(this.countryCode, 'EG');
-  });
+      assert.equal(this.countryCode, 'EG');
+    }
+  );
 
   test('(multiple = true) it correctly calls the onCountrySelection function when selecting a value', async function(assert) {
     this.onCountrySelection = (v) => {
