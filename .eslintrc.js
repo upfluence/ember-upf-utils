@@ -21,7 +21,13 @@ module.exports = {
     browser: true
   },
   rules: {
-    'ember/no-jquery': 'error'
+    'ember/no-jquery': 'off',
+    'ember/no-observers': 'off',
+    'ember/no-new-mixins': 'off',
+    'ember/no-mixins': 'off',
+    'ember/no-get': 'off',
+    'ember/avoid-leaking-state-in-ember-objects': 'off',
+    'ember/closure-actions': 'off'
   },
   overrides: [
     // node files

@@ -46,7 +46,9 @@ export default function(input) {
   let options = arguments[1] || {};
   let base = parseInt(options.base || 2);
 
+  /* eslint-disable no-useless-escape */
   let parsed = input.toString().match(/^([0-9\.,]*)(?:\s*)?(.*)$/);
+  /* eslint-enable no-useless-escape */
   let amount = parsed[1].replace(',','.');
   let unit = parsed[2];
 

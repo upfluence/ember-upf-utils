@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { get, defineProperty, computed } from '@ember/object';
+import { defineProperty, computed } from '@ember/object';
 import { mapBy } from '@ember/object/computed';
 import layout from './template';
 

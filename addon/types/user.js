@@ -7,6 +7,6 @@ export default EmberObject.extend({
       return  `${first_name} ${last_name}`;
     }
 
-    return this.set('fullName', 'Anonymous User');
+    return 'Anonymous User';
   })
 });

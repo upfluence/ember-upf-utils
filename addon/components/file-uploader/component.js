@@ -2,9 +2,8 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
-import { isBlank, isEmpty } from '@ember/utils';
+import { isEmpty } from '@ember/utils';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
-import { formatNumber } from '@upfluence/ember-upf-utils/helpers/format-number';
 import Uploader from '@upfluence/ember-upf-utils/uploader';
 import layout from './template';
 
@@ -45,7 +44,7 @@ export default Component.extend({
     this._upload();
   }),
 
-  url: computed('model.constructor.modelName', 'model.id', function() {
+  url: computed('model.{constructor.modelName,id}', function() {
     return this.store.adapterFor(
       this.get('model.constructor.modelName')
     ).buildURL(

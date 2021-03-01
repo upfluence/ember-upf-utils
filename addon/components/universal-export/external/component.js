@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import RSVP from 'rsvp';
 import { observer, computed } from '@ember/object';
-import ExportEntity from '@upfluence/ember-upf-utils/export-entity/model';
 import layout from './template';
 
 export default Component.extend({

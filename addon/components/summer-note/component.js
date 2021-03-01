@@ -1,6 +1,7 @@
 import { inject as service } from '@ember/service';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import SummerNoteComponent from 'ember-cli-summernote/components/summer-note';
+import $ from 'jquery';
 import Uploader from '@upfluence/ember-upf-utils/uploader';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
@@ -104,6 +105,7 @@ export default SummerNoteComponent.extend({
       buttons: _customButtons,
       height: this.height,
       dialogsInBody: true,
+
       hint: {
         match: this.match,
         search: (keyword, callback) => {
@@ -116,6 +118,8 @@ export default SummerNoteComponent.extend({
           return `{{${item}}}`;
         }
       },
+
+      /* eslint-disable no-useless-escape */
       onCreateLink(link) {
         if (link.indexOf('{{') === 0) {
           return link;
@@ -125,6 +129,8 @@ export default SummerNoteComponent.extend({
         return /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(link)
           ? link : 'http://' + link;
       },
+      /* eslint-enable no-useless-escape */
+
       callbacks: {
         ..._callbacks,
         onImageUpload(files) {

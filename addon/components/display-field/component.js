@@ -11,6 +11,7 @@ export default Component.extend({
     'text-color-default-lighter'
   ],
 
+  /* eslint-disable no-useless-escape */
   cleanedValue: computed('value', function() {
     if(this.value) {
       return this.value
@@ -23,4 +24,5 @@ export default Component.extend({
       return "";
     }
   })
+  /* eslint-enable no-useless-escape */
 });

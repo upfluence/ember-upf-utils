@@ -94,10 +94,12 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     function(e) {
       let key = getCode(e);
       let cell = this.currentlyActiveCell;
+      let goToCell, totalCells, directionFn, nextCell;
+
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
-          let goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell)
+          goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell)
             : this._getPreviousCell(this, cell);
 
           if (goToCell) {
@@ -107,10 +109,10 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
           break;
         case 'ArrowLeft':
         case 'ArrowRight':
-          let totalCells = this.get('_cells.length');
-          let directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
+          totalCells = this.get('_cells.length');
+          directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
             : this._getPreviousCell;
-          let nextCell = directionFn(this, cell);
+          nextCell = directionFn(this, cell);
           this.keyboardArrowAction(cell.item, key, () => {
             set(cell, 'isActive', false);
 

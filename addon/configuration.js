@@ -1,7 +1,5 @@
 import { get } from '@ember/object';
 import { typeOf } from '@ember/utils';
-import $ from 'jquery';
-import { getWithDefault } from '@ember/object';
 
 const DEFAULTS = {
   uploaderUrl: 'http://localhost:8080/upload',
@@ -26,8 +24,8 @@ export default {
 
   load(config) {
     for (let property in this) {
-      if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
-        this[property] = (get(config, property) === undefined ? DEFAULTS[property] : get(config, property));
+      if (this[property] && typeOf(this[property]) !== 'function') {
+        this[property] = get(config, property) === undefined ? DEFAULTS[property] : get(config, property);
       }
     }
 
