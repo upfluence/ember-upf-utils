@@ -1,14 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { run } from '@ember/runloop';
-
-const _rebuildTooltip = function() {
-  run.debounce(this, function() {
-    let $els = this.$('[data-toggle="tooltip"]') || [];
-    if ($els.length > 0) {
-      $els.tooltip('fixTitle');
-    }
-  }, 200);
-};
+import { debounce } from '@ember/runloop';
 
 export default Mixin.create({
   attributeBindings: ['data-toggle', 'data-placement'],
@@ -18,9 +9,21 @@ export default Mixin.create({
   init() {
     this._super(...arguments);
 
-    this.get('tooltipValuesObserver').forEach((key) => {
-      this.addObserver(key, _rebuildTooltip);
+    this.tooltipValuesObserver.forEach((key) => {
+      this.addObserver(key, this._rebuildTooltip);
     });
+  },
+
+  _buildTooltip() {
+    let $els = this.$('[data-toggle="tooltip"]') || [];
+
+    if ($els.length > 0) {
+      $els.tooltip('fixTitle');
+    }
+  },
+
+  _rebuildTooltip() {
+    debounce(this, this._buildTooltip, 200);
   },
 
   didRender() {

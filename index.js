@@ -10,7 +10,7 @@ const FOOTER_SCRIPTS = [
   '<script async src="https://www.google-analytics.com/analytics.js"></script>',
   '<script src="https://cdn.userlane.com/userlane.js"></script>'
 ];
-const { name, version } = require('./package');
+const { name, version } = require('./package');
 
 module.exports = {
   name,

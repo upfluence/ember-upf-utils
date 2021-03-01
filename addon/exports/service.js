@@ -22,7 +22,7 @@ export default Service.extend({
       payload.source = { influencer_ids: influencerIds };
     }
 
-    return this.get('ajax').request(`${this.get('_exportURL')}/export`, {
+    return this.ajax.request(`${this._exportURL}/export`, {
       method: 'POST',
       contentType: 'application/json',
       headers: {
@@ -33,7 +33,7 @@ export default Service.extend({
   },
 
   getFileExportURL(from, fileFormat, fileType, influencerIds, filters) {
-    let baseUrl = `${this.get('_exportURL')}/export/file`;
+    let baseUrl = `${this._exportURL}/export/file`;
     let params = [
       'from=' + from,
       'influencer_ids=' + influencerIds.join(','),
@@ -56,42 +56,42 @@ export default Service.extend({
   ** }
   */
   getLimit(callback) {
-    let url = `${this.get('_exportURL')}/export/file/limit`;
+    let url = `${this._exportURL}/export/file/limit`;
     let accessToken = this.get('session.data.authenticated.access_token');
 
-    return this.get('ajax').request(
+    return this.ajax.request(
       `${url}?access_token=${encodeURIComponent(accessToken)}`
     ).then(callback);
   },
 
   getAvailableExports() {
     let accessToken = this.get('session.data.authenticated.access_token');
-    return this.get('ajax').request(
-      `${this.get('_exportURL')}/discovery?access_token=${encodeURIComponent(accessToken)}`
+    return this.ajax.request(
+      `${this._exportURL}/discovery?access_token=${encodeURIComponent(accessToken)}`
     );
   },
 
   fetchEntities(type, callback) {
-    let url = `${this.get('_exportURL')}/entities/${type}`;
+    let url = `${this._exportURL}/entities/${type}`;
     let accessToken = this.get('session.data.authenticated.access_token');
 
-    return this.get('ajax').request(
+    return this.ajax.request(
       `${url}?access_token=${encodeURIComponent(accessToken)}`
     ).then(callback);
   },
 
   searchEntities(keyword) {
-    let url = `${this.get('_exportURL')}/entities?s=${encodeURIComponent(keyword)}`;
+    let url = `${this._exportURL}/entities?s=${encodeURIComponent(keyword)}`;
     let accessToken = this.get('session.data.authenticated.access_token');
-    return this.get('ajax').request(
+    return this.ajax.request(
       `${url}&access_token=${encodeURIComponent(accessToken)}`
     );
   },
 
   createEntity(data, callback) {
-    let url = `${this.get('_exportURL')}/entities`;
+    let url = `${this._exportURL}/entities`;
 
-    return this.get('ajax').request(url, {
+    return this.ajax.request(url, {
       method: 'POST',
       contentType: 'application/json',
       headers: {

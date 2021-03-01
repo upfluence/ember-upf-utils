@@ -1,11 +1,13 @@
-import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
-import { isBlank, isEmpty } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import { underscore } from '@ember/string';
+import { isEmpty } from '@ember/utils';
+
 import Configuration from '@upfluence/ember-upf-utils/configuration';
-import { formatNumber } from '@upfluence/ember-upf-utils/helpers/format-number';
 import Uploader from '@upfluence/ember-upf-utils/uploader';
+
 import layout from './template';
 
 export default Component.extend({
@@ -45,7 +47,7 @@ export default Component.extend({
     this._upload();
   }),
 
-  url: computed('model.id', function() {
+  url: computed('model.{constructor.modelName,id}', function() {
     return this.store.adapterFor(
       this.get('model.constructor.modelName')
     ).buildURL(
@@ -57,6 +59,7 @@ export default Component.extend({
   hasFile: notEmpty('file.name'),
 
   willDestroy() {
+    this._super(...arguments);
     this._clear();
   },
 
@@ -165,10 +168,10 @@ export default Component.extend({
     if (this.model) {
       options.url = this.url;
       options.method = this.method;
-      options.paramName = this.attribute.underscore();
-      options.paramNamespace = this.get(
-        'model.constructor.modelName'
-      ).underscore();
+      options.paramName = underscore(this.attribute);
+      options.paramNamespace = underscore(
+        this.get('model.constructor.modelName')
+      );
     } else {
       options.url = Configuration.uploaderUrl;
     }

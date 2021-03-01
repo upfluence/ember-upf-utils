@@ -36,7 +36,7 @@ export default Service.extend({
   _timer: null,
 
   start() {
-    if (this._isRunning || !this.get('hasToken')) {
+    if (this._isRunning || !this.hasToken) {
       this.stop();
 
       return;
@@ -66,7 +66,7 @@ export default Service.extend({
 
     this._inFetch = true;
 
-    this.get('ajax').request(this.buildUrl(), {
+    this.ajax.request(this.buildUrl(), {
       dataType: 'json',
       data: this.buildArgs()
     }).then(
@@ -87,7 +87,7 @@ export default Service.extend({
   buildArgs() {
     let query = {
       from: this._from,
-      access_token: this.get('token'),
+      access_token: this.token,
       scope: this._scope,
     };
 
@@ -103,7 +103,7 @@ export default Service.extend({
   },
 
   displayNotifications(notifications) {
-    (notifications || []).forEach((n) => {
+    (notifications || []).forEach((n) => {
       let d = this.buildNotification(n);
 
       if (!d) {
@@ -159,7 +159,7 @@ export default Service.extend({
   },
 
   renderNotification(title, message) {
-    this.get('toast').info(message, title, {
+    this.toast.info(message, title, {
       timeOut: 0,
       extendedTimeOut: 0
     });

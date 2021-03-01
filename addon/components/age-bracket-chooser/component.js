@@ -24,6 +24,7 @@ export default Component.extend({
   _selection: null,
 
   didReceiveAttrs() {
+    this._super();
     if (this.multiple) {
       this.set(
         '_selection',

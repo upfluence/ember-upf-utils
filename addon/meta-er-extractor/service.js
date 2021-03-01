@@ -25,14 +25,14 @@ export default Service.extend({
     });
   }),
 
-  youtubeMeta: computed('meta.{statsErYoutubeMin,meta.statsErYoutubeMax}', function() {
+  youtubeMeta: computed('meta.{meta.statsErYoutubeMax,statsErYoutubeMax,statsErYoutubeMin}', function() {
     return EmberObject.create({
       erMin: this.get('meta.statsErYoutubeMin'),
       erMax: this.get('meta.statsErYoutubeMax')
     });
   }),
 
-  instagramMeta: computed('meta.{statsErInstagramMin,meta.statsErInstagramMax}', function() {
+  instagramMeta: computed('meta.{meta.statsErInstagramMax,statsErInstagramMax,statsErInstagramMin}', function() {
     return EmberObject.create({
       erMin: this.get('meta.statsErInstagramMin'),
       erMax: this.get('meta.statsErInstagramMax')

@@ -16,14 +16,14 @@ export default Mixin.create({
   actions: {
     bulkArchive(archivalAction) {
       this.triggerAction({ action: 'setContentChanging', actionContext: true });
-      this.get('entityArchiving').bulkToggleArchive(
-        this.get('entityArchivingName'),
-        this.get('selectedItems').mapBy('id'),
+      this.entityArchiving.bulkToggleArchive(
+        this.entityArchivingName,
+        this.selectedItems.mapBy('id'),
         archivalAction
       ).then(() => {
-        let selectedItems = this.get('selectedItems');
-        this.get('selectedItems').map((item) => item.set('selected', false));
-        this.get('collection').removeObjects(selectedItems);
+        let selectedItems = this.selectedItems;
+        this.selectedItems.map((item) => item.set('selected', false));
+        this.collection.removeObjects(selectedItems);
         this.triggerAction({
           action: 'setContentChanging',
           actionContext: false
@@ -33,9 +33,9 @@ export default Mixin.create({
           action: 'setContentChanging',
           actionContext: false
         });
-        this.get('toast').error(
-          this.intl.t(this.get('archivalError')),
-          this.intl.t(this.get('archivalErrorTitle')),
+        this.toast.error(
+          this.intl.t(this.archivalError),
+          this.intl.t(this.archivalErrorTitle),
           this._toastConfig
         );
       });

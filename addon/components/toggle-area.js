@@ -8,10 +8,10 @@ export default Component.extend({
   static: false,
 
   click() {
-    if (!this.get('static')) {
+    if (!this.static) {
       this.toggleProperty('value');
 
-      if(this.get('callbackAction')) {
+      if(this.callbackAction) {
         this.sendAction('callbackAction');
       }
     }

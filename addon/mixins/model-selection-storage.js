@@ -5,9 +5,9 @@ import { computed } from '@ember/object';
 export default Mixin.create({
   selectionStorage: service(),
 
-  selected: computed('selectionStorage.storageScope', {
+  selected: computed('id', 'selectionStorage.storageScope', {
     get() {
-      return this.get('selectionStorage').has(this.get('id'));
+      return this.selectionStorage.has(this.id);
     },
 
     set(_, v) {
@@ -16,9 +16,9 @@ export default Mixin.create({
       }
 
       if (v) {
-        this.get('selectionStorage').add(this.get('id'));
+        this.selectionStorage.add(this.id);
       } else {
-        this.get('selectionStorage').remove(this.get('id'));
+        this.selectionStorage.remove(this.id);
       }
 
       return v;

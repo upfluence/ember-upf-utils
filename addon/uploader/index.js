@@ -4,10 +4,12 @@ import fileparser from '@upfluence/ember-upf-utils/utils/filesize-parser';
 import { isEmpty } from '@ember/utils';
 
 const getExtension = function(filename) {
+  /* eslint-disable no-useless-escape */
   let extensionMatchers = [
     new RegExp(/^(.+)\.(tar\.([glx]?z|bz2))$/),
     new RegExp(/^(.+)\.([^\.]+)$/)
   ];
+  /* eslint-enable no-useless-escape */
 
   for (let i = 0; i < extensionMatchers.length; i++) {
     let match = extensionMatchers[i].exec(filename.toLowerCase());

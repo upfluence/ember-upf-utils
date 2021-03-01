@@ -41,13 +41,15 @@ export default Component.extend({
         this,
         `${e}Selected`,
         computed('currentWindow', function() {
-          return this.get('currentWindow') === e;
+          return this.currentWindow === e;
         })
       );
     });
   },
 
   didReceiveAttrs() {
+    this._super();
+
     if (this.model && this.model.ownedBy.startsWith('composite:')) {
       this.set('currentWindow', 'people');
     }
@@ -60,16 +62,16 @@ export default Component.extend({
 
     performCloseModal() {
       this.sendAction('closeModal');
-      this.get('toast').success(
-        this.get('successfulSharing'),
+      this.toast.success(
+        this.successfulSharing,
         'Sharing Success',
         this._toastConfig
       );
     },
 
     saveOwnership(newOwnership) {
-      return this.get('ownershipUpdater').update(
-        this.get('modelType'),
+      return this.ownershipUpdater.update(
+        this.modelType,
         this.get('model.id'),
         newOwnership
       ).then((entity) => {

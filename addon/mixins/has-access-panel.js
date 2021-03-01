@@ -33,22 +33,22 @@ export default Mixin.create(UpfTableSearchMixin, {
   },
 
   populateAccessPanel() {
-    if (!this.get('displayAccessPanel')) {
+    if (!this.displayAccessPanel) {
       return;
     }
 
     let model = this.get('accessPanelConfig.model');
 
     this.set('contentLoading', true);
-    this.get('store').query(
+    this.store.query(
       model,
       {
-        archived: this.get('displayArchived'),
-        page: this.get('page'),
-        s: this.get('searchQuery')
+        archived: this.displayArchived,
+        page: this.page,
+        s: this.searchQuery
       }
     ).then((entities) => {
-      let current = this.get('model');
+      let current = this.model;
       let meta = entities.meta;
       entities = entities.toArray();
 

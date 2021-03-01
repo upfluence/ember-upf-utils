@@ -10,6 +10,7 @@ export default Component.extend({
   dataRide: 'carousel',
 
   didInsertElement() {
+    this._super(...arguments);
     this.$('.carousel').carousel({ interval: false });
   }
 });

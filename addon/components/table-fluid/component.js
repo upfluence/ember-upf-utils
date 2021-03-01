@@ -22,7 +22,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     '_bottomReached', function() {
       // Check infinity
       if (this.get('items.reachedInfinity') === null) {
-        return this.get('_bottomReached');
+        return this._bottomReached;
       }
 
       return this.get('items.reachedInfinity');
@@ -34,7 +34,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   }),
 
   _1: observer('shouldResetActiveCells', function() {
-    if (this.get('keyboardActivated') && this.get('items')) {
+    if (this.keyboardActivated && this.items) {
       run.later(() => {
         this._resetCurrentlyActiveCell();
       }, 200);
@@ -43,12 +43,12 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
 
   _bottomIsReached(scrollTop) {
     let pos = this._contentSize.height - this._clientHeight - scrollTop;
-    return pos <= this.get('triggerOffset');
+    return pos <= this.triggerOffset;
   },
 
   _resetCurrentlyActiveCell() {
-    this.get('_cells').map((cell) => set(cell, 'isActive', false));
-    let firstCell = this.get('_cells').find((cell) => cell.index === 0);
+    this._cells.map((cell) => set(cell, 'isActive', false));
+    let firstCell = this._cells.find((cell) => cell.index === 0);
 
     if(firstCell) {
       set(firstCell, 'isActive', true);
@@ -56,7 +56,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   },
 
   currentlyActiveCell: computed('_cells', '_cells.@each.isActive', function() {
-    return this.get('_cells').find((cell) => cell.isActive);
+    return this._cells.find((cell) => cell.isActive);
   }),
 
   _getNextCell(ctx, fromCell) {
@@ -93,11 +93,13 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     keyDown('ArrowLeft'), keyDown('ArrowRight'),
     function(e) {
       let key = getCode(e);
-      let cell = this.get('currentlyActiveCell');
+      let cell = this.currentlyActiveCell;
+      let goToCell, totalCells, directionFn, nextCell;
+
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
-          let goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell)
+          goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell)
             : this._getPreviousCell(this, cell);
 
           if (goToCell) {
@@ -107,14 +109,14 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
           break;
         case 'ArrowLeft':
         case 'ArrowRight':
-          let totalCells = this.get('_cells.length');
-          let directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
+          totalCells = this.get('_cells.length');
+          directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
             : this._getPreviousCell;
-          let nextCell = directionFn(this, cell);
+          nextCell = directionFn(this, cell);
           this.keyboardArrowAction(cell.item, key, () => {
             set(cell, 'isActive', false);
 
-            this.get('_cells').removeObject(cell);
+            this._cells.removeObject(cell);
 
             if (nextCell) {
               set(nextCell, 'isActive', true);
@@ -129,7 +131,8 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   ),
 
   didInsertElement() {
-    if (this.get('keyboardActivated')) {
+    this._super(...arguments);
+    if (this.keyboardActivated) {
       this._resetCurrentlyActiveCell();
     }
 
@@ -150,7 +153,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       let numItems = this.get('_items.length') || 0;
 
       // avoid scroll if no items
-      if (this.get('loading') || numItems === 0) {
+      if (this.loading || numItems === 0) {
         return;
       }
 
@@ -163,7 +166,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
         this.set('_scrollTop', scrollTop);
         this._needsRevalidate();
 
-        if (!this.get('isReached') && this._bottomIsReached(scrollTop)) {
+        if (!this.isReached && this._bottomIsReached(scrollTop)) {
           this.set('_bottomReached', true);
           this.onBottomReach();
         }

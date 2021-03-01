@@ -5,6 +5,7 @@ export default Component.extend({
   layout,
 
   didReceiveAttrs() {
+    this._super();
     if (this.entity) {
       this.set('ownership', { id: this.entity.id, name: this.entity.name });
     }

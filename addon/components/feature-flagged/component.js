@@ -11,6 +11,7 @@ export default Component.extend({
   tagName: '',
 
   didInsertElement() {
+    this._super(...arguments);
     this.featureFlagsManager.allow(this.requestedFeature).then((allowedFeature) => {
       this.set('allowedFeature', allowedFeature)
     });

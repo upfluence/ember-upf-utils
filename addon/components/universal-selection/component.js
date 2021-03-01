@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { debounce } from '@ember/runloop';
+import { debounce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
@@ -25,7 +25,7 @@ export default Component.extend({
   displayEmptyEntities: false,
 
   _performSearch(resolve) {
-    return this.get('exports').searchEntities(this.keyword).then((response) => {
+    return this.exports.searchEntities(this.keyword).then((response) => {
       resolve(
         Object.keys(response).reduce((acc, entityType) => {
           if ((response[entityType].length > 0) && !acc.find((item) => acc.includes(item.type))) {
@@ -64,7 +64,7 @@ export default Component.extend({
     return new RSVP.Promise((resolve) => {
       debounce(this, this._performSearch, resolve, 1000);
     }).catch(() => {
-      this.get('toast').error('An error occurred, please try again');
+      this.toast.error('An error occurred, please try again');
     });
   },
 

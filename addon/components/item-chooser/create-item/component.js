@@ -14,7 +14,7 @@ export default Component.extend({
     return !this.publicApi || this.publicApi.resultsCount > 0;
   }),
 
-  formattedCreateButtonText: computed('searchTerm', 'publicApi.searchText', function() {
+  formattedCreateButtonText: computed('createButtonTextTemplate', 'publicApi.searchText', 'searchTerm', function() {
     return this.createButtonTextTemplate.replace('#item#', (this.publicApi || {}).searchText);
   }),
 

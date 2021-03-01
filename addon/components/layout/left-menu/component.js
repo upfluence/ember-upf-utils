@@ -29,12 +29,12 @@ export default Component.extend({
       'has_publishr_notifications', 'has_analytics_notifications',
       'has_payments_notifications'
     ].forEach((notifPresence) => {
-      this.set(camelize(notifPresence), this.get('user')[notifPresence]);
+      this.set(camelize(notifPresence), this.user[notifPresence]);
     });
   }),
 
   _2: observer('user', function() {
-    let { first_name, last_name } = this.get('user');
+    let { first_name, last_name } = this.user;
     if (first_name || last_name) {
       this.set('user.fullName', `${first_name} ${last_name}`);
     } else {
@@ -61,8 +61,8 @@ export default Component.extend({
   }),
 
   searchURL: computed('facadeURL', function() {
-    if (this.get('facadeURL')) {
-      return `${this.get('facadeURL')}influencers`;
+    if (this.facadeURL) {
+      return `${this.facadeURL}influencers`;
     }
 
     return 'influencers';
@@ -117,9 +117,9 @@ export default Component.extend({
     return module === 'inbox-client' ? 'application' : url;
   }),
 
-  accountUrl: computed(function() {
-    if (this.get('identityURL')) {
-      return `${this.get('identityURL')}accounts/me`;
+  accountUrl: computed('identityURL', function() {
+    if (this.identityURL) {
+      return `${this.identityURL}accounts/me`;
     }
 
     return `accounts/me`;
@@ -132,11 +132,11 @@ export default Component.extend({
   }),
 
   publishrCampaignsURL: computed('publishrURL', function() {
-    return `${this.get('publishrURL')}campaigns`;
+    return `${this.publishrURL}campaigns`;
   }),
 
   publishrPaymentsURL: computed('publishrURL', function() {
-    return `${this.get('publishrURL')}payments`;
+    return `${this.publishrURL}payments`;
   }),
 
   publishrClientURL: computed('_publishrClientURL', function() {
@@ -156,7 +156,7 @@ export default Component.extend({
 
   actions: {
     goToSettings() {
-      window.location = this.get('accountUrl');
+      window.location = this.accountUrl;
     },
 
     openCanny() {
@@ -169,7 +169,7 @@ export default Component.extend({
     },
 
     logout() {
-      this.get('session').invalidate();
+      this.session.invalidate();
     },
 
     toggleUserMenu() {

@@ -7,6 +7,7 @@ export default Mixin.create({
   actions: {
     toggleOwnershipModal(item) {
       this.toggleProperty('hiddenOwnershipUpdateModal');
+
       if (item) {
         this.set('ownershipModalItem', item);
       }

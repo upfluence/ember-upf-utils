@@ -45,12 +45,13 @@ export default Component.extend({
   }),
 
   didReceiveAttrs() {
+    this._super();
     if (this.canCreate && this.recordTypeIsModel && this.recordType === null) {
       throw new Error('[component][item-chooser] Please provide a recordType');
     }
   },
 
-  _createItemComponent: computed('canCreate', 'searchTerm', function() {
+  _createItemComponent: computed('canCreate', 'createItemComponent', 'searchTerm', function() {
     if (this.canCreate && !isBlank(this.searchTerm)) {
       return this.createItemComponent || 'item-chooser/create-item';
     }

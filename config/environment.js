@@ -1,5 +1,4 @@
 /*jshint node:true*/
-/*global process*/
 'use strict';
 
 module.exports = function(environment, appConfig) {

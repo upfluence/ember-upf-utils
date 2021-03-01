@@ -1,6 +1,5 @@
 /* global $ */
 import Component from '@ember/component';
-import { run } from '@ember/runloop';
 import { isEmpty } from '@ember/utils';
 import layout from './template';
 

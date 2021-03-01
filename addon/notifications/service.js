@@ -36,7 +36,7 @@ export default Service.extend({
     });
 
     return new RSVP.Promise((resolve, reject) => {
-      this.get('ajax').request(this.get('notificationReadURL'), {
+      this.ajax.request(this.notificationReadURL, {
         method: 'POST',
         data: { uuids: notifications.mapBy('id') }
       }).then(() => resolve(notifications))

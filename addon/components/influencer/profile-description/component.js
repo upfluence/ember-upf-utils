@@ -22,11 +22,11 @@ export default Component.extend(TooltipActivationMixin, {
   // Avoid BC break with profile.selected
   _selected: computed('selected', 'profile.selected', {
     get() {
-      return this.get('selected') || this.get('profile.selected');
+      return this.selected || this.get('profile.selected');
     },
     set(_, value) {
       // selected not set
-      if (this.get('selected') === null) {
+      if (this.selected === null) {
         this.set('profile.selected', value);
       } else {
         this.set('selected', value);
@@ -47,7 +47,8 @@ export default Component.extend(TooltipActivationMixin, {
   isLdaCompliant: gte('medias.instagram.audience.legal_drinking_age.values.21+', 0.716),
 
   didInsertElement() {
-    this.get('currentUser').fetch().then((payload) => {
+this._super(...arguments);
+    this.currentUser.fetch().then((payload) => {
       this.set('hasInbox', payload.user.granted_scopes.includes('inbox_client'));
     });
   }

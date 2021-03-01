@@ -11,9 +11,10 @@ export default Component.extend({
     'text-color-default-lighter'
   ],
 
+  /* eslint-disable no-useless-escape */
   cleanedValue: computed('value', function() {
-    if(this.get('value')) {
-      return this.get('value')
+    if(this.value) {
+      return this.value
         .replace("<<not-applicable>>", "")
         .replace("Nenjiang River, China", "")
         .replace("NenjiangRiver,China", "")
@@ -23,4 +24,5 @@ export default Component.extend({
       return "";
     }
   })
+  /* eslint-enable no-useless-escape */
 });

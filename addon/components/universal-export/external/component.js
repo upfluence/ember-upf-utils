@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import RSVP from 'rsvp';
 import { observer, computed } from '@ember/object';
-import ExportEntity from '@upfluence/ember-upf-utils/export-entity/model';
 import layout from './template';
 
 export default Component.extend({
@@ -17,7 +16,7 @@ export default Component.extend({
   placeholder: 'Move to...',
 
   disabledExport: computed('current', 'selectedCount', function() {
-    return !this.get('current') || !this.get('selectedCount');
+    return !this.current || !this.selectedCount;
   }),
 
   currentObserver: observer('current', function() {
@@ -35,7 +34,7 @@ export default Component.extend({
             name: item.name
           };
 
-          return this.get('exports').createEntity(data, (response) => {
+          return this.exports.createEntity(data, (response) => {
             item.set('id', response.entity.id);
             resolve(item);
           });

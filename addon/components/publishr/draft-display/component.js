@@ -23,6 +23,8 @@ export default Component.extend(TooltipActivationMixin, {
         return 'publishr/draft-display/youtube';
       case 'draft-media-collection-attachment':
         return 'publishr/draft-display/medias'
+      default:
+        return null;
     }
   })
 });
