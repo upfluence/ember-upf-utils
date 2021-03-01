@@ -156,5 +156,19 @@ module('Integration | Component | country-chooser', function(hooks) {
       ).innerHTML.trim(),
       'Baz Placeholder'
     );
-  })
+  });
+
+  test('it correctly handles the dark mode', async function(assert) {
+    this.onCountrySelection = () => {};
+    this.countryCode = null;
+
+    await render(
+      hbs`
+        <CountryChooser
+         @onCountrySelection={{this.onCountrySelection}} @dark={{true}} />
+      `
+    );
+
+    assert.dom('.item-chooser').hasClass('item-chooser--dark');
+  });
 });
