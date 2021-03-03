@@ -90,7 +90,6 @@ module('Integration | Component | country-chooser', function(hooks) {
     assert.true(currentOpts[1].innerHTML.trim().includes('Canada'))
   });
 
-
   test(
     '(multiple = false) it correctly calls the onCountrySelection function when selecting a value',
     async function(assert) {

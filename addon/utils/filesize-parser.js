@@ -41,7 +41,6 @@ let incrementBases = {
   ]
 };
 
-
 export default function(input) {
   let options = arguments[1] || {};
   let base = parseInt(options.base || 2);
