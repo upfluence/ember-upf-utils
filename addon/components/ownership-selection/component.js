@@ -1,6 +1,7 @@
-import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+
 import layout from './template';
 
 export default Component.extend({
@@ -12,10 +13,9 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
+
     this.currentUser.fetchOwnerships().then((ownerships) => {
-      if (ownerships.length > 1) {
-        this.set('display', true);
-      }
+      this.set('display', ownerships.length > 1);
 
       this.set(
         'ownerships',
@@ -24,20 +24,15 @@ export default Component.extend({
 
       this.set(
         'ownership',
-        ownerships.find((item) => {
-          return item.id === this.get('entity.ownedBy');
-        })
+        ownerships.find((item) => item.id === this.get('entity.ownedBy'))
       );
     });
   },
 
-  _1: observer('entity.name', function() {
-    this.set('_toggled', false);
+  _1: observer('entity.id', function() {
     this.set(
       'ownership',
-      this.ownerships.find((item) => {
-        return item.id === this.get('entity.ownedBy');
-      })
+      this.ownerships.find((item) => item.id === this.get('entity.ownedBy'))
     );
   }),
 
@@ -45,11 +40,5 @@ export default Component.extend({
     if (this.get('entity.ownedBy') !== this.get('ownership.id')) {
       this.set('entity.ownedBy', this.get('ownership.id'));
     }
-  }),
-
-  actions: {
-    toggle() {
-      this.toggleProperty('_toggled');
-    }
-  }
+  })
 });

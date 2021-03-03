@@ -1,4 +1,5 @@
-{{#modal-view hidden=hidden closeAction=closeModal container="body"
+{{#modal-view
+  hidden=hidden closeAction=closeModal container="body"
   centered=true title=header borderlessHeader=true}}
   <ul class="nav nav-tabs">
     {{#if tabs.groups}}
@@ -15,10 +16,10 @@
   </ul>
 
   {{#if peopleSelected}}
-    {{ownership-selection-modal/people entity=model
-      saveOwnership=(action "saveOwnership")}}
+    {{ownership-selection-modal/people
+      entity=model saveOwnership=(action "saveOwnership")}}
   {{else}}
-    {{ownership-selection-modal/groups entity=model
-      saveOwnership=(action "saveOwnership")}}
+    {{ownership-selection-modal/groups
+      entity=model saveOwnership=(action "saveOwnership")}}
   {{/if}}
 {{/modal-view}}
