@@ -12,7 +12,7 @@
 <div class="modal-footer">
   {{#loading-button
     slowAction="updateOwnership" class="upf-btn upf-btn--primary"
-    initiallyDisabled=(not ownership)}}
+    initiallyDisabled=(not entity.ownedBy)}}
     {{t "ownership_selection.groups.cta"}}
   {{/loading-button}}
 </div>
