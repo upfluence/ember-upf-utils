@@ -21,6 +21,8 @@ module.exports = {
     browser: true
   },
   rules: {
+    'no-multiple-empty-lines': [2, { max: 1 }],
+
     'ember/no-jquery': 'off',
     'ember/no-observers': 'off',
     'ember/no-new-mixins': 'off',

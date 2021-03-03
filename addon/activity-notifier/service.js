@@ -5,7 +5,6 @@ import { observer } from '@ember/object';
 import { getOwner } from '@ember/application';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
-
 const notificationMessage = function(message) {
   return {
     title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
@@ -20,7 +19,6 @@ const notificationMessageWithAvatar = function(avatarUrl, message) {
     message: message
   };
 };
-
 
 export default Service.extend({
   ajax: service(),

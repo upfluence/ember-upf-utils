@@ -42,7 +42,6 @@ var formatNumber = function formatNumber(params) {
   }
 };
 
-
 export { formatNumber };
 
 export default buildHelper(formatNumber);
