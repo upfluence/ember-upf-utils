@@ -4,9 +4,7 @@ import { render, getSettledState, waitUntil } from '@ember/test-helpers';
 import EmberObject from '@ember/object';
 import Service from '@ember/service';
 import { hbs } from 'ember-cli-htmlbars';
-import {
-  clickTrigger, selectChoose, typeInSearch
-} from 'ember-power-select/test-support/helpers'
+import { clickTrigger, selectChoose } from 'ember-power-select/test-support/helpers'
 import sinon from 'sinon';
 
 class CurrentUserServiceStub extends Service {
