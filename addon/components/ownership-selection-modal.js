@@ -26,7 +26,7 @@ export default Component.extend({
     groups: true
   },
 
-  _resetWindow: observer('model.id', function() {
+  _resetWindow: observer('model.id', function () {
     if (this.model) {
       const isComposite = this.get('model.ownedBy').startsWith('composite:');
       this.set('currentWindow', isComposite ? 'people' : 'groups');
@@ -40,7 +40,7 @@ export default Component.extend({
       defineProperty(
         this,
         `${e}Selected`,
-        computed('currentWindow', function() {
+        computed('currentWindow', function () {
           return this.currentWindow === e;
         })
       );
@@ -62,19 +62,11 @@ export default Component.extend({
 
     performCloseModal() {
       this.sendAction('closeModal');
-      this.toast.success(
-        this.successfulSharing,
-        'Sharing Success',
-        this._toastConfig
-      );
+      this.toast.success(this.successfulSharing, 'Sharing Success', this._toastConfig);
     },
 
     saveOwnership(newOwnership) {
-      return this.ownershipUpdater.update(
-        this.modelType,
-        this.get('model.id'),
-        newOwnership
-      ).then((entity) => {
+      return this.ownershipUpdater.update(this.modelType, this.get('model.id'), newOwnership).then((entity) => {
         this.model.set('ownedBy', entity[underscore(this.modelType)].owned_by);
         this.send('performCloseModal');
       });

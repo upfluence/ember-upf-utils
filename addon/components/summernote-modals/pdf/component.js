@@ -18,7 +18,7 @@ export default Component.extend({
     embed.setAttribute('height', '800px');
     embed.setAttribute('type', 'application/pdf');
 
-    let embedNotSupported  = document.createElement('a');
+    let embedNotSupported = document.createElement('a');
     embedNotSupported.setAttribute('href', url);
     embedNotSupported.textContent = 'Click to open PDF';
 
@@ -32,11 +32,7 @@ export default Component.extend({
 
   actions: {
     insertPDF() {
-      this.get('editor-context').invoke(
-        'editor.insertNode', this._buildPDFNode(
-          this.pdfURL
-        )
-      );
+      this.get('editor-context').invoke('editor.insertNode', this._buildPDFNode(this.pdfURL));
       this.sendAction('closeModal');
       this.send('resetPDFUpload');
     },

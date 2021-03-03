@@ -4,10 +4,12 @@ var formats = [
   {
     value: 1e3,
     sym: 'k'
-  }, {
+  },
+  {
     value: 1e6,
     sym: 'M'
-  }, {
+  },
+  {
     value: 1e9,
     sym: 'B'
   }
@@ -20,9 +22,11 @@ var formatNumber = function formatNumber(params) {
     return '-';
   }
 
-  var format = formats.filter(format => {
-    return format.value < number;
-  }).pop();
+  var format = formats
+    .filter((format) => {
+      return format.value < number;
+    })
+    .pop();
 
   if (format) {
     if (Math.round(number / format.value) < 10) {

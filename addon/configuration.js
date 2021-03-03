@@ -8,7 +8,7 @@ const DEFAULTS = {
   meURL: 'http://localhost:9000/me',
   identityURL: 'http://localhost:9000',
   scope: ['facade_web'],
-  notificationWait: 5,
+  notificationWait: 5
 };
 
 export default {

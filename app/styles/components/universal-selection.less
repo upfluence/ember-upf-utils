@@ -13,7 +13,7 @@
     padding: @spacing-xxx-sm @spacing-xx-sm 0;
     text-align: left;
     font-weight: bold;
-    font-size: 16/@rem;
+    font-size: 16 / @rem;
   }
 
   .universal-selection-option {
@@ -21,7 +21,7 @@
     align-items: center;
   }
 
-  .ember-power-select-option[aria-selected="true"] {
+  .ember-power-select-option[aria-selected='true'] {
     background-color: @upf-primary-bright-purple;
     color: #ffffff;
     border-radius: 0;
@@ -31,7 +31,8 @@
     }
   }
 
-  .ember-power-select-option[aria-current=true], .ember-power-select-multiple-option[aria-current=true] {
+  .ember-power-select-option[aria-current='true'],
+  .ember-power-select-multiple-option[aria-current='true'] {
     background-color: @upf-primary-rock-blue-dark;
     color: #ffffff;
 
@@ -58,16 +59,16 @@
   .ember-power-select-option {
     border: 0;
     background-color: #ffffff;
-    padding: 1/@rem @spacing-xx-sm 1/@rem @spacing-sm;
+    padding: 1 / @rem @spacing-xx-sm 1 / @rem @spacing-sm;
   }
 
-  .ember-power-select-option--search-message, 
+  .ember-power-select-option--search-message,
   .ember-power-select-option--no-matches-message,
   .ember-power-select-option--loading-message {
     padding-left: @spacing-xx-sm;
   }
 
-  .ember-power-select-options[role="listbox"] {
+  .ember-power-select-options[role='listbox'] {
     max-height: 250px;
     min-height: 85px;
   }
@@ -79,7 +80,7 @@
     background-color: @upf-gray-light;
 
     padding: 0.5em 0.5em 0.5em @spacing-xxx-sm;
-    border-radius: 2/@rem;
+    border-radius: 2 / @rem;
 
     .universal-selection-option__name {
       color: @upf-primary-bright-purple;
@@ -97,7 +98,8 @@
   align-items: center;
   margin-bottom: @spacing-x-sm;
 
-  .ember-power-select-option > &, .ember-power-select-selected-item > & {
+  .ember-power-select-option > &,
+  .ember-power-select-selected-item > & {
     margin-bottom: 0;
   }
 }
@@ -131,20 +133,20 @@
       background-color: @upf-gray-light;
 
       padding: 0.5em 0.5em 0.5em @spacing-xxx-sm;
-      border-radius: 2/@rem;
+      border-radius: 2 / @rem;
     }
     .team--selected {
       display: inline;
     }
   }
 
-  .ember-power-select-trigger.ember-basic-dropdown-trigger[aria-disabled=true] {
+  .ember-power-select-trigger.ember-basic-dropdown-trigger[aria-disabled='true'] {
     color: white;
     opacity: 0.5;
     border-color: #c9c9c9;
   }
 
-  .ember-power-select-options[role=listbox] {
-    max-height: 400px!important;
+  .ember-power-select-options[role='listbox'] {
+    max-height: 400px !important;
   }
 }

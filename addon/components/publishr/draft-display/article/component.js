@@ -5,11 +5,11 @@ export default Component.extend({
   layout,
 
   uploaderHeaders: {
-    'Scope': 'publishr_admin'
+    Scope: 'publishr_admin'
   },
 
   uploaderExtra: {
-    'privacy': 'public'
+    privacy: 'public'
   },
 
   actions: {

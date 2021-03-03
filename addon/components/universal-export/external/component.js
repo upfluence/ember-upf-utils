@@ -15,17 +15,17 @@ export default Component.extend({
 
   placeholder: 'Move to...',
 
-  disabledExport: computed('current', 'selectedCount', function() {
+  disabledExport: computed('current', 'selectedCount', function () {
     return !this.current || !this.selectedCount;
   }),
 
-  currentObserver: observer('current', function() {
+  currentObserver: observer('current', function () {
     this.set('errors', null);
   }),
 
   actions: {
     submit(params, defer) {
-      let [ item ] = params;
+      let [item] = params;
 
       new RSVP.Promise((resolve) => {
         if (!item.get('id')) {

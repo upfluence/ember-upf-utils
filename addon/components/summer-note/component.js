@@ -16,11 +16,11 @@ export default SummerNoteComponent.extend({
       italic: true,
       underline: true,
       superscript: false,
-      subscript: false,
+      subscript: false
     },
     table: false,
     insert: {
-      video: false,
+      video: false
     },
     fontname: {
       fontname: false
@@ -34,34 +34,37 @@ export default SummerNoteComponent.extend({
   uploadMaxSize: null,
 
   uploaderHeaders: {
-    'Scope': Configuration.scope[0]
+    Scope: Configuration.scope[0]
   },
 
-  uploaderOptions: computed('session.data.authenticated.access_token', 'uploadAllowedExtensions', 'uploadMaxSize', 'uploaderHeaders', function() {
-    /* jshint ignore:start */
-    return {
-      ajaxSettings: {
-        dataType: 'json',
-        headers: {
-          ...this.uploaderHeaders,
-          'Authorization':
-            `Bearer ${this.get('session.data.authenticated.access_token')}`
-        }
-      },
-      url: Configuration.uploaderUrl,
-      allowedExtensions: this.uploadAllowedExtensions,
-      maxSize: this.uploadMaxSize
-    };
-    /* jshint ignore:end */
-  }),
+  uploaderOptions: computed(
+    'session.data.authenticated.access_token',
+    'uploadAllowedExtensions',
+    'uploadMaxSize',
+    'uploaderHeaders',
+    function () {
+      /* jshint ignore:start */
+      return {
+        ajaxSettings: {
+          dataType: 'json',
+          headers: {
+            ...this.uploaderHeaders,
+            Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
+          }
+        },
+        url: Configuration.uploaderUrl,
+        allowedExtensions: this.uploadAllowedExtensions,
+        maxSize: this.uploadMaxSize
+      };
+      /* jshint ignore:end */
+    }
+  ),
 
-  uploader: computed('uploaderOptions', function() {
+  uploader: computed('uploaderOptions', function () {
     let uploader = Uploader.create(this.uploaderOptions);
     uploader
       .on('didValidationError', (error) => {
-        this.toast.error(
-          error.message || 'Your file is invalid. Please check the requirements.'
-        );
+        this.toast.error(error.message || 'Your file is invalid. Please check the requirements.');
       })
       .on('didUpload', (e) => {
         this.$('#summernote').summernote('insertImage', e.artifact.url);
@@ -72,7 +75,7 @@ export default SummerNoteComponent.extend({
 
   match: /\B{{(\w*)$/,
 
-  availableVariables: computed('customVariables', function() {
+  availableVariables: computed('customVariables', function () {
     return (this.customVariables || []).uniq();
   }),
 
@@ -80,10 +83,10 @@ export default SummerNoteComponent.extend({
     this.uploader.upload(file, { privacy: 'public' });
   },
 
-  didInsertElement: function() {
+  didInsertElement: function () {
     let _self = this;
     let _toolbar = this.getToolbarOptions(this.toolbarOptions);
-    let _callbacks      = this.callbacks;
+    let _callbacks = this.callbacks;
     _callbacks.onChange = this.onChange.bind(this);
 
     let _customButtons = {};
@@ -109,10 +112,14 @@ export default SummerNoteComponent.extend({
       hint: {
         match: this.match,
         search: (keyword, callback) => {
-          callback(this.availableVariables.filter((item) => {
-            if (this.hintDisabled) { return false; }
-            return item.indexOf(keyword) === 0;
-          }));
+          callback(
+            this.availableVariables.filter((item) => {
+              if (this.hintDisabled) {
+                return false;
+              }
+              return item.indexOf(keyword) === 0;
+            })
+          );
         },
         content: (item) => {
           return `{{${item}}}`;
@@ -126,15 +133,14 @@ export default SummerNoteComponent.extend({
         }
 
         // BC
-        return /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(link)
-          ? link : 'http://' + link;
+        return /^[A-Za-z][A-Za-z0-9+-.]*\:[\/\/]?/.test(link) ? link : 'http://' + link;
       },
       /* eslint-enable no-useless-escape */
 
       callbacks: {
         ..._callbacks,
         onImageUpload(files) {
-          Array.prototype.forEach.call(files, (file) => _self.uploadFile(file))
+          Array.prototype.forEach.call(files, (file) => _self.uploadFile(file));
         }
       }
     });

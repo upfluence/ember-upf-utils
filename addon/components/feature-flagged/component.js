@@ -12,7 +12,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.featureFlagsManager.allow(this.requestedFeature).then((allowedFeature) => {
-      this.set('allowedFeature', allowedFeature)
+      this.set('allowedFeature', allowedFeature);
     });
   }
 }).reopenClass({

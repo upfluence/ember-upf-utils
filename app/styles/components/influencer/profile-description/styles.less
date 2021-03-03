@@ -1,6 +1,6 @@
-@unit-width : 530px;
-@avatar-size : 180px;
-@title-width : 230px;
+@unit-width: 530px;
+@avatar-size: 180px;
+@title-width: 230px;
 @global-padding: 20px;
 
 .profile-description {
@@ -37,7 +37,7 @@
     .profile-description__content--title {
       color: @color-text;
       font-weight: bold;
-      font-size: 22/@rem;
+      font-size: 22 / @rem;
       display: inline-block;
       vertical-align: inherit;
       overflow: hidden;
@@ -49,7 +49,7 @@
 
     .profile-description__action {
       opacity: 0;
-      line-height: 24/@rem;
+      line-height: 24 / @rem;
       padding-left: @spacing-xxx-sm;
       cursor: pointer;
     }
@@ -89,7 +89,7 @@
         color: @color-text;
         white-space: nowrap;
         overflow: hidden;
-        line-height: 24/@rem;
+        line-height: 24 / @rem;
 
         i {
           color: @upf-primary-bright-purple;
@@ -106,7 +106,7 @@
 
   .profile-description__action {
     color: @upf-primary-bright-purple;
-    font-size: 16/@rem;
+    font-size: 16 / @rem;
     opacity: 0;
 
     &:hover {
@@ -116,15 +116,15 @@
   }
 }
 
-.active
-.profile-description
-.profile-description__action {
+.active .profile-description .profile-description__action {
   opacity: 1;
-  font-size: 16/@rem;
+  font-size: 16 / @rem;
   color: @upf-primary-bright-purple;
 }
 
-.profile-description__avatar, .profile-description__avatar img, .profile-description__avatar img:before  {
+.profile-description__avatar,
+.profile-description__avatar img,
+.profile-description__avatar img:before {
   height: @avatar-size;
   width: @avatar-size;
 }

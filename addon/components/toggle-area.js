@@ -11,7 +11,7 @@ export default Component.extend({
     if (!this.static) {
       this.toggleProperty('value');
 
-      if(this.callbackAction) {
+      if (this.callbackAction) {
         this.sendAction('callbackAction');
       }
     }

@@ -2,7 +2,7 @@ import Mixin from '@ember/object/mixin';
 import { computed } from '@ember/object';
 
 export default Mixin.create({
-  identifier: computed('id', function() {
+  identifier: computed('id', function () {
     let id = this.id;
 
     if (id) {

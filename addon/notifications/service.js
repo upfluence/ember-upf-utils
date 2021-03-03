@@ -8,22 +8,22 @@ export default Service.extend({
   ajax: service(),
   session: service(),
 
-  notificationReadURL: computed('session.data.authenticated.access_token', function() {
-    let token = encodeURIComponent(
-      this.get('session.data.authenticated.access_token')
-    );
+  notificationReadURL: computed('session.data.authenticated.access_token', function () {
+    let token = encodeURIComponent(this.get('session.data.authenticated.access_token'));
 
     return `${Configuration.meURL}/notifications/mark_as_read?access_token=${token}`;
   }),
 
   _extractNotifications(modelOrCollection) {
     if (isArray(modelOrCollection)) {
-      return modelOrCollection.map((m) => {
-        return m.get('notifications').toArray();
-      }).reduce((acc, notifications) => {
-        acc = acc.concat(notifications);
-        return acc;
-      }, []);
+      return modelOrCollection
+        .map((m) => {
+          return m.get('notifications').toArray();
+        })
+        .reduce((acc, notifications) => {
+          acc = acc.concat(notifications);
+          return acc;
+        }, []);
     } else {
       return modelOrCollection.get('notifications');
     }
@@ -36,10 +36,12 @@ export default Service.extend({
     });
 
     return new RSVP.Promise((resolve, reject) => {
-      this.ajax.request(this.notificationReadURL, {
-        method: 'POST',
-        data: { uuids: notifications.mapBy('id') }
-      }).then(() => resolve(notifications))
+      this.ajax
+        .request(this.notificationReadURL, {
+          method: 'POST',
+          data: { uuids: notifications.mapBy('id') }
+        })
+        .then(() => resolve(notifications))
         .catch((e) => reject(e));
     });
   }

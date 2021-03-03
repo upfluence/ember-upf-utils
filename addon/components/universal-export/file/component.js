@@ -6,11 +6,11 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import layout from './template';
 
-const Limit = function(limit, spent) {
+const Limit = function (limit, spent) {
   return {
     spent,
     limit,
-    left: computed(function() {
+    left: computed(function () {
       return limit - spent;
     })
   };
@@ -30,9 +30,7 @@ export default Component.extend({
     xlsx: '.xlsx'
   },
 
-  types: [
-    { key: 'short', label: 'Basic' }
-  ],
+  types: [{ key: 'short', label: 'Basic' }],
 
   enableFullFile: false,
 
@@ -66,23 +64,18 @@ export default Component.extend({
 
   hasMultiType: gt('types.length', 1),
 
-  limitReached: computed(
-    'selectedType',
-    'exportLimit.@each.spent',
-    'selectedCount',
-    function() {
-      let limitPath = `exportLimit.${this.selectedType}.limit`;
-      let spentPath = `exportLimit.${this.selectedType}.spent`;
+  limitReached: computed('selectedType', 'exportLimit.@each.spent', 'selectedCount', function () {
+    let limitPath = `exportLimit.${this.selectedType}.limit`;
+    let spentPath = `exportLimit.${this.selectedType}.spent`;
 
-      if (this.get(limitPath) === -1) {
-        return false;
-      }
-
-      return (this.get(spentPath) + this.selectedCount) > this.get(limitPath);
+    if (this.get(limitPath) === -1) {
+      return false;
     }
-  ),
 
-  btnLocked: computed('loaded', 'limitReached', function() {
+    return this.get(spentPath) + this.selectedCount > this.get(limitPath);
+  }),
+
+  btnLocked: computed('loaded', 'limitReached', function () {
     return !this.loaded || this.limitReached;
   }),
 

@@ -17,23 +17,20 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   _bottomReached: false,
   loading: false,
 
-  isReached: computed(
-    'items.reachedInfinity',
-    '_bottomReached', function() {
-      // Check infinity
-      if (this.get('items.reachedInfinity') === null) {
-        return this._bottomReached;
-      }
-
-      return this.get('items.reachedInfinity');
+  isReached: computed('items.reachedInfinity', '_bottomReached', function () {
+    // Check infinity
+    if (this.get('items.reachedInfinity') === null) {
+      return this._bottomReached;
     }
-  ),
 
-  _: observer('_contentSize.height', function() {
+    return this.get('items.reachedInfinity');
+  }),
+
+  _: observer('_contentSize.height', function () {
     this.set('_bottomReached', false);
   }),
 
-  _1: observer('shouldResetActiveCells', function() {
+  _1: observer('shouldResetActiveCells', function () {
     if (this.keyboardActivated && this.items) {
       run.later(() => {
         this._resetCurrentlyActiveCell();
@@ -50,17 +47,17 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     this._cells.map((cell) => set(cell, 'isActive', false));
     let firstCell = this._cells.find((cell) => cell.index === 0);
 
-    if(firstCell) {
+    if (firstCell) {
       set(firstCell, 'isActive', true);
     }
   },
 
-  currentlyActiveCell: computed('_cells', '_cells.@each.isActive', function() {
+  currentlyActiveCell: computed('_cells', '_cells.@each.isActive', function () {
     return this._cells.find((cell) => cell.isActive);
   }),
 
   _getNextCell(ctx, fromCell) {
-    return ctx.get('_cells').reduce(function(acc, v) {
+    return ctx.get('_cells').reduce(function (acc, v) {
       if (!acc && v.index > fromCell.index) {
         acc = v;
       } else if (v.index > fromCell.index && v.index < acc.index) {
@@ -72,7 +69,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   },
 
   _getPreviousCell(ctx, fromCell) {
-    return ctx.get('_cells').reduce(function(acc, v) {
+    return ctx.get('_cells').reduce(function (acc, v) {
       if (!acc && v.index < fromCell.index) {
         acc = v;
       } else if (v.index < fromCell.index && v.index > acc.index) {
@@ -89,9 +86,11 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   },
 
   keyboardMapping: on(
-    keyDown('ArrowUp'), keyDown('ArrowDown'),
-    keyDown('ArrowLeft'), keyDown('ArrowRight'),
-    function(e) {
+    keyDown('ArrowUp'),
+    keyDown('ArrowDown'),
+    keyDown('ArrowLeft'),
+    keyDown('ArrowRight'),
+    function (e) {
       let key = getCode(e);
       let cell = this.currentlyActiveCell;
       let goToCell, totalCells, directionFn, nextCell;
@@ -99,8 +98,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       switch (key) {
         case 'ArrowDown':
         case 'ArrowUp':
-          goToCell = (key === 'ArrowDown') ? this._getNextCell(this, cell)
-            : this._getPreviousCell(this, cell);
+          goToCell = key === 'ArrowDown' ? this._getNextCell(this, cell) : this._getPreviousCell(this, cell);
 
           if (goToCell) {
             this._switchCellsActiveState(cell, goToCell);
@@ -110,8 +108,7 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
         case 'ArrowLeft':
         case 'ArrowRight':
           totalCells = this.get('_cells.length');
-          directionFn = (cell.index + 1 < totalCells) ? this._getNextCell
-            : this._getPreviousCell;
+          directionFn = cell.index + 1 < totalCells ? this._getNextCell : this._getPreviousCell;
           nextCell = directionFn(this, cell);
           this.keyboardArrowAction(cell.item, key, () => {
             set(cell, 'isActive', false);
@@ -140,11 +137,13 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       if (!this.isReached) {
         this.onBottomReach();
       }
-    })
+    });
   },
 
   _needsRevalidate() {
-    if (this.isDestroyed || this.isDestroying) { return; }
+    if (this.isDestroyed || this.isDestroying) {
+      return;
+    }
     this._super();
   },
 

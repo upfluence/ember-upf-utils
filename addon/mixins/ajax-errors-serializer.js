@@ -2,7 +2,7 @@ import Mixin from '@ember/object/mixin';
 import { isBlank } from '@ember/utils';
 
 export default Mixin.create({
-  extractErrors(store, typeClass, payload/*, id */) {
+  extractErrors(store, typeClass, payload /*, id */) {
     if (!payload || typeof payload !== 'object' || !payload.errors) {
       return payload;
     }
@@ -20,7 +20,7 @@ export default Mixin.create({
         return;
       }
 
-      let {resource, field, code} = errors[key];
+      let { resource, field, code } = errors[key];
 
       if (!defaultsErrors[validKey]) {
         defaultsErrors[validKey] = [];

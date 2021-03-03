@@ -10,18 +10,18 @@ export default Component.extend({
 
   // Those are the parameters that you can override
   backdropAction: null,
-  side: "right",
+  side: 'right',
   shouldAnimate: true,
-  width: "100%",
-  height: "100%",
+  width: '100%',
+  height: '100%',
   disableScrolling: false,
-  stickTo: "right",
+  stickTo: 'right',
 
   didInsertElement() {
     this._super(...arguments);
     let hoverPanel = this.$('.hover-panel');
-    hoverPanel.addClass(this.side + "_side");
-    hoverPanel.addClass(this.stickTo + "_align");
+    hoverPanel.addClass(this.side + '_side');
+    hoverPanel.addClass(this.stickTo + '_align');
 
     // Set animationsaddClass
     if (this.shouldAnimate === true) {
@@ -30,7 +30,7 @@ export default Component.extend({
 
     // Insert panel
     later(() => {
-      hoverPanel.addClass(this.side + "_transform");
+      hoverPanel.addClass(this.side + '_transform');
     });
 
     // Insert backdrop
@@ -40,8 +40,8 @@ export default Component.extend({
 
     // Set panel dimensions
     hoverPanel.css({
-        'width': this.width,
-        'height': this.height
+      width: this.width,
+      height: this.height
     });
 
     // Disable scrolling
@@ -51,7 +51,7 @@ export default Component.extend({
   },
 
   willDestroyElement() {
-this._super(...arguments);
+    this._super(...arguments);
     // Re-enable scrolling
     this.$('.hover-panel').remove();
     this.$('.panel-backdrop').addClass('hidden');

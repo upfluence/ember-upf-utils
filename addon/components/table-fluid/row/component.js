@@ -10,7 +10,7 @@ export default Component.extend({
   attributeBindings: ['style'],
 
   active: false,
-  style: computed('cell.style', function() {
+  style: computed('cell.style', function () {
     return `border-bottom: 1px solid #efefef; ${this.get('cell.style')}`;
   }),
 

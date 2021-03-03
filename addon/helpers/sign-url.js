@@ -7,17 +7,14 @@ export default Helper.extend({
   session: service(),
 
   compute(params) {
-    let [
-      url,
-      extra = {}
-    ] = params;
+    let [url, extra = {}] = params;
 
     extra.access_token = this.get('session.data.authenticated.access_token');
 
     return `${url}?${$.param(extra)}`;
   },
 
-  _: observer('session.data.authenticated.access_token', function() {
+  _: observer('session.data.authenticated.access_token', function () {
     this.recompute();
   })
 });

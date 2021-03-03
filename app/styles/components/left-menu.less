@@ -1,26 +1,27 @@
-.__left-menu {}
+.__left-menu {
+}
 
 .__left-menu__user-menu {
   background-color: @upf-primary-white;
   border: 1px solid @upf-gray;
   border-radius: @default-radius;
-  box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.05);
 
   display: none;
   opacity: 0;
 
   padding: 0;
   position: absolute;
-  left: calc(@spacing-lg + .25em);
+  left: calc(@spacing-lg + 0.25em);
   margin-bottom: 0;
   bottom: 0;
   min-width: 230px;
 
   &:before {
-    border-bottom: .5em solid transparent;
-    border-right: .5em solid @upf-primary-white;
-    border-top: .5em solid transparent;
-    content: " ";
+    border-bottom: 0.5em solid transparent;
+    border-right: 0.5em solid @upf-primary-white;
+    border-top: 0.5em solid transparent;
+    content: ' ';
     display: block;
     height: 0;
     width: 0;
@@ -34,16 +35,17 @@
   li {
     color: @upf-primary-bright-purple;
     cursor: pointer;
-    font-size: 18/@rem;
+    font-size: 18 / @rem;
     font-weight: normal;
     list-style: none;
 
     padding: @spacing-xx-sm @spacing-sm;
 
-    transition: background-color .2s ease;
+    transition: background-color 0.2s ease;
     text-align: left;
 
-    .fa.fa-microphone, .fa.fa-university {
+    .fa.fa-microphone,
+    .fa.fa-university {
       color: @upf-primary-bright-purple;
     }
 
@@ -54,7 +56,6 @@
       .fa {
         color: @upf-primary-white;
       }
-
     }
 
     &:first-child {
@@ -92,7 +93,6 @@
         background-color: @upf-gray-light;
       }
     }
-
   }
 }
 

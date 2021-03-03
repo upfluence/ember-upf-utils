@@ -18,7 +18,7 @@ export default Component.extend({
 
   classNames: ['universal-selection-group'],
 
-  icon: computed('group.groupName', 'item', function() {
-    return ENTITIES_ICONS[(this.group.groupName.toLowerCase())];
+  icon: computed('group.groupName', 'item', function () {
+    return ENTITIES_ICONS[this.group.groupName.toLowerCase()];
   })
 });

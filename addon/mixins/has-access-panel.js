@@ -40,32 +40,31 @@ export default Mixin.create(UpfTableSearchMixin, {
     let model = this.get('accessPanelConfig.model');
 
     this.set('contentLoading', true);
-    this.store.query(
-      model,
-      {
+    this.store
+      .query(model, {
         archived: this.displayArchived,
         page: this.page,
         s: this.searchQuery
-      }
-    ).then((entities) => {
-      let current = this.model;
-      let meta = entities.meta;
-      entities = entities.toArray();
+      })
+      .then((entities) => {
+        let current = this.model;
+        let meta = entities.meta;
+        entities = entities.toArray();
 
-      if (this.get('accessPanelConfig.nestedModel')) {
-        current = current[model];
-      }
+        if (this.get('accessPanelConfig.nestedModel')) {
+          current = current[model];
+        }
 
-      if (current) {
-        entities.removeObject(current);
-        entities.splice(0, 0, current);
-      }
+        if (current) {
+          entities.removeObject(current);
+          entities.splice(0, 0, current);
+        }
 
-      this.set('meta', meta);
-      this.set('accessPanelEntities', entities);
-      this.set('contentLoading', false);
-      this.set('shouldReloadAccessPanel', false);
-    });
+        this.set('meta', meta);
+        this.set('accessPanelEntities', entities);
+        this.set('contentLoading', false);
+        this.set('shouldReloadAccessPanel', false);
+      });
   },
 
   actions: {
@@ -91,11 +90,9 @@ export default Mixin.create(UpfTableSearchMixin, {
       this.set('displayArchived', false);
       this.set('searchQuery', '');
       entity.set('currentlyOpened', true);
-      this.transitionToRoute(
-        this.get('accessPanelConfig.backRoute'),
-        entity.get('id'),
-        { queryParams: this.get('accessPanelConfig.backRouteParams') }
-      );
+      this.transitionToRoute(this.get('accessPanelConfig.backRoute'), entity.get('id'), {
+        queryParams: this.get('accessPanelConfig.backRouteParams')
+      });
     },
 
     didPageChange(page) {

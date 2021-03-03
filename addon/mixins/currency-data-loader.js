@@ -4,7 +4,7 @@ import { get, computed } from '@ember/object';
 import { formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';
 
 export function price(dependentKey, options = {}) {
-  return computed(dependentKey, 'currencyData.{currency,rate}', function() {
+  return computed(dependentKey, 'currencyData.{currency,rate}', function () {
     if (this.currencyData === null) {
       throw "'price' computed must be used with the CurrencyDataLoaderMixin";
     }
@@ -14,13 +14,10 @@ export function price(dependentKey, options = {}) {
       currency: get(this, 'currencyData.currency')
     };
 
-    return formatPrice(
-      [get(this, dependentKey)],
-      {
-        ...base,
-        ...options // Allow to override rate / currency
-      }
-    );
+    return formatPrice([get(this, dependentKey)], {
+      ...base,
+      ...options // Allow to override rate / currency
+    });
   });
 }
 

@@ -28,11 +28,11 @@ export default Component.extend({
     return this.exports.searchEntities(this.keyword).then((response) => {
       resolve(
         Object.keys(response).reduce((acc, entityType) => {
-          if ((response[entityType].length > 0) && !acc.find((item) => acc.includes(item.type))) {
+          if (response[entityType].length > 0 && !acc.find((item) => acc.includes(item.type))) {
             acc.push({
               groupName: entityType,
               options: []
-            })
+            });
           }
           response[entityType].forEach((item) => {
             acc.find((group) => {

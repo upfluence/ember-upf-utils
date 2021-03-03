@@ -18,7 +18,7 @@ export default Component.extend({
   tagNames: ['li'],
   classNames: ['universal-selection-option'],
 
-  icon: computed('item', 'option.type', function() {
-    return ENTITIES_ICONS[(this.option.type)];
+  icon: computed('item', 'option.type', function () {
+    return ENTITIES_ICONS[this.option.type];
   })
 });

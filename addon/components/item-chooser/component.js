@@ -38,7 +38,7 @@ export default Component.extend({
   onopen: null,
   groupComponent: null,
 
-  triggerClass: computed('size', function() {
+  triggerClass: computed('size', function () {
     if (!this.size) return;
 
     return `ember-power-select-trigger--${this.size}`;
@@ -51,7 +51,7 @@ export default Component.extend({
     }
   },
 
-  _createItemComponent: computed('canCreate', 'createItemComponent', 'searchTerm', function() {
+  _createItemComponent: computed('canCreate', 'createItemComponent', 'searchTerm', function () {
     if (this.canCreate && !isBlank(this.searchTerm)) {
       return this.createItemComponent || 'item-chooser/create-item';
     }
@@ -70,9 +70,7 @@ export default Component.extend({
         name: this.searchTerm
       });
     } else {
-      item = ExportEntity.create(
-        Object.assign({ name: this.searchTerm }, extraAttrs)
-      );
+      item = ExportEntity.create(Object.assign({ name: this.searchTerm }, extraAttrs));
     }
 
     if (this.multiple) {

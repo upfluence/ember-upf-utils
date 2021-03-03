@@ -5,14 +5,14 @@ import { observer } from '@ember/object';
 import { getOwner } from '@ember/application';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
-const notificationMessage = function(message) {
+const notificationMessage = function (message) {
   return {
     title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
     message: message
   };
 };
 
-const notificationMessageWithAvatar = function(avatarUrl, message) {
+const notificationMessageWithAvatar = function (avatarUrl, message) {
   return {
     title: `<img class="toast-title__avatar" src="${avatarUrl}" />
      <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
@@ -40,9 +40,7 @@ export default Service.extend({
       return;
     }
 
-    this._environment = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).build_env;
+    this._environment = getOwner(this).resolveRegistration('config:environment').build_env;
     this._scope = Configuration.scope[0];
     this._isRunning = true;
 
@@ -64,18 +62,19 @@ export default Service.extend({
 
     this._inFetch = true;
 
-    this.ajax.request(this.buildUrl(), {
-      dataType: 'json',
-      data: this.buildArgs()
-    }).then(
-      (p) => {
+    this.ajax
+      .request(this.buildUrl(), {
+        dataType: 'json',
+        data: this.buildArgs()
+      })
+      .then((p) => {
         this._from = p.next;
         this.displayNotifications(p.notifications);
         this._timer = run.later(this, this.fetchNotifications, this.waitTime());
-      }
-    ).finally(
-      () => { this._inFetch = false; }
-    );
+      })
+      .finally(() => {
+        this._inFetch = false;
+      });
   },
 
   buildUrl() {
@@ -86,7 +85,7 @@ export default Service.extend({
     let query = {
       from: this._from,
       access_token: this.token,
-      scope: this._scope,
+      scope: this._scope
     };
 
     if (this._environment && this._environment !== 'production') {
@@ -115,7 +114,7 @@ export default Service.extend({
   buildNotification(notification) {
     let data = notification.data || {};
 
-    switch(notification.notification_type) {
+    switch (notification.notification_type) {
       case 'mailing_email_received':
         return notificationMessageWithAvatar(
           data.influencer_avatar,
@@ -166,7 +165,7 @@ export default Service.extend({
   token: alias('session.data.authenticated.access_token'),
   hasToken: notEmpty('token'),
 
-  _: observer('hasToken', function() {
+  _: observer('hasToken', function () {
     this.start();
   })
 });
