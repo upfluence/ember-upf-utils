@@ -5,7 +5,7 @@ import { observer } from '@ember/object';
 export default Mixin.create({
   intl: service(),
 
-  _: observer('_error', function() {
+  _: observer('_error', function () {
     this.set('error', this.intl.t(this._error));
   })
 });

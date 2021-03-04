@@ -16,29 +16,24 @@ export default Mixin.create({
   actions: {
     bulkArchive(archivalAction) {
       this.triggerAction({ action: 'setContentChanging', actionContext: true });
-      this.entityArchiving.bulkToggleArchive(
-        this.entityArchivingName,
-        this.selectedItems.mapBy('id'),
-        archivalAction
-      ).then(() => {
-        let selectedItems = this.selectedItems;
-        this.selectedItems.map((item) => item.set('selected', false));
-        this.collection.removeObjects(selectedItems);
-        this.triggerAction({
-          action: 'setContentChanging',
-          actionContext: false
+      this.entityArchiving
+        .bulkToggleArchive(this.entityArchivingName, this.selectedItems.mapBy('id'), archivalAction)
+        .then(() => {
+          let selectedItems = this.selectedItems;
+          this.selectedItems.map((item) => item.set('selected', false));
+          this.collection.removeObjects(selectedItems);
+          this.triggerAction({
+            action: 'setContentChanging',
+            actionContext: false
+          });
+        })
+        .catch(() => {
+          this.triggerAction({
+            action: 'setContentChanging',
+            actionContext: false
+          });
+          this.toast.error(this.intl.t(this.archivalError), this.intl.t(this.archivalErrorTitle), this._toastConfig);
         });
-      }).catch(() => {
-        this.triggerAction({
-          action: 'setContentChanging',
-          actionContext: false
-        });
-        this.toast.error(
-          this.intl.t(this.archivalError),
-          this.intl.t(this.archivalErrorTitle),
-          this._toastConfig
-        );
-      });
     }
   }
 });

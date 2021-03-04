@@ -29,14 +29,14 @@ export default Component.extend({
     });
   },
 
-  _1: observer('entity.id', function() {
+  _1: observer('entity.id', function () {
     this.set(
       'ownership',
       this.ownerships.find((item) => item.id === this.get('entity.ownedBy'))
     );
   }),
 
-  _2: observer('ownership', function() {
+  _2: observer('ownership', function () {
     if (this.get('entity.ownedBy') !== this.get('ownership.id')) {
       this.set('entity.ownedBy', this.get('ownership.id'));
     }

@@ -43,17 +43,14 @@ export default Component.extend({
   _isValid: true,
   _percent: 0,
 
-  _: observer('file', function() {
+  _: observer('file', function () {
     this._upload();
   }),
 
-  url: computed('model.{constructor.modelName,id}', function() {
-    return this.store.adapterFor(
-      this.get('model.constructor.modelName')
-    ).buildURL(
-      this.get('model.constructor.modelName'),
-      this.get('model.id')
-    );
+  url: computed('model.{constructor.modelName,id}', function () {
+    return this.store
+      .adapterFor(this.get('model.constructor.modelName'))
+      .buildURL(this.get('model.constructor.modelName'), this.get('model.id'));
   }),
 
   hasFile: notEmpty('file.name'),
@@ -94,7 +91,7 @@ export default Component.extend({
           this.didUpload(e);
         }
 
-        if(!this.isDestroyed) {
+        if (!this.isDestroyed) {
           this._clear();
         }
       })
@@ -111,9 +108,7 @@ export default Component.extend({
       .on('didValidationError', (error) => {
         this.set('_onUpload', false);
         this.set('_isValid', false);
-        this.toast.info(
-          error || 'Your file is invalid. Please check the requirements.'
-        );
+        this.toast.info(error || 'Your file is invalid. Please check the requirements.');
 
         if (this.didValidationError) {
           this.didValidationError(error);
@@ -125,7 +120,7 @@ export default Component.extend({
         if (jqXHR && jqXHR.responseText) {
           try {
             payload = JSON.parse(jqXHR.responseText);
-          } catch(e) {
+          } catch (e) {
             // silent
           }
         }
@@ -137,15 +132,14 @@ export default Component.extend({
         if (this.didError) {
           this.didError(payload, errorThrown);
         }
-      })
-    ;
+      });
 
     if (!isEmpty(this.file)) {
       /* jshint ignore:start */
       uploader.upload(this.file, {
         ...this.extra,
         allowedExtensions: this.allowedExtensions,
-        maxSize: this.maxSize,
+        maxSize: this.maxSize
       });
       /* jshint ignore:end */
     }
@@ -159,7 +153,7 @@ export default Component.extend({
         dataType: 'json',
         headers: {
           ...this.headers,
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       }
     };
@@ -169,9 +163,7 @@ export default Component.extend({
       options.url = this.url;
       options.method = this.method;
       options.paramName = underscore(this.attribute);
-      options.paramNamespace = underscore(
-        this.get('model.constructor.modelName')
-      );
+      options.paramNamespace = underscore(this.get('model.constructor.modelName'));
     } else {
       options.url = Configuration.uploaderUrl;
     }

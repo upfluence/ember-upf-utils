@@ -36,10 +36,16 @@ export default Component.extend(TooltipActivationMixin, {
     }
   }),
 
-  listNames: computed('profile.lists', function() {
-    return '<div style="text-align: left;">Present in<br />' + this.get('profile.lists').map((list) => {
-      return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
-    }).join('') + '</div>';
+  listNames: computed('profile.lists', function () {
+    return (
+      '<div style="text-align: left;">Present in<br />' +
+      this.get('profile.lists')
+        .map((list) => {
+          return '<i class="upf-icon upf-icon--influencers"></i> ' + list.get('name') + '<br />';
+        })
+        .join('') +
+      '</div>'
+    );
   }),
 
   displayContact: and('profile.email', 'hasInbox'),
@@ -47,7 +53,7 @@ export default Component.extend(TooltipActivationMixin, {
   isLdaCompliant: gte('medias.instagram.audience.legal_drinking_age.values.21+', 0.716),
 
   didInsertElement() {
-this._super(...arguments);
+    this._super(...arguments);
     this.currentUser.fetch().then((payload) => {
       this.set('hasInbox', payload.user.granted_scopes.includes('inbox_client'));
     });

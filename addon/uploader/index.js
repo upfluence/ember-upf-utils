@@ -3,12 +3,9 @@ import { Promise } from 'rsvp';
 import fileparser from '@upfluence/ember-upf-utils/utils/filesize-parser';
 import { isEmpty } from '@ember/utils';
 
-const getExtension = function(filename) {
+const getExtension = function (filename) {
   /* eslint-disable no-useless-escape */
-  let extensionMatchers = [
-    new RegExp(/^(.+)\.(tar\.([glx]?z|bz2))$/),
-    new RegExp(/^(.+)\.([^\.]+)$/)
-  ];
+  let extensionMatchers = [new RegExp(/^(.+)\.(tar\.([glx]?z|bz2))$/), new RegExp(/^(.+)\.([^\.]+)$/)];
   /* eslint-enable no-useless-escape */
 
   for (let i = 0; i < extensionMatchers.length; i++) {
@@ -21,8 +18,8 @@ const getExtension = function(filename) {
   return null;
 };
 
-const fileExtensionValidatorFactory = function(extensions) {
-  return function(file) {
+const fileExtensionValidatorFactory = function (extensions) {
+  return function (file) {
     if (isEmpty(extensions)) {
       return true;
     }
@@ -38,8 +35,8 @@ const fileExtensionValidatorFactory = function(extensions) {
   };
 };
 
-const fileSizeValidatorFactory = function(maxSize) {
-  return function(file) {
+const fileSizeValidatorFactory = function (maxSize) {
+  return function (file) {
     if (!maxSize) {
       return true;
     }
@@ -70,7 +67,7 @@ export default Uploader.extend({
 
     try {
       validators.forEach((v) => v(file));
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(this.didValidationError(err));
     }
 
@@ -90,9 +87,6 @@ export default Uploader.extend({
   },
 
   _buildValidators(extra = {}) {
-    return [
-      fileExtensionValidatorFactory(extra.allowedExtensions),
-      fileSizeValidatorFactory(extra.maxSize)
-    ];
+    return [fileExtensionValidatorFactory(extra.allowedExtensions), fileSizeValidatorFactory(extra.maxSize)];
   }
-})
+});

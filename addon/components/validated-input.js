@@ -1,11 +1,4 @@
-import {
-  notEmpty,
-  not,
-  or,
-  and,
-  readOnly,
-  alias
-} from '@ember/object/computed';
+import { notEmpty, not, or, and, readOnly, alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { defineProperty } from '@ember/object';
 import layout from '../templates/components/validated-input';
@@ -45,15 +38,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    defineProperty(
-      this,
-      'validation',
-      readOnly(`model.validations.attrs.${this.valuePath}`)
-    );
+    defineProperty(this, 'validation', readOnly(`model.validations.attrs.${this.valuePath}`));
 
-    defineProperty(
-      this, 'value', alias(`model.${this.valuePath}`)
-    );
+    defineProperty(this, 'value', alias(`model.${this.valuePath}`));
   },
 
   focusOut() {

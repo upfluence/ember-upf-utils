@@ -20,7 +20,7 @@ export default Service.extend({
     this.load();
   },
 
-  _: observer('storageScope', function() {
+  _: observer('storageScope', function () {
     this._loaded = false;
     this.load();
   }),
@@ -31,7 +31,7 @@ export default Service.extend({
 
   length: alias('_length'),
 
-  all: computed('_cache', '_length', function() {
+  all: computed('_cache', '_length', function () {
     return Object.keys(this._cache);
   }),
 
@@ -57,7 +57,7 @@ export default Service.extend({
       return;
     }
 
-    currentScopeIds.forEach((v) => this._cache[v] = true);
+    currentScopeIds.forEach((v) => (this._cache[v] = true));
     set(this, '_length', currentScopeIds.length);
   },
 
@@ -113,6 +113,6 @@ export default Service.extend({
       return true;
     }
 
-    return date < (Date.now() - DATA_LIFETIME * 1000);
+    return date < Date.now() - DATA_LIFETIME * 1000;
   }
 });

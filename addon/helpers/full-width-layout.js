@@ -2,8 +2,7 @@ import { helper as buildHelper } from '@ember/component/helper';
 import ShelfFirst from 'layout-bin-packer/shelf-first';
 import { formatPercentageStyle } from 'ember-collection/utils/style-generators';
 
-export class FullWidthLayout
-{
+export class FullWidthLayout {
   constructor(itemCount, height, transitioning) {
     let positions = [];
     for (var i = 0; i < itemCount; i++) {
@@ -18,7 +17,7 @@ export class FullWidthLayout
     this.transitioning = transitioning;
   }
 
-  contentSize(clientWidth/*, clientHeight*/) {
+  contentSize(clientWidth /*, clientHeight*/) {
     return {
       width: clientWidth,
       height: this.bin.height(100)
@@ -50,9 +49,9 @@ export class FullWidthLayout
     let width = this.positions[itemIndex].percent;
     let height = this.heightAt(itemIndex, 100, clientHeight);
     let x = Math.floor((pos.x / 100) * clientWidth);
-    let baseStyle = formatPercentageStyle({x:x, y:pos.y}, width, height);
+    let baseStyle = formatPercentageStyle({ x: x, y: pos.y }, width, height);
 
-    if(this.transitioning) {
+    if (this.transitioning) {
       return `${baseStyle} transition: transform 0.2s ease-out`;
     }
 
@@ -60,6 +59,6 @@ export class FullWidthLayout
   }
 }
 
-export default buildHelper(function (params/*, hash*/) {
+export default buildHelper(function (params /*, hash*/) {
   return new FullWidthLayout(params[0], params[1], params[2]);
 });

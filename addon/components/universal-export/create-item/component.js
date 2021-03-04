@@ -50,11 +50,7 @@ export default Component.extend({
     createItem(_, defer) {
       defer.promise.then(() => this.select.actions.close());
 
-      this.createItem(
-        _,
-        { type: this.selectedEntityType },
-        defer
-      );
+      this.createItem(_, { type: this.selectedEntityType }, defer);
     }
   }
 });

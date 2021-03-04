@@ -16,13 +16,9 @@ export default Service.extend({
       url = adapter.ownershipUpdateUrl(modelId);
     }
 
-    return adapter.ajax(
-      url,
-      'PUT',
-      {
-        contentType: 'application/json',
-        data: payload
-      }
-    );
+    return adapter.ajax(url, 'PUT', {
+      contentType: 'application/json',
+      data: payload
+    });
   }
 });

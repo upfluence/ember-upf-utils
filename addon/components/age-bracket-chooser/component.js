@@ -1,12 +1,7 @@
 import Component from '@ember/component';
 import layout from './template';
 
-const AUDIENCE_AGE_BRACKETS = [
-  { name: '0-17'},
-  { name: '18-24'},
-  { name: '25-34'},
-  { name: '35-54'},
-]
+const AUDIENCE_AGE_BRACKETS = [{ name: '0-17' }, { name: '18-24' }, { name: '25-34' }, { name: '35-54' }];
 
 export default Component.extend({
   layout,
@@ -33,9 +28,7 @@ export default Component.extend({
         })
       );
     } else {
-      this.set(
-        '_selection', AUDIENCE_AGE_BRACKETS.findBy('name', this.ageBracket)
-      );
+      this.set('_selection', AUDIENCE_AGE_BRACKETS.findBy('name', this.ageBracket));
     }
   }
 });

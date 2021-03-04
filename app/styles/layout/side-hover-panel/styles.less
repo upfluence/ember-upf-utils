@@ -23,7 +23,9 @@
     pointer-events: auto;
     position: absolute;
 
-    &.animate { transition: transform .35s cubic-bezier(.25,.8,.25,1); }
+    &.animate {
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
     &.right_side {
       left: 100%;
@@ -35,18 +37,38 @@
       min-width: 1000px;
     }
 
-    &.top_side { bottom: 100%; }
-    &.bottom_side { top: 100%; }
+    &.top_side {
+      bottom: 100%;
+    }
+    &.bottom_side {
+      top: 100%;
+    }
 
-    &.right_transform { transform: translateX(-100%); }
-    &.left_transform { transform: translateX(100%); }
-    &.top_transform { transform: translateY(100%); }
-    &.bottom_transform { transform: translateY(-100%); }
+    &.right_transform {
+      transform: translateX(-100%);
+    }
+    &.left_transform {
+      transform: translateX(100%);
+    }
+    &.top_transform {
+      transform: translateY(100%);
+    }
+    &.bottom_transform {
+      transform: translateY(-100%);
+    }
 
-    &.right_align { right: 0; }
-    &.left_align { left: 0; }
-    &.top_align { top: 0; }
-    &.bottom_align { bottom: 0; }
+    &.right_align {
+      right: 0;
+    }
+    &.left_align {
+      left: 0;
+    }
+    &.top_align {
+      top: 0;
+    }
+    &.bottom_align {
+      bottom: 0;
+    }
   }
 }
 

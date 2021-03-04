@@ -16,7 +16,7 @@ module.exports = {
   name,
   version,
 
-  isDevelopingAddon: function() {
+  isDevelopingAddon: function () {
     return true;
   },
 
@@ -26,7 +26,7 @@ module.exports = {
     }
   },
 
-  treeForPublic: function(tree) {
+  treeForPublic: function (tree) {
     if (!tree) {
       return tree;
     }
@@ -37,7 +37,7 @@ module.exports = {
     });
   },
 
-  included: function() {
+  included: function () {
     this._super.included.apply(this, arguments);
 
     this.import('vendor/tinycolor/tinycolor.js');
@@ -46,13 +46,10 @@ module.exports = {
 
   treeForVendor(vendorTree) {
     let content = `Ember.libraries.register('${name}', '${version}');`;
-    let registerVersionTree = writeFile(
-      'ember-upf-utils/register-version.js',
-      content
-    );
+    let registerVersionTree = writeFile('ember-upf-utils/register-version.js', content);
     let tinyTree = new Funnel(path.dirname(require.resolve('tinycolor2')), {
       files: ['tinycolor.js'],
-      destDir: '/tinycolor',
+      destDir: '/tinycolor'
     });
 
     return new MergeTrees([registerVersionTree, vendorTree, tinyTree]);

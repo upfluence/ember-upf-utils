@@ -11,7 +11,7 @@ export default Component.extend(CurrencyDataLoaderMixin, {
   useFormatter: false,
   roundPrecision: 2,
 
-  formattedPrice: computed('price', 'currencyData.{currency,rate}', 'useFormatter', 'roundPrecision', function() {
+  formattedPrice: computed('price', 'currencyData.{currency,rate}', 'useFormatter', 'roundPrecision', function () {
     return formatPrice([this.price], {
       rate: this.get('currencyData.rate'),
       currency: this.get('currencyData.currency'),

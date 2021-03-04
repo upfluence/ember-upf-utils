@@ -17,13 +17,11 @@ export default Component.extend({
   to: null,
   hasSubscription: false,
 
-  identityURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).identityURL;
+  identityURL: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').identityURL;
   }),
 
-  description: computed('to', function() {
+  description: computed('to', function () {
     let intlKey = 'default';
 
     if (['monitor', 'bulk_emailing'].includes(this.to)) {
@@ -33,20 +31,18 @@ export default Component.extend({
     return this.intl.t(`upgrade_modal.details.${intlKey}`, { htmlSafe: true });
   }),
 
-  upgradeFeatureImagePath: computed('to', function() {
+  upgradeFeatureImagePath: computed('to', function () {
     if (!INCLUDES_ILLUSTRATION.includes(this.to)) return;
 
-    return this.assetMap.resolve(
-      `assets/@upfluence/ember-upf-utils/images/${this.to}.png`
-    );
+    return this.assetMap.resolve(`assets/@upfluence/ember-upf-utils/images/${this.to}.png`);
   }),
 
-  canSelfUpgrade: computed('hasSubscription', 'to', function() {
+  canSelfUpgrade: computed('hasSubscription', 'to', function () {
     return this.hasSubscription && this.to !== 'crm';
   }),
 
-  cta: computed('canSelfUpgrade', function() {
-    let intlKey = (this.canSelfUpgrade) ? 'upgrade' : 'contact';
+  cta: computed('canSelfUpgrade', function () {
+    let intlKey = this.canSelfUpgrade ? 'upgrade' : 'contact';
 
     return this.intl.t(`upgrade_modal.cta.${intlKey}`);
   }),

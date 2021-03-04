@@ -23,7 +23,8 @@
   .btn-link {
     .hover-animation(background-color);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       outline: none;
     }
 
@@ -32,7 +33,7 @@
     }
   }
 
-  input[type="text"]::placeholder {
+  input[type='text']::placeholder {
     color: fadeout(@color-text-contrast, 50%);
   }
 
@@ -44,7 +45,8 @@
     background-color: fade(white, 10%);
     border: 0;
 
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
       outline: none;
       box-shadow: none;
       background-color: @inverse-color;

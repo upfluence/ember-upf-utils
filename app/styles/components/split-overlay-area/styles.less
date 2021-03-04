@@ -5,7 +5,8 @@
   .hover-animation(transform);
 
   .split-overlay {
-    .left-side, .right-side {
+    .left-side,
+    .right-side {
       .hover-animation(opacity);
 
       background: fadeout(@upf-primary-black, 80%);
@@ -17,7 +18,7 @@
 
       .upf-icon {
         opacity: 0;
-        font-size: 24/@rem;
+        font-size: 24 / @rem;
         color: @upf-primary-white;
       }
     }
@@ -42,8 +43,10 @@
       }
     }
 
-    &:hover .left-side, &:active .left-side,
-    &:hover .right-side, &:active .right-side {
+    &:hover .left-side,
+    &:active .left-side,
+    &:hover .right-side,
+    &:active .right-side {
       opacity: 1;
 
       .upf-icon {
@@ -63,9 +66,12 @@
 
 .__table-fluid-row--active,
 .split-overlay-area.shepherd-enabled {
-  .left-side:not(:hover), .right-side:not(:hover) {
+  .left-side:not(:hover),
+  .right-side:not(:hover) {
     opacity: 1;
-    .upf-icon { opacity: 1; }
+    .upf-icon {
+      opacity: 1;
+    }
   }
 }
 

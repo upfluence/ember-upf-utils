@@ -26,7 +26,7 @@ export default Component.extend({
 
       return this.currentUser.fetchColleagues().then(({ users }) => {
         let coworkers = users.filter((user) => {
-          return user.active && user.id !== currentUserID
+          return user.active && user.id !== currentUserID;
         });
 
         this.set('availableUsers', coworkers);
@@ -39,23 +39,28 @@ export default Component.extend({
     });
   },
 
-  _: observer('searchTerm', function() {
+  _: observer('searchTerm', function () {
     if (isEmpty(this.searchTerm)) {
       this.set('items', this.availableUsers);
     }
 
     let searchTerm = this.searchTerm.toLowerCase();
 
-    this.set('items', this.availableUsers.filter((u) => {
-      const { first_name, last_name, email } = u;
+    this.set(
+      'items',
+      this.availableUsers.filter((u) => {
+        const { first_name, last_name, email } = u;
 
-      return email.toLowerCase().includes(searchTerm)
-        || (first_name || '').toLowerCase().includes(searchTerm)
-        || (last_name || '').toLowerCase().includes(searchTerm);
-    }))
+        return (
+          email.toLowerCase().includes(searchTerm) ||
+          (first_name || '').toLowerCase().includes(searchTerm) ||
+          (last_name || '').toLowerCase().includes(searchTerm)
+        );
+      })
+    );
   }),
 
-  _reloadSelected: observer('entity.id', function() {
+  _reloadSelected: observer('entity.id', function () {
     this.currentUser.fetchOwnerships().then((ownerships) => {
       this._setSelectedUsers(ownerships);
     });
@@ -71,7 +76,7 @@ export default Component.extend({
         return currentOwnership.userIds.includes(x.id);
       });
     }
-    
+
     this.set('selectedUsers', selectedUsers);
   },
 
@@ -81,9 +86,12 @@ export default Component.extend({
     },
 
     updateOwnership(_, defer) {
-      this.currentUser.createCompositeGroup(this.selectedUsers).then(({ composite }) => {
-        this.saveOwnership(composite.ownership);
-      }).finally(defer.resolve);
+      this.currentUser
+        .createCompositeGroup(this.selectedUsers)
+        .then(({ composite }) => {
+          this.saveOwnership(composite.ownership);
+        })
+        .finally(defer.resolve);
     }
   }
 });

@@ -16,7 +16,7 @@ export default Component.extend({
   borderlessHeader: false,
   id: null,
 
-  _: observer('hidden', function() {
+  _: observer('hidden', function () {
     if (this.hidden) {
       this.$().modal('hide');
     } else {
@@ -32,7 +32,7 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    if(!this.hidden) {
+    if (!this.hidden) {
       this._setupModal();
     }
 
@@ -46,7 +46,7 @@ export default Component.extend({
       backdrop: 'static'
     });
 
-    if(this.container) {
+    if (this.container) {
       modal.appendTo(this.container);
     }
   },

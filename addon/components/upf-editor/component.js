@@ -19,39 +19,46 @@ export default Component.extend({
     let self = this;
 
     let uploadBtns = {
-      videoUpload: function(context) {
+      videoUpload: function (context) {
         context.memo('button.videoUpload', () => {
-          return $.summernote.ui.button({
-            contents: '<i class="fa fa-video-camera"/></i>',
-            tooltip: 'Insert Video',
-            click: () => {
-              self.set('summernoteContext', context);
-              self.send('toggleVideoUpload');
-            }
-          }).render();
+          return $.summernote.ui
+            .button({
+              contents: '<i class="fa fa-video-camera"/></i>',
+              tooltip: 'Insert Video',
+              click: () => {
+                self.set('summernoteContext', context);
+                self.send('toggleVideoUpload');
+              }
+            })
+            .render();
         });
       },
 
-      pdfUpload: function(context) {
-        context.memo('button.pdfUpload', function() {
-          return $.summernote.ui.button({
-            contents: '<i class="fa fa-file-pdf-o"></i>',
-            tooltip: 'Insert a PDF file',
-            click() {
-              self.set('summernoteContext', context);
-              self.send('togglePDFUpload');
-            }
-          }).render();
+      pdfUpload: function (context) {
+        context.memo('button.pdfUpload', function () {
+          return $.summernote.ui
+            .button({
+              contents: '<i class="fa fa-file-pdf-o"></i>',
+              tooltip: 'Insert a PDF file',
+              click() {
+                self.set('summernoteContext', context);
+                self.send('togglePDFUpload');
+              }
+            })
+            .render();
         });
       }
     };
 
     if (isEmpty(this._customButtonsFuncs)) {
-      Object.keys(uploadBtns).filter((x) => {
-        return this.customButtons.split(',').includes(x);
-      }).map((x) => uploadBtns[x]).forEach((customButton) => {
-        this._customButtonsFuncs.push(customButton);
-      });
+      Object.keys(uploadBtns)
+        .filter((x) => {
+          return this.customButtons.split(',').includes(x);
+        })
+        .map((x) => uploadBtns[x])
+        .forEach((customButton) => {
+          this._customButtonsFuncs.push(customButton);
+        });
     }
   },
 

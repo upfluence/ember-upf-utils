@@ -10,7 +10,7 @@ export default Component.extend({
   cssClass: null,
   target: null,
 
-  isRoute: computed('link', function() {
+  isRoute: computed('link', function () {
     return getOwner(this).hasRegistration(`route:${this.link}`);
   })
 });

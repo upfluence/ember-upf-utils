@@ -24,16 +24,19 @@ export default Component.extend({
 
   actions: {
     addComment(_, defer) {
-      this.store.createRecord('draft-comment', {
-        draft: this.draft,
-        text: this.commentText
-      }).save().then(() => {
-        this.set('commentText', '')
-      }).catch(() => {
-        this.toast.error(
-          'Something wrong happened trying to add your commment.'
-        );
-      }).finally(() => defer.resolve());
+      this.store
+        .createRecord('draft-comment', {
+          draft: this.draft,
+          text: this.commentText
+        })
+        .save()
+        .then(() => {
+          this.set('commentText', '');
+        })
+        .catch(() => {
+          this.toast.error('Something wrong happened trying to add your commment.');
+        })
+        .finally(() => defer.resolve());
     },
 
     removeComment(comment) {

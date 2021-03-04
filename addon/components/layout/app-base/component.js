@@ -17,7 +17,7 @@ export default Component.extend({
       ({ user, companies, account_subscriptions }) => {
         this.set('user', User.create(user));
         this.set('companies', companies);
-        this.set('accountSubscriptions', account_subscriptions)
+        this.set('accountSubscriptions', account_subscriptions);
 
         if (user.extra && user.extra.company_logo) {
           this.set('applicationLogo', user.extra.company_logo);

@@ -10,11 +10,11 @@ export default Component.extend({
   createButtonTextTemplate: '',
   publicApi: null,
 
-  hidden: computed('publicApi.resultsCount', function() {
+  hidden: computed('publicApi.resultsCount', function () {
     return !this.publicApi || this.publicApi.resultsCount > 0;
   }),
 
-  formattedCreateButtonText: computed('createButtonTextTemplate', 'publicApi.searchText', 'searchTerm', function() {
+  formattedCreateButtonText: computed('createButtonTextTemplate', 'publicApi.searchText', 'searchTerm', function () {
     return this.createButtonTextTemplate.replace('#item#', (this.publicApi || {}).searchText);
   }),
 

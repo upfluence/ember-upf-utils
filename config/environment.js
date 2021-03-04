@@ -1,7 +1,7 @@
 /*jshint node:true*/
 'use strict';
 
-module.exports = function(environment, appConfig) {
+module.exports = function (environment, appConfig) {
   appConfig['ember-toastr'] = {
     toastrOptions: {
       positionClass: 'toast-bottom-center upf-toastr--container',
@@ -15,7 +15,7 @@ module.exports = function(environment, appConfig) {
 
   appConfig['ember-cli-google'] = {
     analytics: {
-      trackerId: process.env.GA_WEB_PROPERTY_ID || 'no-token',
+      trackerId: process.env.GA_WEB_PROPERTY_ID || 'no-token'
     }
   };
 

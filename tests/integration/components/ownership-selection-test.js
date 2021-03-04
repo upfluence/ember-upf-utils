@@ -4,7 +4,7 @@ import { render, getSettledState, waitUntil } from '@ember/test-helpers';
 import EmberObject from '@ember/object';
 import Service from '@ember/service';
 import { hbs } from 'ember-cli-htmlbars';
-import { clickTrigger, selectChoose } from 'ember-power-select/test-support/helpers'
+import { clickTrigger, selectChoose } from 'ember-power-select/test-support/helpers';
 import sinon from 'sinon';
 
 class CurrentUserServiceStub extends Service {
@@ -13,14 +13,14 @@ class CurrentUserServiceStub extends Service {
   }
 }
 
-module('Integration | Component | ownership-selection', function(hooks) {
+module('Integration | Component | ownership-selection', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.register('service:current-user', CurrentUserServiceStub);
   });
 
-  test('(no ownerships) it does not render anything', async function(assert) {
+  test('(no ownerships) it does not render anything', async function (assert) {
     this.entity = null;
 
     await render(hbs`{{ownership-selection entity=this.entity}}`);
@@ -29,7 +29,7 @@ module('Integration | Component | ownership-selection', function(hooks) {
   });
 
   // ownerships > 1 because there is always at least the current user's.
-  test('(w/ ownerships > 1) it renders the current ownerships and available options', async function(assert) {
+  test('(w/ ownerships > 1) it renders the current ownerships and available options', async function (assert) {
     this.entity = EmberObject.create({ name: 'My Entity', ownedBy: 'user:1' });
     this.ownershipsStub = [
       {
@@ -48,16 +48,12 @@ module('Integration | Component | ownership-selection', function(hooks) {
 
     const currentUserService = this.owner.lookup('service:current-user');
 
-    sinon.stub(currentUserService, 'fetchOwnerships').returns(
-      new Promise((resolve) => resolve(this.ownershipsStub))
-    );
+    sinon.stub(currentUserService, 'fetchOwnerships').returns(new Promise((resolve) => resolve(this.ownershipsStub)));
 
     await render(hbs`{{ownership-selection entity=this.entity}}`);
 
     assert.dom('.ember-basic-dropdown').exists();
-    assert.dom(
-      '.ember-basic-dropdown .ember-power-select-selected-item'
-    ).containsText('Norman');
+    assert.dom('.ember-basic-dropdown .ember-power-select-selected-item').containsText('Norman');
 
     await clickTrigger();
 
@@ -69,7 +65,7 @@ module('Integration | Component | ownership-selection', function(hooks) {
     assert.dom(options[2]).containsText('Spiderman Villains');
   });
 
-  test('it correctly updates when the entity changes', async function(assert) {
+  test('it correctly updates when the entity changes', async function (assert) {
     this.entity = EmberObject.create({ name: 'My Entity', ownedBy: 'user:1' });
     this.ownershipsStub = [
       {
@@ -88,15 +84,11 @@ module('Integration | Component | ownership-selection', function(hooks) {
 
     const currentUserService = this.owner.lookup('service:current-user');
 
-    sinon.stub(currentUserService, 'fetchOwnerships').returns(
-      new Promise((resolve) => resolve(this.ownershipsStub))
-    );
+    sinon.stub(currentUserService, 'fetchOwnerships').returns(new Promise((resolve) => resolve(this.ownershipsStub)));
 
     await render(hbs`{{ownership-selection entity=this.entity}}`);
 
-    assert.dom(
-      '.ember-basic-dropdown .ember-power-select-selected-item'
-    ).containsText('Norman');
+    assert.dom('.ember-basic-dropdown .ember-power-select-selected-item').containsText('Norman');
 
     this.set('entity', EmberObject.create({ name: 'Entity #2', ownedBy: 'company:1' }));
 
@@ -111,12 +103,10 @@ module('Integration | Component | ownership-selection', function(hooks) {
       return true;
     });
 
-    assert.dom(
-      '.ember-basic-dropdown .ember-power-select-selected-item'
-    ).containsText('Marvel');
+    assert.dom('.ember-basic-dropdown .ember-power-select-selected-item').containsText('Marvel');
   });
 
-  test('it correctly assign a selected ownership to the entity', async function(assert) {
+  test('it correctly assign a selected ownership to the entity', async function (assert) {
     this.entity = EmberObject.create({ name: 'My Entity', ownedBy: 'user:1' });
     this.ownershipsStub = [
       {
@@ -135,21 +125,15 @@ module('Integration | Component | ownership-selection', function(hooks) {
 
     const currentUserService = this.owner.lookup('service:current-user');
 
-    sinon.stub(currentUserService, 'fetchOwnerships').returns(
-      new Promise((resolve) => resolve(this.ownershipsStub))
-    );
+    sinon.stub(currentUserService, 'fetchOwnerships').returns(new Promise((resolve) => resolve(this.ownershipsStub)));
 
     await render(hbs`{{ownership-selection entity=this.entity}}`);
 
-    assert.dom(
-      '.ember-basic-dropdown .ember-power-select-selected-item'
-    ).containsText('Norman');
+    assert.dom('.ember-basic-dropdown .ember-power-select-selected-item').containsText('Norman');
 
     await selectChoose('.ember-power-select-trigger', 'Spiderman Villains');
 
-    assert.dom(
-      '.ember-basic-dropdown .ember-power-select-selected-item'
-    ).containsText('Spiderman Villains');
+    assert.dom('.ember-basic-dropdown .ember-power-select-selected-item').containsText('Spiderman Villains');
     assert.equal(this.entity.ownedBy, 'team:1');
   });
 });

@@ -7,16 +7,13 @@ import layout from './template';
 export default Component.extend({
   layout,
   classNames: ['__drag-and-drop'],
-  classNameBindings: [
-    'dragElementClass',
-    'dragElementInZoneClass'
-  ],
+  classNameBindings: ['dragElementClass', 'dragElementInZoneClass'],
 
   _onDragElement: false,
   _onDragElementInZone: false,
   _nodeCollection: $(),
 
-  dragElementClass: computed('_onDragElement', 'onDragClass', function() {
+  dragElementClass: computed('_onDragElement', 'onDragClass', function () {
     if (this._onDragElement && this.onDragClass) {
       return this.onDragClass;
     }
@@ -24,7 +21,7 @@ export default Component.extend({
     return;
   }),
 
-  dragElementInZoneClass: computed('_onDragElementInZone', 'onDragInZoneClass', function() {
+  dragElementInZoneClass: computed('_onDragElementInZone', 'onDragInZoneClass', function () {
     if (this._onDragElementInZone && this.onDragInZoneClass) {
       return this.onDragInZoneClass;
     }
@@ -40,8 +37,7 @@ export default Component.extend({
       .on('dragover', false)
       .on('dragenter', this._documentDragEnter.bind(this))
       .on('dragleave', this._documentDragLeave.bind(this))
-      .on('drop', this._documentDrop.bind(this))
-    ;
+      .on('drop', this._documentDrop.bind(this));
   },
 
   dragEnter() {
@@ -100,7 +96,6 @@ export default Component.extend({
       .off('dragover', false)
       .off('dragenter', this._documentDragEnter.bind(this))
       .off('dragleave', this._documentDragLeave.bind(this))
-      .off('drop', this._documentDrop.bind(this))
-    ;
+      .off('drop', this._documentDrop.bind(this));
   }
 });

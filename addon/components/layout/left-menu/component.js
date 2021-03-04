@@ -23,17 +23,19 @@ export default Component.extend({
     imageSize: '36'
   },
 
-  _1: observer('user', function() {
+  _1: observer('user', function () {
     [
-      'has_facade_notifications', 'has_inbox_notifications',
-      'has_publishr_notifications', 'has_analytics_notifications',
+      'has_facade_notifications',
+      'has_inbox_notifications',
+      'has_publishr_notifications',
+      'has_analytics_notifications',
       'has_payments_notifications'
     ].forEach((notifPresence) => {
       this.set(camelize(notifPresence), this.user[notifPresence]);
     });
   }),
 
-  _2: observer('user', function() {
+  _2: observer('user', function () {
     let { first_name, last_name } = this.user;
     if (first_name || last_name) {
       this.set('user.fullName', `${first_name} ${last_name}`);
@@ -42,25 +44,19 @@ export default Component.extend({
     }
   }),
 
-  facadeURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).facadeURL;
+  facadeURL: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').facadeURL;
   }),
 
-  analyticsURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).analyticsURL;
+  analyticsURL: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').analyticsURL;
   }),
 
-  identityURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).identityURL;
+  identityURL: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').identityURL;
   }),
 
-  searchURL: computed('facadeURL', function() {
+  searchURL: computed('facadeURL', function () {
     if (this.facadeURL) {
       return `${this.facadeURL}influencers`;
     }
@@ -68,56 +64,44 @@ export default Component.extend({
     return 'influencers';
   }),
 
-  acquisitionURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).acquisitionURL;
+  acquisitionURL: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').acquisitionURL;
   }),
 
-  streamsURL: computed('analyticsURL', function() {
-    let module = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).modulePrefix;
+  streamsURL: computed('analyticsURL', function () {
+    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
 
     return module === 'analytics-web' ? 'application' : this.analyticsURL;
   }),
 
-  acquisitionCampaignsURL: computed('acquisitionURL', function() {
-    let module = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).modulePrefix;
+  acquisitionCampaignsURL: computed('acquisitionURL', function () {
+    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
 
     return module === 'acquisition-web' ? 'application' : this.acquisitionURL;
   }),
 
-  crmURL: computed(function() {
+  crmURL: computed(function () {
     let { crmUrl, modulePrefix } = getOwner(this).resolveRegistration('config:environment');
 
     return modulePrefix === 'crm-web' ? 'application' : crmUrl;
   }),
 
-  listURL: computed('facadeURL', function() {
-    let module = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).modulePrefix;
+  listURL: computed('facadeURL', function () {
+    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
 
     return module === 'facade-web' ? 'application' : this.facadeURL;
   }),
 
-  inboxURL: computed(function() {
-    let url = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).inboxURL;
+  inboxURL: computed(function () {
+    let url = getOwner(this).resolveRegistration('config:environment').inboxURL;
 
-    let module = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).modulePrefix;
+    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
 
     // Since application is a valid route this will active the icon
     return module === 'inbox-client' ? 'application' : url;
   }),
 
-  accountUrl: computed('identityURL', function() {
+  accountUrl: computed('identityURL', function () {
     if (this.identityURL) {
       return `${this.identityURL}accounts/me`;
     }
@@ -125,28 +109,22 @@ export default Component.extend({
     return `accounts/me`;
   }),
 
-  publishrURL: computed(function() {
-    return getOwner(this).resolveRegistration(
-      'config:environment'
-    ).publishrURL;
+  publishrURL: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').publishrURL;
   }),
 
-  publishrCampaignsURL: computed('publishrURL', function() {
+  publishrCampaignsURL: computed('publishrURL', function () {
     return `${this.publishrURL}campaigns`;
   }),
 
-  publishrPaymentsURL: computed('publishrURL', function() {
+  publishrPaymentsURL: computed('publishrURL', function () {
     return `${this.publishrURL}payments`;
   }),
 
-  publishrClientURL: computed('_publishrClientURL', function() {
-    let baseURL = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).publishrClientURL || '';
+  publishrClientURL: computed('_publishrClientURL', function () {
+    let baseURL = getOwner(this).resolveRegistration('config:environment').publishrClientURL || '';
 
-    let module = getOwner(this).resolveRegistration(
-      'config:environment'
-    ).modulePrefix;
+    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
 
     let suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
     let fullURL = baseURL + suffix;
@@ -173,9 +151,7 @@ export default Component.extend({
     },
 
     toggleUserMenu() {
-      this.$('.__left-menu__user-menu').toggleClass(
-        '__left-menu__user-menu--opened'
-      );
+      this.$('.__left-menu__user-menu').toggleClass('__left-menu__user-menu--opened');
     },
 
     toggleUpgradeModal(upgradeTo) {

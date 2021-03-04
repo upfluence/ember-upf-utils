@@ -6,7 +6,7 @@ export default Component.extend({
   layout,
   classNames: ['__medias-list'],
 
-  blog: computed('profile.blog.visits', function() {
+  blog: computed('profile.blog.visits', function () {
     return {
       type: 'blog',
       icon: 'wordpress',
@@ -15,7 +15,7 @@ export default Component.extend({
     };
   }),
 
-  facebook: computed('profile.facebook.fans', function() {
+  facebook: computed('profile.facebook.fans', function () {
     return {
       type: 'facebook',
       icon: 'facebook-official',
@@ -24,7 +24,7 @@ export default Component.extend({
     };
   }),
 
-  twitter: computed('profile.twitter.followers', function() {
+  twitter: computed('profile.twitter.followers', function () {
     return {
       type: 'twitter',
       icon: 'twitter',
@@ -33,7 +33,7 @@ export default Component.extend({
     };
   }),
 
-  instagram: computed('profile.instagram.followers', function() {
+  instagram: computed('profile.instagram.followers', function () {
     return {
       type: 'instagram',
       icon: 'instagram',
@@ -42,7 +42,7 @@ export default Component.extend({
     };
   }),
 
-  tiktok: computed('profile.tiktok.followers', function() {
+  tiktok: computed('profile.tiktok.followers', function () {
     return {
       type: 'tiktok',
       icon: 'tiktok',
@@ -51,7 +51,7 @@ export default Component.extend({
     };
   }),
 
-  youtube: computed('profile.youtube.followers', function() {
+  youtube: computed('profile.youtube.followers', function () {
     return {
       type: 'youtube',
       icon: 'youtube-play',
@@ -60,7 +60,7 @@ export default Component.extend({
     };
   }),
 
-  pinterest: computed('profile.pinterest.followers', function() {
+  pinterest: computed('profile.pinterest.followers', function () {
     return {
       type: 'pinterest',
       icon: 'pinterest-p',
@@ -69,7 +69,7 @@ export default Component.extend({
     };
   }),
 
-  twitch: computed('profile.twitch.followers', function() {
+  twitch: computed('profile.twitch.followers', function () {
     return {
       type: 'twitch',
       icon: 'twitch',
@@ -79,8 +79,16 @@ export default Component.extend({
   }),
 
   orderedMedias: computed(
-    'blog', 'facebook', 'instagram', 'pinterest', 'profile', 'tiktok', 'twitch', 'twitter', 'youtube',
-    function() {
+    'blog',
+    'facebook',
+    'instagram',
+    'pinterest',
+    'profile',
+    'tiktok',
+    'twitch',
+    'twitter',
+    'youtube',
+    function () {
       return [
         this.blog,
         this.facebook,
@@ -89,11 +97,16 @@ export default Component.extend({
         this.instagram,
         this.tiktok,
         this.pinterest,
-        this.twitch,
-      ].filter(e => e.communitySize != null) // Filter medias that are empty
+        this.twitch
+      ]
+        .filter((e) => e.communitySize != null) // Filter medias that are empty
         .sort((a, b) => {
-          if (a.type === 'twitch') { return -1; }
-          if (b.type === 'twitch') { return 1; }
+          if (a.type === 'twitch') {
+            return -1;
+          }
+          if (b.type === 'twitch') {
+            return 1;
+          }
           return a.communitySize - b.communitySize;
         }) // Sort them
         .reverse()

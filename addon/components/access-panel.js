@@ -14,5 +14,5 @@ export default Component.extend({
   totalPages: 1,
   perPage: 1,
   itemTotal: 0,
-  itemCount: 0,
+  itemCount: 0
 });

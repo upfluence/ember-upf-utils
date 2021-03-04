@@ -7,12 +7,12 @@ const defaultOptions = {
   rate: 1,
   currency: 'USD',
   useFormatter: false,
-  roundPrecision: 2,
+  roundPrecision: 2
 };
 
 export function formatPrice(params, namedArgs = {}) {
   let price = params[0];
-  let options = { ...defaultOptions, ...namedArgs};
+  let options = { ...defaultOptions, ...namedArgs };
 
   price = price * options.rate;
 
@@ -23,7 +23,7 @@ export function formatPrice(params, namedArgs = {}) {
   }
 
   if (options.useFormatter) {
-    return `${(symbolMap[options.currency] || '$')}${formatNumber([price])}`;
+    return `${symbolMap[options.currency] || '$'}${formatNumber([price])}`;
   }
 
   return formatMoneyHelper([price, options.currency]);

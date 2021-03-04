@@ -52,7 +52,7 @@ export default Component.extend({
       defineProperty(
         this,
         `${e}Selected`,
-        computed('currentWindow', function() {
+        computed('currentWindow', function () {
           return this.currentWindow === e;
         })
       );
@@ -62,7 +62,10 @@ export default Component.extend({
   selectedInfluencerIds: mapBy('selectedInfluencers', 'id'),
 
   selectedCount: computed(
-    '(this.currentEntity).count', 'currentEntity.count', 'selectedInfluencerIds.length', function() {
+    '(this.currentEntity).count',
+    'currentEntity.count',
+    'selectedInfluencerIds.length',
+    function () {
       let idsCount = this.get('selectedInfluencerIds.length');
       if (idsCount === 0 && this.currentEntity) {
         idsCount = this.currentEntity.count;
@@ -107,27 +110,14 @@ export default Component.extend({
     performExport(to, defer) {
       let exportingFrom = `${this.currentEntityType}:${this.get('currentEntity.id')}`;
 
-      this.exports.exportToEntities(
-        exportingFrom,
-        to,
-        this.selectedInfluencerIds,
-        this.filters,
-      ).then((data) => {
+      this.exports.exportToEntities(exportingFrom, to, this.selectedInfluencerIds, this.filters).then((data) => {
         defer.resolve();
         this._onSuccessfullExport(to);
 
         if (data.status === 'scheduled') {
-          this.toast.info(
-            `${data.total} influencers are being exported.`,
-            'Export in progress',
-            this._toastConfig
-          );
+          this.toast.info(`${data.total} influencers are being exported.`, 'Export in progress', this._toastConfig);
         } else {
-          this.toast.success(
-            `${data.total} influencers have been exported.`,
-            'Export completed',
-            this._toastConfig
-          );
+          this.toast.success(`${data.total} influencers have been exported.`, 'Export completed', this._toastConfig);
         }
 
         this._exported();
@@ -136,13 +126,7 @@ export default Component.extend({
 
     performFileExport(format, type) {
       let exportingFrom = `${this.currentEntityType}:${this.get('currentEntity.id')}`;
-      let url = this.exports.getFileExportURL(
-        exportingFrom,
-        format,
-        type,
-        this.selectedInfluencerIds,
-        this.filters
-      );
+      let url = this.exports.getFileExportURL(exportingFrom, format, type, this.selectedInfluencerIds, this.filters);
 
       window.open(url, '_blank');
       this._exported();

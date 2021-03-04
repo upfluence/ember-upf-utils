@@ -12,7 +12,7 @@ export default LinkComponent.extend({
 
   active: false,
 
-  _: observer('activeCell', function() {
+  _: observer('activeCell', function () {
     this.set('active', this.activeCell);
     if (this.activeCell) {
       run.later(() => {
