@@ -6,7 +6,6 @@ on:
       - master
     tags:
       - v*
-  pull_request:
 
 env:
   NODE_VERSION: '10'
