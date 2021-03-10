@@ -13,6 +13,8 @@ export default Component.extend({
   hideVideoUploadModal: true,
   hidePDFUploadModal: true,
 
+  height: 500,
+
   init() {
     this._super();
 
