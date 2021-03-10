@@ -24,7 +24,8 @@ export default {
 
   load(config) {
     for (let property in this) {
-      if (this[property] && typeOf(this[property]) !== 'function') {
+      // eslint-disable-next-line no-prototype-builtins
+      if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
         this[property] = get(config, property) === undefined ? DEFAULTS[property] : get(config, property);
       }
     }
