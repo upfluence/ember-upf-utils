@@ -1,12 +1,12 @@
 <div class="btn-group dropup">
   {{#loading-button
-    slowAction="createItem" class="btn upf-btn upf-btn--primary upf-btn--x-small"
+    slowAction="createItem" class="upf-btn upf-btn--primary upf-btn--x-small"
     initiallyDisabled=noCreateableEntities}}
     {{t "export_influencers.export.create" searchText=publicApi.searchText entity=selectedEntityType}}
   {{/loading-button}}
 
   {{#unless noCreateableEntities}}
-    <button type="button" class="btn upf-btn upf-btn--primary upf-btn--x-small dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="upf-btn upf-btn--primary upf-btn--x-small dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="caret"></span>
       <span class="sr-only">Toggle Dropdown</span>
     </button>
