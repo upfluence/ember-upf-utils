@@ -18,7 +18,7 @@ export default class SmartLinkToComponent extends Component {
     super(...arguments);
 
     if(this.args.link === "application") {
-      this.cssClass = "active";
+      this.cssClass += " active";
     }
   }
 }
