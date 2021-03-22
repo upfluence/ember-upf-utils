@@ -1,6 +1,6 @@
 {{#if session.isAuthenticated}}
   <section class="app-header__top">
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "crm_web"}}
         {{#smart-link-to link=crmURL}}
           <span class="upf-icon upf-icon--crm"></span>
@@ -11,9 +11,9 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "facade_web"}}
         {{#smart-link-to link=listURL cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
           <span class="upf-icon upf-icon--search"></span>
@@ -24,9 +24,9 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "inbox_client"}}
         {{#smart-link-to link=inboxURL}}
           <span class="upf-icon upf-icon--inbox"></span>
@@ -37,9 +37,9 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "publishr_admin"}}
         {{#smart-link-to link=publishrCampaignsURL
                          cssClass=(if hasPublishrNotifications "upf-notification--corner")}}
@@ -51,9 +51,9 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "publishr_admin"}}
         {{#smart-link-to link=publishrPaymentsURL
                          cssClass=(if hasPaymentsNotifications "upf-notification--corner")}}
@@ -65,17 +65,17 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "publishr_client"}}
         {{#smart-link-to link=publishrClientURL}}
           <span class="upf-icon upf-icon--influencers"></span>
         {{/smart-link-to}}
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "analytics_web"}}
         {{#smart-link-to link=streamsURL
                          cssClass=(if hasAnalyticsNotifications "upf-notification--corner")}}
@@ -87,9 +87,9 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
 
-    {{#active-link tagName="div" class="header-item" activeClass="header-item--active"}}
+    <div class="header-item">
       {{#feature-flagged "acquisition_web"}}
         {{#smart-link-to link=acquisitionCampaignsURL}}
           <span class="upf-icon upf-icon--acquisition"></span>
@@ -100,7 +100,7 @@
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
-    {{/active-link}}
+    </div>
   </section>
 
   <section class='app-header__bottom'>

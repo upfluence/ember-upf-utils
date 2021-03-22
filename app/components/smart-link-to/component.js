@@ -1,1 +1,1 @@
-export { default } from '@upfluence/ember-upf-utils/components/smart-link-to/component';
+export { default } from '@upfluence/ember-upf-utils/components/smart-link-to';
