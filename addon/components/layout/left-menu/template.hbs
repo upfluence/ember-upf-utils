@@ -2,9 +2,9 @@
   <section class="app-header__top">
     <div class="header-item">
       {{#feature-flagged "crm_web"}}
-        {{#smart-link-to link=crmURL}}
+        <SmartLinkTo @link={{crmURL}}>
           <span class="upf-icon upf-icon--crm"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal" "crm"}} role="upgrade">
           <span class="upf-icon upf-icon--crm"></span>
@@ -15,9 +15,9 @@
 
     <div class="header-item">
       {{#feature-flagged "facade_web"}}
-        {{#smart-link-to link=listURL cssClass=(if hasFacadeNotifications 'upf-notification--corner')}}
+        <SmartLinkTo @link={{listURL}} @cssClass={{if hasFacadeNotifications 'upf-notification--corner'}}>
           <span class="upf-icon upf-icon--search"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal"}}>
           <span class="upf-icon upf-icon--search"></span>
@@ -28,9 +28,9 @@
 
     <div class="header-item">
       {{#feature-flagged "inbox_client"}}
-        {{#smart-link-to link=inboxURL}}
+        <SmartLinkTo @link={{inboxURL}}>
           <span class="upf-icon upf-icon--inbox"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal" "bulk_emailing"}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
@@ -41,10 +41,10 @@
 
     <div class="header-item">
       {{#feature-flagged "publishr_admin"}}
-        {{#smart-link-to link=publishrCampaignsURL
-                         cssClass=(if hasPublishrNotifications "upf-notification--corner")}}
+        <SmartLinkTo @link={{publishrCampaignsURL}}
+                         @cssClass={{if hasPublishrNotifications "upf-notification--corner"}}>
           <span class="upf-icon upf-icon--workflow"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal"}} role="upgrade">
           <span class="upf-icon upf-icon--workflow"></span>
@@ -55,10 +55,10 @@
 
     <div class="header-item">
       {{#feature-flagged "publishr_admin"}}
-        {{#smart-link-to link=publishrPaymentsURL
-                         cssClass=(if hasPaymentsNotifications "upf-notification--corner")}}
+        <SmartLinkTo @link={{publishrPaymentsURL}}
+                         @cssClass={{if hasPaymentsNotifications "upf-notification--corner"}}>
           <span class="upf-icon upf-icon--finance"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal"}} role="upgrade">
           <span class="upf-icon upf-icon--finance"></span>
@@ -69,18 +69,18 @@
 
     <div class="header-item">
       {{#feature-flagged "publishr_client"}}
-        {{#smart-link-to link=publishrClientURL}}
+        <SmartLinkTo @link={{publishrClientURL}}>
           <span class="upf-icon upf-icon--influencers"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{/feature-flagged}}
     </div>
 
     <div class="header-item">
       {{#feature-flagged "analytics_web"}}
-        {{#smart-link-to link=streamsURL
-                         cssClass=(if hasAnalyticsNotifications "upf-notification--corner")}}
+        <SmartLinkTo @link={{streamsURL}}
+                         @cssClass={{if hasAnalyticsNotifications "upf-notification--corner"}}>
           <span class="upf-icon upf-icon--monitor"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal" "monitor"}} role="upgrade">
           <span class="upf-icon upf-icon--monitor"></span>
@@ -91,9 +91,9 @@
 
     <div class="header-item">
       {{#feature-flagged "acquisition_web"}}
-        {{#smart-link-to link=acquisitionCampaignsURL}}
+        <SmartLinkTo @link={{acquisitionCampaignsURL}}>
           <span class="upf-icon upf-icon--acquisition"></span>
-        {{/smart-link-to}}
+        </SmartLinkTo>
       {{else}}
         <a {{action "toggleUpgradeModal" "acquisition"}} role="upgrade">
           <span class="upf-icon upf-icon--acquisition"></span>

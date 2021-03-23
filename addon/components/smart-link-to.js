@@ -14,11 +14,11 @@ export default class SmartLinkToComponent extends Component {
     return getOwner(this).hasRegistration(`route:${this.args.link}`);
   }
 
-  constructor() {
-    super(...arguments);
+  constructor(owner, args) {
+    super(owner, args);
 
-    if(this.args.link === "application") {
-      this.cssClass += " active";
+    if (this.args.link === 'application') {
+      this.cssClass += ' active';
     }
   }
 }
