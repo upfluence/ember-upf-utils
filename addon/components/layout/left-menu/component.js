@@ -69,33 +69,32 @@ export default Component.extend({
   }),
 
   streamsURL: computed('analyticsURL', function () {
-    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
+    let module = getOwner(this).resolveRegistration('config:environment').APP.name;
 
-    return module === 'analytics-web' ? 'application' : this.analyticsURL;
+    return module === '@upfluence/analytics-web' ? 'application' : this.analyticsURL;
   }),
 
   acquisitionCampaignsURL: computed('acquisitionURL', function () {
-    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
-
-    return module === 'acquisition-web' ? 'application' : this.acquisitionURL;
+    let module = getOwner(this).resolveRegistration('config:environment').APP.name;
+    return module === '@upfluence/acquisition-web' ? 'application' : this.acquisitionURL;
   }),
 
   crmURL: computed(function () {
-    let { crmUrl, modulePrefix } = getOwner(this).resolveRegistration('config:environment');
+    let { crmUrl, APP } = getOwner(this).resolveRegistration('config:environment');
 
-    return modulePrefix === 'crm-web' ? 'application' : crmUrl;
+    return APP.name === '@upfluence/crm-web' ? 'application' : crmUrl;
   }),
 
   listURL: computed('facadeURL', function () {
-    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
+    let module = getOwner(this).resolveRegistration('config:environment').APP.name;
 
-    return module === 'facade-web' ? 'application' : this.facadeURL;
+    return module === '@upfluence/facade-web' ? 'application' : this.facadeURL;
   }),
 
   inboxURL: computed(function () {
     let url = getOwner(this).resolveRegistration('config:environment').inboxURL;
 
-    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
+    let module = getOwner(this).resolveRegistration('config:environment').APP.name;
 
     // Since application is a valid route this will active the icon
     return module === 'inbox-client' ? 'application' : url;
@@ -124,12 +123,12 @@ export default Component.extend({
   publishrClientURL: computed('_publishrClientURL', function () {
     let baseURL = getOwner(this).resolveRegistration('config:environment').publishrClientURL || '';
 
-    let module = getOwner(this).resolveRegistration('config:environment').modulePrefix;
+    let module = getOwner(this).resolveRegistration('config:environment').APP.name;
 
     let suffix = baseURL.endsWith('/') ? 'campaigns' : '/campaigns';
     let fullURL = baseURL + suffix;
 
-    return module === 'publishr-client-web' ? 'application' : fullURL;
+    return module === '@upfluence/publishr-client-web' ? 'application' : fullURL;
   }),
 
   actions: {

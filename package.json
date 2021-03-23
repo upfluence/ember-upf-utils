@@ -32,7 +32,6 @@
     "broccoli-merge-trees": "^3.0.1",
     "ember-auto-import": "^1.2.19",
     "ember-block-slots": "^1.1.9",
-    "ember-cli-active-link-wrapper": "^0.5.0",
     "ember-cli-babel": "^7.19.0",
     "ember-cli-google-analytics": "git+https://git@github.com/upfluence/ember-cli-google-analytics.git",
     "ember-cli-htmlbars": "^4.3.1",
