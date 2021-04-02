@@ -17,7 +17,7 @@ module.exports = {
   version,
 
   isDevelopingAddon: function () {
-    return true;
+    return false;
   },
 
   options: {
