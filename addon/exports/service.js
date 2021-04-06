@@ -13,13 +13,17 @@ export default Service.extend({
     return `${Configuration.exportUrl}/api/v1`;
   }),
 
-  exportToEntities(exportingFrom, exportingTo, influencerIds, filters) {
+  exportToEntities(exportingFrom, exportingTo, influencerIds, filters, maxSize) {
     let payload = { to: exportingTo };
 
     if (isEmpty(influencerIds)) {
       payload.source = { from: exportingFrom, filters: filters };
     } else {
       payload.source = { influencer_ids: influencerIds };
+    }
+
+    if (maxSize) {
+      payload.source.max_size = maxSize;
     }
 
     return this.ajax.request(`${this._exportURL}/export`, {
