@@ -72,3 +72,18 @@ summernote_modals:
     title: Insert a PDF file
     label: "Upload a PDF:"
     cta: Insert PDF
+errors:
+  404:
+    title: Sorry, we can’t find that page!
+    subtitle: Please double-check the URL for the page you are looking to access.
+    support:
+      button_description: Contact support
+      check_description: Or check our
+      help_description: Help Center
+  500:
+    title: Sorry, something went wrong !
+    subtitle: This service is not available at the moment. <br> If the problem persists, please
+    support:
+      button_description: Contact support
+      check_description: Or check our
+      help_description: Help Center

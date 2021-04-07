@@ -1,0 +1,21 @@
+<div class="upf-align--absolute-center margin-left-xx-lg">
+  <img src={{concat "/@upfluence/inbox-web/assets/images/" this.imgName ".svg"}} alt={{this.imgDescription}} />
+
+  <div class="upf-align--center">
+    <p class="text-style-bold text-size-7">{{t (concat "errors." this.httpError ".title")}}</p>
+    <p class="text-color-default-light">
+      {{t (concat "errors." this.httpError ".subtitle")}}
+    </p>
+    <div class="error-contact-container">
+      <button class="upf-btn upf-btn--primary" {{action "openIntercom"}}>
+        {{t (concat "errors." this.httpError ".support.button_description")}}
+      </button>
+      <div>
+        {{t (concat "errors." this.httpError ".support.check_description")}}
+        <a href="https://help.upfluence.co/en/" target="_blank" class="upf-link--reset text-color-bright-purple">
+          {{t (concat "errors." this.httpError ".support.help_description")}}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
