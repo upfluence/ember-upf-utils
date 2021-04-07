@@ -1,25 +1,31 @@
 import Route from '@ember/routing/route';
 
 export default class HttpErrorsRoute extends Route {
-  errorCode = null;
+  errorValue = null;
 
   setupController(controller, error) {
     super.setupController(controller, error);
     if (error && error.code) {
-      this.errorCode = error.code;
+      this.errorValue = error.code;
+      return;
+    }
+
+    if (error && error.message) {
+      this.errorValue = error.message;
     }
   }
 
   renderTemplate() {
-    switch (this.errorCode) {
+    switch (this.errorValue) {
       case 'NotFoundError':
+      case 'Resource was not found.':
         this.render(`http-errors.404`);
         break;
       case 'ServerError':
         this.render(`http-errors.500`);
         break;
       default:
-        super.renderTemplate();
+        this.render(`http-errors`);
     }
   }
 }
