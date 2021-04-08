@@ -1,0 +1,18 @@
+{{#modal-view hidden=false backdrop=false centered=true closeModal=(action "goBack")}}
+  <div class="modal-body text-center limit-modal-body">
+    <p class="text-color-default text-size-6">
+      {{t "errors.402.limit_exceeded.title"}}
+    </p>
+    <p class="text-size-4 text-color-default-lighter">
+      {{t "errors.402.limit_exceeded.description" limit=limit used=used htmlSafe=true}}
+      <br>
+      <button class="upf-btn upf-btn--primary margin-top-x-sm margin-bottom-xx-sm" {{action "openIntercom"}}>
+        {{t "errors.402.limit_exceeded.cta"}}
+      </button>
+      <br>
+      <a class="text-color-info text-size-3" {{action "goBack"}}>
+        {{t "errors.402.limit_exceeded.backlink"}}
+      </a>
+    </p>
+  </div>
+{{/modal-view}}

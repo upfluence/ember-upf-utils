@@ -87,3 +87,16 @@ errors:
       button_description: Contact support
       check_description: Or check our
       help_description: Help Center
+  402:
+    limit_exceeded:
+      title: "Congratulations! You have already reached your search limit!"
+      description: "You've already used <b>{used}/{limit}</b> search limits on this account. <br> Please contact your account manager to increase your limit."
+      cta: Ask my account manager
+      backlink: Or go back to the software
+      email_data:
+        body: |
+          Hello Team,
+
+          I would like to increase my search limit, how could I do so?
+
+          Best,
