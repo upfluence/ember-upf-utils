@@ -3,7 +3,6 @@ import { getOwner } from '@ember/application';
 
 const LIMIT_EXCEEDED = 'LimitExceeded';
 const NOT_FOUND = 'NotFoundError';
-const RESOURCE_NOT_FOUND = 'Resource was not found.';
 const SERVER_ERROR = 'ServerError';
 
 export default class HttpErrorsRoute extends Route {
@@ -22,18 +21,12 @@ export default class HttpErrorsRoute extends Route {
 
     if (error && error.code) {
       this.errorValue = error.code;
-      return;
-    }
-
-    if (error && error.message) {
-      this.errorValue = error.message;
     }
   }
 
   renderTemplate() {
     switch (this.errorValue) {
       case NOT_FOUND:
-      case RESOURCE_NOT_FOUND:
         this.render(`http-errors.404`);
         break;
       case SERVER_ERROR:
