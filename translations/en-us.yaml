@@ -73,6 +73,9 @@ summernote_modals:
     label: "Upload a PDF:"
     cta: Insert PDF
 errors:
+  default:
+    title: Oh...
+    subtitle: It seems something went wrong.
   404:
     title: Sorry, we can’t find that page!
     subtitle: Please double-check the URL for the page you are looking to access.
