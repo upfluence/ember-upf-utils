@@ -27,10 +27,10 @@ export default class HttpErrorsRoute extends Route {
   renderTemplate() {
     switch (this.errorValue) {
       case NOT_FOUND:
-        this.render(`http-errors.404`);
+        this.render('http-errors.404');
         break;
       case SERVER_ERROR:
-        this.render(`http-errors.500`);
+        this.render('http-errors.500');
         break;
       case LIMIT_EXCEEDED:
         try {
@@ -40,13 +40,13 @@ export default class HttpErrorsRoute extends Route {
             used: this.used,
             limit: this.limit
           });
-          this.render(`http-errors.402`);
+          this.render('http-errors.402');
         } catch (e) {
-          this.render(`http-errors`);
+          this.render('http-errors');
         }
         break;
       default:
-        this.render(`http-errors`);
+        this.render('http-errors');
     }
   }
 }
