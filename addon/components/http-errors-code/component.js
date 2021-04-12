@@ -5,13 +5,7 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-
-  assetMap: service(),
-
-  imagePath: computed('imgName', function () {
-    return this.assetMap.resolve(`assets/@upfluence/ember-upf-utils/images/${this.imgName}.svg`);
-  }),
-
+  
   actions: {
     openIntercom() {
       if (window.Intercom) {
