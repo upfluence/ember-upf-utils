@@ -92,8 +92,8 @@ errors:
       help_description: Help Center
   402:
     limit_exceeded:
-      title: "Congratulations! You have already reached your search limit!"
-      description: "You've already used <b>{used}/{limit}</b> search limits on this account. <br> Please contact your account manager to increase your limit."
+      title: Congratulations! You have already reached your search limit!
+      description: You've already used <b>{used}/{limit}</b> search limits on this account. <br> Please contact your account manager to increase your limit.
       cta: Ask my account manager
       backlink: Or go back to the software
       email_data:

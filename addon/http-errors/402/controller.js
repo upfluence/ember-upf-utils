@@ -8,10 +8,10 @@ export default class HttpErrors402Controller extends Controller {
   @action
   openIntercom() {
     if (window.Intercom) {
-      const messageContent = this.intl.t('search.errors.limit_exceeded.email_data.body');
+      const messageContent = this.intl.t('errors.402.limit_exceeded.email_data.body');
 
       window.Intercom('showNewMessage', messageContent);
-      this.send('goBack');
+      this.goBack();
     }
   }
 
