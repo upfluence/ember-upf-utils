@@ -11,8 +11,9 @@ export default class HttpErrorsRoute extends Route {
   setupController(controller, error) {
     super.setupController(controller, error);
 
-    if(error && error.hasOwnProperty('path')) {
+    if (error && error.hasOwnProperty('path')) {
       this.errorValue = NOT_FOUND;
+      return;
     }
 
     if (error.errors && error.errors[0].status === 402) {
@@ -25,7 +26,6 @@ export default class HttpErrorsRoute extends Route {
 
     if (error && error.code) {
       this.errorValue = error.code;
-      return;
     }
   }
 
