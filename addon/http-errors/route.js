@@ -11,6 +11,12 @@ export default class HttpErrorsRoute extends Route {
   setupController(controller, error) {
     super.setupController(controller, error);
 
+    // eslint-disable-next-line no-prototype-builtins
+    if (error && error.hasOwnProperty('path')) {
+      this.errorValue = NOT_FOUND;
+      return;
+    }
+
     if (error.errors && error.errors[0].status === 402) {
       this.errorValue = LIMIT_EXCEEDED;
       this.statusCode = error.errors[0].status;
