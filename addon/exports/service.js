@@ -13,8 +13,8 @@ export default Service.extend({
     return `${Configuration.exportUrl}/api/v1`;
   }),
 
-  exportToEntities(exportingFrom, exportingTo, influencerIds, filters, maxSize) {
-    let payload = { to: exportingTo };
+  exportToEntities(exportingFrom, exportingTo, influencerIds, filters, maxSize, tags) {
+    let payload = { destination: { to: exportingTo } };
 
     if (isEmpty(influencerIds)) {
       payload.source = { from: exportingFrom, filters: filters };
@@ -24,6 +24,10 @@ export default Service.extend({
 
     if (maxSize) {
       payload.source.max_size = maxSize;
+    }
+
+    if (tags) {
+      payload.destination.tags = tags;
     }
 
     return this.ajax.request(`${this._exportURL}/export`, {
