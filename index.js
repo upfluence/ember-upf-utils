@@ -6,9 +6,7 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var writeFile = require('broccoli-file-creator');
 
-const FOOTER_SCRIPTS = [
-  '<script async src="https://www.google-analytics.com/analytics.js"></script>'
-];
+const FOOTER_SCRIPTS = ['<script async src="https://www.google-analytics.com/analytics.js"></script>'];
 const { name, version } = require('./package');
 
 module.exports = {
