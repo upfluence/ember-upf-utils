@@ -140,11 +140,6 @@ export default Component.extend({
       window.open(CANNY_URL, '_blank');
     },
 
-    openUserlane() {
-      this.send('toggleUserMenu');
-      window.Userlane('openAssistant');
-    },
-
     logout() {
       this.session.invalidate();
     },
