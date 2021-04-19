@@ -17,10 +17,14 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
   _bottomReached: false,
   loading: false,
 
-  isReached: computed('items.reachedInfinity', '_bottomReached', function () {
+  isReached: computed('items.{currentPage,reachedInfinity,meta.totalPages}', '_bottomReached', function () {
     // Check infinity
     if (this.get('items.reachedInfinity') === null) {
       return this._bottomReached;
+    }
+
+    if (this.get('items.currentPage') >= this.get('items.meta.totalPages')) {
+      return true;
     }
 
     return this.get('items.reachedInfinity');
