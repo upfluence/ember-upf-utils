@@ -56,25 +56,40 @@
     {{/if}}
   </div>
 
-  <div class="secondary-line clearfix flex-row">
-    {{#if profile.isNew}}
-      <span class="profile-description__content--new pull-left">new</span>
-    {{/if}}
-    {{#if profile.address}}
-      {{display-field value=profile.address icon="map-marker"}}
-    {{/if}}
+  <div class="secondary-line clearfix">
+    <div>
+      {{#if profile.isNew}}
+        <span class="profile-description__content--new pull-left">new</span>
+      {{/if}}
+      {{#if profile.address}}
+        {{display-field value=profile.address icon="map-marker"}}
+      {{/if}}
+    </div>
 
-    {{#if isLdaCompliant}}
-      <span>
-        {{#if profile.address}}
-          <span>&nbsp;| </span>
-        {{/if}}
-        <i class="fa fa-check text-color-success"></i>
-        <span>
-          LDA Compliant
-        </span>
-      </span>
-    {{/if}}
+    <div class="processed-features processed-features_container">
+      {{#if this.responseTimeScore}}
+        <div class="processed-features_tag processed-features_tag--{{this.responseTimeSpeed}}" data-toggle="tooltip" 
+            title={{t (concat "processed_features.tooltip_" this.responseTimeSpeed)}} data-placement="bottom">
+          <i class="fa fa-envelope"></i>
+          <span>
+            {{#if (eq this.responseTimeSpeed "slow")}}
+              {{t "processed_features.slow"}}
+            {{else}}
+              {{t "processed_features.default" length=this.responseTimeScore}}
+            {{/if}}
+          </span>
+        </div>
+      {{/if}}
+
+      {{#if this.isLdaCompliant}}
+        <div class="processed-features_tag">
+          <i class="fa fa-check"></i>
+          <span>
+            {{t "processed_features.lda_compliant"}}
+          </span>
+        </div>
+      {{/if}}
+    </div>
 
   </div>
 

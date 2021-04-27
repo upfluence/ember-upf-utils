@@ -62,7 +62,45 @@
     .secondary-line {
       padding-top: 0.8em;
 
-      &.flex-row {
+      .processed-features {
+        &_container {
+          display: flex;
+          height: 37px;
+          align-items: center;
+        }
+    
+        &_tag {
+          display: flex;
+          align-items: center;
+    
+          border-radius: @default-radius;
+          padding: 3px @spacing-xxx-sm;
+    
+          //can't reproduce background color using lighten()
+          background-color: #d0f4ef;
+          color: #18c7ae;
+    
+          .fa {
+            margin-right: 5px;
+          }
+
+          &:first-child {
+            margin-right: @spacing-xx-sm;
+          }
+
+          &--medium {
+            background-color: lighten(@upf-feedback-alert, 35%);
+            color: @upf-feedback-alert;
+          }
+
+          &--slow {
+            background-color: lighten(@upf-feedback-error, 40%);
+            color: @upf-feedback-error;
+          }
+        }
+      }
+
+      .flex-row {
         display: flex;
         align-items: center;
         flex-wrap: wrap;

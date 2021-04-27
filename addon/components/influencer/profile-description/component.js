@@ -52,6 +52,26 @@ export default Component.extend(TooltipActivationMixin, {
 
   isLdaCompliant: gte('medias.instagram.audience.legal_drinking_age.values.21+', 0.716),
 
+  responseTimeScore: computed('medias.instagram.processedFeatures.response_time_score', function () {
+    let responseTimeScore = 4000;
+
+    if (!responseTimeScore) {
+      return;
+    }
+
+    return (responseTimeScore / 3600)?.toFixed();
+  }),
+
+  responseTimeSpeed: computed('responseTimeScore', function () {
+    if (this.responseTimeScore >= 48) {
+      return 'slow';
+    } else if (this.responseTimeScore >= 24) {
+      return 'medium';
+    }
+
+    return 'fast';
+  }),
+
   didInsertElement() {
     this._super(...arguments);
     this.currentUser.fetch().then((payload) => {
