@@ -37,6 +37,14 @@ influencer_network:
     skip: Skip
     learn_more: Learn More
     dont_show: Don't show me this again
+new: new
+processed_features:
+  slow: Rarely Responds
+  default: Responds within {length, plural, =1 {1 hour} other {# hours}}
+  lda_compliant: LDA Compliant
+  tooltip_slow: Does not always respond to emails received
+  tooltip_medium: Average influencer email response time
+  tooltip_fast: Average influencer email response time
 ownership_selection:
   placeholder: Share with
   tabs:
