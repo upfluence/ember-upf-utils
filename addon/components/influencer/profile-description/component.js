@@ -53,7 +53,7 @@ export default Component.extend(TooltipActivationMixin, {
   isLdaCompliant: gte('medias.instagram.audience.legal_drinking_age.values.21+', 0.716),
 
   responseTimeScore: computed('medias.instagram.processedFeatures.response_time_score', function () {
-    let responseTimeScore = 4000;
+    let responseTimeScore = this.medias.get('instagram.processedFeatures.response_time_score');
 
     if (!responseTimeScore) {
       return;
