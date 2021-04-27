@@ -65,8 +65,8 @@
       .processed-features {
         &_container {
           display: flex;
-          height: 37px;
           align-items: center;
+          margin-top: @spacing-xxx-sm;
         }
     
         &_tag {
@@ -136,9 +136,11 @@
     }
 
     .description {
-      overflow: hidden;
       margin: @spacing-xx-sm 0;
-      max-height: 48px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   }
 

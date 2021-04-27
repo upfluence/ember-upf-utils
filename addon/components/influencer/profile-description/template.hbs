@@ -66,30 +66,32 @@
       {{/if}}
     </div>
 
-    <div class="processed-features processed-features_container">
-      {{#if this.responseTimeScore}}
-        <div class="processed-features_tag processed-features_tag--{{this.responseTimeSpeed}}" data-toggle="tooltip" 
-            title={{t (concat "processed_features.tooltip_" this.responseTimeSpeed)}} data-placement="bottom">
-          <i class="fa fa-envelope"></i>
-          <span>
-            {{#if (eq this.responseTimeSpeed "slow")}}
-              {{t "processed_features.slow"}}
-            {{else}}
-              {{t "processed_features.default" length=this.responseTimeScore}}
-            {{/if}}
-          </span>
-        </div>
-      {{/if}}
+    {{#if (or this.responseTimeScore this.isLdaCompliant)}}
+      <div class="processed-features processed-features_container">
+        {{#if this.responseTimeScore}}
+          <div class="processed-features_tag processed-features_tag--{{this.responseTimeSpeed}}" data-toggle="tooltip" 
+              title={{t (concat "processed_features.tooltip_" this.responseTimeSpeed)}} data-placement="bottom">
+            <i class="fa fa-envelope"></i>
+            <span>
+              {{#if (eq this.responseTimeSpeed "slow")}}
+                {{t "processed_features.slow"}}
+              {{else}}
+                {{t "processed_features.default" length=this.responseTimeScore}}
+              {{/if}}
+            </span>
+          </div>
+        {{/if}}
 
-      {{#if this.isLdaCompliant}}
-        <div class="processed-features_tag">
-          <i class="fa fa-check"></i>
-          <span>
-            {{t "processed_features.lda_compliant"}}
-          </span>
-        </div>
-      {{/if}}
-    </div>
+        {{#if this.isLdaCompliant}}
+          <div class="processed-features_tag">
+            <i class="fa fa-check"></i>
+            <span>
+              {{t "processed_features.lda_compliant"}}
+            </span>
+          </div>
+        {{/if}}
+      </div>
+    {{/if}}
 
   </div>
 
