@@ -37,6 +37,7 @@ influencer_network:
     skip: Skip
     learn_more: Learn More
     dont_show: Don't show me this again
+new: new
 processed_features:
   slow: Rarely Responds
   default: Responds within {length, plural, =1 {1 hour} other {# hours}}

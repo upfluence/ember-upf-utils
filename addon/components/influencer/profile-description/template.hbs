@@ -59,7 +59,7 @@
   <div class="secondary-line clearfix">
     <div>
       {{#if profile.isNew}}
-        <span class="profile-description__content--new pull-left">new</span>
+        <span class="profile-description__content--new pull-left">{{t "new"}}</span>
       {{/if}}
       {{#if profile.address}}
         {{display-field value=profile.address icon="map-marker"}}

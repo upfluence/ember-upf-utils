@@ -59,7 +59,7 @@ export default Component.extend(TooltipActivationMixin, {
       return;
     }
 
-    return (responseTimeScore / 3600)?.toFixed();
+    return (responseTimeScore / 3600).toFixed();
   }),
 
   responseTimeSpeed: computed('responseTimeScore', function () {
