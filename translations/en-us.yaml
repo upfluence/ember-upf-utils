@@ -42,8 +42,8 @@ processed_features:
   default: Responds within {length, plural, =1 {1 hour} other {# hours}}
   lda_compliant: LDA Compliant
   tooltip_slow: Does not always respond to emails received
-  tooltip_medium: Average influencer email response email
-  tooltip_fast: Average influencer email response email
+  tooltip_medium: Average influencer email response time
+  tooltip_fast: Average influencer email response time
 ownership_selection:
   placeholder: Share with
   tabs:
