@@ -74,7 +74,7 @@
           align-items: center;
     
           border-radius: @default-radius;
-          padding: 3px @spacing-xxx-sm;
+          padding: 0 @spacing-xxx-sm;
     
           //can't reproduce background color using lighten()
           background-color: #d0f4ef;
@@ -85,17 +85,17 @@
           }
 
           &:first-child {
-            margin-right: @spacing-xx-sm;
+            margin-right: @spacing-xxx-sm;
           }
 
           &--medium {
-            background-color: lighten(@upf-feedback-alert, 35%);
-            color: @upf-feedback-alert;
+            background-color: #e9e9fc;
+            color: #0d0de6;
           }
 
           &--slow {
-            background-color: lighten(@upf-feedback-error, 40%);
-            color: @upf-feedback-error;
+            background-color: lighten(@upf-feedback-alert, 35%);
+            color: @upf-feedback-alert;
           }
         }
       }

@@ -52,14 +52,14 @@ export default Component.extend(TooltipActivationMixin, {
 
   isLdaCompliant: gte('medias.instagram.audience.legal_drinking_age.values.21+', 0.716),
 
-  responseTimeScore: computed('medias.instagram.processedFeatures.response_time_score', function () {
-    let responseTimeScore = this.medias.get('instagram.processedFeatures.response_time_score');
+  responseTimeScore: computed('medias.processedFeatures.response_time_score', function () {
+    let responseTimeScore = this.medias.get('processedFeatures.response_time_score');
 
     if (!responseTimeScore) {
       return;
     }
 
-    return (responseTimeScore / 3600).toFixed();
+    return parseInt((responseTimeScore / 3600).toFixed()) || 1;
   }),
 
   responseTimeSpeed: computed('responseTimeScore', function () {
