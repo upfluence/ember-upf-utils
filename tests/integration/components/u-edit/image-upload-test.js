@@ -1,26 +1,45 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import Service from '@ember/service';
+import { click, fillIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | u-edit/image-upload', function(hooks) {
+class SessionServiceStub extends Service {}
+
+module('Integration | Component | u-edit/image-upload', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  hooks.beforeEach(function () {
+    this.owner.register('service:session', SessionServiceStub);
+  });
 
-    await render(hbs`<UEdit::ImageUpload />`);
+  test('can not insert image if there is no url set', async function (assert) {
+    this.displayImageUpload = true;
+    this.insertImage = () => {};
 
-    assert.equal(this.element.textContent.trim(), '');
+    await render(
+      hbs`<UEdit::ImageUpload  @hidden={{not this.displayImageUpload}} @insertImage={{this.insertImage}} />`
+    );
 
-    // Template block usage:
+    assert.dom('.modal.modal--image-upload button.upf-btn.upf-btn--primary').hasAttribute('disabled');
+  });
+
+  test('an image is correctly added via its url in the editor', async function (assert) {
+    this.displayImageUpload = true;
+    this.insertImage = (url) => {
+      assert.equal(url, 'https://via.placeholder.com/350x150');
+    };
+
     await render(hbs`
-      <UEdit::ImageUpload>
-        template block text
-      </UEdit::ImageUpload>
-    `);
+      <UEdit::ImageUpload
+       @hidden={{not this.displayImageUpload}} @insertImage={{this.insertImage}} />`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    await fillIn('.modal.modal--image-upload input.upf-input', 'https://via.placeholder.com/350x150');
+
+    assert.dom('.modal.modal--image-upload button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
+
+    await click('.modal.modal--image-upload button.upf-btn.upf-btn--primary');
+
+    assert.expect(2);
   });
 });

@@ -1,9 +1,7 @@
 {{#modal-view hidden=@hidden closeAction=@closeAction title=(t "uedit.toolbar.image.title") class="modal--image-upload"}}
   <div class="modal-body">
-    {{#input-wrapper}}
-      <label>{{t "uedit.toolbar.image.by_url.label"}}</label>
-      <Input @value={{this.directURL}} @placeholder={{t "uedit.toolbar.image.by_url.placeholder"}} class="form-control upf-input" />
-    {{/input-wrapper}}
+    <label>{{t "uedit.toolbar.image.by_url.label"}}</label>
+    <Input @value={{this.directURL}} @placeholder={{t "uedit.toolbar.image.by_url.placeholder"}} class="form-control upf-input" />
 
     {{#drag-and-drop
       class="drop-zone upf-align--center" onDragClass="drop-zone-active" onDropFiles=this.onDropFiles}}
