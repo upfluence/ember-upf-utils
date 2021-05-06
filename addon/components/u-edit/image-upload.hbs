@@ -1,0 +1,40 @@
+{{#modal-view hidden=@hidden closeAction=@closeAction title=(t "uedit.toolbar.image.title") class="modal--image-upload"}}
+  <div class="modal-body">
+    {{#input-wrapper}}
+      <label>{{t "uedit.toolbar.image.by_url.label"}}</label>
+      <Input @value={{this.directURL}} @placeholder={{t "uedit.toolbar.image.by_url.placeholder"}} class="form-control upf-input" />
+    {{/input-wrapper}}
+
+    {{#drag-and-drop
+      class="drop-zone upf-align--center" onDragClass="drop-zone-active" onDropFiles=this.onDropFiles}}
+      <img src="/@upfluence/uedit/assets/images/upload.svg" alt={{t "uedit.toolbar.image.title"}} />
+
+      <br/>
+
+      {{#if this.processing}}
+        <h4>Processing... {{file.name}}</h4>
+      {{/if}}
+
+      <div class={{if this.processing 'hidden'}}>
+        <h3>Drop your file here</h3>
+
+        <p>
+          or <br />
+
+          {{file-uploader
+            file=this.droppedFile allowedExtensions=this.allowedExtensions headers=this.uploaderHeaders
+            extras=this.uploaderExtra text='Browse file' beforeUpload=this.beforeUpload didError=this.onError
+            didUpload=this.didUpload}}
+        </p>
+      </div>
+    {{/drag-and-drop}}
+  </div>
+
+
+  <div class="modal-footer upf-align--center">
+    <button class="upf-btn upf-btn--primary" disabled={{and (not this.fileURL) (not this.directURL)}}
+            {{on "click" this.addImage}}>
+      {{t "uedit.toolbar.image.title"}}
+    </button>
+  </div>
+{{/modal-view}}
