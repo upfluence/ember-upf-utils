@@ -1,28 +1,31 @@
-{{#modal-view hidden=@hidden closeAction=@closeAction title=(t "uedit.toolbar.image.title") class="modal--image-upload"}}
+{{#modal-view hidden=@hidden closeAction=@closeAction title=(t "uedit_editor.toolbar.image.title") class="modal--image-upload"}}
   <div class="modal-body">
-    <label>{{t "uedit.toolbar.image.by_url.label"}}</label>
-    <Input @value={{this.directURL}} @placeholder={{t "uedit.toolbar.image.by_url.placeholder"}} class="form-control upf-input" />
+    <div class="form-group">
+      <label>{{t "uedit_editor.toolbar.image.by_url.label"}}</label>
+      <Input @value={{this.directURL}} @placeholder={{t "uedit_editor.toolbar.image.by_url.placeholder"}}
+             class="form-control upf-input" />
+    </div>
 
     {{#drag-and-drop
       class="drop-zone upf-align--center" onDragClass="drop-zone-active" onDropFiles=this.onDropFiles}}
-      <img src="/@upfluence/uedit/assets/images/upload.svg" alt={{t "uedit.toolbar.image.title"}} />
+      <img src="/assets/@upfluence/ember-upf-utils/images/upload.svg" alt={{t "uedit_editor.toolbar.image.title"}} />
 
       <br/>
 
       {{#if this.processing}}
-        <h4>Processing... {{file.name}}</h4>
+        <h4>{{t "uedit_editor.toolbar.image.processing" filename=file.name}}</h4>
       {{/if}}
 
       <div class={{if this.processing 'hidden'}}>
-        <h3>Drop your file here</h3>
+        <h3>{{t "uedit_editor.toolbar.image.drop_file"}}</h3>
 
         <p>
-          or <br />
+          {{t "uedit_editor.toolbar.image.or"}} <br />
 
           {{file-uploader
             file=this.droppedFile allowedExtensions=this.allowedExtensions headers=this.uploaderHeaders
-            extras=this.uploaderExtra text='Browse file' beforeUpload=this.beforeUpload didError=this.onError
-            didUpload=this.didUpload}}
+            extras=this.uploaderExtra text=(t "uedit_editor.toolbar.image.browse") beforeUpload=this.beforeUpload
+            didError=this.onError didUpload=this.didUpload}}
         </p>
       </div>
     {{/drag-and-drop}}
@@ -32,7 +35,7 @@
   <div class="modal-footer upf-align--center">
     <button class="upf-btn upf-btn--primary" disabled={{and (not this.fileURL) (not this.directURL)}}
             {{on "click" this.addImage}}>
-      {{t "uedit.toolbar.image.title"}}
+      {{t "uedit_editor.toolbar.image.title"}}
     </button>
   </div>
 {{/modal-view}}
