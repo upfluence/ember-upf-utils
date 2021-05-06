@@ -80,6 +80,17 @@ summernote_modals:
     title: Insert a PDF file
     label: "Upload a PDF:"
     cta: Insert PDF
+uedit_editor:
+  toolbar:
+    image:
+      title: Add Image
+      by_url:
+        label: "By URL:"
+        placeholder: https://example.org/image.png
+      processing: "Processing {filename}..."
+      drop_file: Drop your file here
+      or: or
+      browse: Browse
 errors:
   default:
     title: Oh...

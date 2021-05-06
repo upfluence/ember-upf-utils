@@ -61,16 +61,7 @@ jobs:
       run: yarn install
       if: |
         steps.cache-dependencies.outputs.cache-hit != 'true'
-
-    - name: Test and Coverage report on PRs
-      uses: mydea/ember-cli-code-coverage-action@v1
-      if: ${{ github.event_name == 'pull_request' }}
-      with:
-        test-command: yarn test:ember-coverage
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-
-    - name: Tests on master
-      if: ${{ github.ref == 'refs/heads/master' }}
+    - name: Tests
       run: yarn test:ember
 
   release:
