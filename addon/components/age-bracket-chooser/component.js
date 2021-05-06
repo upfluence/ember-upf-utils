@@ -8,6 +8,7 @@ export default Component.extend({
 
   classNames: ['form-element', 'age-chooser'],
   ageBracketValues: AUDIENCE_AGE_BRACKETS,
+  attributeBindings: ['data-control-name'],
 
   label: 'Age Bracket',
   placeholder: '-',
