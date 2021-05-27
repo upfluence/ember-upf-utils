@@ -91,6 +91,15 @@ uedit_editor:
       drop_file: Drop your file here
       or: or
       browse: Browse
+    pdf:
+      title: Add PDF
+      by_url:
+        label: "By URL:"
+        placeholder: https://example.org/file.pdf
+      processing: "Processing {filename}..."
+      drop_file: Drop your file here
+      or: or
+      browse: Browse
 errors:
   default:
     title: Oh...
