@@ -50,10 +50,13 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
     if ((this.errors || []).length > 0) {
       if (this.errors[0].message === 'limit_exceeded') {
         this.toast.info(
-          `${this.intl.t('errors.402.limit_exceeded.title')} ${this.intl.t('errors.402.limit_exceeded.description', {
-            limit: this.errors[0].limit_total,
-            used: this.errors[0].limit_spent
-          })}`
+          `${this.intl.t('errors.402.limit_exceeded.congratulation')} ${this.intl.t(
+            'errors.402.limit_exceeded.description',
+            {
+              limit: this.errors[0].limit_total,
+              used: this.errors[0].limit_spent
+            }
+          )}`
         );
       }
     }
