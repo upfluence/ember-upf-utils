@@ -1,6 +1,7 @@
 import { on } from '@ember/object/evented';
 import { set, observer, computed } from '@ember/object';
 import { run, schedule } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 import SlotsMixin from 'ember-block-slots';
 import EmberCollection from 'ember-collection/components/ember-collection';
@@ -10,6 +11,9 @@ import layout from './template';
 
 export default EmberCollection.extend(SlotsMixin, EKMixin, {
   layout,
+
+  toast: service(),
+  intl: service(),
 
   classNames: ['__table-fluid'],
   triggerOffset: 600,
@@ -39,6 +43,22 @@ export default EmberCollection.extend(SlotsMixin, EKMixin, {
       run.later(() => {
         this._resetCurrentlyActiveCell();
       }, 200);
+    }
+  }),
+
+  _2: observer('errors', function () {
+    if ((this.errors || []).length > 0) {
+      if (this.errors[0].message === 'limit_exceeded') {
+        this.toast.info(
+          `${this.intl.t('errors.402.limit_exceeded.congratulation')} ${this.intl.t(
+            'errors.402.limit_exceeded.description',
+            {
+              limit: this.errors[0].limit_total,
+              used: this.errors[0].limit_spent
+            }
+          )}`
+        );
+      }
     }
   }),
 
