@@ -27,6 +27,16 @@ export_influencers:
     campaign: Campaign
     mailing: Mailing
     discount_plan: Discount Offer
+left_menu:
+  apps:
+    irm: "IRM"
+    search: "Search"
+    inbox: "Mailing"
+    publishr: "Workflow"
+    payments: "Payments"
+    client: "Client"
+    analytics: "Stream"
+    livecapture: "Live&nbsp;Capture"
 influencer_network:
   modal:
     title: Influencer Network
