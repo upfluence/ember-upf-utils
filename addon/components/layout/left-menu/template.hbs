@@ -1,6 +1,6 @@
 {{#if session.isAuthenticated}}
   <section class="app-header__top">
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.irm")}}>
       {{#feature-flagged "crm_web"}}
         <SmartLinkTo @link={{crmURL}}>
           <span class="upf-icon upf-icon--crm"></span>
@@ -13,7 +13,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.search")}}>
       {{#feature-flagged "facade_web"}}
         <SmartLinkTo @link={{listURL}} @cssClass={{if hasFacadeNotifications 'upf-notification--corner'}}>
           <span class="upf-icon upf-icon--search"></span>
@@ -26,7 +26,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.inbox")}}>
       {{#feature-flagged "inbox_client"}}
         <SmartLinkTo @link={{inboxURL}}>
           <span class="upf-icon upf-icon--inbox"></span>
@@ -39,7 +39,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.publishr")}}>
       {{#feature-flagged "publishr_admin"}}
         <SmartLinkTo @link={{publishrCampaignsURL}}
                          @cssClass={{if hasPublishrNotifications "upf-notification--corner"}}>
@@ -53,7 +53,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.payments")}}>
       {{#feature-flagged "publishr_admin"}}
         <SmartLinkTo @link={{publishrPaymentsURL}}
                          @cssClass={{if hasPaymentsNotifications "upf-notification--corner"}}>
@@ -67,7 +67,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.client")}}>
       {{#feature-flagged "publishr_client"}}
         <SmartLinkTo @link={{publishrClientURL}}>
           <span class="upf-icon upf-icon--influencers"></span>
@@ -75,7 +75,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.analytics")}}>
       {{#feature-flagged "analytics_web"}}
         <SmartLinkTo @link={{streamsURL}}
                          @cssClass={{if hasAnalyticsNotifications "upf-notification--corner"}}>
@@ -89,7 +89,7 @@
       {{/feature-flagged}}
     </div>
 
-    <div class="header-item">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" html=true title=(t "left_menu.apps.livecapture")}}>
       {{#feature-flagged "acquisition_web"}}
         <SmartLinkTo @link={{acquisitionCampaignsURL}}>
           <span class="upf-icon upf-icon--acquisition"></span>
