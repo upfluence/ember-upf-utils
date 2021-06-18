@@ -64,12 +64,12 @@ export default Component.extend(TooltipActivationMixin, {
 
   responseTimeSpeed: computed('responseTimeScore', function () {
     if (this.responseTimeScore >= 48) {
-      return 'slow';
+      return 'alert';
     } else if (this.responseTimeScore >= 24) {
-      return 'medium';
+      return 'regular';
     }
 
-    return 'fast';
+    return 'positive';
   }),
 
   didInsertElement() {

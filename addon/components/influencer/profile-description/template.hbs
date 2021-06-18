@@ -69,12 +69,12 @@
     {{#if (or this.responseTimeScore this.isLdaCompliant)}}
       <div class="processed-features processed-features_container">
         {{#if this.responseTimeScore}}
-          <div class="processed-features_tag processed-features_tag--{{this.responseTimeSpeed}}" data-toggle="tooltip" 
-              title={{t (concat "processed_features.tooltip_" this.responseTimeSpeed)}} data-placement="bottom">
+          <div class="upf-tag upf-tag--{{this.responseTimeSpeed}}" {{enable-tooltip
+              title=(t (concat "processed_features.tooltip_" this.responseTimeSpeed))}}>
             <i class="fa fa-envelope"></i>
             <span>
-              {{#if (eq this.responseTimeSpeed "slow")}}
-                {{t "processed_features.slow"}}
+              {{#if (eq this.responseTimeSpeed "alert")}}
+                {{t "processed_features.alert"}}
               {{else}}
                 {{t "processed_features.default" length=this.responseTimeScore}}
               {{/if}}
@@ -83,7 +83,7 @@
         {{/if}}
 
         {{#if this.isLdaCompliant}}
-          <div class="processed-features_tag">
+          <div class="upf-tag upf-tag--positive">
             <i class="fa fa-check"></i>
             <span>
               {{t "processed_features.lda_compliant"}}
