@@ -69,7 +69,7 @@ export default Component.extend(TooltipActivationMixin, {
       return 'regular';
     }
 
-    return 'positive';
+    return 'success';
   }),
 
   didInsertElement() {
