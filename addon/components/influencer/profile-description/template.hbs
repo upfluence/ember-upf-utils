@@ -72,22 +72,18 @@
           <div class="upf-tag upf-tag--{{this.responseTimeSpeed}}" {{enable-tooltip
               title=(t (concat "processed_features.tooltip_" this.responseTimeSpeed))}}>
             <i class="fa fa-envelope"></i>
-            <span>
-              {{#if (eq this.responseTimeSpeed "alert")}}
-                {{t "processed_features.alert"}}
-              {{else}}
-                {{t "processed_features.default" length=this.responseTimeScore}}
-              {{/if}}
-            </span>
+            {{#if (eq this.responseTimeSpeed "alert")}}
+              {{t "processed_features.alert"}}
+            {{else}}
+              {{t "processed_features.default" length=this.responseTimeScore}}
+            {{/if}}
           </div>
         {{/if}}
 
         {{#if this.isLdaCompliant}}
           <div class="upf-tag upf-tag--success">
             <i class="fa fa-check"></i>
-            <span>
-              {{t "processed_features.lda_compliant"}}
-            </span>
+            {{t "processed_features.lda_compliant"}}
           </div>
         {{/if}}
       </div>
