@@ -62,40 +62,14 @@
     .secondary-line {
       padding-top: 0.8em;
 
-      .processed-features {
-        &_container {
+      .processed-features_container {
           display: flex;
           align-items: center;
           margin-top: @spacing-xxx-sm;
-        }
     
-        &_tag {
-          display: flex;
-          align-items: center;
-    
-          border-radius: @default-radius;
-          padding: 0 @spacing-xxx-sm;
-    
-          //can't reproduce background color using lighten()
-          background-color: #d0f4ef;
-          color: #18c7ae;
-    
-          .fa {
-            margin-right: 5px;
-          }
-
+        .upf-tag {
           &:first-child {
             margin-right: @spacing-xxx-sm;
-          }
-
-          &--medium {
-            background-color: #e9e9fc;
-            color: #0d0de6;
-          }
-
-          &--slow {
-            background-color: lighten(@upf-feedback-alert, 35%);
-            color: @upf-feedback-alert;
           }
         }
       }
