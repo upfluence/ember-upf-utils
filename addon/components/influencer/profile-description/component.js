@@ -1,3 +1,4 @@
+import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
 import { gt, and, gte } from '@ember/object/computed';
 import Component from '@ember/component';
@@ -60,6 +61,10 @@ export default Component.extend(TooltipActivationMixin, {
     }
 
     return parseInt((responseTimeScore / 3600).toFixed()) || 1;
+  }),
+
+  isInInboxWeb: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment').modulePrefix === '@upfluence/inbox-web';
   }),
 
   responseTimeSpeed: computed('responseTimeScore', function () {
