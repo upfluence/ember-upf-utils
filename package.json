@@ -40,17 +40,18 @@
     "ember-collection": "^1.0.0-alpha.9",
     "ember-cp-validations": "offirgolan/ember-cp-validations#master",
     "ember-img-lazy": "^3.0.1",
+    "ember-keyboard": "^6.0.2",
     "ember-power-select": "4.1.0",
     "ember-shepherd": "^3.1.0",
     "ember-source": "~3.18.0",
-    "ember-keyboard": "^6.0.2",
     "ember-tether": "^1.0.0-beta.2",
+    "ember-toastr": "1.7.2",
     "ember-uploader": "^2.x",
     "emberx-select": "^3.0.1",
-    "ember-toastr": "1.7.2",
-    "toastr": "^2.1.4",
     "moment": "^2.29.1",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "toastr": "^2.1.4",
+    "upfluence-oss-components": "^2.1.2"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",

@@ -1,4 +1,6 @@
-{{#modal-view hidden=@hidden closeAction=@closeAction title=(t "uedit_editor.toolbar.image.title") class="modal--image-upload"}}
+<OSS::Modal
+ @title={{t "uedit_editor.toolbar.image.title"}} @options={{hash centered=true}}
+ @onClose={{@closeAction}} class="uedit__image-modal">
   <div class="modal-body">
     <div class="form-group">
       <label>{{t "uedit_editor.toolbar.image.by_url.label"}}</label>
@@ -33,9 +35,8 @@
 
 
   <div class="modal-footer upf-align--center">
-    <button class="upf-btn upf-btn--primary" disabled={{and (not this.fileURL) (not this.directURL)}}
-            {{on "click" this.addImage}}>
+    <button class="upf-btn upf-btn--primary" disabled={{and (not this.fileURL) (not this.directURL)}} {{on "click" this.addImage}}>
       {{t "uedit_editor.toolbar.image.title"}}
     </button>
   </div>
-{{/modal-view}}
+</OSS::Modal>
