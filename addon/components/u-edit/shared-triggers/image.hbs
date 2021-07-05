@@ -1,0 +1,9 @@
+<button type="button" class="uedit__toolbar-trigger" data-control-name="u-edit/shared-triggers/image"
+        {{on "click" this.openModal}} {{enable-tooltip title=(t "uedit_editor.toolbar.image.title") trigger="hover"}}>
+  <i class="fa fa-picture-o" /> {{this.displayModal}}
+</button>
+
+{{#if this.displayModal}}
+  <UEdit::SharedTriggers::Modals::ImageUpload
+   @insertImage={{this.insertImage}} @closeAction={{fn (mut this.displayModal) false}} />
+{{/if}}
