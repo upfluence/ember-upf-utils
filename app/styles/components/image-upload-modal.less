@@ -1,4 +1,4 @@
-.modal.modal--image-upload {
+.modal.uedit__image-modal {
   .drop-zone {
     border-radius: @default-radius;
     border: 2px dashed @upf-primary-rock-blue-light;
@@ -14,5 +14,24 @@
 
   .drop-zone-active {
     border-color: @upf-primary-rock-blue;
+  }
+
+  .file {
+    border: 1px solid @border-color;
+    border-radius: @default-radius;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: @spacing-xx-sm;
+
+    .details {
+      display: flex;
+
+      div:last-child {
+        margin-left: @spacing-xx-sm;
+      }
+    }
   }
 }

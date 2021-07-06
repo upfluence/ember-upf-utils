@@ -31,6 +31,26 @@
         </p>
       </div>
     {{/drag-and-drop}}
+
+    {{#if (and this.file.name (not this.processing))}}
+      <div class="uploaded-files margin-top-x-sm">
+        <label>{{t "uedit_editor.toolbar.image.processed_file.title"}}</label>
+
+        <div class="file">
+          <div class="details">
+            <div><i class="fa fa-picture-o text-size-7" /></div>
+
+            <div>
+              <span class="text-ellipsis-140">{{this.file.name}}</span>
+            </div>
+          </div>
+
+          <div class="status">
+            <i class="fa fa-check-circle text-color-success text-size-8" />
+          </div>
+        </div>
+      </div>
+    {{/if}}
   </div>
 
 
