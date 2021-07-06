@@ -98,6 +98,8 @@ uedit_editor:
         label: "By URL:"
         placeholder: https://example.org/image.png
       processing: "Processing {filename}..."
+      processed_file:
+        title: Uploaded Files
       drop_file: Drop your file here
       or: or
       browse: Browse
