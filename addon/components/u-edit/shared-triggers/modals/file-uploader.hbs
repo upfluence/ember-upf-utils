@@ -1,0 +1,63 @@
+<OSS::Modal
+ @title={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}} @options={{hash container=@container centered=true}}
+ @onClose={{@closeAction}} class="uedit-file-uploader">
+  <div class="modal-body">
+    <div class="form-group">
+      <label>{{t (concat "uedit_editor.toolbar." this.titleKey ".by_url.label")}}</label>
+      <Input
+       @value={{this.directURL}} @placeholder={{t  (concat "uedit_editor.toolbar." this.titleKey ".by_url.placeholder")}}
+       class="form-control upf-input" />
+    </div>
+
+    {{#drag-and-drop
+      class="drop-zone upf-align--center" onDragClass="drop-zone-active" onDropFiles=this.onDropFiles}}
+      <img src="/assets/@upfluence/ember-upf-utils/images/upload.svg" alt={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}} />
+
+      <br/>
+
+      {{#if this.processing}}
+        <h4>{{t (concat "uedit_editor.toolbar." this.titleKey ".processing") filename=file.name}}</h4>
+      {{/if}}
+
+      <div class={{if this.processing 'hidden'}}>
+        <h3>{{t (concat "uedit_editor.toolbar." this.titleKey ".drop_file")}}</h3>
+
+        <p>
+          {{t (concat "uedit_editor.toolbar." this.titleKey ".or")}} <br />
+
+          {{file-uploader
+            file=this.droppedFile allowedExtensions=this.allowedExtensions headers=this.uploaderHeaders
+            extras=this.uploaderExtra text=(t (concat "uedit_editor.toolbar." this.titleKey ".browse"))
+            beforeUpload=this.beforeUpload didError=this.onError didUpload=this.didUpload}}
+        </p>
+      </div>
+    {{/drag-and-drop}}
+
+    {{#if (and this.file.name (not this.processing))}}
+      <div class="uploaded-files margin-top-x-sm">
+        <label>{{t (concat "uedit_editor.toolbar." this.titleKey ".processed_file.title")}}</label>
+
+        <div class="file">
+          <div class="details">
+            <div><i class="fa fa-file-o text-size-7" /></div>
+
+            <div>
+              <span class="text-ellipsis-140">{{this.file.name}}</span>
+            </div>
+          </div>
+
+          <div class="status">
+            <i class="fa fa-check-circle text-color-success text-size-8" />
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+
+  <div class="modal-footer upf-align--center">
+    <button class="upf-btn upf-btn--primary" disabled={{and (not this.fileURL) (not this.directURL)}} {{on "click" this.addFile}}>
+      {{t (concat "uedit_editor.toolbar." this.titleKey ".title")}}
+    </button>
+  </div>
+</OSS::Modal>

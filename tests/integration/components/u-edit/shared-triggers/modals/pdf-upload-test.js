@@ -6,29 +6,32 @@ import { hbs } from 'ember-cli-htmlbars';
 
 class SessionServiceStub extends Service {}
 
-module('Integration | Component | u-edit/shared-triggers/modals/image-upload', function (hooks) {
+module('Integration | Component | u-edit/shared-triggers/modals/pdf-upload', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.owner.register('service:session', SessionServiceStub);
   });
 
-  test('can not insert image if there is no url set', async function (assert) {
-    this.insertImage = () => {};
+  test('can not insert pdf if there is no url set', async function (assert) {
+    this.insertPDF = () => {};
 
-    await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
+    await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertPDF}} />`);
 
     assert.dom(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary')).hasAttribute('disabled');
   });
 
   test('an image is correctly added via its url in the editor', async function (assert) {
     this.displayImageUpload = true;
-    this.insertImage = (url) => {
-      assert.equal(url, 'https://via.placeholder.com/350x150');
+    this.insertPDF = (url) => {
+      assert.equal(url, 'http://www.africau.edu/images/default/sample.pdf');
     };
 
-    await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
-    await fillIn(document.querySelector('.uedit-file-uploader input.upf-input'), 'https://via.placeholder.com/350x150');
+    await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertPDF}} />`);
+    await fillIn(
+      document.querySelector('.uedit-file-uploader input.upf-input'),
+      'http://www.africau.edu/images/default/sample.pdf'
+    );
 
     assert
       .dom(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary'))

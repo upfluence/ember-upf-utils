@@ -2,8 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class UEditPdfUploadComponent extends Component {
-  allowedExtensions = 'pdf';
+export default class UEditFileUploader extends Component {
   uploaderHeaders = Object.freeze({ Scope: 'anonymous' });
   uploaderExtra = Object.freeze({ privacy: 'public' });
 
@@ -34,8 +33,8 @@ export default class UEditPdfUploadComponent extends Component {
   }
 
   @action
-  addPDF() {
-    this.args.insertPDF(this.directURL || this.fileURL);
+  addFile() {
+    this.args.insertFile(this.directURL || this.fileURL);
     this.directURL = this.fileURL = null;
   }
 }
