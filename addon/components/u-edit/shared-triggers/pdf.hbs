@@ -1,0 +1,9 @@
+<button type="button" class="uedit__toolbar-trigger" data-control-name="u-edit/shared-triggers/pdf"
+        {{on "click" this.openModal}} {{enable-tooltip title=(t "uedit_editor.toolbar.pdf.title") trigger="hover"}}>
+  <i class="fa fa-file-pdf-o" />
+</button>
+
+{{#if this.displayModal}}
+  <UEdit::SharedTriggers::Modals::PdfUpload
+   @container={{@editor.container}} @insertFile={{this.insertPDF}} @closeAction={{fn (mut this.displayModal) false}} />
+{{/if}}
