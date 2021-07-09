@@ -13,6 +13,22 @@ export default Service.extend({
     return `${Configuration.exportUrl}/api/v1`;
   }),
 
+  /*
+   * @param {Object} source - Export source data
+   *       @param {string}    source.from             - format: “type:id”,
+   *       @param {string}    source.artifact_key
+   *       @param {string}    source.media_url
+   *       @param {number}    source.max_size
+   *       @param {number[]}  source.influencer_ids
+   *       @param {string}    source.search_query     - format: JSON.stringify({criteria?, audience_filter?, filter?, current_list?})
+   *       @param {Object[]}  source.filters
+   *             @param {string} filters.name
+   *             @param {string} filters.value
+   *
+   * @param {Object} destination - Export destination data
+   *       @param {string[]} tags
+   *       @param {string} to                         - format: "type:id"
+   */
   perform(source, destination) {
     return this.ajax.request(`${this._exportURL}/export`, {
       method: 'POST',
@@ -23,22 +39,6 @@ export default Service.extend({
       data: JSON.stringify({ source, destination })
     });
   },
-
-  // Perform Export Parameters
-  // source: {
-  //   from: string  // format: “type:id”,
-  //   artifact_key: string,
-  //   media_url: string,
-  //   max_size: number,
-  //   influencer_ids: [number],
-  //   filters: [{name: string, value: string}]
-  //   search_query: string // format: JSON.stringify({criteria?, audience_filter?, filter?, current_list?})
-  // }
-
-  // destination: {
-  //   tags: [string],
-  //   to: string  // format: "type:id"
-  // }
 
   exportToEntities(exportingFrom, exportingTo, influencerIds, filters, maxSize, tags) {
     let payload = { destination: { to: exportingTo } };
