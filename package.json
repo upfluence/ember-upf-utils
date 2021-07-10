@@ -51,7 +51,7 @@
     "moment": "^2.29.1",
     "tinycolor2": "^1.4.1",
     "toastr": "^2.1.4",
-    "upfluence-oss-components": "^2.1.2"
+    "upfluence-oss-components": "^2.x"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",
