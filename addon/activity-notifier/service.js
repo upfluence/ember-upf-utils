@@ -165,6 +165,11 @@ export default Service.extend({
           `<b>Mailing error.</b> We ran into a problem with one of your Mailings. 
           <a href="${data.mailing_url}" target="_blank"><b>View my mailing</b></a>`
         );
+      case 'credential_disconnected':
+        return notificationErrorMessage(
+          `<b>Your ${data.integration_name} has been disconnected.</b> Please check your integration 
+          settings and reconnect it to avoid any issues. <a href="${data.integration_url}" target="_blank"><b>Reconnect</b></a>`
+        );
       default:
         return null;
     }
