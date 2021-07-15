@@ -15,7 +15,7 @@ const notificationMessage = function (message) {
 
 const notificationErrorMessage = function (message) {
   return {
-    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+    title: `<i class="fa fa-info-circle" aria-hidden="true"></i>`,
     message: message,
     type: 'error'
   };
