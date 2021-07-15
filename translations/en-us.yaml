@@ -81,15 +81,6 @@ upgrade_modal:
 file_uploader:
   cta:
     upload: Upload
-summernote_modals:
-  video:
-    title: Insert a video
-    label: "Upload a video:"
-    cta: Insert Video
-  pdf:
-    title: Insert a PDF file
-    label: "Upload a PDF:"
-    cta: Insert PDF
 uedit_editor:
   toolbar:
     image:
