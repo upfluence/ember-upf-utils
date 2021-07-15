@@ -8,7 +8,16 @@ import Configuration from '@upfluence/ember-upf-utils/configuration';
 const notificationMessage = function (message) {
   return {
     title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
-    message: message
+    message: message,
+    type: 'info'
+  };
+};
+
+const notificationErrorMessage = function (message) {
+  return {
+    title: `<i class="fa fa-info-circle" aria-hidden="true"></i>`,
+    message: message,
+    type: 'error'
   };
 };
 
@@ -16,7 +25,8 @@ const notificationMessageWithAvatar = function (avatarUrl, message) {
   return {
     title: `<img class="toast-title__avatar" src="${avatarUrl}" />
      <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
-    message: message
+    message: message,
+    type: 'info'
   };
 };
 
@@ -107,7 +117,7 @@ export default Service.extend({
         return;
       }
 
-      this.renderNotification(d.title, d.message);
+      this.renderNotification(d);
     });
   },
 
@@ -150,13 +160,23 @@ export default Service.extend({
           `You have <b>${data.count}</b> new recommendations for your <b>${data.list_name}</b> list
            <a href="${data.url}" target="_blank">View</a>`
         );
+      case 'thread_failure_summary':
+        return notificationErrorMessage(
+          `<b>Mailing error.</b> We ran into a problem with one of your Mailings. 
+          <a href="${data.mailing_url}" target="_blank"><b>View my mailing</b></a>`
+        );
+      case 'credential_disconnected':
+        return notificationErrorMessage(
+          `<b>Your ${data.integration_name} has been disconnected.</b> Please check your integration 
+          settings and reconnect it to avoid any issues. <a href="${data.integration_url}" target="_blank"><b>Reconnect</b></a>`
+        );
       default:
         return null;
     }
   },
 
-  renderNotification(title, message) {
-    this.toast.info(message, title, {
+  renderNotification(notification) {
+    this.toast[notification.type](notification.message, notification.title, {
       timeOut: 0,
       extendedTimeOut: 0
     });
