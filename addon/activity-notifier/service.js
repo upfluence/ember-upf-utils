@@ -15,7 +15,7 @@ const notificationMessage = function (message) {
 
 const notificationErrorMessage = function (message) {
   return {
-    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+    title: `<i class="fa fa-info-circle" aria-hidden="true"></i>`,
     message: message,
     type: 'error'
   };
@@ -164,6 +164,11 @@ export default Service.extend({
         return notificationErrorMessage(
           `<b>Mailing error.</b> We ran into a problem with one of your Mailings. 
           <a href="${data.mailing_url}" target="_blank"><b>View my mailing</b></a>`
+        );
+      case 'credential_disconnected':
+        return notificationErrorMessage(
+          `<b>Your ${data.integration_name} has been disconnected.</b> Please check your integration 
+          settings and reconnect it to avoid any issues. <a href="${data.integration_url}" target="_blank"><b>Reconnect</b></a>`
         );
       default:
         return null;
