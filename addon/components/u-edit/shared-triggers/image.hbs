@@ -5,5 +5,5 @@
 
 {{#if this.displayModal}}
   <UEdit::SharedTriggers::Modals::ImageUpload
-   @container={{@editor.container}} @insertFile={{this.insertImage}} @closeAction={{fn (mut this.displayModal) false}} />
+   @container={{@editor.modalContainer}} @insertFile={{this.insertImage}} @closeAction={{fn (mut this.displayModal) false}} />
 {{/if}}
