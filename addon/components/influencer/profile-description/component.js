@@ -3,8 +3,11 @@ import { inject as service } from '@ember/service';
 import { gt, and, gte } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 import layout from './template';
 import TooltipActivationMixin from '@upfluence/ember-upf-utils/mixins/tooltip-activation';
+
+const FALLBACK_IMAGE = '/assets/images/no-image.svg';
 
 export default Component.extend(TooltipActivationMixin, {
   currentUser: service(),
@@ -12,6 +15,7 @@ export default Component.extend(TooltipActivationMixin, {
   layout,
   classNames: ['profile-description'],
 
+  profilePictureLoaded: false,
   isSelectable: true,
   toggleAction: null,
   selected: null,
@@ -35,6 +39,12 @@ export default Component.extend(TooltipActivationMixin, {
 
       return value;
     }
+  }),
+
+  bgImgStyle: computed('profilePictureLoaded', 'profile.avatarUrl', function () {
+    return this.profilePictureLoaded
+      ? htmlSafe(`background-image: url(${this.get('profile.avatarUrl')}), url(${FALLBACK_IMAGE});`)
+      : htmlSafe(`background-image: url(${FALLBACK_IMAGE});`);
   }),
 
   listNames: computed('profile.lists', function () {
@@ -76,6 +86,12 @@ export default Component.extend(TooltipActivationMixin, {
 
     return 'success';
   }),
+
+  actions: {
+    imageHasLoaded() {
+      this.set('profilePictureLoaded', true);
+    }
+  },
 
   didInsertElement() {
     this._super(...arguments);

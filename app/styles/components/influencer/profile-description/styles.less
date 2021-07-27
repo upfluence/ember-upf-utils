@@ -3,6 +3,12 @@
 @title-width: 230px;
 @global-padding: 20px;
 
+.img-preloader {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
 .profile-description {
   flex: 0 0 @unit-width;
   height: @table-fluid-row-height;
@@ -12,12 +18,15 @@
   .profile-description__avatar {
     float: left;
 
-    img {
+    .profile-description__bgimg {
       border-radius: @default-radius;
       display: inline-block;
+      background-size: cover;
+      height: @avatar-size;
+      width: @avatar-size;
     }
 
-    img:before {
+    .profile-description__bgimg:before {
       content: ' ';
       display: block;
       position: absolute;
@@ -63,10 +72,10 @@
       padding-top: 0.8em;
 
       .processed-features_container {
-          display: flex;
-          align-items: center;
-          margin-top: @spacing-xxx-sm;
-    
+        display: flex;
+        align-items: center;
+        margin-top: @spacing-xxx-sm;
+
         .upf-tag {
           &:first-child {
             margin-right: @spacing-xxx-sm;
