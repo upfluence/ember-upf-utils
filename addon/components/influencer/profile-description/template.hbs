@@ -1,17 +1,18 @@
+<img src={{profile.avatarUrl}} class="img-preloader" onload={{action "imageHasLoaded"}}/>
 <div class='profile-description__avatar'>
   {{#if isSelectable}}
     {{#if (eq overlayType 'selection')}}
       {{#toggle-area value=_selected callbackAction=toggleAction icon=selectedIcon}}
-        <img src={{profile.avatarUrl}}/>
+        <div class="profile-description__bgimg" style={{bgImgStyle}}></div>
       {{/toggle-area}}
     {{else if (eq overlayType 'splitOverlay')}}
       {{#split-overlay-area rightClick=rightClickAction leftClick=leftClickAction
                             rightToggled=rightToggled leftToggled=leftToggled}}
-        <img src={{profile.avatarUrl}}/>
+        <div class="profile-description__bgimg" style={{bgImgStyle}}></div>
       {{/split-overlay-area}}
     {{/if}}
   {{else}}
-    <img src={{profile.avatarUrl}}/>
+    <div class="profile-description__bgimg" style={{bgImgStyle}}></div>
   {{/if}}
 </div>
 
