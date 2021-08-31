@@ -3,8 +3,7 @@ import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default class ModuleBuilder {
   constructor(session, toast) {
-    this.session = session;
-    this.toast = toast;
+    Object.assign(this, { session, toast });
   }
 
   build(editor, element) {
@@ -17,13 +16,14 @@ export class Module {
     Object.assign(this, { editor, element, token, toast });
 
     this.editor.registerModule(this);
+    this.editor.enableDragAndDrop();
 
     this.uploaderHeaders = {
       Scope: Configuration.scope[0]
     };
   }
 
-  uploaderBuilder() {
+  _uploaderBuilder() {
     let uploader = Uploader.create({
       ajaxSettings: {
         dataType: 'json',
@@ -43,16 +43,45 @@ export class Module {
       })
       .on('didUpload', (element) => {
         this.editor.insertImage(element.artifact.url);
+        this._removeLoading();
       });
 
     return uploader;
   }
 
-  uploadFile(file) {
-    this.uploaderBuilder().upload(file, { privacy: 'public' });
+  _uploadFile(file) {
+    this._uploaderBuilder().upload(file, { privacy: 'public' });
+  }
+
+  _addLoading() {
+    const uedit = document.querySelector('.uedit');
+
+    let loading = document.createElement('div');
+    loading.className = 'uedit__loading-image-upload fx-row fx-xalign-center';
+    loading.textContent = 'Uploading your image';
+
+    let spinner = document.createElement('div');
+    spinner.className = 'spinner';
+    let bounce1 = document.createElement('div');
+    bounce1.className = 'bounce1';
+    let bounce2 = document.createElement('div');
+    bounce2.className = 'bounce2';
+    let bounce3 = document.createElement('div');
+    bounce3.className = 'bounce3';
+
+    spinner.appendChild(bounce1);
+    spinner.appendChild(bounce2);
+    spinner.appendChild(bounce3);
+    loading.appendChild(spinner);
+    uedit.appendChild(loading);
+  }
+
+  _removeLoading() {
+    document.querySelector('.uedit__loading-image-upload').remove();
   }
 
   onImageUpload(files) {
-    Array.prototype.forEach.call(files, (file) => this.uploadFile(file));
+    this._addLoading();
+    Array.prototype.forEach.call(files, (file) => this._uploadFile(file));
   }
 }
