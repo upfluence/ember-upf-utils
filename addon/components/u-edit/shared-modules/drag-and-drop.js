@@ -39,7 +39,8 @@ export class Module {
 
     uploader
       .on('didValidationError', (error) => {
-        this.toast.error(error.message);
+        this.toast.error(error.message || 'Your file is invalid. Please check the requirements.');
+        this._removeLoading();
       })
       .on('didUpload', (element) => {
         this.editor.insertImage(element.artifact.url);
