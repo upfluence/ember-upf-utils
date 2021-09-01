@@ -7,13 +7,13 @@ export default class ModuleBuilder {
   }
 
   build(editor, element) {
-    return new Module(editor, element, this.session.data.authenticated.access_token, this.toast);
+    return new Module(editor, element, this.session, this.toast);
   }
 }
 
 class Module {
-  constructor(editor, element, token, toast) {
-    Object.assign(this, { editor, element, token, toast });
+  constructor(editor, element, session, toast) {
+    Object.assign(this, { editor, element, session, toast });
 
     this.editor.registerModule(this);
 
@@ -28,7 +28,7 @@ class Module {
         dataType: 'json',
         headers: {
           ...this.uploaderHeaders,
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.session.data.authenticated.access_token}`
         }
       },
       url: Configuration.uploaderUrl,
@@ -53,11 +53,11 @@ class Module {
     this._uploaderBuilder().upload(file, { privacy: 'public' });
   }
 
-  _addLoadingStates() {
+  _createLoadingStates() {
     const uedit = document.querySelector('.uedit');
 
     let loading = document.createElement('div');
-    loading.className = 'uedit__loading-image-upload fx-row fx-xalign-center';
+    loading.className = 'uedit__loading-image-upload uedit__loading-image-upload--visible fx-row fx-xalign-center';
     loading.textContent = 'Uploading your image';
 
     let spinner = document.createElement('div');
@@ -76,8 +76,18 @@ class Module {
     uedit.appendChild(loading);
   }
 
+  _addLoadingStates() {
+    let loadingStates = document.querySelector('.uedit__loading-image-upload');
+
+    if (loadingStates) {
+      loadingStates.classList.remove('uedit__loading-image-upload--hidden');
+    } else {
+      this._createLoadingStates();
+    }
+  }
+
   _removeLoadingState() {
-    document.querySelector('.uedit__loading-image-upload').remove();
+    document.querySelector('.uedit__loading-image-upload').classList.add('uedit__loading-image-upload--hidden');
   }
 
   onImageUpload(files) {
