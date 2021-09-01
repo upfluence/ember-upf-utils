@@ -16,7 +16,6 @@ class Module {
     Object.assign(this, { editor, element, token, toast });
 
     this.editor.registerModule(this);
-    this.editor.enableDragAndDrop();
 
     this.uploaderHeaders = {
       Scope: Configuration.scope[0]
@@ -39,7 +38,7 @@ class Module {
 
     uploader
       .on('didValidationError', (error) => {
-        this.toast.error(error.message || 'Your file is invalid. Please check the requirements.');
+        this.toast.error(error || 'Your file is invalid. Please check the requirements.');
         this._removeLoadingState();
       })
       .on('didUpload', (element) => {
@@ -84,5 +83,9 @@ class Module {
   onImageUpload(files) {
     this._addLoadingStates();
     Array.prototype.forEach.call(files, (file) => this._uploadFile(file));
+  }
+
+  getOptions() {
+    return { disableDragAndDrop: false };
   }
 }
