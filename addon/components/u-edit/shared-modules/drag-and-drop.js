@@ -11,7 +11,7 @@ export default class ModuleBuilder {
   }
 }
 
-export class Module {
+class Module {
   constructor(editor, element, token, toast) {
     Object.assign(this, { editor, element, token, toast });
 
@@ -40,11 +40,11 @@ export class Module {
     uploader
       .on('didValidationError', (error) => {
         this.toast.error(error.message || 'Your file is invalid. Please check the requirements.');
-        this._removeLoading();
+        this._removeLoadingState();
       })
       .on('didUpload', (element) => {
         this.editor.insertImage(element.artifact.url);
-        this._removeLoading();
+        this._removeLoadingState();
       });
 
     return uploader;
@@ -54,7 +54,7 @@ export class Module {
     this._uploaderBuilder().upload(file, { privacy: 'public' });
   }
 
-  _addLoading() {
+  _addLoadingStates() {
     const uedit = document.querySelector('.uedit');
 
     let loading = document.createElement('div');
@@ -77,12 +77,12 @@ export class Module {
     uedit.appendChild(loading);
   }
 
-  _removeLoading() {
+  _removeLoadingState() {
     document.querySelector('.uedit__loading-image-upload').remove();
   }
 
   onImageUpload(files) {
-    this._addLoading();
+    this._addLoadingStates();
     Array.prototype.forEach.call(files, (file) => this._uploadFile(file));
   }
 }
