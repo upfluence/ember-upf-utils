@@ -50,7 +50,7 @@
     "moment": "^2.29.1",
     "tinycolor2": "^1.4.1",
     "toastr": "^2.1.4",
-    "upfluence-oss-components": "^2.x"
+    "@upfluence/oss-components": "git+ssh://git@github.com/upfluence/oss-components.git#pn-package-scoping"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",
