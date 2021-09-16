@@ -42,7 +42,7 @@
       {{#link-to (concat sidePanelBasePath ".profile") profile.id
                  class='upf-link--reset profile-description__action'
                  bubbles=false}}
-        <i class="fa fa-pencil"></i>
+        <i class="fas fa-pencil-alt"></i>
       {{/link-to}}
     </span>
 
@@ -63,7 +63,7 @@
         <span class="profile-description__content--new pull-left">{{t "new"}}</span>
       {{/if}}
       {{#if profile.address}}
-        {{display-field value=profile.address icon="map-marker"}}
+        {{display-field value=profile.address icon="map-marker-alt"}}
       {{/if}}
     </div>
 
