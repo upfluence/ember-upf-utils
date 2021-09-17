@@ -58,15 +58,3 @@ jobs:
         npm publish --access public
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Get Package Version
-      id: pkg_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
-    - name: Trigger upfluence-web/deploy
-      uses: benc-uk/workflow-dispatch@v1
-      with:
-        repo: upfluence/upfluence-web
-        ref: staging
-        workflow: Bump Dependency
-        token: ${{ secrets.GITHUB_TOKEN }}
-        inputs: |
-          {"package": "@upfluence/ember-upf-utils", "version": "${{ steps.pkg_version.outputs.VERSION }}", "user": "${{ github.event.pusher.name }}"}
