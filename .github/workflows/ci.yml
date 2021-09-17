@@ -67,6 +67,6 @@ jobs:
         repo: upfluence/upfluence-web
         ref: staging
         workflow: Bump Dependency
-        token: ${{ secrets.PAT_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         inputs: |
           {"package": "@upfluence/ember-upf-utils", "version": "${{ steps.pkg_version.outputs.VERSION }}", "user": "${{ github.event.pusher.name }}"}
