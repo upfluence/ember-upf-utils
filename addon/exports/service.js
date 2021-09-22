@@ -13,6 +13,12 @@ export default Service.extend({
     return `${Configuration.exportUrl}/api/v1`;
   }),
 
+  _baseHeaders: computed('session.data.authenticated.access_token', function () {
+    return {
+      Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
+    };
+  }),
+
   /*
    * @param {Object} source - Export source data
    *       @param {string}    source.from             - format: “type:id”,
@@ -60,9 +66,7 @@ export default Service.extend({
     return this.ajax.request(`${this._exportURL}/export`, {
       method: 'POST',
       contentType: 'application/json',
-      headers: {
-        Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
-      },
+      headers: this._baseHeaders,
       data: JSON.stringify(payload)
     });
   },
@@ -89,28 +93,37 @@ export default Service.extend({
    ** }
    */
   getLimit(callback) {
-    let url = `${this._exportURL}/export/file/limit`;
-    let accessToken = this.get('session.data.authenticated.access_token');
-
-    return this.ajax.request(`${url}?access_token=${encodeURIComponent(accessToken)}`).then(callback);
+    return this.ajax
+      .request(`${this._exportURL}/export/file/limit`, {
+        method: 'GET',
+        headers: this._baseHeaders
+      })
+      .then(callback);
   },
 
   getAvailableExports() {
-    let accessToken = this.get('session.data.authenticated.access_token');
-    return this.ajax.request(`${this._exportURL}/discovery?access_token=${encodeURIComponent(accessToken)}`);
+    return this.ajax.request(`${this._exportURL}/discovery`, {
+      method: 'GET',
+      headers: this._baseHeaders
+    });
   },
 
   fetchEntities(type, callback) {
-    let url = `${this._exportURL}/entities/${type}`;
-    let accessToken = this.get('session.data.authenticated.access_token');
-
-    return this.ajax.request(`${url}?access_token=${encodeURIComponent(accessToken)}`).then(callback);
+    return this.ajax
+      .request(`${this._exportURL}/entities/${type}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
+        }
+      })
+      .then(callback);
   },
 
   searchEntities(keyword) {
-    let url = `${this._exportURL}/entities?s=${encodeURIComponent(keyword)}`;
-    let accessToken = this.get('session.data.authenticated.access_token');
-    return this.ajax.request(`${url}&access_token=${encodeURIComponent(accessToken)}`);
+    return this.ajax.request(`${this._exportURL}/entities?s=${encodeURIComponent(keyword)}`, {
+      method: 'GET',
+      headers: this._baseHeaders
+    });
   },
 
   createEntity(data, callback) {
@@ -120,9 +133,7 @@ export default Service.extend({
       .request(url, {
         method: 'POST',
         contentType: 'application/json',
-        headers: {
-          Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
-        },
+        headers: this._baseHeaders,
         data: JSON.stringify(data)
       })
       .then(callback);
