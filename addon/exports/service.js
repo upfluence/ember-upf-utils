@@ -112,9 +112,7 @@ export default Service.extend({
     return this.ajax
       .request(`${this._exportURL}/entities/${type}`, {
         method: 'GET',
-        headers: {
-          Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
-        }
+        headers: this._baseHeaders
       })
       .then(callback);
   },
