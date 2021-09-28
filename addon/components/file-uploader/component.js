@@ -27,6 +27,7 @@ export default Component.extend({
   twoStep: false,
   extra: {},
   headers: {},
+  resetOnValidationError: false,
 
   // Since this doesn't work well, this is disable by defaut.
   useProgress: false,
@@ -110,6 +111,9 @@ export default Component.extend({
         this.set('_isValid', false);
         this.toast.info(error || 'Your file is invalid. Please check the requirements.');
 
+        if (this.resetOnValidationError) {
+          this._clear();
+        }
         if (this.didValidationError) {
           this.didValidationError(error);
         }
