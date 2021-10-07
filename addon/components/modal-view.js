@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { deprecate } from '@ember/debug';
 import { observer } from '@ember/object';
 import layout from '../templates/components/modal-view';
 
@@ -32,6 +33,14 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
+
+    deprecate('modal-view component is deprecated. Please use OSS::Modal from @upfluence/oss-components.', false, {
+      id: 'no-modal-view-component',
+      for: '@upfluence/ember-upf-utils',
+      until: '7.0.0',
+      since: { enabled: '5.0.7' }
+    });
+
     if (!this.hidden) {
       this._setupModal();
     }
