@@ -1,13 +1,10 @@
 import Component from '@ember/component';
 import { deprecate } from '@ember/debug';
 import { observer } from '@ember/object';
-import layout from '../templates/components/modal-view';
 
 export default Component.extend({
-  layout,
   classNames: ['modal', 'fade'],
   attributeBindings: ['tabindex'],
-
   tabindex: -1,
   toggleable: false,
   hidden: false,
