@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "noEmit": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "baseUrl": ".",
+    "module": "es6",
+    "experimentalDecorators": true,
+    "paths": {
+      "dummy/tests/*": ["tests/*"],
+      "dummy/*": ["tests/dummy/app/*", "app/*"],
+      "@upfluence/ember-upf-utils": ["addon"],
+      "@upfluence/ember-upf-utils/*": ["addon/*"],
+      "@upfluence/ember-upf-utils/test-support": ["addon-test-support"],
+      "@upfluence/ember-upf-utils/test-support/*": ["addon-test-support/*"],
+      "*": ["types/*"],
+      "@upfluence/oss-components": ["node_modules/@upfluence/oss-components/addon"],
+      "@upfluence/oss-components/*": ["node_modules/@upfluence/oss-components/addon/*"]
+    }
+  },
+  "include": ["app/**/*", "addon/**/*", "tests/**/*", "types/**/*", "test-support/**/*", "addon-test-support/**/*"]
+}
