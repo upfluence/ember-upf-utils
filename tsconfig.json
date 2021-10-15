@@ -21,36 +21,16 @@
     "module": "es6",
     "experimentalDecorators": true,
     "paths": {
-      "dummy/tests/*": [
-        "tests/*"
-      ],
-      "dummy/*": [
-        "tests/dummy/app/*",
-        "app/*"
-      ],
-      "@upfluence/ember-upf-utils": [
-        "addon"
-      ],
-      "@upfluence/ember-upf-utils/*": [
-        "addon/*"
-      ],
-      "@upfluence/ember-upf-utils/test-support": [
-        "addon-test-support"
-      ],
-      "@upfluence/ember-upf-utils/test-support/*": [
-        "addon-test-support/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "dummy/tests/*": ["tests/*"],
+      "dummy/*": ["tests/dummy/app/*", "app/*"],
+      "@upfluence/ember-upf-utils": ["addon"],
+      "@upfluence/ember-upf-utils/*": ["addon/*"],
+      "@upfluence/ember-upf-utils/test-support": ["addon-test-support"],
+      "@upfluence/ember-upf-utils/test-support/*": ["addon-test-support/*"],
+      "*": ["types/*"],
+      "@upfluence/oss-components": ["node_modules/@upfluence/oss-components/addon"],
+      "@upfluence/oss-components/*": ["node_modules/@upfluence/oss-components/addon/*"]
     }
   },
-  "include": [
-    "app/**/*",
-    "addon/**/*",
-    "tests/**/*",
-    "types/**/*",
-    "test-support/**/*",
-    "addon-test-support/**/*"
-  ]
+  "include": ["app/**/*", "addon/**/*", "tests/**/*", "types/**/*", "test-support/**/*", "addon-test-support/**/*"]
 }
