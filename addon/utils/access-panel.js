@@ -32,7 +32,7 @@ export default class {
       return;
     }
 
-    let model = this.config.model;
+    const model = this.config.model;
 
     this.contentLoading = true;
     this.storeService
