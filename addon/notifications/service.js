@@ -58,7 +58,7 @@ export default Service.extend({
   },
 
   fetchFeedUrl(field) {
-    let _environment = getOwner(this).resolveRegistration('config:environment').build_env;
+    const _environment = getOwner(this).resolveRegistration('config:environment').build_env;
 
     return `${Configuration.activityUrl}notifications/feed?field=${field}&env=${_environment}`;
   }
