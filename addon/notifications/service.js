@@ -1,8 +1,9 @@
 import Service, { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
+import Configuration from '@upfluence/ember-upf-utils/configuration';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import Configuration from '@upfluence/ember-upf-utils/configuration';
+import { getOwner } from '@ember/application';
 
 export default Service.extend({
   ajax: service(),
@@ -57,6 +58,8 @@ export default Service.extend({
   },
 
   fetchFeedUrl(field) {
-    return `${Configuration.activityUrl}notifications/feed?field=${field}`;
+    const _environment = getOwner(this).resolveRegistration('config:environment').build_env;
+
+    return `${Configuration.activityUrl}notifications/feed?field=${field}&env=${_environment}`;
   }
 });
