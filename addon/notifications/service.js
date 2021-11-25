@@ -44,5 +44,19 @@ export default Service.extend({
         .then(() => resolve(notifications))
         .catch((e) => reject(e));
     });
+  },
+
+  fetchFeed(field) {
+    return this.ajax.request(this.fetchFeedUrl(field), {
+      method: 'GET',
+      contentType: 'application/json',
+      headers: {
+        Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
+      }
+    });
+  },
+
+  fetchFeedUrl(field) {
+    return `${Configuration.activityUrl}notifications/feed?field=${field}`;
   }
 });
