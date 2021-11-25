@@ -47,7 +47,7 @@ export default Service.extend({
     });
   },
 
-  fetchFeed(field, environment) {
+  fetchFeed(field) {
     return this.ajax.request(this.fetchFeedUrl(field), {
       method: 'GET',
       contentType: 'application/json',
@@ -57,7 +57,7 @@ export default Service.extend({
     });
   },
 
-  fetchFeedUrl(field, environment) {
+  fetchFeedUrl(field) {
     let _environment = getOwner(this).resolveRegistration('config:environment').build_env;
 
     return `${Configuration.activityUrl}notifications/feed?field=${field}&env=${_environment}`;
