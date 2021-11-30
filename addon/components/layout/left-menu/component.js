@@ -112,8 +112,8 @@ export default Component.extend({
     return getOwner(this).resolveRegistration('config:environment').publishrURL;
   }),
 
-  publishrCampaignsURL: computed('publishrURL', function () {
-    return `${this.publishrURL}campaigns`;
+  publishrDashboardURL: computed('publishrURL', function () {
+    return `${this.publishrURL}dashboard`;
   }),
 
   publishrPaymentsURL: computed('publishrURL', function () {

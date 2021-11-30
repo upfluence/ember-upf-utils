@@ -1,5 +1,19 @@
 {{#if session.isAuthenticated}}
   <section class="app-header__top">
+    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.publishr")}}>
+      {{#feature-flagged "publishr_admin"}}
+        <SmartLinkTo @link={{publishrDashboardURL}}
+                         @cssClass={{if hasPublishrNotifications "upf-notification--corner"}}>
+          <span class="upf-icon upf-icon--workflow"></span>
+        </SmartLinkTo>
+      {{else}}
+        <a {{action "toggleUpgradeModal"}} role="upgrade">
+          <span class="upf-icon upf-icon--workflow"></span>
+          <i class="fa fa-lock"></i>
+        </a>
+      {{/feature-flagged}}
+    </div>
+
     <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.irm")}}>
       {{#feature-flagged "crm_web"}}
         <SmartLinkTo @link={{crmURL}}>
@@ -34,20 +48,6 @@
       {{else}}
         <a {{action "toggleUpgradeModal" "bulk_emailing"}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
-          <i class="fa fa-lock"></i>
-        </a>
-      {{/feature-flagged}}
-    </div>
-
-    <div class="header-item" {{enable-tooltip placement="right" trigger="hover" title=(t "left_menu.apps.publishr")}}>
-      {{#feature-flagged "publishr_admin"}}
-        <SmartLinkTo @link={{publishrCampaignsURL}}
-                         @cssClass={{if hasPublishrNotifications "upf-notification--corner"}}>
-          <span class="upf-icon upf-icon--workflow"></span>
-        </SmartLinkTo>
-      {{else}}
-        <a {{action "toggleUpgradeModal"}} role="upgrade">
-          <span class="upf-icon upf-icon--workflow"></span>
           <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
