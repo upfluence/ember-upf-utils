@@ -109,7 +109,7 @@ export default Component.extend({
       .on('didValidationError', (error) => {
         this.set('_onUpload', false);
         this.set('_isValid', false);
-        this.toast.info(error || 'Your file is invalid. Please check the requirements.');
+        this.toast.error(error || 'Your file is invalid. Please check the requirements.');
 
         if (this.resetOnValidationError) {
           this._clear();
