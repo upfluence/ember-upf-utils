@@ -86,9 +86,10 @@ export default Component.extend({
   }),
 
   listURL: computed('facadeURL', function () {
-    let module = getOwner(this).resolveRegistration('config:environment').APP.name;
+    const module = getOwner(this).resolveRegistration('config:environment').APP.name;
+    const path = this.facadeURL.endsWith('/') ? 'lists' : '/lists';
 
-    return module === '@upfluence/facade-web' ? 'application' : this.facadeURL;
+    return module === '@upfluence/facade-web' ? 'application' : this.facadeURL + path;
   }),
 
   inboxURL: computed(function () {
