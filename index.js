@@ -5,6 +5,7 @@ var path = require('path');
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var writeFile = require('broccoli-file-creator');
+const calculateCacheKeyForTree = require('calculate-cache-key-for-tree');
 
 const FOOTER_SCRIPTS = ['<script async src="https://www.google-analytics.com/analytics.js"></script>'];
 const { name, version } = require('./package');
@@ -32,6 +33,10 @@ module.exports = {
       srcDir: '/',
       destDir: 'assets/' + this.moduleName()
     });
+  },
+
+  cacheKeyForTree(tree) {
+    return calculateCacheKeyForTree(tree, this);
   },
 
   included: function () {
