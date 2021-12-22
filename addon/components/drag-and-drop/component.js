@@ -33,7 +33,12 @@ export default Component.extend({
     this._super();
 
     this._nodeCollection = $();
-    $(document)
+
+  },
+
+  didInsertElement() {
+    this._super();
+    this.$()
       .on('dragover', false)
       .on('dragenter', this._documentDragEnter.bind(this))
       .on('dragleave', this._documentDragLeave.bind(this))
@@ -92,7 +97,7 @@ export default Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
-    $(document)
+    this.$()
       .off('dragover', false)
       .off('dragenter', this._documentDragEnter.bind(this))
       .off('dragleave', this._documentDragLeave.bind(this))
