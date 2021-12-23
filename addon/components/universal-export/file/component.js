@@ -94,10 +94,7 @@ export default Component.extend({
     },
 
     submit() {
-      this.triggerAction({
-        action: 'performFileExport',
-        actionContext: [this.selectedFormat, this.selectedType]
-      });
+      this.performFileExport(this.selectedFormat, this.selectedType);
     }
   }
 });
