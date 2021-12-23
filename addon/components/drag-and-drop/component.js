@@ -33,7 +33,6 @@ export default Component.extend({
     this._super();
 
     this._nodeCollection = $();
-
   },
 
   didInsertElement() {
