@@ -3,6 +3,7 @@ import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
+import serializeParams from '@upfluence/ember-upf-utils/utils/serialize-params';
 
 export default Service.extend({
   store: service(),
@@ -117,8 +118,16 @@ export default Service.extend({
       .then(callback);
   },
 
-  searchEntities(keyword) {
-    return this.ajax.request(`${this._exportURL}/entities?s=${encodeURIComponent(keyword)}`, {
+  searchEntities(keyword, entityTypes = []) {
+    const params = {
+      s: encodeURIComponent(keyword)
+    };
+
+    if (entityTypes.length > 0) {
+      params['entity_types'] = entityTypes.join(',');
+    }
+
+    return this.ajax.request(`${this._exportURL}/entities?${new URLSearchParams(Object.entries(params)).toString()}`, {
       method: 'GET',
       headers: this._baseHeaders
     });

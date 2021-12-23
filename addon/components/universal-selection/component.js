@@ -25,7 +25,7 @@ export default Component.extend({
   displayEmptyEntities: false,
 
   _performSearch(resolve) {
-    return this.exports.searchEntities(this.keyword).then((response) => {
+    return this.exports.searchEntities(this.keyword, ['acquisition_campaign']).then((response) => {
       resolve(
         Object.keys(response).reduce((acc, entityType) => {
           if (response[entityType].length > 0 && !acc.find((item) => acc.includes(item.type))) {
