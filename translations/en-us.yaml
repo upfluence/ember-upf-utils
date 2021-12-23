@@ -27,6 +27,8 @@ export_influencers:
     campaign: Campaign
     mailing: Mailing
     discount_plan: Discount Offer
+    acquisition_campaign: Live Capture
+    new_tag: New
 left_menu:
   apps:
     irm: "IRM"

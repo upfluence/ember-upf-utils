@@ -3,7 +3,6 @@ import Service, { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
-import serializeParams from '@upfluence/ember-upf-utils/utils/serialize-params';
 
 export default Service.extend({
   store: service(),
