@@ -19,6 +19,7 @@ interface UniversalExportArgs {
 export default class extends Component<UniversalExportArgs> {
   @service('exports' as keyof Registry) declare influencerExporter: any;
   @service declare toast: ToastService;
+  @service declare intl: any;
 
   @tracked currentTab: string = 'file';
   @tracked availableEntityDestinations: string[] = [];
@@ -77,7 +78,7 @@ export default class extends Component<UniversalExportArgs> {
   }
 
   @action
-  performExport(to: `${string}:${number}`): Promise<any> {
+  async performExport(to: `${string}:${number}`): Promise<any> {
     let source;
     const destination = { to };
 
@@ -92,20 +93,21 @@ export default class extends Component<UniversalExportArgs> {
       };
     }
 
-    return this.influencerExporter
-      .perform(source, destination)
-      .then((data: any) => {
-        if (data.status === 'scheduled') {
-          this.toast.info(`${data.total} influencers are being exported.`, 'Export in progress');
-        } else {
-          this.toast.success(`${data.total} influencers have been exported.`, 'Export completed');
-        }
+    return this.influencerExporter.perform(source, destination).then((data: any) => {
+      if (data.status === 'scheduled') {
+        this.toast.info(
+          this.intl.t('export_influencers.export.scheduled.success_message', { count: data.total }),
+          this.intl.t('export_influencers.export.scheduled.success_title')
+        );
+      } else {
+        this.toast.success(
+          this.intl.t('export_influencers.export.processed.success_message', { count: data.total }),
+          this.intl.t('export_influencers.export.processed.success_title')
+        );
+      }
 
-        this._exported();
-      })
-      .finally(() => {
-        defer.resolve();
-      });
+      this._exported();
+    });
   }
 
   @action

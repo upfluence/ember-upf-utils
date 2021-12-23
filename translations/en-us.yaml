@@ -17,6 +17,12 @@ export_influencers:
     create: "Create {searchText} {entity}"
     influencers: influencers
     matches: matches
+    scheduled:
+      success_title: Export in progress
+      success_message: "{count, plural, =1 {1 influencer is} other {# influencers are}} being exported."
+    processed:
+      success_title: Export completed
+      success_message: "{count, plural, =1 {1 influencer has} other {# influencers have}} been exported."
   file:
     data: Data
     file_format: File Format
