@@ -18,9 +18,11 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
-    "test:ember": "ember test",
+    "test:ember": "ember test --silent -r dot",
     "test:ember-coverage": "COVERAGE=true ember test",
     "test:ember-compatibility": "ember try:each",
+    "install-pre-push-hook": "cp ./scripts/pre-push ./.git/hooks/pre-push",
+    "remove-pre-push-hook": "rm -rf ./.git/hooks/pre-push",
     "prepack": "ember ts:precompile",
     "postpack": "ember ts:clean"
   },
