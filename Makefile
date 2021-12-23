@@ -1,6 +1,6 @@
 .PHONY: tests
 
-all:	clear upfluence yarn_link_ls echo start ## Runs yarn_link_ls & starts the dev server
+all:	clear upfluence yarn_link_ls## Runs yarn_link_ls
 
 clear:
 	@clear
@@ -16,7 +16,7 @@ clean: ## Cleans ./node_modules && ./dist
 	-rm -r ./dist
 	@echo ""; echo "-------------------------------"; echo ""
 
-re:	clean install echo start ## Reinstalls dependencies & starts the dev server
+re:	clean install ## Reinstalls dependencies
 
 tests: ## Runs tests once
 	@echo "Running tests once"
