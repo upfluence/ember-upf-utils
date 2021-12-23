@@ -4,14 +4,14 @@
       {{t "export_influencers.export.description"}}
     </p>
 
-    {{universal-selection
-      current=current multiple=false placeholder=placeholder canCreate=true
-      createItemComponent="universal-export/create-item"
-      displayEmptyEntities=true}}
+    <UniversalSelection
+      @current={{this.current}} @multiple={{false}} @placeholder={{this.placeholder}} @canCreate={{true}}
+      @entityTypes={{this.availableDestinations}}  @createItemComponent="universal-export/create-item"
+      @displayEmptyEntities={{true}} />
 
-    {{#if errors}}
+    {{#if this.errors}}
       <div class="alert alert-danger">
-        {{#each errors as |error|}}
+        {{#each this.errors as |error|}}
           <p>{{error}}</p>
         {{/each}}
       </div>
@@ -27,12 +27,8 @@
 </div>
 
 <div class="modal-footer">
-  {{#loading-button
-    current slowAction="submit" initiallyDisabled=disabledExport
-    class="margin-left-xx-sm upf-btn upf-btn--primary"}}
-    {{t "export_influencers.export.cta"}}
-    {{#if current}}
-      {{t (concat "export_influencers.export." current.type)}}
-    {{/if}}
-  {{/loading-button}}
+  <OSS::Button
+    @skin="primary" @label={{this.ctaLabel}} @loading={{this.loading}}
+    disabled={{this.disabledExport}} class="margin-left-xx-sm"
+    {{on "click" (action "submit")}}/>
 </div>

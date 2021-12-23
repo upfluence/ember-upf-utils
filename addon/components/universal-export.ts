@@ -21,6 +21,7 @@ export default class extends Component<UniversalExportArgs> {
   @service declare toast: ToastService;
 
   @tracked currentTab: string = 'file';
+  @tracked availableEntityDestinations: string[] = [];
 
   tabs: { [key: string]: boolean } = {
     external: false,
@@ -39,6 +40,7 @@ export default class extends Component<UniversalExportArgs> {
     }
 
     this.influencerExporter.getAvailableExports().then((availableExports: any) => {
+      this.availableEntityDestinations = availableExports.destinations.entities;
       this.tabs.external = Object.keys(availableExports.destinations.entities).length > 0;
 
       ['overlap_file', 'full_file'].forEach((exportType) => {
@@ -75,7 +77,7 @@ export default class extends Component<UniversalExportArgs> {
   }
 
   @action
-  performExport(to: `${string}:${number}`, defer: RSVP.Deferred<any>): void {
+  performExport(to: `${string}:${number}`): Promise<any> {
     let source;
     const destination = { to };
 
@@ -90,7 +92,7 @@ export default class extends Component<UniversalExportArgs> {
       };
     }
 
-    this.influencerExporter
+    return this.influencerExporter
       .perform(source, destination)
       .then((data: any) => {
         if (data.status === 'scheduled') {
