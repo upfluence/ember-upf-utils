@@ -18,7 +18,7 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
 
     await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
 
-    assert.dom(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary')).hasAttribute('disabled');
+    assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasAttribute('disabled');
   });
 
   test('an image is correctly added via its url in the editor', async function (assert) {
@@ -30,9 +30,7 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
     await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
     await fillIn(document.querySelector('.uedit-file-uploader input.upf-input'), 'https://via.placeholder.com/350x150');
 
-    assert
-      .dom(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary'))
-      .hasNoAttribute('disabled');
+    assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
 
     await click(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary'));
 

@@ -3,14 +3,13 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { mapBy } from '@ember/object/computed';
 import { inject as service, Registry } from '@ember/service';
-import RSVP from 'rsvp';
 import ToastService from '@upfluence/oss-components/services/toast';
 
 interface UniversalExportArgs {
   hidden: boolean;
   closeModal(): void;
   didExport?(): void;
-  currentEntity: any;
+  currentEntity: { count: number; id: number };
   currentEntityType: string;
   selectedInfluencers: { id: number }[];
   filters: { name: string; value: string }[];
@@ -23,32 +22,28 @@ export default class extends Component<UniversalExportArgs> {
 
   @tracked currentTab: string = 'file';
   @tracked availableEntityDestinations: string[] = [];
-
-  tabs: { [key: string]: boolean } = {
-    external: false,
-    file: true,
-    overlap_file: false,
-    full_file: false
-  };
+  @tracked hasExternalExport: boolean = false;
+  @tracked hasFileExport: boolean = true;
+  @tracked hasOverlapFileExport: boolean = false;
+  @tracked hasFullFileExport: boolean = false;
 
   constructor(owner: unknown, args: UniversalExportArgs) {
     super(owner, args);
 
     if (!this.args.selectedInfluencers && !this.args.currentEntity) {
       throw new Error(
-        '[component/universal-export] You must provide a valid `selectedInfluencers` or `currentEntity` argument to use as an export source.'
+        '[component/universal-export] Either @selectedInfluencers or @currentEntity/@currentEntityType args must be provided'
       );
     }
 
     this.influencerExporter.getAvailableExports().then((availableExports: any) => {
       this.availableEntityDestinations = availableExports.destinations.entities;
-      this.tabs.external = Object.keys(availableExports.destinations.entities).length > 0;
 
-      ['overlap_file', 'full_file'].forEach((exportType) => {
-        this.tabs[exportType] = availableExports.destinations.files.includes(exportType);
-      });
+      this.hasExternalExport = (Object.keys(availableExports.destinations?.entities) || []).length > 0;
+      this.hasOverlapFileExport = (availableExports.destinations.files || []).includes('overlap_file');
+      this.hasFullFileExport = (availableExports.destinations.files || []).includes('full_file');
 
-      this.currentTab = this.tabs.external ? 'external' : 'file';
+      this.currentTab = this.hasExternalExport ? 'external' : 'file';
     });
   }
 
@@ -68,7 +63,7 @@ export default class extends Component<UniversalExportArgs> {
     this.args.didExport?.();
 
     if (closeModal) {
-      this.args.closeModal();
+      this.args.closeModal?.();
     }
   }
 
@@ -89,7 +84,7 @@ export default class extends Component<UniversalExportArgs> {
     } else {
       source = {
         from: `${this.args.currentEntityType}:${this.args.currentEntity.id}`,
-        filters: this.args.filters
+        filters: this.args.filters || []
       };
     }
 
