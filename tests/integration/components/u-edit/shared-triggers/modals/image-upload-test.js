@@ -28,11 +28,11 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
     };
 
     await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
-    await fillIn(document.querySelector('.uedit-file-uploader input.upf-input'), 'https://via.placeholder.com/350x150');
+    await fillIn('.uedit-file-uploader input.upf-input', 'https://via.placeholder.com/350x150');
 
     assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
 
-    await click(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary'));
+    await click('.uedit-file-uploader button.upf-btn.upf-btn--primary');
 
     assert.expect(2);
   });

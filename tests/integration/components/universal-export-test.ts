@@ -27,11 +27,6 @@ module('Integration | Component | universal-export', function (hooks) {
     this.selectedInfluencers = [{ id: 37 }, { id: 45 }];
   });
 
-  hooks.afterEach(function () {
-    document.querySelector('.modal')?.remove();
-    document.querySelector('.modal-backdrop')?.remove();
-  });
-
   function stubDestinationsDiscovery(context: any, entityTypes: string[], fileTypes: string[]) {
     sinon.stub(context.owner.lookup('service:exports'), 'getAvailableExports').callsFake(() => {
       return Promise.resolve({
@@ -62,7 +57,7 @@ module('Integration | Component | universal-export', function (hooks) {
       hbs`<UniversalExport @hidden={{true}} @currentEntity={{this.currentEntity}} @currentEntityType={{this.currentEntityType}} />`
     );
 
-    assert.dom(document.querySelector('.modal')).doesNotExist();
+    assert.dom('.modal').doesNotExist();
   });
 
   test('the export modal is displayed if @hidden args is falsy', async function (assert: Assert) {
@@ -70,9 +65,7 @@ module('Integration | Component | universal-export', function (hooks) {
       hbs`<UniversalExport @hidden={{false}} @currentEntity={{this.currentEntity}} @currentEntityType={{this.currentEntityType}} />`
     );
 
-    assert.dom(document.querySelector('.modal')).exists();
-    document.querySelector('.modal')?.remove();
-    document.querySelector('.modal-backdrop')?.remove();
+    assert.dom('.modal').exists();
   });
 
   module('available tabs and export types', function () {
@@ -81,8 +74,8 @@ module('Integration | Component | universal-export', function (hooks) {
       await render(
         hbs`<UniversalExport @hidden={{false}} @currentEntity={{this.currentEntity}} @currentEntityType={{this.currentEntityType}} />`
       );
-      assert.dom(document.querySelector('.modal .nav.nav-tabs li')).exists({ count: 1 });
-      assert.dom(document.querySelector('.modal .nav.nav-tabs li a')).hasText('File');
+      assert.dom('.modal .nav.nav-tabs li').exists({ count: 1 });
+      assert.dom('.modal .nav.nav-tabs li a').hasText('File');
     });
 
     test('the file tab supports basic files export', async function (assert: Assert) {
@@ -90,8 +83,8 @@ module('Integration | Component | universal-export', function (hooks) {
       await render(
         hbs`<UniversalExport @hidden={{false}} @currentEntity={{this.currentEntity}} @currentEntityType={{this.currentEntityType}} />`
       );
-      assert.dom(document.querySelector('.modal .nav.nav-tabs li:first-child a')).hasText('In-App');
-      assert.dom(document.querySelector('.modal .nav.nav-tabs li:last-child a')).hasText('File');
+      assert.dom('.modal .nav.nav-tabs li:first-child a').hasText('In-App');
+      assert.dom('.modal .nav.nav-tabs li:last-child a').hasText('File');
     });
 
     test('the files tab only contains the basic file export if no extra file exports is available', async function (assert: Assert) {
