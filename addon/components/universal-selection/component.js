@@ -27,35 +27,37 @@ export default Component.extend({
   _performSearch(resolve) {
     return this.exports.searchEntities(this.keyword, this.entityTypes).then((response) => {
       resolve(
-        Object.keys(response).reduce((acc, entityType) => {
-          if (response[entityType].length > 0 && !acc.find((item) => acc.includes(item.type))) {
-            acc.push({
-              groupName: entityType,
-              options: []
-            });
-          }
-          response[entityType].forEach((item) => {
-            acc.find((group) => {
-              let itemDisplayCondition = true;
+        Object.keys(response)
+          .sort((a) => (a === 'acquisition_campaign' ? -1 : 0))
+          .reduce((acc, entityType) => {
+            if (response[entityType].length > 0 && !acc.find((item) => acc.includes(item.type))) {
+              acc.push({
+                groupName: entityType,
+                options: []
+              });
+            }
+            response[entityType].forEach((item) => {
+              acc.find((group) => {
+                let itemDisplayCondition = true;
 
-              if (!this.displayEmptyEntities) {
-                itemDisplayCondition = item.total > 0;
-              }
+                if (!this.displayEmptyEntities) {
+                  itemDisplayCondition = item.total > 0;
+                }
 
-              if (group.groupName === entityType && itemDisplayCondition) {
-                group.options.push(
-                  ExportEntity.create({
-                    id: item.id,
-                    name: item.name,
-                    total: item.total,
-                    type: entityType
-                  })
-                );
-              }
+                if (group.groupName === entityType && itemDisplayCondition) {
+                  group.options.push(
+                    ExportEntity.create({
+                      id: item.id,
+                      name: item.name,
+                      total: item.total,
+                      type: entityType
+                    })
+                  );
+                }
+              });
             });
-          });
-          return acc;
-        }, [])
+            return acc;
+          }, [])
       );
     });
   },
