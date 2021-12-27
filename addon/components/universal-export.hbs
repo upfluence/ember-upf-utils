@@ -1,0 +1,34 @@
+{{#unless @hidden}}
+  <OSS::Modal
+    @title={{t "export_influencers.title"}} @onClose={{@closeModal}}
+    @options={{hash container="body" borderlessHeader=true centered=true}}>
+    <ul class="nav nav-tabs">
+      {{#if this.hasExternalExport}}
+        <li {{on "click" (fn this.setCurrent "external")}} class={{if (eq this.currentTab "external") "active" ""}} role="button"
+            data-control-name="influencer_export_in_app_tab">
+          <a>{{t "export_influencers.tabs.in_app"}}</a>
+        </li>
+      {{/if}}
+
+      {{#if this.hasFileExport}}
+        <li {{on "click" (fn this.setCurrent "file")}} class={{if (eq this.currentTab "file") "active" ""}} role="button"
+            data-control-name="influencer_export_file_tab">
+          <a>{{t "export_influencers.tabs.file"}}</a>
+        </li>
+      {{/if}}
+    </ul>
+
+    {{#if (eq this.currentTab "file")}}
+      <UniversalExport::File
+        @enableFullFileExport={{this.hasFullFileExport}}
+        @enableOverlapFileExport={{this.hasOverlapFileExport}}
+        @performFileExport={{this.performFileExport}}
+        @selectedCount={{this.selectedInfluencerIds.length}} />
+    {{else}}
+      <UniversalExport::External
+        @closeModal={{@closeModal}} @selectedCount={{this.selectedCount}}
+        @availableDestinations={{this.availableEntityDestinations}}
+        @performExport={{this.performExport}} />
+    {{/if}}
+  </OSS::Modal>
+{{/unless}}

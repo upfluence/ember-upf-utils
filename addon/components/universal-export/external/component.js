@@ -9,6 +9,7 @@ export default Component.extend({
   layout,
   exports: service(),
   store: service(),
+  intl: service(),
 
   current: null,
   _canCreate: true,
@@ -23,26 +24,38 @@ export default Component.extend({
     this.set('errors', null);
   }),
 
-  actions: {
-    submit(params, defer) {
-      let [item] = params;
+  ctaLabel: computed('current', 'current.type', function () {
+    let cta = this.intl.t('export_influencers.export.cta');
 
+    if (this.current) {
+      cta += ' ';
+      cta += this.intl.t(`export_influencers.export.${this.current.type}`);
+    }
+
+    return cta;
+  }),
+
+  actions: {
+    submit() {
+      this.set('loading', true);
       new RSVP.Promise((resolve) => {
-        if (!item.get('id')) {
+        if (!this.current.get('id')) {
           let data = {
-            type: item.type,
-            name: item.name
+            type: this.current.type,
+            name: this.current.name
           };
 
           return this.exports.createEntity(data, (response) => {
-            item.set('id', response.entity.id);
-            resolve(item);
+            this.current.set('id', response.entity.id);
+            resolve(this.current);
           });
         } else {
-          resolve(item);
+          resolve(this.current);
         }
       }).then((item) => {
-        this.performExport(`${item.type}:${item.id}`, defer);
+        this.performExport(`${item.type}:${item.id}`).finally(() => {
+          this.set('loading', false);
+        });
       });
     }
   }

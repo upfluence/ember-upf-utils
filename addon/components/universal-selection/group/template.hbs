@@ -1,10 +1,17 @@
-<div class="universal-selection-group__name text-style-capitalize">
-  {{#if (eq icon.type "font-awesome")}}
+<div class="universal-selection-group__name fx-row fx-xalign-center">
+  {{#if (eq this.icon.type "font-awesome")}}
     <i class="universal-selection-option__icon text-size-4 fa {{icon.name}}"></i>
   {{else}}
-    <span class="universal-selection-option__icon text-size-4 upf-icon {{icon}}">
+    <span class="universal-selection-option__icon text-size-4 upf-icon {{icon.name}}">
     </span>
   {{/if}}
-  {{t (concat "export_influencers.group_name." group.groupName)}}
+
+  <span class="margin-left-xxx-sm text-style-capitalize">{{t (concat "export_influencers.group_name." this.group.groupName)}}</span>
+
+  {{#if this.icon.new}}
+    <div class="upf-tag upf-tag--regular margin-left-xxx-sm">
+      {{t "export_influencers.group_name.new_tag"}}
+    </div>
+  {{/if}}
 </div>
 {{yield}}

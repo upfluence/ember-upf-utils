@@ -3,13 +3,30 @@ import layout from './template';
 import { computed } from '@ember/object';
 
 const ENTITIES_ICONS = {
-  stream: 'upf-icon--monitor',
-  list: 'upf-icon--search',
-  mailing: 'upf-icon--inbox',
-  campaign: 'upf-icon--workflow',
+  stream: {
+    type: 'upf-icon',
+    name: 'upf-icon--monitor'
+  },
+  list: {
+    type: 'upf-icon',
+    name: 'upf-icon--search'
+  },
+  mailing: {
+    type: 'upf-icon',
+    name: 'upf-icon--inbox'
+  },
+  campaign: {
+    type: 'upf-icon',
+    name: 'upf-icon--workflow'
+  },
   discount_plan: {
     type: 'font-awesome',
     name: 'fa-tags'
+  },
+  acquisition_campaign: {
+    type: 'upf-icon',
+    name: 'upf-icon--acquisition',
+    new: true
   }
 };
 
@@ -19,6 +36,8 @@ export default Component.extend({
   classNames: ['universal-selection-group'],
 
   icon: computed('group.groupName', 'item', function () {
-    return ENTITIES_ICONS[this.group.groupName.toLowerCase()];
+    return (
+      ENTITIES_ICONS[this.group.groupName.toLowerCase()].icon || ENTITIES_ICONS[this.group.groupName.toLowerCase()]
+    );
   })
 });

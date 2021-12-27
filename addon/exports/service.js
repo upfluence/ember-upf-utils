@@ -117,8 +117,16 @@ export default Service.extend({
       .then(callback);
   },
 
-  searchEntities(keyword) {
-    return this.ajax.request(`${this._exportURL}/entities?s=${encodeURIComponent(keyword)}`, {
+  searchEntities(keyword, entityTypes = []) {
+    const params = {
+      s: encodeURIComponent(keyword)
+    };
+
+    if (entityTypes.length > 0) {
+      params['entity_types'] = entityTypes.join(',');
+    }
+
+    return this.ajax.request(`${this._exportURL}/entities?${new URLSearchParams(Object.entries(params)).toString()}`, {
       method: 'GET',
       headers: this._baseHeaders
     });

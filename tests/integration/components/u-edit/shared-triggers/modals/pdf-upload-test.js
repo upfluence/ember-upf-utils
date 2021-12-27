@@ -18,7 +18,7 @@ module('Integration | Component | u-edit/shared-triggers/modals/pdf-upload', fun
 
     await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertPDF}} />`);
 
-    assert.dom(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary')).hasAttribute('disabled');
+    assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasAttribute('disabled');
   });
 
   test('an image is correctly added via its url in the editor', async function (assert) {
@@ -28,16 +28,11 @@ module('Integration | Component | u-edit/shared-triggers/modals/pdf-upload', fun
     };
 
     await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertPDF}} />`);
-    await fillIn(
-      document.querySelector('.uedit-file-uploader input.upf-input'),
-      'http://www.africau.edu/images/default/sample.pdf'
-    );
+    await fillIn('.uedit-file-uploader input.upf-input', 'http://www.africau.edu/images/default/sample.pdf');
 
-    assert
-      .dom(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary'))
-      .hasNoAttribute('disabled');
+    assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
 
-    await click(document.querySelector('.uedit-file-uploader button.upf-btn.upf-btn--primary'));
+    await click('.uedit-file-uploader button.upf-btn.upf-btn--primary');
 
     assert.expect(2);
   });
