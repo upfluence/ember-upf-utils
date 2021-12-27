@@ -114,6 +114,36 @@ module('Integration | Component | universal-export', function (hooks) {
     });
   });
 
+  module('closure actions', function () {
+    test('closure actions are invoked after successful export', async function (assert: Assert) {
+      sinon.stub(this.owner.lookup('service:toast'), 'success');
+      stubDestinationsDiscovery(this, ['list'], []);
+
+      this.didExport = () => {
+        assert.ok(true, 'entered the didExport callback');
+      };
+
+      this.closeModal = () => {
+        assert.ok(true, 'entered the closeModal callback');
+      };
+
+      render(
+        hbs`
+            <UniversalExport
+              @hidden={{false}} @currentEntity={{this.currentEntity}} @currentEntityType={{this.currentEntityType}}
+              @didExport={{this.didExport}} @closeModal={{this.closeModal}} />
+          `
+      );
+
+      await waitFor('.modal .modal-body');
+      await clickTrigger();
+      await selectChoose('.ember-power-select-trigger', 'foo list');
+      await click('.modal .modal-footer .upf-btn.upf-btn--primary');
+
+      assert.expect(2);
+    });
+  });
+
   module('perfoming entity exports', function () {
     module('entity source', function () {
       test('it correctly handles a processed export request with filters', async function (assert: Assert) {
