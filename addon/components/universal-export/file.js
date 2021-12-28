@@ -24,7 +24,7 @@ export default class extends Component {
     xlsx: '.xlsx'
   };
   @tracked exportLimit = {
-    short: new Limit(-1, 0),
+    short: new Limit(-1, 0)
   };
 
   constructor(owner, args) {
