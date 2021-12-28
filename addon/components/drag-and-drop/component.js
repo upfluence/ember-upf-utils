@@ -29,14 +29,9 @@ export default Component.extend({
     return;
   }),
 
-  init() {
-    this._super();
-
-    this._nodeCollection = $();
-  },
-
   didInsertElement() {
     this._super();
+    this._nodeCollection = this.$();
     this.$()
       .on('dragover', false)
       .on('dragenter', this._documentDragEnter.bind(this))
