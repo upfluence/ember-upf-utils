@@ -3,7 +3,9 @@
     {{#if this.limitReached}}
       <div class="upf-alert upf-alert--error">
         <div class="upf-alert__text">
-          <span>{{t "export_influencers.limit_reached" exportLimitLeft=this.exportLimit.left htmlSafe=true}}</span>
+          <span>
+            {{t "export_influencers.limit_reached" exportLimitLeft=this.exportLimitLeft htmlSafe=true}}
+          </span>
         </div>
       </div>
     {{/if}}

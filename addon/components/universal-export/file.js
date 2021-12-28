@@ -19,13 +19,12 @@ export default class extends Component {
   @tracked selectedType = 'short';
   @tracked loaded = false;
   @tracked types = [{ key: 'short', label: 'Basic' }];
-
-  formats = {
+  @tracked formats = {
     csv: '.csv',
     xlsx: '.xlsx'
   };
-  exportLimit = {
-    short: new Limit(-1, 0)
+  @tracked exportLimit = {
+    short: new Limit(-1, 0),
   };
 
   constructor(owner, args) {
@@ -45,7 +44,12 @@ export default class extends Component {
       }
 
       this.exports.getLimit((r) => {
-        this.exportLimit.full = new Limit(r.limit, r.spent);
+        this.exportLimit = {
+          ...this.exportLimit,
+          ...{
+            full: new Limit(r.limit, r.spent)
+          }
+        };
         this.loaded = true;
       });
     } else {
@@ -66,6 +70,10 @@ export default class extends Component {
     }
 
     return spentForType + this.args.selectedCount > limitForType;
+  }
+
+  get exportLimitLeft() {
+    return get(this, `exportLimit.${this.selectedType}.left`);
   }
 
   get btnLocked() {
