@@ -113,7 +113,7 @@ export default class extends Component<UniversalExportArgs> {
       format,
       type,
       this.selectedInfluencerIds,
-      this.args.filters
+      this.args.filters || []
     );
 
     window.open(url, '_blank');
