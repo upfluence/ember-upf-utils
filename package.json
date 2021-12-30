@@ -32,7 +32,7 @@
   "dependencies": {
     "@onehilltech/ember-cli-google-analytics": "git+https://git@github.com/upfluence/ember-cli-google-analytics.git",
     "bootstrap": "^3.3.7",
-    "ember-auto-import": "^1.5.3",
+    "ember-auto-import": "^2.2.4",
     "ember-block-slots": "^1.1.9",
     "ember-cli-babel": "^7.19.0",
     "ember-cli-google-analytics": "git+https://git@github.com/upfluence/ember-cli-google-analytics.git",
@@ -120,7 +120,8 @@
     "prettier": "^2.4.1",
     "qunit": "^2.17.2",
     "qunit-dom": "^1.2.0",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "webpack": "5"
   },
   "peerDependencies": {
     "@upfluence/oss-components": "^3.x"
