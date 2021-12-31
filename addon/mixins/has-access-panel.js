@@ -4,6 +4,7 @@ import UpfTableSearchMixin from '@upfluence/oss-components/mixins/upf-table-sear
 
 export default Mixin.create(UpfTableSearchMixin, {
   store: service(),
+  router: service(),
 
   displayArchived: false,
   displayAccessPanel: false,
@@ -82,7 +83,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       this.set('displayAccessPanel', false);
       this.set('displayArchived', false);
       this.set('searchQuery', '');
-      this.transitionToRoute(this.get('accessPanelConfig.backRoute'));
+      this.router.transitionTo(this.get('accessPanelConfig.backRoute'));
     },
 
     goToEntity(entity) {
@@ -90,7 +91,7 @@ export default Mixin.create(UpfTableSearchMixin, {
       this.set('displayArchived', false);
       this.set('searchQuery', '');
       entity.set('currentlyOpened', true);
-      this.transitionToRoute(this.get('accessPanelConfig.backRoute'), entity.get('id'), {
+      this.router.transitionTo(this.get('accessPanelConfig.backRoute'), entity.get('id'), {
         queryParams: this.get('accessPanelConfig.backRouteParams')
       });
     },
