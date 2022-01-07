@@ -38,11 +38,11 @@ module('Integration | Component | country-chooser', function (hooks) {
     assert.equal(options.length, CountryCodes.length);
 
     let optionsCountries = [];
-    options.forEach((v) => optionsCountries.push(v.innerHTML.trim()));
+    options.forEach((v) => optionsCountries.push(v.textContent.trim()));
 
-    assert.deepEqual(
+    assert.propEqual(
       optionsCountries,
-      CountryCodes.map((v) => v.name)
+      CountryCodes.map((v) => v.name.trim())
     );
   });
 
@@ -186,6 +186,6 @@ module('Integration | Component | country-chooser', function (hooks) {
     let matchingCountries = [];
     options.forEach((v) => matchingCountries.push(v.innerHTML.trim()));
 
-    assert.deepEqual(matchingCountries, ['Australia', 'Austria']);
+    assert.deepEqual(matchingCountries, ['Austria', 'Australia']);
   });
 });
