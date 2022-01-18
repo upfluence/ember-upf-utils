@@ -9,10 +9,11 @@ interface UniversalExportArgs {
   hidden: boolean;
   closeModal(): void;
   didExport?(): void;
-  currentEntity: { count: number; id: number };
+  currentEntity: { count: number; id: number; [key: string]: any };
   currentEntityType: string;
   selectedInfluencers: { id: number }[];
   filters: { name: string; value: string }[];
+  countKey?: string;
 }
 
 export default class extends Component<UniversalExportArgs> {
@@ -53,7 +54,8 @@ export default class extends Component<UniversalExportArgs> {
     const idsCount = this.selectedInfluencerIds.length;
 
     if (idsCount === 0 && this.args.currentEntity) {
-      return this.args.currentEntity.count;
+      const countKey = this.args.countKey ?? 'count';
+      return this.args.currentEntity[countKey];
     }
 
     return idsCount;
@@ -113,7 +115,7 @@ export default class extends Component<UniversalExportArgs> {
       format,
       type,
       this.selectedInfluencerIds,
-      this.args.filters || []
+      this.args.filters || []
     );
 
     window.open(url, '_blank');
