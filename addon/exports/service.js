@@ -119,7 +119,7 @@ export default Service.extend({
 
   searchEntities(keyword, entityTypes = []) {
     const params = {
-      s: encodeURIComponent(keyword)
+      s: keyword
     };
 
     if (entityTypes.length > 0) {
