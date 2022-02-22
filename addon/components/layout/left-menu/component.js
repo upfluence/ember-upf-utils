@@ -6,7 +6,7 @@ import { camelize } from '@ember/string';
 
 import layout from './template';
 
-const CANNY_URL = 'https://upfluence.canny.io/feature-requests';
+const FEATURES_REQUEST_URL = 'https://portal.productboard.com/j1s1lqcvra9dybyfsrel1zyh';
 
 export default Component.extend({
   layout,
@@ -137,8 +137,8 @@ export default Component.extend({
       window.location = this.accountUrl;
     },
 
-    openCanny() {
-      window.open(CANNY_URL, '_blank');
+    openFeatureRequests() {
+      window.open(FEATURES_REQUEST_URL, '_blank');
     },
 
     logout() {
