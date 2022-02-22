@@ -144,16 +144,19 @@
           </div>
         </li>
 
-        <li {{action "openCanny"}}>
-          &nbsp;<i class="fa fa-microphone"></i> &nbsp; Feature Requests
+        <li {{on "click" (action "openFeatureRequests")}}>
+          <i class="fa fa-microphone margin-right-xxx-sm"></i>
+          {{t "left_menu.profile.feature_requests"}}
         </li>
 
-        <li {{action "goToSettings"}}>
-          <span class="upf-icon upf-icon--cog"></span> &nbsp; Account Settings
+        <li {{on "click" (action "goToSettings")}}>
+          <span class="upf-icon upf-icon--cog margin-right-xxx-sm"></span>
+          {{t "left_menu.profile.account_settings"}}
         </li>
 
-        <li {{action "logout"}}>
-          <span class="upf-icon upf-icon--exit"></span> &nbsp; Log out
+        <li {{on "click" (action "logout")}}>
+          <span class="upf-icon upf-icon--exit margin-right-xxx-sm"></span>
+          {{t "left_menu.profile.log_out"}}
         </li>
       </ul>
     </div>
