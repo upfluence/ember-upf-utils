@@ -57,10 +57,12 @@ export default Component.extend({
 
   actions: {
     clickedCTA() {
+      const csChat = getOwner(this).lookup('service:cs-chat');
+
       if (this.canSelfUpgrade) {
         window.location = `${this.identityURL}accounts/billing`;
-      } else if (window.Intercom) {
-        window.Intercom('show');
+      } else if (csChat) {
+        csChat.openTicket();
       }
     }
   }

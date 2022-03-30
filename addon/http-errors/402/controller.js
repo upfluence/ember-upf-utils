@@ -1,3 +1,4 @@
+import { getOwner } from '@ember/application';
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
@@ -6,11 +7,11 @@ export default class HttpErrors402Controller extends Controller {
   @service intl;
 
   @action
-  openIntercom() {
-    if (window.Intercom) {
-      const messageContent = this.intl.t('errors.402.limit_exceeded.email_data.body');
+  openSupportChannel() {
+    const csChat = getOwner(this).lookup('service:cs-chat');
 
-      window.Intercom('showNewMessage', messageContent);
+    if (csChat) {
+      csChat.openTicket(this.intl.t('errors.402.limit_exceeded.email_data.body'));
       this.goBack();
     }
   }
