@@ -22,5 +22,6 @@ export default [
   'IDR',
   'PHP',
   'THB',
-  'DKK'
+  'DKK',
+  'PLN'
 ];
