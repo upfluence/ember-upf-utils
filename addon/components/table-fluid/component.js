@@ -3,13 +3,12 @@ import { set, observer, computed } from '@ember/object';
 import { run, schedule } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 
-import SlotsMixin from 'ember-block-slots';
 import EmberCollection from 'ember-collection/components/ember-collection';
 import { EKMixin, getCode, keyDown } from 'ember-keyboard';
 
 import layout from './template';
 
-export default EmberCollection.extend(SlotsMixin, EKMixin, {
+export default EmberCollection.extend(EKMixin, {
   layout,
 
   toast: service(),
