@@ -1,11 +1,11 @@
-{{#ember-native-scrollable
-  content-size=_contentSize scroll-left=_scrollLeft scroll-top=_scrollTop
-  scrollChange=(action "scrollChange") clientSizeChange=(action "clientSizeChange")}}
-  {{#yield-slot "stats"}}
-    {{yield}}
-  {{/yield-slot}}
+<EmberNativeScrollable
+  @content-size={{_contentSize}} @scroll-left={{_scrollLeft}} @scroll-top={{_scrollTop}}
+  @scrollChange={{action "scrollChange"}} @clientSizeChange={{action "clientSizeChange"}}>
+  {{#if (has-block "stats")}}
+    {{yield to="stats"}}
+  {{/if}}
 
-  {{yield _cells}}
+  {{yield _cells to="content"}}
 
   {{#unless isReached}}
     <div class="table-fluid-loader">
@@ -27,4 +27,4 @@
       </div>
     </div>
   {{/unless}}
-{{/ember-native-scrollable}}
+</EmberNativeScrollable>
