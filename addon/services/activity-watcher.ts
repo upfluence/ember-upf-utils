@@ -23,24 +23,24 @@ type RenderedNotification = {
 
 function renderNotificationMessage(message: string, title: string): RenderedNotification {
   return {
-    title: title,
-    message: message,
+    title,
+    message,
     type: 'info'
   };
 }
 
 function renderNotificationErrorMessage(message: string, title: string): RenderedNotification {
   return {
-    title: title,
-    message: message,
+    title,
+    message,
     type: 'error'
   };
 }
 
 function renderNotificationMessageWithAvatar(message: string, title: string, avatarUrl: string): RenderedNotification {
   return {
-    title: title,
-    message: message,
+    title,
+    message,
     type: 'info',
     avatarUrl: avatarUrl
   };
