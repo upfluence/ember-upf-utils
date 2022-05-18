@@ -21,7 +21,7 @@ type RenderedNotification = {
   avatarUrl?: string;
 };
 
-function renderNotificationMessage(title: string, message: string): RenderedNotification {
+function renderNotificationMessage(message: string, title: string): RenderedNotification {
   return {
     title: title,
     message: message,
