@@ -18,94 +18,101 @@ type RenderedNotification = {
   title: string;
   message: string;
   type: string;
+  avatarUrl?: string;
 };
 
-function renderNotificationMessage(message: string): RenderedNotification {
+function renderNotificationMessage(message: string, title: string): RenderedNotification {
   return {
-    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
-    message: message,
+    title,
+    message,
     type: 'info'
   };
 }
 
-function renderNotificationErrorMessage(message: string): RenderedNotification {
+function renderNotificationErrorMessage(message: string, title: string): RenderedNotification {
   return {
-    title: `<i class="fa fa-info-circle" aria-hidden="true"></i>`,
-    message: message,
+    title,
+    message,
     type: 'error'
   };
 }
 
-function renderNotificationMessageWithAvatar(avatarUrl: string, message: string): RenderedNotification {
+function renderNotificationMessageWithAvatar(message: string, title: string, avatarUrl: string): RenderedNotification {
   return {
-    title: `<img class="toast-title__avatar" src="${avatarUrl}" />
-     <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
-    message: message,
-    type: 'info'
+    title,
+    message,
+    type: 'info',
+    avatarUrl: avatarUrl
   };
 }
 
 type NotificationRendererMap = {
-  [key: string]: (data: any) => RenderedNotification
-}
+  [key: string]: (data: any) => RenderedNotification;
+};
 
 const renderersByNotificationType: NotificationRendererMap = {
-  'mailing_email_received': (data: any) => {
+  mailing_email_received: (data: any) => {
     return renderNotificationMessageWithAvatar(
-          data.influencer_avatar,
-          `Email from <b>${data.influencer_name}</b>
-           <a href="${data.entity_url}" target="_blank">Reply</a>`
-    );
-  },
-  'conversation_email_received': (data: any) => {
-    return renderNotificationMessageWithAvatar(
-      data.influencer_avatar,
       `Email from <b>${data.influencer_name}</b>
-       <a href="${data.entity_url}" target="_blank">Reply</a>`
+       <a href="${data.entity_url}" target="_blank">Reply</a>`,
+      'New email',
+      data.influencer_avatar
     );
   },
-  'direct_message_received': (data: any) => {
+  conversation_email_received: (data: any) => {
     return renderNotificationMessageWithAvatar(
-      data.influencer_avatar,
+      `Email from <b>${data.influencer_name}</b>
+       <a href="${data.entity_url}" target="_blank">Reply</a>`,
+      'New email',
+      data.influencer_avatar
+    );
+  },
+  direct_message_received: (data: any) => {
+    return renderNotificationMessageWithAvatar(
       `Message from <b>${data.influencer_name}</b>
-       <a href="${data.entity_url}" target="_blank">Reply</a>`
+       <a href="${data.entity_url}" target="_blank">Reply</a>`,
+      'New message',
+      data.influencer_avatar
     );
   },
-  'publishr_application_received': (data: any) => {
+  publishr_application_received: (data: any) => {
     return renderNotificationMessageWithAvatar(
-      data.influencer_avatar,
       `Application from <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
-       <a href="${data.url}" target="_blank">See application</a>`
+       <a href="${data.url}" target="_blank">See application</a>`,
+      'New application',
+      data.influencer_avatar
     );
   },
-  'publishr_draft_created': (data: any) => {
+  publishr_draft_created: (data: any) => {
     return renderNotificationMessageWithAvatar(
-      data.influencer_avatar,
       `Draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
-       <a href="${data.url}" target="_blank">Review</a>`
+       <a href="${data.url}" target="_blank">Review</a>`,
+      'New draft',
+      data.influencer_avatar
     );
   },
-  'list_recommendation': (data: any) => {
+  list_recommendation: (data: any) => {
     return renderNotificationMessage(
       `You have <b>${data.count}</b> new recommendations for your <b>${data.list_name}</b> list
-       <a href="${data.url}" target="_blank">View</a>`
+       <a href="${data.url}" target="_blank">View</a>`,
+      'New recommendations'
     );
   },
-  'thread_failure_summary': (data: any) => {
+  thread_failure_summary: (data: any) => {
     return renderNotificationErrorMessage(
-        `<b>Mailing error.</b> We ran into a problem with one of your Mailings.
-         <a href="${data.mailing_url}" target="_blank"><b>View my mailing</b></a>`
+      `<b>Mailing error.</b> We ran into a problem with one of your Mailings.
+         <a href="${data.mailing_url}" target="_blank">View my mailing</a>`,
+      'Thread failure'
     );
   },
-  'credential_disconnected': (data: any) => {
+  credential_disconnected: (data: any) => {
     return renderNotificationErrorMessage(
       `<b>Your ${data.integration_name} has been disconnected.</b> Please check your integration.
-      settings and reconnect it to avoid any issues. <a href="${data.integration_url}" target="_blank"><b>Reconnect</b></a>`
+      settings and reconnect it to avoid any issues. <a href="${data.integration_url}" target="_blank">Reconnect</a>`,
+      'Integration disconnected'
     );
   }
 };
-
-const toastOpts: ToastOptions = { timeout: 0 };
 
 export default class ActivityWatcher extends Service {
   @service declare eventsService: EventsService;
@@ -138,6 +145,11 @@ export default class ActivityWatcher extends Service {
 
     if (!notif) {
       return;
+    }
+
+    let toastOpts: ToastOptions | undefined = undefined;
+    if (notif.avatarUrl) {
+      toastOpts = { badge: { image: notif.avatarUrl } };
     }
 
     switch (notif.type) {
