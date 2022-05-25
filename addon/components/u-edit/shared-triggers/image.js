@@ -6,7 +6,8 @@ export default class ImageTrigger extends Component {
   @tracked displayModal = false;
 
   @action
-  openModal() {
+  openModal(event) {
+    event.stopPropagation();
     this.args.editor.saveRange();
     this.displayModal = true;
   }

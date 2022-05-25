@@ -1,7 +1,6 @@
-<OSS::Modal
- @title={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}} @options={{hash container=@container centered=true}}
- @onClose={{@closeAction}} class="uedit-file-uploader">
-  <div class="modal-body">
+<OSS::ModalDialog
+ @title={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}} @close={{@closeAction}} class="uedit-file-uploader">
+  <:content>
     <div class="form-group">
       <label>{{t (concat "uedit_editor.toolbar." this.titleKey ".by_url.label")}}</label>
       <Input
@@ -52,12 +51,16 @@
         </div>
       </div>
     {{/if}}
-  </div>
+  </:content>
 
 
-  <div class="modal-footer upf-align--center">
-    <button class="upf-btn upf-btn--primary" disabled={{and (not this.fileURL) (not this.directURL)}} {{on "click" this.addFile}}>
-      {{t (concat "uedit_editor.toolbar." this.titleKey ".title")}}
-    </button>
-  </div>
-</OSS::Modal>
+  <:footer>
+    <div class="fx-row fx-1 fx-malign-end fx-gap-px-10">
+      <OSS::Button @label={{t (concat "uedit_editor.toolbar." this.titleKey ".cancel")}} {{on "click" @closeAction}} />
+      <OSS::Button
+        @skin="primary" @label={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}}
+        disabled={{and (not this.fileURL) (not this.directURL)}}
+        {{on "click" this.addFile}} />
+    </div>
+  </:footer>
+</OSS::ModalDialog>

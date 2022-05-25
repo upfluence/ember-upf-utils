@@ -2,13 +2,10 @@ import { getOwner } from '@ember/application';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import layout from './template';
 
 const INCLUDES_ILLUSTRATION = ['crm', 'bulk_emailing', 'monitor'];
 
 export default Component.extend({
-  layout,
-
   assetMap: service(),
   intl: service(),
   currentUser: service(),
@@ -29,12 +26,6 @@ export default Component.extend({
     }
 
     return this.intl.t(`upgrade_modal.details.${intlKey}`, { htmlSafe: true });
-  }),
-
-  upgradeFeatureImagePath: computed('to', function () {
-    if (!INCLUDES_ILLUSTRATION.includes(this.to)) return;
-
-    return this.assetMap.resolve(`assets/@upfluence/ember-upf-utils/images/${this.to}.png`);
   }),
 
   canSelfUpgrade: computed('hasSubscription', 'to', function () {

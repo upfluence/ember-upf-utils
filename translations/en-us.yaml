@@ -57,7 +57,7 @@ influencer_network:
     subtitle: |
                 By adding this influencer to your list, they will be added to the IRM to grow your Influencer Network.
                 You can access and edit your Network in the IRM.
-    skip: Skip
+    skip: Close
     learn_more: Learn More
     dont_show: Don't show me this again
 new: new
@@ -89,6 +89,7 @@ upgrade_modal:
     bulk_emailing: Upgrade to Upfluence Silver to use Upfluence Bulk Emailing
     default: Talk to our teams in order to upgrade your account
   cta:
+    cancel: Cancel
     upgrade: Upgrade
     contact: Contact Us
 file_uploader:
@@ -107,6 +108,7 @@ uedit_editor:
       drop_file: Drop your file here
       or: or
       browse: Browse
+      cancel: Cancel
     pdf:
       title: Add PDF
       by_url:
@@ -118,6 +120,7 @@ uedit_editor:
       drop_file: Drop your file here
       or: or
       browse: Browse
+      cancel: Cancel
 errors:
   default:
     title: Oh...
@@ -138,10 +141,12 @@ errors:
       help_description: Help Center
   402:
     limit_exceeded:
+      modal_title: Limit Reached
+      go_back: Go back
       title: Congratulations! You have already reached your search limit!
-      description: You've already used <b>{used}/{limit}</b> search limits on this account. <br> Please contact your account manager to increase your limit.
+      description: You've already used <b>{used}/{limit}</b> search limits on this account. <br> Please contact our support team to increase your limit.
       congratulation: Congratulations!
-      cta: Ask my account manager
+      cta: Contact us
       backlink: Or go back to the software
       email_data:
         body: |

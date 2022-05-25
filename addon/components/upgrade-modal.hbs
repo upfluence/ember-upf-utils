@@ -1,0 +1,14 @@
+{{#unless this.hidden}}
+  <OSS::ModalDialog @title={{t "upgrade_modal.title"}} @close={{this.closeAction}}>
+    <:content>
+      <OSS::Banner @icon="far fa-lock" @title={{t "upgrade_modal.description"}} @subtitle={{this.description}} />
+    </:content>
+
+    <:footer>
+      <div class="fx-row fx-1 fx-malign-end fx-gap-px-10">
+        <OSS::Button @label={{t "upgrade_modal.cta.cancel"}} {{on "click" this.closeAction}} />
+        <OSS::Button @skin="primary" @label={{this.cta}} {{on "click" (action "clickedCTA")}} />
+      </div>
+    </:footer>
+  </OSS::ModalDialog>
+{{/unless}}
