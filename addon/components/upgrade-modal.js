@@ -3,8 +3,6 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-const INCLUDES_ILLUSTRATION = ['crm', 'bulk_emailing', 'monitor'];
-
 export default Component.extend({
   assetMap: service(),
   intl: service(),

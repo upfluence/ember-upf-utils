@@ -17,9 +17,7 @@
         </div>
 
         <div class="fx-row fx-gap-px-10">
-          <a {{action onClose}} target="_blank" class="upf-btn upf-btn--default">
-            {{t "influencer_network.modal.skip"}}
-          </a>
+          <OSS::Button @label={{t "influencer_network.modal.skip"}} {{on "click" (action onClose)}} />
           <a href="https://help.upfluence.co/en/articles/4107474-your-influencer-network-all-you-need-to-know" target="_blank" class="upf-btn upf-btn--primary">
             {{t "influencer_network.modal.learn_more"}}
           </a>
