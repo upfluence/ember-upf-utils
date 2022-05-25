@@ -3,6 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import Service from '@ember/service';
 import { click, fillIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import sinon from 'sinon';
 
 class SessionServiceStub extends Service {}
 
@@ -11,12 +12,15 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
 
   hooks.beforeEach(function () {
     this.owner.register('service:session', SessionServiceStub);
+    this.onClose = sinon.stub();
   });
 
   test('can not insert image if there is no url set', async function (assert) {
     this.insertImage = () => {};
 
-    await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
+    await render(
+      hbs`<UEdit::SharedTriggers::Modals::ImageUpload @closeAction={{this.onClose}} @insertFile={{this.insertImage}} />`
+    );
 
     assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasAttribute('disabled');
   });
@@ -27,7 +31,9 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
       assert.equal(url, 'https://via.placeholder.com/350x150');
     };
 
-    await render(hbs`<UEdit::SharedTriggers::Modals::ImageUpload @insertFile={{this.insertImage}} />`);
+    await render(
+      hbs`<UEdit::SharedTriggers::Modals::ImageUpload @closeAction={{this.onClose}} @insertFile={{this.insertImage}} />`
+    );
     await fillIn('.uedit-file-uploader input.upf-input', 'https://via.placeholder.com/350x150');
 
     assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
