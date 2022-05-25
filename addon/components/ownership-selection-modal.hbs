@@ -1,25 +1,24 @@
-{{#modal-view
-  hidden=hidden closeAction=closeModal container="body"
-  centered=true title=header borderlessHeader=true}}
-  <ul class="nav nav-tabs">
-    {{#if tabs.groups}}
-      <li {{action "setCurrent" "groups"}} class={{if groupsSelected "active" ""}} role="button">
-        <a>{{t "ownership_selection.tabs.groups"}}</a>
-      </li>
-    {{/if}}
+{{#unless this.hidden}}
+  <OSS::Modal
+    @title={{this.header}} @onClose={{this.closeModal}} @options={{hash container="body" centered=true borderlessHeader=true}}>
+    <ul class="nav nav-tabs">
+      {{#if this.tabs.groups}}
+        <li {{action "setCurrent" "groups"}} class={{if this.groupsSelected "active" ""}} role="button">
+          <a>{{t "ownership_selection.tabs.groups"}}</a>
+        </li>
+      {{/if}}
 
-    {{#if tabs.people}}
-      <li {{action "setCurrent" "people"}} class={{if peopleSelected "active" ""}} role="button">
-        <a>{{t "ownership_selection.tabs.people"}}</a>
-      </li>
-    {{/if}}
-  </ul>
+      {{#if this.tabs.people}}
+        <li {{action "setCurrent" "people"}} class={{if this.peopleSelected "active" ""}} role="button">
+          <a>{{t "ownership_selection.tabs.people"}}</a>
+        </li>
+      {{/if}}
+    </ul>
 
-  {{#if peopleSelected}}
-    {{ownership-selection-modal/people
-      entity=model saveOwnership=(action "saveOwnership")}}
-  {{else}}
-    {{ownership-selection-modal/groups
-      entity=model saveOwnership=(action "saveOwnership")}}
-  {{/if}}
-{{/modal-view}}
+    {{#if this.peopleSelected}}
+      <OwnershipSelectionModal::People @entity={{this.model}} @saveOwnership={{action "saveOwnership"}} />
+    {{else}}
+      <OwnershipSelectionModal::Groups @entity={{this.model}} @saveOwnership={{action "saveOwnership"}} />
+    {{/if}}
+  </OSS::Modal>
+{{/unless}}

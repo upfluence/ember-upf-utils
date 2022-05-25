@@ -6,7 +6,8 @@ export default class UEditSharedTriggersPdfComponent extends Component {
   @tracked displayModal = false;
 
   @action
-  openModal() {
+  openModal(event) {
+    event.stopPropagation();
     this.args.editor.saveRange();
     this.displayModal = true;
   }

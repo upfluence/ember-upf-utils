@@ -7,7 +7,7 @@
           <span class="upf-icon upf-icon--workflow"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--workflow"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -20,7 +20,7 @@
           <span class="upf-icon upf-icon--crm"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal" "crm"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "crm" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--crm"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -33,7 +33,7 @@
           <span class="upf-icon upf-icon--search"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal"}}>
+        <a {{action "toggleUpgradeModal" bubbles=false}}>
           <span class="upf-icon upf-icon--search"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -46,7 +46,7 @@
           <span class="upf-icon upf-icon--inbox"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal" "bulk_emailing"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "bulk_emailing" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -60,7 +60,7 @@
           <span class="upf-icon upf-icon--finance"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--finance"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -82,7 +82,7 @@
           <span class="upf-icon upf-icon--monitor"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal" "monitor"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "monitor" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--monitor"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -95,7 +95,7 @@
           <span class="upf-icon upf-icon--acquisition"></span>
         </SmartLinkTo>
       {{else}}
-        <a {{action "toggleUpgradeModal" "acquisition"}} role="upgrade">
+        <a {{action "toggleUpgradeModal" "acquisition" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--acquisition"></span>
           <i class="fa fa-lock"></i>
         </a>
@@ -163,6 +163,4 @@
   </section>
 {{/if}}
 
-{{upgrade-modal
-  to=upgradeTo hidden=hideUpgradeModal
-  closeAction=(action "toggleUpgradeModal")}}
+<UpgradeModal @to={{this.upgradeTo}} @hidden={{this.hideUpgradeModal}} @closeAction={{action "toggleUpgradeModal" bubbles=false}} />

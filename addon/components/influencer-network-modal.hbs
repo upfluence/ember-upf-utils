@@ -1,0 +1,28 @@
+{{#unless (or this.hasDisabledInfluencerNetworkModal this.hideInfluencerNetworkModal)}}
+  <OSS::ModalDialog @title={{t "influencer_network.modal.title"}} @close={{this.onClose}}>
+    <:content>
+      <OSS::Banner @plain={{true}} @title={{t "influencer_network.modal.title2"}} @subtitle={{t "influencer_network.modal.subtitle"}}>
+        <:custom-icon>
+          <OSS::Badge @skin="success" @icon="far fa-check" />
+        </:custom-icon>
+      </OSS::Banner>
+    </:content>
+
+    <:footer>
+      <div class="fx-row fx-1 fx-malign-space-between">
+        <div class="fx-row fx-xalign-center fx-gap-px-5">
+          <OSS::Checkbox
+            @checked={{false}} @onChange={{action "dontShowInfluencerNetworkModal"}} />
+          <span>{{t "influencer_network.modal.dont_show"}}</span>
+        </div>
+
+        <div class="fx-row fx-gap-px-10">
+          <OSS::Button @label={{t "influencer_network.modal.skip"}} {{on "click" (action onClose)}} />
+          <a href="https://help.upfluence.co/en/articles/4107474-your-influencer-network-all-you-need-to-know" target="_blank" class="upf-btn upf-btn--primary">
+            {{t "influencer_network.modal.learn_more"}}
+          </a>
+        </div>
+      </div>
+    </:footer>
+  </OSS::ModalDialog>
+{{/unless}}
