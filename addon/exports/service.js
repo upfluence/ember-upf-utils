@@ -126,7 +126,6 @@ export default Service.extend({
       params['entity_types'] = entityTypes.join(',');
     }
 
-    debugger;
     return this.ajax.request(`${this._exportURL}/entities?${new URLSearchParams(Object.entries(params)).toString()}`, {
       method: 'GET',
       headers: this._baseHeaders
