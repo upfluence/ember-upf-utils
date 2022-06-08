@@ -3,6 +3,7 @@ import Component from '@ember/component';
 import { observer, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { camelize } from '@ember/string';
+import { GLOBAL_SUPPORT_LINK } from '@upfluence/ember-upf-utils/resources/helpdesk-links';
 
 import layout from './template';
 
@@ -11,6 +12,7 @@ const FEATURES_REQUEST_URL = 'https://portal.productboard.com/j1s1lqcvra9dybyfsr
 export default Component.extend({
   layout,
   classNames: ['__left-menu'],
+  globalSupportLink: GLOBAL_SUPPORT_LINK,
 
   session: service(),
 
