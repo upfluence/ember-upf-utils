@@ -16,7 +16,8 @@
       </button>
       <div>
         {{t (concat "errors." this.httpError ".support.check_description")}}
-        <a href="https://help.upfluence.co/en/" target="_blank" class="upf-link--reset text-color-bright-purple">
+        <a href={{this.globalSupportLink}} target="_blank" rel="noopener noreferrer"
+           class="upf-link--reset text-color-bright-purple">
           {{t (concat "errors." this.httpError ".support.help_description")}}
         </a>
       </div>
