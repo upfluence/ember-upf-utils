@@ -1,16 +1,11 @@
-<div class="modal-body text-center">
+<div class="modal-body">
   {{#if this.hasMultiType}}
     {{#if this.limitReached}}
-      <div class="upf-alert upf-alert--error">
-        <div class="upf-alert__text">
-          <span>
-            {{t "export_influencers.limit_reached" exportLimitLeft=this.exportLimitLeft htmlSafe=true}}
-          </span>
-        </div>
-      </div>
+      <OSS::Alert class="margin-bottom-px-12" @skin="error" @title={{t "export_influencers.limit_reached.title"}}
+                  @subtitle={{t "export_influencers.limit_reached.subtitle" exportLimitLeft=this.exportLimitLeft htmlSafe=true}} />
     {{/if}}
 
-    <div class="row margin-bottom-sm">
+    <div class="row margin-bottom-sm text-center">
       <div class="col-xs-6 col-xs-offset-3">
         <div class="text-size-5 text-color-default-lighter margin-bottom-xxx-sm">
           {{t "export_influencers.file.data"}}
@@ -26,7 +21,7 @@
     </div>
   {{/if}}
 
-  <div class="row">
+  <div class="row text-center">
     <div class="col-xs-6 col-xs-offset-3">
       <div class="text-size-5 text-color-default-lighter margin-bottom-xxx-sm">
         {{t "export_influencers.file.file_format"}}

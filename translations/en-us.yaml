@@ -1,7 +1,8 @@
 export_influencers:
   title: Move to
-  limit_reached: "You don't have enough exports credit for more than
-  <strong>{exportLimitLeft}</strong> influencers"
+  limit_reached:
+    title: Error
+    subtitle: "You don't have enough exports credit for more than <strong>{exportLimitLeft}</strong> influencers"
   tabs:
     in_app: In-App
     file: File
