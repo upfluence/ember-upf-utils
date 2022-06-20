@@ -30,30 +30,28 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
   constructor(owner: unknown, args: any) {
     super(owner, args);
 
-    //this.phoneNumber = (this.args.address.phoneNumber || '');
+    args.onChange(args.address, this._checkAddressValidity());
   }
 
   @action
   selectCountryCode(code: { id: string }) {
-    this.args.address.set('countryCode', code.id);
+    set(this.args.address, 'countryCode', code.id);
   }
 
   @action
   applyCountry(country: CountryData) {
-    this.args.address.setProperties({
-      countryCode: country.alpha2,
-      state: ''
-    });
+    set(this.args.address, 'countryCode', country.alpha2);
+    set(this.args.address, 'state', '');
     this.provincesForCountry = country.provinces ?? null;
   }
 
   @action
   applyProvince(province?: ProvinceData): void {
-    this.args.address.set('state', province?.name || '');
+    set(this.args.address, 'state', province?.name || '');
   }
 
   @action
-  onFieldUpdate(): void {
+  onFieldUpdate(attr: string): void {
     this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 

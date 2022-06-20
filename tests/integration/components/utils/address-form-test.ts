@@ -1,26 +1,39 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, settled, typeIn } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import sinon from 'sinon';
 
-module('Integration | Component | utils/address-form', function(hooks) {
+module('Integration | Component | utils/address-form', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  hooks.beforeEach(function () {
+    this.address = {
+      firstName: 'iam',
+      lastName: 'groot',
+      address1: 'iam',
+      address2: 'groot',
+      city: '',
+      state: 'groot',
+      countryCode: 'US',
+      zipcode: 'iam',
+      phone: '+3348408934'
+    };
 
-    await render(hbs`{{utils/address-form}}`);
+    this.onChange = sinon.stub();
+  });
 
-    assert.equal(this.element.textContent.trim(), '');
+  test('it renders and calls the onChange action when setting up the component', async function (assert) {
+    await render(hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} />`);
+    assert.dom('[data-control-name="address-form"]').exists();
+    assert.ok(this.onChange.calledOnceWith(this.address, false));
+  });
 
-    // Template block usage:
-    await render(hbs`
-      {{#utils/address-form}}
-        template block text
-      {{/utils/address-form}}
-    `);
+  test('onChange action is called with truthly validity check when all fields are fileld', async function (assert) {
+    await render(hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} />`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    await typeIn('[data-control-name="address-form-city"] input', 'f');
+    await settled();
+    assert.ok(this.onChange.calledWith(this.address, true));
   });
 });
