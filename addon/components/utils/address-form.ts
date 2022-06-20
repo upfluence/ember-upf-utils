@@ -27,12 +27,6 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
   @tracked phoneNumber: string = '';
   countries = countries;
 
-  constructor(owner: unknown, args: any) {
-    super(owner, args);
-
-    args.onChange(args.address, this._checkAddressValidity());
-  }
-
   @action
   selectCountryCode(code: { id: string }): void {
     set(this.args.address, 'countryCode', code.id);
@@ -43,11 +37,13 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
     set(this.args.address, 'countryCode', country.alpha2);
     set(this.args.address, 'state', '');
     this.provincesForCountry = country.provinces ?? null;
+    this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 
   @action
   applyProvince(province?: ProvinceData): void {
     set(this.args.address, 'state', province?.name || '');
+    this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 
   @action
@@ -62,6 +58,8 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
   }
 
   private _checkAddressValidity(): boolean {
+    if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
+
     return !VALIDATED_ADDRESS_FIELDS.some((addressAttr: string) => {
       const shortAddress = addressAttr === 'address1' ? (get(this.args.address, addressAttr) || '').length < 3 : false;
       const invalidCountryCode =
