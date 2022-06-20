@@ -35,8 +35,12 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
   @action
   applyCountry(country: CountryData): void {
     set(this.args.address, 'countryCode', country.alpha2);
-    set(this.args.address, 'state', '');
     this.provincesForCountry = country.provinces ?? null;
+
+    if (this.args.address.countryCode !== country.alpha2 || !this.provincesForCountry) {
+      set(this.args.address, 'state', '');
+    }
+
     this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 
