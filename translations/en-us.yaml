@@ -1,3 +1,14 @@
+upf_utils:
+  address_form:
+    first_name: First Name*
+    last_name: Last Name*
+    line_1: Address Line 1*
+    line_2: Address Line 2
+    city: City*
+    state: State/Province
+    country: Country*
+    postal_code: Postal Code*
+    phone_number: Phone Number*
 export_influencers:
   title: Move to
   limit_reached: "You don't have enough exports credit for more than

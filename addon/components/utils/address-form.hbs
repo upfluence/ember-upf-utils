@@ -1,92 +1,96 @@
-<div class="fx-row fx-gap-px-10" ...attributes>
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>{{t "invitation.compensations.products.address.first_name"}}</label>
-    <OSS::InputContainer
-      @value={{@address.firstName}}
-      @onChange={{fn this.onFieldUpdate "firstName"}}
-      data-control-name="address-form-first-name" />
-  </div>
-
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>{{t "invitation.compensations.products.address.last_name"}}</label>
-    <OSS::InputContainer
-      @value={{@address.lastName}}
-      @onChange={{fn this.onFieldUpdate "lastName"}}
-      data-control-name="address-form-last-name" />
-  </div>
-</div>
-
-<div class="fx-row fx-gap-px-10">
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>{{t "invitation.compensations.products.address.line_1"}}</label>
-    <OSS::InputContainer
-      @value={{@address.address1}}
-      @onChange={{fn this.onFieldUpdate "address1"}}
-      data-control-name="address-form-address1" />
-  </div>
-
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>{{t "invitation.compensations.products.address.line_2"}}</label>
-    <OSS::InputContainer
-      @value={{@address.address2}}
-      @onChange={{fn this.onFieldUpdate "address2"}}
-      data-control-name="address-form-address2" />
-  </div>
-</div>
-
-<div class="fx-row fx-gap-px-10">
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>{{t "invitation.compensations.products.address.city"}}</label>
-    <OSS::InputContainer
-      @value={{@address.city}}
-      @onChange={{fn this.onFieldUpdate "city"}}
-      data-control-name="address-form-city" />
-  </div>
-
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>{{t "invitation.compensations.products.address.postal_code"}}</label>
-    <OSS::InputContainer
-      @value={{@address.zipcode}}
-      @onChange={{fn this.onFieldUpdate "zipcode"}}
-      data-control-name="address-form-zipcode" />
-  </div>
-</div>
-
-<div class="fx-row fx-gap-px-10">
-  <div class="fx-col fx-gap-px-5 fx-1" data-control-name="address-form">
-    <label>{{t "invitation.compensations.products.address.country"}}</label>
-    <OSS::CountrySelector @sourceList={{this.countries}} @onChange={{this.applyCountry}}
-                          @value={{@address.countryCode}} data-control-name="address-form-country" />
-  </div>
-
-
-  <div class="fx-col fx-gap-px-5 fx-1">
-    <label>
-      {{t "invitation.compensations.products.address.state"}}
-      {{#if this.provincesForCountry}}*{{/if}}
-    </label>
-    {{#if this.provincesForCountry}}
-      <OSS::ProvinceSelector @value={{@address.state}} @sourceList={{this.provincesForCountry}}
-                             @onChange={{this.applyProvince}}
-                             data-control-name="address-form-state" />
-    {{else}}
+<div class="fx-col fx-gap-px-10" ...attributes>
+  <div class="fx-row fx-gap-px-10">
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>{{t "upf_utils.address_form.first_name"}}</label>
       <OSS::InputContainer
-        @value={{@address.state}}
-        @onChange={{fn this.onFieldUpdate "state"}}
-        data-control-name="address-form-state" />
-    {{/if}}
-  </div>
-</div>
+        @value={{@address.firstName}}
+        @onChange={{fn this.onFieldUpdate "firstName"}}
+        data-control-name="address-form-first-name" />
+    </div>
 
-<div class="fx-col fx-gap-px-5 fx-1">
-  <label>{{t "invitation.compensations.products.address.phone_number"}}</label>
-  {{#if @usePhoneNumberInput}}
-    <OSS::PhoneNumberInput
-      @prefix={{this.phoneNumberPrefix}}
-      @number={{this.phoneNumber}}
-      @onChange={{this.onPhoneNumberUpdate}}
-      data-control-name="address-form-phone" />
-  {{else}}
-    <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
-  {{/if}}
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>{{t "upf_utils.address_form.last_name"}}</label>
+      <OSS::InputContainer
+        @value={{@address.lastName}}
+        @onChange={{fn this.onFieldUpdate "lastName"}}
+        data-control-name="address-form-last-name" />
+    </div>
+  </div>
+
+  <div class="fx-row fx-gap-px-10">
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>{{t "upf_utils.address_form.line_1"}}</label>
+      <OSS::InputContainer
+        @value={{@address.address1}}
+        @onChange={{fn this.onFieldUpdate "address1"}}
+        data-control-name="address-form-address1" />
+    </div>
+
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>{{t "upf_utils.address_form.line_2"}}</label>
+      <OSS::InputContainer
+        @value={{@address.address2}}
+        @onChange={{fn this.onFieldUpdate "address2"}}
+        data-control-name="address-form-address2" />
+    </div>
+  </div>
+
+  <div class="fx-row fx-gap-px-10">
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>{{t "upf_utils.address_form.city"}}</label>
+      <OSS::InputContainer
+        @value={{@address.city}}
+        @onChange={{fn this.onFieldUpdate "city"}}
+        data-control-name="address-form-city" />
+    </div>
+
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>{{t "upf_utils.address_form.postal_code"}}</label>
+      <OSS::InputContainer
+        @value={{@address.zipcode}}
+        @onChange={{fn this.onFieldUpdate "zipcode"}}
+        data-control-name="address-form-zipcode" />
+    </div>
+  </div>
+
+  <div class="fx-row fx-gap-px-10">
+    <div class="fx-col fx-gap-px-5 fx-1" data-control-name="address-form">
+      <label>{{t "upf_utils.address_form.country"}}</label>
+      <OSS::CountrySelector @sourceList={{this.countries}} @onChange={{this.applyCountry}}
+                            @value={{@address.countryCode}} data-control-name="address-form-country" />
+    </div>
+
+
+    <div class="fx-col fx-gap-px-5 fx-1">
+      <label>
+        {{t "upf_utils.address_form.state"}}
+        {{#if this.provincesForCountry}}*{{/if}}
+      </label>
+      {{#if this.provincesForCountry}}
+        <OSS::ProvinceSelector @value={{@address.state}} @sourceList={{this.provincesForCountry}}
+                               @onChange={{this.applyProvince}}
+                               data-control-name="address-form-state" />
+      {{else}}
+        <OSS::InputContainer
+          @value={{@address.state}}
+          @onChange={{fn this.onFieldUpdate "state"}}
+          data-control-name="address-form-state" />
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="fx-row">
+    <div class="fx-col fx-gap-px-5 fx-basis-pc-50">
+      <label>{{t "upf_utils.address_form.phone_number"}}</label>
+      {{#if @usePhoneNumberInput}}
+        <OSS::PhoneNumberInput
+          @prefix={{this.phoneNumberPrefix}}
+          @number={{this.phoneNumber}}
+          @onChange={{this.onPhoneNumberUpdate}}
+          data-control-name="address-form-phone" />
+      {{else}}
+        <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
+      {{/if}}
+    </div>
+  </div>
 </div>
