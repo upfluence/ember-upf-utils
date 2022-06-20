@@ -80,9 +80,13 @@
 
 <div class="fx-col fx-gap-px-5 fx-1">
   <label>{{t "invitation.compensations.products.address.phone_number"}}</label>
-  <OSS::PhoneNumberInput
-    @prefix={{this.phoneNumberPrefix}}
-    @number={{this.phoneNumber}}
-    @onChange={{this.onPhoneNumberUpdate}}
-    data-control-name="address-form-phone" />
+  {{#if @usePhoneNumberInput}}
+    <OSS::PhoneNumberInput
+      @prefix={{this.phoneNumberPrefix}}
+      @number={{this.phoneNumber}}
+      @onChange={{this.onPhoneNumberUpdate}}
+      data-control-name="address-form-phone" />
+  {{else}}
+    <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
+  {{/if}}
 </div>

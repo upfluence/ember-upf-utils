@@ -36,4 +36,19 @@ module('Integration | Component | utils/address-form', function (hooks) {
     await settled();
     assert.ok(this.onChange.calledWith(this.address, true));
   });
+
+  module('phone number input', function () {
+    test('it displays the nice phone number input if the right arg is passed', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-phone"]').hasClass('phone-number-container');
+    }),
+      test('it displays a basic input field for the phone number if the dedicated arg is falsy', async function (assert) {
+        await render(
+          hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{false}} @onChange={{this.onChange}} />`
+        );
+        assert.dom('[data-control-name="address-form-phone"]').hasClass('oss-input-container');
+      });
+  });
 });

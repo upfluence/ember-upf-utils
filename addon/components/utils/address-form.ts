@@ -34,12 +34,12 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
   }
 
   @action
-  selectCountryCode(code: { id: string }) {
+  selectCountryCode(code: { id: string }): void {
     set(this.args.address, 'countryCode', code.id);
   }
 
   @action
-  applyCountry(country: CountryData) {
+  applyCountry(country: CountryData): void {
     set(this.args.address, 'countryCode', country.alpha2);
     set(this.args.address, 'state', '');
     this.provincesForCountry = country.provinces ?? null;
@@ -51,7 +51,7 @@ export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
   }
 
   @action
-  onFieldUpdate(attr: string): void {
+  onFieldUpdate(): void {
     this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 
