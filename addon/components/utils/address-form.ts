@@ -21,7 +21,7 @@ const VALIDATED_ADDRESS_FIELDS: string[] = [
   'phone'
 ];
 
-export default class UtilsAddressForm extends Component<UtilsAddressFormArgs> {
+export default class extends Component<UtilsAddressFormArgs> {
   @tracked provincesForCountry: ProvinceData[] | null = null;
   @tracked phoneNumberPrefix: string = '';
   @tracked phoneNumber: string = '';

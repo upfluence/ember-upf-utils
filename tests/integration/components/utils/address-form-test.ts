@@ -27,7 +27,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
   test('it renders and calls the onChange action when setting up the component', async function (assert) {
     await render(hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} />`);
     assert.dom('[data-control-name="address-form"]').exists();
-    assert.ok(this.onChange.calledOnceWith(this.address, false));
+    assert.ok(this.onChange.calledOnceWith(this.address, true));
   });
 
   test('onChange action is called with truthy validity check when all fields are fileld', async function (assert) {
