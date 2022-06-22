@@ -139,18 +139,18 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.dom('[data-control-name="address-form-state"]').hasClass('oss-input-container');
     });
 
-    test('onChange action is called with truthy validity check when all fields are fileld', async function (assert) {
+    test('onChange action is called with truthy validity check when all fields are filled', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @onChange={{this.onChange}} />`
       );
       await click('[data-control-name="address-form-country"] .upf-input');
       await click('[data-control-name="address-form-country"] .upf-infinite-select__item:nth-child(2)');
-      assert.dom('[data-control-name="address-form-state"] input').hasValue('');
+      assert.dom('[data-control-name="address-form-state"] input').hasValue('groot');
 
       assert.ok(this.onChange.lastCall.calledWith(this.address, true));
     });
 
-    test('onChange action is called with truthy validity check when all fields are fileld', async function (assert) {
+    test('onChange action is called with truthy validity check when all fields are filled', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @onChange={{this.onChange}} />`
       );
