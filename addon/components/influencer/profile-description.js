@@ -87,8 +87,8 @@ export default Component.extend(TooltipActivationMixin, {
     return 'success';
   }),
 
-  responseTimeSkin: computed('responseTimeSpeed', function() {
-    switch(this.responseTimeSpeed) {
+  responseTimeSkin: computed('responseTimeSpeed', function () {
+    switch (this.responseTimeSpeed) {
       case 'alert':
         return 'warning';
       case 'regular':
