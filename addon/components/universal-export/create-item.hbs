@@ -1,0 +1,29 @@
+{{!-- TODO: Button — rework weird button --}}
+<div class="btn-group dropup">
+  <OSS::Button
+    @skin="primary"
+    @size="sm"
+    @label={{t "export_influencers.export.create" searchText=publicApi.searchText entity=selectedEntityType}}
+    disabled={{this.noCreateableEntities}}
+    class="btn"
+    {{action "createItem"}} />
+
+  {{#unless this.noCreateableEntities}}
+    <OSS::Button
+      @skin="primary"
+      @size="sm"
+      @icon="fas fa-caret-up"
+      class="dropdown-toggle btn"
+      data-toggle="dropdown" />
+
+    <ul class="dropdown-menu dropdown-menu-right">
+      {{#each this.createableEntities as |e|}}
+        <li>
+          <a {{action "selectEntityType" e}} class="text-style-capitalize">
+            {{e}}
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  {{/unless}}
+</div>

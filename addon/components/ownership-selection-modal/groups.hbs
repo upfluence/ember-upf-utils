@@ -1,0 +1,19 @@
+<div class="modal-body">
+  <p class="text-size-4 text-color-default-lighter text-center">
+    {{t "ownership_selection.groups.description" entityName=this.entity.name htmlSafe=true}}
+  </p>
+
+  <label class="margin-top-xx-sm">
+    {{t "ownership_selection.groups.label"}}
+  </label>
+  {{ownership-selection light=true entity=this.entity}}
+</div>
+
+<div class="modal-footer">
+  <OSS::Button
+    @skin="primary"
+    @label={{t "ownership_selection.groups.cta"}}
+    @loading={{this.updatingOwnership}}
+    disabled={{not this.entity.ownedBy}}
+    {{action "updateOwnership"}} />
+</div>

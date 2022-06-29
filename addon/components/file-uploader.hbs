@@ -1,0 +1,30 @@
+{{#if this._onUpload}}
+  <div class="upload-progress-contianer">
+    <i class="fa fa-spinner fa-spin"></i> {{this.file.name}}
+    {{#if this.useProgress}}
+      <div class="upload-progress-bar">
+        <div class="upload-progress" style="width: {{this._progress}}%"></div>
+      </div>
+    {{/if}}
+  </div>
+{{else if this.hasFile}}
+  {{this.file.name}}
+
+  <OSS::Button
+    @skin="secondary"
+    @size="sm"
+    @label={{t "file_uploader.cta.upload"}}
+    disabled={{not this._isValid}}
+    {{action "upload"}} />
+
+  <OSS::Button
+    @skin="destructive"
+    @size="sm"
+    @icon="far fa-times"
+    {{action "clear"}} />
+{{else}}
+  <div class="file-uploader__btn">
+    <span>{{this.text}}</span>
+    {{input-uploader onFile=(action "onFile")}}
+  </div>
+{{/if}}
