@@ -58,10 +58,11 @@
   </div>
 
   <div class="secondary-line clearfix">
-    <div>
-      {{#if profile.isNew}}
-        <span class="profile-description__content--new pull-left">{{t "new"}}</span>
+    <div class="fx-row fx-xalign-center fx-gap-px-12">
+      {{#if this.profile.isNew}}
+        <OSS::Tag @skin="primary" @label={{t "new"}} />
       {{/if}}
+
       {{#if profile.address}}
         {{display-field value=profile.address icon="map-marker-alt"}}
       {{/if}}
@@ -70,29 +71,29 @@
     {{#if (or this.responseTimeScore this.isLdaCompliant)}}
       <div class="processed-features processed-features_container">
         {{#if this.responseTimeScore}}
-          <div class="upf-tag upf-tag--{{this.responseTimeSpeed}}" {{enable-tooltip
-              title=(t (concat "processed_features.tooltip_" this.responseTimeSpeed))}}>
-            <i class="fa fa-envelope"></i>
-            {{#if (eq this.responseTimeSpeed "alert")}}
-              {{t "processed_features.alert"}}
-            {{else}}
-              {{t "processed_features.default" length=this.responseTimeScore}}
-            {{/if}}
-          </div>
+          <OSS::Tag
+            @skin={{this.responseTimeSkin}}
+            @icon="far fa-envelope"
+            @label={{if
+                      (eq this.responseTimeSpeed "alert")
+                      (t "processed_features.alert")
+                      (t "processed_features.default" length=this.responseTimeScore)}}
+            {{enable-tooltip title=(t (concat "processed_features.tooltip_" this.responseTimeSpeed))}} />
         {{/if}}
 
         {{#if (and this.isLdaCompliant (not this.isInInboxWeb))}}
-          <div class="upf-tag upf-tag--success">
-            <i class="fa fa-check"></i>
-            {{t "processed_features.lda_compliant"}}
-          </div>
+          <OSS::Tag
+            @skin="success"
+            @icon="far fa-check"
+            @label={{t "processed_features.lda_compliant"}} />
         {{/if}}
       </div>
     {{/if}}
 
   </div>
 
-  <div class='description text-size-4 text-color-default-light' title='{{profile.description}}'>
+  <div class="description text-size-4 text-color-default-light"
+       {{enable-tooltip title=profile.description}}>
     {{profile.description}}
   </div>
 

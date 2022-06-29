@@ -87,6 +87,17 @@ export default Component.extend(TooltipActivationMixin, {
     return 'success';
   }),
 
+  responseTimeSkin: computed('responseTimeSpeed', function() {
+    switch(this.responseTimeSpeed) {
+      case 'alert':
+        return 'warning';
+      case 'regular':
+        return 'primary';
+      default:
+        return 'success';
+    }
+  }),
+
   actions: {
     imageHasLoaded() {
       this.set('profilePictureLoaded', true);
