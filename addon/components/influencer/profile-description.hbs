@@ -74,10 +74,9 @@
           <OSS::Tag
             @skin={{this.responseTimeSkin}}
             @icon="far fa-envelope"
-            @label={{if
-                      (eq this.responseTimeSpeed "alert")
-                      (t "processed_features.alert")
-                      (t "processed_features.default" length=this.responseTimeScore)}}
+            @label={{if (eq this.responseTimeSpeed "alert")
+                        (t "processed_features.alert")
+                        (t "processed_features.default" length=this.responseTimeScore)}}
             {{enable-tooltip title=(t (concat "processed_features.tooltip_" this.responseTimeSpeed))}} />
         {{/if}}
 
