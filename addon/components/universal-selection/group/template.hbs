@@ -9,9 +9,10 @@
   <span class="margin-left-xxx-sm text-style-capitalize">{{t (concat "export_influencers.group_name." this.group.groupName)}}</span>
 
   {{#if this.icon.new}}
-    <div class="upf-tag upf-tag--regular margin-left-xxx-sm">
-      {{t "export_influencers.group_name.new_tag"}}
-    </div>
+    <OSS::Tag
+      @skin="primary"
+      @label={{t "export_influencers.group_name.new_tag"}}
+      class="margin-left-px-12" />
   {{/if}}
 </div>
 {{yield}}
