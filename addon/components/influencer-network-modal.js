@@ -5,8 +5,6 @@ import { GLOBAL_SUPPORT_LINK } from '@upfluence/ember-upf-utils/resources/helpde
 const INFLUENCER_NETWORK_MODAL_COOKIE = 'upf_disable_influencer_modal';
 
 export default Component.extend({
-  globalSupportLink: GLOBAL_SUPPORT_LINK,
-
   hasDisabledInfluencerNetworkModal: computed(function () {
     const cookieValue = document.cookie
       .split('; ')
@@ -21,6 +19,10 @@ export default Component.extend({
       this.toggleProperty('hasDisabledInfluencerNetworkModal');
 
       document.cookie = `${INFLUENCER_NETWORK_MODAL_COOKIE}=${disableModal ? true : ''}`;
+    },
+
+    openSupportLink() {
+      window.open(GLOBAL_SUPPORT_LINK, '_blank');
     }
   }
 });

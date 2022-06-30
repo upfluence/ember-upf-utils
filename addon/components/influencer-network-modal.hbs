@@ -18,9 +18,10 @@
 
         <div class="fx-row fx-gap-px-10">
           <OSS::Button @label={{t "influencer_network.modal.skip"}} {{on "click" (action onClose)}} />
-          <a href={{this.globalSupportLink}} rel="noopener noreferrer" target="_blank" class="upf-btn upf-btn--primary">
-            {{t "influencer_network.modal.learn_more"}}
-          </a>
+          <OSS::Button
+            @skin="primary"
+            @label={{t "influencer_network.modal.learn_more"}}
+            {{action "openSupportLink"}} />
         </div>
       </div>
     </:footer>
