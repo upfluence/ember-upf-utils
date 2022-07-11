@@ -1,27 +1,26 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-// import engineResolverFor from 'ember-engines/test-support/engine-resolver-for';
 import hbs from 'htmlbars-inline-precompile';
 import click from '@ember/test-helpers/dom/click';
 import sinon from 'sinon';
 import typeIn from '@ember/test-helpers/dom/type-in';
 import settled from '@ember/test-helpers/settled';
 
-module('Integration | Component | utm-link-builder', function (hooks) {
+module('Integration | Component | utils/utm-link-builder', function (hooks) {
   setupRenderingTest(hooks);
   hooks.beforeEach(function () {
     this.onChange = sinon.spy();
   });
 
   test('it renders', async function (assert) {
-    await render(hbs`<UtmLinkBuilder />`);
+    await render(hbs`<Utils::UtmLinkBuilder />`);
 
     assert.dom('.utm-container').exists();
   });
 
   test('If the toggle is disabled, the UTM inputs are hidden', async function (assert) {
-    await render(hbs`<UtmLinkBuilder />`);
+    await render(hbs`<Utils::UtmLinkBuilder />`);
 
     assert.dom('[data-control-name="utm_source_input"]').doesNotExist();
     assert.dom('[data-control-name="utm_medium_input"]').doesNotExist();
@@ -29,7 +28,7 @@ module('Integration | Component | utm-link-builder', function (hooks) {
   });
 
   test('If the toggle is enabled, the UTM inputs are visible', async function (assert) {
-    await render(hbs`<UtmLinkBuilder @onChange={{this.onChange}} />`);
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
     await click('.upf-toggle');
     assert.dom('[data-control-name="utm_source_input"]').exists();
     assert.dom('[data-control-name="utm_medium_input"]').exists();
@@ -38,7 +37,7 @@ module('Integration | Component | utm-link-builder', function (hooks) {
 
   test('The @onChange method is called when inputs are updated', async function (assert) {
     let utmFields = { utm_source: '', utm_campaign: '', utm_medium: '' };
-    await render(hbs`<UtmLinkBuilder @onChange={{this.onChange}} />`);
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
     await click('.upf-toggle');
     assert.true(
       this.onChange.calledWith(
@@ -78,7 +77,7 @@ module('Integration | Component | utm-link-builder', function (hooks) {
   });
 
   test('If a space character is inputed, it is replaced with a + sign', async function (assert) {
-    await render(hbs`<UtmLinkBuilder @onChange={{this.onChange}} />`);
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
     await click('.upf-toggle');
     await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a');
     await settled();

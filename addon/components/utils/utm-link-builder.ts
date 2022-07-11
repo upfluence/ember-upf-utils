@@ -2,7 +2,7 @@ import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-interface UtmLinkBuilderArgs {
+interface UtilsUtmLinkBuilderArgs {
   url: string;
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UTM_FIELDS): void;
 }
@@ -13,7 +13,7 @@ type UTM_FIELDS = {
   utm_campaign: string;
 };
 
-export default class UtmLinkBuilder extends Component<UtmLinkBuilderArgs> {
+export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderArgs> {
   @tracked utmsEnabled: boolean = false;
   @tracked utmSource: string = '';
   @tracked utmMedium: string = '';

@@ -3,7 +3,7 @@
     <OSS::Badge @icon="far fa-chart-bar" />
     <div class="fx-col fx-1">
       <span class="text-style-bold">{{t "utms.title"}}</span>
-      <span class="text-color-default-light">{{t "utms.description"}}</span>
+      <span class="text-color-gray-500">{{t "utms.description"}}</span>
     </div>
     <OSS::ToggleSwitch @value={{this.utmsEnabled}} @onChange={{this.toggleSwitchUpdate}} />
   </div>
@@ -31,11 +31,11 @@
       <span class="text-size-5 font-color-gray-500">{{t "utms.preview"}}</span>
       <p class="link-preview">
         <span class="text-color-bright-purple">{{this.fieldUrl}}</span>
-        <span class="text-color-default-light">&quest;utm_source=<span
+        <span class="text-color-gray-500">&quest;utm_source=<span
                 class="text-color-bright-purple">{{this.fieldSource}}</span></span>
-        <span class="text-color-default-light">&amp;utm_medium=<span
+        <span class="text-color-gray-500">&amp;utm_medium=<span
                 class="text-color-bright-purple">{{this.fieldMedium}}</span></span>
-        <span class="text-color-default-light">&amp;utm_campaign=<span
+        <span class="text-color-gray-500">&amp;utm_campaign=<span
                 class="text-color-bright-purple">{{this.fieldCampaign}}</span></span>
       </p>
     </div>
