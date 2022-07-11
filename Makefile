@@ -1,6 +1,6 @@
 .PHONY: tests
 
-all:	clear upfluence yarn_link_ls## Runs yarn_link_ls
+all:	clear upfluence yarn_link_ls echo start ## Runs yarn_link_ls & starts the dev server
 
 clear:
 	@clear
@@ -10,13 +10,19 @@ install: ## Runs 'yarn' to install dependencies
 	yarn
 	@echo ""; echo "\n-------------------------------\n"; echo ""
 
+echo:
+	@echo Starting Ember Upf Utils
+
+start: ## Starts the dev server
+	ember s --port 0
+
 clean: ## Cleans ./node_modules && ./dist
 	@echo "Cleaning up ./node_modules & ./dist folders"
 	-rm -r ./node_modules
 	-rm -r ./dist
 	@echo ""; echo "-------------------------------"; echo ""
 
-re:	clean install ## Reinstalls dependencies
+re:	clean install echo start ## Reinstalls dependencies & starts the dev server
 
 tests: ## Runs tests once
 	@echo "Running tests once"
@@ -56,6 +62,6 @@ version_major: ## Creates & pushes a new major tag
 	./scripts/new-version-tag major
 
 upfluence: ## Displays the UPF logo :)
-	@cat ./scripts/upf_logo
+	@sh ./scripts/upf_logo
 	@echo ""
 	@echo ""
