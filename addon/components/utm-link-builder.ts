@@ -38,7 +38,6 @@ export default class UtmLinkBuilder extends Component<UtmLinkBuilderArgs> {
   notifyChanges(target?: string): void {
     // @ts-ignore
     if (target) this[target] = this[target].replaceAll(' ', '+');
-    console.log(this.previewUrl, this.utmsEnabled, this.utmsValid);
     this.args.onChange(this.previewUrl, this.utmsEnabled, this.utmsValid, this.utmFields);
   }
 
