@@ -167,3 +167,14 @@ errors:
           I would like to increase my search limit, how could I do so?
 
           Best,
+utms:
+  title: Enable UTM parameters
+  description: Track performance data from Google Analytics
+  fields:
+    source: UTM source*
+    source_placeholder: e.g. Upfluence, Youtube, Instagram
+    medium: UTM medium*
+    medium_placeholder: e.g. description, caption, footer
+    campaign: UTM campaign*
+    campaign_placeholder: e.g. product launch winter 2022
+  preview: Preview of your tracking URL
