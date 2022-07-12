@@ -4,7 +4,6 @@ import { gt, and, gte } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
-import layout from './template';
 import TooltipActivationMixin from '@upfluence/ember-upf-utils/mixins/tooltip-activation';
 
 const FALLBACK_IMAGE = '/assets/images/no-image.svg';
@@ -12,7 +11,6 @@ const FALLBACK_IMAGE = '/assets/images/no-image.svg';
 export default Component.extend(TooltipActivationMixin, {
   currentUser: service(),
 
-  layout,
   classNames: ['profile-description'],
 
   profilePictureLoaded: false,
