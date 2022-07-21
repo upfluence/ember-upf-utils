@@ -35,13 +35,13 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
     this._initArguments();
   }
 
-  get socialMediaNetworks(): any {
+  get socialMediaNetworks(): SocialNetworkData[] {
     return SOCIAL_MEDIA_NETWORKS;
   }
 
   @action
-  toggleSelector(e: any): void {
-    e.stopPropagation();
+  toggleSelector(e: PointerEvent): void {
+    e?.stopPropagation();
     this.selectorShown = !this.selectorShown;
   }
 
