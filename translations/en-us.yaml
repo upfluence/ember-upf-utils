@@ -9,6 +9,14 @@ upf_utils:
     country: Country*
     postal_code: Postal Code*
     phone_number: Phone Number*
+  social_media_handle:
+    input_placeholder: "@Handle or account URL"
+    networks:
+      instagram: Instagram
+      twitter: Twitter
+      tiktok: TikTok
+      twitch: Twitch
+      youtube: YouTube
 export_influencers:
   title: Move to
   limit_reached:
