@@ -1,0 +1,38 @@
+<div class="social-handle-container fx-1" ...attributes>
+  <div class="social-handle-input upf-input fx-row fx-1 fx-xalign-center">
+    <div class="{{if @selectorOnly 'selector-full-width'}} selector
+                fx-row fx-gap-px-12 fx-malign-space-between"
+         role="button" {{on "click" this.toggleSelector}}>
+      <div class="fx-row fx-xalign-center fx-gap-px-12">
+        <i class="fab fa-{{this.selectedNetwork.name}} font-color-{{this.selectedNetwork.name}}-500"></i>
+        {{#if @selectorOnly}}
+          <span>{{t (concat "upf_utils.social_media_handle.networks." this.selectedNetwork.name)}}</span>
+        {{/if}}
+      </div>
+      <i class="far fa-chevron-{{if this.selectorShown 'up' 'down'}}"></i>
+    </div>
+    {{#unless @selectorOnly}}
+      <Input class="fx-1" type="text" @value={{this.handle}} autocomplete="off"
+             @placeholder={{t "upf_utils.social_media_handle.input_placeholder"}}
+             {{on "blur" this.onBlur}} {{on "keydown" this.checkEnterKey}} />
+    {{/unless}}
+  </div>
+  {{#if this.selectorShown}}
+    <OSS::InfiniteSelect @items={{this.socialMediaNetworks}} @searchEnabled={{false}}
+                         @onSelect={{this.onSelect}}
+                         {{on-click-outside this.hideSelector}}>
+      <:option as |network|>
+        <div class="fx-row fx-xalign-center fx-gap-px-9 margin-left-px-6
+                    {{if (eq this.selectedNetwork network) 'row-selected'}}">
+          <i class="fx-basis-px-12 fab fa-{{network.name}} font-color-{{network.name}}-500"></i>
+          <span class="symbol text-color-default-light fx-1">
+            {{t (concat "upf_utils.social_media_handle.networks." network.name)}}
+          </span>
+          {{#if (eq this.selectedNetwork network)}}
+            <i class="far fa-check text-color-bright-purple padding-right-px-6"></i>
+          {{/if}}
+        </div>
+      </:option>
+    </OSS::InfiniteSelect>
+  {{/if}}
+</div>
