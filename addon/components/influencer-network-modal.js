@@ -12,14 +12,14 @@ export default Component.extend({
   init() {
     this._super();
     this.currentUser.fetch().then((user) => {
-      this.currentUserModel = user;
+      this.set('currentUserModel', user);
     });
   },
 
   displayInfluencerNetworkModal: computed(
     'hasDisabledInfluencerNetworkModal',
     'hideInfluencerNetworkModal',
-    'currentUserModel',
+    'currentUserModel.companies.firstObject.billing_format',
     function () {
       return !this.hasDisabledInfluencerNetworkModal &&
         !this.hideInfluencerNetworkModal &&
