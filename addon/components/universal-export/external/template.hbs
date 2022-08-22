@@ -4,10 +4,9 @@
       {{t "export_influencers.export.description"}}
     </p>
 
-    <UniversalSelection
-      @current={{this.current}} @multiple={{false}} @placeholder={{this.placeholder}} @canCreate={{true}}
-      @entityTypes={{this.availableDestinations}}  @createItemComponent="universal-export/create-item"
-      @displayEmptyEntities={{true}} />
+    <UniversalSelection @current={{this.current}} @multiple={{false}} @placeholder={{this.placeholder}}
+                        @canCreate={{true}} @entityTypes={{this.availableDestinations}}
+                        @createItemComponent="universal-export/create-item" @displayEmptyEntities={{true}} />
 
     {{#if this.errors}}
       <div class="alert alert-danger">
@@ -17,18 +16,17 @@
       </div>
     {{/if}}
   {{/input-wrapper}}
-
-  <div class="margin-left-xx-sm margin-right-xx-sm">
-    <i class="fa fa-info-circle text-color-bright-purple"></i>
-    <span class="text-size-4">
-      {{t "export_influencers.export.info"}}
-    </span>
-  </div>
+  {{#if (not-eq this.currentUserModel.companies.firstObject.billing_format 'bracket')}}
+    <div class="margin-left-xx-sm margin-right-xx-sm">
+      <i class="fa fa-info-circle text-color-bright-purple"></i>
+      <span class="text-size-4">
+        {{t "export_influencers.export.info"}}
+      </span>
+    </div>
+  {{/if}}
 </div>
 
 <div class="modal-footer">
-  <OSS::Button
-    @skin="primary" @label={{this.ctaLabel}} @loading={{this.loading}}
-    disabled={{this.disabledExport}} class="margin-left-xx-sm"
-    {{on "click" (action "submit")}}/>
+  <OSS::Button @skin="primary" @label={{this.ctaLabel}} @loading={{this.loading}} disabled={{this.disabledExport}}
+               class="margin-left-xx-sm" {{on "click" (action "submit")}} />
 </div>

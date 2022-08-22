@@ -10,11 +10,20 @@ export default Component.extend({
   exports: service(),
   store: service(),
   intl: service(),
+  currentUser: service(),
 
   current: null,
   _canCreate: true,
 
   placeholder: 'Move to...',
+  currentUserModel,
+
+  init() {
+    this._super();
+    this.currentUser.fetch().then((user) => {
+      this.currentUserModel = user;
+    });
+  },
 
   disabledExport: computed('current', 'selectedCount', function () {
     return !this.current || !this.selectedCount;
