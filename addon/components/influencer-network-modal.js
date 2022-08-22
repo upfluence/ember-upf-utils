@@ -16,13 +16,18 @@ export default Component.extend({
     });
   },
 
-  displayInfluencerNetworkModal: computed(function () {
-    return !this.hasDisabledInfluencerNetworkModal &&
-      !this.hideInfluencerNetworkModal &&
-      this.currentUserModel.companies.firstObject.billing_format != 'bracket'
-      ? true
-      : false;
-  }),
+  displayInfluencerNetworkModal: computed(
+    'hasDisabledInfluencerNetworkModal',
+    'hideInfluencerNetworkModal',
+    'currentUserModel',
+    function () {
+      return !this.hasDisabledInfluencerNetworkModal &&
+        !this.hideInfluencerNetworkModal &&
+        this.currentUserModel.companies.firstObject.billing_format != 'bracket'
+        ? true
+        : false;
+    }
+  ),
 
   hasDisabledInfluencerNetworkModal: computed(function () {
     const cookieValue = document.cookie
