@@ -16,7 +16,7 @@ export default Component.extend({
   _canCreate: true,
 
   placeholder: 'Move to...',
-  currentUserModel,
+  currentUserModel: null,
 
   init() {
     this._super();
