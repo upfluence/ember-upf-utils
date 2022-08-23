@@ -14,7 +14,7 @@ class CurrentUserServiceStub extends Service {
     return [];
   }
   async fetch() {
-    return ;
+    return {};
   }
 }
 
