@@ -13,6 +13,9 @@ class CurrentUserServiceStub extends Service {
   async fetchOwnerships() {
     return [];
   }
+  async fetch() {
+    return ;
+  }
 }
 
 module('Integration | Component | universal-export', function (hooks) {
