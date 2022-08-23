@@ -16,14 +16,23 @@ export default Component.extend({
   _canCreate: true,
 
   placeholder: 'Move to...',
-  currentUserModel: null,
+  user: null,
 
   init() {
     this._super();
     this.currentUser.fetch().then((user) => {
-      this.set('currentUserModel', user);
+      this.set('user', user);
     });
   },
+
+  displayModal: computed(function () {
+    return (
+      this.user &&
+      this.user.companies &&
+      this.user.companies.length > 0 &&
+      this.user.companies.firstObject.billing_format != 'bracket'
+    );
+  }),
 
   disabledExport: computed('current', 'selectedCount', function () {
     return !this.current || !this.selectedCount;

@@ -16,7 +16,7 @@
       </div>
     {{/if}}
   {{/input-wrapper}}
-  {{#if (not-eq this.currentUserModel.companies.firstObject.billing_format 'bracket')}}
+  {{#if this.displayModal}}
     <div class="margin-left-xx-sm margin-right-xx-sm">
       <i class="fa fa-info-circle text-color-bright-purple"></i>
       <span class="text-size-4">

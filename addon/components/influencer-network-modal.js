@@ -7,25 +7,27 @@ const INFLUENCER_NETWORK_MODAL_COOKIE = 'upf_disable_influencer_modal';
 
 export default Component.extend({
   currentUser: service(),
-  currentUserModel: null,
+  user: null,
 
   init() {
     this._super();
     this.currentUser.fetch().then((user) => {
-      this.set('currentUserModel', user);
+      this.set('user', user);
     });
   },
 
   displayInfluencerNetworkModal: computed(
     'hasDisabledInfluencerNetworkModal',
     'hideInfluencerNetworkModal',
-    'currentUserModel.companies.firstObject.billing_format',
+    'user.companies.firstObject.billing_format',
     function () {
-      return !this.hasDisabledInfluencerNetworkModal &&
+      return (
+        !this.hasDisabledInfluencerNetworkModal &&
         !this.hideInfluencerNetworkModal &&
-        this.currentUserModel.companies.firstObject.billing_format != 'bracket'
-        ? true
-        : false;
+        this.user &&
+        this.user.companies &&
+        this.user.companies.firstObject.billing_format != 'bracket'
+      );
     }
   ),
 
