@@ -19,12 +19,12 @@ export default Component.extend({
   displayInfluencerNetworkModal: computed(
     'hasDisabledInfluencerNetworkModal',
     'hideInfluencerNetworkModal',
-    'user.companies.{firstObject.billing_format,length}',
+    'user.companies.[0].billing_format',
     function () {
       return (
         !this.hasDisabledInfluencerNetworkModal &&
         !this.hideInfluencerNetworkModal &&
-        this.user.companies?.[0]?.billing_format !== 'bracket'
+        this.user?.companies?.[0]?.billing_format !== 'bracket'
       );
     }
   ),
