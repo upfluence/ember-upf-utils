@@ -24,10 +24,7 @@ export default Component.extend({
       return (
         !this.hasDisabledInfluencerNetworkModal &&
         !this.hideInfluencerNetworkModal &&
-        this.user &&
-        this.user.companies &&
-        this.user.companies.length > 0 &&
-        this.user.companies.firstObject.billing_format != 'bracket'
+        this.user.companies?.[0]?.billing_format !== 'bracket'
       );
     }
   ),

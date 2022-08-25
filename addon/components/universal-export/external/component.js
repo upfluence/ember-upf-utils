@@ -26,12 +26,7 @@ export default Component.extend({
   },
 
   displayInfo: computed('user.companies.{firstObject.billing_format,length}', function () {
-    return (
-      this.user &&
-      this.user.companies &&
-      this.user.companies.length > 0 &&
-      this.user.companies.firstObject.billing_format != 'bracket'
-    );
+    return this.user.companies?.[0]?.billing_format !== 'bracket';
   }),
 
   disabledExport: computed('current', 'selectedCount', function () {
