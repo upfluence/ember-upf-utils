@@ -25,7 +25,7 @@ export default Component.extend({
     });
   },
 
-  displayInfo: computed('user.companies.[0].billing_format', function () {
+  displayInfo: computed('user.companies.[]', function () {
     return this.user?.companies?.[0]?.billing_format !== 'bracket';
   }),
 

@@ -19,7 +19,7 @@ export default Component.extend({
   displayInfluencerNetworkModal: computed(
     'hasDisabledInfluencerNetworkModal',
     'hideInfluencerNetworkModal',
-    'user.companies.[0].billing_format',
+    'user.companies.[]',
     function () {
       return (
         !this.hasDisabledInfluencerNetworkModal &&
