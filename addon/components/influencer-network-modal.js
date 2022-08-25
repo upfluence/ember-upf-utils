@@ -26,7 +26,7 @@ export default Component.extend({
         !this.hideInfluencerNetworkModal &&
         this.user &&
         this.user.companies &&
-        this.user.companies > 0 &&
+        this.user.companies.length > 0 &&
         this.user.companies.firstObject.billing_format != 'bracket'
       );
     }

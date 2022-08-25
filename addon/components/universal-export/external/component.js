@@ -25,7 +25,7 @@ export default Component.extend({
     });
   },
 
-  displayModal: computed('user.companies.{firstObject.billing_format,length}', function () {
+  displayInfo: computed('user.companies.{firstObject.billing_format,length}', function () {
     return (
       this.user &&
       this.user.companies &&
