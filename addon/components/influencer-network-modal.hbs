@@ -1,7 +1,8 @@
-{{#unless (or this.hasDisabledInfluencerNetworkModal this.hideInfluencerNetworkModal)}}
+{{#if this.displayInfluencerNetworkModal}}
   <OSS::ModalDialog @title={{t "influencer_network.modal.title"}} @close={{this.onClose}}>
     <:content>
-      <OSS::Banner @plain={{true}} @title={{t "influencer_network.modal.title2"}} @subtitle={{t "influencer_network.modal.subtitle"}}>
+      <OSS::Banner @plain={{true}} @title={{t "influencer_network.modal.title2"}}
+                   @subtitle={{t "influencer_network.modal.subtitle"}}>
         <:custom-icon>
           <OSS::Badge @skin="success" @icon="far fa-check" />
         </:custom-icon>
@@ -11,19 +12,16 @@
     <:footer>
       <div class="fx-row fx-1 fx-malign-space-between">
         <div class="fx-row fx-xalign-center fx-gap-px-5">
-          <OSS::Checkbox
-            @checked={{false}} @onChange={{action "dontShowInfluencerNetworkModal"}} />
+          <OSS::Checkbox @checked={{false}} @onChange={{action "dontShowInfluencerNetworkModal"}} />
           <span>{{t "influencer_network.modal.dont_show"}}</span>
         </div>
 
         <div class="fx-row fx-gap-px-10">
           <OSS::Button @label={{t "influencer_network.modal.skip"}} {{on "click" (action onClose)}} />
-          <OSS::Button
-            @skin="primary"
-            @label={{t "influencer_network.modal.learn_more"}}
-            {{action "openSupportLink"}} />
+          <OSS::Button @skin="primary" @label={{t "influencer_network.modal.learn_more"}}
+                       {{action "openSupportLink"}} />
         </div>
       </div>
     </:footer>
   </OSS::ModalDialog>
-{{/unless}}
+{{/if}}

@@ -10,11 +10,24 @@ export default Component.extend({
   exports: service(),
   store: service(),
   intl: service(),
+  currentUser: service(),
 
   current: null,
   _canCreate: true,
 
   placeholder: 'Move to...',
+  user: null,
+
+  init() {
+    this._super();
+    this.currentUser.fetch().then((user) => {
+      this.set('user', user);
+    });
+  },
+
+  displayInfo: computed('user.companies.[]', function () {
+    return this.user?.companies?.[0]?.billing_format !== 'bracket';
+  }),
 
   disabledExport: computed('current', 'selectedCount', function () {
     return !this.current || !this.selectedCount;
