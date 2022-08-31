@@ -11,7 +11,7 @@ export default Component.extend({
 
   init() {
     this._super();
-    this.currentUser.fetch().then((user) => {
+    this.currentUser.fetch().then(({ user }) => {
       this.set('user', user);
     });
   },
