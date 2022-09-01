@@ -8,6 +8,7 @@ export default Service.extend({
   store: service(),
   session: service(),
   ajax: service(),
+  communityThresholdManager: service(),
 
   _exportURL: computed(function () {
     return `${Configuration.exportUrl}/api/v1`;
@@ -36,14 +37,18 @@ export default Service.extend({
    *       @param {string} to                         - format: "type:id"
    */
   perform(source, destination) {
-    return this.ajax.request(`${this._exportURL}/export`, {
-      method: 'POST',
-      contentType: 'application/json',
-      headers: {
-        Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
-      },
-      data: JSON.stringify({ source, destination })
-    });
+    return this.ajax
+      .request(`${this._exportURL}/export`, {
+        method: 'POST',
+        contentType: 'application/json',
+        headers: {
+          Authorization: `Bearer ${this.get('session.data.authenticated.access_token')}`
+        },
+        data: JSON.stringify({ source, destination })
+      })
+      .catch((error) => {
+        this.communityThresholdManager.processException(error);
+      });
   },
 
   exportToEntities(exportingFrom, exportingTo, influencerIds, filters, maxSize, tags) {
