@@ -61,12 +61,12 @@ export default class extends Component<UniversalExportArgs> {
     return idsCount;
   }
 
-  _exported(closeModal = true) {
+  _exported() {
     this.args.didExport?.();
+  }
 
-    if (closeModal) {
-      this.args.closeModal?.();
-    }
+  private close() {
+    this.args.closeModal?.();
   }
 
   @action
@@ -90,21 +90,25 @@ export default class extends Component<UniversalExportArgs> {
       };
     }
 
-    return this.influencerExporter.perform(source, destination).then((data: any) => {
-      if (data.status === 'scheduled') {
-        this.toast.info(
-          this.intl.t('export_influencers.export.scheduled.success_message', { count: data.total }),
-          this.intl.t('export_influencers.export.scheduled.success_title')
-        );
-      } else {
-        this.toast.success(
-          this.intl.t('export_influencers.export.processed.success_message', { count: data.total }),
-          this.intl.t('export_influencers.export.processed.success_title')
-        );
-      }
-
-      this._exported();
-    });
+    return this.influencerExporter
+      .perform(source, destination)
+      .then((data: any) => {
+        if (data.status === 'scheduled') {
+          this.toast.info(
+            this.intl.t('export_influencers.export.scheduled.success_message', { count: data.total }),
+            this.intl.t('export_influencers.export.scheduled.success_title')
+          );
+        } else {
+          this.toast.success(
+            this.intl.t('export_influencers.export.processed.success_message', { count: data.total }),
+            this.intl.t('export_influencers.export.processed.success_title')
+          );
+        }
+        this._exported();
+      })
+      .finally(() => {
+        this.close();
+      });
   }
 
   @action
@@ -120,5 +124,6 @@ export default class extends Component<UniversalExportArgs> {
 
     window.open(url, '_blank');
     this._exported();
+    this.close();
   }
 }
