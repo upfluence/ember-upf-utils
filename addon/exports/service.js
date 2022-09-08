@@ -46,8 +46,9 @@ export default Service.extend({
         },
         data: JSON.stringify({ source, destination })
       })
-      .catch(({ payload }) => {
-        this.communityThresholdManager.processException(payload);
+      .catch((error) => {
+        this.communityThresholdManager.processException(error.payload);
+        return Promise.reject(error);
       });
   },
 
