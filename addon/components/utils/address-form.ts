@@ -6,6 +6,7 @@ import { CountryData, countries } from '@upfluence/oss-components/utils/country-
 
 interface UtilsAddressFormArgs {
   address: any;
+  usePhoneNumberInput: boolean;
   onChange(address: any, isValid: boolean): void;
 }
 
@@ -25,6 +26,8 @@ export default class extends Component<UtilsAddressFormArgs> {
   @tracked provincesForCountry: ProvinceData[] | null = null;
   @tracked phoneNumberPrefix: string = '';
   @tracked phoneNumber: string = '';
+
+  validPhoneNumber: boolean = true;
   countries = countries;
 
   @action
@@ -64,7 +67,14 @@ export default class extends Component<UtilsAddressFormArgs> {
     this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 
+  @action
+  onPhoneNumberValidation(passes: boolean): void {
+    this.validPhoneNumber = passes;
+    this.args.onChange(this.args.address, this._checkAddressValidity());
+  }
+
   private _checkAddressValidity(): boolean {
+    if (this.args.usePhoneNumberInput && !this.validPhoneNumber) return false;
     if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
 
     return !VALIDATED_ADDRESS_FIELDS.some((addressAttr: string) => {
