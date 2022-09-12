@@ -30,7 +30,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
     assert.ok(this.onChange.calledOnceWith(this.address, true));
   });
 
-  test('onChange action is called with truthy validity check when all fields are fileld', async function (assert) {
+  test('onChange action is called with truthy validity check when all fields are filled', async function (assert) {
     await render(hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} />`);
 
     await typeIn('[data-control-name="address-form-city"] input', 'f');
@@ -45,13 +45,22 @@ module('Integration | Component | utils/address-form', function (hooks) {
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @onChange={{this.onChange}} />`
       );
       assert.dom('[data-control-name="address-form-phone"]').hasClass('phone-number-container');
-    }),
-      test('it displays a basic input field for the phone number if the dedicated arg is falsy', async function (assert) {
-        await render(
-          hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{false}} @onChange={{this.onChange}} />`
-        );
-        assert.dom('[data-control-name="address-form-phone"]').hasClass('oss-input-container');
-      });
+    });
+
+    test('it displays a basic input field for the phone number if the dedicated arg is falsy', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{false}} @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-phone"]').hasClass('oss-input-container');
+    });
+
+    test('onChange action is called with falsy validity check if the phone number has a double country prefix', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} @usePhoneNumberInput={{true}} />`
+      );
+      await typeIn('[data-control-name="address-form-phone"] input', '+8');
+      assert.ok(this.onChange.calledWith(this.address, false));
+    });
   });
 
   module('If selected country has provinces/states linked', () => {

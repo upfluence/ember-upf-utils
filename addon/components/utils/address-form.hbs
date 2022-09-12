@@ -87,6 +87,7 @@
           @prefix={{this.phoneNumberPrefix}}
           @number={{this.phoneNumber}}
           @onChange={{this.onPhoneNumberUpdate}}
+          @validates={{this.onPhoneNumberValidation}}
           data-control-name="address-form-phone" />
       {{else}}
         <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
