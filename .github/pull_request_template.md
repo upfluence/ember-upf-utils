@@ -13,7 +13,6 @@ Related to: #<!-- enter issue number here -->
 <!-- Feature: Implements X thrift service / Z HTTP REST API added, provide instructions on how leverage your feature from staging or your workstation -->
 
 ### 🧑‍💻 Developer Heads Up
-
 ⚡ Since we are using [Ember Octane](https://blog.emberjs.com/octane-is-here/) now:
 * Feel free to migrate existing components to Glimmer Components.
 * Write new ones exclusively in it.
@@ -21,7 +20,6 @@ Related to: #<!-- enter issue number here -->
 Useful Resource : [Ember Octane vs Classic Cheat Sheet](https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/)
 
 ### Good PR checklist
-
 - [ ] Title makes sense
 - [ ] Is against the correct branch
 - [ ] Only addresses one issue
@@ -30,10 +28,3 @@ Useful Resource : [Ember Octane vs Classic Cheat Sheet](https://ember-learn.gith
 - [ ] Added/updated documentation
 - [ ] Migrated touched components to Glimmer Components
 - [ ] Properly labeled
-
-### Additional Notes
-
-<!--
-    You can add anything you want here, an explanation on the way you built your implementation,
-    precisions on the origin of the bug, gotchas you need to mention.
- -->
