@@ -1,0 +1,19 @@
+<div class="fx-row fx-gap-px-18 fx-xalign-center padding-right-px-18 product-row {{if @plain "product-row--plain"}}"
+     ...attributes>
+  <div class="product-image-container {{if this.defaultImgClass "product-image-container--default"}}">
+    <img src={{this.productImageUrl}} onerror={{this.imageLoadError}} />
+  </div>
+  <div class="fx-col fx-gap-px-3 fx-1">
+    <span class="text-color-default text-size-5 text-style-semibold">{{@contributionProduct.name}}</span>
+    <span class="text-size-5 option-label">{{this.productOptionMessage}}</span>
+  </div>
+  <div class="fx-row fx-gap-px-9 fx-xalign-center">
+    {{#if @selected}}
+      <OSS::Tag @label="Selected" @icon="far fa-check" />
+    {{/if}}
+    {{#each this.displayButton as |buttonParam|}}
+      <OSS::Button @size="md" @label={{buttonParam.label}} @icon={{buttonParam.icon}} @square={{buttonParam.square}}
+                   {{on "click" (fn buttonParam.function @contributionProduct)}} />
+    {{/each}}
+  </div>
+</div>

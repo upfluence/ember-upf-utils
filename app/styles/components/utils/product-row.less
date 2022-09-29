@@ -1,0 +1,43 @@
+.product-row {
+  .border;
+  .bg-color-white;
+  border-radius: 8px 0px 0px 8px;
+  border-color: var(--color-gray-200);
+  &--plain {
+    background-color: var(--color-gray-50);
+  }
+  .product-image-container {
+    width: 75px;
+    height: 75px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    &--default {
+      background-color: var(--color-gray-200);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+
+  .option-label {
+    color: var(--color-gray-500);
+  }
+
+  .upf-btn,.upf-square-btn {
+    border-color: var(--color-gray-200);
+  }
+  .fx-col {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 75px;
+  }
+}
