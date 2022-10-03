@@ -18,7 +18,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
       priceCurrency: 'USD',
       productOptions: [{ name: 'Normal' }, { name: 'Large' }],
       providerProductId: 4791551229996,
-      providerProductImageUrl:
+      imageUrl:
         'https://cdn.shopify.com/s/files/1/0363/6694/2252/products/Giorgio-Armani-Rouge-dArmani-Lipstick.jpg?v=1585157413'
     });
 
@@ -51,16 +51,16 @@ module('Integration | Component | utils/product-row', function (hooks) {
   });
 
   module('image display', function () {
-    test('it displays the product image when the product has a providerProductImageUrl', async function (assert) {
+    test('it displays the product image when the product has a imageUrl', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
 
       assert.dom('.product-row').exists();
       assert.dom('.product-row img').exists();
-      assert.dom('.product-row img').hasAttribute('src', this.product.providerProductImageUrl);
+      assert.dom('.product-row img').hasAttribute('src', this.product.imageUrl);
     });
 
-    test('it displays the default image when the product has not a providerProductImageUrl', async function (assert) {
-      this.product.providerProductImageUrl = undefined;
+    test('it displays the default image when the product has not a imageUrl', async function (assert) {
+      this.product.imageUrl = undefined;
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
 
       assert.dom('.product-row').exists();
@@ -69,7 +69,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
     });
 
     test('it displays the default image when the image fails to load', async function (assert) {
-      this.product.providerProductImageUrl = 'https://www.image-url-test.com';
+      this.product.imageUrl = 'https://www.image-url-test.com';
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       await waitUntil(function () {
         return find('.product-row img')?.getAttribute('src') === DEFAULT_IMAGE_URL;

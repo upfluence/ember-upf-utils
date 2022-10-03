@@ -58,7 +58,7 @@ export default class extends Component<UtilsProductRowArgs> {
   }
 
   get productImageUrl(): string {
-    return this.args.contributionProduct.providerProductImageUrl || DEFAULT_IMAGE_URL;
+    return this.args.contributionProduct.imageUrl || DEFAULT_IMAGE_URL;
   }
 
   get isDefaultImg(): boolean {
