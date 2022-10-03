@@ -78,7 +78,7 @@ export default class extends Component<UtilsProductRowArgs> {
       : '';
   }
 
-  get displayButton(): ButtonArgs[] {
+  get buttonParams(): ButtonArgs[] {
     let displayedButtons: ButtonArgs[] = [];
     COMPONENT_EVENT.forEach((methodArg: string) => {
       if (typeof this.args[methodArg as keyof UtilsProductRowArgs] === 'function') {

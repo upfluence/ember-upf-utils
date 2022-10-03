@@ -11,7 +11,7 @@
     {{#if @selected}}
       <OSS::Tag @label={{t "upf_utils.product_row.tag.selected"}} @icon="far fa-check" />
     {{/if}}
-    {{#each this.displayButton as |buttonParam|}}
+    {{#each this.buttonParams as |buttonParam|}}
       <OSS::Button @size="md" @label={{buttonParam.label}} @icon={{buttonParam.icon}} @square={{buttonParam.square}}
                    {{on "click" (fn buttonParam.function @contributionProduct)}} />
     {{/each}}
