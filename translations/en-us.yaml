@@ -18,10 +18,12 @@ upf_utils:
       twitch: Twitch
       youtube: YouTube
   product_row:
-    product_options: "{nbProductOptions} Options"
-    option_selected: "Option: {nameoption}"
+    product_options: "{nbProductOptions} options"
+    option_selected: "Option: {optionName}"
     button:
       select_label: Select
+    tag:
+      selected: Selected
 export_influencers:
   title: Move to
   limit_reached:

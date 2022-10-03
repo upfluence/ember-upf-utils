@@ -81,19 +81,19 @@ module('Integration | Component | utils/product-row', function (hooks) {
   });
 
   module('@selected parameter', function () {
-    test('if undefined, the tag is not display', async function (assert) {
+    test('if undefined, the tag is not displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-tag').doesNotExist();
     });
 
-    test('if true, the tag is display', async function (assert) {
+    test('if true, the tag is displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @selected={{true}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-tag').exists();
     });
 
-    test('if false, the tag is not display', async function (assert) {
+    test('if false, the tag is not displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @selected={{false}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-tag').doesNotExist();
@@ -118,7 +118,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
   });
 
   module('@selectedOption parameter', function () {
-    test('if undefined and @contributionProduct has productOption, then it display the number of product option', async function (assert) {
+    test('if undefined and @contributionProduct has productOption, then it displays the number of product option', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-col span:first-child').exists();
@@ -132,7 +132,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
         );
     });
 
-    test('if undefined and @contributionProduct has not productOption, then it display only the product name', async function (assert) {
+    test('if undefined and @contributionProduct has no productOption, then it displays only the product name', async function (assert) {
       this.product.productOptions = [];
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
@@ -143,7 +143,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
       assert.dom('.product-row .fx-col span:last-child').hasNoText();
     });
 
-    test('if @selectedOption is provided, then it display the name of the selected product option', async function (assert) {
+    test('if @selectedOption is provided, then it displays the name of the selected product option', async function (assert) {
       this.selectedOption = this.product.productOptions[0];
       await render(
         hbs`<Utils::ProductRow @contributionProduct={{this.product}} @selectedOption={{this.selectedOption}} />`
@@ -153,27 +153,27 @@ module('Integration | Component | utils/product-row', function (hooks) {
       assert.dom('.product-row .fx-col span:last-child').exists();
       assert.dom('.product-row .fx-col span:last-child').hasText(
         this.intl.t('upf_utils.product_row.option_selected', {
-          nameoption: this.selectedOption.name
+          optionName: this.selectedOption.name
         })
       );
     });
   });
 
   module('@onSelect parameter', function () {
-    test('if undefined,the select button is not display', async function (assert) {
+    test('if undefined,the select button is not displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-btn').doesNotExist();
     });
 
-    test('if it is porvided, the select button is displayed', async function (assert) {
+    test('if it is provided, the select button is displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onSelect={{this.onSelect}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-btn').exists();
       assert.dom('.product-row .fx-row .upf-btn').hasText(this.intl.t('upf_utils.product_row.button.select_label'));
     });
 
-    test('trigger the onSelect function when you click on select button', async function (assert) {
+    test('the @onSelect function is triggered when [Select] button has been pressed.', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onSelect={{this.onSelect}} />`);
       assert.dom('.product-row').exists();
       await click('.product-row .fx-row .upf-btn');
@@ -182,20 +182,20 @@ module('Integration | Component | utils/product-row', function (hooks) {
   });
 
   module('@onView parameter', function () {
-    test('if undefined,the view button is not display', async function (assert) {
+    test('if undefined, the view button is not displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-square-btn').doesNotExist();
     });
 
-    test('if it is porvided, the view button is displayed', async function (assert) {
+    test('if it is provided, the view button is displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onView={{this.onView}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-square-btn').exists();
       assert.dom('.product-row .fx-row .upf-square-btn i').hasClass('fa-eye');
     });
 
-    test('trigger the onView function when you click on view button', async function (assert) {
+    test('the @onView function is triggered when [View] button has been pressed.', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onView={{this.onView}} />`);
       assert.dom('.product-row').exists();
       await click('.product-row .fx-row .upf-square-btn');
@@ -204,20 +204,20 @@ module('Integration | Component | utils/product-row', function (hooks) {
   });
 
   module('@onEdit parameter', function () {
-    test('if undefined,the edit button is not display', async function (assert) {
+    test('if undefined, the edit button is not displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-square-btn').doesNotExist();
     });
 
-    test('if it is porvided, the edit button is displayed', async function (assert) {
+    test('if it is provided, the edit button is displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onEdit={{this.onEdit}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-square-btn').exists();
       assert.dom('.product-row .fx-row .upf-square-btn i').hasClass('fa-pencil');
     });
 
-    test('trigger the onEdit function when you click on edit button', async function (assert) {
+    test('the @onEdit function is triggered when [Edit] button has been pressed.', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onEdit={{this.onEdit}} />`);
       assert.dom('.product-row').exists();
       await click('.product-row .fx-row .upf-square-btn');
@@ -226,20 +226,20 @@ module('Integration | Component | utils/product-row', function (hooks) {
   });
 
   module('@onRemove parameter', function () {
-    test('if undefined,the remove button is not display', async function (assert) {
+    test('if undefined, the remove button is not displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-square-btn').doesNotExist();
     });
 
-    test('if it is porvided, the remove button is displayed', async function (assert) {
+    test('if it is provided, the remove button is displayed', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onRemove={{this.onRemove}} />`);
       assert.dom('.product-row').exists();
       assert.dom('.product-row .fx-row .upf-square-btn').exists();
       assert.dom('.product-row .fx-row .upf-square-btn i').hasClass('fa-trash');
     });
 
-    test('trigger the onRemove function when you click on remove button', async function (assert) {
+    test('the @onRemove function is triggered when [Remove] button has been pressed.', async function (assert) {
       await render(hbs`<Utils::ProductRow @contributionProduct={{this.product}} @onRemove={{this.onRemove}} />`);
       assert.dom('.product-row').exists();
       await click('.product-row .fx-row .upf-square-btn');

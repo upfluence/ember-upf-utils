@@ -1,19 +1,22 @@
 .product-row {
   .border;
   .bg-color-white;
-  border-radius: 8px 0px 0px 8px;
-  border-color: var(--color-gray-200);
+  border-radius: var(--border-radius-md);
+  border-color: var(--color-border-default);
+
   &--plain {
     background-color: var(--color-gray-50);
   }
+
   .product-image-container {
     width: 75px;
     height: 75px;
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: var(--border-radius-md) 0px 0px var(--border-radius-md);
     }
 
     &--default {
@@ -21,6 +24,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
       img {
         width: 35px;
         height: 35px;
@@ -28,14 +32,7 @@
     }
   }
 
-  .option-label {
-    color: var(--color-gray-500);
-  }
-
-  .upf-btn,.upf-square-btn {
-    border-color: var(--color-gray-200);
-  }
-  .fx-col {
+  .product-row-content {
     text-overflow: ellipsis;
     overflow: hidden;
     height: 75px;

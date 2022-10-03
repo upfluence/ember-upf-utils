@@ -11,10 +11,33 @@ type ButtonArgs = {
   function: any;
 };
 
+const BUTTON_ICON: { [index: string]: string } = {
+  onView: 'far fa-eye',
+  onEdit: 'far fa-pencil',
+  onSelect: '',
+  onRemove: 'far fa-trash'
+};
+
+const BUTTON_LABEL: { [index: string]: string } = {
+  onView: '',
+  onEdit: '',
+  onSelect: '',
+  onRemove: ''
+};
+
+const BUTTON_SQUARE: { [index: string]: boolean } = {
+  onView: true,
+  onEdit: true,
+  onSelect: false,
+  onRemove: true
+};
+
+const COMPONENT_EVENT = ['onView', 'onEdit', 'onRemove', 'onSelect'];
+
 interface UtilsProductRowArgs {
   contributionProduct: any;
   selected?: boolean;
-  plain?: boolean | undefined;
+  plain?: boolean;
   selectedOption?: any;
   onView?(product: any): any;
   onEdit?(product: any): any;
@@ -31,20 +54,21 @@ export default class extends Component<UtilsProductRowArgs> {
   constructor(owner: any, args: UtilsProductRowArgs) {
     super(owner, args);
     assert('[Utils::ProducRow] The @contributionProduct need to be provided', args.contributionProduct);
+    BUTTON_LABEL.onSelect = this.intl.t('upf_utils.product_row.button.select_label');
   }
 
   get productImageUrl(): string {
     return this.args.contributionProduct.providerProductImageUrl || DEFAULT_IMAGE_URL;
   }
 
-  get defaultImgClass(): boolean {
+  get isDefaultImg(): boolean {
     return this.productImageUrl === DEFAULT_IMAGE_URL || this.loadingImageError;
   }
 
-  get productOptionMessage(): string {
+  get productOptionLabel(): string {
     if (this.args.selectedOption) {
       return this.intl.t('upf_utils.product_row.option_selected', {
-        nameoption: this.args.selectedOption.name
+        optionName: this.args.selectedOption.name
       });
     }
     return this.args.contributionProduct.productOptions.length > 1
@@ -55,37 +79,20 @@ export default class extends Component<UtilsProductRowArgs> {
   }
 
   get displayButton(): ButtonArgs[] {
-    let displayedButton: ButtonArgs[] = [];
-    const viewButton: ButtonArgs = {
-      label: '',
-      icon: 'far fa-eye',
-      square: true,
-      function: this.args.onView
-    };
-    const editButton: ButtonArgs = {
-      label: '',
-      icon: 'far fa-pencil',
-      square: true,
-      function: this.args.onEdit
-    };
-    const removeButton: ButtonArgs = {
-      label: '',
-      icon: 'far fa-trash',
-      square: true,
-      function: this.args.onRemove
-    };
-    const selectedButton: ButtonArgs = {
-      label: this.intl.t('upf_utils.product_row.button.select_label'),
-      icon: '',
-      square: false,
-      function: this.args.onSelect
-    };
-    if (typeof this.args.onView === 'function') displayedButton.push(viewButton);
-    if (typeof this.args.onEdit === 'function') displayedButton.push(editButton);
-    if (typeof this.args.onRemove === 'function') displayedButton.push(removeButton);
-    if (typeof this.args.onSelect === 'function') displayedButton.push(selectedButton);
+    let displayedButtons: ButtonArgs[] = [];
+    COMPONENT_EVENT.forEach((methodArg: string) => {
+      if (typeof this.args[methodArg as keyof UtilsProductRowArgs] === 'function') {
+        displayedButtons.push(
+          this.createButtonArg(BUTTON_LABEL[methodArg], BUTTON_ICON[methodArg], BUTTON_SQUARE[methodArg], methodArg)
+        );
+      }
+    });
 
-    return displayedButton;
+    return displayedButtons;
+  }
+
+  createButtonArg(label: string, icon: string, square: boolean, callback: string): ButtonArgs {
+    return { label: label, icon: icon, square, function: this.args[callback as keyof UtilsProductRowArgs] };
   }
 
   @action
