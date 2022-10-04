@@ -9,6 +9,7 @@
   }
 
   .product-image-container {
+    border-right: 1px solid var(--color-border-default);
     width: 75px;
     height: 75px;
 
@@ -32,9 +33,12 @@
     }
   }
 
-  .product-row-content {
-    text-overflow: ellipsis;
+  .text-content-ellipsis {
     overflow: hidden;
-    height: 75px;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
 }

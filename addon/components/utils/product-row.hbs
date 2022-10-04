@@ -3,15 +3,16 @@
   <div class="product-image-container {{if this.isDefaultImg 'product-image-container--default'}}">
     <img src={{this.productImageUrl}} onerror={{this.imageLoadError}} />
   </div>
-  <div class="fx-col fx-gap-px-3 fx-1 product-row-content">
-    <span class="text-color-default text-size-5 text-style-semibold">{{@contributionProduct.name}}</span>
-    <span class="text-size-5 font-color-gray-500">{{this.productOptionLabel}}</span>
+  <div class="fx-col fx-malign-center fx-gap-px-3 fx-1">
+    <span class="text-color-default text-size-5 text-style-semibold text-content-ellipsis"
+          {{enable-tooltip title=@contributionProduct.name placement="top"}}>{{@contributionProduct.name}}</span>
+    <span class="text-size-5 font-color-gray-500 text-content-ellipsis">{{this.productOptionLabel}}</span>
   </div>
   <div class="fx-row fx-gap-px-9 fx-xalign-center">
     {{#if @selected}}
       <OSS::Tag @label={{t "upf_utils.product_row.tag.selected"}} @icon="far fa-check" />
     {{/if}}
-    {{#each this.buttonParams as |buttonParam|}}
+    {{#each this.displayButton as |buttonParam|}}
       <OSS::Button @size="md" @label={{buttonParam.label}} @icon={{buttonParam.icon}} @square={{buttonParam.square}}
                    {{on "click" (fn buttonParam.function @contributionProduct)}} />
     {{/each}}
