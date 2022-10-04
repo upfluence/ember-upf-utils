@@ -35,7 +35,7 @@ const BUTTON_SQUARE: { [index: string]: boolean } = {
 const COMPONENT_EVENT = ['onView', 'onEdit', 'onRemove', 'onSelect'];
 
 interface UtilsProductRowArgs {
-  contributionProduct: any;
+  product: any;
   selected?: boolean;
   plain?: boolean;
   selectedOption?: any;
@@ -53,12 +53,12 @@ export default class extends Component<UtilsProductRowArgs> {
 
   constructor(owner: any, args: UtilsProductRowArgs) {
     super(owner, args);
-    assert('[Utils::ProducRow] The @contributionProduct need to be provided', args.contributionProduct);
+    assert('[Utils::ProducRow] The @product need to be provided', args.product);
     BUTTON_LABEL.onSelect = this.intl.t('upf_utils.product_row.button.select_label');
   }
 
   get productImageUrl(): string {
-    return this.args.contributionProduct.imageUrl || DEFAULT_IMAGE_URL;
+    return this.args.product.imageUrl || DEFAULT_IMAGE_URL;
   }
 
   get isDefaultImg(): boolean {
@@ -71,9 +71,9 @@ export default class extends Component<UtilsProductRowArgs> {
         optionName: this.args.selectedOption.name
       });
     }
-    return this.args.contributionProduct.productOptions.length > 1
+    return this.args.product.productOptions.length > 1
       ? this.intl.t('upf_utils.product_row.product_options', {
-          nbProductOptions: this.args.contributionProduct.productOptions.length
+          nbProductOptions: this.args.product.productOptions.length
         })
       : '';
   }
