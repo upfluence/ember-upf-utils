@@ -1,4 +1,4 @@
-import LinkComponent from '@ember/routing/link-component';
+import LinkComponent from 'ember-engines/components/link-to-component';
 import { observer } from '@ember/object';
 import { run } from '@ember/runloop';
 import layout from './template';
