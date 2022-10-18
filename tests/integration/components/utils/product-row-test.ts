@@ -16,7 +16,11 @@ module('Integration | Component | utils/product-row', function (hooks) {
       name: 'Product test',
       price: 12.95,
       priceCurrency: 'USD',
-      productOptions: [{ name: 'Normal' }, { name: 'Large' }],
+      productOptions: [
+        { name: 'Normal', available: true },
+        { name: 'Medium', available: true },
+        { name: 'Large', available: false }
+      ],
       providerProductId: 4791551229996,
       imageUrl:
         'https://cdn.shopify.com/s/files/1/0363/6694/2252/products/Giorgio-Armani-Rouge-dArmani-Lipstick.jpg?v=1585157413'
@@ -35,11 +39,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
     assert.dom('.product-row .fx-col span:first-child').hasText(this.product.name);
 
     assert.dom('.product-row .fx-col span:last-child').exists();
-    assert
-      .dom('.product-row .fx-col span:last-child')
-      .hasText(
-        this.intl.t('upf_utils.product_row.product_options', { nbProductOptions: this.product.productOptions.length })
-      );
+    assert.dom('.product-row .fx-col span:last-child').hasText('2 options');
   });
 
   test('it throws an error if product is not provided', async function (assert) {
@@ -125,11 +125,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
       assert.dom('.product-row .fx-col span:first-child').hasText(this.product.name);
 
       assert.dom('.product-row .fx-col span:last-child').exists();
-      assert
-        .dom('.product-row .fx-col span:last-child')
-        .hasText(
-          this.intl.t('upf_utils.product_row.product_options', { nbProductOptions: this.product.productOptions.length })
-        );
+      assert.dom('.product-row .fx-col span:last-child').hasText('2 options');
     });
 
     test('if undefined and @product has no productOption, then it displays only the product name', async function (assert) {
@@ -145,9 +141,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
 
     test('if @selectedOption is provided, then it displays the name of the selected product option', async function (assert) {
       this.selectedOption = this.product.productOptions[0];
-      await render(
-        hbs`<Utils::ProductRow @product={{this.product}} @selectedOption={{this.selectedOption}} />`
-      );
+      await render(hbs`<Utils::ProductRow @product={{this.product}} @selectedOption={{this.selectedOption}} />`);
       assert.dom('.product-row').exists();
 
       assert.dom('.product-row .fx-col span:last-child').exists();
