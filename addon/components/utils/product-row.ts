@@ -72,9 +72,9 @@ export default class extends Component<UtilsProductRowArgs> {
       });
     }
 
-    return this.args.product.productOptions.filter((po) => po.available).length > 1
+    return this.args.product.productOptions.filter((po: any) => po.available).length > 1
       ? this.intl.t('upf_utils.product_row.product_options', {
-          nbProductOptions: this.args.product.productOptions.filter((po) => po.available).length
+          nbProductOptions: this.args.product.productOptions.filter((po: any) => po.available).length
         })
       : '';
   }
