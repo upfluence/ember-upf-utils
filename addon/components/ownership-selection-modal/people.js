@@ -15,6 +15,7 @@ export default Component.extend({
 
   availableUsers: [],
   items: [],
+  shareDependents: true,
 
   init() {
     this._super(...arguments);
@@ -88,9 +89,13 @@ export default Component.extend({
       this.currentUser
         .createCompositeGroup(this.selectedUsers)
         .then(({ composite }) => {
-          this.saveOwnership(composite.ownership);
+          this.saveOwnership(composite.ownership, this.displayDependentsSharing ? this.shareDependents : false);
         })
         .finally(() => this.set('updatingOwnership', false));
+    },
+
+    updateShareDependents(value) {
+      this.set('shareDependents', value);
     }
   }
 });

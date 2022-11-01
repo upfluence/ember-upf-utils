@@ -33,6 +33,8 @@ export default Component.extend({
     }
   }),
 
+  displayDependentsSharing: false,
+
   init() {
     this._super();
 
@@ -65,11 +67,13 @@ export default Component.extend({
       this.toast.success(this.successfulSharing, 'Sharing Success', this._toastConfig);
     },
 
-    saveOwnership(newOwnership) {
-      return this.ownershipUpdater.update(this.modelType, this.get('model.id'), newOwnership).then((entity) => {
-        this.model.set('ownedBy', entity[underscore(this.modelType)].owned_by);
-        this.send('performCloseModal');
-      });
+    saveOwnership(newOwnership, shareDependents = false) {
+      return this.ownershipUpdater
+        .update(this.modelType, this.get('model.id'), newOwnership, shareDependents)
+        .then((entity) => {
+          this.model.set('ownedBy', entity[underscore(this.modelType)].owned_by);
+          this.send('performCloseModal');
+        });
     }
   }
 });

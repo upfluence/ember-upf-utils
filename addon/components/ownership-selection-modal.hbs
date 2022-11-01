@@ -16,9 +16,13 @@
     </ul>
 
     {{#if this.peopleSelected}}
-      <OwnershipSelectionModal::People @entity={{this.model}} @saveOwnership={{action "saveOwnership"}} />
+      <OwnershipSelectionModal::People
+        @entity={{this.model}} @saveOwnership={{action "saveOwnership"}}
+        @displayDependentsSharing={{this.displayDependentsSharing}} />
     {{else}}
-      <OwnershipSelectionModal::Groups @entity={{this.model}} @saveOwnership={{action "saveOwnership"}} />
+      <OwnershipSelectionModal::Groups
+        @entity={{this.model}} @saveOwnership={{action "saveOwnership"}}
+        @displayDependentsSharing={{this.displayDependentsSharing}} />
     {{/if}}
   </OSS::Modal>
 {{/unless}}
