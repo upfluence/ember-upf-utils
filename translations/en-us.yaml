@@ -97,6 +97,7 @@ processed_features:
   tooltip_positive: Average influencer email response time
 ownership_selection:
   placeholder: Share with
+  share_mailings: Share access to campaign mailing templates
   tabs:
     groups: Groups
     people: People

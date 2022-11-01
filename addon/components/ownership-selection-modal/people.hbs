@@ -30,6 +30,18 @@
       </div>
     </div>
   {{/item-chooser}}
+
+  {{#if this.displayDependentsSharing}}
+    <hr class="margin-top-px-18 margin-bottom-px-18" />
+    <div class="fx-row fx-xalign-center fx-malign-space-between">
+      <span class="font-color-gray-500">
+        {{t "ownership_selection.share_mailings"}}
+      </span>
+
+      <OSS::ToggleSwitch
+        @value={{this.shareDependents}} @onChange={{action "updateShareDependents"}} />
+    </div>
+  {{/if}}
 </div>
 
 <div class="modal-footer">
