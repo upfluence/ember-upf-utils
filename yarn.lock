@@ -7215,7 +7215,7 @@ ember-cli-babel@^5.2.1:
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.2:
+ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.9.2:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.18.0.tgz#3f6435fd275172edeff2b634ee7b29ce74318957"
   integrity sha512-7ceC8joNYxY2wES16iIBlbPSxwKDBhYwC8drU3ZEvuPDMwVv1KzxCNu1fvxyFEBWhwaRNTUxSCsEVoTd9nosGA==
@@ -7342,16 +7342,6 @@ ember-cli-htmlbars@^2.0.1:
     broccoli-persistent-filter "^1.4.3"
     hash-for-dep "^1.2.3"
     json-stable-stringify "^1.0.0"
-    strip-bom "^3.0.0"
-
-ember-cli-htmlbars@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-3.1.0.tgz#87806c2a0bca2ab52d4fb8af8e2215c1ca718a99"
-  integrity sha512-cgvRJM73IT0aePUG7oQ/afB7vSRBV3N0wu9BrWhHX2zkR7A7cUBI7KC9VPk6tbctCXoM7BRGsCC4aIjF7yrfXA==
-  dependencies:
-    broccoli-persistent-filter "^2.3.1"
-    hash-for-dep "^1.5.1"
-    json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
 ember-cli-htmlbars@^4.0.0, ember-cli-htmlbars@^4.3.1:
@@ -7776,15 +7766,6 @@ ember-cli@~3.18.0:
     walk-sync "^2.0.2"
     watch-detector "^1.0.0"
     yam "^1.0.0"
-
-ember-collection@^1.0.0-alpha.9:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-collection/-/ember-collection-1.0.0.tgz#2ec570a49b70098ab68fbaaca940f9302b39af98"
-  integrity sha512-Yb7ZoPBc9rdDv1m72PDQeqbKzKVejAetkqRWUEXRa6tV75ud46ozGhX/1kyVJz2tNYL5XlgnqP8hg5UA9YNR0w==
-  dependencies:
-    ember-cli-babel "^7.7.3"
-    ember-cli-htmlbars "^3.0.1"
-    layout-bin-packer "^1.4.0"
 
 ember-compatibility-helpers@^1.1.1, ember-compatibility-helpers@^1.1.2:
   version "1.2.5"
@@ -11015,13 +10996,6 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-
-layout-bin-packer@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/layout-bin-packer/-/layout-bin-packer-1.5.0.tgz#2e950456083621fe01f82007d896294f5e31e89c"
-  integrity sha512-i0jmMwhB9SfPNoiMgZrjUiZoGY8TJzVrRAWuGnspEv4JJmULLEbAZ8VUwF9H9ITk2kzYR+tX5i1v/CMtxgpm4A==
-  dependencies:
-    ember-cli-babel "^6.8.2"
 
 lazy-cache@^1.0.3:
   version "1.0.4"
