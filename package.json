@@ -41,7 +41,7 @@
     "ember-cli-less": "^1.5.3",
     "ember-cli-typescript": "^4.2.1",
     "ember-collection": "^1.0.0-alpha.9",
-    "ember-cp-validations": "offirgolan/ember-cp-validations#master",
+    "ember-cp-validations": "4.0.0-beta.12",
     "ember-img-lazy": "^3.0.1",
     "ember-keyboard": "^6.0.2",
     "ember-named-blocks-polyfill": "^0.2.4",
