@@ -7215,7 +7215,7 @@ ember-cli-babel@^5.2.1:
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.2:
+ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.9.2:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.18.0.tgz#3f6435fd275172edeff2b634ee7b29ce74318957"
   integrity sha512-7ceC8joNYxY2wES16iIBlbPSxwKDBhYwC8drU3ZEvuPDMwVv1KzxCNu1fvxyFEBWhwaRNTUxSCsEVoTd9nosGA==
@@ -7234,7 +7234,7 @@ ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-c
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.0.0, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.13.2, ember-cli-babel@^7.22.1, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.10, ember-cli-babel@^7.26.11, ember-cli-babel@^7.26.4, ember-cli-babel@^7.26.6:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.13.2, ember-cli-babel@^7.22.1, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.11, ember-cli-babel@^7.26.4, ember-cli-babel@^7.26.6:
   version "7.26.11"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.26.11.tgz#50da0fe4dcd99aada499843940fec75076249a9f"
   integrity sha512-JJYeYjiz/JTn34q7F5DSOjkkZqy8qwFOOxXfE6pe9yEJqWGu4qErKxlz8I22JoVEQ/aBUO+OcKTpmctvykM9YA==
@@ -7342,16 +7342,6 @@ ember-cli-htmlbars@^2.0.1:
     broccoli-persistent-filter "^1.4.3"
     hash-for-dep "^1.2.3"
     json-stable-stringify "^1.0.0"
-    strip-bom "^3.0.0"
-
-ember-cli-htmlbars@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-3.1.0.tgz#87806c2a0bca2ab52d4fb8af8e2215c1ca718a99"
-  integrity sha512-cgvRJM73IT0aePUG7oQ/afB7vSRBV3N0wu9BrWhHX2zkR7A7cUBI7KC9VPk6tbctCXoM7BRGsCC4aIjF7yrfXA==
-  dependencies:
-    broccoli-persistent-filter "^2.3.1"
-    hash-for-dep "^1.5.1"
-    json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
 ember-cli-htmlbars@^4.0.0, ember-cli-htmlbars@^4.3.1:
@@ -7777,15 +7767,6 @@ ember-cli@~3.18.0:
     watch-detector "^1.0.0"
     yam "^1.0.0"
 
-ember-collection@^1.0.0-alpha.9:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-collection/-/ember-collection-1.0.0.tgz#2ec570a49b70098ab68fbaaca940f9302b39af98"
-  integrity sha512-Yb7ZoPBc9rdDv1m72PDQeqbKzKVejAetkqRWUEXRa6tV75ud46ozGhX/1kyVJz2tNYL5XlgnqP8hg5UA9YNR0w==
-  dependencies:
-    ember-cli-babel "^7.7.3"
-    ember-cli-htmlbars "^3.0.1"
-    layout-bin-packer "^1.4.0"
-
 ember-compatibility-helpers@^1.1.1, ember-compatibility-helpers@^1.1.2:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.5.tgz#b8363b1d5b8725afa9a4fe2b2986ac28626c6f23"
@@ -7828,13 +7809,14 @@ ember-concurrency-decorators@^2.0.0:
     ember-compatibility-helpers "^1.2.0"
     ember-destroyable-polyfill "^2.0.2"
 
-ember-cp-validations@offirgolan/ember-cp-validations#master:
+ember-cp-validations@4.0.0-beta.12:
   version "4.0.0-beta.12"
-  resolved "https://codeload.github.com/offirgolan/ember-cp-validations/tar.gz/85192540917c629b457ba2d6ec2a042bceb9de31"
+  resolved "https://registry.yarnpkg.com/ember-cp-validations/-/ember-cp-validations-4.0.0-beta.12.tgz#27c7e79e36194b8bb55c5c97421b2671f0abf58c"
+  integrity sha512-GHOJm2pjan4gOOBFecs7PdEf86vnWgTPCtfqwyqf3wlN0CihYf+mHZhjnnN6R1fnPDn+qLwByl6gJq7il115dw==
   dependencies:
-    ember-cli-babel "^7.26.10"
-    ember-require-module "^0.4.0"
-    ember-validators "^4.1.1"
+    ember-cli-babel "^7.1.2"
+    ember-require-module "^0.3.0"
+    ember-validators "^3.0.1"
 
 ember-data@~3.18.0:
   version "3.18.0"
@@ -8056,12 +8038,12 @@ ember-qunit@^5.1.5:
     silent-error "^1.1.1"
     validate-peer-dependencies "^1.2.0"
 
-ember-require-module@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-require-module/-/ember-require-module-0.4.0.tgz#2f86bae244f70c3d4cb8b9ef8abbd617e7a95218"
-  integrity sha512-P8q/F/DhEjVSNVdgbMctIZ4tEB1nTalPTd0ZrRxRYgiJE/g1B+eQ5z6GSCzxeeMFTJhVjvIRFtzlFUIRN+EDFQ==
+ember-require-module@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-require-module/-/ember-require-module-0.3.0.tgz#65aff7908b5b846467e4526594d33cfe0c23456b"
+  integrity sha512-rYN4YoWbR9VlJISSmx0ZcYZOgMcXZLGR7kdvp3zDerjIvYmHm/3p+K56fEAYmJILA6W4F+cBe41Tq2HuQAZizA==
   dependencies:
-    ember-cli-babel "^7.26.11"
+    ember-cli-babel "^6.9.2"
 
 ember-resolver@^8.0.0:
   version "8.0.3"
@@ -8301,13 +8283,13 @@ ember-uploader@^2.x:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-validators@^4.1.1:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-4.1.2.tgz#e70c0ac80f6b66c8288ffe5860c96e81bf621691"
-  integrity sha512-aNyJW52eWvWhdcRfnb0pGYSDuQU4i4XjA682aDG1ocmz7eUEDw7bXXvKEYGtVsPTtPLtUPvTtaH9mXKpMG+1xA==
+ember-validators@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-3.0.1.tgz#9e0f7ed4ce6817aa05f7d46e95a0267c03f1f043"
+  integrity sha512-GbvvECDG9N7U+4LXxPWNgiSnGbOzgvGBIxtS4kw2uyEIy7kymtgszhpSnm8lGMKYnhCKBqFingh8qnVKlCi0lg==
   dependencies:
-    "@embroider/macros" "^1.0.0"
-    ember-cli-babel "^7.26.11"
+    ember-cli-babel "^6.9.2"
+    ember-require-module "^0.3.0"
 
 emberx-select@^3.0.1:
   version "3.1.1"
@@ -11014,13 +10996,6 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-
-layout-bin-packer@^1.4.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/layout-bin-packer/-/layout-bin-packer-1.5.0.tgz#2e950456083621fe01f82007d896294f5e31e89c"
-  integrity sha512-i0jmMwhB9SfPNoiMgZrjUiZoGY8TJzVrRAWuGnspEv4JJmULLEbAZ8VUwF9H9ITk2kzYR+tX5i1v/CMtxgpm4A==
-  dependencies:
-    ember-cli-babel "^6.8.2"
 
 lazy-cache@^1.0.3:
   version "1.0.4"
