@@ -25,8 +25,7 @@ const ENTITIES_ICONS = {
   },
   acquisition_campaign: {
     type: 'upf-icon',
-    name: 'upf-icon--acquisition',
-    new: true
+    name: 'upf-icon--acquisition'
   }
 };
 
