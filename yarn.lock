@@ -7215,7 +7215,7 @@ ember-cli-babel@^5.2.1:
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.9.2:
+ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.18.0.tgz#3f6435fd275172edeff2b634ee7b29ce74318957"
   integrity sha512-7ceC8joNYxY2wES16iIBlbPSxwKDBhYwC8drU3ZEvuPDMwVv1KzxCNu1fvxyFEBWhwaRNTUxSCsEVoTd9nosGA==
@@ -7234,7 +7234,7 @@ ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-c
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.13.2, ember-cli-babel@^7.22.1, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.11, ember-cli-babel@^7.26.4, ember-cli-babel@^7.26.6:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.13.2, ember-cli-babel@^7.22.1, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.11, ember-cli-babel@^7.26.4, ember-cli-babel@^7.26.6:
   version "7.26.11"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.26.11.tgz#50da0fe4dcd99aada499843940fec75076249a9f"
   integrity sha512-JJYeYjiz/JTn34q7F5DSOjkkZqy8qwFOOxXfE6pe9yEJqWGu4qErKxlz8I22JoVEQ/aBUO+OcKTpmctvykM9YA==
@@ -7809,15 +7809,6 @@ ember-concurrency-decorators@^2.0.0:
     ember-compatibility-helpers "^1.2.0"
     ember-destroyable-polyfill "^2.0.2"
 
-ember-cp-validations@4.0.0-beta.12:
-  version "4.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/ember-cp-validations/-/ember-cp-validations-4.0.0-beta.12.tgz#27c7e79e36194b8bb55c5c97421b2671f0abf58c"
-  integrity sha512-GHOJm2pjan4gOOBFecs7PdEf86vnWgTPCtfqwyqf3wlN0CihYf+mHZhjnnN6R1fnPDn+qLwByl6gJq7il115dw==
-  dependencies:
-    ember-cli-babel "^7.1.2"
-    ember-require-module "^0.3.0"
-    ember-validators "^3.0.1"
-
 ember-data@~3.18.0:
   version "3.18.0"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-3.18.0.tgz#e7c27e311b62f986e55075dc61ca581e7c74a4d3"
@@ -8037,13 +8028,6 @@ ember-qunit@^5.1.5:
     resolve-package-path "^3.1.0"
     silent-error "^1.1.1"
     validate-peer-dependencies "^1.2.0"
-
-ember-require-module@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-require-module/-/ember-require-module-0.3.0.tgz#65aff7908b5b846467e4526594d33cfe0c23456b"
-  integrity sha512-rYN4YoWbR9VlJISSmx0ZcYZOgMcXZLGR7kdvp3zDerjIvYmHm/3p+K56fEAYmJILA6W4F+cBe41Tq2HuQAZizA==
-  dependencies:
-    ember-cli-babel "^6.9.2"
 
 ember-resolver@^8.0.0:
   version "8.0.3"
@@ -8282,14 +8266,6 @@ ember-uploader@^2.x:
   integrity sha512-TGj2BCUtbp+JvUG2mwMMi3uoDc951rc+JkLUak6QCMCkJ+t0x1rz05qBFaenpvd01N63IRSOH+X9X+MxXpVdIg==
   dependencies:
     ember-cli-babel "^6.6.0"
-
-ember-validators@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-3.0.1.tgz#9e0f7ed4ce6817aa05f7d46e95a0267c03f1f043"
-  integrity sha512-GbvvECDG9N7U+4LXxPWNgiSnGbOzgvGBIxtS4kw2uyEIy7kymtgszhpSnm8lGMKYnhCKBqFingh8qnVKlCi0lg==
-  dependencies:
-    ember-cli-babel "^6.9.2"
-    ember-require-module "^0.3.0"
 
 emberx-select@^3.0.1:
   version "3.1.1"
