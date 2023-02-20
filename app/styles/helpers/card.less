@@ -4,7 +4,7 @@
   display: block;
   padding: @padding-large-vertical @padding-large-horizontal;
   margin: @grid-gutter-width / 2;
-  border: 1px solid @another-other-grey;
+  border: 1px solid var(--color-border-default);
   background-color: white;
 
   .actions {
@@ -15,7 +15,7 @@
 
   &.errors,
   .errors {
-    color: @scarlet;
+    color: var(--color-error-500);
   }
 
   .content {
@@ -36,7 +36,7 @@
     h3,
     h4,
     h5 {
-      margin: 0px;
+      margin: 0;
     }
 
     img {
