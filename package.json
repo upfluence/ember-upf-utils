@@ -1,6 +1,6 @@
 {
   "name": "@upfluence/ember-upf-utils",
-  "version": "5.9.9",
+  "version": "5.9.10",
   "description": "The default blueprint for ember-cli addons.",
   "repository": "https://github.com/upfluence/ember-upf-utils",
   "license": "MIT",
