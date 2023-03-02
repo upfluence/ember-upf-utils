@@ -1,1 +1,1 @@
-export const GLOBAL_SUPPORT_LINK = 'https://upfluence.freshdesk.com/support/solutions';
+export const GLOBAL_SUPPORT_LINK = 'https://help.upfluence.co/en/';
