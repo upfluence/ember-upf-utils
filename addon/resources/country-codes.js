@@ -600,14 +600,6 @@ export default [
     name: 'Ethiopia'
   },
   {
-    id: 'EU',
-    alpha2: 'EU',
-    alpha3: '',
-    countryCallingCodes: ['388'],
-    currencies: ['EUR'],
-    name: 'European Union'
-  },
-  {
     id: 'FI',
     alpha2: 'FI',
     alpha3: 'FIN',
@@ -1717,14 +1709,6 @@ export default [
     countryCallingCodes: ['239'],
     currencies: ['STD'],
     name: 'Sao Tome And Principe'
-  },
-  {
-    id: 'SU',
-    alpha2: 'SU',
-    alpha3: '',
-    countryCallingCodes: ['7'],
-    currencies: ['RUB'],
-    name: 'USSR'
   },
   {
     id: 'SV',
