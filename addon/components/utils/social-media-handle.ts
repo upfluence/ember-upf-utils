@@ -6,7 +6,7 @@ import Component from '@glimmer/component';
 interface UtilsSocialMediaHandleArgs {
   socialNetwork: string;
   handle: string;
-  errorMessage: string;
+  errorMessage?: string;
   selectorOnly?: boolean;
   onChange(socialNetwork: string, handle: string, formattedUrl: string): void;
 }
