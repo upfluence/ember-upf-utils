@@ -1,5 +1,6 @@
-<div class="social-handle-container fx-1" ...attributes>
-  <div class="social-handle-input upf-input fx-row fx-1 fx-xalign-center">
+<div class="social-handle-container fx-col fx-1" ...attributes>
+  <div class="social-handle-input upf-input fx-row fx-1 fx-xalign-center
+                {{if @errorMessage 'social-handle-input--error'}}">
     <div class="{{if @selectorOnly 'selector-full-width'}} selector
                 fx-row fx-gap-px-12 fx-malign-space-between"
          role="button" {{on "click" this.toggleSelector}}>
@@ -34,5 +35,8 @@
         </div>
       </:option>
     </OSS::InfiniteSelect>
+  {{/if}}
+  {{#if @errorMessage}}
+    <span class="font-color-error-500 margin-top-px-6">{{@errorMessage}}</span>
   {{/if}}
 </div>
