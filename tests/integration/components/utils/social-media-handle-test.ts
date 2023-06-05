@@ -20,6 +20,14 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
     assert.dom('.social-handle-container').exists();
   });
 
+  test('If the @errorMessage parameter is filled, the message is displayed', async function (assert) {
+    await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @errorMessage="This is an error" />`);
+
+    assert.dom('.social-handle-container').exists();
+    assert.dom('.social-handle-input--error').exists();
+    assert.dom('.font-color-error-500').hasText('This is an error');
+  });
+
   module('Default mode', () => {
     module('Parameter verifications', () => {
       test('Not passing the @socialNetwork parameter preselects Instagram', async function (assert) {
