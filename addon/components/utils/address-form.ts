@@ -69,7 +69,7 @@ export default class extends Component<UtilsAddressFormArgs> {
 
   @action
   onPhoneNumberValidation(passes: boolean): void {
-    this.validPhoneNumber = passes;
+    this.validPhoneNumber = !isEmpty(this.phoneNumber) && passes;
     this.args.onChange(this.args.address, this._checkAddressValidity());
   }
 
