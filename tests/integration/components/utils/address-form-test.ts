@@ -154,7 +154,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       );
       await click('[data-control-name="address-form-country"] .upf-input');
       await click('[data-control-name="address-form-country"] .upf-infinite-select__item:nth-child(2)');
-      assert.dom('[data-control-name="address-form-state"] input').hasValue('groot');
+      assert.dom('[data-control-name="address-form-state"] input').hasValue('');
 
       assert.ok(this.onChange.lastCall.calledWith(this.address, true));
     });
