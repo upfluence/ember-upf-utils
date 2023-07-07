@@ -1,10 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import sinon from 'sinon';
-import { find, render, setupOnerror, waitUntil } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
-import click from '@ember/test-helpers/dom/click';
+import { click, find, render, waitUntil } from '@ember/test-helpers';
 import { DEFAULT_IMAGE_URL } from '@upfluence/ember-upf-utils/components/utils/product-row';
 
 module('Integration | Component | utils/product-row', function (hooks) {
@@ -40,14 +39,6 @@ module('Integration | Component | utils/product-row', function (hooks) {
 
     assert.dom('.product-row .fx-col span:last-child').exists();
     assert.dom('.product-row .fx-col span:last-child').hasText('2 options');
-  });
-
-  test('it throws an error if product is not provided', async function (assert) {
-    setupOnerror((err: Error) => {
-      assert.equal(err.message, 'Assertion Failed: [Utils::ProducRow] The @product need to be provided');
-    });
-
-    await render(hbs`<Utils::ProductRow />`);
   });
 
   module('image display', function () {

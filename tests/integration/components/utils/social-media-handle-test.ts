@@ -1,10 +1,9 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render, triggerKeyEvent } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 import typeIn from '@ember/test-helpers/dom/type-in';
 import click from '@ember/test-helpers/dom/click';
-import triggerKeyEvent from '@ember/test-helpers/dom/trigger-key-event';
 import sinon from 'sinon';
 
 module('Integration | Component | utils/social-media-handle', function (hooks) {
