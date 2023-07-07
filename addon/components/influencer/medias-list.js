@@ -1,9 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import layout from './template';
 
 export default Component.extend({
-  layout,
   classNames: ['__medias-list'],
 
   blog: computed('profile.blog.visits', function () {
@@ -18,7 +16,7 @@ export default Component.extend({
   facebook: computed('profile.facebook.fans', function () {
     return {
       type: 'facebook',
-      icon: 'facebook-official',
+      icon: 'facebook-f',
       communitySize: this.get('profile.facebook.fans'),
       communitySlug: 'fans'
     };
@@ -54,7 +52,7 @@ export default Component.extend({
   youtube: computed('profile.youtube.followers', function () {
     return {
       type: 'youtube',
-      icon: 'youtube-play',
+      icon: 'youtube',
       communitySize: this.get('profile.youtube.followers'),
       communitySlug: 'subscribers'
     };

@@ -1,9 +1,7 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import layout from './template';
 
 export default Component.extend({
-  layout,
   classNames: ['wrapped-text', 'profile-description__content--location', 'text-size-4', 'text-color-default-lighter'],
 
   /* eslint-disable no-useless-escape */

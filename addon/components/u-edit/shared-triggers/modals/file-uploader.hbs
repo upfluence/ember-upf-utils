@@ -15,7 +15,7 @@
       <br/>
 
       {{#if this.processing}}
-        <h4>{{t (concat "uedit_editor.toolbar." this.titleKey ".processing") filename=file.name}}</h4>
+        <h4>{{t (concat "uedit_editor.toolbar." this.titleKey ".processing") filename=this.file.name}}</h4>
       {{/if}}
 
       <div class={{if this.processing 'hidden'}}>
@@ -37,8 +37,8 @@
         <label>{{t (concat "uedit_editor.toolbar." this.titleKey ".processed_file.title")}}</label>
 
         <div class="file">
-          <div class="details">
-            <div><i class="fa fa-file-o text-size-7" /></div>
+          <div class="fx-row fx-gap-px-9 fx-xalign-center">
+            <OSS::Icon @icon="fa-file-alt" class="text-size-7" />
 
             <div>
               <span class="text-ellipsis-140">{{this.file.name}}</span>
@@ -46,7 +46,7 @@
           </div>
 
           <div class="status">
-            <i class="fa fa-check-circle text-color-success text-size-8" />
+            <OSS::Icon @icon="fa-check-circle" class="font-color-success-500 font-size-lg" />
           </div>
         </div>
       </div>
