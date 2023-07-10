@@ -1,8 +1,8 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
 import { click, fillIn, findAll, render, typeIn } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 
 module('Integration | Component | utils/address-form', function (hooks) {

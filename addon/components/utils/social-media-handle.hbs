@@ -5,12 +5,14 @@
                 fx-row fx-gap-px-12 fx-malign-space-between"
          role="button" {{on "click" this.toggleSelector}}>
       <div class="fx-row fx-xalign-center fx-gap-px-12">
-        <i class="fab fa-{{this.selectedNetwork.name}} font-color-{{this.selectedNetwork.name}}-500"></i>
+        <OSS::Icon
+				  @style="brand" @icon="fa-{{this.selectedNetwork.name}}" class="font-color-{{this.selectedNetwork.name}}-500" />
+
         {{#if @selectorOnly}}
           <span>{{t (concat "upf_utils.social_media_handle.networks." this.selectedNetwork.name)}}</span>
         {{/if}}
       </div>
-      <i class="far fa-chevron-{{if this.selectorShown 'up' 'down'}}"></i>
+      <OSS::Icon @icon={{if this.selectorShown "fa-chevron-up" "fa-chevron-down"}} />
     </div>
     {{#unless @selectorOnly}}
       <Input class="fx-1" type="text" @value={{this.handle}} autocomplete="off"
@@ -25,12 +27,13 @@
       <:option as |network|>
         <div class="fx-row fx-xalign-center fx-gap-px-9 margin-left-px-6
                     {{if (eq this.selectedNetwork network) 'row-selected'}}">
-          <i class="fx-basis-px-12 fab fa-{{network.name}} font-color-{{network.name}}-500"></i>
+					<OSS::Icon
+						@style="brand" @icon="fa-{{network.name}}" class="font-color-{{network.name}}-500" />
           <span class="symbol text-color-default-light fx-1">
             {{t (concat "upf_utils.social_media_handle.networks." network.name)}}
           </span>
           {{#if (eq this.selectedNetwork network)}}
-            <i class="far fa-check text-color-bright-purple padding-right-px-6"></i>
+            <OSS::Icon @icon="fa-check" class="font-color-primary-500 padding-right-px-6" />
           {{/if}}
         </div>
       </:option>

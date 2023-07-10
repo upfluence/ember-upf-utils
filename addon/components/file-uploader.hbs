@@ -1,6 +1,6 @@
 {{#if this._onUpload}}
   <div class="upload-progress-contianer">
-    <i class="fa fa-spinner fa-spin"></i> {{this.file.name}}
+    <OSS::Icon @icon="fa-spinner fa-spin" /> {{this.file.name}}
     {{#if this.useProgress}}
       <div class="upload-progress-bar">
         <div class="upload-progress" style="width: {{this._progress}}%"></div>
