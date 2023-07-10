@@ -2129,7 +2129,7 @@
   resolved "https://registry.yarnpkg.com/@types/ember__template/-/ember__template-3.16.3.tgz#8882313db36c3fd26855dcbee287f2195200c0d4"
   integrity sha512-gvyAS7rJiL5ynFnNwdYPWXvyY5C97Z/Z4W6BlSaKgXmMMu1UPb4T8+nsU10mLrSpnMoehLxenGoiHHzVzHAAyg==
 
-"@types/ember__test-helpers@*", "@types/ember__test-helpers@^2.6.1":
+"@types/ember__test-helpers@*":
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-2.9.1.tgz#1d804d1f0331a912aba450485571f9e79cb2931f"
   integrity sha512-KZ6jYr0ZiQHlklLcfyuy1j+FkvygEayf5mZ9FcaSOahw9ghK3K5TYSRDCuIBELRw//OB/WP9J7v9NduFRNfRgg==
