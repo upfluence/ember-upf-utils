@@ -1,5 +1,0 @@
-{{#x-select value=value default="USD" class='upf-select' action=(action "updateCurrency") as |xs|}}
-  {{#each isoCodes as |code|}}
-    {{#xs.option value=code}}{{code}}{{/xs.option}}
-  {{/each}}
-{{/x-select}}
