@@ -23,9 +23,8 @@ export default class extends Component<ComponentSignature> {
   constructor(owner: unknown, args: ComponentSignature) {
     super(owner, args);
 
-    let self = this;
     this.currentUser.fetch().then((user: any) => {
-      self.user = user;
+      this.user = user;
     });
   }
 
