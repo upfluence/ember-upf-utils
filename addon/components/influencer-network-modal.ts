@@ -16,7 +16,7 @@ interface ComponentSignature {
 export default class extends Component<ComponentSignature> {
   @service declare currentUser: any;
   @tracked user: any = null;
-  @tracked declare disableModal: boolean;
+  @tracked disableModal: boolean = false;
 
   localStorage = new UPFLocalStorage();
 
@@ -32,7 +32,6 @@ export default class extends Component<ComponentSignature> {
     return (
       !this.hasDisabledInfluencerNetworkModal &&
       !this.args.hideInfluencerNetworkModal &&
-      !this.disableModal &&
       this.user?.companies?.[0]?.billing_format !== 'bracket'
     );
   }
@@ -47,10 +46,9 @@ export default class extends Component<ComponentSignature> {
   }
 
   @action
-  dontShowInfluencerNetworkModal(disableModal: boolean): void {
-    this.disableModal = disableModal;
-
-    this.localStorage.saveItem(INFLUENCER_NETWORK_MODAL_STORAGE_KEY, disableModal ? 'true' : '');
+  dontShowInfluencerNetworkModal(value: boolean): void {
+    this.disableModal = value;
+    this.localStorage.saveItem(INFLUENCER_NETWORK_MODAL_STORAGE_KEY, value ? 'true' : '');
   }
 
   @action
