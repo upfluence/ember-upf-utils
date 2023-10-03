@@ -10,7 +10,7 @@ export default Component.extend({
   ageBracketValues: AUDIENCE_AGE_BRACKETS,
   attributeBindings: ['data-control-name'],
 
-  label: 'Age Bracket',
+  label: 'Age bracket',
   placeholder: '-',
   required: false,
   multiple: true,
