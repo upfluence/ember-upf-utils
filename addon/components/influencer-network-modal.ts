@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import UPFLocalStorage from '@upfluence/oss-components/utils/upf-local-storage';
 import { tracked } from '@glimmer/tracking';
-import { GLOBAL_SUPPORT_LINK } from '@upfluence/ember-upf-utils/resources/helpdesk-links';
+import { COMMUNITY_HELP_LINK } from '@upfluence/ember-upf-utils/resources/helpdesk-links';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
@@ -53,6 +53,6 @@ export default class extends Component<ComponentSignature> {
 
   @action
   openSupportLink(): void {
-    window.open(GLOBAL_SUPPORT_LINK, '_blank');
+    window.open(COMMUNITY_HELP_LINK, '_blank');
   }
 }
