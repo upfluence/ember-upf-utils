@@ -1,9 +1,0 @@
-{{#if this.url}}
-  <a href={{this.url}} target="_blank" rel="noopener noreferrer">{{this.cleanedValue}}</a>
-{{else}}
-  {{#if this.icon}}
-    <OSS::Icon @style="solid" @icon={{concat "fa-" this.icon}} />
-  {{/if}} {{if this.cleanedValue this.cleanedValue}}
-{{/if}}
-
-{{yield}}
