@@ -1,0 +1,38 @@
+.pac-container {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--box-shadow-md);
+  margin-top: var(--spacing-px-6);
+
+  &:after {
+    display: none;
+  }
+
+  .pac-item {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-400);
+    padding: var(--spacing-px-3) var(--spacing-px-12);
+    border: none;
+    gap: var(--spacing-px-6);
+  }
+
+  .pac-item-query {
+    color: var(--color-gray-600);
+  }
+
+  .pac-icon-marker {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 400;
+    margin: 0;
+    width: auto;
+    height: auto;
+    background-image: none;
+
+    &::before {
+      content: '\f3c5';
+    }
+  }
+}
