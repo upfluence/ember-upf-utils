@@ -30,6 +30,7 @@
     "node": "10.* || >= 12"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.2",
     "@upfluence/hyperevents": "^0.x",
     "@upfluence/oss-components": "^3.x",
     "calculate-cache-key-for-tree": "^2.0.0",

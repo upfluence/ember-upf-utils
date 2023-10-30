@@ -2,25 +2,21 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action, get, set } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+
+import { Loader } from '@googlemaps/js-api-loader';
 import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
 
 interface UtilsAddressFormArgs {
   address: any;
   usePhoneNumberInput: boolean;
+  hideNameAttrs?: boolean;
   onChange(address: any, isValid: boolean): void;
 }
 
 type ProvinceData = { code: string; name: string };
 
-const VALIDATED_ADDRESS_FIELDS: string[] = [
-  'firstName',
-  'lastName',
-  'address1',
-  'city',
-  'countryCode',
-  'zipcode',
-  'phone'
-];
+const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['address1', 'city', 'countryCode', 'zipcode', 'phone'];
+const EXTRA_VALIDATED_ADDRESS_FIELDS: string[] = ['firstName', 'lastName'];
 
 export default class extends Component<UtilsAddressFormArgs> {
   @tracked provincesForCountry: ProvinceData[] | null = null;
@@ -29,6 +25,10 @@ export default class extends Component<UtilsAddressFormArgs> {
 
   validPhoneNumber: boolean = true;
   countries = countries;
+  loader = new Loader({
+    apiKey: '',
+    version: 'weekly'
+  });
 
   @action
   selectCountryCode(code: { id: string }): void {
@@ -70,10 +70,14 @@ export default class extends Component<UtilsAddressFormArgs> {
   }
 
   private _checkAddressValidity(): boolean {
+    const validatedAddressFields = this.args.hideNameAttrs
+      ? BASE_VALIDATED_ADDRESS_FIELDS
+      : [...BASE_VALIDATED_ADDRESS_FIELDS, ...EXTRA_VALIDATED_ADDRESS_FIELDS];
+
     if (this.args.usePhoneNumberInput && !this.validPhoneNumber) return false;
     if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
 
-    return !VALIDATED_ADDRESS_FIELDS.some((addressAttr: string) => {
+    return !validatedAddressFields.some((addressAttr: string) => {
       const shortAddress = addressAttr === 'address1' ? (get(this.args.address, addressAttr) || '').length < 3 : false;
       const invalidCountryCode =
         addressAttr === 'countryCode' ? (get(this.args.address, addressAttr) || '').length > 2 : false;
