@@ -5,11 +5,13 @@ import { isEmpty } from '@ember/utils';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
+import { getOwner } from '@ember/application';
 
 interface UtilsAddressFormArgs {
   address: any;
   usePhoneNumberInput: boolean;
   hideNameAttrs?: boolean;
+  useGooglePlace?: boolean;
   onChange(address: any, isValid: boolean): void;
 }
 
@@ -26,9 +28,42 @@ export default class extends Component<UtilsAddressFormArgs> {
   validPhoneNumber: boolean = true;
   countries = countries;
   loader = new Loader({
-    apiKey: '',
+    apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
     version: 'weekly'
   });
+
+  get useGooglePlace(): boolean {
+    return this.args.useGooglePlace ?? true;
+  }
+
+  @action
+  onSetup() {
+    this.loader
+      .importLibrary('places')
+      .then(({ Autocomplete }) => {
+        const input = document.querySelector('[data-control-name="address-form-address1"]') as HTMLInputElement;
+        const options = {
+          fields: ['address_components'],
+          strictBounds: false,
+          types: ['address']
+        };
+
+        const autocomplete = new Autocomplete(input, options);
+
+        autocomplete.addListener('place_changed', () => {
+          const place = autocomplete.getPlace();
+          this.fillInAddress(place);
+        });
+        input.addEventListener('focusout', (event) => {
+          if ((<HTMLInputElement>event.target).value !== this.args.address.address1) {
+            (<HTMLInputElement>event.target).value = this.args.address.address1;
+          }
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
   @action
   selectCountryCode(code: { id: string }): void {
@@ -36,7 +71,7 @@ export default class extends Component<UtilsAddressFormArgs> {
   }
 
   @action
-  applyCountry(country: CountryData): void {
+  applyCountry(country: Partial<CountryData>): void {
     if (get(this.args.address, 'countryCode') !== country.alpha2) {
       set(this.args.address, 'state', '');
     }
@@ -86,5 +121,51 @@ export default class extends Component<UtilsAddressFormArgs> {
 
       return isEmpty(get(this.args.address, addressAttr)) || shortAddress || invalidCountryCode || invalidZipcode;
     });
+  }
+
+  private fillInAddress(place: any): void {
+    let address1: string = '';
+    let zipcode: string = '';
+    let city: string = '';
+
+    for (const component of place.address_components.reverse()) {
+      const componentType = component.types[0];
+
+      switch (componentType) {
+        case 'street_number': {
+          address1 = `${component.long_name} ${address1}`;
+          break;
+        }
+        case 'route': {
+          address1 += component.long_name;
+          break;
+        }
+        case 'postal_code': {
+          zipcode = `${component.long_name}${zipcode}`;
+          break;
+        }
+        case 'postal_code_suffix': {
+          zipcode = `${zipcode}-${component.long_name}`;
+          break;
+        }
+        case 'locality':
+        case 'postal_town':
+          city = component.long_name;
+          break;
+        case 'administrative_area_level_1': {
+          set(this.args.address, 'state', component.long_name || '');
+          break;
+        }
+        case 'country':
+          const selectedCountry = this.countries.find((c) => c.alpha2 === component.short_name);
+          this.applyCountry({ alpha2: component.short_name, provinces: selectedCountry!.provinces });
+          break;
+      }
+    }
+    set(this.args.address, 'address1', address1);
+    set(this.args.address, 'address2', '');
+    set(this.args.address, 'zipcode', zipcode);
+    set(this.args.address, 'city', city);
+    this.onFieldUpdate();
   }
 }

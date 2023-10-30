@@ -43,10 +43,15 @@
     <span class="font-size-md font-color-gray-500">
       {{t "upf_utils.address_form.line_1"}}
     </span>
-    <OSS::InputContainer
-      @value={{@address.address1}}
-      @onChange={{fn this.onFieldUpdate "address1"}}
-      data-control-name="address-form-address1" />
+    {{#if this.useGooglePlace}}
+      <Input @value={{@address.address1}} class="upf-input" {{on "keyup" (fn this.onFieldUpdate "address1")}}
+             data-control-name="address-form-address1" {{did-insert this.onSetup}} />
+    {{else}}
+      <OSS::InputContainer
+        @value={{@address.address1}}
+        @onChange={{fn this.onFieldUpdate "address1"}}
+        data-control-name="address-form-address1" />
+    {{/if}}
   </div>
 
   <div class="fx-col fx-gap-px-6">
