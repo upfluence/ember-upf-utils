@@ -30,6 +30,7 @@
     "node": "10.* || >= 12"
   },
   "dependencies": {
+    "@embroider/macros": "^1.7.1",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@upfluence/hyperevents": "^0.x",
     "@upfluence/oss-components": "^3.x",

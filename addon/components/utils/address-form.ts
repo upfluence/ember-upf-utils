@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action, get, set } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { isTesting } from '@embroider/macros';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
@@ -11,7 +12,7 @@ interface UtilsAddressFormArgs {
   address: any;
   usePhoneNumberInput: boolean;
   hideNameAttrs?: boolean;
-  useGooglePlace?: boolean;
+  useGoogleAutocomplete?: boolean;
   onChange(address: any, isValid: boolean): void;
 }
 
@@ -27,21 +28,23 @@ export default class extends Component<UtilsAddressFormArgs> {
 
   validPhoneNumber: boolean = true;
   countries = countries;
-  loader = new Loader({
-    apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
-    version: 'weekly'
-  });
 
-  get useGooglePlace(): boolean {
-    return this.args.useGooglePlace ?? true;
+  get useGoogleAutocomplete(): boolean {
+    return this.args.useGoogleAutocomplete ?? true;
   }
 
   @action
   onSetup() {
-    this.loader
+    if (isTesting()) return;
+    const loader = new Loader({
+      apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
+      version: 'weekly'
+    });
+
+    loader
       .importLibrary('places')
       .then(({ Autocomplete }) => {
-        const input = document.querySelector('[data-control-name="address-form-address1"]') as HTMLInputElement;
+        const input = document.querySelector('[data-control-name="address-form-address1"] input') as HTMLInputElement;
         const options = {
           fields: ['address_components'],
           strictBounds: false,

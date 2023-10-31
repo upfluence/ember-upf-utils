@@ -43,9 +43,11 @@
     <span class="font-size-md font-color-gray-500">
       {{t "upf_utils.address_form.line_1"}}
     </span>
-    {{#if this.useGooglePlace}}
-      <Input @value={{@address.address1}} class="upf-input" {{on "keyup" (fn this.onFieldUpdate "address1")}}
-             data-control-name="address-form-address1" {{did-insert this.onSetup}} />
+    {{#if this.useGoogleAutocomplete}}
+      <div class="fx-col google-autocomplete-input-container" data-control-name="address-form-address1">
+        <Input @value={{@address.address1}} class="upf-input" {{on "keyup" (fn this.onFieldUpdate "address1")}}
+               {{did-insert this.onSetup}} />
+      </div>
     {{else}}
       <OSS::InputContainer
         @value={{@address.address1}}
