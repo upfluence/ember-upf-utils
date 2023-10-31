@@ -24,7 +24,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
     this.onChange = sinon.stub();
   });
 
-  test('it renders and calls the onChange action when setting up the component', async function (assert) {
+  test('It renders and calls the onChange action when setting up the component', async function (assert) {
     await render(
       hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}}
                               @onChange={{this.onChange}} />`
@@ -44,8 +44,8 @@ module('Integration | Component | utils/address-form', function (hooks) {
     assert.ok(this.onChange.calledWith(this.address, true));
   });
 
-  module('phone number input', function () {
-    test('it displays the nice phone number input if the right arg is passed', async function (assert) {
+  module('Phone number input', function () {
+    test('It displays the nice phone number input if the right arg is passed', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}}
                                 @onChange={{this.onChange}} />`
@@ -53,7 +53,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.dom('[data-control-name="address-form-phone"]').hasClass('phone-number-container');
     });
 
-    test('it displays a basic input field for the phone number if the dedicated arg is falsy', async function (assert) {
+    test('It displays a basic input field for the phone number if the dedicated arg is falsy', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{false}} @useGoogleAutocomplete={{false}}
                                 @onChange={{this.onChange}} />`
@@ -208,8 +208,8 @@ module('Integration | Component | utils/address-form', function (hooks) {
     assert.dom('.google-autocomplete-input-container[data-control-name="address-form-address1"]').exists();
   });
 
-  module('when @hideNameAttrs is true', () => {
-    test('it hides the first name input', async function (assert) {
+  module('When @hideNameAttrs is true', () => {
+    test('It hides the first name input', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}}
                                 @hideNameAttrs={{true}} @onChange={{this.onChange}} />`
@@ -218,7 +218,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.dom('[data-control-name="address-form-first-name"] input').doesNotExist();
     });
 
-    test('it hides the last name input', async function (assert) {
+    test('It hides the last name input', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}}
                                 @hideNameAttrs={{true}} @onChange={{this.onChange}} />`
@@ -227,7 +227,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.dom('[data-control-name="address-form-last-name"] input').doesNotExist();
     });
 
-    test('when all are filled, the @onChange action is called with truthy validity', async function (assert) {
+    test('When all fields are filled, the @onChange action is called with truthy validity', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @hideNameAttrs={{true}}
                                 @onChange={{this.onChange}} />`
