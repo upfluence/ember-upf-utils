@@ -2375,6 +2375,11 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/google.maps@^3.54.6":
+  version "3.54.6"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.54.6.tgz#ec2f82126f0a23427d62c480198972996bca3dc6"
+  integrity sha512-cTGbsddDgEwZ/6xPywI7HKbeYJkfXFg92HdYnlE0HO3gT/030CVdUHLO2uQOkEo0YMp6TRPqTlAnRGNbQJu8vw==
+
 "@types/htmlbars-inline-precompile@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/htmlbars-inline-precompile/-/htmlbars-inline-precompile-3.0.0.tgz#4d3f19eeb2af9f4605620e13a566dae3952a4f68"
