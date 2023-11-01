@@ -45,6 +45,14 @@ module('Integration | Component | utils/address-form', function (hooks) {
   });
 
   module('Phone number input', function () {
+    test('It is hidden if @hidePhoneNumber is truthy', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @hidePhoneNumber={{true}} @useGoogleAutocomplete={{false}}
+                                @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-phone"]').doesNotExist();
+    });
+
     test('It displays the nice phone number input if the right arg is passed', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}}
@@ -134,6 +142,26 @@ module('Integration | Component | utils/address-form', function (hooks) {
       await click('[data-control-name="address-form-country"] .upf-infinite-select__item:nth-child(1)');
       await fillIn('[data-control-name="address-form-zipcode"] > input', '3920392');
       await fillIn('[data-control-name="address-form-phone"] > input', '+4153920392');
+      await click('[data-control-name="address-form-state"] .upf-input');
+      await click('[data-control-name="address-form-state"] .upf-infinite-select__item:nth-child(1)');
+
+      assert.ok(this.onChange.lastCall.calledWith(this.address, true));
+    });
+
+    test('when all fields are filled and @hidePhoneNumber is true, the onChange action is called with truthy validity', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @hidePhoneNumber={{true}}
+                                @onChange={{this.onChange}} />`
+      );
+
+      await fillIn('[data-control-name="address-form-first-name"] > input', 'John');
+      await fillIn('[data-control-name="address-form-last-name"] > input', 'Marston');
+      await fillIn('[data-control-name="address-form-address1"] > input', '12 Foo bar');
+      await fillIn('[data-control-name="address-form-address2"] > input', 'Apt B');
+      await fillIn('[data-control-name="address-form-city"] > input', 'Blackwater');
+      await click('[data-control-name="address-form-country"] .upf-input');
+      await click('[data-control-name="address-form-country"] .upf-infinite-select__item:nth-child(1)');
+      await fillIn('[data-control-name="address-form-zipcode"] > input', '3920392');
       await click('[data-control-name="address-form-state"] .upf-input');
       await click('[data-control-name="address-form-state"] .upf-infinite-select__item:nth-child(1)');
 

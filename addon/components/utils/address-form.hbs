@@ -23,21 +23,23 @@
     </div>
   {{/unless}}
 
-  <div class="fx-col fx-gap-px-6">
-    <span class="font-size-md font-color-gray-500">
-      {{t "upf_utils.address_form.phone_number"}}
-    </span>
-    {{#if @usePhoneNumberInput}}
-      <OSS::PhoneNumberInput
-        @prefix={{this.phoneNumberPrefix}}
-        @number={{this.phoneNumber}}
-        @onChange={{this.onPhoneNumberUpdate}}
-        @validates={{this.onPhoneNumberValidation}}
-        data-control-name="address-form-phone" />
-    {{else}}
-      <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
-    {{/if}}
-  </div>
+  {{#unless @hidePhoneNumber}}
+    <div class="fx-col fx-gap-px-6">
+      <span class="font-size-md font-color-gray-500">
+        {{t "upf_utils.address_form.phone_number"}}
+      </span>
+      {{#if @usePhoneNumberInput}}
+        <OSS::PhoneNumberInput
+          @prefix={{this.phoneNumberPrefix}}
+          @number={{this.phoneNumber}}
+          @onChange={{this.onPhoneNumberUpdate}}
+          @validates={{this.onPhoneNumberValidation}}
+          data-control-name="address-form-phone" />
+      {{else}}
+        <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
+      {{/if}}
+    </div>
+  {{/unless}}
 
   <div class="fx-col fx-gap-px-6">
     <span class="font-size-md font-color-gray-500">

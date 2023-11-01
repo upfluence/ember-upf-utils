@@ -10,8 +10,9 @@ import { CountryData, countries } from '@upfluence/oss-components/utils/country-
 
 interface UtilsAddressFormArgs {
   address: any;
-  usePhoneNumberInput: boolean;
+  usePhoneNumberInput?: boolean;
   hideNameAttrs?: boolean;
+  hidePhoneNumber?: boolean;
   useGoogleAutocomplete?: boolean;
   onChange(address: any, isValid: boolean): void;
 }
@@ -66,30 +67,30 @@ export default class extends Component<UtilsAddressFormArgs> {
 
     set(this.args.address, 'countryCode', country.alpha2);
     this.provincesForCountry = country.provinces ?? null;
-    this.args.onChange(this.args.address, this.checkAddressValidity());
+    this.args.onChange?.(this.args.address, this.checkAddressValidity());
   }
 
   @action
   applyProvince(province?: ProvinceData): void {
     set(this.args.address, 'state', province?.name || '');
-    this.args.onChange(this.args.address, this.checkAddressValidity());
+    this.args.onChange?.(this.args.address, this.checkAddressValidity());
   }
 
   @action
   onFieldUpdate(): void {
-    this.args.onChange(this.args.address, this.checkAddressValidity());
+    this.args.onChange?.(this.args.address, this.checkAddressValidity());
   }
 
   @action
   onPhoneNumberUpdate(prefix: string, number: number): void {
     set(this.args.address, 'phone', prefix + number);
-    this.args.onChange(this.args.address, this.checkAddressValidity());
+    this.args.onChange?.(this.args.address, this.checkAddressValidity());
   }
 
   @action
   onPhoneNumberValidation(passes: boolean): void {
     this.validPhoneNumber = !isEmpty(this.phoneNumber) && passes;
-    this.args.onChange(this.args.address, this.checkAddressValidity());
+    this.args.onChange?.(this.args.address, this.checkAddressValidity());
   }
 
   private checkAddressValidity(): boolean {
@@ -97,7 +98,7 @@ export default class extends Component<UtilsAddressFormArgs> {
       ? BASE_VALIDATED_ADDRESS_FIELDS
       : [...BASE_VALIDATED_ADDRESS_FIELDS, ...EXTRA_VALIDATED_ADDRESS_FIELDS];
 
-    if (this.args.usePhoneNumberInput && !this.validPhoneNumber) return false;
+    if (!this.args.hidePhoneNumber && this.args.usePhoneNumberInput && !this.validPhoneNumber) return false;
     if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
 
     return !validatedAddressFields.some((addressAttr: string) => {
