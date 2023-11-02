@@ -98,6 +98,7 @@ export default class extends Component<UtilsProductRowArgs> {
 
   @action
   imageLoadError(event: Event): void {
+    if ((<HTMLImageElement>event.target).src.includes(DEFAULT_IMAGE_URL)) return;
     (<HTMLImageElement>event.target).src = DEFAULT_IMAGE_URL;
     this.loadingImageError = true;
   }

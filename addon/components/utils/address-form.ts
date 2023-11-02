@@ -18,6 +18,9 @@ interface UtilsAddressFormArgs {
 }
 
 type ProvinceData = { code: string; name: string };
+type GAddressComponent = google.maps.GeocoderAddressComponent;
+type GPlaceResult = google.maps.places.PlaceResult;
+type GAutoComplete = google.maps.places.Autocomplete;
 
 const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['address1', 'city', 'countryCode', 'zipcode', 'phone'];
 const EXTRA_VALIDATED_ADDRESS_FIELDS: string[] = ['firstName', 'lastName'];
@@ -112,7 +115,7 @@ export default class extends Component<UtilsAddressFormArgs> {
     });
   }
 
-  private initInputListeners(autocomplete: google.maps.places.Autocomplete, input: HTMLElement): void {
+  private initInputListeners(autocomplete: GAutoComplete, input: HTMLElement): void {
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       this.fillInAddress(place);
@@ -124,43 +127,31 @@ export default class extends Component<UtilsAddressFormArgs> {
     });
   }
 
-  private fillInAddress(place: google.maps.places.PlaceResult): void {
+  private fillInAddress(place: GPlaceResult): void {
     let address1: string = '';
     let zipcode: string = '';
     let city: string = '';
+    // prettier-ignore
+    const mapper: { [key: string]: (comp: GAddressComponent) => void } = {
+      street_number: (comp) => { address1 = `${comp.long_name} ${address1}` },
+      route: (comp) => { address1 += comp.long_name },
+      postal_code: (comp) => { zipcode = `${comp.long_name}${zipcode}` },
+      postal_code_suffix: (comp) => { zipcode = `${zipcode}-${comp.long_name}` },
+      locality: (comp) => { city = comp.long_name },
+      postal_town: (comp) => { city = comp.long_name },
+      administrative_area_level_1: (comp) => { set(this.args.address, 'state', comp.long_name || '') },
+      country: (comp) => {
+        const selectedCountry = this.countries.find((country) => country.alpha2 === comp.short_name);
+
+        if (!selectedCountry) return;
+        this.applyCountry(selectedCountry);
+      }
+    };
 
     place.address_components!.reverse().map((component) => {
       const componentType: string = component.types[0];
-      const mapper: { [key: string]: () => void } = {
-        street_number: () => {
-          address1 = `${component.long_name} ${address1}`;
-        },
-        route: () => {
-          address1 += component.long_name;
-        },
-        postal_code: () => {
-          zipcode = `${component.long_name}${zipcode}`;
-        },
-        postal_code_suffix: () => {
-          zipcode = `${zipcode}-${component.long_name}`;
-        },
-        locality: () => {
-          city = component.long_name;
-        },
-        postal_town: () => {
-          city = component.long_name;
-        },
-        administrative_area_level_1: () => {
-          set(this.args.address, 'state', component.long_name || '');
-        },
-        country: () => {
-          const selectedCountry = this.countries.find((c) => c.alpha2 === component.short_name);
 
-          if (!selectedCountry) return;
-          this.applyCountry(selectedCountry);
-        }
-      };
-      mapper[componentType]?.();
+      mapper[componentType]?.(component);
     });
 
     set(this.args.address, 'address1', address1);
