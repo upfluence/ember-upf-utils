@@ -14,6 +14,7 @@ interface UtilsAddressFormArgs {
   hideNameAttrs?: boolean;
   hidePhoneNumber?: boolean;
   useGoogleAutocomplete?: boolean;
+  addressKey?: AddressKey;
   onChange(address: any, isValid: boolean): void;
 }
 
@@ -21,8 +22,9 @@ type ProvinceData = { code: string; name: string };
 type GAddressComponent = google.maps.GeocoderAddressComponent;
 type GPlaceResult = google.maps.places.PlaceResult;
 type GAutoComplete = google.maps.places.Autocomplete;
+type AddressKey = 'address' | 'line';
 
-const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['address1', 'city', 'countryCode', 'zipcode', 'phone'];
+const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['city', 'countryCode', 'zipcode', 'phone'];
 const EXTRA_VALIDATED_ADDRESS_FIELDS: string[] = ['firstName', 'lastName'];
 
 export default class extends Component<UtilsAddressFormArgs> {
@@ -31,7 +33,14 @@ export default class extends Component<UtilsAddressFormArgs> {
   @tracked phoneNumber: string = '';
 
   validPhoneNumber: boolean = true;
-  countries = countries;
+  countries: CountryData[] = countries;
+  addressKey: AddressKey = 'address';
+
+  constructor(owner: unknown, args: UtilsAddressFormArgs) {
+    super(owner, args);
+    if (args.addressKey) this.addressKey = args.addressKey;
+    BASE_VALIDATED_ADDRESS_FIELDS.push(`${this.addressKey}1`);
+  }
 
   get useGoogleAutocomplete(): boolean {
     return this.args.useGoogleAutocomplete ?? true;
@@ -105,7 +114,8 @@ export default class extends Component<UtilsAddressFormArgs> {
     if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
 
     return !validatedAddressFields.some((addressAttr: string) => {
-      const shortAddress = addressAttr === 'address1' ? (get(this.args.address, addressAttr) || '').length < 3 : false;
+      const shortAddress =
+        addressAttr === `${this.addressKey}1` ? (get(this.args.address, addressAttr) || '').length < 3 : false;
       const invalidCountryCode =
         addressAttr === 'countryCode' ? (get(this.args.address, addressAttr) || '').length > 2 : false;
       const invalidZipcode =
@@ -121,8 +131,8 @@ export default class extends Component<UtilsAddressFormArgs> {
       this.fillInAddress(place);
     });
     input.addEventListener('focusout', (event) => {
-      if ((<HTMLInputElement>event.target).value !== this.args.address.address1) {
-        (<HTMLInputElement>event.target).value = this.args.address.address1;
+      if ((<HTMLInputElement>event.target).value !== this.args.address[`${this.addressKey}1`]) {
+        (<HTMLInputElement>event.target).value = this.args.address[`${this.addressKey}1`];
       }
     });
   }
@@ -154,8 +164,8 @@ export default class extends Component<UtilsAddressFormArgs> {
       mapper[componentType]?.(component);
     });
 
-    set(this.args.address, 'address1', address1);
-    set(this.args.address, 'address2', '');
+    set(this.args.address, `${this.addressKey}1`, address1);
+    set(this.args.address, `${this.addressKey}2`, '');
     set(this.args.address, 'zipcode', zipcode);
     set(this.args.address, 'city', city);
     this.onFieldUpdate();

@@ -1,6 +1,6 @@
 <div class="fx-col fx-gap-px-12 margin-px-30">
   <Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{false}} @hideNameAttrs={{false}} @useGoogleAutocomplete={{true}}
-                      @onChange={{this.onChange}} />
+                      @onChange={{this.onChange}} @addressKey="line" />
   <Utils::SocialMediaHandle @handle="nomad.technologies" @socialNetwork="instagram" @errorMessage="This is an error"
                             @onChange={{this.onSocialMediaHandlerChanged}} @selectorOnly={{false}} />
 </div>

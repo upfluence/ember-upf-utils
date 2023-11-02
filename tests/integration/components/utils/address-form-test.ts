@@ -274,4 +274,32 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.ok(this.onChange.lastCall.calledWith(this.address, true));
     });
   });
+
+  module('When @addressKey is defined', (hooks) => {
+    hooks.beforeEach(function () {
+      this.address = EmberObject.create({
+        firstName: 'iam',
+        lastName: 'groot',
+        line1: 'iam',
+        line2: 'groot',
+        city: 'foo',
+        state: 'groot',
+        countryCode: 'US',
+        zipcode: 'iam',
+        phone: '+3348408934'
+      });
+    });
+
+    test('The address line is correctly update', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @hideNameAttrs={{true}}
+                                @onChange={{this.onChange}} @addressKey="line" />`
+      );
+      await fillIn('[data-control-name="address-form-address1"] > input', '12 Foo bar');
+      await fillIn('[data-control-name="address-form-address2"] > input', 'Apt B');
+
+      assert.equal(this.address.line1, '12 Foo bar');
+      assert.equal(this.address.line2, 'Apt B');
+    });
+  });
 });
