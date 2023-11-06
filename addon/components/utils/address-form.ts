@@ -50,7 +50,7 @@ export default class extends Component<UtilsAddressFormArgs> {
   @action
   initAutoCompletion(): void {
     if (isTesting()) return;
-    this.addObserverAutoCompletion();
+    this.appendContainerLocally();
     const loader = new Loader({
       apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
       version: 'weekly'
@@ -202,7 +202,7 @@ export default class extends Component<UtilsAddressFormArgs> {
     }
   }
 
-  private addObserverAutoCompletion(): void {
+  private appendContainerLocally(): void {
     const observer = new MutationObserver((mutationList: any) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
