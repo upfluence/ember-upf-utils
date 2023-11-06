@@ -90,6 +90,7 @@
         <OSS::InputContainer
           @value={{@address.state}}
           @onChange={{fn this.onFieldUpdate "state"}}
+          @placeholder={{t "upf_utils.address_form.placeholder.state"}}
           data-control-name="address-form-state" />
       {{/if}}
     </div>
@@ -103,6 +104,7 @@
       <OSS::InputContainer
         @value={{@address.city}}
         @onChange={{fn this.onFieldUpdate "city"}}
+        @placeholder={{t "upf_utils.address_form.placeholder.city"}}
         data-control-name="address-form-city" />
     </div>
 
@@ -113,6 +115,7 @@
       <OSS::InputContainer
         @value={{@address.zipcode}}
         @onChange={{fn this.onFieldUpdate "zipcode"}}
+        @placeholder={{t "upf_utils.address_form.placeholder.postal_code"}}
         data-control-name="address-form-zipcode" />
     </div>
   </div>

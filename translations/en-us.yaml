@@ -9,6 +9,10 @@ upf_utils:
     country: Country*
     postal_code: Postal Code*
     phone_number: Phone Number*
+    placeholder:
+      state: Enter state or province
+      postal_code: Enter postal code
+      city: Enter city
   social_media_handle:
     input_placeholder: "@Handle or account URL"
     networks:
