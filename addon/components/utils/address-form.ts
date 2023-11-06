@@ -24,7 +24,7 @@ type GPlaceResult = google.maps.places.PlaceResult;
 type GAutoComplete = google.maps.places.Autocomplete;
 type AddressKey = 'address' | 'line';
 
-const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['city', 'countryCode', 'zipcode', 'phone'];
+const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['city', 'countryCode', 'zipcode'];
 const EXTRA_VALIDATED_ADDRESS_FIELDS: string[] = ['firstName', 'lastName'];
 
 export default class extends Component<UtilsAddressFormArgs> {
@@ -35,11 +35,12 @@ export default class extends Component<UtilsAddressFormArgs> {
   validPhoneNumber: boolean = true;
   countries: CountryData[] = countries;
   addressKey: AddressKey = 'address';
+  validatedAddressFields = BASE_VALIDATED_ADDRESS_FIELDS;
 
   constructor(owner: unknown, args: UtilsAddressFormArgs) {
     super(owner, args);
     if (args.addressKey) this.addressKey = args.addressKey;
-    BASE_VALIDATED_ADDRESS_FIELDS.push(`${this.addressKey}1`);
+    this.validatedAddressFieldsHandler();
   }
 
   get useGoogleAutocomplete(): boolean {
@@ -106,14 +107,10 @@ export default class extends Component<UtilsAddressFormArgs> {
   }
 
   private checkAddressValidity(): boolean {
-    const validatedAddressFields = this.args.hideNameAttrs
-      ? BASE_VALIDATED_ADDRESS_FIELDS
-      : [...BASE_VALIDATED_ADDRESS_FIELDS, ...EXTRA_VALIDATED_ADDRESS_FIELDS];
-
-    if (!this.args.hidePhoneNumber && this.args.usePhoneNumberInput && !this.validPhoneNumber) return false;
     if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
 
-    return !validatedAddressFields.some((addressAttr: string) => {
+    return !this.validatedAddressFields.some((addressAttr: string) => {
+      const invalidPhone = addressAttr === 'phone' ? this.args.usePhoneNumberInput && !this.validPhoneNumber : false;
       const shortAddress =
         addressAttr === `${this.addressKey}1` ? (get(this.args.address, addressAttr) || '').length < 3 : false;
       const invalidCountryCode =
@@ -121,7 +118,13 @@ export default class extends Component<UtilsAddressFormArgs> {
       const invalidZipcode =
         addressAttr === 'zipcode' ? (get(this.args.address, addressAttr) || '').length > 255 : false;
 
-      return isEmpty(get(this.args.address, addressAttr)) || shortAddress || invalidCountryCode || invalidZipcode;
+      return (
+        isEmpty(get(this.args.address, addressAttr)) ||
+        shortAddress ||
+        invalidCountryCode ||
+        invalidZipcode ||
+        invalidPhone
+      );
     });
   }
 
@@ -141,15 +144,29 @@ export default class extends Component<UtilsAddressFormArgs> {
     let address1: string = '';
     let zipcode: string = '';
     let city: string = '';
-    // prettier-ignore
+
     const mapper: { [key: string]: (comp: GAddressComponent) => void } = {
-      street_number: (comp) => { address1 = `${comp.long_name} ${address1}` },
-      route: (comp) => { address1 += comp.long_name },
-      postal_code: (comp) => { zipcode = `${comp.long_name}${zipcode}` },
-      postal_code_suffix: (comp) => { zipcode = `${zipcode}-${comp.long_name}` },
-      locality: (comp) => { city = comp.long_name },
-      postal_town: (comp) => { city = comp.long_name },
-      administrative_area_level_1: (comp) => { set(this.args.address, 'state', comp.long_name || '') },
+      street_number: (comp) => {
+        address1 = `${comp.long_name} ${address1}`;
+      },
+      route: (comp) => {
+        address1 += comp.long_name;
+      },
+      postal_code: (comp) => {
+        zipcode = `${comp.long_name}${zipcode}`;
+      },
+      postal_code_suffix: (comp) => {
+        zipcode = `${zipcode}-${comp.long_name}`;
+      },
+      locality: (comp) => {
+        city = comp.long_name;
+      },
+      postal_town: (comp) => {
+        city = comp.long_name;
+      },
+      administrative_area_level_1: (comp) => {
+        set(this.args.address, 'state', comp.long_name || '');
+      },
       country: (comp) => {
         const selectedCountry = this.countries.find((country) => country.alpha2 === comp.short_name);
 
@@ -169,5 +186,17 @@ export default class extends Component<UtilsAddressFormArgs> {
     set(this.args.address, 'zipcode', zipcode);
     set(this.args.address, 'city', city);
     this.onFieldUpdate();
+  }
+
+  private validatedAddressFieldsHandler(): void {
+    this.validatedAddressFields.push(`${this.addressKey}1`);
+
+    if (!this.args.hidePhoneNumber) {
+      this.validatedAddressFields.push('phone');
+    }
+
+    if (!this.args.hideNameAttrs) {
+      this.validatedAddressFields = [...this.validatedAddressFields, ...EXTRA_VALIDATED_ADDRESS_FIELDS];
+    }
   }
 }
