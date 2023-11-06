@@ -149,6 +149,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('when all fields are filled and @hidePhoneNumber is true, the onChange action is called with truthy validity', async function (assert) {
+      this.address.phone = null;
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @hidePhoneNumber={{true}}
                                 @onChange={{this.onChange}} />`
