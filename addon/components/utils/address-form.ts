@@ -35,7 +35,7 @@ export default class extends Component<UtilsAddressFormArgs> {
   validPhoneNumber: boolean = true;
   countries: CountryData[] = countries;
   addressKey: AddressKey = 'address';
-  validatedAddressFields = BASE_VALIDATED_ADDRESS_FIELDS;
+  validatedAddressFields = [...BASE_VALIDATED_ADDRESS_FIELDS];
 
   constructor(owner: unknown, args: UtilsAddressFormArgs) {
     super(owner, args);
@@ -110,7 +110,8 @@ export default class extends Component<UtilsAddressFormArgs> {
     if (!isEmpty(this.provincesForCountry) && isEmpty(get(this.args.address, 'state'))) return false;
 
     return !this.validatedAddressFields.some((addressAttr: string) => {
-      const invalidPhone = addressAttr === 'phone' ? this.args.usePhoneNumberInput && !this.validPhoneNumber : false;
+      const invalidPhone =
+        addressAttr === 'phone' ? Boolean(this.args.usePhoneNumberInput) && !this.validPhoneNumber : false;
       const shortAddress =
         addressAttr === `${this.addressKey}1` ? (get(this.args.address, addressAttr) || '').length < 3 : false;
       const invalidCountryCode =
@@ -196,7 +197,7 @@ export default class extends Component<UtilsAddressFormArgs> {
     }
 
     if (!this.args.hideNameAttrs) {
-      this.validatedAddressFields = [...this.validatedAddressFields, ...EXTRA_VALIDATED_ADDRESS_FIELDS];
+      this.validatedAddressFields = this.validatedAddressFields.concat(EXTRA_VALIDATED_ADDRESS_FIELDS);
     }
   }
 }
