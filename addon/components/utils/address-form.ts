@@ -50,6 +50,7 @@ export default class extends Component<UtilsAddressFormArgs> {
   @action
   initAutoCompletion(): void {
     if (isTesting()) return;
+    this.addObserverAutoCompletion();
     const loader = new Loader({
       apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
       version: 'weekly'
@@ -65,11 +66,6 @@ export default class extends Component<UtilsAddressFormArgs> {
       const autocomplete = new Autocomplete(input, options);
       this.initInputListeners(autocomplete, input);
     });
-  }
-
-  @action
-  destroyAutoCompletion(): void {
-    document.querySelector('.pac-container')?.remove();
   }
 
   @action
@@ -204,5 +200,20 @@ export default class extends Component<UtilsAddressFormArgs> {
     if (!this.args.hideNameAttrs) {
       this.validatedAddressFields = this.validatedAddressFields.concat(EXTRA_VALIDATED_ADDRESS_FIELDS);
     }
+  }
+
+  private addObserverAutoCompletion(): void {
+    const observer = new MutationObserver((mutationList: any) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === 'childList') {
+          const pacContainer = mutation.addedNodes[0];
+          if (!pacContainer.classList.contains('pac-container')) return;
+
+          document.querySelector('[data-control-name="address-form-address1"]')?.append(pacContainer);
+          observer.disconnect();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true });
   }
 }

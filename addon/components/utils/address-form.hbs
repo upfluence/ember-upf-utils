@@ -48,7 +48,7 @@
     {{#if this.useGoogleAutocomplete}}
       <div class="fx-col google-autocomplete-input-container" data-control-name="address-form-address1">
         <Input @value={{get @address (concat this.addressKey "1")}} class="upf-input" {{on "keyup" (fn this.onFieldUpdate (concat this.addressKey "1"))}}
-               {{did-insert this.initAutoCompletion}} {{will-destroy this.destroyAutoCompletion}} />
+               {{did-insert this.initAutoCompletion}} />
       </div>
     {{else}}
       <OSS::InputContainer
