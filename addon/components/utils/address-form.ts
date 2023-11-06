@@ -68,6 +68,11 @@ export default class extends Component<UtilsAddressFormArgs> {
   }
 
   @action
+  destroyAutoCompletion(): void {
+    document.querySelector('.pac-container')?.remove();
+  }
+
+  @action
   selectCountryCode(code: { id: string }): void {
     set(this.args.address, 'countryCode', code.id);
   }
