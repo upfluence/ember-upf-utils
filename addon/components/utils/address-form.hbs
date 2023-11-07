@@ -8,6 +8,7 @@
         <OSS::InputContainer
           @value={{@address.firstName}}
           @onChange={{fn this.onFieldUpdate "firstName"}}
+          @placeholder={{t "upf_utils.address_form.placeholder.first_name"}}
           data-control-name="address-form-first-name" />
       </div>
 
@@ -18,6 +19,7 @@
         <OSS::InputContainer
           @value={{@address.lastName}}
           @onChange={{fn this.onFieldUpdate "lastName"}}
+          @placeholder={{t "upf_utils.address_form.placeholder.last_name"}}
           data-control-name="address-form-last-name" />
       </div>
     </div>
@@ -36,7 +38,8 @@
           @validates={{this.onPhoneNumberValidation}}
           data-control-name="address-form-phone" />
       {{else}}
-        <OSS::InputContainer @value={{@address.phone}} data-control-name="address-form-phone" />
+        <OSS::InputContainer @value={{@address.phone}} @placeholder={{t "upf_utils.address_form.placeholder.phone"}}
+                             data-control-name="address-form-phone" />
       {{/if}}
     </div>
   {{/unless}}
@@ -48,12 +51,13 @@
     {{#if this.useGoogleAutocomplete}}
       <div class="fx-col google-autocomplete-input-container" data-control-name="address-form-address1">
         <Input @value={{get @address (concat this.addressKey "1")}} class="upf-input" {{on "keyup" (fn this.onFieldUpdate (concat this.addressKey "1"))}}
-               {{did-insert this.initAutoCompletion}} />
+               @placeholder={{t "upf_utils.address_form.placeholder.line1"}} {{did-insert this.initAutoCompletion}} />
       </div>
     {{else}}
       <OSS::InputContainer
         @value={{get @address (concat this.addressKey "1")}}
         @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
+        @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
         data-control-name="address-form-address1" />
     {{/if}}
   </div>
@@ -65,6 +69,7 @@
     <OSS::InputContainer
       @value={{get @address (concat this.addressKey "2")}}
       @onChange={{fn this.onFieldUpdate (concat this.addressKey "2")}}
+      @placeholder={{t "upf_utils.address_form.placeholder.line2"}}
       data-control-name="address-form-address2" />
   </div>
 
