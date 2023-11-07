@@ -10,6 +10,11 @@ upf_utils:
     postal_code: Postal Code*
     phone_number: Phone Number*
     placeholder:
+      first_name: Enter first name
+      last_name: Enter last name
+      phone: +1 (415) 000-0000
+      line1: Enter address
+      line2: Enter address (optional)
       state: Enter state or province
       postal_code: Enter postal code
       city: Enter city
