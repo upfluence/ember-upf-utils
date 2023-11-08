@@ -137,7 +137,7 @@ export default class extends Component<UtilsAddressFormArgs> {
     });
     input.addEventListener('focusout', (event) => {
       if ((<HTMLInputElement>event.target).value !== this.args.address[`${this.addressKey}1`]) {
-        (<HTMLInputElement>event.target).value = this.args.address[`${this.addressKey}1`];
+        (<HTMLInputElement>event.target).value = this.args.address[`${this.addressKey}1`] ?? '';
       }
     });
   }
