@@ -207,7 +207,7 @@ export default class extends Component<UtilsAddressFormArgs> {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
           const pacContainer = mutation.addedNodes[0];
-          if (!pacContainer.classList.contains('pac-container')) return;
+          if (!pacContainer?.classList.contains('pac-container')) return;
 
           document.querySelector('[data-control-name="address-form-address1"]')?.append(pacContainer);
           observer.disconnect();
