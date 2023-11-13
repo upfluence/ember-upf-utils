@@ -30,6 +30,8 @@
     "node": "10.* || >= 12"
   },
   "dependencies": {
+    "@embroider/macros": "^1.7.1",
+    "@googlemaps/js-api-loader": "^1.16.2",
     "@upfluence/hyperevents": "^0.x",
     "@upfluence/oss-components": "^3.x",
     "calculate-cache-key-for-tree": "^2.0.0",
@@ -75,6 +77,7 @@
     "@types/ember__template": "^3.16.1",
     "@types/ember__test": "^3.16.1",
     "@types/ember__utils": "^3.16.2",
+    "@types/google.maps": "^3.54.6",
     "@types/qunit": "^2.11.2",
     "@types/rsvp": "^4.0.4",
     "@types/sinon": "^10.0.6",

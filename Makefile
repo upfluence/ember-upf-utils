@@ -1,5 +1,9 @@
 .PHONY: tests
 
+.EXPORT_ALL_VARIABLES:
+
+SHELL := /bin/bash
+
 all:	clear upfluence yarn_link_ls echo start ## Runs yarn_link_ls & starts the dev server
 
 clear:
