@@ -5645,12 +5645,6 @@ ember-cli-get-component-path-option@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
   integrity sha512-k47TDwcJ2zPideBCZE8sCiShSxQSpebY2BHcX2DdipMmBox5gsfyVrbKJWIHeSTTKyEUgmBIvQkqTOozEziCZA==
 
-"ember-cli-google-analytics@git+https://git@github.com/upfluence/ember-cli-google-analytics.git":
-  version "0.3.2"
-  resolved "git+https://git@github.com/upfluence/ember-cli-google-analytics.git#2d0df7732ebac06f96f4ec714bdd48b9af7e7725"
-  dependencies:
-    ember-cli-babel "^6.6.0"
-
 ember-cli-htmlbars@^4.0.0, ember-cli-htmlbars@^4.3.1:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.5.0.tgz#d299e4f7eba6f30dc723ee086906cc550beb252e"

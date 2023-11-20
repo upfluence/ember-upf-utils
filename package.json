@@ -37,7 +37,6 @@
     "calculate-cache-key-for-tree": "^2.0.0",
     "ember-auto-import": "^2.2.4",
     "ember-cli-babel": "^7.26.10",
-    "ember-cli-google-analytics": "git+https://git@github.com/upfluence/ember-cli-google-analytics.git",
     "ember-cli-htmlbars": "^4.3.1",
     "ember-cli-less": "^1.5.3",
     "ember-cli-typescript": "^4.2.1",
