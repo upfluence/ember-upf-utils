@@ -33,21 +33,6 @@ upf_utils:
       select_label: Select
     tag:
       selected: Selected
-left_menu:
-  apps:
-    irm: "IRM"
-    search: "Search"
-    inbox: "Mailing"
-    publishr: "Workflow"
-    payments: "Payments"
-    client: "Client"
-    analytics: "Stream"
-    livecapture: "Live&nbsp;Capture"
-  profile:
-    feature_requests: Feature Requests
-    account_settings: Account Settings
-    log_out: Log out
-
 influencer_network:
   modal:
     title: Influencer Network
