@@ -1643,15 +1643,10 @@
     broccoli-funnel "^3.0.5"
     ember-cli-babel "^7.26.11"
 
-"@fortawesome/fontawesome-free@^5.x":
-  version "5.15.4"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-free/-/5.15.4/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
-  integrity sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==
-
-"@fortawesome/fontawesome-pro@^5.15.4":
-  version "5.15.4"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/5.15.4/fontawesome-pro-5.15.4.tgz#aae79a86621a79ae972772ad2906a13ade650a06"
-  integrity sha512-ApOqpDdKgA79xfLZH3B5PucZxj+TZyQUSrZ4bKkbJCR+zjmveQ4/gp/uXc5bNNhsdtJUy16BYJ/lAVydca2Y5Q==
+"@fortawesome/fontawesome-pro@^6.4.2":
+  version "6.5.1"
+  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-pro/-/6.5.1/fontawesome-pro-6.5.1.tgz#ff59c9eff2133b9cad6136d183b3dcd19d8b4f1f"
+  integrity sha512-XLi5HOQ3XLNtM9UhrCyT5jEj0RHkx5GfzKDmUPpVTea4C/Ekj5plOYVAp9dUWgH+NWo3IrVpwhsnhIFh/FZPgA==
 
 "@glimmer/component@^1.0.0", "@glimmer/component@^1.0.2", "@glimmer/component@^1.0.4", "@glimmer/component@^1.1.0":
   version "1.1.2"
@@ -2560,14 +2555,13 @@
     ember-truth-helpers "^2.1.0"
 
 "@upfluence/oss-components@^3.x":
-  version "3.41.6"
-  resolved "https://npm.pkg.github.com/download/@upfluence/oss-components/3.41.6/5b926d868f5a9fa60f13877fa5deee7c3e97b8da#5b926d868f5a9fa60f13877fa5deee7c3e97b8da"
-  integrity sha512-iDEG5cMM0bP/aJGtjiPOzRy9x2vj2ZqaZ//vFmwHmSWry5S1XmfBfKEmJQbkvbe2v4jfEhJ2xTO/ZqhiVRXmlA==
+  version "3.51.0"
+  resolved "https://npm.pkg.github.com/download/@upfluence/oss-components/3.51.0/78f219e3be5f2562536d700087c2ea5f574ca2b3#78f219e3be5f2562536d700087c2ea5f574ca2b3"
+  integrity sha512-brEbY0EN+ebyMozrScXJ2n6pkYA4TPO/Pdiuk8NVyFqr0YnNmPBB4epki+ajZdGZ4l/IVJK+c/iw878VRhmUYg==
   dependencies:
     "@ember/render-modifiers" "^2.1.0"
     "@embroider/macros" "^1.7.1"
-    "@fortawesome/fontawesome-free" "^5.x"
-    "@fortawesome/fontawesome-pro" "^5.15.4"
+    "@fortawesome/fontawesome-pro" "^6.4.2"
     babel-plugin-debug-macros "^0.3.1"
     bootstrap "^3.3.7"
     calculate-cache-key-for-tree "^2.0.0"
