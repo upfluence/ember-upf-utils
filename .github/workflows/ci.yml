@@ -20,17 +20,20 @@ jobs:
     if: (!contains(github.ref, 'refs/heads/master') || contains(github.ref, 'refs/tags/v'))
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '${{ env.NODE_VERSION }}'
-        cache: 'yarn'
-    - name: Install Dependencies
-      run: yarn --prefer-offline --frozen-lockfile
-    - name: Lint
-      run: yarn lint:js
-    - name: Test
-      run: yarn test:ember
+      - uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+          cache: 'yarn'
+      - name: Install Dependencies
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Lint
+        run: yarn lint:js
+      - name: Test
+        run: yarn test:ember
   release:
     name: Release Package
     runs-on: ubuntu-20.04
@@ -38,16 +41,16 @@ jobs:
     if: contains(github.ref, 'refs/tags/v')
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '${{ env.NODE_VERSION }}'
-        cache: 'yarn'
-    - name: Install Dependencies
-      run: yarn --prefer-offline --frozen-lockfile
-    - name: Publish
-      run: |
-        echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
-        npm publish --access public
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+          cache: 'yarn'
+      - name: Install Dependencies
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Publish
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
+          npm publish --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

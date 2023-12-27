@@ -51,20 +51,6 @@ processed_features:
   tooltip_alert: Does not always respond to emails received
   tooltip_regular: Average influencer email response time
   tooltip_positive: Average influencer email response time
-ownership_selection:
-  placeholder: Share with
-  share_mailings: Share access to campaign mailing templates
-  tabs:
-    groups: Groups
-    people: People
-  groups:
-    description: Share <b>{entityName}</b> with your whole company, one of your teams or just yourself.
-    label: Group
-    cta: Share with group
-  people:
-    description: Share <b>{entityName}</b> with selected coworkers.
-    label: People
-    cta: Share with people
 upgrade_modal:
   title: Upgrade Plan
   description: Oops! Your current plan does not include this feature.

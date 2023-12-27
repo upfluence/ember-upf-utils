@@ -1,8 +1,0 @@
-{{#if this.display}}
-  <PowerSelect
-    @allowClear={{true}} @options={{this.ownerships}} @selected={{this.ownership}}
-    @onChange={{action (mut ownership)}} @renderInPlace={{true}}
-    @placeholder={{t "ownership_selection.placeholder"}} as |o|>
-    {{o.name}}
-  </PowerSelect>
-{{/if}}
