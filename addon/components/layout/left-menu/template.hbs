@@ -9,7 +9,7 @@
       {{else}}
         <a {{action "toggleUpgradeModal" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--workflow"></span>
-          <i class="fa fa-lock"></i>
+          <OSS::Icon icon="fa-lock" />
         </a>
       {{/feature-flagged}}
     </div>
@@ -22,7 +22,6 @@
       {{else}}
         <a {{action "toggleUpgradeModal" "crm" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--crm"></span>
-          <i class="fa fa-lock"></i>
         </a>
       {{/feature-flagged}}
     </div>
@@ -35,7 +34,7 @@
       {{else}}
         <a {{action "toggleUpgradeModal" bubbles=false}}>
           <span class="upf-icon upf-icon--search"></span>
-          <i class="fa fa-lock"></i>
+          <OSS::Icon icon="fa-lock" />
         </a>
       {{/feature-flagged}}
     </div>
@@ -48,7 +47,7 @@
       {{else}}
         <a {{action "toggleUpgradeModal" "bulk_emailing" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--inbox"></span>
-          <i class="fa fa-lock"></i>
+          <OSS::Icon icon="fa-lock" />
         </a>
       {{/feature-flagged}}
     </div>
@@ -62,7 +61,7 @@
       {{else}}
         <a {{action "toggleUpgradeModal" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--finance"></span>
-          <i class="fa fa-lock"></i>
+          <OSS::Icon icon="fa-lock" />
         </a>
       {{/feature-flagged}}
     </div>
@@ -84,7 +83,7 @@
       {{else}}
         <a {{action "toggleUpgradeModal" "monitor" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--monitor"></span>
-          <i class="fa fa-lock"></i>
+          <OSS::Icon icon="fa-lock" />
         </a>
       {{/feature-flagged}}
     </div>
@@ -97,7 +96,7 @@
       {{else}}
         <a {{action "toggleUpgradeModal" "acquisition" bubbles=false}} role="upgrade">
           <span class="upf-icon upf-icon--acquisition"></span>
-          <i class="fa fa-lock"></i>
+          <OSS::Icon icon="fa-lock" />
         </a>
       {{/feature-flagged}}
     </div>
@@ -145,7 +144,7 @@
         </li>
 
         <li {{on "click" (action "openFeatureRequests")}}>
-          <i class="fa fa-microphone margin-right-xxx-sm"></i>
+          <OSS::Icon icon="fa-microphone" class="margin-right-xxx-sm" />
           {{t "left_menu.profile.feature_requests"}}
         </li>
 
