@@ -22,7 +22,6 @@ testem.log
 *.sublime-project
 *.sublime-workspace
 package-lock.json
-/yarn-error.log
 
 # ember-try
 /.node_modules.ember-try/

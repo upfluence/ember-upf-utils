@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: '14'
+  NODE_VERSION: 16
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
 
@@ -24,16 +24,19 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install Dependencies
-        run: yarn --prefer-offline --frozen-lockfile
+        run: pnpm install
       - name: Lint
-        run: yarn lint:js
+        run: pnpm lint:js
       - name: Test
-        run: yarn test:ember
+        run: pnpm test:ember
   release:
     name: Release Package
     runs-on: ubuntu-20.04
@@ -42,12 +45,15 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install Dependencies
-        run: yarn --prefer-offline --frozen-lockfile
+        run: pnpm install
       - name: Publish
         run: |
           echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
