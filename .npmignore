@@ -31,7 +31,7 @@
 bower.json
 ember-cli-build.js
 testem.js
-/CONTRIBUTING.md
+/pnpm-lock.yaml
 .gitkeep
 
 # ember-try
