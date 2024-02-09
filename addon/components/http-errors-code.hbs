@@ -1,27 +1,39 @@
-<div class="upf-align--absolute-center margin-left-xx-lg">
-  {{#if (eq this.httpError "404")}}
-    <img src="@upfluence/ember-upf-utils/images/404error.svg" alt={{this.imgDescription}} />
-  {{else}}
-    <img src="@upfluence/ember-upf-utils/images/500error.svg" alt={{this.imgDescription}} />
-  {{/if}}
-
-  <div class="upf-align--center">
-    <p class="text-style-bold text-size-7">{{t (concat "errors." this.httpError ".title")}}</p>
-    <p class="text-color-default-light">
-      {{{t (concat "errors." this.httpError ".subtitle")}}}
-    </p>
-    <div class="error-contact-container">
-      <OSS::Button
-        @skin="primary"
-        @label={{t (concat "errors." this.httpError ".support.button_description")}}
-        {{action "openSupportChannel"}} />
-      <div>
-        {{t (concat "errors." this.httpError ".support.check_description")}}
-        <a href={{this.globalSupportLink}} target="_blank" rel="noopener noreferrer"
-           class="upf-link--reset text-color-bright-purple">
-          {{t (concat "errors." this.httpError ".support.help_description")}}
-        </a>
+<div class="fx-col fx-malign-center fx-xalign-center fx-1 http-error-code-wrapper">
+  <div class="fx-row width-pc-70 fx-gap-px-100">
+    <div class="fx-col fx-gap-px-24 fx-1">
+      <span class="font-size-h1 font-weight-semibold">
+        {{t (concat "errors." @httpError ".title")}}
+      </span>
+      <span class="font-size-lg">
+        {{t (concat "errors." @httpError ".subtitle")}}
+      </span>
+      <div class="fx-col fx-gap-px-3">
+        {{#each this.errorHints as |hint|}}
+          <div class="fx-row fx-gap-px-6 fx-xalign-center">
+            <OSS::Icon @icon={{hint.icon}} />
+            <span class="font-weight-semibold font-size-md">{{hint.label}}</span>
+          </div>
+        {{/each}}
+      </div>
+      <div class="fx-row fx-gap-px-12">
+        <OSS::Button
+          @icon="fa-comment"
+          @label={{t (concat "errors." @httpError ".contact_support")}}
+          {{on "click" this.openSupportChannel}}
+        />
+        <OSS::Button
+          @skin="primary"
+          @icon="fa-arrow-left"
+          @label={{t (concat "errors." @httpError ".cta")}}
+          {{on "click" (if (eq @httpError "404") (redirect-to url="/") this.refreshPage)}}
+        />
       </div>
     </div>
+
+    <img
+      src="/@upfluence/ember-upf-utils/assets/images/ufo-abduction.svg"
+      width="400"
+      alt={{t "errors.default.img_alt"}}
+    />
   </div>
 </div>

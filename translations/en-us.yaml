@@ -95,20 +95,23 @@ errors:
   default:
     title: Oh...
     subtitle: It seems something went wrong.
+    img_alt: UFO Abduction Illustration
   404:
-    title: Sorry, we can’t find that page!
-    subtitle: Please double-check the URL for the page you are looking to access.
-    support:
-      button_description: Contact support
-      check_description: Or check our
-      help_description: Help Center
+    title: Uh-oh, error 404!
+    subtitle: Looks like a space hiccup! Our playful alien friends might have taken this page for a fast cosmic joyride.
+    cta: Back to homepage
+    contact_support: Chat with our support
+    hints:
+      url_accuracy_check: Verify the accuracy of the URL
+      authorization_check: Make sure you have the right authorizations to access this page
   500:
-    title: Sorry, something went wrong !
-    subtitle: This service is not available at the moment. <br> If the problem persists, please
-    support:
-      button_description: Contact support
-      check_description: Or check our
-      help_description: Help Center
+    title: Houston, we’ve got an error 500!
+    subtitle: Looks like a space hiccup! Our playful alien friends might have taken this page for a fast cosmic joyride.
+    cta: Refresh page
+    contact_support: Chat with our support
+    hints:
+      technical_issue: We encountered an unexpected technical issue
+      contact_support: If the problem persists, contact our support
   402:
     limit_exceeded:
       modal_title: Limit Reached

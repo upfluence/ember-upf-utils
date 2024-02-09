@@ -1,18 +1,11 @@
-.error-contact-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: @spacing-md;
-  font-size: 16 / @rem;
-
-  div {
-    color: var(--color-primary-500);
-    margin-left: @spacing-x-sm;
+.http-error-code-wrapper {
+  & > div {
+    max-width: 1200px;
   }
+}
 
-  .upf-link--reset {
-    text-decoration: underline;
+@media (max-width: 1200px) {
+  .http-error-code-wrapper img {
+    display: none;
   }
 }

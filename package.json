@@ -32,6 +32,7 @@
   "dependencies": {
     "@embroider/macros": "^1.7.1",
     "@googlemaps/js-api-loader": "^1.16.2",
+    "@upfluence/ember-brand-manager": "^0.x",
     "@upfluence/hyperevents": "^0.x",
     "calculate-cache-key-for-tree": "^2.0.0",
     "ember-auto-import": "^2.2.4",
