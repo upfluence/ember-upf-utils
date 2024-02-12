@@ -102,7 +102,11 @@ errors:
     cta: Back to homepage
     contact_support: Chat with our support
     support_message: |
-      Dear Support Team, I've come across a "404 Error", which usually implies either inadequate credentials or that the page I'm trying to access no longer exists. Could you kindly assist me with this issue? Thank you
+      Dear Support Team,
+
+      I've come across a "404 Error", which usually implies either inadequate credentials or that the page I'm trying to access no longer exists. Could you kindly assist me with this issue?
+
+      Thank you
     hints:
       url_accuracy_check: Verify the accuracy of the URL
       authorization_check: Make sure you have the right authorizations to access this page
@@ -112,7 +116,11 @@ errors:
     cta: Refresh page
     contact_support: Chat with our support
     support_message: |
-      Dear Support Team, I've encountered a "500 Error", typically indicating an internal issue on your end. Could you kindly assist me with this issue? Thank you
+      Dear Support Team,
+
+      I've encountered a "500 Error", typically indicating an internal issue on your end. Could you kindly assist me with this issue?
+
+      Thank you
     hints:
       technical_issue: We encountered an unexpected technical issue
       contact_support: If the problem persists, contact our support

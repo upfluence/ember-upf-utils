@@ -1,5 +1,5 @@
 <div class="fx-col fx-malign-center fx-xalign-center fx-1 http-error-code-wrapper">
-  <div class="fx-row width-pc-70 fx-gap-px-100">
+  <div class="fx-row fx-xalign-center width-pc-70 fx-gap-px-100">
     <div class="fx-col fx-gap-px-24 fx-1">
       <span class="font-size-h1 font-weight-semibold" data-control-name="http-error-code-title">
         {{t (concat "errors." @httpError ".title")}}
@@ -7,7 +7,7 @@
       <span class="font-size-lg" data-control-name="http-error-code-subtitle">
         {{t (concat "errors." @httpError ".subtitle")}}
       </span>
-      <div class="fx-col fx-gap-px-3" data-control-name="http-error-code-hints">
+      <div class="fx-col fx-gap-px-3 hints-container" data-control-name="http-error-code-hints">
         {{#each this.errorHints as |hint|}}
           <div class="fx-row fx-gap-px-6 fx-xalign-center">
             <OSS::Icon @icon={{hint.icon}} />
