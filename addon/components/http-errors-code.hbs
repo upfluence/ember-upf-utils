@@ -16,19 +16,19 @@
         {{/each}}
       </div>
       <div class="fx-row fx-gap-px-12">
-        <OSS::Button
-          @icon="fa-comment"
-          @label={{t (concat "errors." @httpError ".contact_support")}}
-          {{on "click" this.openSupportChannel}}
-        />
         {{#if this.csChat}}
           <OSS::Button
-            @skin="primary"
-            @icon={{if (eq @httpError "404") "fa-arrow-left" "fa-redo"}}
-            @label={{t (concat "errors." @httpError ".cta")}}
-            {{on "click" (redirect-to url=(if (eq @httpError "404") "/" this.self))}}
+            @icon="fa-comment"
+            @label={{t (concat "errors." @httpError ".contact_support")}}
+            {{on "click" this.openSupportChannel}}
           />
         {{/if}}
+        <OSS::Button
+          @skin="primary"
+          @icon={{if (eq @httpError "404") "fa-arrow-left" "fa-redo"}}
+          @label={{t (concat "errors." @httpError ".cta")}}
+          {{on "click" (redirect-to url=(if (eq @httpError "404") "/" this.self))}}
+        />
       </div>
     </div>
 

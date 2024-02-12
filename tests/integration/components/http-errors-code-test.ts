@@ -59,7 +59,7 @@ module('Integration | Component | http-errors-code', function (hooks) {
     assert.dom('.upf-btn.upf-btn--primary').hasText(this.intl.t('errors.404.cta'));
 
     await click('.upf-btn.upf-btn--default');
-    assert.ok(this.csChat.openTicket.calledOnceWithExactly());
+    assert.ok(this.csChat.openTicket.calledOnceWithExactly(this.intl.t('errors.404.support_message')));
     await click('.upf-btn.upf-btn--primary');
     assert.ok(redirectStub.calledOnceWithExactly('/', '_self'));
     redirectStub.restore();
@@ -92,9 +92,16 @@ module('Integration | Component | http-errors-code', function (hooks) {
     assert.dom('.upf-btn.upf-btn--primary').hasText(this.intl.t('errors.500.cta'));
 
     await click('.upf-btn.upf-btn--default');
-    assert.ok(this.csChat.openTicket.calledOnceWithExactly());
+    assert.ok(this.csChat.openTicket.calledOnceWithExactly(this.intl.t('errors.500.support_message')));
     await click('.upf-btn.upf-btn--primary');
     assert.ok(redirectStub.calledOnceWithExactly(location.href, '_self'));
     redirectStub.restore();
+  });
+
+  test('When cs-chat button is missing, there is no Contact support button', async function (assert) {
+    this.owner.unregister('service:cs-chat');
+    await render(hbs`<HttpErrorsCode @httpError="500" />`);
+    assert.dom('.upf-btn').exists({ count: 1 });
+    assert.dom('.upf-btn.upf-btn--default').doesNotExist();
   });
 });

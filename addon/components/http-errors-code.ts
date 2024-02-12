@@ -40,6 +40,6 @@ export default class extends Component<HTTPErrorsCodeArgs> {
   @action
   openSupportChannel(event: PointerEvent): void {
     event.stopPropagation();
-    this.csChat?.openTicket();
+    this.csChat?.openTicket(this.intl.t(`errors.${this.args.httpError}.support_message`));
   }
 }
