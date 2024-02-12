@@ -10,7 +10,6 @@ overrides:
   '@ember/test-helpers': ^2.9.4
   ember-maybe-in-element: 2.0.3
   ember-cli-babel: ^7.26.10
-  ember-intl: ^6.4.0
 
 dependencies:
   '@embroider/macros':
@@ -21,7 +20,7 @@ dependencies:
     version: 1.16.2
   '@upfluence/hyperevents':
     specifier: ^0.x
-    version: 0.2.7(@babel/core@7.23.9)(@upfluence/oss-components@3.54.4)
+    version: 0.2.7(@babel/core@7.23.9)(@upfluence/oss-components@3.55.0)
   calculate-cache-key-for-tree:
     specifier: ^2.0.0
     version: 2.0.0
@@ -160,8 +159,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.61.0(eslint@6.8.0)(typescript@4.9.5)
   '@upfluence/oss-components':
-    specifier: ^3.54.4
-    version: 3.54.4(@babel/core@7.23.9)(ember-source@3.18.1)(jquery@3.7.1)(qunit@2.19.4)(typescript@4.9.5)(webpack@5.88.1)
+    specifier: ^3.55.0
+    version: 3.55.0(@babel/core@7.23.9)(ember-source@3.18.1)(jquery@3.7.1)(qunit@2.19.4)(typescript@4.9.5)(webpack@5.88.1)
   ember-cli:
     specifier: ~3.18.0
     version: 3.18.0
@@ -3848,7 +3847,7 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@upfluence/hyperevents@0.2.7(@babel/core@7.23.9)(@upfluence/oss-components@3.54.4):
+  /@upfluence/hyperevents@0.2.7(@babel/core@7.23.9)(@upfluence/oss-components@3.55.0):
     resolution: {integrity: sha512-WgwuTnNO52IOeeYo+qbyQoqOOBV5Ofaz1BpTmff+ZfKwOk0w/0SCMrgNsQQjzr4QD59XEGBMkFB8PiHSV4jpag==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/0.2.7/aaae7e3d0d96e6a726a2ef326a1113123b75443c}
     engines: {node: 10.* || >= 12}
     peerDependencies:
@@ -3856,7 +3855,7 @@ packages:
     dependencies:
       '@embroider/macros': 1.11.1
       '@embroider/test-setup': 1.8.3
-      '@upfluence/oss-components': 3.54.4(@babel/core@7.23.9)(ember-source@3.18.1)(jquery@3.7.1)(qunit@2.19.4)(typescript@4.9.5)(webpack@5.88.1)
+      '@upfluence/oss-components': 3.55.0(@babel/core@7.23.9)(ember-source@3.18.1)(jquery@3.7.1)(qunit@2.19.4)(typescript@4.9.5)(webpack@5.88.1)
       ember-auto-import: 1.12.2
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 4.5.0
@@ -3871,8 +3870,8 @@ packages:
       - webpack-command
     dev: false
 
-  /@upfluence/oss-components@3.54.4(@babel/core@7.23.9)(ember-source@3.18.1)(jquery@3.7.1)(qunit@2.19.4)(typescript@4.9.5)(webpack@5.88.1):
-    resolution: {integrity: sha512-LApfZnSUN/hc3k6nMsKtBn1IStQPBDv+JqODqlnrsza4o3Y8rciKKgZO3HEViTqLCWPxa29dFd/Q5pkvj1NYTA==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.54.4/572ac549a878a6495e23c20a7104e394e7b36114}
+  /@upfluence/oss-components@3.55.0(@babel/core@7.23.9)(ember-source@3.18.1)(jquery@3.7.1)(qunit@2.19.4)(typescript@4.9.5)(webpack@5.88.1):
+    resolution: {integrity: sha512-jHo/gOlb7K6Nq2VIOG9iN6oU3UqyukLHvrKupZEIQJJm1M/+znvLlRuXHhLl8GzsAdaIgVrsveIy0+yJXgxTXQ==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.55.0/53d68131969498a3cbcee9cad6ed0634afa575f3}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       qunit: ^2.x
