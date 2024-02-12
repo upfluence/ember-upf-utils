@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
+import { setupIntl } from 'ember-intl/test-support';
 import Service from '@ember/service';
 import { click, fillIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
@@ -9,6 +10,7 @@ class SessionServiceStub extends Service {}
 
 module('Integration | Component | u-edit/shared-triggers/modals/image-upload', function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.owner.register('service:session', SessionServiceStub);
