@@ -104,12 +104,12 @@ errors:
     support_message: |
       Dear Support Team,
 
-      I've come across a "404 Error", which usually implies either inadequate credentials or that the page I'm trying to access no longer exists. Could you kindly assist me with this issue?
+      I've come across a "404 error", which likely means the URL I am trying to access either does not exist or I do not have access to it. Could you please assist me with this issue?
 
       Thank you
     hints:
       url_accuracy_check: Verify the accuracy of the URL
-      authorization_check: Make sure you have the right authorizations to access this page
+      authorization_check: Make sure you have the right permissions to access this page
   500:
     title: Houston, we’ve got an error 500!
     subtitle: Looks like a space hiccup! Our playful alien friends might have taken this page for a fast cosmic joyride.
