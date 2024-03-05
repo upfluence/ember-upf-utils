@@ -42,9 +42,6 @@ dependencies:
   ember-cli-typescript:
     specifier: ^4.2.1
     version: 4.2.1
-  ember-img-lazy:
-    specifier: ^3.0.1
-    version: 3.1.0
   ember-named-blocks-polyfill:
     specifier: ^0.2.4
     version: 0.2.5
@@ -5164,13 +5161,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /broccoli-file-creator@1.2.0:
-    resolution: {integrity: sha512-l9zthHg6bAtnOfRr/ieZ1srRQEsufMZID7xGYRW3aBDv3u/3Eux+Iawl10tAGYE5pL9YB4n5X4vxkp6iNOoZ9g==}
-    dependencies:
-      broccoli-plugin: 1.3.1
-      mkdirp: 0.5.6
-    dev: false
-
   /broccoli-file-creator@2.1.1:
     resolution: {integrity: sha512-YpjOExWr92C5vhnK0kmD81kM7U09kdIRZk9w4ZDCDHuHXW+VE/x6AGEOQQW3loBQQ6Jk+k+TSm8dESy4uZsnjw==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
@@ -7514,26 +7504,6 @@ packages:
     resolution: {integrity: sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==}
     engines: {node: '>= 4'}
     dev: true
-
-  /ember-get-config@0.2.4:
-    resolution: {integrity: sha512-CgkR97y80Dm+hbVTW1O5ZC5cEUIfTsGsR6UPOyuaRdv3B5SRlBSxysnHrYKjRMb68l8AUa5DRkVW6yBh/u7Icw==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-    dependencies:
-      broccoli-file-creator: 1.2.0
-      ember-cli-babel: 7.26.11
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /ember-img-lazy@3.1.0:
-    resolution: {integrity: sha512-smI2THG11i8CIannDJ4mRcqPgSwSNBUUe3RJ62v5nZ4FKxYzgaLMAZdjTuxV/T1FfR/39tJTQq9v1SlJbOJp4g==}
-    engines: {node: 8.* || >= 10.*}
-    dependencies:
-      ember-cli-babel: 7.26.11
-      ember-get-config: 0.2.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /ember-in-element-polyfill@1.0.1:
     resolution: {integrity: sha512-eHs+7D7PuQr8a1DPqsJTsEyo3FZ1XuH6WEZaEBPDa9s0xLlwByCNKl8hi1EbXOgvgEZNHHi9Rh0vjxyfakrlgg==}
