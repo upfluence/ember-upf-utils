@@ -15,6 +15,9 @@ module.exports = {
   options: {
     'ember-cli-babel': {
       includePolyfill: true
+    },
+    babel: {
+      plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()]
     }
   },
 
