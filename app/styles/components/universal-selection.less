@@ -2,11 +2,6 @@
   display: flex;
   align-items: center;
   margin-bottom: @spacing-x-sm;
-
-  .ember-power-select-option > &,
-  .ember-power-select-selected-item > & {
-    margin-bottom: 0;
-  }
 }
 
 .team-row__avatar {
@@ -27,31 +22,5 @@
 
   & > div:nth-child(2) {
     color: @upf-primary-rock-blue-light;
-  }
-}
-
-.ownership-selection {
-  .item-chooser {
-    .ember-power-select-multiple-option {
-      border: 1px solid var(--color-primary-500);
-      color: var(--color-primary-500);
-      background-color: @upf-gray-light;
-
-      padding: 0.5em 0.5em 0.5em @spacing-xxx-sm;
-      border-radius: 2 / @rem;
-    }
-    .team--selected {
-      display: inline;
-    }
-  }
-
-  .ember-power-select-trigger.ember-basic-dropdown-trigger[aria-disabled='true'] {
-    color: white;
-    opacity: 0.5;
-    border-color: #c9c9c9;
-  }
-
-  .ember-power-select-options[role='listbox'] {
-    max-height: 400px !important;
   }
 }
