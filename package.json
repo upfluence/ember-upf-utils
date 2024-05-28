@@ -30,12 +30,13 @@
     "node": "10.* || >= 12"
   },
   "dependencies": {
+    "@ember/string": "^3.1.1",
     "@embroider/macros": "^1.7.1",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@upfluence/ember-brand-manager": "^0.x",
     "@upfluence/hyperevents": "^0.x",
     "calculate-cache-key-for-tree": "^2.0.0",
-    "ember-auto-import": "^2.2.4",
+    "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^7.26.10",
     "ember-cli-htmlbars": "^4.3.1",
     "ember-cli-less": "^2.0.6",
@@ -112,9 +113,6 @@
     "qunit-dom": "^1.2.0",
     "typescript": "^4.4.4",
     "webpack": "5"
-  },
-  "resolutions": {
-    "ember-cli-babel": "^7.26.10"
   },
   "directories": {
     "doc": "doc",
