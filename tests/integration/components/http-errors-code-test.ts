@@ -20,7 +20,7 @@ module('Integration | Component | http-errors-code', function (hooks) {
     this.csChat = this.owner.lookup('service:cs-chat');
   });
 
-  ['404', '500'].forEach((statusCode) => {
+  ['404', '500', 'default'].forEach((statusCode) => {
     test('it renders w/ the right title & subtitle', async function (assert) {
       this.httpError = statusCode;
 
@@ -70,7 +70,6 @@ module('Integration | Component | http-errors-code', function (hooks) {
   module('500 error', function () {
     test('the right hints are displayed', async function (assert) {
       await render(hbs`<HttpErrorsCode @httpError="500" />`);
-
       assert.dom('[data-control-name="http-error-code-hints"] > div').exists({ count: 2 });
       assert.dom('[data-control-name="http-error-code-hints"] > div:first-child i.far').hasClass('fa-bug');
       assert
@@ -102,9 +101,43 @@ module('Integration | Component | http-errors-code', function (hooks) {
     });
   });
 
+  module('default error', function () {
+    test('the right hints are displayed', async function (assert) {
+      await render(hbs`<HttpErrorsCode @httpError="default" />`);
+      assert.dom('[data-control-name="http-error-code-hints"] > div').exists({ count: 2 });
+      assert.dom('[data-control-name="http-error-code-hints"] > div:first-child i.far').hasClass('fa-bug');
+      assert
+        .dom('[data-control-name="http-error-code-hints"] > div:first-child')
+        .hasText(this.intl.t('errors.default.hints.technical_issue'));
+      assert.dom('[data-control-name="http-error-code-hints"] > div:last-child i.far').hasClass('fa-life-ring');
+      assert
+        .dom('[data-control-name="http-error-code-hints"] > div:last-child')
+        .hasText(this.intl.t('errors.default.hints.contact_support'));
+    });
+
+    test('the right actions are displayed', async function (assert) {
+      const redirectStub = sinon.stub(window, 'open');
+
+      await render(hbs`<HttpErrorsCode @httpError="default" />`);
+      assert.dom('.upf-btn').exists({ count: 2 });
+      assert.dom('.upf-btn.upf-btn--default').exists();
+      assert.dom('.upf-btn.upf-btn--default i.far').hasClass('fa-comment');
+      assert.dom('.upf-btn.upf-btn--default').hasText(this.intl.t('errors.default.contact_support'));
+      assert.dom('.upf-btn.upf-btn--primary').exists();
+      assert.dom('.upf-btn.upf-btn--primary i.far').hasClass('fa-arrow-left');
+      assert.dom('.upf-btn.upf-btn--primary').hasText(this.intl.t('errors.default.cta'));
+
+      await click('.upf-btn.upf-btn--default');
+      assert.ok(this.csChat.openTicket.calledOnceWithExactly(this.intl.t('errors.default.support_message')));
+      await click('.upf-btn.upf-btn--primary');
+      assert.ok(redirectStub.calledOnceWithExactly(location.href, '_self'));
+      redirectStub.restore();
+    });
+  });
+
   test('When cs-chat button is missing, there is no Contact support button', async function (assert) {
     this.owner.unregister('service:cs-chat');
-    await render(hbs`<HttpErrorsCode @httpError="500" />`);
+    await render(hbs`<HttpErrorsCode @httpError="default" />`);
     assert.dom('.upf-btn').exists({ count: 1 });
     assert.dom('.upf-btn.upf-btn--default').doesNotExist();
   });
