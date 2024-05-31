@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@ember/string": "^3.1.1",
-    "@embroider/macros": "^1.7.1",
+    "@embroider/macros": "^1.16.1",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@upfluence/ember-brand-manager": "^0.x",
     "@upfluence/hyperevents": "^0.x",
