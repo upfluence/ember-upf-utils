@@ -19,7 +19,7 @@ upf_utils:
       postal_code: Enter postal code
       city: Enter city
   social_media_handle:
-    input_placeholder: "@Handle or account URL"
+    input_placeholder: '@Handle or account URL'
     networks:
       instagram: Instagram
       twitter: Twitter
@@ -27,8 +27,8 @@ upf_utils:
       twitch: Twitch
       youtube: YouTube
   product_row:
-    product_options: "{nbProductOptions} options"
-    option_selected: "Option: {optionName}"
+    product_options: '{nbProductOptions} options'
+    option_selected: 'Option: {optionName}'
     button:
       select_label: Select
     tag:
@@ -60,9 +60,9 @@ uedit_editor:
     image:
       title: Add Image
       by_url:
-        label: "By URL:"
+        label: 'By URL:'
         placeholder: https://example.org/image.png
-      processing: "Processing {filename}..."
+      processing: 'Processing {filename}...'
       processed_file:
         title: Uploaded Files
       drop_file: Drop your file here
@@ -72,9 +72,9 @@ uedit_editor:
     pdf:
       title: Add PDF
       by_url:
-        label: "By URL:"
+        label: 'By URL:'
         placeholder: https://example.org/file.pdf
-      processing: "Processing {filename}..."
+      processing: 'Processing {filename}...'
       processed_file:
         title: Uploaded Files
       drop_file: Drop your file here
@@ -83,8 +83,19 @@ uedit_editor:
       cancel: Cancel
 errors:
   default:
-    title: Oh...
-    subtitle: It seems something went wrong.
+    title: Whoops, something went wrong!
+    subtitle: Looks like a space hiccup! Our playful alien friends might have taken this page for a fast cosmic joyride.
+    cta: Back to homepage
+    contact_support: Chat with our support
+    support_message: |
+      Dear Support Team,
+
+      I've come across an error while trying to access a page. Could you please assist me with this issue?
+
+      Thank you
+    hints:
+      technical_issue: We encountered an unexpected technical issue
+      contact_support: If the problem persists, contact our support
     img_alt: UFO Abduction Illustration
   404:
     title: Uh-oh, error 404!

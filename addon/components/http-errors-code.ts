@@ -6,7 +6,7 @@ import { inject as service } from '@ember/service';
 import type { IntlService } from 'ember-intl';
 
 interface HTTPErrorsCodeArgs {
-  httpError: '404' | '500';
+  httpError: '404' | '500' | 'default';
 }
 
 export default class extends Component<HTTPErrorsCodeArgs> {
