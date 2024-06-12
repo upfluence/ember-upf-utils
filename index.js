@@ -21,22 +21,6 @@ module.exports = {
     }
   },
 
-  contentFor(type, config) {
-    if (type === 'body-footer') {
-      let footerContent = [];
-
-      let emberBasicDropdown = this.addons.find((addon) => {
-        return addon.name === 'ember-power-select';
-      });
-
-      if (emberBasicDropdown) {
-        footerContent.push(emberBasicDropdown.contentFor(type, config));
-      }
-
-      return footerContent.join('');
-    }
-  },
-
   cacheKeyForTree(treeType) {
     return cacheKeyForTree(treeType, this, this.pkg);
   }
