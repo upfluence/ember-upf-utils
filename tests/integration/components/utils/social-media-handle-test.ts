@@ -37,7 +37,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
       });
       test('Passing the @socialNetwork parameter preselects the correct network', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @socialNetwork="twitter" />`);
-        assert.dom('.selector i').hasClass('fa-twitter');
+        assert.dom('.selector i').hasClass('fa-x-twitter');
       });
       test('Passing the @handle parameter fills the input with the formatted URL', async function (assert) {
         await render(
@@ -79,7 +79,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
         assert.dom('input').hasValue('https://www.instagram.com/tito');
         await click('.selector');
         await click('.upf-infinite-select__item:nth-child(2)');
-        assert.dom('input').hasValue('https://twitter.com/tito');
+        assert.dom('input').hasValue('https://x.com/tito');
       });
     });
 
@@ -113,7 +113,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
         assert.true(this.onChange.calledOnceWithExactly('instagram', 'a', 'https://www.instagram.com/a'));
         await click('.selector');
         await click('.upf-infinite-select__item:nth-child(2)');
-        assert.true(this.onChange.calledWithExactly('twitter', 'a', 'https://twitter.com/a'));
+        assert.true(this.onChange.calledWithExactly('twitter', 'a', 'https://x.com/a'));
       });
     });
   });
@@ -132,7 +132,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
       await render(
         hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @selectorOnly={{true}} @socialNetwork="twitter" />`
       );
-      assert.dom('.selector-full-width div span').hasText('Twitter');
+      assert.dom('.selector-full-width div span').hasText('X');
     });
     test('When the user selects another network from the dropdown, the @onChange function is called', async function (assert) {
       await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @selectorOnly={{true}} />`);

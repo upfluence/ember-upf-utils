@@ -18,7 +18,7 @@ type SocialNetworkData = {
 
 export const SOCIAL_MEDIA_NETWORKS: SocialNetworkData[] = [
   { name: 'instagram', formattedUrl: 'https://www.instagram.com/{handle}' },
-  { name: 'twitter', formattedUrl: 'https://twitter.com/{handle}' },
+  { name: 'twitter', formattedUrl: 'https://x.com/{handle}' },
   { name: 'tiktok', formattedUrl: 'https://www.tiktok.com/@{handle}' },
   { name: 'twitch', formattedUrl: 'https://www.twitch.tv/{handle}' },
   { name: 'youtube', formattedUrl: 'https://www.youtube.com/user/{handle}' }

@@ -22,7 +22,7 @@ upf_utils:
     input_placeholder: '@Handle or account URL'
     networks:
       instagram: Instagram
-      twitter: Twitter
+      twitter: X
       tiktok: TikTok
       twitch: Twitch
       youtube: YouTube
