@@ -56,25 +56,25 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
     module('User action verifications', () => {
       test('Typing a handle and blurring the input reformats the @handle', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'tito');
+        await typeIn('input', 'tito', { delay: 0 });
         await click('.social-handle-container');
         assert.dom('input').hasValue('https://www.instagram.com/tito');
       });
       test('Typing a handle and hitting the enter key reformats the @handle', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'tito');
+        await typeIn('input', 'tito', { delay: 0 });
         await triggerKeyEvent('input', 'keydown', 'Enter');
         assert.dom('input').hasValue('https://www.instagram.com/tito');
       });
       test('Typing a URL in the input does not reformat the input', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'http://url.com/tito');
+        await typeIn('input', 'http://url.com/tito', { delay: 0 });
         await triggerKeyEvent('input', 'keydown', 'Enter');
         assert.dom('input').hasValue('http://url.com/tito');
       });
       test('When the handle input is already filled, changing the social network applies the new Network URL', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'tito');
+        await typeIn('input', 'tito', { delay: 0 });
         await click('.social-handle-container');
         assert.dom('input').hasValue('https://www.instagram.com/tito');
         await click('.selector');
@@ -98,13 +98,13 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
       });
       test('When the input is blurred, the @onChange function is called', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'a');
+        await typeIn('input', 'a', { delay: 0 });
         await click('.social-handle-container');
         assert.true(this.onChange.calledOnceWithExactly('instagram', 'a', 'https://www.instagram.com/a'));
       });
       test('When the user hits the Enter key, the @onChange function is called', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'a');
+        await typeIn('input', 'a', { delay: 0 });
         await triggerKeyEvent('input', 'keydown', 'Enter');
         assert.true(this.onChange.calledOnceWithExactly('instagram', 'a', 'https://www.instagram.com/a'));
       });
