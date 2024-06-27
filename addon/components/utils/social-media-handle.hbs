@@ -6,7 +6,7 @@
          role="button" {{on "click" this.toggleSelector}}>
       <div class="fx-row fx-xalign-center fx-gap-px-12">
         <OSS::Icon
-				  @style="brand" @icon="fa-{{this.selectedNetwork.name}}" class="font-color-{{this.selectedNetwork.name}}-500" />
+				  @style="brand" @icon={{get this.socialMediaIcons this.selectedNetwork.name}} class="font-color-{{this.selectedNetwork.name}}-500" />
 
         {{#if @selectorOnly}}
           <span>{{t (concat "upf_utils.social_media_handle.networks." this.selectedNetwork.name)}}</span>
@@ -28,7 +28,7 @@
         <div class="fx-row fx-xalign-center fx-gap-px-9 margin-left-px-6
                     {{if (eq this.selectedNetwork network) 'row-selected'}}">
 					<OSS::Icon
-						@style="brand" @icon="fa-{{network.name}}" class="font-color-{{network.name}}-500" />
+						@style="brand" @icon={{get this.socialMediaIcons network.name}} class="font-color-{{network.name}}-500" />
           <span class="symbol text-color-default-light fx-1">
             {{t (concat "upf_utils.social_media_handle.networks." network.name)}}
           </span>

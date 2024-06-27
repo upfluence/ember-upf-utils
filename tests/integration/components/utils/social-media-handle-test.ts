@@ -37,7 +37,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
       });
       test('Passing the @socialNetwork parameter preselects the correct network', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @socialNetwork="twitter" />`);
-        assert.dom('.selector i').hasClass('fa-twitter');
+        assert.dom('.selector i').hasClass('fa-x-twitter');
       });
       test('Passing the @handle parameter fills the input with the formatted URL', async function (assert) {
         await render(
@@ -56,30 +56,30 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
     module('User action verifications', () => {
       test('Typing a handle and blurring the input reformats the @handle', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'tito');
+        await typeIn('input', 'tito', { delay: 0 });
         await click('.social-handle-container');
         assert.dom('input').hasValue('https://www.instagram.com/tito');
       });
       test('Typing a handle and hitting the enter key reformats the @handle', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'tito');
+        await typeIn('input', 'tito', { delay: 0 });
         await triggerKeyEvent('input', 'keydown', 'Enter');
         assert.dom('input').hasValue('https://www.instagram.com/tito');
       });
       test('Typing a URL in the input does not reformat the input', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'http://url.com/tito');
+        await typeIn('input', 'http://url.com/tito', { delay: 0 });
         await triggerKeyEvent('input', 'keydown', 'Enter');
         assert.dom('input').hasValue('http://url.com/tito');
       });
       test('When the handle input is already filled, changing the social network applies the new Network URL', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'tito');
+        await typeIn('input', 'tito', { delay: 0 });
         await click('.social-handle-container');
         assert.dom('input').hasValue('https://www.instagram.com/tito');
         await click('.selector');
         await click('.upf-infinite-select__item:nth-child(2)');
-        assert.dom('input').hasValue('https://twitter.com/tito');
+        assert.dom('input').hasValue('https://x.com/tito');
       });
     });
 
@@ -98,13 +98,13 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
       });
       test('When the input is blurred, the @onChange function is called', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'a');
+        await typeIn('input', 'a', { delay: 0 });
         await click('.social-handle-container');
         assert.true(this.onChange.calledOnceWithExactly('instagram', 'a', 'https://www.instagram.com/a'));
       });
       test('When the user hits the Enter key, the @onChange function is called', async function (assert) {
         await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} />`);
-        await typeIn('input', 'a');
+        await typeIn('input', 'a', { delay: 0 });
         await triggerKeyEvent('input', 'keydown', 'Enter');
         assert.true(this.onChange.calledOnceWithExactly('instagram', 'a', 'https://www.instagram.com/a'));
       });
@@ -113,7 +113,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
         assert.true(this.onChange.calledOnceWithExactly('instagram', 'a', 'https://www.instagram.com/a'));
         await click('.selector');
         await click('.upf-infinite-select__item:nth-child(2)');
-        assert.true(this.onChange.calledWithExactly('twitter', 'a', 'https://twitter.com/a'));
+        assert.true(this.onChange.calledWithExactly('twitter', 'a', 'https://x.com/a'));
       });
     });
   });
@@ -132,7 +132,7 @@ module('Integration | Component | utils/social-media-handle', function (hooks) {
       await render(
         hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @selectorOnly={{true}} @socialNetwork="twitter" />`
       );
-      assert.dom('.selector-full-width div span').hasText('Twitter');
+      assert.dom('.selector-full-width div span').hasText('X');
     });
     test('When the user selects another network from the dropdown, the @onChange function is called', async function (assert) {
       await render(hbs`<Utils::SocialMediaHandle @onChange={{this.onChange}} @selectorOnly={{true}} />`);

@@ -18,26 +18,32 @@ type SocialNetworkData = {
 
 export const SOCIAL_MEDIA_NETWORKS: SocialNetworkData[] = [
   { name: 'instagram', formattedUrl: 'https://www.instagram.com/{handle}' },
-  { name: 'twitter', formattedUrl: 'https://twitter.com/{handle}' },
+  { name: 'twitter', formattedUrl: 'https://x.com/{handle}' },
   { name: 'tiktok', formattedUrl: 'https://www.tiktok.com/@{handle}' },
   { name: 'twitch', formattedUrl: 'https://www.twitch.tv/{handle}' },
   { name: 'youtube', formattedUrl: 'https://www.youtube.com/user/{handle}' }
 ];
+const SOCIAL_MEDIA_ICONS: Record<string, string> = {
+  instagram: 'fa-instagram',
+  twitter: 'fa-x-twitter',
+  tiktok: 'fa-tiktok',
+  twitch: 'fa-twitch',
+  youtube: 'fa-youtube'
+};
 
 export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHandleArgs> {
   @tracked selectorShown: boolean = false;
   @tracked declare selectedNetwork: SocialNetworkData;
   @tracked handle: string = '';
 
+  socialMediaNetworks: SocialNetworkData[] = SOCIAL_MEDIA_NETWORKS;
+  socialMediaIcons: Record<string, string> = SOCIAL_MEDIA_ICONS;
+
   constructor(owner: unknown, args: UtilsSocialMediaHandleArgs) {
     super(owner, args);
 
     assert('[Utils::SocialMediaHandle] The @onChange parameter is mandatory', typeof args.onChange === 'function');
     this._initArguments();
-  }
-
-  get socialMediaNetworks(): SocialNetworkData[] {
-    return SOCIAL_MEDIA_NETWORKS;
   }
 
   @action
