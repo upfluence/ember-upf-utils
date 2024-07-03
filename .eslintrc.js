@@ -31,7 +31,6 @@ module.exports = {
     'ember/no-actions-hash': 'off',
     'ember/no-component-lifecycle-hooks': 'off'
   },
-  rules: {},
   overrides: [
     // node files
     {
