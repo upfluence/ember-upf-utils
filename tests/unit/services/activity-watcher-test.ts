@@ -1,3 +1,4 @@
+/* eslint-disable  qunit/no-conditional-assertions */
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
@@ -146,6 +147,8 @@ module('Unit | Service | activity-watcher', function (hooks) {
 
     eventTypesTestCases.forEach((testCase: any) => {
       test('it dispatches events for ' + testCase.notification.notification_type, function (assert) {
+        assert.expect(3);
+
         const infoStub = sinon
           .stub(this.owner.lookup('service:toast'), 'info')
           .callsFake((message: string, title: string) => {
@@ -180,3 +183,4 @@ function trimAll(str: string): string {
   //@ts-ignore
   return str.replaceAll(' ', '');
 }
+/* eslint-enable  qunit/no-conditional-assertions */

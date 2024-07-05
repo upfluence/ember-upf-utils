@@ -196,7 +196,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.dom('[data-control-name="address-form-state"]').hasClass('oss-input-container');
     });
 
-    test('onChange action is called with truthy validity check when all fields are filled', async function (assert) {
+    test('onChange action is called with truthy validity check when all fields but the state are filled as it is optional', async function (assert) {
       await render(
         hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}}
                                 @onChange={{this.onChange}} />`
