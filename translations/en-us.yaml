@@ -81,6 +81,9 @@ uedit_editor:
       or: or
       browse: Browse
       cancel: Cancel
+      alert:
+        title: PDF display optimization
+        subtitle: Some mobile browsers may have trouble displaying PDFs correctly. For a better experience, we recommend using the native PDF upload feature.
 errors:
   default:
     title: Whoops, something went wrong!
