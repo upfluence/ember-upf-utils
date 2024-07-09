@@ -27,9 +27,9 @@ export default class UEditSharedTriggersPdfComponent extends Component {
     embedNotSupported.textContent = 'Click to open PDF';
 
     container.append(spacing);
-    container.appendChild(embed);
-    container.append(spacing);
     container.appendChild(embedNotSupported);
+    container.append(spacing);
+    container.appendChild(embed);
     container.append(spacing);
 
     return container;

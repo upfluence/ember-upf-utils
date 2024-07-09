@@ -1,6 +1,11 @@
 <OSS::ModalDialog
  @title={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}} @close={{@closeAction}} class="uedit-file-uploader">
   <:content>
+    {{#if (eq this.titleKey "pdf")}}
+      <div class="form-group">
+        <OSS::Alert @title={{t "uedit_editor.toolbar.pdf.alert.title"}} @subtitle={{t "uedit_editor.toolbar.pdf.alert.subtitle"}} />
+      </div>
+    {{/if}}
     <div class="form-group">
       <label>{{t (concat "uedit_editor.toolbar." this.titleKey ".by_url.label")}}</label>
       <Input
