@@ -1,12 +1,12 @@
-import { inject as service } from '@ember/service';
 import Mixin from '@ember/object/mixin';
-import { run } from '@ember/runloop';
+import { later } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
   activityNotifier: service(),
 
   init() {
     this._super();
-    run.later(this, () => this.activityNotifier.start(), 3000);
+    later(this, () => this.activityNotifier.start(), 3000);
   }
 });
