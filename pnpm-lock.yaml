@@ -41,9 +41,6 @@ dependencies:
   ember-named-blocks-polyfill:
     specifier: ^0.2.4
     version: 0.2.5
-  ember-tether:
-    specifier: ^1.0.0-beta.2
-    version: 1.0.0(@babel/core@7.23.9)
   ember-uploader:
     specifier: ^2.x
     version: 2.0.0(@babel/core@7.23.9)
@@ -5657,27 +5654,6 @@ packages:
     resolution: {integrity: sha512-SaOCEdh+wnt2jFUV2Qb32m7LXyElvFwW3NKNaEJyi5PGQNwxfqpkc0KI6AbQANKgdj/40U2UC0WuGThFwuEUaA==}
     dev: true
 
-  /broccoli-funnel@1.2.0:
-    resolution: {integrity: sha512-0pbFNUA5Ml+gPPd58Rj/M26OS21+bMiV0F+m6+9OVzAhAdppVLxylSsXfWAt2WOD3kS+D8UsDv6GSmnZhbw/dw==}
-    dependencies:
-      array-equal: 1.0.2
-      blank-object: 1.0.2
-      broccoli-plugin: 1.3.1
-      debug: 2.6.9
-      exists-sync: 0.0.4
-      fast-ordered-set: 1.0.3
-      fs-tree-diff: 0.5.9
-      heimdalljs: 0.2.6
-      minimatch: 3.1.2
-      mkdirp: 0.5.6
-      path-posix: 1.0.0
-      rimraf: 2.7.1
-      symlink-or-copy: 1.3.1
-      walk-sync: 0.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /broccoli-funnel@2.0.2:
     resolution: {integrity: sha512-/vDTqtv7ipjEZQOVqO4vGDVAOZyuYzQ/EgGoyewfOgh1M7IQAToBKZI0oAQPgMBeFPPlIbfMuAngk+ohPBuaHQ==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
@@ -7561,20 +7537,6 @@ packages:
     engines: {node: ^4.5 || 6.* || >= 7.*}
     dev: true
 
-  /ember-cli-node-assets@0.2.2:
-    resolution: {integrity: sha512-pFyjlhzwx2FxAmkxSVJvP+i+MwHDhmgsmma1ZQbFLYwBeufo1GIzqSJUfStcpOE1NDg8fXm2yZVVzdZYf9lW2w==}
-    engines: {node: '>= 4'}
-    dependencies:
-      broccoli-funnel: 1.2.0
-      broccoli-merge-trees: 1.2.4
-      broccoli-source: 1.1.0
-      debug: 2.6.9
-      lodash: 4.17.21
-      resolve: 1.22.8
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /ember-cli-normalize-entity-name@1.0.0:
     resolution: {integrity: sha512-rF4P1rW2P1gVX1ynZYPmuIf7TnAFDiJmIUFI1Xz16VYykUAyiOCme0Y22LeZq8rTzwBMiwBwoE3RO4GYWehXZA==}
     dependencies:
@@ -8255,18 +8217,6 @@ packages:
       - supports-color
     dev: true
 
-  /ember-tether@1.0.0(@babel/core@7.23.9):
-    resolution: {integrity: sha512-/qfAJZmsHSWrNGC0Ry6jqwpxr/ksO+fnBJIJM5DbDfRw4HlSQDw+pACpcLKCrgSW/JU+hIdedIvKwIbPbR9Dzw==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-    dependencies:
-      ember-cli-babel: 6.18.0(@babel/core@7.23.9)
-      ember-cli-node-assets: 0.2.2
-      tether: 1.4.7
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-    dev: false
-
   /ember-truth-helpers@3.1.1:
     resolution: {integrity: sha512-FHwJAx77aA5q27EhdaaiBFuy9No+8yaWNT5A7zs0sIFCmf14GbcLn69vJEp6mW7vkITezizGAWhw7gL0Wbk7DA==}
     engines: {node: 10.* || >= 12}
@@ -8833,11 +8783,6 @@ packages:
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
     dev: true
-
-  /exists-sync@0.0.4:
-    resolution: {integrity: sha512-cy5z7K+05RFxHAWY37dSDkPWmuTi+VzrA/xLwPDHmwQPMnO/kVhu6jheGaItlnNRoOE6f5MAjxy3VEupfrHigQ==}
-    deprecated: Please replace with usage of fs.existsSync
-    dev: false
 
   /exists-sync@0.1.0:
     resolution: {integrity: sha512-qEfFekfBVid4b14FNug/RNY1nv+BADnlzKGHulc+t6ZLqGY4kdHGh1iFha8lnE3sJU/1WzMzKRNxS6EvSakJUg==}
@@ -13747,10 +13692,6 @@ packages:
       - walrus
       - whiskers
     dev: true
-
-  /tether@1.4.7:
-    resolution: {integrity: sha512-Z0J1aExjoFU8pybVkQAo/vD2wfSO63r+XOPfWQMC5qtf1bI7IWqNk4MiyBcgvvnY8kqnY06dVdvwTK2S3PU/Fw==}
-    dev: false
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
