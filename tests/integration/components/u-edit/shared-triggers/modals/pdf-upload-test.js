@@ -28,6 +28,8 @@ module('Integration | Component | u-edit/shared-triggers/modals/pdf-upload', fun
   });
 
   test('an image is correctly added via its url in the editor', async function (assert) {
+    assert.expect(2);
+
     this.displayImageUpload = true;
     this.insertPDF = (url) => {
       assert.equal(url, 'http://www.africau.edu/images/default/sample.pdf');
@@ -41,7 +43,5 @@ module('Integration | Component | u-edit/shared-triggers/modals/pdf-upload', fun
     assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
 
     await click('.uedit-file-uploader button.upf-btn.upf-btn--primary');
-
-    assert.expect(2);
   });
 });

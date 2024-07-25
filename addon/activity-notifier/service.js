@@ -1,6 +1,6 @@
 import { alias, notEmpty } from '@ember/object/computed';
 import Service, { inject as service } from '@ember/service';
-import { run } from '@ember/runloop';
+import { cancel, later } from '@ember/runloop';
 import { observer } from '@ember/object';
 import { getOwner } from '@ember/application';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
@@ -61,7 +61,7 @@ export default Service.extend({
     this._isRunning = false;
 
     if (this._timer) {
-      run.cancel(this._timer);
+      cancel(this._timer);
     }
   },
 
@@ -80,7 +80,7 @@ export default Service.extend({
       .then((p) => {
         this._from = p.next;
         this.displayNotifications(p.notifications);
-        this._timer = run.later(this, this.fetchNotifications, this.waitTime());
+        this._timer = later(this, this.fetchNotifications, this.waitTime());
       })
       .finally(() => {
         this._inFetch = false;

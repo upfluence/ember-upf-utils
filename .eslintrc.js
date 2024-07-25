@@ -54,7 +54,12 @@ module.exports = {
         node: true
       },
       plugins: ['node'],
-      rules: {}
+      extends: ['plugin:node/recommended']
+    },
+    {
+      // Test files:
+      files: ['tests/**/*-test.{js,ts}'],
+      extends: ['plugin:qunit/recommended']
     }
   ]
 };

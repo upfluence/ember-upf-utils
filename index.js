@@ -17,6 +17,7 @@ module.exports = {
       includePolyfill: true
     },
     babel: {
+      /* eslint-disable node/no-unpublished-require */
       plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()]
     }
   },

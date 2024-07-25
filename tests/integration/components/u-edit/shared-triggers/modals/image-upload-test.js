@@ -28,6 +28,8 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
   });
 
   test('an image is correctly added via its url in the editor', async function (assert) {
+    assert.expect(2);
+
     this.displayImageUpload = true;
     this.insertImage = (url) => {
       assert.equal(url, 'https://via.placeholder.com/350x150');
@@ -41,7 +43,5 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
     assert.dom('.uedit-file-uploader button.upf-btn.upf-btn--primary').hasNoAttribute('disabled');
 
     await click('.uedit-file-uploader button.upf-btn.upf-btn--primary');
-
-    assert.expect(2);
   });
 });
