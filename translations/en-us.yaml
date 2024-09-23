@@ -155,3 +155,44 @@ utms:
     campaign: UTM campaign*
     campaign_placeholder: e.g. product launch winter 2022
   preview: Preview of your tracking URL
+notifications:
+  mailing_email_received:
+    title: New email
+    description: |
+      You have a new email from {influencer_name}!<br>
+      <a href="{entity_url}" target="_blank">Reply</a>
+  conversation_email_received: 
+    title: New email
+    description: |
+      You have a new email from {influencer_name}!<br>
+      <a href="{entity_url}" target="_blank">Reply</a>
+  direct_message_received:
+    title: New message
+    description: |
+      Message from <b>{influencer_name}</b>
+      <a href="{entity_url}" target="_blank">Reply</a>
+  publishr_application_received:
+    title: New application
+    description: |
+      Application from <b>{influencer_name}</b> in <b>{campaign_name}</b>
+      <a href="{url}" target="_blank">See application</a>
+  publishr_draft_created:
+    title: New draft
+    description: |
+      Draft by <b>{influencer_name}</b> in <b>{campaign_name}</b>
+      <a href="{url}" target="_blank">Review</a>
+  list_recommendation:
+    title: New recommendations
+    description: |
+      You have <b>{count}</b> new recommendations for your <b>{list_name}</b> list
+      <a href="{url}" target="_blank">View</a>
+  thread_failure_summary:
+    title: Thread failure
+    description: |
+      <b>Mailing error.</b> We ran into a problem with one of your Mailings.
+      <a href="{mailing_url}" target="_blank">View my mailing</a>
+  credential_disconnected:
+    title: Integration disconnected
+    description: |
+      <b>Your {integration_name} has been disconnected.</b> Please check your integration settings and reconnect it to avoid any issues.
+      <a href="{integration_url}" target="_blank">Reconnect</a>

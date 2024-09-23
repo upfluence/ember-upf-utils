@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
 import EventsService, { ResourceEvent, prefixPath } from '@upfluence/hyperevents/services/events-service';
 import ToastService, { ToastOptions } from '@upfluence/oss-components/services/toast';
+import { IntlService } from 'ember-intl';
 
 type NotificationEvent = {
   resource: string;
@@ -47,69 +48,87 @@ function renderNotificationMessageWithAvatar(message: string, title: string, ava
 }
 
 type NotificationRendererMap = {
-  [key: string]: (data: any) => RenderedNotification;
+  [key: string]: (data: any, intl?: IntlService) => RenderedNotification;
 };
 
 const renderersByNotificationType: NotificationRendererMap = {
-  mailing_email_received: (data: any) => {
+  mailing_email_received: (data: any, intl: IntlService) => {
     return renderNotificationMessageWithAvatar(
-      `Email from <b>${data.influencer_name}</b>
-       <a href="${data.entity_url}" target="_blank">Reply</a>`,
-      'New email',
+      intl.t('notifications.mailing_email_received.description', {
+        influencer_name: data.influencer_name,
+        entity_url: data.entity_url
+      }),
+      intl.t('notifications.mailing_email_received.title'),
       data.influencer_avatar
     );
   },
-  conversation_email_received: (data: any) => {
+  conversation_email_received: (data: any, intl: IntlService) => {
     return renderNotificationMessageWithAvatar(
-      `Email from <b>${data.influencer_name}</b>
-       <a href="${data.entity_url}" target="_blank">Reply</a>`,
-      'New email',
+      intl.t('notifications.conversation_email_received.description', {
+        influencer_name: data.influencer_name,
+        entity_url: data.entity_url
+      }),
+      intl.t('notifications.conversation_email_received.title'),
       data.influencer_avatar
     );
   },
-  direct_message_received: (data: any) => {
+  direct_message_received: (data: any, intl: IntlService) => {
     return renderNotificationMessageWithAvatar(
-      `Message from <b>${data.influencer_name}</b>
-       <a href="${data.entity_url}" target="_blank">Reply</a>`,
-      'New message',
+      intl.t('notifications.direct_message_received.description', {
+        influencer_name: data.influencer_name,
+        entity_url: data.entity_url
+      }),
+      intl.t('notifications.direct_message_received.title'),
       data.influencer_avatar
     );
   },
-  publishr_application_received: (data: any) => {
+  publishr_application_received: (data: any, intl: IntlService) => {
     return renderNotificationMessageWithAvatar(
-      `Application from <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
-       <a href="${data.url}" target="_blank">See application</a>`,
-      'New application',
+      intl.t('notifications.publishr_application_received.description', {
+        influencer_name: data.influencer_name,
+        campaign_name: data.campaign_name,
+        url: data.url
+      }),
+      intl.t('notifications.publishr_application_received.title'),
       data.influencer_avatar
     );
   },
-  publishr_draft_created: (data: any) => {
+  publishr_draft_created: (data: any, intl: IntlService) => {
     return renderNotificationMessageWithAvatar(
-      `Draft by <b>${data.influencer_name}</b> in <b>${data.campaign_name}</b>
-       <a href="${data.url}" target="_blank">Review</a>`,
-      'New draft',
+      intl.t('notifications.publishr_draft_created.description', {
+        influencer_name: data.influencer_name,
+        campaign_name: data.campaign_name,
+        url: data.url
+      }),
+      intl.t('notifications.publishr_draft_created.title'),
       data.influencer_avatar
     );
   },
-  list_recommendation: (data: any) => {
+  list_recommendation: (data: any, intl: IntlService) => {
     return renderNotificationMessage(
-      `You have <b>${data.count}</b> new recommendations for your <b>${data.list_name}</b> list
-       <a href="${data.url}" target="_blank">View</a>`,
-      'New recommendations'
+      intl.t('notifications.list_recommendation.description', {
+        count: data.count,
+        list_name: data.list_name,
+        url: data.url
+      }),
+      intl.t('notifications.list_recommendation.title')
     );
   },
-  thread_failure_summary: (data: any) => {
+  thread_failure_summary: (data: any, intl: IntlService) => {
     return renderNotificationErrorMessage(
-      `<b>Mailing error.</b> We ran into a problem with one of your Mailings.
-         <a href="${data.mailing_url}" target="_blank">View my mailing</a>`,
-      'Thread failure'
+      intl.t('notifications.thread_failure_summary.description', {
+        mailing_url: data.mailing_url
+      }),
+      intl.t('notifications.thread_failure_summary.title')
     );
   },
-  credential_disconnected: (data: any) => {
+  credential_disconnected: (data: any, intl: IntlService) => {
     return renderNotificationErrorMessage(
-      `<b>Your ${data.integration_name} has been disconnected.</b> Please check your integration.
-      settings and reconnect it to avoid any issues. <a href="${data.integration_url}" target="_blank">Reconnect</a>`,
-      'Integration disconnected'
+      intl.t('notifications.credential_disconnected.description', {
+        integration_name: data.integration_name,
+        integration_url: data.integration_url
+      }),
+      intl.t('notifications.credential_disconnected.title')
     );
   }
 };
@@ -117,6 +136,7 @@ const renderersByNotificationType: NotificationRendererMap = {
 export default class ActivityWatcher extends Service {
   @service declare eventsService: EventsService;
   @service declare toast: ToastService;
+  @service declare intl: IntlService;
 
   private declare _observer: Observable<ResourceEvent> | null;
 
@@ -169,7 +189,7 @@ export default class ActivityWatcher extends Service {
       return null;
     }
 
-    return renderer(evt.payload.data || {});
+    return renderer(evt.payload.data, this.intl || {});
   }
 }
 

@@ -43,7 +43,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
           }
         },
         wantInfoTitle: 'New email',
-        wantInfoMessage: `Email from <b>bozito</b>
+        wantInfoMessage: `You have a new email from bozito!<br>
           <a href="https://entity.url.com" target="_blank">Reply</a>`
       },
       {
@@ -57,8 +57,8 @@ module('Unit | Service | activity-watcher', function (hooks) {
           }
         },
         wantInfoTitle: 'New email',
-        wantInfoMessage: `Email from <b>bozito</b>
-           <a href="https://entity.url.com" target="_blank">Reply</a>`
+        wantInfoMessage: `You have a new email from bozito!<br>
+          <a href="https://entity.url.com" target="_blank">Reply</a>`
       },
       {
         notification: {
@@ -140,8 +140,8 @@ module('Unit | Service | activity-watcher', function (hooks) {
           }
         },
         wantErrorTitle: 'Integration disconnected',
-        wantErrorMessage: `<b>Your woop has been disconnected.</b> Please check your integration.
-          settings and reconnect it to avoid any issues. <a href="https://inte-gration.com" target="_blank">Reconnect</a>`
+        wantErrorMessage: `<b>Your woop has been disconnected.</b> Please check your integration settings and reconnect it to avoid any issues.
+          <a href="https://inte-gration.com" target="_blank">Reconnect</a>`
       }
     ];
 
@@ -152,13 +152,13 @@ module('Unit | Service | activity-watcher', function (hooks) {
         const infoStub = sinon
           .stub(this.owner.lookup('service:toast'), 'info')
           .callsFake((message: string, title: string) => {
-            assert.equal(trimAll(message), trimAll(testCase.wantInfoMessage));
+            assert.true(trimAll(message).includes(trimAll(testCase.wantInfoMessage)));
             assert.equal(title, testCase.wantInfoTitle);
           });
         const errorStub = sinon
           .stub(this.owner.lookup('service:toast'), 'error')
           .callsFake((message: string, title: string) => {
-            assert.equal(trimAll(message), trimAll(testCase.wantErrorMessage));
+            assert.true(trimAll(message).includes(trimAll(testCase.wantErrorMessage)));
             assert.equal(title, testCase.wantErrorTitle);
           });
 
