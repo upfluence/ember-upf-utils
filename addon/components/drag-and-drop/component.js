@@ -17,12 +17,16 @@ export default Component.extend({
     if (this._onDragElement && this.onDragClass) {
       return this.onDragClass;
     }
+
+    return;
   }),
 
   dragElementInZoneClass: computed('_onDragElementInZone', 'onDragInZoneClass', function () {
     if (this._onDragElementInZone && this.onDragInZoneClass) {
       return this.onDragInZoneClass;
     }
+
+    return;
   }),
 
   didInsertElement() {

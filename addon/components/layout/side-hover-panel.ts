@@ -9,7 +9,7 @@ interface SideHoverPanelArgs {
   disableScrolling: boolean;
   isOverContent: boolean;
   shouldAnimate: boolean;
-  backdropAction: () => void;
+  backdropAction?(): void;
 }
 
 export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
@@ -22,10 +22,6 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
       classes.push('__side-hover-panel--over-content');
     }
     return classes.join(' ');
-  }
-
-  get backdropAction(): () => void {
-    return this.args.backdropAction;
   }
 
   get side(): string {
@@ -52,7 +48,8 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
     return this.args.stickTo ?? 'right';
   }
 
-  initialize(element: HTMLElement) {
+  @action
+  initialize(element: HTMLElement): void {
     this.hoverPanel = element.querySelector('.hover-panel')! as HTMLElement;
     this.hoverPanel.classList.add(this.side + '_side');
     this.hoverPanel.classList.add(this.stickTo + '_align');
@@ -63,7 +60,7 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
 
     this.hoverPanel.classList.add(this.side + '_transform');
 
-    if (this.backdropAction != null) {
+    if (this.args.backdropAction) {
       this.panelBackdrop = element.querySelector('.panel-backdrop');
       this.panelBackdrop!.classList.remove('hidden');
     }
@@ -76,7 +73,8 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
     }
   }
 
-  teardown() {
+  @action
+  teardown(): void {
     this.hoverPanel?.remove();
     this.panelBackdrop?.classList.add('hidden');
     if (this.disableScrolling) {

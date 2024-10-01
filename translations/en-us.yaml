@@ -57,30 +57,16 @@ file_uploader:
     upload: Upload
 uedit_editor:
   toolbar:
+    cancel: Cancel
+    by_url: 'By URL:'
     image:
       title: Add Image
-      by_url:
-        label: 'By URL:'
-        placeholder: https://example.org/image.png
-      processing: 'Processing {filename}...'
-      processed_file:
-        title: Uploaded Files
-      drop_file: Drop your file here
-      or: or
-      browse: Browse
-      cancel: Cancel
+      subtitle: File must be in jpg, jpeg, png, or gif format
+      placeholder: https://example.org/image.png
     pdf:
       title: Add PDF
-      by_url:
-        label: 'By URL:'
-        placeholder: https://example.org/file.pdf
-      processing: 'Processing {filename}...'
-      processed_file:
-        title: Uploaded Files
-      drop_file: Drop your file here
-      or: or
-      browse: Browse
-      cancel: Cancel
+      subtitle: File must be in pdf format
+      placeholder: https://example.org/file.pdf
       alert:
         title: PDF display optimization
         subtitle: Some mobile browsers may have trouble displaying PDFs correctly. For a better experience, we recommend using the native PDF upload feature.
