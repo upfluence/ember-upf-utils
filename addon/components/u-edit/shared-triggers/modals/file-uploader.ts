@@ -8,6 +8,7 @@ import { FileArtifact } from '@upfluence/oss-components/types/uploader';
 
 interface UEditFileUploaderSignature {
   insertFile(fileURL: string): void;
+  closeAction(): void;
 }
 
 export default class UEditFileUploader extends Component<UEditFileUploaderSignature> {
