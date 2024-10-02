@@ -60,7 +60,7 @@ uedit_editor:
     cancel: Cancel
     by_url: 'By URL:'
     image:
-      title: Add Image
+      title: Add image
       subtitle: File must be in jpg, jpeg, png, or gif format
       placeholder: https://example.org/image.png
     pdf:
