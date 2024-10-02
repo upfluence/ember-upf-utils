@@ -7,7 +7,7 @@ import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 const notificationMessage = function (message) {
   return {
-    title: `<i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+    title: `<i class='toast-title__icon fas fa-message-dots'></i>`,
     message: message,
     type: 'info'
   };
@@ -24,7 +24,7 @@ const notificationErrorMessage = function (message) {
 const notificationMessageWithAvatar = function (avatarUrl, message) {
   return {
     title: `<img class="toast-title__avatar" src="${avatarUrl}" />
-     <i class="toast-title__icon upf-icon upf-icon--messages"></i>`,
+     <i class='toast-title__icon fas fa-message-dots'></i>`,
     message: message,
     type: 'info'
   };
