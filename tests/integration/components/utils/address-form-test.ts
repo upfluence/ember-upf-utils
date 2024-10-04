@@ -40,7 +40,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
     );
 
-    await typeIn('[data-control-name="address-form-city"] input', 'f');
+    await typeIn('[data-control-name="address-form-city"] input', 'f', { delay: 0 });
     await click('[data-control-name="address-form-state"] .upf-input');
     await click('[data-control-name="address-form-state"] .upf-infinite-select__item:nth-child(1)');
     assert.ok(this.onChange.calledWith(this.address, true));
@@ -76,7 +76,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
         hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} @useGoogleAutocomplete={{false}}
                                 @usePhoneNumberInput={{true}} />`
       );
-      await typeIn('[data-control-name="address-form-phone"] input', '+8');
+      await typeIn('[data-control-name="address-form-phone"] input', '+8', { delay: 0 });
       assert.ok(this.onChange.calledWith(this.address, false));
     });
   });

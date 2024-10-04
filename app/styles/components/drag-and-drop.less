@@ -1,31 +1,20 @@
-.__drag-and-drop {
-  position: relative;
-}
-
-.__drag-and-drop-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
-}
-
 .uedit .uedit__loading-image-upload {
   position: absolute;
   bottom: 0;
   right: 0;
-  margin: @spacing-xxx-sm;
+  margin: var(--spacing-px-6);
 
   &--hidden {
     visibility: hidden;
   }
 
   .spinner {
-    margin: 0 0 0 @spacing-xxx-sm;
+    margin: 0 0 0 var(--spacing-px-6);
     width: auto;
 
-    .bounce1, .bounce2, .bounce3 {
+    .bounce1,
+    .bounce2,
+    .bounce3 {
       margin-left: 1px;
       width: 8px;
       height: 8px;
