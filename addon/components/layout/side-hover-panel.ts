@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { later } from '@ember/runloop';
 
 interface SideHoverPanelArgs {
   side: string;
@@ -58,7 +59,9 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
       this.hoverPanel.classList.add('animate');
     }
 
-    this.hoverPanel.classList.add(this.side + '_transform');
+    later(() => {
+      this.hoverPanel!.classList.add(this.side + '_transform');
+    }, 0);
 
     if (this.args.backdropAction) {
       this.panelBackdrop = element.querySelector('.panel-backdrop');

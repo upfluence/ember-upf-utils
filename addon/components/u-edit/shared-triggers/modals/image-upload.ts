@@ -6,7 +6,7 @@ export default class UEditImageUploadComponent extends UEDitFileUploader {
   fileUploadRules: FileValidator[] = [
     {
       type: 'filetype',
-      value: ['jpg', 'jpeg', 'png', 'gif']
+      value: ['image', 'gif']
     }
   ];
 }
