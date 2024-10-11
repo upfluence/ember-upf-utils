@@ -4,6 +4,9 @@ import { tracked } from '@glimmer/tracking';
 
 export default class ApplicationController extends Controller {
   @tracked selectedItems = ['toto'];
+  @tracked selectedIcon = 'rabbit';
+  @tracked selectedColor = 'stone';
+
   @tracked address = {
     firstName: 'John',
     lastName: 'Doe',
@@ -29,5 +32,12 @@ export default class ApplicationController extends Controller {
   @action
   onChange(address, isValid) {
     console.log(address, isValid);
+  }
+
+  @action
+  onLogoChange(icon, color) {
+    this.selectedColor = color;
+    this.selectedIcon = icon;
+    console.log(JSON.stringify({ icon, color }));
   }
 }

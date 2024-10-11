@@ -1,0 +1,255 @@
+.logo-maker {
+  .color-swatches {
+    width: 240px;
+
+    .swatch {
+      height: 24px;
+      width: 24px;
+      border-radius: var(--border-radius-sm);
+      transition: all 250ms ease-in-out;
+    }
+
+    .swatch:hover {
+      opacity: 60%;
+      cursor: pointer;
+    }
+  }
+
+  .logo-swatch-color {
+    &_stone {
+      background-color: var(--campaign-logo-color-stone-dark);
+    }
+    &_rose {
+      background-color: var(--campaign-logo-color-rose-dark);
+    }
+    &_orange {
+      background-color: var(--campaign-logo-color-orange-dark);
+    }
+    &_yellow {
+      background-color: var(--campaign-logo-color-yellow-dark);
+    }
+    &_lime {
+      background-color: var(--campaign-logo-color-lime-dark);
+    }
+    &_emerald {
+      background-color: var(--campaign-logo-color-emerald-dark);
+    }
+    &_teal {
+      background-color: var(--campaign-logo-color-teal-dark);
+    }
+    &_cyan {
+      background-color: var(--campaign-logo-color-cyan-dark);
+    }
+    &_sky {
+      background-color: var(--campaign-logo-color-sky-dark);
+    }
+    &_blue {
+      background-color: var(--campaign-logo-color-blue-dark);
+    }
+    &_indigo {
+      background-color: var(--campaign-logo-color-indigo-dark);
+    }
+    &_violet {
+      background-color: var(--campaign-logo-color-violet-dark);
+    }
+    &_purple {
+      background-color: var(--campaign-logo-color-purple-dark);
+    }
+    &_fuschia {
+      background-color: var(--campaign-logo-color-fuschia-dark);
+    }
+    &_pink {
+      background-color: var(--campaign-logo-color-pink-dark);
+    }
+    &_slate {
+      background-color: var(--campaign-logo-color-slate-dark);
+    }
+  }
+}
+
+.logo-icon {
+  height: 36px;
+  width: 36px;
+  border-radius: var(--border-radius-md);
+  color: var(--color-gray-900);
+  opacity: 60%;
+  font-size: 18px;
+  transition: all 250ms ease-in-out;
+
+  &--selected {
+    box-shadow: 0px 0px 0px 2px #e5e7eb, 0px 1px 3px 0px #0000001a, 0px 1px 2px 0px #0000000f;
+
+    i {
+      margin-top: 1px;
+    }
+  }
+}
+
+.logo-editor .logo-icon:hover {
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.logo-icon-container {
+  height: 36px;
+  width: 36px;
+  position: relative;
+  transition: all 250ms ease-in-out;
+
+  .edit-overlay {
+    position: absolute;
+    opacity: 0;
+    transition: all 250ms ease-in-out;
+    height: 36px;
+    width: 36px;
+    border-radius: var(--border-radius-md);
+  }
+}
+
+.logo-icon-container:hover {
+  .edit-overlay {
+    display: flex;
+    background-color: var(--color-gray-900);
+    opacity: 60%;
+    color: var(--color-white);
+    z-index: 1;
+    cursor: pointer;
+  }
+}
+
+.logo-icon-container--oversize {
+  height: 60px;
+  width: 60px;
+
+  .edit-overlay,
+  .campaign-icon,
+  .campaign-image {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+.logo-image {
+  height: 36px;
+  width: 36px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--border-radius-md);
+}
+
+.logo-icon-color {
+  &_stone {
+    background-color: var(--campaign-logo-color-stone-light);
+    color: var(--campaign-logo-color-stone-dark);
+  }
+  &_rose {
+    background-color: var(--campaign-logo-color-rose-light);
+    color: var(--campaign-logo-color-rose-dark);
+  }
+  &_orange {
+    background-color: var(--campaign-logo-color-orange-light);
+    color: var(--campaign-logo-color-orange-dark);
+  }
+  &_yellow {
+    background-color: var(--campaign-logo-color-yellow-light);
+    color: var(--campaign-logo-color-yellow-dark);
+  }
+  &_lime {
+    background-color: var(--campaign-logo-color-lime-light);
+    color: var(--campaign-logo-color-lime-dark);
+  }
+  &_emerald {
+    background-color: var(--campaign-logo-color-emerald-light);
+    color: var(--campaign-logo-color-emerald-dark);
+  }
+  &_teal {
+    background-color: var(--campaign-logo-color-teal-light);
+    color: var(--campaign-logo-color-teal-dark);
+  }
+  &_cyan {
+    background-color: var(--campaign-logo-color-cyan-light);
+    color: var(--campaign-logo-color-cyan-dark);
+  }
+  &_sky {
+    background-color: var(--campaign-logo-color-sky-light);
+    color: var(--campaign-logo-color-sky-dark);
+  }
+  &_blue {
+    background-color: var(--campaign-logo-color-blue-light);
+    color: var(--campaign-logo-color-blue-dark);
+  }
+  &_indigo {
+    background-color: var(--campaign-logo-color-indigo-light);
+    color: var(--campaign-logo-color-indigo-dark);
+  }
+  &_violet {
+    background-color: var(--campaign-logo-color-violet-light);
+    color: var(--campaign-logo-color-violet-dark);
+  }
+  &_purple {
+    background-color: var(--campaign-logo-color-purple-light);
+    color: var(--campaign-logo-color-purple-dark);
+  }
+  &_fuschia {
+    background-color: var(--campaign-logo-color-fuschia-light);
+    color: var(--campaign-logo-color-fuschia-dark);
+  }
+  &_pink {
+    background-color: var(--campaign-logo-color-pink-light);
+    color: var(--campaign-logo-color-pink-dark);
+  }
+  &_slate {
+    background-color: var(--campaign-logo-color-slate-light);
+    color: var(--campaign-logo-color-slate-dark);
+  }
+}
+
+:root {
+  --campaign-logo-color-stone-light: #f5f5f4;
+  --campaign-logo-color-stone-dark: #78716c;
+
+  --campaign-logo-color-rose-light: #ffe4e6;
+  --campaign-logo-color-rose-dark: #f43f5e;
+
+  --campaign-logo-color-orange-light: #ffedd5;
+  --campaign-logo-color-orange-dark: #f97316;
+
+  --campaign-logo-color-yellow-light: #fef3c7;
+  --campaign-logo-color-yellow-dark: #f59e0b;
+
+  --campaign-logo-color-lime-light: #ecfccb;
+  --campaign-logo-color-lime-dark: #84cc16;
+
+  --campaign-logo-color-emerald-light: #d1fae5;
+  --campaign-logo-color-emerald-dark: #10b981;
+
+  --campaign-logo-color-teal-light: #ccfbf1;
+  --campaign-logo-color-teal-dark: #14b8a6;
+
+  --campaign-logo-color-cyan-light: #cffafe;
+  --campaign-logo-color-cyan-dark: #06b6d4;
+
+  --campaign-logo-color-sky-light: #e0f2fe;
+  --campaign-logo-color-sky-dark: #0ea5e9;
+
+  --campaign-logo-color-blue-light: #dbeafe;
+  --campaign-logo-color-blue-dark: #3b82f6;
+
+  --campaign-logo-color-indigo-light: #e0e7ff;
+  --campaign-logo-color-indigo-dark: #6366f1;
+
+  --campaign-logo-color-violet-light: #ede9fe;
+  --campaign-logo-color-violet-dark: #8b5cf6;
+
+  --campaign-logo-color-purple-light: #f3e8ff;
+  --campaign-logo-color-purple-dark: #a855f7;
+
+  --campaign-logo-color-fuschia-light: #fae8ff;
+  --campaign-logo-color-fuschia-dark: #d946ef;
+
+  --campaign-logo-color-pink-light: #fce7f3;
+  --campaign-logo-color-pink-dark: #ec4899;
+
+  --campaign-logo-color-slate-light: #f1f5f9;
+  --campaign-logo-color-slate-dark: #64748b;
+}

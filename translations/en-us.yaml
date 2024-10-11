@@ -41,6 +41,11 @@ processed_features:
   tooltip_alert: Does not always respond to emails received
   tooltip_regular: Average influencer email response time
   tooltip_positive: Average influencer email response time
+logo_maker:
+  color_selector:
+    label: Color
+  icon_selector:
+    label: Icon
 upgrade_modal:
   title: Upgrade Plan
   description: Oops! Your current plan does not include this feature.
