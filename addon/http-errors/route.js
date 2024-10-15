@@ -12,7 +12,7 @@ export default class HttpErrorsRoute extends Route {
     super.setupController(controller, error);
 
     // eslint-disable-next-line no-prototype-builtins
-    if (error && error?.hasOwnProperty('path')) {
+    if (error && error.hasOwnProperty('path')) {
       this.errorValue = NOT_FOUND;
       return;
     }
@@ -25,7 +25,7 @@ export default class HttpErrorsRoute extends Route {
       return;
     }
 
-    if (error && error?.code) {
+    if (error && error.code) {
       this.errorValue = error.code;
     }
   }
