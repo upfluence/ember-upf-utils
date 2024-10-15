@@ -17,7 +17,7 @@ export default class HttpErrorsRoute extends Route {
       return;
     }
 
-    if (error.errors && error.errors[0].status === 402) {
+    if (error?.errors && error?.errors[0].status === 402) {
       this.errorValue = LIMIT_EXCEEDED;
       this.statusCode = error.errors[0].status;
       this.used = error.errors[0].limit_spent;
