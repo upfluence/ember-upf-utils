@@ -101,7 +101,7 @@ export default class extends Component<LogoMakerArgs> {
   @action
   setLogoColor(color: string): void {
     this.selectedColor = color;
-    console.log(this.selectedIcon, this.selectedColor);
+    console.log(this.args.onChange);
     this.args.onChange(this.selectedIcon, this.selectedColor);
   }
 }
