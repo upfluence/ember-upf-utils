@@ -48,10 +48,9 @@ export const DEFAULT_ICONS = [
   'meteor',
   'globe-americas',
   'globe-snow',
-  'user-hair',
+  'user',
   'paper-plane-top',
-  'star',
-  'hexagon-xmark'
+  'handshake'
 ];
 
 export const DEFAULT_COLORS = [
@@ -94,14 +93,12 @@ export default class extends Component<LogoMakerArgs> {
   @action
   setLogoIcon(icon: string): void {
     this.selectedIcon = icon;
-    console.log(this.selectedIcon, this.selectedColor);
     this.args.onChange(this.selectedIcon, this.selectedColor);
   }
 
   @action
   setLogoColor(color: string): void {
     this.selectedColor = color;
-    console.log(this.args.onChange);
     this.args.onChange(this.selectedIcon, this.selectedColor);
   }
 }
