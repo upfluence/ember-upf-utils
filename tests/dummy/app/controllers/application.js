@@ -38,6 +38,5 @@ export default class ApplicationController extends Controller {
   onLogoChange(icon, color) {
     this.selectedColor = color;
     this.selectedIcon = icon;
-    console.log(JSON.stringify({ icon, color }));
   }
 }
