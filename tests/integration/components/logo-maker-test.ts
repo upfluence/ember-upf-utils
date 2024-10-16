@@ -24,7 +24,7 @@ module('Integration | Component | logo-maker', function (hooks) {
     await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
 
     assert.dom('.logo-icon-selected.logo-icon-color_pink').exists();
-    assert.dom('.swatch.logo-icon--selected').hasClass('logo-swatch-color_pink');
+    assert.dom('.swatch.logo-icon-selected').hasClass('logo-swatch-color_pink');
   });
 
   test('Selecting another icon applies the proper class to the newly selected element', async function (assert) {
@@ -38,9 +38,9 @@ module('Integration | Component | logo-maker', function (hooks) {
   test('Selecting another color applies the proper class to the newly selected element', async function (assert) {
     await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
 
-    assert.dom('.swatch.logo-icon--selected').hasClass('logo-swatch-color_pink');
+    assert.dom('.swatch.logo-icon-selected').hasClass('logo-swatch-color_pink');
     await click('.swatch:nth-of-type(1)');
-    assert.dom('.swatch.logo-icon--selected').hasClass('logo-swatch-color_stone');
+    assert.dom('.swatch.logo-icon-selected').hasClass('logo-swatch-color_stone');
   });
 
   module('@onChange method', function () {
@@ -54,7 +54,7 @@ module('Integration | Component | logo-maker', function (hooks) {
     test('is called when setting a new color', async function (assert) {
       await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
 
-      assert.dom('.swatch.logo-icon--selected').hasClass('logo-swatch-color_pink');
+      assert.dom('.swatch.logo-icon-selected').hasClass('logo-swatch-color_pink');
       await click('.swatch:nth-of-type(1)');
       assert.ok(this.onChangeStub.calledOnceWithExactly('popcorn', 'stone'));
     });

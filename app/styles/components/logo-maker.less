@@ -7,6 +7,14 @@
       width: 24px;
       border-radius: var(--border-radius-sm);
       transition: all 250ms ease-in-out;
+
+      &--selected {
+        box-shadow: 0px 0px 0px 2px #e5e7eb, 0px 1px 3px 0px #0000001a, 0px 1px 2px 0px #0000000f;
+
+        i {
+          margin-top: 1px;
+        }
+      }
     }
 
     .swatch:hover {
@@ -77,15 +85,11 @@
   transition: all 250ms ease-in-out;
 
   &--selected {
-    box-shadow: 0px 0px 0px 2px #e5e7eb, 0px 1px 3px 0px #0000001a, 0px 1px 2px 0px #0000000f;
-
-    i {
-      margin-top: 1px;
-    }
+    opacity: 100%;
   }
 }
 
-.logo-editor .logo-icon:hover {
+.logo-maker .logo-icon:hover {
   cursor: pointer;
   opacity: 100%;
 }

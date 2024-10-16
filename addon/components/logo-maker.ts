@@ -87,7 +87,7 @@ export default class extends Component<LogoMakerArgs> {
   campaignIcons = DEFAULT_ICONS;
 
   get selectedIconClass(): string {
-    return `logo-icon-selected logo-icon-color_${this.selectedColor}`;
+    return `logo-icon--selected logo-icon-color_${this.selectedColor}`;
   }
 
   @action
