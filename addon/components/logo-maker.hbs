@@ -1,31 +1,33 @@
-<div class="fx-col fx-gap-px-6 logo-maker" ...attributes>
-  <span class="font-color-gray-500 font-size-md">{{t "logo_maker.color_selector.label"}}</span>
-  <div class="color-swatches fx-row fx-wrap fx-gap-px-6">
+<div class="logo-maker" ...attributes>
+  <div class="fx-col fx-gap-px-6">
+    <span class="font-color-gray-500 font-size-md">{{t "logo_maker.color_selector.label"}}</span>
+    <div class="color-swatches fx-row fx-wrap fx-gap-px-6">
 
-    {{#each this.campaignColors as |color|}}
-      <div
-        class="fx-row fx-malign-center fx-xalign-center swatch logo-swatch-color_{{color}}
-          {{if (eq color this.selectedColor) 'logo-icon--selected'}}"
-        {{on "click" (fn this.setLogoColor color)}}
-      >
-        {{#if (eq color this.selectedColor)}}
-          <i class="far fa-check font-color-white text-size-4"></i>
-        {{/if}}
-      </div>
-    {{/each}}
+      {{#each this.campaignColors as |color|}}
+        <div
+          class="fx-row fx-malign-center fx-xalign-center swatch logo-swatch-color_{{color}}
+            {{if (eq color this.selectedColor) 'swatch--selected'}}"
+          {{on "click" (fn this.setLogoColor color)}}
+        >
+          {{#if (eq color this.selectedColor)}}
+            <i class="far fa-check font-color-white text-size-4"></i>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
   </div>
-</div>
-<div class="fx-col fx-gap-px-6">
-  <span class="font-color-gray-500 font-size-md">{{t "logo_maker.icon_selector.label"}}</span>
-  <div class="fx-row fx-wrap fx-gap-px-6">
-    {{#each this.campaignIcons as |icon|}}
-      <div
-        class="logo-icon fx-row fx-malign-center fx-xalign-center
-          {{if (eq icon this.selectedIcon) this.selectedIconClass}}"
-        {{on "click" (fn this.setLogoIcon icon)}}
-      >
-        <i class="fad fa-{{icon}}"></i>
-      </div>
-    {{/each}}
+  <div class="fx-col fx-gap-px-6">
+    <span class="font-color-gray-500 font-size-md">{{t "logo_maker.icon_selector.label"}}</span>
+    <div class="fx-row fx-wrap fx-gap-px-6">
+      {{#each this.campaignIcons as |icon|}}
+        <div
+          class="logo-icon fx-row fx-malign-center fx-xalign-center
+            {{if (eq icon this.selectedIcon) this.selectedIconClass}}"
+          {{on "click" (fn this.setLogoIcon icon)}}
+        >
+          <i class="fad fa-{{icon}}"></i>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </div>
