@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 
 export default class HttpErrors402Controller extends Controller {
   @service intl;
+  @service router;
 
   @action
   openSupportChannel() {
@@ -18,6 +19,6 @@ export default class HttpErrors402Controller extends Controller {
 
   @action
   goBack() {
-    this.transitionToRoute('lists');
+    this.router.transitionTo('facade.lists');
   }
 }
