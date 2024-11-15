@@ -5,14 +5,23 @@ import { setupTest } from 'ember-qunit';
 import EventsServiceMock from '@upfluence/hyperevents/test-support/services/events-service';
 
 import sinon from 'sinon';
+import Service from '@ember/service';
+
+class SessionServiceMock extends Service {
+  tooManyConnections: boolean = false;
+
+  invalidate = sinon.stub();
+}
 
 module('Unit | Service | activity-watcher', function (hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function () {
     this.owner.register('service:events-service', EventsServiceMock);
+    this.owner.register('service:session', SessionServiceMock);
 
     this.eventService = this.owner.lookup('service:events-service');
+    this.sessionService = this.owner.lookup('service:session');
     this.activityWatcher = this.owner.lookup('service:activity-watcher');
   });
 
@@ -29,6 +38,22 @@ module('Unit | Service | activity-watcher', function (hooks) {
   module('watching for events', function (hooks) {
     hooks.beforeEach(function () {
       this.activityWatcher.watch();
+    });
+
+    test('When an event of type "token_destroyed" is received, it invalidates the session if the token is the same', function (assert) {
+      this.sessionService.data = { authenticated: { access_token: 'some-token' } };
+
+      this.eventService.dispatch({
+        resource: '/notification/some-uu-id',
+        payload: {
+          notification_type: 'token_destroyed',
+          data: {
+            accessToken: 'some-token'
+          }
+        }
+      });
+
+      assert.true(this.sessionService.invalidate.calledOnce);
     });
 
     const eventTypesTestCases = [
