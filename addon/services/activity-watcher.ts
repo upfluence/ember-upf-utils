@@ -188,7 +188,7 @@ export default class ActivityWatcher extends Service {
   }
 
   private checkIfUserNeedsToBeDisconnected(event: NotificationEvent): void {
-    if (this.session.data.authenticated.access_token === event.payload.data.accessToken) {
+    if (this.session.data.authenticated.access_token === event.payload.data.access_token) {
       this.session.tooManyConnections = true;
       this.session.invalidate();
     }

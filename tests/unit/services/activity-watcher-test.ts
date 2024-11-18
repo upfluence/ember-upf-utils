@@ -48,7 +48,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
         payload: {
           notification_type: 'token_destroyed',
           data: {
-            accessToken: 'some-token'
+            access_token: 'some-token'
           }
         }
       });
