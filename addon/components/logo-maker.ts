@@ -50,7 +50,8 @@ export const DEFAULT_ICONS = [
   'globe-snow',
   'user',
   'paper-plane-top',
-  'handshake'
+  'handshake',
+  'octagon-xmark'
 ];
 
 export const DEFAULT_COLORS = [
