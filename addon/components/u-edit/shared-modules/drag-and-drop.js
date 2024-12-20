@@ -1,19 +1,18 @@
-import Uploader from '@upfluence/ember-upf-utils/uploader';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
 
 export default class ModuleBuilder {
-  constructor(session, toast) {
-    Object.assign(this, { session, toast });
+  constructor(uploader, toast) {
+    Object.assign(this, { uploader, toast });
   }
 
   build(editor, element) {
-    return new Module(editor, element, this.session, this.toast);
+    return new Module(editor, element, this.uploader, this.toast);
   }
 }
 
 class Module {
-  constructor(editor, element, session, toast) {
-    Object.assign(this, { editor, element, session, toast });
+  constructor(editor, element, uploader, toast) {
+    Object.assign(this, { editor, element, uploader, toast });
 
     this.editor.registerModule(this);
 
@@ -22,35 +21,17 @@ class Module {
     };
   }
 
-  _uploaderBuilder() {
-    let uploader = Uploader.create({
-      ajaxSettings: {
-        dataType: 'json',
-        headers: {
-          ...this.uploaderHeaders,
-          Authorization: `Bearer ${this.session.data.authenticated.access_token}`
-        }
-      },
-      url: Configuration.uploaderUrl,
-      allowedExtensions: 'jpg,jpeg,png,gif',
-      maxSize: null
-    });
-
-    uploader
-      .on('didValidationError', (error) => {
-        this.toast.error(error || 'Your file is invalid. Please check the requirements.');
-        this._removeLoadingState();
-      })
-      .on('didUpload', (element) => {
-        this.editor.insertImage(element.artifact.url);
-        this._removeLoadingState();
-      });
-
-    return uploader;
-  }
-
   _uploadFile(file) {
-    this._uploaderBuilder().upload(file, { privacy: 'public' });
+    this.uploader.upload(
+      {
+        file: file,
+        privacy: 'public',
+        scope: 'anonymous',
+        onSuccess: this._onSuccess,
+        onFailure: this._removeLoadingState
+      },
+      [{ type: 'filetype', value: ['image', 'gif'] }]
+    );
   }
 
   _createLoadingStates() {
@@ -90,9 +71,14 @@ class Module {
     document.querySelector('.uedit__loading-image-upload').classList.add('uedit__loading-image-upload--hidden');
   }
 
+  _onSuccess(artifact) {
+    this.editor.insertImage(artifact.url);
+    this._removeLoadingState();
+  }
+
   onImageUpload(files) {
     this._addLoadingStates();
-    Array.prototype.forEach.call(files, (file) => this._uploadFile(file));
+    Array.from(files || []).forEach((file) => this._uploadFile(file));
   }
 
   getOptions() {
