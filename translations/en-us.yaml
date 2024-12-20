@@ -57,9 +57,6 @@ upgrade_modal:
     cancel: Cancel
     upgrade: Upgrade
     contact: Contact Us
-file_uploader:
-  cta:
-    upload: Upload
 uedit_editor:
   toolbar:
     cancel: Cancel
@@ -152,7 +149,7 @@ notifications:
     description: |
       You have a new email from {influencer_name}!<br>
       <a href="{entity_url}" target="_blank">Reply</a>
-  conversation_email_received: 
+  conversation_email_received:
     title: New email
     description: |
       You have a new email from {influencer_name}!<br>
