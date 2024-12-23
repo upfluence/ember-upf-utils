@@ -27,7 +27,7 @@ class Module {
         file: file,
         privacy: 'public',
         scope: 'anonymous',
-        onSuccess: this._onSuccess,
+        onSuccess: this._onSuccess.bind(this),
         onFailure: this._removeLoadingState
       },
       [{ type: 'filetype', value: ['image', 'gif'] }]
