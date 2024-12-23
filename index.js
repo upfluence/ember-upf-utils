@@ -15,10 +15,15 @@ module.exports = {
   options: {
     'ember-cli-babel': {
       includePolyfill: true
-    },
-    babel: {
-      /* eslint-disable node/no-unpublished-require */
-      plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()]
+    }
+  },
+
+  included(parent) {
+    this._super.included.apply(this, arguments);
+
+    if (parent.project.pkg.name === name) {
+      // eslint-disable-next-line node/no-unpublished-require
+      this.options.babel.plugins.push(...require('ember-cli-code-coverage').buildBabelPlugin());
     }
   },
 
