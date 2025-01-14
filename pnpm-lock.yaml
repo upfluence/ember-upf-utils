@@ -18,11 +18,11 @@ importers:
         specifier: ^1.16.2
         version: 1.16.8
       '@upfluence/ember-brand-manager':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^1.0.4
+        version: 1.0.4(@babel/core@7.26.0)
       '@upfluence/hyperevents':
-        specifier: ^0.3.7
-        version: 0.3.7(@babel/core@7.26.0)(webpack@5.97.1)
+        specifier: ^0.3.8
+        version: 0.3.8(@babel/core@7.26.0)(webpack@5.97.1)
       calculate-cache-key-for-tree:
         specifier: ^2.0.0
         version: 2.0.0
@@ -151,8 +151,8 @@ importers:
         specifier: ^5.0.0
         version: 5.62.0(eslint@7.32.0)(typescript@4.9.5)
       '@upfluence/oss-components':
-        specifier: ^3.71.6
-        version: 3.71.9(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
+        specifier: ^3.71.10
+        version: 3.71.10(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
       ember-cli:
         specifier: ~3.28.6
         version: 3.28.6(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
@@ -1406,16 +1406,16 @@ packages:
     resolution: {integrity: sha512-07ny+LHRzQXepkGg6w0mFY41fVUNBrL2Roj/++7V1txKugfjm/Ci/qSND03r2RhlJhJYMcTn9AhhSSqQp0Ysyw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@upfluence/ember-brand-manager@1.0.3':
-    resolution: {integrity: sha512-tYEqoM3x2vpFkMpWCfK83jfIguXQWiIY0nl4eoIFS6KkRac1SN+uXlJifLIi6ZYx23myvu87xtuNghr7NN7yzg==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/1.0.3/c5aeb8adae00cb9d30f3a4075ba2c08d4f0e15bc}
+  '@upfluence/ember-brand-manager@1.0.4':
+    resolution: {integrity: sha512-NQLZ2Rpcv87PwM6ZVVY3Qvcq+PMLwyvv+NAj1LVhDJX+DOJnXevROtCjZvmKGYVjICWk7wz7JHQa1e8ephb9EA==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/1.0.4/8849d24b3742f9afcdfaabaa03d2212cc89cc0e1}
     engines: {node: 12.* || 14.* || >= 16}
 
-  '@upfluence/hyperevents@0.3.7':
-    resolution: {integrity: sha512-cOoN39Ggyxe6m/xG6/bdw2KrtZBEHQFVS9qnaNSnQ+eLwYzDzi3HV440olb5J/yAkU8lcy1Ox4Qiz7IL5Uh4rQ==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/0.3.7/dc68ab33d87adb8200a1f5fb309742124f950c6d}
+  '@upfluence/hyperevents@0.3.8':
+    resolution: {integrity: sha512-sjRmYgpiiTVgeKJRc/TjOR/wGTHFGzqoOfxpjdmtw9ROU7YUeRGCRHLXYEVx+ADvvVyIrhfcJoZ9g4xn0puZ2Q==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/0.3.8/66379d48805b3e8a26ba93b531aa8c3d619cbd2b}
     engines: {node: 10.* || >= 12}
 
-  '@upfluence/oss-components@3.71.9':
-    resolution: {integrity: sha512-s5hrA3koNu+FnveCLnLzGuKJV4w6+nx0RhtSgLpWESIyKGQHy3EokMK7/HxSSn1ZRGLYIZqFb5xhVra1Zj/FzQ==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.71.9/8bb73d56e6d9f67ddec8713a59ecd3835a9fe667}
+  '@upfluence/oss-components@3.71.10':
+    resolution: {integrity: sha512-8etaOJ6EMBpbykBgeHQdwM1J2s+MkxvpROhyu5HWf6Ndh5pfY5f6dP3EGA/VpWZV5WzanY7zBDU5jj9mOrDsCQ==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.71.10/8b33a515b0689c2be11d7d955965054248e0a508}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       qunit: ^2.x
@@ -8613,19 +8613,20 @@ snapshots:
       '@typescript-eslint/types': 5.62.0
       eslint-visitor-keys: 3.4.3
 
-  '@upfluence/ember-brand-manager@1.0.3':
+  '@upfluence/ember-brand-manager@1.0.4(@babel/core@7.26.0)':
     dependencies:
       '@embroider/macros': 1.16.10
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
-      ember-cli-babel: 7.26.11
+      ember-cli-babel: 8.2.0(@babel/core@7.26.0)
       ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.3.0
     transitivePeerDependencies:
+      - '@babel/core'
       - '@glint/template'
       - supports-color
 
-  '@upfluence/hyperevents@0.3.7(@babel/core@7.26.0)(webpack@5.97.1)':
+  '@upfluence/hyperevents@0.3.8(@babel/core@7.26.0)(webpack@5.97.1)':
     dependencies:
       '@embroider/macros': 1.11.1
       '@embroider/test-setup': 1.8.3
@@ -8641,7 +8642,7 @@ snapshots:
       - supports-color
       - webpack
 
-  '@upfluence/oss-components@3.71.9(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
+  '@upfluence/oss-components@3.71.10(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
       '@embroider/macros': 1.16.10
