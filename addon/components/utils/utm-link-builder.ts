@@ -5,9 +5,9 @@ import { isBlank } from '@ember/utils';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { IntlService } from 'ember-intl';
+import { type IntlService } from 'ember-intl';
 
-import { FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
+import { type FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
 
 export type UtmFields = {
   utm_source: string;
