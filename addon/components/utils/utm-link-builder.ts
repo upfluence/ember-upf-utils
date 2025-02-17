@@ -9,19 +9,19 @@ import { IntlService } from 'ember-intl';
 
 import { FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
 
+export type UtmFields = {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+};
+
 interface UtilsUtmLinkBuilderArgs {
   url: string;
   title?: string;
   subtitle?: string;
   displayPreview?: boolean;
-  onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UTM_FIELDS): void;
+  onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
-
-type UTM_FIELDS = {
-  utm_source: string;
-  utm_medium: string;
-  utm_campaign: string;
-};
 
 export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderArgs> {
   @service declare intl: IntlService;
@@ -83,7 +83,7 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
     this.validationErrors = { ...this.validationErrors };
   }
 
-  get utmFields(): UTM_FIELDS {
+  get utmFields(): UtmFields {
     return {
       utm_campaign: this.utmCampaign,
       utm_medium: this.utmMedium,
