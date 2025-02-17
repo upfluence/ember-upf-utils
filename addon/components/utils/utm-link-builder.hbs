@@ -62,18 +62,16 @@
     {{#if this.displayPreview}}
       <hr />
       <div class="fx-1 fx-col fx-gap-px-6">
-        <span class="text-size-5 font-color-gray-500">{{t "utms.preview"}}</span>
+        <span class="font-size-md font-color-gray-500">{{t "utms.preview"}}</span>
         <p class="link-preview">
-          <span class="text-color-bright-purple">{{this.fieldUrl}}</span>
-          <span class="text-color-gray-500">&quest;utm_source=<span
-              class="text-color-bright-purple"
-            >{{this.fieldSource}}</span></span>
-          <span class="text-color-gray-500">&amp;utm_medium=<span
-              class="text-color-bright-purple"
-            >{{this.fieldMedium}}</span></span>
-          <span class="text-color-gray-500">&amp;utm_campaign=<span
-              class="text-color-bright-purple"
-            >{{this.fieldCampaign}}</span></span>
+          <span class="font-color-primary-500">{{this.fieldUrl}}</span>
+          <span>
+            &quest;utm_source=<span class="font-color-primary-500">{{this.fieldSource}}</span>
+          </span>
+          <span>&amp;utm_medium=<span class="font-color-primary-500">{{this.fieldMedium}}</span></span>
+          <span class="text-color-gray-500">
+            &amp;utm_campaign=<span class="font-color-primary-500">{{this.fieldCampaign}}</span>
+          </span>
         </p>
       </div>
     {{/if}}
