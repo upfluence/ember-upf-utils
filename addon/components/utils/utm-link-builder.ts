@@ -1,9 +1,19 @@
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
+
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
+import { IntlService } from 'ember-intl';
+
+import { FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
+
 interface UtilsUtmLinkBuilderArgs {
   url: string;
+  title?: string;
+  subtitle?: string;
+  displayPreview?: boolean;
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UTM_FIELDS): void;
 }
 
@@ -14,13 +24,28 @@ type UTM_FIELDS = {
 };
 
 export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderArgs> {
+  @service declare intl: IntlService;
+
   @tracked utmsEnabled: boolean = false;
   @tracked utmSource: string = '';
   @tracked utmMedium: string = '';
   @tracked utmCampaign: string = '';
+  @tracked validationErrors: Record<string, FeedbackMessage> = {};
 
   get utmsValid(): boolean {
-    return !!this.utmSource && !!this.utmMedium && !!this.utmCampaign;
+    return ![this.utmSource, this.utmMedium, this.utmCampaign].some((field) => isBlank(field));
+  }
+
+  get title(): string {
+    return this.args.title ?? this.intl.t('utms.title');
+  }
+
+  get subtitle(): string {
+    return this.args.subtitle ?? this.intl.t('utms.description');
+  }
+
+  get displayPreview(): boolean {
+    return this.args.displayPreview ?? true;
   }
 
   @action
@@ -30,6 +55,7 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
       this.utmCampaign = '';
       this.utmMedium = '';
       this.utmSource = '';
+      this.validationErrors = {};
     }
     this.notifyChanges();
   }
@@ -39,6 +65,22 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
     // @ts-ignore
     if (target) this[target] = this[target].replaceAll(' ', '+');
     this.args.onChange(this.previewUrl, this.utmsEnabled, this.utmsValid, this.utmFields);
+  }
+
+  @action
+  validateField(field: string): void {
+    if (isBlank(this[field as keyof this])) {
+      this.validationErrors = {
+        ...this.validationErrors,
+        ...{
+          [field]: { type: 'error', value: this.intl.t('utms.errors.blank_field') }
+        }
+      };
+      return;
+    }
+
+    delete this.validationErrors[field];
+    this.validationErrors = { ...this.validationErrors };
   }
 
   get utmFields(): UTM_FIELDS {

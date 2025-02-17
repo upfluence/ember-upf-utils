@@ -1,43 +1,81 @@
-<div class="utm-container fx-1 fx-gap-px-12" ...attributes>
-  <div class="fx-1 fx-row fx-malign-center fx-xalign-center fx-gap-px-12">
-    <OSS::Badge @icon="far fa-chart-bar" />
-    <div class="fx-col fx-1">
-      <span class="text-style-bold">{{t "utms.title"}}</span>
-      <span class="text-color-gray-500">{{t "utms.description"}}</span>
-    </div>
-    <OSS::ToggleSwitch @value={{this.utmsEnabled}} @onChange={{this.toggleSwitchUpdate}} />
-  </div>
-  {{#if this.utmsEnabled}}
-    <hr />
+<OSS::TogglableSection
+  @title={{this.title}}
+  @subtitle={{this.subtitle}}
+  @badgeIcon="far fa-chart-bar"
+  @toggled={{this.utmsEnabled}}
+  @onChange={{this.toggleSwitchUpdate}}
+  ...attributes
+>
+  <:contents>
     <div class="activated-utms fx-col fx-1 fx-gap-px-12">
-      <span class="font-color-gray-500 text-size-5">{{t "utms.fields.source"}}</span>
-      <OSS::InputContainer @value={{this.utmSource}}
-                           @placeholder={{t "utms.fields.source_placeholder"}}
-                           {{on "keyup" (fn this.notifyChanges "utmSource")}}
-                           data-control-name="utm_source_input" />
-      <span class="font-color-gray-500 text-size-5">{{t "utms.fields.medium"}}</span>
-      <OSS::InputContainer @value={{this.utmMedium}}
-                           @placeholder={{t "utms.fields.medium_placeholder"}}
-                           {{on "keyup" (fn this.notifyChanges "utmMedium")}}
-                           data-control-name="utm_medium_input" />
-      <span class="font-color-gray-500 text-size-5">{{t "utms.fields.campaign"}}</span>
-      <OSS::InputContainer @value={{this.utmCampaign}}
-                           @placeholder={{t "utms.fields.campaign_placeholder"}}
-                           {{on "keyup" (fn this.notifyChanges "utmCampaign")}}
-                           data-control-name="utm_campaign_input" />
+      <div class="fx-row">
+        <span class="font-color-gray-500 font-size-md">
+          {{t "utms.fields.source"}}
+        </span>
+        <span class="font-color-error-500">
+          *
+        </span>
+      </div>
+      <OSS::InputContainer
+        @value={{this.utmSource}}
+        @placeholder={{t "utms.fields.source_placeholder"}}
+        @feedbackMessage={{this.validationErrors.utmSource}}
+        data-control-name="utm_source_input"
+        {{on "focusout" (fn this.validateField "utmSource")}}
+        {{on "keyup" (fn this.notifyChanges "utmSource")}}
+      />
+
+      <div class="fx-row">
+        <span class="font-color-gray-500 font-size-md">
+          {{t "utms.fields.medium"}}
+        </span>
+        <span class="font-color-error-500">
+          *
+        </span>
+      </div>
+      <OSS::InputContainer
+        @value={{this.utmMedium}}
+        @placeholder={{t "utms.fields.medium_placeholder"}}
+        @feedbackMessage={{this.validationErrors.utmMedium}}
+        data-control-name="utm_medium_input"
+        {{on "focusout" (fn this.validateField "utmMedium")}}
+        {{on "keyup" (fn this.notifyChanges "utmMedium")}}
+      />
+
+      <div class="fx-row">
+        <span class="font-color-gray-500 font-size-md">
+          {{t "utms.fields.campaign"}}
+        </span>
+        <span class="font-color-error-500">
+          *
+        </span>
+      </div>
+      <OSS::InputContainer
+        @value={{this.utmCampaign}}
+        @placeholder={{t "utms.fields.campaign_placeholder"}}
+        @feedbackMessage={{this.validationErrors.utmCampaign}}
+        data-control-name="utm_campaign_input"
+        {{on "focusout" (fn this.validateField "utmCampaign")}}
+        {{on "keyup" (fn this.notifyChanges "utmCampaign")}}
+      />
     </div>
-    <hr />
-    <div class="fx-1 fx-col fx-gap-px-6">
-      <span class="text-size-5 font-color-gray-500">{{t "utms.preview"}}</span>
-      <p class="link-preview">
-        <span class="text-color-bright-purple">{{this.fieldUrl}}</span>
-        <span class="text-color-gray-500">&quest;utm_source=<span
-                class="text-color-bright-purple">{{this.fieldSource}}</span></span>
-        <span class="text-color-gray-500">&amp;utm_medium=<span
-                class="text-color-bright-purple">{{this.fieldMedium}}</span></span>
-        <span class="text-color-gray-500">&amp;utm_campaign=<span
-                class="text-color-bright-purple">{{this.fieldCampaign}}</span></span>
-      </p>
-    </div>
-  {{/if}}
-</div>
+    {{#if this.displayPreview}}
+      <hr />
+      <div class="fx-1 fx-col fx-gap-px-6">
+        <span class="text-size-5 font-color-gray-500">{{t "utms.preview"}}</span>
+        <p class="link-preview">
+          <span class="text-color-bright-purple">{{this.fieldUrl}}</span>
+          <span class="text-color-gray-500">&quest;utm_source=<span
+              class="text-color-bright-purple"
+            >{{this.fieldSource}}</span></span>
+          <span class="text-color-gray-500">&amp;utm_medium=<span
+              class="text-color-bright-purple"
+            >{{this.fieldMedium}}</span></span>
+          <span class="text-color-gray-500">&amp;utm_campaign=<span
+              class="text-color-bright-purple"
+            >{{this.fieldCampaign}}</span></span>
+        </p>
+      </div>
+    {{/if}}
+  </:contents>
+</OSS::TogglableSection>
