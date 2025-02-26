@@ -1,8 +1,4 @@
-<div class="fx-col fx-gap-px-6 fx-1">
-  {{@value.address}}
-  <span class="font-color-gray-500">
-    {{t "upf_utils.address_inline"}}
-  </span>
+<div class="fx-col fx-gap-px-6 fx-1" ...attributes>
   {{#if this.useGoogleAutocomplete}}
     <div class="fx-col fx-1 google-autocomplete-input-container" data-control-name="address-inline">
       <Input

@@ -6,19 +6,21 @@ import { getOwner } from '@ember/application';
 import { Loader } from '@googlemaps/js-api-loader';
 
 interface UtilsAddressInlineArgs {
-  value: {
-    address: string;
-    resolved_address: {
-      line_1: string;
-      zipcode: string;
-      city: string;
-      state?: string;
-      country_code: string;
-    };
-  };
+  value: ShippingAddress;
   useGoogleAutocomplete?: boolean;
   onChange(address: any): void;
 }
+
+export type ShippingAddress = {
+  address: string;
+  resolved_address: {
+    line_1: string;
+    zipcode: string;
+    city: string;
+    state?: string;
+    country_code: string;
+  } | null;
+};
 
 type GAddressComponent = google.maps.GeocoderAddressComponent;
 type GAutoComplete = google.maps.places.Autocomplete;
