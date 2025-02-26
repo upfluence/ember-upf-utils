@@ -1,0 +1,20 @@
+<div class="fx-col fx-gap-px-6 fx-1">
+  {{@value.address}}
+  <span class="font-color-gray-500">
+    {{t "upf_utils.address_inline"}}
+  </span>
+  {{#if this.useGoogleAutocomplete}}
+    <div class="fx-col fx-1 google-autocomplete-input-container" data-control-name="address-inline">
+      <Input
+        {{on "keyup" (fn this.onChange @value.address)}}
+        @value={{@value.address}}
+        class="upf-input"
+        {{did-insert this.initAutoCompletion}}
+      />
+    </div>
+  {{else}}
+    <div class="fx-col fx-1">
+      <OSS::InputContainer @value={{@value.address}} @onChange={{this.onChange}} data-control-name="address-inline" />
+    </div>
+  {{/if}}
+</div>

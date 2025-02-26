@@ -18,6 +18,7 @@ export default class ApplicationController extends Controller {
     countryCode: 'US',
     zipcode: '10016'
   };
+  @tracked shippingAddress = { address: '69 Avenue Victor Hugo, Paris, France', resolved_address: null };
 
   constructor() {
     super(...arguments);
@@ -38,5 +39,10 @@ export default class ApplicationController extends Controller {
   onLogoChange(icon, color) {
     this.selectedColor = color;
     this.selectedIcon = icon;
+  }
+
+  @action
+  onChangeAddress(value) {
+    this.shippingAddress = value;
   }
 }
