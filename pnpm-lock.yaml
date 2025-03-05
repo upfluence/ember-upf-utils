@@ -84,9 +84,6 @@ importers:
       '@types/ember-qunit':
         specifier: ^5.0.2
         version: 5.0.2(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
-      '@types/ember-resolver':
-        specifier: ^5.0.10
-        version: 5.0.13
       '@types/ember__application':
         specifier: ^3.16.3
         version: 3.16.10
@@ -193,7 +190,7 @@ importers:
         specifier: ^5.1.5
         version: 5.1.5(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(qunit@2.23.1)
       ember-resolver:
-        specifier: ^8.0.3
+        specifier: ^8.1.0
         version: 8.1.0(@babel/core@7.26.0)
       ember-sinon-qunit:
         specifier: ^5.0.0
