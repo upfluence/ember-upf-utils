@@ -51,6 +51,6 @@ module('Integration | Component | utils/address-inline', function (hooks) {
       hbs`<Utils::AddressInline @value={{this.address}} @useGoogleAutocomplete={{true}}
                               @onChange={{this.onChange}} />`
     );
-    assert.dom('.google-autocomplete-input-container[data-control-name="address-inline"]').exists();
+    assert.dom('.google-autocomplete-input-container [data-control-name="address-inline"]').exists();
   });
 });
