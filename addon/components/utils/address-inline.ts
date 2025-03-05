@@ -36,6 +36,7 @@ export default class extends Component<UtilsAddressInlineArgs> {
     if (isTesting()) return;
     this.appendContainerLocally();
     const loader = new Loader({
+      // @ts-ignore
       apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
       version: 'weekly'
     });
