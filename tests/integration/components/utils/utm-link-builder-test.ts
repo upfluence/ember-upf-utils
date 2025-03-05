@@ -2,7 +2,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { setupIntl } from 'ember-intl/test-support';
-import { render } from '@ember/test-helpers';
+import { render, focus, blur } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
 import sinon from 'sinon';
 import typeIn from '@ember/test-helpers/dom/type-in';
@@ -19,7 +19,7 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<Utils::UtmLinkBuilder />`);
 
-    assert.dom('.utm-container').exists();
+    assert.dom('.togglable-section').exists();
   });
 
   test('If the toggle is disabled, the UTM inputs are hidden', async function (assert) {
@@ -79,11 +79,28 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     await settled();
   });
 
-  test('If a space character is inputed, it is replaced with a + sign', async function (assert) {
+  test('If a space character is inputted, it is replaced with a + sign', async function (assert) {
     await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
     await click('.upf-toggle');
     await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', { delay: 0 });
     await settled();
     assert.dom('[data-control-name="utm_source_input"] .upf-input').hasValue('a+a');
+  });
+
+  ['utm_source', 'utm_medium', 'utm_campaign'].forEach((field) => {
+    test(`on blur on the ${field} input field, the field is validated and displays the right error if blank`, async function (assert) {
+      await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
+      await click('.upf-toggle');
+      await focus(`[data-control-name="${field}_input"] input`);
+
+      assert.dom(`[data-control-name="${field}_input"] + .font-color-error-500`).doesNotExist();
+
+      await blur(`[data-control-name="${field}_input"] input`);
+
+      assert.dom(`[data-control-name="${field}_input"] + .font-color-error-500`).exists();
+      assert
+        .dom(`[data-control-name="${field}_input"] + .font-color-error-500`)
+        .hasText(this.intl.t('utms.errors.blank_field'));
+    });
   });
 });
