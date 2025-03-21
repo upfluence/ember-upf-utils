@@ -76,11 +76,13 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
           [field]: { type: 'error', value: this.intl.t('utms.errors.blank_field') }
         }
       };
+      this.notifyChanges();
       return;
     }
 
     delete this.validationErrors[field];
     this.validationErrors = { ...this.validationErrors };
+    this.notifyChanges();
   }
 
   get utmFields(): UtmFields {
