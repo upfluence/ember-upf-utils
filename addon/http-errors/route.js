@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import { getOwner } from '@ember/application';
 
 const LIMIT_EXCEEDED = 'LimitExceeded';
 const NOT_FOUND = 'NotFoundError';
