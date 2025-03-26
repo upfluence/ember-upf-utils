@@ -27,7 +27,7 @@ export default class extends Component<HTTPErrorsLimitModalArgs> {
   }
 
   @action
-  openSupportChannel() {
+  openSupportChannel(): void {
     if (this.csChat) {
       this.csChat.openTicket(this.intl.t('errors.402.limit_exceeded.email_data.body'));
       this.goBack();
@@ -35,7 +35,7 @@ export default class extends Component<HTTPErrorsLimitModalArgs> {
   }
 
   @action
-  goBack() {
+  goBack(): void {
     this.router.transitionTo('facade.lists');
   }
 }
