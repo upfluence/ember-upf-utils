@@ -59,7 +59,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @action
   onInput(): void {
-    let matches = [...this._inputValue.matchAll(VARIABLE_REGEX)];
+    const matches = [...this._inputValue.matchAll(VARIABLE_REGEX)];
 
     if (matches.length > 1) {
       const lastVariable = matches[matches.length - 1][0];
@@ -105,11 +105,6 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   }
 
   @action
-  preventBlur(e: MouseEvent): void {
-    e.preventDefault();
-  }
-
-  @action
   closeTemplateVariables(): void {
     this.displayTemplateVariables = false;
   }
@@ -117,5 +112,9 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   @action
   registerInput(e: HTMLElement): void {
     this.inputElement = e.querySelector('input');
+  }
+
+  preventBlur(e: MouseEvent): void {
+    e.preventDefault();
   }
 }
