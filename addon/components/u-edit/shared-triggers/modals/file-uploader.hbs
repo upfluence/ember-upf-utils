@@ -1,16 +1,24 @@
 <OSS::ModalDialog
- @title={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}} @close={{@closeAction}} class="uedit-file-uploader">
+  @title={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}}
+  @close={{@closeAction}}
+  class="uedit-file-uploader"
+>
   <:content>
     {{#if (eq this.titleKey "pdf")}}
       <div class="form-group">
-        <OSS::Alert @title={{t "uedit_editor.toolbar.pdf.alert.title"}} @subtitle={{t "uedit_editor.toolbar.pdf.alert.subtitle"}} />
+        <OSS::Alert
+          @title={{t "uedit_editor.toolbar.pdf.alert.title"}}
+          @subtitle={{t "uedit_editor.toolbar.pdf.alert.subtitle"}}
+        />
       </div>
     {{/if}}
     <div class="form-group">
       <label>{{t (concat "uedit_editor.toolbar.by_url")}}</label>
       <Input
-       @value={{this.directURL}} @placeholder={{t (concat "uedit_editor.toolbar." this.titleKey ".placeholder")}}
-       class="form-control upf-input" />
+        @value={{this.directURL}}
+        placeholder={{t (concat "uedit_editor.toolbar." this.titleKey ".placeholder")}}
+        class="form-control upf-input"
+      />
     </div>
 
     <OSS::UploadArea
@@ -29,9 +37,11 @@
     <div class="fx-row fx-1 fx-malign-end fx-gap-px-10">
       <OSS::Button @label={{t (concat "uedit_editor.toolbar.cancel")}} {{on "click" @closeAction}} />
       <OSS::Button
-        @skin="primary" @label={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}}
+        @skin="primary"
+        @label={{t (concat "uedit_editor.toolbar." this.titleKey ".title")}}
         disabled={{and (not this.fileURL) (not this.directURL)}}
-        {{on "click" this.addFile}} />
+        {{on "click" this.addFile}}
+      />
     </div>
   </:footer>
 </OSS::ModalDialog>
