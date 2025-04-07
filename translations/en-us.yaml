@@ -33,6 +33,10 @@ upf_utils:
       select_label: Select
     tag:
       selected: Selected
+  templated_input_group:
+    insert_variable: Insert variable
+    error:
+      invalid_merge_field: You must use one of the existing variables
 new: new
 processed_features:
   alert: Rarely Responds

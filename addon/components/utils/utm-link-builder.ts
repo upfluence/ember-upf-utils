@@ -20,6 +20,8 @@ interface UtilsUtmLinkBuilderArgs {
   title?: string;
   subtitle?: string;
   displayPreview?: boolean;
+  variablesEnabled?: boolean;
+  variables?: Record<string, string>;
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
 
@@ -31,9 +33,10 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   @tracked utmMedium: string = '';
   @tracked utmCampaign: string = '';
   @tracked validationErrors: Record<string, FeedbackMessage> = {};
+  @tracked utmFieldError: boolean = false;
 
   get utmsValid(): boolean {
-    return ![this.utmSource, this.utmMedium, this.utmCampaign].some((field) => isBlank(field));
+    return ![this.utmSource, this.utmMedium, this.utmCampaign].some((field) => isBlank(field)) && !this.utmFieldError;
   }
 
   get title(): string {
@@ -46,6 +49,27 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
 
   get displayPreview(): boolean {
     return this.args.displayPreview ?? true;
+  }
+
+  @action
+  onUtmSourceChange(value: string, isValid: boolean): void {
+    this.utmSource = value;
+    this.utmFieldError = isValid;
+    this.notifyChanges('utmSource');
+  }
+
+  @action
+  onUtmMediumChange(value: string, isValid: boolean): void {
+    this.utmMedium = value;
+    this.utmFieldError = isValid;
+    this.notifyChanges('utmMedium');
+  }
+
+  @action
+  onUtmCampaignChange(value: string, isValid: boolean): void {
+    this.utmCampaign = value;
+    this.utmFieldError = isValid;
+    this.notifyChanges('utmCampaign');
   }
 
   @action
