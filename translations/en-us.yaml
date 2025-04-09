@@ -35,6 +35,18 @@ upf_utils:
       selected: Selected
   templated_input_group:
     insert_variable: Insert variable
+    template_variables:
+      Username: Username
+      FirstName: First name
+      LastName: Last name
+      FacebookUsername: Facebook username
+      InstagramUsername: Instagram username
+      TiktokUsername: Tiktok username
+      YoutubeUsername: Youtube username
+      TwitterUsername: Twitter username
+      TwitchUsername: Twitch username
+      PinterestUsername: Pinterest username
+      BlogUsername: Blog username
     error:
       invalid_merge_field: You must use one of the existing variables
 new: new

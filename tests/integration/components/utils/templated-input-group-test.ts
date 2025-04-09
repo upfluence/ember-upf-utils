@@ -93,7 +93,7 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
 
       await click('[data-control-name="templated-input-group-insert-variable-link"]');
       assert.dom('.upf-floating-menu--visible .upf-floating-menu__item').exists({ count: 2 });
-      assert.dom('.upf-floating-menu--visible').hasText('InstagramUsername TiktokUsername');
+      assert.dom('.upf-floating-menu--visible').hasText('Instagram username Tiktok username');
     });
 
     test('Dropdown variables list is opened when {{ is typed in input', async function (assert) {

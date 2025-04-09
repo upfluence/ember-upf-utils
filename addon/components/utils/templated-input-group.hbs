@@ -23,7 +23,9 @@
             {{on "mousedown" this.preventBlur}}
             {{on "click" (fn this.insertVariable variable)}}
           >
-            <span class="text-ellipsis">{{variable}}</span>
+            <span class="text-ellipsis">
+              {{t (concat "upf_utils.templated_input_group.template_variables." variable)}}
+            </span>
           </div>
         {{/each}}
       </div>
