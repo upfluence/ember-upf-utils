@@ -39,7 +39,6 @@ upf_utils:
       Username: Username
       FirstName: First name
       LastName: Last name
-      FacebookUsername: Facebook username
       InstagramUsername: Instagram username
       TiktokUsername: Tiktok username
       YoutubeUsername: Youtube username
