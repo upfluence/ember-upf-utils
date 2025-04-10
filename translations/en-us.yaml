@@ -45,7 +45,6 @@ upf_utils:
       TwitterUsername: Twitter username
       TwitchUsername: Twitch username
       PinterestUsername: Pinterest username
-      BlogUsername: Blog username
     error:
       invalid_merge_field: You must use one of the existing variables
 new: new
