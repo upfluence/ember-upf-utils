@@ -20,6 +20,8 @@ interface UtilsUtmLinkBuilderArgs {
   title?: string;
   subtitle?: string;
   displayPreview?: boolean;
+  variablesEnabled?: boolean;
+  variables?: Record<string, string>;
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
 
@@ -46,6 +48,24 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
 
   get displayPreview(): boolean {
     return this.args.displayPreview ?? true;
+  }
+
+  @action
+  onUtmSourceChange(value: string): void {
+    this.utmSource = value;
+    this.notifyChanges('utmSource');
+  }
+
+  @action
+  onUtmMediumChange(value: string): void {
+    this.utmMedium = value;
+    this.notifyChanges('utmMedium');
+  }
+
+  @action
+  onUtmCampaignChange(value: string): void {
+    this.utmCampaign = value;
+    this.notifyChanges('utmCampaign');
   }
 
   @action
