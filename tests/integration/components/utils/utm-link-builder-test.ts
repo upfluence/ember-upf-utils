@@ -104,12 +104,18 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     });
   });
 
+  test('If variables are unenabled, templated input group component is not rendered', async function (assert) {
+    this.variables = ['InstagramUsername', 'TiktokUsername'];
+
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
+    await click('.upf-toggle');
+    assert.dom('[data-control-name="templated-input-group-insert-variable-link"]').doesNotExist();
+  });
+
   test('If variables are enabled, templated input group component is rendered', async function (assert) {
     this.variables = ['InstagramUsername', 'TiktokUsername'];
 
-    await render(
-      hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variablesEnabled={{true}} @variables={{this.variables}}/>`
-    );
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variables={{this.variables}} />`);
     await click('.upf-toggle');
     assert
       .dom('[data-control-name="templated-input-group-insert-variable-link"]')
@@ -120,9 +126,7 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
   test('If variables are enabled and a space character is inputed, it is replaced with a + sign', async function (assert) {
     this.variables = ['InstagramUsername', 'TiktokUsername'];
 
-    await render(
-      hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variablesEnabled={{true}} @variables={{this.variables}} />`
-    );
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variables={{this.variables}} />`);
     await click('.upf-toggle');
 
     await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', { delay: 0 });

@@ -20,7 +20,6 @@ interface UtilsUtmLinkBuilderArgs {
   title?: string;
   subtitle?: string;
   displayPreview?: boolean;
-  variablesEnabled?: boolean;
   variables?: Record<string, string>;
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
@@ -33,6 +32,10 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   @tracked utmMedium: string = '';
   @tracked utmCampaign: string = '';
   @tracked validationErrors: Record<string, FeedbackMessage> = {};
+
+  get variablesEnabled(): boolean {
+    return Boolean(this.args.variables);
+  }
 
   get utmsValid(): boolean {
     return ![this.utmSource, this.utmMedium, this.utmCampaign].some((field) => isBlank(field));
