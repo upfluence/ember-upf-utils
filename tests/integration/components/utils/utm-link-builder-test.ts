@@ -104,7 +104,7 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     });
   });
 
-  test('If variables are unenabled, templated input group component is not rendered', async function (assert) {
+  test('If variables are unavailable, templated input group component is not rendered', async function (assert) {
     this.variables = ['InstagramUsername', 'TiktokUsername'];
 
     await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);

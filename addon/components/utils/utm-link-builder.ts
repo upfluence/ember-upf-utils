@@ -20,7 +20,7 @@ interface UtilsUtmLinkBuilderArgs {
   title?: string;
   subtitle?: string;
   displayPreview?: boolean;
-  variables?: Record<string, string>;
+  variables?: string[];
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
 
@@ -34,7 +34,7 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   @tracked validationErrors: Record<string, FeedbackMessage> = {};
 
   get variablesEnabled(): boolean {
-    return Boolean(this.args.variables);
+    return Array.isArray(this.args.variables) && this.args.variables.length > 0;
   }
 
   get utmsValid(): boolean {
