@@ -14,7 +14,13 @@
       <div
         class="upf-floating-menu upf-floating-menu--{{if this.displayTemplateVariables 'visible' 'hidden'}}"
         {{on-click-outside this.closeTemplateVariables useCapture=true}}
-        {{attach-element to=this.inputElement placement="bottom-start" offset=0 width="300"}}
+        {{attach-element
+          to=this.inputElement
+          placement="bottom-start"
+          fallbackPlacements=(array "bottom-start" "top-start")
+          offset=0
+          width="300"
+        }}
       >
         {{#each @variables as |variable|}}
           <div
