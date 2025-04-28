@@ -1,0 +1,52 @@
+<div class="fx-col fx-gap-px-6" ...attributes>
+  <div class="fx-col fx-gap-px-3">
+    <div class="fx-row fx-malign-space-between">
+      <div class="font-color-gray-500 font-size-md">
+        <span>{{@title}}</span>{{#if @required}}<span class="font-color-error-500">*</span>{{/if}}
+      </div>
+      <OSS::Link
+        @icon="fa-plus"
+        @label={{t "upf_utils.templated_input_group.insert_variable"}}
+        {{on "mousedown" this.preventBlur}}
+        {{on "click" this.openTemplateVariables}}
+        data-control-name="templated-input-group-insert-variable-link"
+      />
+      <div
+        class="upf-floating-menu upf-floating-menu--{{if this.displayTemplateVariables 'visible' 'hidden'}}"
+        {{on-click-outside this.closeTemplateVariables useCapture=true}}
+        {{attach-element
+          to=this.inputElement
+          placement="bottom-start"
+          fallbackPlacements=(array "top-start")
+          offset=0
+          width="300"
+        }}
+      >
+        {{#each @variables as |variable|}}
+          <div
+            class="upf-floating-menu__item fx-row"
+            role="button"
+            {{on "mousedown" this.preventBlur}}
+            {{on "click" (fn this.insertVariable variable)}}
+          >
+            <span class="text-ellipsis">
+              {{t (concat "upf_utils.templated_input_group.template_variables." variable)}}
+            </span>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <span class="font-color-gray-500 text-size-4">{{@subtitle}}</span>
+  </div>
+  <div class="input-container">
+    <OSS::InputContainer
+      @value={{this.inputValue}}
+      @placeholder={{@placeholder}}
+      @onChange={{this.onInput}}
+      @feedbackMessage={{this.feedbackMessage}}
+      {{on "keyup" this.triggerVariableInput}}
+      {{did-insert this.registerInput}}
+      data-control-name="templated-input-group-input-container"
+    />
+  </div>
+</div>

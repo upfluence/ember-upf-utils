@@ -20,6 +20,7 @@ interface UtilsUtmLinkBuilderArgs {
   title?: string;
   subtitle?: string;
   displayPreview?: boolean;
+  variables?: string[];
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
 
@@ -31,6 +32,10 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   @tracked utmMedium: string = '';
   @tracked utmCampaign: string = '';
   @tracked validationErrors: Record<string, FeedbackMessage> = {};
+
+  get variablesEnabled(): boolean {
+    return Array.isArray(this.args.variables) && this.args.variables.length > 0;
+  }
 
   get utmsValid(): boolean {
     return ![this.utmSource, this.utmMedium, this.utmCampaign].some((field) => isBlank(field));
@@ -46,6 +51,24 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
 
   get displayPreview(): boolean {
     return this.args.displayPreview ?? true;
+  }
+
+  @action
+  onUtmSourceChange(value: string): void {
+    this.utmSource = value;
+    this.notifyChanges('utmSource');
+  }
+
+  @action
+  onUtmMediumChange(value: string): void {
+    this.utmMedium = value;
+    this.notifyChanges('utmMedium');
+  }
+
+  @action
+  onUtmCampaignChange(value: string): void {
+    this.utmCampaign = value;
+    this.notifyChanges('utmCampaign');
   }
 
   @action
