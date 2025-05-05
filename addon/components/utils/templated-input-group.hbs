@@ -2,7 +2,10 @@
   <div class="fx-col fx-gap-px-3">
     <div class="fx-row fx-malign-space-between">
       <div class="font-color-gray-500 font-size-md">
-        <span>{{@title}}</span>{{#if @required}}<span class="font-color-error-500">*</span>{{/if}}
+        <span>{{@title}}</span>
+        {{#if @required}}
+          <span class="font-color-error-500">*</span>
+        {{/if}}
       </div>
       <OSS::Link
         @icon="fa-plus"
@@ -12,13 +15,14 @@
         data-control-name="templated-input-group-insert-variable-link"
       />
       <div
-        class="upf-floating-menu upf-floating-menu--{{if this.displayTemplateVariables 'visible' 'hidden'}}"
+        class="upf-floating-menu upf-floating-menu--{{if this.displayTemplateVariables 'visible' 'hidden'}}
+          upf-floating-menu--skip-offset"
         {{on-click-outside this.closeTemplateVariables useCapture=true}}
         {{attach-element
           to=this.inputElement
           placement="bottom-start"
           fallbackPlacements=(array "top-start")
-          offset=0
+          offset=12
           width="300"
         }}
       >
@@ -38,15 +42,13 @@
     </div>
     <span class="font-color-gray-500 text-size-4">{{@subtitle}}</span>
   </div>
-  <div class="input-container">
-    <OSS::InputContainer
-      @value={{this.inputValue}}
-      @placeholder={{@placeholder}}
-      @onChange={{this.onInput}}
-      @feedbackMessage={{this.feedbackMessage}}
-      {{on "keyup" this.triggerVariableInput}}
-      {{did-insert this.registerInput}}
-      data-control-name="templated-input-group-input-container"
-    />
-  </div>
+  <OSS::InputContainer
+    @value={{this.inputValue}}
+    @placeholder={{@placeholder}}
+    @onChange={{this.onInput}}
+    @feedbackMessage={{this.feedbackMessage}}
+    {{on "keyup" this.triggerVariableInput}}
+    {{did-insert this.registerInput}}
+    data-control-name="templated-input-group-input-container"
+  />
 </div>
