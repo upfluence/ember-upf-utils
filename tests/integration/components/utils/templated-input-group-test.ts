@@ -21,49 +21,43 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
   module('Component rendering', () => {
     test('It renders with minimum parameters', async function (assert) {
       await render(
-        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} data-control-name="templated-input" />`
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} />`
       );
 
-      assert.dom('[data-control-name="templated-input"]').exists();
       assert.dom('[data-control-name="templated-input-group-insert-variable-link"]').exists();
       assert
         .dom('[data-control-name="templated-input-group-insert-variable-link"]')
         .hasText(this.intl.t('upf_utils.templated_input_group.insert_variable'));
       assert.dom('[data-control-name="templated-input-group-input-container"]').exists();
-      assert.dom('[data-control-name="templated-input"] input').doesNotHaveAttribute('placeholder');
+      assert.dom('input').doesNotHaveAttribute('placeholder');
     });
 
     test('Not required field title is properly displayed', async function (assert) {
       await render(
-        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} data-control-name="templated-input"/>`
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} />`
       );
-
-      assert.dom('[data-control-name="templated-input"]').containsText('Title');
-      assert.dom('[data-control-name="templated-input"]').doesNotContainText('*');
+      assert.dom('[data-control-name="templated-input-group-title"]').hasText('Title');
     });
 
     test('Required field title is properly displayed', async function (assert) {
       await render(
-        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} data-control-name="templated-input"/>`
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} />`
       );
-
-      assert.dom('[data-control-name="templated-input"]').containsText('Title*');
+      assert.dom('[data-control-name="templated-input-group-title"]').hasText('Title *');
     });
 
     test('Subtitle is displayed', async function (assert) {
       await render(
-        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} data-control-name="templated-input"/>`
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} />`
       );
-
-      assert.dom('[data-control-name="templated-input"]').containsText('Subtitle');
+      assert.dom('[data-control-name="templated-input-group-subtitle"]').containsText('Subtitle');
     });
 
     test('Placeholder is displayed', async function (assert) {
       await render(
-        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} data-control-name="templated-input"/>`
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} />`
       );
-
-      assert.dom('[data-control-name="templated-input"] input').hasProperty('placeholder', 'Placeholder');
+      assert.dom('input').hasProperty('placeholder', 'Placeholder');
     });
   });
 

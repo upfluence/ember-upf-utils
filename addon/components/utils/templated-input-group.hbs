@@ -1,7 +1,7 @@
 <div class="fx-col fx-gap-px-6" ...attributes>
   <div class="fx-col fx-gap-px-3">
     <div class="fx-row fx-malign-space-between">
-      <div class="font-color-gray-500 font-size-md">
+      <div class="font-color-gray-500 font-size-md" data-control-name="templated-input-group-title">
         <span>{{@title}}</span>
         {{#if @required}}
           <span class="font-color-error-500">*</span>
@@ -40,7 +40,9 @@
         {{/each}}
       </div>
     </div>
-    <span class="font-color-gray-500 text-size-4">{{@subtitle}}</span>
+    <span class="font-color-gray-500 text-size-4" data-control-name="templated-input-group-subtitle">
+      {{@subtitle}}
+    </span>
   </div>
   <OSS::InputContainer
     @value={{this.inputValue}}
