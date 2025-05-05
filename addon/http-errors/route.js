@@ -15,7 +15,6 @@ export default class HttpErrorsRoute extends Route {
     // eslint-disable-next-line no-prototype-builtins
     if (error && error.hasOwnProperty('path')) {
       this.errorValue = NOT_FOUND;
-      return;
     }
 
     if (error?.errors && error?.errors[0].status === 402) {
