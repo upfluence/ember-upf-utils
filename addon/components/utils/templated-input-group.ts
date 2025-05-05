@@ -24,6 +24,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   @tracked displayTemplateVariables = false;
   @tracked _inputValue = '';
   @tracked inputElement?: HTMLInputElement | null;
+  @tracked insertVariableLink?: HTMLElement | null;
 
   get inputValue(): string {
     return this.args.value;
@@ -86,7 +87,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
     }
 
     this.inputElement?.focus();
-    this.closeTemplateVariables();
+    this.displayTemplateVariables = false;
   }
 
   @action
@@ -98,20 +99,33 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   }
 
   @action
-  openTemplateVariables(e: MouseEvent): void {
+  toggleTemplateVariables(e: MouseEvent): void {
     e.stopPropagation();
     e.preventDefault();
-    this.displayTemplateVariables = true;
+    this.displayTemplateVariables = !this.displayTemplateVariables;
   }
 
   @action
-  closeTemplateVariables(): void {
+  closeTemplateVariables(_: HTMLElement, e: MouseEvent): void {
+    if (!this.displayTemplateVariables) return;
+    const isTargetTriggered =
+      this.insertVariableLink &&
+      (this.insertVariableLink === e.target || this.insertVariableLink.contains(e.target as HTMLElement));
+    if (isTargetTriggered) {
+      this.toggleTemplateVariables(e);
+      return;
+    }
     this.displayTemplateVariables = false;
   }
 
   @action
   registerInput(e: HTMLElement): void {
     this.inputElement = e.querySelector('input');
+  }
+
+  @action
+  registerInsertVariableLink(el: HTMLElement): void {
+    this.insertVariableLink = el;
   }
 
   preventBlur(e: MouseEvent): void {
