@@ -18,6 +18,13 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
     this.onChange = sinon.spy();
   });
 
+  test('It renders', async function (assert) {
+    await render(
+      hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} />`
+    );
+    assert.dom('.templated-input-group').exists();
+  });
+
   module('Component rendering', () => {
     test('It renders with minimum parameters', async function (assert) {
       await render(
