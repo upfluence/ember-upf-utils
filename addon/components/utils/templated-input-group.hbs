@@ -8,7 +8,8 @@
         @icon="fa-plus"
         @label={{t "upf_utils.templated_input_group.insert_variable"}}
         {{on "mousedown" this.preventBlur}}
-        {{on "click" this.openTemplateVariables}}
+        {{on "click" this.toggleTemplateVariables}}
+        {{did-insert this.registerInsertVariableLink}}
         data-control-name="templated-input-group-insert-variable-link"
       />
       <div
