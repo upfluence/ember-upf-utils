@@ -26,6 +26,85 @@ module('Integration | Component | utils/address-form', function (hooks) {
     this.onChange = sinon.stub();
   });
 
+  module('@focus paramter', (hooks) => {
+    hooks.beforeEach(function () {
+      this.address = EmberObject.create({
+        firstName: '',
+        lastName: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        countryCode: '',
+        zipcode: '',
+        phone: ''
+      });
+    });
+
+    test('It focuses the first name input when @focus is set to first-name', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="first-name" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-first-name"] input').isFocused();
+    });
+
+    test('It focuses the last name input when @focus is set to last-name', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="last-name" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-last-name"] input').isFocused();
+    });
+
+    test('It focuses the address1 input when @focus is set to line1', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="line1" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-address1"] input').isFocused();
+    });
+
+    test('It focuses the address2 input when @focus is set to line2', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="line2" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-address2"] input').isFocused();
+    });
+
+    test('It focuses the city input when @focus is set to city', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="city" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-city"] input').isFocused();
+    });
+
+    test('It focuses the state input when @focus is set to state', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="state" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-state"] input').isFocused();
+    });
+
+    test('It focuses the zipcode input when @focus is set to zipcode', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="zipcode" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-zipcode"] input').isFocused();
+    });
+
+    test('It focuses the phone input when @focus is set to phone', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="phone" @onChange={{this.onChange}} />`
+      );
+      assert.dom('[data-control-name="address-form-phone"] input').isFocused();
+    });
+
+    test('it opens the country select when @focus is set to country', async function (assert) {
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @focus="country" @onChange={{this.onChange}} />`
+      );
+      assert.dom('.upf-infinite-select').exists();
+    });
+  });
+
   test('It renders and calls the onChange action when setting up the component', async function (assert) {
     await render(
       hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}}

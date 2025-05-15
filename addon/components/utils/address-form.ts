@@ -7,6 +7,18 @@ import { getOwner } from '@ember/application';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
+import { next } from '@ember/runloop';
+
+type FocusableInput =
+  | 'first-name'
+  | 'last-name'
+  | 'line1'
+  | 'line2'
+  | 'country'
+  | 'city'
+  | 'state'
+  | 'zipcode'
+  | 'phone';
 
 interface UtilsAddressFormArgs {
   address: any;
@@ -15,6 +27,7 @@ interface UtilsAddressFormArgs {
   hidePhoneNumber?: boolean;
   useGoogleAutocomplete?: boolean;
   addressKey?: AddressKey;
+  focus?: FocusableInput;
   onChange(address: any, isValid: boolean): void;
 }
 
@@ -41,6 +54,9 @@ export default class extends Component<UtilsAddressFormArgs> {
     super(owner, args);
     if (args.addressKey) this.addressKey = args.addressKey;
     this.validatedAddressFieldsHandler();
+    if (this.args.focus === 'country') {
+      this.openCountrySelect();
+    }
   }
 
   get useGoogleAutocomplete(): boolean {
@@ -215,5 +231,16 @@ export default class extends Component<UtilsAddressFormArgs> {
       }
     });
     observer.observe(document.body, { childList: true });
+  }
+
+  private openCountrySelect(): void {
+    next(() => {
+      const countryInput = document.querySelector(
+        '[data-control-name="address-form-country"] .upf-input'
+      ) as HTMLInputElement;
+      if (countryInput) {
+        countryInput.click();
+      }
+    });
   }
 }
