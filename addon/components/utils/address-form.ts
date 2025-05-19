@@ -235,12 +235,7 @@ export default class extends Component<UtilsAddressFormArgs> {
 
   private openCountrySelect(): void {
     next(() => {
-      const countryInput = document.querySelector(
-        '[data-control-name="address-form-country"] .upf-input'
-      ) as HTMLInputElement;
-      if (countryInput) {
-        countryInput.click();
-      }
+      (document.querySelector('[data-control-name="address-form-country"] .upf-input') as HTMLInputElement)?.click();
     });
   }
 }
