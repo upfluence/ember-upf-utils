@@ -63,9 +63,9 @@
         <Input
           @value={{get @address (concat this.addressKey "1")}}
           class="upf-input"
-          {{on "keyup" (fn this.onFieldUpdate (concat this.addressKey "1"))}}
           placeholder={{t "upf_utils.address_form.placeholder.line1"}}
           {{did-insert this.initAutoCompletion}}
+          {{on "keyup" (fn this.onFieldUpdate (concat this.addressKey "1"))}}
           {{(if (eq @focus "line1") (modifier "enable-input-autofocus"))}}
         />
       </div>
