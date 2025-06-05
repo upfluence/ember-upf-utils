@@ -22,11 +22,11 @@
     </div>
     {{#unless @selectorOnly}}
       <Input
-        class="fx-1"
-        type="text"
+        @type="text"
         @value={{this.handle}}
         autocomplete="off"
         placeholder={{t "upf_utils.social_media_handle.input_placeholder"}}
+        class="fx-1"
         {{on "blur" this.onBlur}}
         {{on "keydown" this.checkEnterKey}}
       />
