@@ -1,0 +1,16 @@
+<div class="jace-blob-container{{unless @loading '--inactive'}}">
+  <div class="jace-blob" {{did-update this.handleLoadingChange @loading}}>
+    <img
+      src="@upfluence/ember-upf-utils/assets/images/jace-blob-loading.gif"
+      alt="jace-blob-loading"
+      class={{this.loadingClass}}
+      {{on "load" (fn this.onImageLoad "active")}}
+    />
+    <img
+      src="@upfluence/ember-upf-utils/assets/images/jace-blob-inactive.gif"
+      alt="jace-blob-inactive"
+      class={{this.inactiveClass}}
+      {{on "load" (fn this.onImageLoad "idle")}}
+    />
+  </div>
+</div>
