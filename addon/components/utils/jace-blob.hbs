@@ -1,0 +1,14 @@
+<div class="jace-blob-container {{if @loading 'jace-blob-container--active'}}">
+  <div class="jace-blob">
+    <img
+      src="@upfluence/ember-upf-utils/assets/images/jace-blob-loading.gif"
+      alt="jace-blob-loading"
+      class={{this.loadingClass}}
+    />
+    <img
+      src="@upfluence/ember-upf-utils/assets/images/jace-blob-inactive.gif"
+      alt="jace-blob-inactive"
+      class={{this.inactiveClass}}
+    />
+  </div>
+</div>
