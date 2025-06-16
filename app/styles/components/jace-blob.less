@@ -28,9 +28,7 @@
   }
 
   .jace-blob {
-    border-style: solid;
-    border-color: transparent;
-    border-width: 0;
+    border: 0.5px solid transparent;
     background: transparent;
     border-radius: 50%;
     transition: all 1s ease-in-out;
@@ -44,7 +42,7 @@
   &::before {
     transform: translate(-50%, -50%) scale(1);
     border: 0.5px solid #ed21ff;
-    animation: ripple-border 5s ease-in-out infinite;
+    animation: jace-blob-ripple-border 5s ease-in-out infinite;
     transition: all 1s ease-in-out;
     pointer-events: none;
     z-index: 0;
@@ -56,13 +54,11 @@
   }
 
   .jace-blob {
-    border-style: solid;
-    border-color: transparent;
-    border-width: 0.5px;
-    background: linear-gradient(white, white) padding-box, var(--color-smart-gradient-4000) border-box;
+    border: 0, 5px solid transparent;
+    background: linear-gradient(transparent, transparent) padding-box, var(--color-smart-gradient-400) border-box;
     border-radius: 50%;
     transition: all 1s ease-in-out;
-    animation: gradient-fade 5s ease-in-out infinite;
+    animation: jace-blob-gradient-fade 5s ease-in-out infinite;
     box-shadow: 2.29px 2.29px 4.58px 0px rgba(255, 255, 255, 1) inset, 0px 0px 10px 0px rgba(83, 94, 252, 0.6);
   }
 }
@@ -117,7 +113,7 @@
   }
 }
 
-@keyframes ripple-border {
+@keyframes jace-blob-ripple-border {
   0% {
     transform: translate(-50%, -50%) scale(1);
     border-width: 0.5px;
@@ -135,14 +131,15 @@
   }
 }
 
-@keyframes gradient-fade {
+@keyframes jace-blob-gradient-fade {
   0%,
   20% {
-    background: linear-gradient(white, white) padding-box, linear-gradient(transparent, transparent) border-box;
+    background: linear-gradient(transparent, transparent) padding-box,
+      linear-gradient(transparent, transparent) border-box;
     border-width: 0;
   }
   50% {
-    background: linear-gradient(white, white) padding-box, var(--color-smart-gradient-4000) border-box;
+    background: linear-gradient(transparent, transparent) padding-box, var(--color-smart-gradient-400) border-box;
     border-width: 0.3px;
   }
   70%,
