@@ -6,6 +6,7 @@ export default class ApplicationController extends Controller {
   @tracked selectedItems = ['toto'];
   @tracked selectedIcon = 'rabbit';
   @tracked selectedColor = 'stone';
+  @tracked blobLoading = false;
 
   @tracked address = {
     firstName: 'John',
@@ -28,6 +29,11 @@ export default class ApplicationController extends Controller {
   @action
   onSocialMediaHandlerChanged(socialNetwork, handle, formattedUrl) {
     console.log(socialNetwork, handle, formattedUrl);
+  }
+
+  @action
+  onBlobSwitch() {
+    this.blobLoading = !this.blobLoading;
   }
 
   @action
