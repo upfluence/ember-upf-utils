@@ -21,8 +21,16 @@
   }
 
   .social-handle-input {
+    &:focus-within {
+      .input-state-active;
+    }
+
     &--error {
       border: 1px solid var(--color-error-500);
+
+      &:focus-within {
+        .input-state-error-active;
+      }
     }
 
     .selector {
@@ -50,10 +58,6 @@
     input:focus {
       border: none;
       outline: none;
-    }
-
-    &:focus-within {
-      border: 1px solid var(--color-border-default);
     }
   }
 }
