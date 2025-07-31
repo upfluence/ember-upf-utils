@@ -6,7 +6,7 @@ const DEFAULTS = {
   exportUrl: 'http://localhost:9001/export',
   activityUrl: 'https://localhost:9002/',
   meURL: 'http://localhost:9000/me',
-  identityURL: 'http://localhost:9000',
+  settingsURL: 'http://localhost:9000/settings',
   scope: ['facade_web'],
   notificationWait: 5
 };
@@ -15,7 +15,7 @@ export default {
   uploaderUrl: DEFAULTS.uploaderUrl,
   exportUrl: DEFAULTS.exportUrl,
   activityUrl: DEFAULTS.activityUrl,
-  identityURL: DEFAULTS.identityURL,
+  settingsURL: DEFAULTS.settingsURL,
   meURL: DEFAULTS.meURL,
   scope: DEFAULTS.scope,
   notificationWait: DEFAULTS.notificationWait,
