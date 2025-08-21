@@ -7,14 +7,11 @@ export default Component.extend({
   assetMap: service(),
   intl: service(),
   currentUser: service(),
+  router: service(),
 
   hidden: true,
   to: null,
   hasSubscription: false,
-
-  identityURL: computed(function () {
-    return getOwner(this).resolveRegistration('config:environment').identityURL;
-  }),
 
   description: computed('to', function () {
     let intlKey = 'default';
@@ -49,7 +46,7 @@ export default Component.extend({
       const csChat = getOwner(this).lookup('service:cs-chat');
 
       if (this.canSelfUpgrade) {
-        window.location = `${this.identityURL}accounts/billing`;
+        this.router.transitionTo('settings.accounts.billing');
       } else if (csChat) {
         csChat.openTicket();
       }

@@ -7,7 +7,7 @@ export default function deactivatedAccountHandler(Class) {
 
       if (error.errors && error.errors[0] && error.errors[0].code === 'on_hold') {
         transition.abort();
-        window.location = `${Configuration.identityURL}accounts/me`;
+        window.location = `${Configuration.settingsURL}/accounts/me`;
       }
     }
   };
