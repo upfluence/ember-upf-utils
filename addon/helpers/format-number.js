@@ -1,51 +1,28 @@
 import { helper as buildHelper } from '@ember/component/helper';
 
-var formats = [
-  {
-    value: 1e3,
-    sym: 'k'
-  },
-  {
-    value: 1e6,
-    sym: 'M'
-  },
-  {
-    value: 1e9,
-    sym: 'B'
-  }
-];
+export const PREVENT_COMPACT_NOTATION_BELOW = 1000;
+export const ROUND_TO_INTEGER_ABOVE = 100;
+
+const _getFormatter = function (number) {
+  const options =
+    number >= PREVENT_COMPACT_NOTATION_BELOW
+      ? { minimumFractionDigits: 0, maximumFractionDigits: 1, notation: 'compact' }
+      : number >= ROUND_TO_INTEGER_ABOVE
+      ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
+      : { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+
+  return Intl.NumberFormat(['en-EN', 'fr-FR'], options);
+};
 
 var formatNumber = function formatNumber(params) {
-  var number = params[0];
+  const number = params[0];
 
   if (number === null || number === undefined || isNaN(number)) {
     return '-';
   }
 
-  var format = formats
-    .filter((format) => {
-      return format.value < number;
-    })
-    .pop();
-
-  if (format) {
-    if (Math.round(number / format.value) < 10) {
-      return (number / format.value).toFixed(1) + format.sym;
-    }
-
-    return Math.round(number / format.value) + format.sym;
-  }
-  if (typeof number === 'number') {
-    if (number >= 100) {
-      return number.toFixed();
-    }
-
-    return parseFloat(number.toFixed(2));
-  } else {
-    return number;
-  }
+  return _getFormatter(number).format(number);
 };
 
 export { formatNumber };
-
 export default buildHelper(formatNumber);
