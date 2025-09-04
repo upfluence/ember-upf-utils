@@ -4,12 +4,14 @@ export const PREVENT_COMPACT_NOTATION_BELOW = 1000;
 export const ROUND_TO_INTEGER_ABOVE = 100;
 
 const _getFormatter = function (number) {
+  const absoluteValue = Math.abs(number);
+
   const options =
-    number >= PREVENT_COMPACT_NOTATION_BELOW
+    absoluteValue >= PREVENT_COMPACT_NOTATION_BELOW
       ? { minimumFractionDigits: 0, maximumFractionDigits: 1, notation: 'compact' }
-      : number >= ROUND_TO_INTEGER_ABOVE
+      : absoluteValue >= ROUND_TO_INTEGER_ABOVE
       ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
-      : { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+      : { minimumFractionDigits: 0, maximumFractionDigits: 2 };
 
   return Intl.NumberFormat(['en-EN', 'fr-FR'], options);
 };

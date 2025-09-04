@@ -20,14 +20,21 @@ module('Integration | Helper | format-number', function (hooks) {
       assert.dom('div').hasText('835');
     });
 
-    test(`Rounds numbers above ${ROUND_TO_INTEGER_ABOVE}  correctly with 2 decimals`, async function (assert) {
+    test(`Rounds numbers below ${ROUND_TO_INTEGER_ABOVE} without decimals are formatted with 2 decimals`, async function (assert) {
+      this.number = 1;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('1');
+    });
+
+    test(`Rounds numbers below ${ROUND_TO_INTEGER_ABOVE} without decimals are formatted without decimals`, async function (assert) {
       this.number = 12.345;
 
       await render(hbs`<div>{{format-number this.number}}</div>`);
       assert.dom('div').hasText('12.35');
     });
 
-    test(`Rounds numbers equal or above ${ROUND_TO_INTEGER_ABOVE} correctly with 0 decimals`, async function (assert) {
+    test(`Rounds numbers equal or above ${ROUND_TO_INTEGER_ABOVE} without decimals are formatted without decimals`, async function (assert) {
       this.number = 123;
 
       await render(hbs`<div>{{format-number this.number}}</div>`);
@@ -69,6 +76,71 @@ module('Integration | Helper | format-number', function (hooks) {
 
       await render(hbs`<div>{{format-number this.number}}</div>`);
       assert.dom('div').hasText('835');
+    });
+  });
+
+  module('Edge cases', function () {
+    test('Formats 0 correctly', async function (assert) {
+      this.number = 0;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('0');
+    });
+
+    test('Formats numbers smaller than 1 correctly', async function (assert) {
+      this.number = 0.1234;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('0.12');
+    });
+
+    test('Formats negative integers correctly', async function (assert) {
+      this.number = -12;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('-12');
+    });
+
+    test('Formats negative decimals correctly', async function (assert) {
+      this.number = -12.345;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('-12.35');
+    });
+
+    test('Applies compact notation to negative thousands', async function (assert) {
+      this.number = -1234;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('-1.2K');
+    });
+
+    test('Handles null', async function (assert) {
+      this.number = null;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('-');
+    });
+
+    test('Handles undefined', async function (assert) {
+      this.number = undefined;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('-');
+    });
+
+    test('Handles NaN', async function (assert) {
+      this.number = NaN;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('-');
+    });
+
+    test('Formats very large numbers correctly', async function (assert) {
+      this.number = 1e12;
+
+      await render(hbs`<div>{{format-number this.number}}</div>`);
+      assert.dom('div').hasText('1T');
     });
   });
 });
