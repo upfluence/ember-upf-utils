@@ -16,7 +16,7 @@ const _getFormatter = function (number) {
   return Intl.NumberFormat(['en-EN', 'fr-FR'], options);
 };
 
-var formatNumber = function formatNumber(params) {
+const formatNumber = function formatNumber(params) {
   const number = params[0];
 
   if (number === null || number === undefined || isNaN(number)) {
