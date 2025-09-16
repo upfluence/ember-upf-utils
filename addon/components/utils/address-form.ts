@@ -193,7 +193,7 @@ export default class extends Component<UtilsAddressFormArgs> {
       }
     };
 
-    place.address_components!.reverse().map((component) => {
+    place.address_components!.reverse().forEach((component) => {
       const componentType: string = component.types[0];
 
       mapper[componentType]?.(component);
