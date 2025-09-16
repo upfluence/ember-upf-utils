@@ -10,7 +10,7 @@ type ModelWithNotifications = Model & {
   notifications: DS.ManyArray<Notification>;
 };
 
-export default class extends Service {
+export default class NotificationsService extends Service {
   @service declare ajax: any;
   @service declare session: any;
 
@@ -81,5 +81,11 @@ export default class extends Service {
     const _environment = getOwner(this).resolveRegistration('config:environment').build_env;
 
     return `${Configuration.activityUrl}notifications/feed?field=${field}&env=${_environment}`;
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    notifications: NotificationsService;
   }
 }
