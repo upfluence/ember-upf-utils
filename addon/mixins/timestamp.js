@@ -3,23 +3,23 @@ import { computed } from '@ember/object';
 import moment from 'moment';
 
 export default Mixin.create({
-  fullDate: computed('timestamp', function () {
+  get fullDate() {
     return new Date(this.timestamp * 1000).toString();
-  }),
+  },
 
-  dayMonth: computed('timestamp', function () {
+  get dayMonth() {
     return new Date(this.timestamp * 1000).toLocaleDateString('en-US', {
       day: '2-digit',
       month: 'short',
       year: 'numeric'
     });
-  }),
+  },
 
-  formattedDate: computed('timestamp', function () {
+  get formattedDate() {
     return moment.unix(this.timestamp).format('MMMM DD, YYYY');
-  }),
+  },
 
-  sinceDate: computed('timestamp', function () {
+  get sinceDate() {
     return moment(moment.unix(this.timestamp)).fromNow();
-  })
+  }
 });
