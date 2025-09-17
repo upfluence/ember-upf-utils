@@ -29,7 +29,7 @@ export default class UpgradeModal extends Component<UpgradeModalArgs> {
     });
   }
 
-  get description(): string | SafeString {
+  get description(): ReturnType<IntlService['t']> {
     let intlKey = 'default';
 
     if (['monitor', 'bulk_emailing'].includes(this.args.to ?? '')) {
