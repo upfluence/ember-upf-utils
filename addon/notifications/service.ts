@@ -24,7 +24,10 @@ export default class NotificationsService extends Service {
     return `${Configuration.meURL}/notifications/mark_as_read?access_token=${token}`;
   }
 
-  markAsRead(modelOrCollection: any[], notificationTypes: string[]): Promise<any> {
+  markAsRead(
+    modelOrCollection: ModelWithNotifications | ModelWithNotifications[],
+    notificationTypes: string[]
+  ): Promise<any> {
     let notifications = this.extractNotifications(modelOrCollection);
     notifications = notifications.filter((notification: any) => {
       return notificationTypes.includes(notification.get('type'));
