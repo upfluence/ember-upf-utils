@@ -1,10 +1,9 @@
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import Service, { inject as service } from '@ember/service';
+import { IntlService } from 'ember-intl';
 
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
 import EventsService, { ResourceEvent, prefixPath } from '@upfluence/hyperevents/services/events-service';
 import ToastService, { ToastOptions } from '@upfluence/oss-components/services/toast';
-import { IntlService } from 'ember-intl';
 
 type NotificationEvent = {
   resource: string;

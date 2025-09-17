@@ -51,7 +51,7 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
 
   @action
   initialize(element: HTMLElement): void {
-    this.hoverPanel = element.querySelector('.hover-panel')! as HTMLElement;
+    this.hoverPanel = element.querySelector('.hover-panel') as HTMLElement;
     this.hoverPanel.classList.add(this.side + '_side');
     this.hoverPanel.classList.add(this.stickTo + '_align');
 
@@ -60,12 +60,12 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
     }
 
     later(() => {
-      this.hoverPanel!.classList.add(this.side + '_transform');
+      if (this.hoverPanel) this.hoverPanel.classList.add(this.side + '_transform');
     }, 0);
 
     if (this.args.backdropAction) {
       this.panelBackdrop = element.querySelector('.panel-backdrop');
-      this.panelBackdrop!.classList.remove('hidden');
+      this.panelBackdrop?.classList.remove('hidden');
     }
 
     this.hoverPanel.style.width = this.width;

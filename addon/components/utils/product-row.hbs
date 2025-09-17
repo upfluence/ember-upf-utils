@@ -1,7 +1,7 @@
 <div class="fx-row fx-gap-px-18 fx-xalign-center padding-right-px-18 product-row {{if @plain 'product-row--plain'}}"
      ...attributes>
   <div class="product-image-container {{if this.isDefaultImg 'product-image-container--default'}}">
-    <img src={{this.productImageUrl}} onerror={{this.imageLoadError}} />
+    <img src={{this.productImageUrl}} onerror={{this.imageLoadError}} alt="Product" />
   </div>
   <div class="fx-col fx-malign-center fx-gap-px-3 fx-1 allow-text-overflow-on-children">
     <span class="text-color-default text-size-5 text-style-semibold text-ellipsis">{{@product.name}}</span>
