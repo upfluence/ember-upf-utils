@@ -104,8 +104,8 @@ export default class ExportsService extends Service {
       filterParams.append('filters[]', filter);
     });
 
-    let baseUrl = `${this._exportURL}/export/file`;
-    let params = [
+    const baseUrl = `${this._exportURL}/export/file`;
+    const params = [
       'from=' + from,
       'influencer_ids=' + influencerIds.join(','),
       'format=' + fileFormat,

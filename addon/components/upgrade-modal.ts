@@ -3,7 +3,6 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
-import { SafeString } from '@ember/template/-private/handlebars';
 import { tracked } from '@glimmer/tracking';
 import { IntlService } from 'ember-intl';
 
@@ -44,7 +43,7 @@ export default class UpgradeModal extends Component<UpgradeModalArgs> {
   }
 
   get cta(): string {
-    let intlKey = this.canSelfUpgrade ? 'upgrade' : 'contact';
+    const intlKey = this.canSelfUpgrade ? 'upgrade' : 'contact';
 
     return this.intl.t(`upgrade_modal.cta.${intlKey}`);
   }
