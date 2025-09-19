@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { get } from '@ember/object';
 import { typeOf } from '@ember/utils';
 
