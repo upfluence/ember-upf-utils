@@ -1,14 +1,14 @@
 upf_utils:
   address_form:
-    first_name: First Name*
-    last_name: Last Name*
+    first_name: First Name
+    last_name: Last Name
     line_1: Address Line 1
     line_2: Address Line 2
     city: City
     state: State/Province
     country: Country
     postal_code: Postal Code
-    phone_number: Phone Number*
+    phone_number: Phone Number
     placeholder:
       first_name: Enter first name
       last_name: Enter last name
