@@ -1,9 +1,19 @@
-.jace-blob-container {
+.smart-blob-container {
   position: relative;
   width: var(--spacing-px-30);
   height: var(--spacing-px-30);
   border-radius: 100%;
   transition: all 1s ease-in-out;
+
+  &--xl {
+    height: 64px;
+    width: 64px;
+
+    .smart-blob {
+      width: 64px;
+      height: 64px;
+    }
+  }
 
   &::after,
   &::before {
@@ -11,13 +21,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: var(--spacing-px-30);
-    height: var(--spacing-px-30);
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
     z-index: 0;
-    border: 0.5px solid #ed21ff;
+    border: 0.5px solid #ec21ff;
     animation: none;
     transition: all 1s ease-in-out;
     border-width: 0;
@@ -27,9 +37,8 @@
     opacity: 0;
   }
 
-  .jace-blob {
-    border: 0.5px solid transparent;
-    background: transparent;
+  .smart-blob {
+    background: transpa;
     border-radius: 50%;
     transition: all 1s ease-in-out;
     box-shadow: none;
@@ -37,12 +46,12 @@
   }
 }
 
-.jace-blob-container--active {
+.smart-blob-container--active {
   &::after,
   &::before {
     transform: translate(-50%, -50%) scale(1);
-    border: 0.5px solid #ed21ff;
-    animation: jace-blob-ripple-border 5s ease-in-out infinite;
+    border: 2px solid #ec21ff;
+    animation: smart-blob-ripple-border 3s ease-in-out infinite;
     transition: all 1s ease-in-out;
     pointer-events: none;
     z-index: 0;
@@ -50,20 +59,17 @@
   }
 
   &::before {
-    animation-delay: 2.5s;
+    animation-delay: 1s;
   }
 
-  .jace-blob {
-    border: 0.5px solid transparent;
-    background: linear-gradient(transparent, transparent) padding-box, var(--color-smart-gradient-400) border-box;
+  .smart-blob {
     border-radius: 50%;
     transition: all 1s ease-in-out;
-    animation: jace-blob-gradient-fade 5s ease-in-out infinite;
-    box-shadow: 2.29px 2.29px 4.58px 0px rgba(255, 255, 255, 1) inset, 0px 0px 10px 0px rgba(83, 94, 252, 0.6);
+    box-shadow: 2.29px 2.29px 4.58px 0px #ffffff inset, 0px 0px 10px 0px rgba(83, 94, 252, 0.6);
   }
 }
 
-.jace-blob {
+.smart-blob {
   position: relative;
   width: var(--spacing-px-30);
   height: var(--spacing-px-30);
@@ -76,8 +82,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 200%;
-    height: 200%;
+    width: 198%;
+    height: 198%;
     transform: translate(-50%, -50%);
     object-fit: cover;
     object-position: center;
@@ -92,7 +98,7 @@
   }
 }
 
-.jace-blob-container.fade-out {
+.smart-blob-container.fade-out {
   transform: scale(0.9);
   box-shadow: none;
 
@@ -104,7 +110,7 @@
     opacity: 0;
   }
 
-  .jace-blob {
+  .smart-blob {
     box-shadow: none;
     background: transparent;
     border-width: 0;
@@ -113,38 +119,20 @@
   }
 }
 
-@keyframes jace-blob-ripple-border {
+@keyframes smart-blob-ripple-border {
   0% {
     transform: translate(-50%, -50%) scale(1);
-    border-width: 0.5px;
-    opacity: 1;
+    border-width: 1px;
+    opacity: 0;
   }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    border-width: 0.3px;
+  40% {
+    transform: translate(-50%, -50%) scale(1);
+    border-width: 1px;
     opacity: 1;
   }
   100% {
     transform: translate(-50%, -50%) scale(1.4);
     border-width: 0;
     opacity: 0;
-  }
-}
-
-@keyframes jace-blob-gradient-fade {
-  0%,
-  20% {
-    background: linear-gradient(transparent, transparent) padding-box,
-      linear-gradient(transparent, transparent) border-box;
-    border-width: 0;
-  }
-  50% {
-    background: linear-gradient(transparent, transparent) padding-box, var(--color-smart-gradient-400) border-box;
-    border-width: 0.3px;
-  }
-  70%,
-  100% {
-    background: transparent;
-    border-width: 0;
   }
 }
