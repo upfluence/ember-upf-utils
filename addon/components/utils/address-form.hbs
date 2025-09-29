@@ -107,10 +107,9 @@
     </div>
 
     <div class="fx-col fx-gap-px-6 fx-1">
-      <span class="font-size-md font-color-gray-500">
+      <label {{(if this.provincesForCountry (modifier "required-input"))}}>
         {{t "upf_utils.address_form.state"}}
-        {{#if this.provincesForCountry}}*{{/if}}
-      </span>
+      </label>
       {{#if this.provincesForCountry}}
         <OSS::ProvinceSelector
           @value={{@address.state}}
