@@ -33,12 +33,11 @@
     border-width: 0;
     box-shadow: none;
     background: none;
-    transform: translate(-50%, -50%) scale(0);
     opacity: 0;
   }
 
   .smart-blob {
-    background: transpa;
+    background: transparent;
     border-radius: 50%;
     transition: all 1s ease-in-out;
     box-shadow: none;
@@ -49,12 +48,11 @@
 .smart-blob-container--active {
   &::after,
   &::before {
-    transform: translate(-50%, -50%) scale(1);
     border: 2px solid #ec21ff;
     animation: smart-blob-ripple-border 3s ease-in-out infinite;
     transition: all 1s ease-in-out;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     opacity: 1;
   }
 
@@ -82,8 +80,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 198%;
-    height: 198%;
+    width: 110%;
+    height: 110%;
     transform: translate(-50%, -50%);
     object-fit: cover;
     object-position: center;
