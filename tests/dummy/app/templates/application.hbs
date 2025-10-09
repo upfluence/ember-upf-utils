@@ -20,4 +20,9 @@
     @onChange={{this.onChangeAddress}}
     @useGoogleAutocomplete={{true}}
   />
+  <div class="fx-row fx-gap-px-12 fx-xalign-center">
+    <OSS::ToggleSwitch @value={{this.blobLoading}} @onChange={{this.onBlobSwitch}} />
+    <Utils::SmartBlob @loading={{this.blobLoading}} />
+    <Utils::SmartBlob @loading={{this.blobLoading}} @size="xl" />
+  </div>
 </div>
