@@ -88,8 +88,8 @@ uedit_editor:
         subtitle: Some mobile browsers may have trouble displaying PDFs correctly. For a better experience, we recommend using the native PDF upload feature.
 errors:
   default:
-    title: AWS Service Disruption
-    subtitle: An industry-wide AWS outage is currently impacting many digital services, including ours. We’re closely monitoring the situation and will provide updates as soon as normal operations resume.
+    title: Whoops, something went wrong!
+    subtitle: Looks like a space hiccup! Our playful alien friends might have taken this page for a fast cosmic joyride.
     cta: Back to homepage
     contact_support: Chat with our support
     support_message: |
