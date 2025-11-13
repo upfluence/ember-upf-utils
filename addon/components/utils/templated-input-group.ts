@@ -15,6 +15,7 @@ interface TemplatedInputGroupArgs {
   variables: string[];
   placeholder?: string;
   feedbackMessage?: FeedbackMessage;
+  disabled?: boolean;
   onChange(value: string, isValid: boolean): void;
 }
 

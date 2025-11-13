@@ -66,6 +66,22 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
       );
       assert.dom('input').hasProperty('placeholder', 'Placeholder');
     });
+
+    test('Input is not disabled by default', async function (assert) {
+      await render(
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}}/>`
+      );
+
+      assert.dom('input').isEnabled();
+    });
+
+    test('Input can be disabled', async function (assert) {
+      await render(
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} @disabled={{true}}/>`
+      );
+
+      assert.dom('input').isDisabled();
+    });
   });
 
   module('Dropdown variables list', () => {

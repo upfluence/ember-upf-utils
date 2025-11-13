@@ -50,6 +50,7 @@
     @placeholder={{@placeholder}}
     @onChange={{this.onInput}}
     @feedbackMessage={{this.feedbackMessage}}
+    @disabled={{@disabled}}
     {{on "keyup" this.triggerVariableInput}}
     {{did-insert this.registerInput}}
     data-control-name="templated-input-group-input-container"
