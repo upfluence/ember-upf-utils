@@ -1,2 +1,2 @@
 export const URL_REGEX =
-  /^((http(s)?:\/\/.)?(www\.)?[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})$/;
+  /^((http(s)?:\/\/)?(www)?[a-zA-Z0-9-][a-zA-Z0-9-]+[a-zA-Z0-9-]\.[a-zA-Z0-9-]{2,}[\/\w]?|www\.[a-zA-Z0-9-][a-zA-Z0-9-]+[a-zA-Z0-9-]\.[a-zA-Z0-9-]{2,}[\/\w]?|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,}[\/\w]?|www\.[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,}[\/\w]?|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}))$/;
