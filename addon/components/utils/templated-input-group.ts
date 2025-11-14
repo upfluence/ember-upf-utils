@@ -103,6 +103,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   toggleTemplateVariables(e: MouseEvent): void {
     e.stopPropagation();
     e.preventDefault();
+    if (this.args.disabled) return;
     this.displayTemplateVariables = !this.displayTemplateVariables;
   }
 

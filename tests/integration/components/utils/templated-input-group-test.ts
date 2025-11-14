@@ -82,6 +82,17 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
 
       assert.dom('input').isDisabled();
     });
+
+    test('When input is disabled, insert variable link does not toggle dropdown', async function (assert) {
+      await render(
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} @disabled={{true}}/>`
+      );
+
+      assert.dom('input').isDisabled();
+      await click('[data-control-name="templated-input-group-insert-variable-link"]');
+      assert.dom('.upf-floating-menu--hidden').exists();
+      assert.dom('.upf-floating-menu--visible').doesNotExist();
+    });
   });
 
   module('Dropdown variables list', () => {
