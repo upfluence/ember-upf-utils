@@ -15,6 +15,7 @@ interface TemplatedInputGroupArgs {
   variables: string[];
   placeholder?: string;
   feedbackMessage?: FeedbackMessage;
+  disabled?: boolean;
   onChange(value: string, isValid: boolean): void;
 }
 
@@ -102,6 +103,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   toggleTemplateVariables(e: MouseEvent): void {
     e.stopPropagation();
     e.preventDefault();
+    if (this.args.disabled) return;
     this.displayTemplateVariables = !this.displayTemplateVariables;
   }
 
