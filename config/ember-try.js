@@ -4,7 +4,6 @@ module.exports = async function () {
   return {
     packageManager: 'pnpm',
     command: 'pnpm test:ember',
-    command: 'make',
     scenarios: [
       {
         name: 'ember-lts-3.28'
