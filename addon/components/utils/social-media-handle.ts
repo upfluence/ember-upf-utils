@@ -1,5 +1,6 @@
 import { action } from '@ember/object';
 import { assert } from '@ember/debug';
+import { scheduleOnce } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
 
@@ -33,7 +34,7 @@ const SOCIAL_MEDIA_ICONS: Record<string, string> = {
 
 export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHandleArgs> {
   @tracked selectorShown: boolean = false;
-  @tracked declare selectedNetwork: SocialNetworkData;
+  @tracked selectedNetwork: SocialNetworkData = SOCIAL_MEDIA_NETWORKS[0];
   @tracked handle: string = '';
 
   socialMediaNetworks: SocialNetworkData[] = SOCIAL_MEDIA_NETWORKS;
@@ -43,7 +44,8 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
     super(owner, args);
 
     assert('[Utils::SocialMediaHandle] The @onChange parameter is mandatory', typeof args.onChange === 'function');
-    this._initArguments();
+
+    scheduleOnce('afterRender', this, this._initArguments);
   }
 
   @action
@@ -60,7 +62,7 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
   @action
   onSelect(value: SocialNetworkData): void {
     this.selectedNetwork = value;
-    this.handle = this._cleanHandleFormating(this.handle);
+    this.handle = this._cleanHandleFormatting(this.handle);
     this.hideSelector();
     this._reformatInput();
     this._notifyChanges();
@@ -81,7 +83,7 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
   }
 
   private _notifyChanges(): void {
-    this.args.onChange(this.selectedNetwork.name, this._cleanHandleFormating(this.handle), this.handle);
+    this.args.onChange(this.selectedNetwork.name, this._cleanHandleFormatting(this.handle), this.handle);
   }
 
   private _initArguments(): void {
@@ -94,7 +96,7 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
     }
   }
 
-  private _cleanHandleFormating(handle: string): string {
+  private _cleanHandleFormatting(handle: string): string {
     handle = handle.endsWith('/') ? handle.slice(0, -1) : handle;
     let urlSplit = handle.split('/');
     return urlSplit.pop()?.replace('@', '') || '';
