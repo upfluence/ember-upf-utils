@@ -1,12 +1,6 @@
 name: Compatibility Checks
 
 on:
-  push:
-    branches:
-      - master
-    tags:
-      - v*
-  pull_request:
   schedule:
     - cron: '45 9 * * 1'
 
