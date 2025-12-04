@@ -32,7 +32,11 @@ const VALID_URLS = [
   'http://www.google.com/path/param=email@toto.com',
   'https://www.google.com/path/param=email@toto.com',
   'http://google.com/path/param=email@toto.com',
-  'https://google.com/path/param=email@toto.com'
+  'https://google.com/path/param=email@toto.com',
+  'office365.com',
+  'www.office365.com',
+  'http://office365.com',
+  'https://office365.com'
 ];
 const INVALID_URLS = [
   'https://toto-toto .com',
@@ -46,7 +50,9 @@ const INVALID_URLS = [
   'www.aze@aez.com',
   'random text goes here to make sure',
   'email@toto.com',
-  'john.email@toto.com'
+  'john.email@toto.com',
+  'office 365.com',
+  'www.office 365.com'
 ];
 
 module('Unit | Utils | url-regex', function (hooks) {
