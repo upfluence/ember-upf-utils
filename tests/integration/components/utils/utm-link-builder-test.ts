@@ -133,4 +133,18 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     await settled();
     assert.dom('[data-control-name="utm_source_input"] .upf-input').hasValue('a+a');
   });
+
+  test('When link params are passed, UTM link builder is toggled and filled with values', async function (assert) {
+    this.linkParams = {
+      utm_source: 'source',
+      utm_medium: 'medium',
+      utm_campaign: 'campaign'
+    };
+    await render(hbs`<Utils::UtmLinkBuilder @linkParams={{this.linkParams}} />`);
+
+    assert.dom('.upf-toggle--toggled').exists();
+    assert.dom('[data-control-name="utm_source_input"] input').hasValue('source');
+    assert.dom('[data-control-name="utm_medium_input"] input').hasValue('medium');
+    assert.dom('[data-control-name="utm_campaign_input"] input').hasValue('campaign');
+  });
 });
