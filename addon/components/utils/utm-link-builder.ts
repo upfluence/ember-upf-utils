@@ -21,6 +21,7 @@ interface UtilsUtmLinkBuilderArgs {
   subtitle?: string;
   displayPreview?: boolean;
   variables?: string[];
+  linkParams?: UtmFields;
   onChange(url: string, utmsEnabled: boolean, formValid: boolean, utmFields: UtmFields): void;
 }
 
@@ -32,6 +33,18 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   @tracked utmMedium: string = '';
   @tracked utmCampaign: string = '';
   @tracked validationErrors: Record<string, FeedbackMessage> = {};
+
+  constructor(owner: unknown, args: UtilsUtmLinkBuilderArgs) {
+    super(owner, args);
+
+    if (args.linkParams) {
+      this.utmsEnabled = true;
+
+      this.utmSource = args.linkParams.utm_source;
+      this.utmMedium = args.linkParams.utm_medium;
+      this.utmCampaign = args.linkParams.utm_campaign;
+    }
+  }
 
   get variablesEnabled(): boolean {
     return Array.isArray(this.args.variables) && this.args.variables.length > 0;
