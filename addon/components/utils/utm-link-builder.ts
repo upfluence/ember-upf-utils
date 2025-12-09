@@ -8,6 +8,7 @@ import { tracked } from '@glimmer/tracking';
 import { type IntlService } from 'ember-intl';
 
 import { type FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
+import { scheduleOnce } from '@ember/runloop';
 
 export type UtmFields = {
   utm_source: string;
@@ -37,13 +38,7 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   constructor(owner: unknown, args: UtilsUtmLinkBuilderArgs) {
     super(owner, args);
 
-    if (args.linkParams) {
-      this.utmsEnabled = true;
-
-      this.utmSource = args.linkParams.utm_source;
-      this.utmMedium = args.linkParams.utm_medium;
-      this.utmCampaign = args.linkParams.utm_campaign;
-    }
+    scheduleOnce('afterRender', this, this.initializeUTMParams);
   }
 
   get variablesEnabled(): boolean {
@@ -147,5 +142,15 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
 
   get fieldCampaign(): string {
     return this.utmCampaign || '{campaign_field}';
+  }
+
+  private initializeUTMParams(): void {
+    if (!this.args.linkParams) return;
+
+    this.utmsEnabled = true;
+
+    this.utmSource = this.args.linkParams.utm_source;
+    this.utmMedium = this.args.linkParams.utm_medium;
+    this.utmCampaign = this.args.linkParams.utm_campaign;
   }
 }
