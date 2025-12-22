@@ -164,7 +164,6 @@ export default class extends Component<UtilsAddressFormArgs> {
     let zipcode: string = '';
     let city: string = '';
 
-    console.log(place);
     const mapper: { [key: string]: (comp: GAddressComponent) => void } = {
       street_number: (comp) => {
         address1 = `${comp.long_name} ${address1}`;
