@@ -160,15 +160,20 @@ export default class extends Component<UtilsAddressFormArgs> {
 
   private fillInAddress(place: GPlaceResult): void {
     let address1: string = '';
+    let address2: string = '';
     let zipcode: string = '';
     let city: string = '';
 
+    console.log(place);
     const mapper: { [key: string]: (comp: GAddressComponent) => void } = {
       street_number: (comp) => {
         address1 = `${comp.long_name} ${address1}`;
       },
       route: (comp) => {
         address1 += comp.long_name;
+      },
+      subpremise: (comp) => {
+        address2 = comp.long_name;
       },
       postal_code: (comp) => {
         zipcode = `${comp.long_name}${zipcode}`;
@@ -200,7 +205,7 @@ export default class extends Component<UtilsAddressFormArgs> {
     });
 
     set(this.args.address, `${this.addressKey}1`, address1);
-    set(this.args.address, `${this.addressKey}2`, '');
+    set(this.args.address, `${this.addressKey}2`, address2);
     set(this.args.address, 'zipcode', zipcode);
     set(this.args.address, 'city', city);
     this.onFieldUpdate();
