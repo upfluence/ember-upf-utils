@@ -7,14 +7,16 @@
           <span class="font-color-error-500">*</span>
         {{/if}}
       </div>
-      <OSS::Link
-        @icon="fa-plus"
-        @label={{t "upf_utils.templated_input_group.insert_variable"}}
-        {{on "mousedown" this.preventBlur}}
-        {{on "click" this.toggleTemplateVariables}}
-        {{did-insert this.registerInsertVariableLink}}
-        data-control-name="templated-input-group-insert-variable-link"
-      />
+      {{#unless @disabled}}
+        <OSS::Link
+          @icon="fa-plus"
+          @label={{t "upf_utils.templated_input_group.insert_variable"}}
+          {{on "mousedown" this.preventBlur}}
+          {{on "click" this.toggleTemplateVariables}}
+          {{did-insert this.registerInsertVariableLink}}
+          data-control-name="templated-input-group-insert-variable-link"
+        />
+      {{/unless}}
       <div
         class="upf-floating-menu upf-floating-menu--{{if this.displayTemplateVariables 'visible' 'hidden'}}
           upf-floating-menu--skip-offset"
