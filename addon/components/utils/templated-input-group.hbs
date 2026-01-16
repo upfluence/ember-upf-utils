@@ -2,9 +2,10 @@
   <div class="fx-col fx-gap-px-3">
     <div class="fx-row fx-malign-space-between">
       <div class="font-color-gray-500 font-size-md" data-control-name="templated-input-group-title">
-        <span>{{@title}}</span>
         {{#if @required}}
-          <span class="font-color-error-500">*</span>
+          <span {{required-input}}>{{@title}}</span>
+        {{else}}
+          <span>{{@title}}</span>
         {{/if}}
       </div>
       {{#unless @disabled}}
