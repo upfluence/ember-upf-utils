@@ -315,7 +315,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
                               @onChange={{this.onChange}} />`
     );
 
-    assert.dom('.google-autocomplete-input-container[data-control-name="address-form-address1"]').exists();
+    assert.dom('.autocomplete-input-container[data-control-name="address-form-address1"]').exists();
   });
 
   module('When @hideNameAttrs is true', () => {

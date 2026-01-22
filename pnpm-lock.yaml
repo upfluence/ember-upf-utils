@@ -41,6 +41,9 @@ importers:
       ember-cli-typescript:
         specifier: ^4.2.1
         version: 4.2.1
+      ember-modifier:
+        specifier: ^3.2.7
+        version: 3.2.7(@babel/core@7.26.0)
       ember-named-blocks-polyfill:
         specifier: ^0.2.4
         version: 0.2.5
@@ -99,6 +102,9 @@ importers:
       '@types/ember__debug':
         specifier: ^3.16.5
         version: 3.16.12
+      '@types/ember__destroyable':
+        specifier: ^4.0.5
+        version: 4.0.5
       '@types/ember__engine':
         specifier: ^3.16.3
         version: 3.16.9
@@ -1243,6 +1249,9 @@ packages:
 
   '@types/ember__debug@3.16.12':
     resolution: {integrity: sha512-+k+9qNmTaLw6xQCvcZm1DrQ6D2n9uob/8RVAK6jxFkxyPNbdt66z3fn7V/NHIURcBVhGVgf1qr5x62bHW0PIdg==}
+
+  '@types/ember__destroyable@4.0.5':
+    resolution: {integrity: sha512-spJyZxpvecssbXkaOQYcbnlWgb+TasFaKrgAYVbykZY6saMwUdMOGDDoW6uP/y/+A8Jj/fUIatPWJLepeSfgww==}
 
   '@types/ember__engine@3.16.9':
     resolution: {integrity: sha512-Dab779R+nuGoprrOV1qzomUSEGM9eqXxFB1q5ArK00IDf+B6qkws2rJg6pB7PBSdiBhnhAq8tAJ/WNy4eC/jwQ==}
@@ -8315,6 +8324,8 @@ snapshots:
     dependencies:
       '@types/ember__engine': 3.16.9
       '@types/ember__object': 3.12.13
+
+  '@types/ember__destroyable@4.0.5': {}
 
   '@types/ember__engine@3.16.9':
     dependencies:
