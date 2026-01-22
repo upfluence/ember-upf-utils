@@ -6,10 +6,22 @@ import { getOwner } from '@ember/application';
 import { isTesting } from '@embroider/macros';
 
 import { Loader } from '@googlemaps/js-api-loader';
-import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
+import { countries } from '@upfluence/oss-components/utils/country-codes';
 
-type GAddressComponent = google.maps.GeocoderAddressComponent;
-type GPlaceResult = google.maps.places.PlaceResult;
+type GoogleAddressComponent = google.maps.GeocoderAddressComponent;
+type GooglePlaceResult = google.maps.places.PlaceResult;
+type GoogleAutocomplete = google.maps.places.Autocomplete;
+type GoogleAutocompleteOptions = google.maps.places.AutocompleteOptions;
+type AddressComponentType =
+  | 'street_number'
+  | 'route'
+  | 'subpremise'
+  | 'postal_code'
+  | 'postal_code_suffix'
+  | 'locality'
+  | 'postal_town'
+  | 'administrative_area_level_1'
+  | 'country';
 
 export type AutocompletionResult = {
   address1: string;
@@ -24,21 +36,29 @@ interface SetupAutocompleteSignature {
   Element: HTMLElement;
   Args: {
     Named: {
-      callback(): AutocompletionResult;
+      callback(result: AutocompletionResult): void;
     };
   };
 }
 
-function cleanup(instance: RegisterFormField) {
+const AUTOCOMPLETE_CONTAINER_CLASS = 'autocomplete-input-container';
+const PAC_CONTAINER_CLASS = 'pac-container';
+const AUTOCOMPLETE_OPTIONS: GoogleAutocompleteOptions = {
+  fields: ['address_components'],
+  strictBounds: false,
+  types: ['address']
+};
+
+function cleanup(instance: SetupAutocompleteModifier): void {
   instance.targetElement = null;
   instance.targetInput = null;
-  instance.callback = () => {};
 }
 
-export default class RegisterFormField extends Modifier<SetupAutocompleteSignature> {
-  declare targetElement: HTMLElement | null;
-  declare targetInput: HTMLInputElement | null;
-  declare callback: (result: AutocompletionResult) => void;
+export default class SetupAutocompleteModifier extends Modifier<SetupAutocompleteSignature> {
+  targetElement: HTMLElement | null = null;
+  targetInput: HTMLInputElement | null = null;
+
+  private callback: ((result: AutocompletionResult) => void) | null = null;
 
   constructor(owner: unknown, args: ArgsFor<SetupAutocompleteSignature>) {
     super(owner, args);
@@ -55,67 +75,98 @@ export default class RegisterFormField extends Modifier<SetupAutocompleteSignatu
 
     this.targetInput = input;
     this.callback = callback;
-
-    if (element === input) {
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('autocomplete-input-container');
-      input.parentNode?.insertBefore(wrapper, input);
-      wrapper.appendChild(input);
-      this.targetElement = wrapper;
-    } else {
-      this.targetElement = element;
-      this.targetElement.classList.add('autocomplete-input-container');
-    }
-
+    this.setupTargetElement(element, input);
     this.setupAutoComplete();
   }
 
-  private getInputElement(element: HTMLElement): HTMLInputElement {
-    if (element.tagName === 'INPUT' && (element as HTMLInputElement).type === 'text') {
-      return element as HTMLInputElement;
+  private setupTargetElement(element: HTMLElement, input: HTMLInputElement): void {
+    if (element === input) {
+      this.targetElement = this.createWrapperForInput(input);
     } else {
-      const inputElement = element.querySelector('input[type="text"]') as HTMLInputElement;
-      if (inputElement) {
-        return inputElement;
-      } else {
-        assert(
-          '[modifier][setup-autocomplete] No input[type="text"] element found in the provided element or its children'
-        );
-      }
+      this.targetElement = element;
+      this.targetElement.classList.add(AUTOCOMPLETE_CONTAINER_CLASS);
     }
   }
 
-  private setupAutoComplete(): void {
-    if (isTesting()) return;
-    this.appendPacContainerLocally();
+  private createWrapperForInput(input: HTMLInputElement): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add(AUTOCOMPLETE_CONTAINER_CLASS);
 
-    const loader = new Loader({
-      apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
-      version: 'weekly'
-    });
+    const parentNode = input.parentNode;
+    assert('[modifier][setup-autocomplete] Input element must have a parent node', parentNode !== null);
 
-    loader.importLibrary('places').then(({ Autocomplete }) => {
-      this.setupAutocompleteListeners(Autocomplete);
-    });
+    parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+
+    return wrapper;
   }
 
-  private setupAutocompleteListeners(
-    Autocomplete: new (input: HTMLInputElement, options?: any) => google.maps.places.Autocomplete
+  private getInputElement(element: HTMLElement): HTMLInputElement | null {
+    if (this.isTextInput(element)) return element as HTMLInputElement;
+
+    const inputElement = element.querySelector('input[type="text"]');
+    assert(
+      '[modifier][setup-autocomplete] No input[type="text"] element found in the provided element or its children',
+      inputElement !== null
+    );
+    return inputElement as HTMLInputElement;
+  }
+
+  private isTextInput(element: HTMLElement): element is HTMLInputElement {
+    return element.tagName === 'INPUT' && (element as HTMLInputElement).type === 'text';
+  }
+
+  private async setupAutoComplete(): Promise<void> {
+    if (isTesting()) return;
+
+    this.appendPacContainerLocally();
+
+    try {
+      const apiKey = this.getGoogleMapsApiKey();
+      const loader = new Loader({
+        apiKey,
+        version: 'weekly'
+      });
+
+      const { Autocomplete } = await loader.importLibrary('places');
+      this.initializeAutocomplete(Autocomplete);
+    } catch (error) {
+      console.error('[modifier][setup-autocomplete] Failed to load Google Maps API:', error);
+    }
+  }
+
+  private getGoogleMapsApiKey(): string {
+    const config = getOwner(this).resolveRegistration('config:environment');
+    const apiKey = config?.google_map_api_key;
+
+    assert('[modifier][setup-autocomplete] Google Maps API key is not configured', apiKey);
+    return apiKey;
+  }
+
+  private initializeAutocomplete(
+    AutocompleteConstructor: new (
+      input: HTMLInputElement,
+      options?: google.maps.places.AutocompleteOptions
+    ) => GoogleAutocomplete
   ): void {
-    const options = {
-      fields: ['address_components'],
-      strictBounds: false,
-      types: ['address']
-    };
-    const autocomplete = new Autocomplete(this.targetInput!, options);
+    assert('[modifier][setup-autocomplete] Target input is not initialized', this.targetInput !== null);
+
+    const autocomplete = new AutocompleteConstructor(this.targetInput, AUTOCOMPLETE_OPTIONS);
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-      this.fillInAddress(place);
+      this.handlePlaceChanged(place);
     });
   }
 
-  private fillInAddress(place: GPlaceResult): void {
+  private handlePlaceChanged(place: GooglePlaceResult): void {
+    if (!place.address_components) return;
+
+    const result = this.parseAddressComponents(place.address_components);
+    this.callback?.(result);
+  }
+
+  private parseAddressComponents(components: GoogleAddressComponent[]): AutocompletionResult {
     const result: AutocompletionResult = {
       address1: '',
       address2: '',
@@ -125,70 +176,81 @@ export default class RegisterFormField extends Modifier<SetupAutocompleteSignatu
       country: ''
     };
 
-    const mapper: { [key: string]: (comp: GAddressComponent) => void } = {
-      street_number: (comp) => {
-        result.address1 = `${comp.long_name} ${result.address1}`;
+    const mapper: Record<AddressComponentType, (comp: GoogleAddressComponent) => void> = {
+      street_number: (comp: GoogleAddressComponent) => {
+        result.address1 = `${comp.long_name} ${result.address1}`.trim();
       },
-      route: (comp) => {
+      route: (comp: GoogleAddressComponent) => {
         result.address1 += comp.long_name;
       },
-      subpremise: (comp) => {
+      subpremise: (comp: GoogleAddressComponent) => {
         result.address2 = comp.long_name;
       },
-      postal_code: (comp) => {
+      postal_code: (comp: GoogleAddressComponent) => {
         result.zipcode = `${comp.long_name}${result.zipcode}`;
       },
-      postal_code_suffix: (comp) => {
+      postal_code_suffix: (comp: GoogleAddressComponent) => {
         result.zipcode = `${result.zipcode}-${comp.long_name}`;
       },
-      locality: (comp) => {
+      locality: (comp: GoogleAddressComponent) => {
         result.city = comp.long_name;
       },
-      postal_town: (comp) => {
+      postal_town: (comp: GoogleAddressComponent) => {
         result.city = comp.long_name;
       },
-      administrative_area_level_1: (comp) => {
+      administrative_area_level_1: (comp: GoogleAddressComponent) => {
         result.state = comp.long_name;
       },
-      country: (comp) => {
-        const selectedCountry: CountryData | undefined = countries.find(
-          (country) => country.alpha2 === comp.short_name
-        );
+      country: (comp: GoogleAddressComponent) => {
+        const selectedCountry = countries.find((country) => country.alpha2 === comp.short_name);
         result.country = selectedCountry?.alpha2 ?? '';
       }
     };
 
-    (place.address_components ?? []).reverse().forEach((component) => {
-      const componentType: string = component.types[0];
-
+    (components ?? []).reverse().forEach((component) => {
+      const componentType: AddressComponentType = component.types[0] as AddressComponentType;
       mapper[componentType]?.(component);
     });
-
-    this.callback(result);
+    return result;
   }
 
   private appendPacContainerLocally(): void {
-    const onInput = () => {
+    assert('[modifier][setup-autocomplete] Target input is not initialized', this.targetInput !== null);
+
+    const handleInput = (): void => {
       this.setupPacContainerObserver();
-      this.targetInput!.removeEventListener('input', onInput);
+      this.targetInput?.removeEventListener('input', handleInput);
     };
-    this.targetInput!.addEventListener('input', onInput);
+
+    this.targetInput.addEventListener('input', handleInput, { once: true });
   }
 
   private setupPacContainerObserver(): void {
-    const observer = new MutationObserver((mutationList: any) => {
+    const observer = new MutationObserver((mutationList: MutationRecord[]) => {
       for (const mutation of mutationList) {
-        if (mutation.type === 'childList') {
-          for (const node of mutation.addedNodes) {
-            if (node?.classList?.contains('pac-container')) {
-              this.targetElement!.append(node);
-              observer?.disconnect();
-              return;
-            }
+        if (mutation.type !== 'childList') {
+          continue;
+        }
+
+        for (const node of mutation.addedNodes) {
+          if (this.isPacContainer(node)) {
+            this.relocatePacContainer(node as HTMLElement);
+            observer.disconnect();
+            return;
           }
         }
       }
     });
+
     observer.observe(document.body, { childList: true });
+  }
+
+  private isPacContainer(node: Node): node is HTMLElement {
+    return node instanceof HTMLElement && node.classList.contains(PAC_CONTAINER_CLASS);
+  }
+
+  private relocatePacContainer(container: HTMLElement): void {
+    assert('[modifier][setup-autocomplete] Target element is not initialized', this.targetElement !== null);
+    this.targetElement.appendChild(container);
   }
 }
