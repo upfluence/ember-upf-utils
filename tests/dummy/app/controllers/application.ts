@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { AutocompletionResult } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
+import { AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
 export default class ApplicationController extends Controller {
   @tracked selectedItems = ['toto'];
@@ -49,17 +49,18 @@ export default class ApplicationController extends Controller {
   @action
   onChangeAddress(value: any) {
     this.shippingAddress = value;
+    console.log('Auto-complete shipping address', value);
   }
 
   @action
-  onAutoComplete(value: AutocompletionResult) {
+  onAutoComplete(value: AutocompletionAddress) {
     this.inputValue = value.address1;
-    console.log('onAutoComplete', value);
+    console.log('Auto-complete oss/input-container address', value);
   }
 
   @action
-  onOssAutoComplete(value: AutocompletionResult) {
+  onOssAutoComplete(value: AutocompletionAddress) {
     this.ossInputValue = value.address1;
-    console.log('onAutoComplete', value);
+    console.log('Auto-complete native input address', value);
   }
 }
