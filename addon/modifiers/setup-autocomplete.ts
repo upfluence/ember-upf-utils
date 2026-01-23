@@ -52,11 +52,13 @@ const AUTOCOMPLETE_OPTIONS: GoogleAutocompleteOptions = {
 function cleanup(instance: SetupAutocompleteModifier): void {
   instance.targetElement = null;
   instance.targetInput = null;
+  instance.result = null;
 }
 
 export default class SetupAutocompleteModifier extends Modifier<SetupAutocompleteSignature> {
   targetElement: HTMLElement | null = null;
   targetInput: HTMLInputElement | null = null;
+  result: AutocompletionResult | null = null;
 
   private callback: ((result: AutocompletionResult) => void) | null = null;
 
@@ -118,29 +120,16 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
 
   private async setupAutoComplete(): Promise<void> {
     if (isTesting()) return;
-
     this.appendPacContainerLocally();
 
-    try {
-      const apiKey = this.getGoogleMapsApiKey();
-      const loader = new Loader({
-        apiKey,
-        version: 'weekly'
-      });
+    const loader = new Loader({
+      apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
+      version: 'weekly'
+    });
 
-      const { Autocomplete } = await loader.importLibrary('places');
+    loader.importLibrary('places').then(({ Autocomplete }) => {
       this.initializeAutocomplete(Autocomplete);
-    } catch (error) {
-      console.error('[modifier][setup-autocomplete] Failed to load Google Maps API:', error);
-    }
-  }
-
-  private getGoogleMapsApiKey(): string {
-    const config = getOwner(this).resolveRegistration('config:environment');
-    const apiKey = config?.google_map_api_key;
-
-    assert('[modifier][setup-autocomplete] Google Maps API key is not configured', apiKey);
-    return apiKey;
+    });
   }
 
   private initializeAutocomplete(
@@ -152,18 +141,22 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     assert('[modifier][setup-autocomplete] Target input is not initialized', this.targetInput !== null);
 
     const autocomplete = new AutocompleteConstructor(this.targetInput, AUTOCOMPLETE_OPTIONS);
-
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       this.handlePlaceChanged(place);
+    });
+
+    this.targetInput.addEventListener('focusout', (event) => {
+      if ((<HTMLInputElement>event.target).value === this.result?.address1) return;
+      (<HTMLInputElement>event.target).value = this.result?.address1 ?? '';
     });
   }
 
   private handlePlaceChanged(place: GooglePlaceResult): void {
     if (!place.address_components) return;
 
-    const result = this.parseAddressComponents(place.address_components);
-    this.callback?.(result);
+    this.result = this.parseAddressComponents(place.address_components);
+    this.callback?.(this.result);
   }
 
   private parseAddressComponents(components: GoogleAddressComponent[]): AutocompletionResult {
@@ -211,18 +204,15 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
       const componentType: AddressComponentType = component.types[0] as AddressComponentType;
       mapper[componentType]?.(component);
     });
+
+    if (result['address2'] === '') delete result['address2'];
+
     return result;
   }
 
   private appendPacContainerLocally(): void {
     assert('[modifier][setup-autocomplete] Target input is not initialized', this.targetInput !== null);
-
-    const handleInput = (): void => {
-      this.setupPacContainerObserver();
-      this.targetInput?.removeEventListener('input', handleInput);
-    };
-
-    this.targetInput.addEventListener('input', handleInput, { once: true });
+    this.targetInput.addEventListener('input', this.setupPacContainerObserver, { once: true });
   }
 
   private setupPacContainerObserver(): void {
