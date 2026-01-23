@@ -1,16 +1,12 @@
 <div class="fx-col fx-gap-px-6 fx-1" ...attributes>
   {{#if this.useGoogleAutocomplete}}
-    <div class="fx-col fx-1 autocomplete-input-container">
-      <OSS::InputContainer
-        @onChange={{this.onChange}}
-        @value={{@value.address}}
-        {{did-insert this.initAutoCompletion}}
-        data-control-name="address-inline"
-      />
-    </div>
+    <OSS::InputContainer
+      @onChange={{this.onChange}}
+      @value={{@value.address}}
+      data-control-name="address-inline"
+      {{setup-autocomplete callback=this.onAddressSelected}}
+    />
   {{else}}
-    <div class="fx-col fx-1">
-      <OSS::InputContainer @value={{@value.address}} @onChange={{this.onChange}} data-control-name="address-inline" />
-    </div>
+    <OSS::InputContainer @value={{@value.address}} @onChange={{this.onChange}} data-control-name="address-inline" />
   {{/if}}
 </div>

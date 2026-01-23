@@ -6,7 +6,7 @@ import { getOwner } from '@ember/application';
 import { isTesting } from '@embroider/macros';
 
 import { Loader } from '@googlemaps/js-api-loader';
-import { countries } from '@upfluence/oss-components/utils/country-codes';
+import { countries, CountryData } from '@upfluence/oss-components/utils/country-codes';
 
 type GoogleAddressComponent = google.maps.GeocoderAddressComponent;
 type GooglePlaceResult = google.maps.places.PlaceResult;
@@ -23,20 +23,21 @@ type AddressComponentType =
   | 'administrative_area_level_1'
   | 'country';
 
-export type AutocompletionResult = {
+export type AutocompletionAddress = {
   address1: string;
   address2?: string;
   city: string;
   state: string;
   zipcode: string;
-  country: string;
+  country: CountryData;
+  formattedAddress: string;
 };
 
 interface SetupAutocompleteSignature {
   Element: HTMLElement;
   Args: {
     Named: {
-      callback(result: AutocompletionResult): void;
+      callback(result: AutocompletionAddress): void;
     };
   };
 }
@@ -58,9 +59,9 @@ function cleanup(instance: SetupAutocompleteModifier): void {
 export default class SetupAutocompleteModifier extends Modifier<SetupAutocompleteSignature> {
   targetElement: HTMLElement | null = null;
   targetInput: HTMLInputElement | null = null;
-  result: AutocompletionResult | null = null;
+  result: AutocompletionAddress | null = null;
 
-  private callback: ((result: AutocompletionResult) => void) | null = null;
+  private callback: ((result: AutocompletionAddress) => void) | null = null;
 
   constructor(owner: unknown, args: ArgsFor<SetupAutocompleteSignature>) {
     super(owner, args);
@@ -159,14 +160,16 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     this.callback?.(this.result);
   }
 
-  private parseAddressComponents(components: GoogleAddressComponent[]): AutocompletionResult {
-    const result: AutocompletionResult = {
+  private parseAddressComponents(components: GoogleAddressComponent[]): AutocompletionAddress {
+    const defaultCountry = countries.find((country) => country.alpha2 === 'US')!;
+    const result: AutocompletionAddress = {
       address1: '',
       address2: '',
       city: '',
       state: '',
       zipcode: '',
-      country: ''
+      country: defaultCountry,
+      formattedAddress: ''
     };
 
     const mapper: Record<AddressComponentType, (comp: GoogleAddressComponent) => void> = {
@@ -195,8 +198,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
         result.state = comp.long_name;
       },
       country: (comp: GoogleAddressComponent) => {
-        const selectedCountry = countries.find((country) => country.alpha2 === comp.short_name);
-        result.country = selectedCountry?.alpha2 ?? '';
+        result.country = countries.find((country) => country.alpha2 === comp.short_name) ?? defaultCountry;
       }
     };
 
@@ -205,7 +207,18 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
       mapper[componentType]?.(component);
     });
 
-    if (result['address2'] === '') delete result['address2'];
+    if (result.address2 === '') delete result['address2'];
+
+    result.formattedAddress = [
+      result.address1,
+      result.address2,
+      result.city,
+      result.state,
+      result.zipcode,
+      result.country.name
+    ]
+      .filter(Boolean)
+      .join(', ');
 
     return result;
   }
