@@ -56,7 +56,6 @@ const VALID_URLS = [
   'https://example.com/path#anchor',
   'https://example.com/path?q=1#anchor',
   'https://www.example.com/path?q=1#anchor',
-  'https://www.example.com/path?q=1#anchor',
   'example.museum',
   'example.photography',
   'example.technology',
@@ -104,7 +103,8 @@ const VALID_URLS = [
   'example.com/path#',
   'example.com/path?query=value#fragment',
   'www.example.com/path?query=value#fragment',
-  'https://www.example.com/path?query=value#fragment'
+  'https://www.example.com/path?query=value#fragment',
+  'www3.example.com'
 ];
 const INVALID_URLS = [
   'https://toto-toto .com',
@@ -160,7 +160,8 @@ const INVALID_URLS = [
   '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
   'http://[2001:db8::1]',
   '255.255.255.255',
-  'http://255.255.255.255:8080'
+  'http://255.255.255.255:8080',
+  'www.255.255.255.255'
 ];
 
 module('Unit | Utils | url-regex', function (hooks) {
