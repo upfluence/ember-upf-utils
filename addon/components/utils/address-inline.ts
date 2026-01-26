@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
+import { AutocompletionAddress } from '@upfluence/ember-upf-utils/utils/address-parser';
 
 interface UtilsAddressInlineArgs {
   value: ShippingAddress;

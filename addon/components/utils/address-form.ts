@@ -4,7 +4,7 @@ import { action, get, set } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
 import { next } from '@ember/runloop';
-import { AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
+import { AutocompletionAddress } from '@upfluence/ember-upf-utils/utils/address-parser';
 
 type FocusableInput =
   | 'first-name'
