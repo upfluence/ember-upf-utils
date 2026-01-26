@@ -54,13 +54,13 @@ export default class ApplicationController extends Controller {
 
   @action
   onAutoComplete(value: AutocompletionAddress) {
-    this.inputValue = value.address1;
+    this.inputValue = value.formattedAddress;
     console.log('Auto-complete oss/input-container address', value);
   }
 
   @action
   onOssAutoComplete(value: AutocompletionAddress) {
-    this.ossInputValue = value.address1;
+    this.ossInputValue = value.formattedAddress;
     console.log('Auto-complete native input address', value);
   }
 }
