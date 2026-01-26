@@ -43,7 +43,6 @@ interface SetupAutocompleteSignature {
 }
 
 const AUTOCOMPLETE_CONTAINER_CLASS = 'autocomplete-input-container';
-const PAC_CONTAINER_CLASS = 'pac-container';
 const AUTOCOMPLETE_OPTIONS: GoogleAutocompleteOptions = {
   fields: ['address_components'],
   strictBounds: false,
@@ -54,6 +53,7 @@ function cleanup(instance: SetupAutocompleteModifier): void {
   instance.targetElement = null;
   instance.targetInput = null;
   instance.result = null;
+  document.querySelector('.pac-container')?.remove();
 }
 
 export default class SetupAutocompleteModifier extends Modifier<SetupAutocompleteSignature> {
@@ -73,7 +73,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     _: PositionalArgs<SetupAutocompleteSignature>,
     { callback }: NamedArgs<SetupAutocompleteSignature>
   ): void {
-    const input = this.getInputElement(element);
+    const input: HTMLInputElement | null = this.getInputElement(element);
     if (!input) return;
 
     this.targetInput = input;
@@ -121,7 +121,6 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
 
   private async setupAutoComplete(): Promise<void> {
     if (isTesting()) return;
-    this.appendPacContainerLocally();
 
     const loader = new Loader({
       apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
@@ -145,11 +144,6 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
       this.handlePlaceChanged(place);
-    });
-
-    this.targetInput.addEventListener('focusout', (event) => {
-      if ((<HTMLInputElement>event.target).value === this.result?.address1) return;
-      (<HTMLInputElement>event.target).value = this.result?.address1 ?? '';
     });
   }
 
@@ -209,51 +203,8 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
 
     if (result.address2 === '') delete result['address2'];
 
-    result.formattedAddress = [
-      result.address1,
-      result.address2,
-      result.city,
-      result.state,
-      result.zipcode,
-      result.country.name
-    ]
-      .filter(Boolean)
-      .join(', ');
+    result.formattedAddress = this.targetInput!.value;
 
     return result;
-  }
-
-  private appendPacContainerLocally(): void {
-    assert('[modifier][setup-autocomplete] Target input is not initialized', this.targetInput !== null);
-    this.targetInput.addEventListener('input', this.setupPacContainerObserver, { once: true });
-  }
-
-  private setupPacContainerObserver(): void {
-    const observer = new MutationObserver((mutationList: MutationRecord[]) => {
-      for (const mutation of mutationList) {
-        if (mutation.type !== 'childList') {
-          continue;
-        }
-
-        for (const node of mutation.addedNodes) {
-          if (this.isPacContainer(node)) {
-            this.relocatePacContainer(node as HTMLElement);
-            observer.disconnect();
-            return;
-          }
-        }
-      }
-    });
-
-    observer.observe(document.body, { childList: true });
-  }
-
-  private isPacContainer(node: Node): node is HTMLElement {
-    return node instanceof HTMLElement && node.classList.contains(PAC_CONTAINER_CLASS);
-  }
-
-  private relocatePacContainer(container: HTMLElement): void {
-    assert('[modifier][setup-autocomplete] Target element is not initialized', this.targetElement !== null);
-    this.targetElement.appendChild(container);
   }
 }
