@@ -17,7 +17,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     this.mockLoader = new MockLoader({ apiKey: 'test-key' });
   });
 
-  module('Element setup', function () {
+  module('Element setup', () => {
     test('it works with a text input element directly', async function (assert) {
       await render(
         hbs`<div><input type="text" {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} /></div>`
@@ -40,7 +40,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     });
   });
 
-  module('Callback functionality', function () {
+  module('Callback functionality', () => {
     test('callback is called with parsed address data', async function (assert) {
       assert.expect(1);
 
@@ -81,7 +81,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     });
   });
 
-  module('Cleanup', function () {
+  module('Cleanup', () => {
     test('pac-container is removed on teardown', async function (assert) {
       await render(hbs`
         <input type="text" {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} />
@@ -152,7 +152,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     });
   });
 
-  module('Edge cases', function () {
+  module('Edge cases', () => {
     test('handles missing callback gracefully', async function (assert) {
       await render(hbs`<div><input type="text" {{setup-autocomplete loader=this.mockLoader}} /></div>`);
 
