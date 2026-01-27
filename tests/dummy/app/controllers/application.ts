@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { AutocompletionAddress } from '@upfluence/ember-upf-utils/utils/address-parser';
+import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
 export default class ApplicationController extends Controller {
   @tracked selectedItems = ['toto'];
