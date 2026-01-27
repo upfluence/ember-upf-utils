@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find, settled } from '@ember/test-helpers';
+import { render, find, settled, setupOnerror } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { AutocompletionAddress } from '@upfluence/ember-upf-utils/utils/address-parser';
 
@@ -124,7 +124,6 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       assert.dom('input[type="text"]').exists();
       const input = find('input[type="text"]');
 
-      // Manually remove the wrapper to simulate edge case
       const wrapper = input?.parentElement;
       if (wrapper?.classList.contains('autocomplete-input-container')) {
         wrapper.remove();
@@ -153,22 +152,6 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
   });
 
   module('Edge cases', () => {
-    test('handles missing callback gracefully', async function (assert) {
-      await render(hbs`<div><input type="text" {{setup-autocomplete loader=this.mockLoader}} /></div>`);
-
-      assert.dom('input[type="text"]').exists();
-
-      await settled();
-
-      const mockAutocomplete = this.mockLoader.getMockAutocompleteInstance();
-      const mockPlace = createMockPlaceResult(createSampleAddressComponents({}));
-
-      mockAutocomplete?.simulatePlaceSelection(mockPlace);
-      await settled();
-
-      assert.ok(true, 'no error thrown when callback is missing');
-    });
-
     test('works with pre-filled input value', async function (assert) {
       this.value = '123 Main Street';
 
@@ -220,6 +203,46 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
       mockAutocomplete?.simulatePlaceSelection(mockPlace);
       await settled();
+    });
+
+    module('for error management', () => {
+      test('handles missing callback gracefully', async function (assert) {
+        assert.expect(1);
+        setupOnerror((error: Error) => {
+          assert.equal(
+            error.message,
+            'Assertion Failed: [modifier][setup-autocomplete] The callback is mandatory and must be a function'
+          );
+        });
+
+        await render(hbs`<div><input type="text" {{setup-autocomplete loader=this.mockLoader}} /></div>`);
+      });
+
+      test('handles missing input element gracefully', async function (assert) {
+        assert.expect(1);
+        setupOnerror((error: Error) => {
+          assert.equal(
+            error.message,
+            'Assertion Failed: [modifier][setup-autocomplete] No input[type="text"] element found in the provided element or its children'
+          );
+        });
+
+        await render(hbs`<div {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}}></div>`);
+      });
+
+      test('handles missing input element in its children gracefully', async function (assert) {
+        assert.expect(1);
+        setupOnerror((error: Error) => {
+          assert.equal(
+            error.message,
+            'Assertion Failed: [modifier][setup-autocomplete] No input[type="text"] element found in the provided element or its children'
+          );
+        });
+
+        await render(
+          hbs`<div {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}}><div></div></div>`
+        );
+      });
     });
   });
 });
