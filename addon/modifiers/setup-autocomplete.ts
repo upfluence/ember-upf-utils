@@ -6,12 +6,22 @@ import { isTesting } from '@embroider/macros';
 
 import { Loader } from '@googlemaps/js-api-loader';
 
-import { parseAddressComponents, type AutocompletionAddress } from '@upfluence/ember-upf-utils/utils/address-parser';
+import { parseAddressComponents } from '@upfluence/ember-upf-utils/utils/address-parser';
 import { MockLoader } from '@upfluence/ember-upf-utils/utils/google-maps-mock';
+import { CountryData } from '@upfluence/oss-components/utils/country-codes';
 
 type GooglePlaceResult = google.maps.places.PlaceResult;
 type GoogleAutocomplete = google.maps.places.Autocomplete;
 type GoogleAutocompleteOptions = google.maps.places.AutocompleteOptions;
+export type AutocompletionAddress = {
+  address1: string;
+  address2?: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  country: CountryData;
+  formattedAddress: string;
+};
 
 interface SetupAutocompleteSignature {
   Element: HTMLElement;
@@ -125,14 +135,15 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
   }
 
   private setupAutoComplete(loader?: Loader): Promise<void> {
-    const loaderInstance = isTesting()
+    const loaderInstance: Loader | MockLoader = isTesting()
       ? loader ?? new MockLoader({ apiKey: 'test-key' })
       : new Loader({
           apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
           version: 'weekly'
         });
 
-    return loaderInstance.importLibrary('places').then(({ Autocomplete }) => {
+    // @ts-ignore
+    return loaderInstance.importLibrary('places').then(({ Autocomplete }: google.maps.PlacesLibrary) => {
       this.initializeAutocomplete(Autocomplete);
     });
   }
