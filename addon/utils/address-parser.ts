@@ -1,16 +1,19 @@
 import { countries, CountryData } from '@upfluence/oss-components/utils/country-codes';
 
+const ADDRESS_COMPONENT_TYPES = [
+  'street_number',
+  'route',
+  'subpremise',
+  'postal_code',
+  'postal_code_suffix',
+  'locality',
+  'postal_town',
+  'administrative_area_level_1',
+  'country'
+] as const;
+
 type GoogleAddressComponent = google.maps.GeocoderAddressComponent;
-type AddressComponentType =
-  | 'street_number'
-  | 'route'
-  | 'subpremise'
-  | 'postal_code'
-  | 'postal_code_suffix'
-  | 'locality'
-  | 'postal_town'
-  | 'administrative_area_level_1'
-  | 'country';
+type AddressComponentType = (typeof ADDRESS_COMPONENT_TYPES)[number];
 
 export type AutocompletionAddress = {
   address1: string;
@@ -38,31 +41,31 @@ export function parseAddressComponents(
   };
 
   const mapper: Record<AddressComponentType, (comp: GoogleAddressComponent) => void> = {
-    street_number: (comp: GoogleAddressComponent) => {
+    street_number: (comp: GoogleAddressComponent): void => {
       result.address1 = `${comp.long_name} ${result.address1}`.trim();
     },
-    route: (comp: GoogleAddressComponent) => {
+    route: (comp: GoogleAddressComponent): void => {
       result.address1 += comp.long_name;
     },
-    subpremise: (comp: GoogleAddressComponent) => {
+    subpremise: (comp: GoogleAddressComponent): void => {
       result.address2 = comp.long_name;
     },
-    postal_code: (comp: GoogleAddressComponent) => {
+    postal_code: (comp: GoogleAddressComponent): void => {
       result.zipcode = `${comp.long_name}${result.zipcode}`;
     },
     postal_code_suffix: (comp: GoogleAddressComponent) => {
       result.zipcode = `${result.zipcode}-${comp.long_name}`;
     },
-    locality: (comp: GoogleAddressComponent) => {
+    locality: (comp: GoogleAddressComponent): void => {
       result.city = comp.long_name;
     },
-    postal_town: (comp: GoogleAddressComponent) => {
+    postal_town: (comp: GoogleAddressComponent): void => {
       result.city = comp.long_name;
     },
     administrative_area_level_1: (comp: GoogleAddressComponent) => {
       result.state = comp.long_name;
     },
-    country: (comp: GoogleAddressComponent) => {
+    country: (comp: GoogleAddressComponent): void => {
       result.country = countries.find((country) => country.alpha2 === comp.short_name) ?? defaultCountry;
     }
   };

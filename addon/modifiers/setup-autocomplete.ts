@@ -68,6 +68,11 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     if (!input) return;
 
     this.targetInput = input;
+
+    assert(
+      '[modifier][setup-autocomplete] The callback is mandatory and must be a function',
+      typeof callback === 'function'
+    );
     this.callback = callback;
 
     if (!this.targetElement) {
@@ -119,7 +124,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     return element.tagName === 'INPUT' && (element as HTMLInputElement).type === 'text';
   }
 
-  private async setupAutoComplete(loader?: Loader): Promise<void> {
+  private setupAutoComplete(loader?: Loader): Promise<void> {
     const loaderInstance = isTesting()
       ? loader ?? new MockLoader({ apiKey: 'test-key' })
       : new Loader({
@@ -127,7 +132,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
           version: 'weekly'
         });
 
-    loaderInstance.importLibrary('places').then(({ Autocomplete }) => {
+    return loaderInstance.importLibrary('places').then(({ Autocomplete }) => {
       this.initializeAutocomplete(Autocomplete);
     });
   }
