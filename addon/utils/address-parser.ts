@@ -1,4 +1,6 @@
-import { countries, CountryData } from '@upfluence/oss-components/utils/country-codes';
+import { countries } from '@upfluence/oss-components/utils/country-codes';
+
+import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
 const ADDRESS_COMPONENT_TYPES = [
   'street_number',
@@ -14,16 +16,6 @@ const ADDRESS_COMPONENT_TYPES = [
 
 type GoogleAddressComponent = google.maps.GeocoderAddressComponent;
 type AddressComponentType = (typeof ADDRESS_COMPONENT_TYPES)[number];
-
-export type AutocompletionAddress = {
-  address1: string;
-  address2?: string;
-  city: string;
-  state: string;
-  zipcode: string;
-  country: CountryData;
-  formattedAddress: string;
-};
 
 export function parseAddressComponents(
   components: GoogleAddressComponent[],

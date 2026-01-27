@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find, settled, setupOnerror } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import { AutocompletionAddress } from '@upfluence/ember-upf-utils/utils/address-parser';
+import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
 import {
   createMockPlaceResult,
