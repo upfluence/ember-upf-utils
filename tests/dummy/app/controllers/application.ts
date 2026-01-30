@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
 export default class ApplicationController extends Controller {
   @tracked selectedItems = ['toto'];
@@ -20,6 +21,8 @@ export default class ApplicationController extends Controller {
     zipcode: '10016'
   };
   @tracked shippingAddress = { address: '69 Avenue Victor Hugo, Paris, France', resolved_address: null };
+  @tracked inputValue: string = '';
+  @tracked ossInputValue: string = '';
 
   constructor() {
     super(...arguments);
@@ -27,9 +30,7 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  onSocialMediaHandlerChanged(socialNetwork, handle, formattedUrl) {
-    console.log(socialNetwork, handle, formattedUrl);
-  }
+  onSocialMediaHandlerChanged() {}
 
   @action
   onBlobSwitch() {
@@ -37,18 +38,29 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  onChange(address, isValid) {
-    console.log(address, isValid);
-  }
+  onChange() {}
 
   @action
-  onLogoChange(icon, color) {
+  onLogoChange(icon: string, color: string) {
     this.selectedColor = color;
     this.selectedIcon = icon;
   }
 
   @action
-  onChangeAddress(value) {
+  onChangeAddress(value: any) {
     this.shippingAddress = value;
+    console.log('Auto-complete shipping address', value);
+  }
+
+  @action
+  onAutoComplete(value: AutocompletionAddress) {
+    this.inputValue = value.formattedAddress;
+    console.log('Auto-complete oss/input-container address', value);
+  }
+
+  @action
+  onOssAutoComplete(value: AutocompletionAddress) {
+    this.ossInputValue = value.formattedAddress;
+    console.log('Auto-complete native input address', value);
   }
 }
