@@ -6,11 +6,14 @@ import EmberObject from '@ember/object';
 import { render, typeIn } from '@ember/test-helpers';
 import sinon from 'sinon';
 
+import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
+
 module('Integration | Component | utils/address-inline', function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
+    this.owner.register('service:autocomplete-handler', AutocompleteHandlerServiceMock);
     this.address = EmberObject.create({
       address: '123 Main St',
       resolved_address: null
