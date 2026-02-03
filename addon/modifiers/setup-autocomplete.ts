@@ -1,14 +1,13 @@
 import Modifier, { type ArgsFor, type PositionalArgs, type NamedArgs } from 'ember-modifier';
 import { registerDestructor } from '@ember/destroyable';
 import { assert } from '@ember/debug';
-import { getOwner } from '@ember/application';
-import { isTesting } from '@embroider/macros';
-
-import { Loader } from '@googlemaps/js-api-loader';
+import { inject as service } from '@ember/service';
 
 import { parseAddressComponents } from '@upfluence/ember-upf-utils/utils/address-parser';
-import { MockLoader } from '@upfluence/ember-upf-utils/utils/google-maps-mock';
 import { CountryData } from '@upfluence/oss-components/utils/country-codes';
+import type AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';
+
+import { Loader } from '@googlemaps/js-api-loader';
 
 type GooglePlaceResult = google.maps.places.PlaceResult;
 type GoogleAutocomplete = google.maps.places.Autocomplete;
@@ -28,7 +27,6 @@ interface SetupAutocompleteSignature {
   Args: {
     Named: {
       callback(result: AutocompletionAddress): void;
-      loader?: Loader;
     };
   };
 }
@@ -57,6 +55,8 @@ function cleanup(instance: SetupAutocompleteModifier): void {
 }
 
 export default class SetupAutocompleteModifier extends Modifier<SetupAutocompleteSignature> {
+  @service declare autocompleteHandler: AutocompleteHandlerService;
+
   targetElement: HTMLElement | null = null;
   targetInput: HTMLInputElement | null = null;
   result: AutocompletionAddress | null = null;
@@ -72,7 +72,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
   modify(
     element: HTMLElement,
     _: PositionalArgs<SetupAutocompleteSignature>,
-    { callback, loader }: NamedArgs<SetupAutocompleteSignature>
+    { callback }: NamedArgs<SetupAutocompleteSignature>
   ): void {
     const input: HTMLInputElement | null = this.getInputElement(element);
     if (!input) return;
@@ -87,7 +87,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
 
     if (!this.targetElement) {
       this.setupTargetElement(element, input);
-      this.setupAutoComplete(loader);
+      this.setupAutoComplete();
     }
   }
 
@@ -134,13 +134,8 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
     return element.tagName === 'INPUT' && (element as HTMLInputElement).type === 'text';
   }
 
-  private setupAutoComplete(loader?: Loader): Promise<void> {
-    const loaderInstance: Loader | MockLoader = isTesting()
-      ? loader ?? new MockLoader({ apiKey: 'test-key' })
-      : new Loader({
-          apiKey: getOwner(this).resolveRegistration('config:environment').google_map_api_key,
-          version: 'weekly'
-        });
+  private setupAutoComplete(): Promise<void> {
+    const loaderInstance: Loader = this.autocompleteHandler.getLoader();
 
     // @ts-ignore
     return loaderInstance.importLibrary('places').then(({ Autocomplete }: google.maps.PlacesLibrary) => {

@@ -6,22 +6,22 @@ import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers
 
 import {
   createMockPlaceResult,
-  createSampleAddressComponents,
-  MockLoader
+  createSampleAddressComponents
 } from '@upfluence/ember-upf-utils/utils/google-maps-mock';
+import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 
 module('Integration | Modifier | setup-autocomplete', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.mockLoader = new MockLoader({ apiKey: 'test-key' });
+    this.owner.register('service:autocomplete-handler', AutocompleteHandlerServiceMock);
+    const service = this.owner.lookup('service:autocomplete-handler');
+    this.mockLoader = service.getLoader();
   });
 
   module('Element setup', () => {
     test('it works with a text input element directly', async function (assert) {
-      await render(
-        hbs`<div><input type="text" {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} /></div>`
-      );
+      await render(hbs`<div><input type="text" {{setup-autocomplete callback=(fn (mut this.result))}} /></div>`);
 
       assert.dom('input[type="text"]').exists();
       const input = find('input[type="text"]');
@@ -30,7 +30,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
     test('it works with input inside a container element', async function (assert) {
       await render(hbs`
-        <div {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}}>
+        <div {{setup-autocomplete callback=(fn (mut this.result))}}>
           <input type="text" />
         </div>
       `);
@@ -49,7 +49,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       };
 
       await render(hbs`
-        <div><input type="text" {{setup-autocomplete callback=this.handleAddress loader=this.mockLoader}} /></div>
+        <div><input type="text" {{setup-autocomplete callback=this.handleAddress}} /></div>
       `);
 
       const mockAutocomplete = this.mockLoader.getMockAutocompleteInstance();
@@ -71,7 +71,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       };
 
       await render(hbs`
-        <input type="text" {{setup-autocomplete callback=this.handleAddress loader=this.mockLoader}} />
+        <input type="text" {{setup-autocomplete callback=this.handleAddress}} />
       `);
 
       const mockAutocomplete = this.mockLoader.getMockAutocompleteInstance();
@@ -84,7 +84,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
   module('Cleanup', () => {
     test('pac-container is removed on teardown', async function (assert) {
       await render(hbs`
-        <input type="text" {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} />
+        <input type="text" {{setup-autocomplete callback=(fn (mut this.result))}} />
       `);
 
       const pacContainer = document.createElement('div');
@@ -100,7 +100,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
     test('wrapper is properly unwrapped during cleanup', async function (assert) {
       await render(
-        hbs`<div><input type="text" id="test-input" {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} /></div>`
+        hbs`<div><input type="text" id="test-input" {{setup-autocomplete callback=(fn (mut this.result))}} /></div>`
       );
 
       assert.dom('#test-input').exists();
@@ -117,9 +117,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     });
 
     test('cleanup handles already removed elements gracefully', async function (assert) {
-      await render(
-        hbs`<div><input type="text" {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} /></div>`
-      );
+      await render(hbs`<div><input type="text" {{setup-autocomplete callback=(fn (mut this.result))}} /></div>`);
 
       assert.dom('input[type="text"]').exists();
       const input = find('input[type="text"]');
@@ -135,7 +133,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
     test('wrapper is not created when modifier is on container element', async function (assert) {
       await render(hbs`
-        <div {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}}>
+        <div {{setup-autocomplete callback=(fn (mut this.result))}}>
           <input type="text" id="container-input" />
         </div>
       `);
@@ -156,7 +154,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       this.value = '123 Main Street';
 
       await render(hbs`
-        <input type="text" value={{this.value}} {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} />
+        <input type="text" value={{this.value}} {{setup-autocomplete callback=(fn (mut this.result))}} />
       `);
 
       assert.dom('input[type="text"]').hasValue('123 Main Street');
@@ -169,7 +167,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
           id="address-input"
           class="custom-input"
           placeholder="Enter address"
-          {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}} 
+          {{setup-autocomplete callback=(fn (mut this.result))}} 
         />
       `);
 
@@ -189,7 +187,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       };
 
       await render(hbs`
-        <input type="text" {{setup-autocomplete callback=this.handleAddress loader=this.mockLoader}} />
+        <input type="text" {{setup-autocomplete callback=this.handleAddress}} />
       `);
 
       const mockAutocomplete = this.mockLoader.getMockAutocompleteInstance();
@@ -215,7 +213,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
           );
         });
 
-        await render(hbs`<div><input type="text" {{setup-autocomplete loader=this.mockLoader}} /></div>`);
+        await render(hbs`<div><input type="text" {{setup-autocomplete}} /></div>`);
       });
 
       test('handles missing input element gracefully', async function (assert) {
@@ -227,7 +225,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
           );
         });
 
-        await render(hbs`<div {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}}></div>`);
+        await render(hbs`<div {{setup-autocomplete callback=(fn (mut this.result))}}></div>`);
       });
 
       test('handles missing input element in its children gracefully', async function (assert) {
@@ -239,9 +237,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
           );
         });
 
-        await render(
-          hbs`<div {{setup-autocomplete callback=(fn (mut this.result)) loader=this.mockLoader}}><div></div></div>`
-        );
+        await render(hbs`<div {{setup-autocomplete callback=(fn (mut this.result))}}><div></div></div>`);
       });
     });
   });
