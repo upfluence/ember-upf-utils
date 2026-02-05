@@ -7,7 +7,7 @@ import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers
 import {
   createMockPlaceResult,
   createSampleAddressComponents
-} from '@upfluence/ember-upf-utils/utils/google-maps-mock';
+} from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 
 module('Integration | Modifier | setup-autocomplete', function (hooks) {
