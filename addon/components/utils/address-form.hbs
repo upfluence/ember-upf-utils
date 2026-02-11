@@ -2,7 +2,7 @@
   {{#unless @hideNameAttrs}}
     <div class="fx-row fx-gap-px-12">
       <div class="fx-col fx-gap-px-6 fx-1">
-        <label {{required-input}}>
+        <label class="font-size-md font-color-gray-500" {{required-input}}>
           {{t "upf_utils.address_form.first_name"}}
         </label>
         <OSS::InputContainer
@@ -15,7 +15,7 @@
       </div>
 
       <div class="fx-col fx-gap-px-6 fx-1">
-        <label {{required-input}}>
+        <label class="font-size-md font-color-gray-500" {{required-input}}>
           {{t "upf_utils.address_form.last_name"}}
         </label>
         <OSS::InputContainer
@@ -31,7 +31,7 @@
 
   {{#unless @hidePhoneNumber}}
     <div class="fx-col fx-gap-px-6">
-      <label {{required-input}}>
+      <label class="font-size-md font-color-gray-500" {{required-input}}>
         {{t "upf_utils.address_form.phone_number"}}
       </label>
       {{#if @usePhoneNumberInput}}
@@ -55,7 +55,7 @@
   {{/unless}}
   <div class="fx-row fx-gap-px-12">
     <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{required-input}}>
+      <label class="font-size-md font-color-gray-500" {{required-input}}>
         {{t "upf_utils.address_form.line_1"}}
       </label>
       {{#if this.useGoogleAutocomplete}}
@@ -81,7 +81,7 @@
     </div>
 
     <div class="fx-col fx-gap-px-6 fx-1">
-      <label>
+      <label class="font-size-md font-color-gray-500">
         {{t "upf_utils.address_form.line_2"}}
       </label>
       <OSS::InputContainer
@@ -96,7 +96,7 @@
 
   <div class="fx-row fx-gap-px-12">
     <div class="fx-col fx-gap-px-6 fx-1" data-control-name="address-form">
-      <label {{required-input}}>
+      <label class="font-size-md font-color-gray-500" {{required-input}}>
         {{t "upf_utils.address_form.country"}}
       </label>
       <OSS::CountrySelector
@@ -108,10 +108,10 @@
     </div>
 
     <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{(if this.provincesForCountry (modifier "required-input"))}}>
-        {{t "upf_utils.address_form.state"}}
-      </label>
       {{#if this.provincesForCountry}}
+        <label class="font-size-md font-color-gray-500" {{required-input}}>
+          {{t "upf_utils.address_form.state"}}
+        </label>
         <OSS::ProvinceSelector
           @value={{@address.state}}
           @sourceList={{this.provincesForCountry}}
@@ -120,6 +120,9 @@
           {{(if (eq @focus "state") (modifier "enable-input-autofocus"))}}
         />
       {{else}}
+        <label class="font-size-md font-color-gray-500">
+          {{t "upf_utils.address_form.state"}}
+        </label>
         <OSS::InputContainer
           @value={{@address.state}}
           @onChange={{fn this.onFieldUpdate "state"}}
@@ -133,7 +136,7 @@
 
   <div class="fx-row fx-gap-px-12">
     <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{required-input}}>
+      <label class="font-size-md font-color-gray-500" {{required-input}}>
         {{t "upf_utils.address_form.city"}}
       </label>
       <OSS::InputContainer
@@ -146,7 +149,7 @@
     </div>
 
     <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{required-input}}>
+      <label class="font-size-md font-color-gray-500" {{required-input}}>
         {{t "upf_utils.address_form.postal_code"}}
       </label>
       <OSS::InputContainer
