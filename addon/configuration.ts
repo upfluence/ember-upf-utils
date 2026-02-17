@@ -9,7 +9,6 @@ const DEFAULTS = {
   meURL: 'http://localhost:9000/me',
   settingsURL: 'http://localhost:9000/settings',
   scope: ['facade_web'],
-  notificationWait: 5
 };
 
 export default {
@@ -19,7 +18,6 @@ export default {
   settingsURL: DEFAULTS.settingsURL,
   meURL: DEFAULTS.meURL,
   scope: DEFAULTS.scope,
-  notificationWait: DEFAULTS.notificationWait,
 
   __initialized__: false,
 
