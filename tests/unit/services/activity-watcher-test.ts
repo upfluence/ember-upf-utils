@@ -59,7 +59,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
     const eventTypesTestCases = [
       {
         notification: {
-          notification_type: 'mailing_email_received',
+          notification_type: 'email_received',
           timestamp: 123458,
           data: {
             influencer_name: 'bozito',
@@ -73,7 +73,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
       },
       {
         notification: {
-          notification_type: 'conversation_email_received',
+          notification_type: 'email_received',
           timestamp: 123458,
           data: {
             influencer_name: 'bozito',
