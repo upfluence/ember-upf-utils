@@ -51,23 +51,13 @@ type NotificationRendererMap = {
 };
 
 const renderersByNotificationType: NotificationRendererMap = {
-  mailing_email_received: (data: any, intl: IntlService) => {
+  email_received: (data: any, intl: IntlService) => {
     return renderNotificationMessageWithAvatar(
-      intl.t('notifications.mailing_email_received.description', {
+      intl.t('notifications.email_received.description', {
         influencer_name: data.influencer_name,
         entity_url: data.entity_url
       }),
-      intl.t('notifications.mailing_email_received.title'),
-      data.influencer_avatar
-    );
-  },
-  conversation_email_received: (data: any, intl: IntlService) => {
-    return renderNotificationMessageWithAvatar(
-      intl.t('notifications.conversation_email_received.description', {
-        influencer_name: data.influencer_name,
-        entity_url: data.entity_url
-      }),
-      intl.t('notifications.conversation_email_received.title'),
+      intl.t('notifications.email_received.title'),
       data.influencer_avatar
     );
   },
