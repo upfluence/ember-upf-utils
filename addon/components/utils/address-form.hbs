@@ -54,20 +54,35 @@
     </div>
   {{/unless}}
 
-  <div class="fx-col fx-gap-px-6">
-    <label {{required-input}}>
-      {{t "upf_utils.address_form.line_1"}}
-    </label>
-    {{#if this.useGoogleAutocomplete}}
-      <OSS::InputContainer
-        @value={{get @address (concat this.addressKey "1")}}
-        @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
-        @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
-        data-control-name="address-form-address1"
-        {{(if (eq @focus "line1") (modifier "enable-input-autofocus"))}}
-        {{setup-autocomplete callback=this.onAddressSelected}}
-      />
-    {{else}}
+  <div class="fx-row fx-gap-px-12">
+    <div class="fx-col fx-gap-px-6 fx-1">
+      <label {{required-input}}>
+        {{t "upf_utils.address_form.line_1"}}
+      </label>
+      {{#if this.useGoogleAutocomplete}}
+        <OSS::InputContainer
+          @value={{get @address (concat this.addressKey "1")}}
+          @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
+          @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
+          data-control-name="address-form-address1"
+          {{(if (eq @focus "line1") (modifier "enable-input-autofocus"))}}
+          {{setup-autocomplete callback=this.onAddressSelected}}
+        />
+      {{else}}
+        <OSS::InputContainer
+          @value={{get @address (concat this.addressKey "1")}}
+          @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
+          @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
+          data-control-name="address-form-address1"
+          {{(if (eq @focus "line1") (modifier "enable-input-autofocus"))}}
+        />
+      {{/if}}
+    </div>
+
+    <div class="fx-col fx-gap-px-6 fx-1">
+      <label>
+        {{t "upf_utils.address_form.line_2"}}
+      </label>
       <OSS::InputContainer
         @value={{get @address (concat this.addressKey "2")}}
         @onChange={{fn this.onFieldUpdate (concat this.addressKey "2")}}

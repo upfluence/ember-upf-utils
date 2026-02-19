@@ -86,7 +86,7 @@
     "@types/rsvp": "^4.0.4",
     "@types/sinon": "^10.0.6",
     "@typescript-eslint/parser": "^5.0.0",
-    "@upfluence/oss-components": "^3.88.15",
+    "@upfluence/oss-components": "^3.89.11",
     "ember-cli": "~3.28.6",
     "ember-cli-code-coverage": "^3.0.0",
     "ember-cli-dependency-checker": "^3.2.0",
