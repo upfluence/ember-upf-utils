@@ -16,7 +16,6 @@ export const SCHEDULED_EXPORT_RESPONSE = {
   warnings: []
 };
 
-
 export default class extends Service {
   perform(source: any, destination: any) {
     console.info(
@@ -42,6 +41,15 @@ export default class extends Service {
     return Promise.resolve({
       limit: 500,
       spent: 1
+    });
+  }
+
+  fetchEntities(type: string, _page: number, _perPage: number) {
+    return Promise.resolve({
+      [type]: [
+        { id: 1, name: 'foo ' + type, page: _page, perPage: _perPage, total: 23, type: type },
+        { id: 2, name: 'bar ' + type, total: 45, type: type }
+      ]
     });
   }
 
