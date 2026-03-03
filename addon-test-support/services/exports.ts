@@ -44,7 +44,7 @@ export default class extends Service {
     });
   }
 
-  fetchEntities(type: string, _page: number, _perPage: number) {
+  fetchEntities(type: string, _page: number = 1, _perPage: number = 12) {
     return Promise.resolve({
       [type]: [
         { id: 1, name: 'foo ' + type, page: _page, perPage: _perPage, total: 23, type: type },
