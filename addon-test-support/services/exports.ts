@@ -44,15 +44,6 @@ export default class extends Service {
     });
   }
 
-  fetchEntities(type: string, _page: number, _perPage: number) {
-    return Promise.resolve({
-      [type]: [
-        { id: 1, name: 'foo ' + type, page: _page, perPage: _perPage, total: 23, type: type },
-        { id: 2, name: 'bar ' + type, total: 45, type: type }
-      ]
-    });
-  }
-
   searchEntities() {
     return Promise.resolve({
       list: [{ id: 1, name: 'foo list', total: 23, type: 'list' }]
