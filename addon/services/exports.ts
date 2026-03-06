@@ -146,24 +146,6 @@ export default class ExportsService extends Service {
     });
   }
 
-  fetchEntities(type: string, page: number = 1, perPage: number = 12): Promise<any> {
-    const params = {
-      page: page.toString(),
-      per_page: perPage.toString()
-    };
-
-    const queryString = new URLSearchParams(Object.entries(params)).toString();
-    return fetch(`${this._exportURL}/entities/${type}?${queryString}`, {
-      method: 'GET',
-      headers: this._baseHeaders
-    }).then((response) => {
-      if (!response.ok) {
-        return Promise.reject();
-      }
-      return response.json();
-    });
-  }
-
   searchEntities(keyword: string, entityTypes: string[] = []): Promise<any> {
     const params: { s: string; entity_types?: string } = {
       s: keyword
