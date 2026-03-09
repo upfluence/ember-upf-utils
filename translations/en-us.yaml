@@ -160,12 +160,7 @@ utms:
     blank_field: This field can’t be blank as the UTM parameters are enabled.
   preview: Preview of your tracking URL
 notifications:
-  mailing_email_received:
-    title: New email
-    description: |
-      You have a new email from {influencer_name}!<br>
-      <a href="{entity_url}" target="_blank">Reply</a>
-  conversation_email_received:
+  email_received:
     title: New email
     description: |
       You have a new email from {influencer_name}!<br>

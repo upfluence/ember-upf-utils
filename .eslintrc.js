@@ -18,17 +18,14 @@ module.exports = {
   rules: {
     'no-multiple-empty-lines': [2, { max: 1 }],
 
-    'ember/no-jquery': 'off',
     'ember/no-observers': 'off',
     'ember/no-new-mixins': 'off',
     'ember/no-mixins': 'off',
     'ember/no-get': 'off',
     'ember/avoid-leaking-state-in-ember-objects': 'off',
-    'ember/closure-actions': 'off',
     'ember/no-classic-classes': 'off',
     'ember/no-classic-components': 'off',
     'ember/require-tagless-components': 'off',
-    'ember/no-actions-hash': 'off',
     'ember/no-component-lifecycle-hooks': 'off'
   },
   overrides: [
