@@ -6,11 +6,14 @@ import EmberObject from '@ember/object';
 import { click, fillIn, findAll, render, typeIn } from '@ember/test-helpers';
 import sinon from 'sinon';
 
+import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
+
 module('Integration | Component | utils/address-form', function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
+    this.owner.register('service:autocomplete-handler', AutocompleteHandlerServiceMock);
     this.address = EmberObject.create({
       firstName: 'iam',
       lastName: 'groot',
@@ -315,7 +318,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
                               @onChange={{this.onChange}} />`
     );
 
-    assert.dom('.google-autocomplete-input-container[data-control-name="address-form-address1"]').exists();
+    assert.dom('.autocomplete-input-container[data-control-name="address-form-address1"]').exists();
   });
 
   module('When @hideNameAttrs is true', () => {

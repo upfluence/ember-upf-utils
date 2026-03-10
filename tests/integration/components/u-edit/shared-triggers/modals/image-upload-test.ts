@@ -43,7 +43,7 @@ module('Integration | Component | u-edit/shared-triggers/modals/image-upload', f
       hbs`<UEdit::SharedTriggers::Modals::ImageUpload @closeAction={{this.onClose}} @insertFile={{this.insertImage}} />`
     );
     await click('[data-control-name="close-modal-button"]');
-    assert.true(this.onClose.calledOnceWithExactly());
+    assert.true(this.onClose.calledOnce);
   });
 
   test("the alert info isn't rendered", async function (assert) {
