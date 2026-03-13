@@ -146,19 +146,6 @@ export default class ExportsService extends Service {
     });
   }
 
-  fetchEntities(type: string, callback: (response: any) => void): Promise<any> {
-    return fetch(`${this._exportURL}/entities/${type}`, { method: 'GET', headers: this._baseHeaders }).then(
-      (response) => {
-        if (!response.ok) {
-          return Promise.reject();
-        }
-        return response.json().then((data) => {
-          return callback(data);
-        });
-      }
-    );
-  }
-
   searchEntities(keyword: string, entityTypes: string[] = []): Promise<any> {
     const params: { s: string; entity_types?: string } = {
       s: keyword

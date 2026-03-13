@@ -16,7 +16,6 @@ export const SCHEDULED_EXPORT_RESPONSE = {
   warnings: []
 };
 
-
 export default class extends Service {
   perform(source: any, destination: any) {
     console.info(
