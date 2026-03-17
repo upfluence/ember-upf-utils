@@ -55,7 +55,8 @@ const renderersByNotificationType: NotificationRendererMap = {
     return renderNotificationMessageWithAvatar(
       intl.t('notifications.email_received.description', {
         influencer_name: data.influencer_name,
-        entity_url: data.entity_url
+        entity_url: data.entity_url,
+        htmlSafe: true
       }),
       intl.t('notifications.email_received.title'),
       data.influencer_avatar
@@ -65,7 +66,8 @@ const renderersByNotificationType: NotificationRendererMap = {
     return renderNotificationMessageWithAvatar(
       intl.t('notifications.direct_message_received.description', {
         influencer_name: data.influencer_name,
-        entity_url: data.entity_url
+        entity_url: data.entity_url,
+        htmlSafe: true
       }),
       intl.t('notifications.direct_message_received.title'),
       data.influencer_avatar
@@ -76,7 +78,8 @@ const renderersByNotificationType: NotificationRendererMap = {
       intl.t('notifications.publishr_application_received.description', {
         influencer_name: data.influencer_name,
         campaign_name: data.campaign_name,
-        url: data.url
+        url: data.url,
+        htmlSafe: true
       }),
       intl.t('notifications.publishr_application_received.title'),
       data.influencer_avatar
@@ -87,7 +90,8 @@ const renderersByNotificationType: NotificationRendererMap = {
       intl.t('notifications.publishr_draft_created.description', {
         influencer_name: data.influencer_name,
         campaign_name: data.campaign_name,
-        url: data.url
+        url: data.url,
+        htmlSafe: true
       }),
       intl.t('notifications.publishr_draft_created.title'),
       data.influencer_avatar
@@ -98,7 +102,8 @@ const renderersByNotificationType: NotificationRendererMap = {
       intl.t('notifications.list_recommendation.description', {
         count: data.count,
         list_name: data.list_name,
-        url: data.url
+        url: data.url,
+        htmlSafe: true
       }),
       intl.t('notifications.list_recommendation.title')
     );
@@ -106,7 +111,8 @@ const renderersByNotificationType: NotificationRendererMap = {
   thread_failure_summary: (data: any, intl: IntlService) => {
     return renderNotificationErrorMessage(
       intl.t('notifications.thread_failure_summary.description', {
-        mailing_url: data.mailing_url
+        mailing_url: data.mailing_url,
+        htmlSafe: true
       }),
       intl.t('notifications.thread_failure_summary.title')
     );
@@ -115,7 +121,8 @@ const renderersByNotificationType: NotificationRendererMap = {
     return renderNotificationErrorMessage(
       intl.t('notifications.credential_disconnected.description', {
         integration_name: data.integration_name,
-        integration_url: data.integration_url
+        integration_url: data.integration_url,
+        htmlSafe: true
       }),
       intl.t('notifications.credential_disconnected.title')
     );
