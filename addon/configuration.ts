@@ -5,16 +5,14 @@ import { typeOf } from '@ember/utils';
 const DEFAULTS = {
   uploaderUrl: 'http://localhost:8080/upload',
   exportUrl: 'http://localhost:9001/export',
-  activityUrl: 'https://localhost:9002/',
   meURL: 'http://localhost:9000/me',
   settingsURL: 'http://localhost:9000/settings',
-  scope: ['facade_web'],
+  scope: ['facade_web']
 };
 
 export default {
   uploaderUrl: DEFAULTS.uploaderUrl,
   exportUrl: DEFAULTS.exportUrl,
-  activityUrl: DEFAULTS.activityUrl,
   settingsURL: DEFAULTS.settingsURL,
   meURL: DEFAULTS.meURL,
   scope: DEFAULTS.scope,
