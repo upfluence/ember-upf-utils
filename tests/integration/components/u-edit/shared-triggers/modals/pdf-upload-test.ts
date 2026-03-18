@@ -43,7 +43,7 @@ module('Integration | Component | u-edit/shared-triggers/modals/pdf-upload', fun
       hbs`<UEdit::SharedTriggers::Modals::PdfUpload @closeAction={{this.onClose}} @insertFile={{this.insertImage}} />`
     );
     await click('[data-control-name="close-modal-button"]');
-    assert.true(this.onClose.calledOnceWithExactly());
+    assert.true(this.onClose.calledOnceWithExactly(sinon.match((obj: unknown) => obj instanceof MouseEvent)));
   });
 
   test('the alert info is rendered', async function (assert) {
