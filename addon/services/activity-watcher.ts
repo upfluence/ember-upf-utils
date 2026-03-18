@@ -162,13 +162,14 @@ export default class ActivityWatcher extends Service {
       this.checkIfUserNeedsToBeDisconnected(evt);
       return;
     }
+
     const notif = this.buildNotification(evt);
 
     if (!notif) {
       return;
     }
 
-    let toastOpts: ToastOptions | undefined = undefined;
+    let toastOpts: ToastOptions | undefined = {};
     if (notif.avatarUrl) {
       toastOpts = { badge: { image: notif.avatarUrl } };
     }

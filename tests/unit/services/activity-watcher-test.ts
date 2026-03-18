@@ -7,6 +7,9 @@ import EventsServiceMock from '@upfluence/hyperevents/test-support/services/even
 import sinon from 'sinon';
 import Service from '@ember/service';
 
+import { setupToast } from '@upfluence/oss-components/test-support';
+import { setupIntl } from 'ember-intl/test-support';
+
 class SessionServiceMock extends Service {
   tooManyConnections: boolean = false;
 
@@ -15,6 +18,8 @@ class SessionServiceMock extends Service {
 
 module('Unit | Service | activity-watcher', function (hooks) {
   setupTest(hooks);
+  setupToast(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.owner.register('service:events-service', EventsServiceMock);
@@ -26,13 +31,10 @@ module('Unit | Service | activity-watcher', function (hooks) {
   });
 
   test('it does nothing if not watching', function (assert) {
-    const toastInfoStub = sinon.stub(this.owner.lookup('service:toast'), 'info').returnsThis();
-    const toastErrorStub = sinon.stub(this.owner.lookup('service:toast'), 'error').returnsThis();
-
     this.eventService.dispatch({ resource: '/notification/some-uu-id' });
 
-    assert.true(toastErrorStub.notCalled);
-    assert.true(toastInfoStub.notCalled);
+    assert.true(this.toastErrorStub.notCalled);
+    assert.true(this.toastInfoStub.notCalled);
   });
 
   module('watching for events', function (hooks) {
@@ -68,8 +70,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
           }
         },
         wantInfoTitle: 'New email',
-        wantInfoMessage: `You have a new email from bozito!<br>
-          <a href="https://entity.url.com" target="_blank">Reply</a>`
+        wantInfoMessage: `You have a new email from bozito!<br><a href="https://entity.url.com" target="_blank">Reply</a>`
       },
       {
         notification: {
@@ -82,8 +83,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
           }
         },
         wantInfoTitle: 'New email',
-        wantInfoMessage: `You have a new email from bozito!<br>
-          <a href="https://entity.url.com" target="_blank">Reply</a>`
+        wantInfoMessage: `You have a new email from bozito!<br><a href="https://entity.url.com" target="_blank">Reply</a>`
       },
       {
         notification: {
@@ -172,20 +172,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
 
     eventTypesTestCases.forEach((testCase: any) => {
       test('it dispatches events for ' + testCase.notification.notification_type, function (assert) {
-        assert.expect(3);
-
-        const infoStub = sinon
-          .stub(this.owner.lookup('service:toast'), 'info')
-          .callsFake((message: string, title: string) => {
-            assert.true(trimAll(message).includes(trimAll(testCase.wantInfoMessage)));
-            assert.equal(title, testCase.wantInfoTitle);
-          });
-        const errorStub = sinon
-          .stub(this.owner.lookup('service:toast'), 'error')
-          .callsFake((message: string, title: string) => {
-            assert.true(trimAll(message).includes(trimAll(testCase.wantErrorMessage)));
-            assert.equal(title, testCase.wantErrorTitle);
-          });
+        assert.expect(2);
 
         this.eventService.dispatch({
           resource: '/notification/some-uu-id',
@@ -193,19 +180,28 @@ module('Unit | Service | activity-watcher', function (hooks) {
         });
 
         if (testCase.wantErrorTitle || testCase.wantErrorMessage) {
-          assert.true(errorStub.calledOnce);
+          assert.equal(
+            this.toastErrorStub.firstCall.args[0].toString(),
+            this.intl.t(`notifications.${testCase.notification.notification_type}.description`, {
+              ...testCase.notification.data,
+              htmlSafe: true
+            })
+          );
+          assert.equal(this.toastErrorStub.firstCall.args[1], testCase.wantErrorTitle);
         }
 
         if (testCase.wantInfoTitle || testCase.wantInfoMessage) {
-          assert.true(infoStub.calledOnce);
+          assert.equal(
+            this.toastInfoStub.firstCall.args[0].toString(),
+            this.intl.t(`notifications.${testCase.notification.notification_type}.description`, {
+              ...testCase.notification.data,
+              htmlSafe: true
+            })
+          );
+          assert.equal(this.toastInfoStub.firstCall.args[1], testCase.wantInfoTitle);
         }
       });
     });
   });
 });
-
-function trimAll(str: string): string {
-  //@ts-ignore
-  return str.replaceAll(' ', '');
-}
 /* eslint-enable  qunit/no-conditional-assertions */

@@ -21,8 +21,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4(@babel/core@7.26.0)
       '@upfluence/hyperevents':
-        specifier: ^0.3.10
-        version: 0.3.10(@babel/core@7.26.0)(webpack@5.97.1)
+        specifier: ^0.3.11
+        version: 0.3.11(@babel/core@7.26.0)(webpack@5.97.1)
       calculate-cache-key-for-tree:
         specifier: ^2.0.0
         version: 2.0.0
@@ -148,8 +148,8 @@ importers:
         specifier: ^5.0.0
         version: 5.62.0(eslint@7.32.0)(typescript@4.9.5)
       '@upfluence/oss-components':
-        specifier: ^3.88.1
-        version: 3.88.1(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
+        specifier: ^3.91.4
+        version: 3.91.4(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
       ember-cli:
         specifier: ~3.28.6
         version: 3.28.6(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
@@ -1380,6 +1380,9 @@ packages:
   '@types/symlink-or-copy@1.2.2':
     resolution: {integrity: sha512-MQ1AnmTLOncwEf9IVU+B2e4Hchrku5N67NkgcAHW0p3sdzPe0FNMANxEm6OJUzPniEQGkeT3OROLlCwZJLWFZA==}
 
+  '@types/trusted-types@2.0.7':
+    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
   '@typescript-eslint/parser@5.62.0':
     resolution: {integrity: sha512-VlJEV0fOQ7BExOsHYAGrgbEiZoi8D+Bl2+f6V2RrXerRSylnp+ZBHmPvaIa8cz0Ajx7WO7Z5RqfgYg7ED1nRhA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -1415,12 +1418,12 @@ packages:
     resolution: {integrity: sha512-NQLZ2Rpcv87PwM6ZVVY3Qvcq+PMLwyvv+NAj1LVhDJX+DOJnXevROtCjZvmKGYVjICWk7wz7JHQa1e8ephb9EA==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/1.0.4/8849d24b3742f9afcdfaabaa03d2212cc89cc0e1}
     engines: {node: 12.* || 14.* || >= 16}
 
-  '@upfluence/hyperevents@0.3.10':
-    resolution: {integrity: sha512-dHSLqJzDFZZDZHYfMBAjfAJsVwG12Jt4SmiaAeez+O9IDj5d2Rr7hpFqAjuo6G+jhLGqEY/KZW9n3p/Yn3SC2g==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/0.3.10/2a7680be881eb861560a434f28d61164d36625f1}
+  '@upfluence/hyperevents@0.3.11':
+    resolution: {integrity: sha512-VAEyQUAFSXvAl+bmOtyHiQ71M0R2sjNLIfUuoy3P/BRrhioi0WsT1BfVtf8i+8RbqkNn6AsmoV2IXL9mA3Ta0A==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/0.3.11/98b56ee4fbaf0450c03497fb8f7e94aaef37fe84}
     engines: {node: 10.* || >= 12}
 
-  '@upfluence/oss-components@3.88.1':
-    resolution: {integrity: sha512-E1pgacEsTpz/soh+11vQDBBOQqqBSKPf+HAMLWFPi/iJKNmWLV32nYmLXmd3LwQNJUTbvJ15IMZdI+95vzE5Mw==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.88.1/0a903062dccddbc0f1a7825a1022ecf190db8dc2}
+  '@upfluence/oss-components@3.91.4':
+    resolution: {integrity: sha512-36JKFcaFYf7lJcKwdPyTZf9sM45opBF9H5lrmz/U7Rex4RKpY02w/bIe3iqxvKfX6qKwD4cEIp16H9m8gW3oAw==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.91.4/eb74c191923ed4d5c34948d8d14659f7c3b93cf7}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       qunit: ^2.x
@@ -3010,6 +3013,9 @@ packages:
   domain-browser@1.2.0:
     resolution: {integrity: sha512-jnjyiM6eRyZl2H+W8Q/zLMA481hzi0eszAaBUzIVnmYVDBbnLxVNnfu1HgEBvCbL+71FrxMl3E6lpKH7Ge3OXA==}
     engines: {node: '>=0.4', npm: '>=1.2'}
+
+  dompurify@3.3.3:
+    resolution: {integrity: sha512-Oj6pzI2+RqBfFG+qOaOLbFXLQ90ARpcGG6UePL82bJLtdsa6CYJD7nmiU8MW9nQNOtCHV3lZ/Bzq1X0QYbBZCA==}
 
   dot-case@3.0.4:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
@@ -8480,6 +8486,9 @@ snapshots:
 
   '@types/symlink-or-copy@1.2.2': {}
 
+  '@types/trusted-types@2.0.7':
+    optional: true
+
   '@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@4.9.5)':
     dependencies:
       '@typescript-eslint/scope-manager': 5.62.0
@@ -8531,7 +8540,7 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/hyperevents@0.3.10(@babel/core@7.26.0)(webpack@5.97.1)':
+  '@upfluence/hyperevents@0.3.11(@babel/core@7.26.0)(webpack@5.97.1)':
     dependencies:
       '@embroider/macros': 1.11.1
       '@embroider/test-setup': 1.8.3
@@ -8547,7 +8556,7 @@ snapshots:
       - supports-color
       - webpack
 
-  '@upfluence/oss-components@3.88.1(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
+  '@upfluence/oss-components@3.91.4(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
       '@embroider/macros': 1.16.10
@@ -8559,6 +8568,7 @@ snapshots:
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
       calculate-cache-key-for-tree: 2.0.0
+      dompurify: 3.3.3
       ember-auto-import: 2.10.0(webpack@5.97.1)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
@@ -10718,6 +10728,10 @@ snapshots:
       esutils: 2.0.3
 
   domain-browser@1.2.0: {}
+
+  dompurify@3.3.3:
+    optionalDependencies:
+      '@types/trusted-types': 2.0.7
 
   dot-case@3.0.4:
     dependencies:

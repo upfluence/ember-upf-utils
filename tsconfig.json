@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
-    "target": "es2020",
+    "target": "es2021",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
