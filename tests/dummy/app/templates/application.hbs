@@ -25,4 +25,6 @@
     <Utils::SmartBlob @loading={{this.blobLoading}} />
     <Utils::SmartBlob @loading={{this.blobLoading}} @size="xl" />
   </div>
+  <OSS::InputContainer @value={{this.ossInputValue}} {{setup-autocomplete callback=this.onOssAutoComplete}} />
+  <input value={{this.inputValue}} {{setup-autocomplete callback=this.onAutoComplete}} />
 </div>

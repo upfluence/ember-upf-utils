@@ -3,7 +3,6 @@ import { setupRenderingTest } from 'ember-qunit';
 import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import Service from '@ember/service';
-// @ts-ignore
 import { setupIntl } from 'ember-intl/test-support';
 import sinon from 'sinon';
 
