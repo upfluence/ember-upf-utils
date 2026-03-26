@@ -1,0 +1,63 @@
+.account-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-px-12);
+
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-px-18);
+
+  &__selection {
+    position: relative;
+    max-width: max-content;
+
+    &--unique-account {
+      pointer-events: none;
+    }
+
+    .upf-floating-menu {
+      top: 10px;
+      gap: var(--spacing-px-3);
+    }
+  }
+
+  &--selected {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-50);
+    transition: ease-in-out 0.25s;
+  }
+
+  &--error {
+    .border-color-error;
+    background-color: var(--color-error-50);
+
+    .oss-radio-btn.oss-radio-btn--selected {
+      background-color: var(--color-error-500);
+      border-color: var(--color-error-500);
+    }
+  }
+
+  &--warning {
+    .border-color-warning;
+  }
+
+  &--success {
+    .border-color-success;
+  }
+
+  &--disabled {
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-border-default);
+
+    > i {
+      color: var(--color-gray-400);
+    }
+
+    > span {
+      color: var(--color-gray-400);
+    }
+  }
+
+  transition: ease-in-out 0.25s;
+}
