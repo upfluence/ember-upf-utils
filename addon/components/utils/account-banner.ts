@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { IntlService } from 'ember-intl';
 
-import { Feedback, FormInstance } from '@upfluence/oss-components/services/form-manager';
+import FormManager, { Feedback, FormInstance } from '@upfluence/oss-components/services/form-manager';
 
 type SkinType = 'success' | 'error' | 'warning';
 
@@ -38,8 +38,9 @@ interface UtilsAccountBannerArgs {
 
 export default class extends Component<UtilsAccountBannerArgs> {
   @service declare intl: IntlService;
+  @service declare formManager: FormManager;
 
-  declare formInstance: FormInstance;
+  @tracked declare formInstance: FormInstance;
 
   @tracked displaySelectableItems: boolean = false;
   @tracked isErrored: boolean = false;
@@ -53,7 +54,8 @@ export default class extends Component<UtilsAccountBannerArgs> {
   }
 
   get borderColorClass(): string {
-    if (this.args.skin || this.isErrored) return `account-banner--${this.args.skin}`;
+    if (this.isErrored && this.formInstance?.getErrors()?.['account.select']) return 'account-banner--error';
+    if (this.args.skin) return `account-banner--${this.args.skin}`;
     return '';
   }
 
