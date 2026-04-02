@@ -43,7 +43,10 @@ export default class extends Component<UtilsAccountBannerArgs> {
   @tracked declare formInstance: FormInstance;
 
   @tracked displaySelectableItems: boolean = false;
-  @tracked isErrored: boolean = false;
+
+  get isErrored(): boolean {
+    return !this.args.selectedAccount;
+  }
 
   get disabledClass(): string {
     return this.args.disabled ? 'account-banner--disabled' : '';
@@ -91,14 +94,11 @@ export default class extends Component<UtilsAccountBannerArgs> {
   @action
   validateAccountSelection(): Feedback | undefined {
     if (!this.args.selectedAccount) {
-      this.isErrored = true;
       return {
         kind: 'blank',
         message: { type: 'error', value: this.intl.t('oss-components.forms.errors.required') }
       };
     }
-
-    this.isErrored = false;
     return undefined;
   }
 }
