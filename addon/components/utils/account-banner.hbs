@@ -25,10 +25,9 @@
           <OSS::Form
             @onSetup={{this.onFormSetup}}
             @onSubmit={{this.noop}}
-            data-control-name="find-creators-select-all-form"
           >
             <:content>
-              <div class="fx-col fx-gap-px-6">
+              <div class="fx-col fx-gap-px-3">
                 <div
                   class={{concat
                     "account-banner__selection fx-row fx-gap-px-6 fx-xalign-center "
@@ -47,7 +46,6 @@
                       {{@subtitle}}
                     </span>
                   {{else}}
-
                     <span
                       class="font-color-gray-500 text-ellipsis font-size-sm fx-row"
                       data-control-name="account-banner-selected-item-label"
@@ -70,7 +68,6 @@
                     />
                     <div
                       class="upf-floating-menu upf-floating-menu--{{if this.displaySelectableItems 'visible' 'hidden'}}"
-                      {{on-click-outside this.closeSelectionDropdown}}
                     >
                       {{#each @selectableItems as |item|}}
                         {{#if (has-block "selectable-item")}}
