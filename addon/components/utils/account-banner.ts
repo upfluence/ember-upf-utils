@@ -25,6 +25,7 @@ interface UtilsAccountBannerArgs {
   readonly?: boolean;
   disabled?: boolean;
   skin?: SkinType;
+  plain?: boolean;
   alert?: Alert;
 
   canSelectItem?: boolean;
@@ -52,6 +53,10 @@ export default class extends Component<UtilsAccountBannerArgs> {
     return this.args.selected ? 'account-banner--selected' : '';
   }
 
+  get plainClass(): string {
+    return this.args.plain ? 'account-banner--plain' : '';
+  }
+
   get borderColorClass(): string {
     if (this.isErrored) return 'account-banner--error';
     if (this.args.skin) return `account-banner--${this.args.skin}`;
@@ -59,7 +64,9 @@ export default class extends Component<UtilsAccountBannerArgs> {
   }
 
   get modifierClasses(): string {
-    return [this.disabledClass, this.selectedClass, this.borderColorClass].filter((mc) => !isBlank(mc)).join(' ');
+    return [this.disabledClass, this.selectedClass, this.borderColorClass, this.plainClass]
+      .filter((mc) => !isBlank(mc))
+      .join(' ');
   }
 
   get canSelectItem(): boolean {
