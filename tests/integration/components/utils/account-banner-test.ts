@@ -3,7 +3,6 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { setupIntl } from 'ember-intl/test-support';
 import { click, render, findAll } from '@ember/test-helpers';
-import sinon from 'sinon';
 
 const SELECTABLE_ITEMS = [{ label: 'Account A' }, { label: 'Account B' }, { label: 'Account C' }];
 
@@ -149,14 +148,14 @@ module('Integration | Component | utils/account-banner', function (hooks) {
       assert.dom('.custom-sub').doesNotExist();
     });
 
-    test('it marks subtitle as required when no @selectedAccount', async function (assert) {
-      await render(hbs`<Utils::AccountBanner @subtitle="subtitle" />`);
+    test('it marks subtitle as required when @required is true', async function (assert) {
+      await render(hbs`<Utils::AccountBanner @subtitle="subtitle" @required={{true}} />`);
 
       assert.dom('[data-control-name="account-banner-selected-item-label"]').hasText('subtitle *');
     });
 
-    test('it does not mark subtitle as required when @selectedAccount is provided', async function (assert) {
-      await render(hbs`<Utils::AccountBanner @subtitle="subtitle" @selectedAccount={{true}} />`);
+    test('it does not mark subtitle as required when @required is not set', async function (assert) {
+      await render(hbs`<Utils::AccountBanner @subtitle="subtitle" />`);
 
       assert.dom('[data-control-name="account-banner-selected-item-label"]').hasText('subtitle');
     });
@@ -331,13 +330,43 @@ module('Integration | Component | utils/account-banner', function (hooks) {
     });
   });
 
-  module('form setup', function () {
-    test('@onFormSetup is called when @subtitle is provided', async function (assert) {
-      this.set('onFormSetup', sinon.stub());
+  module('feedback message', function () {
+    test('it does not render any feedback message by default', async function (assert) {
+      await render(hbs`<Utils::AccountBanner @subtitle="label" />`);
 
-      await render(hbs`<Utils::AccountBanner @subtitle="label" @onFormSetup={{this.onFormSetup}} />`);
+      assert.dom('.account-banner__selection + span').doesNotExist();
+    });
 
-      assert.true(this.onFormSetup.calledOnce);
+    test('it renders an error feedback message', async function (assert) {
+      this.set('feedback', { type: 'error', value: 'Required field' });
+      await render(hbs`<Utils::AccountBanner @subtitle="label" @feedbackMessage={{this.feedback}} />`);
+
+      assert.dom('.account-banner__selection + span').exists();
+      assert.dom('.account-banner__selection + span').hasClass('font-color-error-500');
+      assert.dom('.account-banner__selection + span').hasText('Required field');
+    });
+
+    test('it renders a warning feedback message', async function (assert) {
+      this.set('feedback', { type: 'warning', value: 'Be careful' });
+      await render(hbs`<Utils::AccountBanner @subtitle="label" @feedbackMessage={{this.feedback}} />`);
+
+      assert.dom('.account-banner__selection + span').exists();
+      assert.dom('.account-banner__selection + span').hasClass('font-color-warning-500');
+      assert.dom('.account-banner__selection + span').hasText('Be careful');
+    });
+
+    test('it applies error border class when feedbackMessage type is error', async function (assert) {
+      this.set('feedback', { type: 'error', value: 'Required field' });
+      await render(hbs`<Utils::AccountBanner @subtitle="label" @feedbackMessage={{this.feedback}} />`);
+
+      assert.dom('.account-banner').hasClass('account-banner--error');
+    });
+
+    test('it does not apply error border class when feedbackMessage type is warning', async function (assert) {
+      this.set('feedback', { type: 'warning', value: 'Be careful' });
+      await render(hbs`<Utils::AccountBanner @subtitle="label" @feedbackMessage={{this.feedback}} />`);
+
+      assert.dom('.account-banner').hasNoClass('account-banner--error');
     });
   });
 
