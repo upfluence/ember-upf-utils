@@ -2,10 +2,8 @@ import { action } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { inject as service } from '@ember/service';
-import { IntlService } from 'ember-intl';
 
-import FormManager, { Feedback, FormInstance } from '@upfluence/oss-components/services/form-manager';
+import { type FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
 
 type SkinType = 'success' | 'error' | 'warning';
 
@@ -31,21 +29,19 @@ interface UtilsAccountBannerArgs {
 
   canSelectItem?: boolean;
   selectableItems?: any[];
-  selectedAccount?: any;
-
-  onFormSetup?(form: FormInstance): void;
+  feedbackMessage?: FeedbackMessage;
+  required?: boolean;
 }
 
 export default class extends Component<UtilsAccountBannerArgs> {
-  @service declare intl: IntlService;
-  @service declare formManager: FormManager;
-
-  @tracked declare formInstance: FormInstance;
-
   @tracked displaySelectableItems: boolean = false;
 
+  get feedbackMessage(): FeedbackMessage | undefined {
+    return this.args.feedbackMessage;
+  }
+
   get isErrored(): boolean {
-    return !this.args.selectedAccount;
+    return this.feedbackMessage?.type === 'error';
   }
 
   get disabledClass(): string {
@@ -57,7 +53,7 @@ export default class extends Component<UtilsAccountBannerArgs> {
   }
 
   get borderColorClass(): string {
-    if (this.isErrored && this.formInstance?.getErrors()?.['account.select']) return 'account-banner--error';
+    if (this.isErrored) return 'account-banner--error';
     if (this.args.skin) return `account-banner--${this.args.skin}`;
     return '';
   }
@@ -68,14 +64,6 @@ export default class extends Component<UtilsAccountBannerArgs> {
 
   get canSelectItem(): boolean {
     return ((this.args.selectableItems || []).length > 1 && this.args.canSelectItem) ?? false;
-  }
-
-  noop(): void {}
-
-  @action
-  onFormSetup(form: FormInstance): void {
-    this.formInstance = form;
-    this.args.onFormSetup?.(form);
   }
 
   @action
@@ -89,16 +77,5 @@ export default class extends Component<UtilsAccountBannerArgs> {
   @action
   closeSelectionDropdown(): void {
     this.displaySelectableItems = false;
-  }
-
-  @action
-  validateAccountSelection(): Feedback | undefined {
-    if (!this.args.selectedAccount) {
-      return {
-        kind: 'blank',
-        message: { type: 'error', value: this.intl.t('oss-components.forms.errors.required') }
-      };
-    }
-    return undefined;
   }
 }

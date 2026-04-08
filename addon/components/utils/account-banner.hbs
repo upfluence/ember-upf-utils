@@ -22,70 +22,54 @@
 
       {{#if (or @subtitle (has-block "custom-subtitle"))}}
         {{#if @subtitle}}
-          <OSS::Form
-            @onSetup={{this.onFormSetup}}
-            @onSubmit={{this.noop}}
-          >
-            <:content>
-              <div class="fx-col fx-gap-px-3">
-                <div
-                  class={{concat
-                    "account-banner__selection fx-row fx-gap-px-6 fx-xalign-center "
-                    (unless this.canSelectItem " account-banner__selection--unique-account")
-                  }}
-                  role="button"
-                  data-control-name="account-banner-selection-subtitle"
-                  {{on "click" this.toggleSelectionDropdown}}
-                  {{on-click-outside this.closeSelectionDropdown}}
+          <div class="fx-col fx-gap-px-3">
+            <div
+              class={{concat
+                "account-banner__selection fx-row fx-gap-px-6 fx-xalign-center "
+                (unless this.canSelectItem " account-banner__selection--unique-account")
+              }}
+              role="button"
+              data-control-name="account-banner-selection-subtitle"
+              {{on "click" this.toggleSelectionDropdown}}
+              {{on-click-outside this.closeSelectionDropdown}}
+            >
+              {{#if @required}}
+                <span
+                  class="fx-row font-color-gray-500 text-ellipsis font-size-sm"
+                  data-control-name="account-banner-selected-item-label"
+                  {{required-input}}
                 >
-                  {{#if @selectedAccount}}
-                    <span
-                      class="font-color-gray-500 text-ellipsis font-size-sm"
-                      data-control-name="account-banner-selected-item-label"
-                    >
-                      {{@subtitle}}
-                    </span>
-                  {{else}}
-                    <span
-                      class="font-color-gray-500 text-ellipsis font-size-sm fx-row"
-                      data-control-name="account-banner-selected-item-label"
-                      {{required-input}}
-                      {{register-form-field
-                        form=this.formInstance.id
-                        fieldId="account.select"
-                        validator=this.validateAccountSelection
-                        validateOnBlur=false
-                      }}
-                    >
-                      {{@subtitle}}
-                    </span>
-                  {{/if}}
+                  {{@subtitle}}
+                </span>
+              {{else}}
+                <span
+                  class="font-color-gray-500 text-ellipsis font-size-sm"
+                  data-control-name="account-banner-selected-item-label"
+                >
+                  {{@subtitle}}
+                </span>
+              {{/if}}
 
-                  {{#if this.canSelectItem}}
-                    <OSS::Icon
-                      @icon={{if this.displaySelectableItems "fa-chevron-up" "fa-chevron-down"}}
-                      class="font-color-gray-500"
-                    />
-                    <div
-                      class="upf-floating-menu upf-floating-menu--{{if this.displaySelectableItems 'visible' 'hidden'}}"
-                    >
-                      {{#each @selectableItems as |item|}}
-                        {{#if (has-block "selectable-item")}}
-                          {{yield item this.closeSelectionDropdown to="selectable-item"}}
-                        {{/if}}
-                      {{/each}}
-                    </div>
-                  {{/if}}
+              {{#if this.canSelectItem}}
+                <OSS::Icon
+                  @icon={{if this.displaySelectableItems "fa-chevron-up" "fa-chevron-down"}}
+                  class="font-color-gray-500"
+                />
+                <div class="upf-floating-menu upf-floating-menu--{{if this.displaySelectableItems 'visible' 'hidden'}}">
+                  {{#each @selectableItems as |item|}}
+                    {{#if (has-block "selectable-item")}}
+                      {{yield item this.closeSelectionDropdown to="selectable-item"}}
+                    {{/if}}
+                  {{/each}}
                 </div>
-                {{#if this.isErrored}}
-                  <span class="font-color-error-500">
-                    {{get (form-field-feedback this.formInstance.id "account.select") "value"}}
-                  </span>
-                {{/if}}
-              </div>
-            </:content>
-          </OSS::Form>
-
+              {{/if}}
+            </div>
+            {{#if this.feedbackMessage}}
+              <span class={{concat "font-color-" this.feedbackMessage.type "-500"}}>
+                {{this.feedbackMessage.value}}
+              </span>
+            {{/if}}
+          </div>
         {{else if (has-block "custom-subtitle")}}
           {{yield to="custom-subtitle"}}
         {{/if}}
