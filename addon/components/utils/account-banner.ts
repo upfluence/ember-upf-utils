@@ -3,6 +3,8 @@ import { isBlank } from '@ember/utils';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
+import { type FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
+
 type SkinType = 'success' | 'error' | 'warning';
 
 export type Alert = {
@@ -27,10 +29,20 @@ interface UtilsAccountBannerArgs {
 
   canSelectItem?: boolean;
   selectableItems?: any[];
+  feedbackMessage?: FeedbackMessage;
+  required?: boolean;
 }
 
 export default class extends Component<UtilsAccountBannerArgs> {
   @tracked displaySelectableItems: boolean = false;
+
+  get feedbackMessage(): FeedbackMessage | undefined {
+    return this.args.feedbackMessage;
+  }
+
+  get isErrored(): boolean {
+    return this.feedbackMessage?.type === 'error';
+  }
 
   get disabledClass(): string {
     return this.args.disabled ? 'account-banner--disabled' : '';
@@ -41,6 +53,7 @@ export default class extends Component<UtilsAccountBannerArgs> {
   }
 
   get borderColorClass(): string {
+    if (this.isErrored) return 'account-banner--error';
     if (this.args.skin) return `account-banner--${this.args.skin}`;
     return '';
   }
