@@ -1,0 +1,86 @@
+<div class="account-banner {{this.modifierClasses}}" ...attributes>
+  <div class="fx-1 fx-row fx-xalign-center fx-gap-px-12">
+    {{#if @icon}}
+      <OSS::Icon
+        @style={{fa-icon-style @icon}}
+        @icon={{fa-icon-value @icon}}
+        class="upf-badge upf-badge--shape-round upf-badge--size-md"
+      />
+    {{else if @image}}
+      <OSS::Badge @image={{@image}} class="icon-in-badge" />
+    {{/if}}
+
+    <div class="fx-col fx-gap-px-3 fx-1">
+      {{#if @title}}
+        <div class="fx-row fx-xalign-center">
+          <span class="font-weight-semibold font-size-md font-color-gray-900">{{@title}}</span>
+          {{#if (has-block "title-suffix")}}
+            {{yield to="title-suffix"}}
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if (or @subtitle (has-block "custom-subtitle"))}}
+        <div
+          class={{concat
+            "account-banner__selection fx-row fx-gap-px-6 fx-xalign-center "
+            (unless this.canSelectItem " account-banner__selection--unique-account")
+          }}
+          role="button"
+          data-control-name="account-banner-selection-subtitle"
+          {{on "click" this.toggleSelectionDropdown}}
+          {{on-click-outside this.closeSelectionDropdown}}
+        >
+          {{#if @subtitle}}
+            <span
+              class="font-color-gray-500 text-ellipsis font-size-sm"
+              data-control-name="account-banner-selected-item-label"
+            >
+              {{@subtitle}}
+            </span>
+          {{else if (has-block "custom-subtitle")}}
+            {{yield to="custom-subtitle"}}
+          {{/if}}
+
+          {{#if this.canSelectItem}}
+            <OSS::Icon
+              @icon={{if this.displaySelectableItems "fa-chevron-up" "fa-chevron-down"}}
+              class="font-color-gray-500"
+            />
+            <div
+              class="upf-floating-menu upf-floating-menu--{{if this.displaySelectableItems 'visible' 'hidden'}}"
+              {{on-click-outside this.closeSelectionDropdown}}
+            >
+              {{#each @selectableItems as |item|}}
+                {{#if (has-block "selectable-item")}}
+                  {{yield item this.closeSelectionDropdown to="selectable-item"}}
+                {{/if}}
+              {{/each}}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if (has-block "actions")}}
+      {{yield to="actions"}}
+    {{/if}}
+
+  </div>
+
+  {{#if @alert}}
+    <OSS::Alert
+      @skin={{@alert.skin}}
+      @title={{@alert.title}}
+      @subtitle={{@alert.subtitle}}
+      @icon={{@alert.icon}}
+      @plain={{@alert.plain}}
+    >
+      <:extra-content>
+        {{#if @alert.link}}
+          <OSS::Link @label={{@alert.link.label}} @link={{hash href=@alert.link.href target="_blank"}} />
+        {{/if}}
+      </:extra-content>
+    </OSS::Alert>
+  {{/if}}
+</div>
