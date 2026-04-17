@@ -130,7 +130,7 @@ module('Integration | Component | utils/account-banner', function (hooks) {
     test('it renders @subtitle', async function (assert) {
       await render(hbs`<Utils::AccountBanner @subtitle="subtitle" />`);
 
-      assert.dom('[data-control-name="account-banner-selected-item-label"]').hasText('subtitle *');
+      assert.dom('[data-control-name="account-banner-selected-item-label"]').hasText('subtitle');
     });
 
     test('it renders custom-subtitle block', async function (assert) {
