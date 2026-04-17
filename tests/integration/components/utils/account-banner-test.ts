@@ -69,6 +69,12 @@ module('Integration | Component | utils/account-banner', function (hooks) {
       assert.dom('.account-banner').hasClass('account-banner--selected');
       assert.dom('.account-banner').hasClass('account-banner--disabled');
     });
+
+    test('@plain applies plain class', async function (assert) {
+      await render(hbs`<Utils::AccountBanner @plain={{true}} />`);
+
+      assert.dom('.account-banner').hasClass('account-banner--plain');
+    });
   });
 
   module('icon / image', function () {
@@ -124,7 +130,7 @@ module('Integration | Component | utils/account-banner', function (hooks) {
     test('it renders @subtitle', async function (assert) {
       await render(hbs`<Utils::AccountBanner @subtitle="subtitle" />`);
 
-      assert.dom('[data-control-name="account-banner-selected-item-label"]').containsText('subtitle');
+      assert.dom('[data-control-name="account-banner-selected-item-label"]').hasText('subtitle');
     });
 
     test('it renders custom-subtitle block', async function (assert) {
