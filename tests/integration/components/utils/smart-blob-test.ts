@@ -39,11 +39,13 @@ module('Integration | Component | utils/smart-blob', function (hooks) {
   });
 
   module('@size', function () {
-    test('it applies the correct size class', async function (assert) {
-      this.set('size', 'xl');
-      await render(hbs`<Utils::SmartBlob @size={{this.size}} />`);
+    ['sm', 'xl', 'md'].forEach((size) => {
+      test(`it applies the correct size class for @size='${size}'`, async function (assert) {
+        this.set('size', size);
+        await render(hbs`<Utils::SmartBlob @size={{this.size}} />`);
 
-      assert.dom('.smart-blob-container').hasClass('smart-blob-container--xl');
+        assert.dom('.smart-blob-container').hasClass(`smart-blob-container--${size}`);
+      });
     });
 
     test('it defaults to md size', async function (assert) {
