@@ -120,7 +120,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
   }
 
   private getInputElement(element: HTMLElement): HTMLInputElement | null {
-    if (this.isTextInput(element)) return element as HTMLInputElement;
+    if (this.isTextInput(element)) return element;
 
     const inputElement = element.querySelector('input[type="text"]');
     assert(
