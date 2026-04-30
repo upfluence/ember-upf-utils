@@ -13,7 +13,7 @@ export type Alert = {
   title?: string;
   subtitle?: string;
   plain?: boolean;
-  link?: { label: string; href: string };
+  link?: { label: string; href: string, target?: string };
 };
 
 interface UtilsAccountBannerArgs {
