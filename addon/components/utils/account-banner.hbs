@@ -10,76 +10,79 @@
       <OSS::Badge @image={{@image}} class="icon-in-badge" />
     {{/if}}
 
-    <div class="fx-col fx-gap-px-3 fx-1">
-      {{#if @title}}
-        <div class="fx-row fx-xalign-center">
-          <span class="font-weight-semibold font-size-md font-color-gray-900">{{@title}}</span>
-          {{#if (has-block "title-suffix")}}
-            {{yield to="title-suffix"}}
-          {{/if}}
-        </div>
-      {{/if}}
-
-      {{#if (or @subtitle (has-block "custom-subtitle"))}}
-        {{#if @subtitle}}
-          <div class="fx-col fx-gap-px-3">
-            <div
-              class={{concat
-                "account-banner__selection fx-row fx-gap-px-6 fx-xalign-center "
-                (unless this.canSelectItem " account-banner__selection--unique-account")
-              }}
-              role="button"
-              data-control-name="account-banner-selection-subtitle"
-              {{on "click" this.toggleSelectionDropdown}}
-              {{on-click-outside this.closeSelectionDropdown}}
-            >
-              {{#if @required}}
-                <span
-                  class="fx-row font-color-gray-500 text-ellipsis font-size-sm"
-                  data-control-name="account-banner-selected-item-label"
-                  {{required-input}}
-                >
-                  {{@subtitle}}
-                </span>
-              {{else}}
-                <span
-                  class="font-color-gray-500 text-ellipsis font-size-sm"
-                  data-control-name="account-banner-selected-item-label"
-                >
-                  {{@subtitle}}
-                </span>
-              {{/if}}
-
-              {{#if this.canSelectItem}}
-                <OSS::Icon
-                  @icon={{if this.displaySelectableItems "fa-chevron-up" "fa-chevron-down"}}
-                  class="font-color-gray-500"
-                />
-                <div class="upf-floating-menu upf-floating-menu--{{if this.displaySelectableItems 'visible' 'hidden'}}">
-                  {{#each @selectableItems as |item|}}
-                    {{#if (has-block "selectable-item")}}
-                      {{yield item this.closeSelectionDropdown to="selectable-item"}}
-                    {{/if}}
-                  {{/each}}
-                </div>
-              {{/if}}
-            </div>
-            {{#if this.feedbackMessage}}
-              <span class={{concat "font-color-" this.feedbackMessage.type "-500"}}>
-                {{this.feedbackMessage.value}}
-              </span>
+    <div class="account-banner__wrapper">
+      <div class="account-banner__container">
+        {{#if @title}}
+          <div class="account-banner__container-title">
+            <span class="font-weight-semibold font-size-md font-color-gray-900">{{@title}}</span>
+            {{#if (has-block "title-suffix")}}
+              {{yield to="title-suffix"}}
             {{/if}}
           </div>
-        {{else if (has-block "custom-subtitle")}}
-          {{yield to="custom-subtitle"}}
         {{/if}}
+
+        {{#if (or @subtitle (has-block "custom-subtitle"))}}
+          {{#if @subtitle}}
+            <div class="fx-col fx-gap-px-3">
+              <div
+                class={{concat
+                  "account-banner__selection fx-row fx-gap-px-6 fx-xalign-center "
+                  (unless this.canSelectItem " account-banner__selection--unique-account")
+                }}
+                role="button"
+                data-control-name="account-banner-selection-subtitle"
+                {{on "click" this.toggleSelectionDropdown}}
+                {{on-click-outside this.closeSelectionDropdown}}
+              >
+                {{#if @required}}
+                  <span
+                    class="fx-row font-color-gray-500 text-ellipsis font-size-sm"
+                    data-control-name="account-banner-selected-item-label"
+                    {{required-input}}
+                  >
+                    {{@subtitle}}
+                  </span>
+                {{else}}
+                  <span
+                    class="font-color-gray-500 text-ellipsis font-size-sm"
+                    data-control-name="account-banner-selected-item-label"
+                  >
+                    {{@subtitle}}
+                  </span>
+                {{/if}}
+
+                {{#if this.canSelectItem}}
+                  <OSS::Icon
+                    @icon={{if this.displaySelectableItems "fa-chevron-up" "fa-chevron-down"}}
+                    class="font-color-gray-500"
+                  />
+                  <div
+                    class="upf-floating-menu upf-floating-menu--{{if this.displaySelectableItems 'visible' 'hidden'}}"
+                  >
+                    {{#each @selectableItems as |item|}}
+                      {{#if (has-block "selectable-item")}}
+                        {{yield item this.closeSelectionDropdown to="selectable-item"}}
+                      {{/if}}
+                    {{/each}}
+                  </div>
+                {{/if}}
+              </div>
+              {{#if this.feedbackMessage}}
+                <span class={{concat "font-color-" this.feedbackMessage.type "-500"}}>
+                  {{this.feedbackMessage.value}}
+                </span>
+              {{/if}}
+            </div>
+          {{else if (has-block "custom-subtitle")}}
+            {{yield to="custom-subtitle"}}
+          {{/if}}
+        {{/if}}
+      </div>
+
+      {{#if (has-block "actions")}}
+        {{yield to="actions"}}
       {{/if}}
     </div>
-
-    {{#if (has-block "actions")}}
-      {{yield to="actions"}}
-    {{/if}}
-
   </div>
 
   {{#if @alert}}
