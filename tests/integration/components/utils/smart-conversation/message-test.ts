@@ -1,26 +1,106 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import moment from 'moment';
 
 module('Integration | Component | utils/smart-conversation/message', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function (val) { ... });
+  hooks.beforeEach(function () {
+    this.timestamp = moment('2026-05-05').valueOf();
+  });
 
-    await render(hbs`<Utils::SmartConversation::Message />`);
+  module('User prompt', function (hooks) {
+    hooks.beforeEach(function () {
+      this.type = 'user_prompt';
+      this.value = 'This is a smart reply';
+    });
 
-    assert.dom().hasText('');
+    test('it renders properly', async function (assert) {
+      await render(
+        hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+      );
 
-    // Template block usage:
-    await render(hbs`
-      <Utils::SmartConversation::Message>
-        template block text
-      </Utils::SmartConversation::Message>
-    `);
+      assert.dom('.smart-conversation-message').exists();
+      assert.dom('.smart-conversation-message').hasClass('smart-conversation-message--user_prompt');
+      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+      assert.dom('.smart-conversation-message .content').hasText(this.value);
+      assert.dom('.smart-conversation-message span.font-color-gray-400').hasText('05/05/2026, 00:00');
+    });
 
-    assert.dom().hasText('template block text');
+    test('it is not collapsible at all', async function (assert) {
+      await render(
+        hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+      );
+
+      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+
+      await click('.smart-conversation-message');
+      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+    });
+
+    test('the extra-content named block is rendered when provided', async function (assert) {
+      await render(
+        hbs`
+          <Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}>
+            <:extra-content>
+              <div class="extra-content">Extra content</div>
+            </:extra-content>
+          </Utils::SmartConversation::Message>
+        `
+      );
+
+      assert.dom('.extra-content').exists();
+      assert.dom('.extra-content').hasText('Extra content');
+    });
+  });
+
+  module('Smart reply', function (hooks) {
+    hooks.beforeEach(function () {
+      this.type = 'smart_reply';
+      this.value = 'This is a smart reply';
+    });
+
+    test('it renders properly', async function (assert) {
+      await render(
+        hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+      );
+
+      assert.dom('.smart-conversation-message').exists();
+      assert.dom('.smart-conversation-message').hasClass('smart-conversation-message--smart_reply');
+      assert.dom('.smart-conversation-message').hasClass('smart-conversation-message--collapsed');
+      assert.dom('.smart-conversation-message .content').hasText(this.value);
+      assert.dom('.smart-conversation-message span.font-color-gray-400').hasText('05/05/2026, 00:00');
+    });
+
+    test('it toggles collapsed state on click', async function (assert) {
+      await render(
+        hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+      );
+
+      assert.dom('.smart-conversation-message--collapsed').exists();
+
+      await click('.smart-conversation-message');
+      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+
+      await click('.smart-conversation-message');
+      assert.dom('.smart-conversation-message--collapsed').exists();
+    });
+
+    test('the extra-content named block is rendered when provided', async function (assert) {
+      await render(
+        hbs`
+          <Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}>
+            <:extra-content>
+              <div class="extra-content">Extra content</div>
+            </:extra-content>
+          </Utils::SmartConversation::Message>
+        `
+      );
+
+      assert.dom('.extra-content').exists();
+      assert.dom('.extra-content').hasText('Extra content');
+    });
   });
 });
