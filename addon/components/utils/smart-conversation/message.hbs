@@ -1,0 +1,22 @@
+<div
+  class={{this.computedClasses}}
+  role="button"
+  data-control-name="smart-conversation-message"
+  {{on "click" this.toggleCollapsed}}
+>
+  <div class="content">
+    {{#if (eq @type "smart_reply")}}
+      <Utils::SmartBlob @size="md" />
+    {{/if}}
+
+    <div class="fx-col fx-gap-px-18">
+      <span>{{@value}}</span>
+
+      {{#if (has-block "extra-content")}}
+        {{yield to="extra-content"}}
+      {{/if}}
+    </div>
+  </div>
+
+  <span class="font-color-gray-400 font-size-xs">{{this.formattedTimestamp}}</span>
+</div>
