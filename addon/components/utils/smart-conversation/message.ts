@@ -1,3 +1,4 @@
+import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
@@ -30,11 +31,12 @@ export default class UtilsSmartConversationMessageComponent extends Component<Ut
     return moment(this.args.timestamp).format('DD/MM/YYYY, HH:mm');
   }
 
-  toggleCollapsed = (event: MouseEvent) => {
+  @action
+  toggleCollapsed(event: MouseEvent): void {
     event.stopPropagation();
 
     if (!this.collapsible) return;
 
     this.collapsed = !this.collapsed;
-  };
+  }
 }
