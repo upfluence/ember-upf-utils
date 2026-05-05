@@ -109,17 +109,7 @@
     }
   }
 
-  .account-banner:has(.account-banner__wrapper .upf-btn):has(.account-banner__container-title > *:nth-child(2)) {
-    .account-banner__wrapper {
-      flex-direction: column;
-
-      .upf-btn {
-        flex: 1;
-      }
-    }
-  }
-
-  .account-banner:not(:has(.account-banner__wrapper .upf-btn)):has(.account-banner__container-title > *:nth-child(2)) {
+  .account-banner:has(.account-banner__container-title > *:nth-child(2)) {
     .account-banner__container-title {
       flex-wrap: wrap;
     }
