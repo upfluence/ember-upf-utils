@@ -36,17 +36,14 @@
               >
                 {{#if @required}}
                   <span
-                    class="fx-row font-color-gray-500 text-ellipsis font-size-sm"
+                    class="fx-row font-color-gray-500 font-size-sm"
                     data-control-name="account-banner-selected-item-label"
                     {{required-input}}
                   >
                     {{@subtitle}}
                   </span>
                 {{else}}
-                  <span
-                    class="font-color-gray-500 text-ellipsis font-size-sm"
-                    data-control-name="account-banner-selected-item-label"
-                  >
+                  <span class="font-color-gray-500 font-size-sm" data-control-name="account-banner-selected-item-label">
                     {{@subtitle}}
                   </span>
                 {{/if}}
