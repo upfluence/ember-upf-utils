@@ -14,10 +14,6 @@ interface UtilsSmartConversationMessageComponentSignature {
 export default class UtilsSmartConversationMessageComponent extends Component<UtilsSmartConversationMessageComponentSignature> {
   @tracked collapsed: boolean = true;
 
-  get collapsible(): boolean {
-    return this.args.collapsible ?? true;
-  }
-
   get computedClasses(): string {
     const classes = ['smart-conversation-message', `smart-conversation-message--${this.args.type}`];
 
@@ -39,5 +35,9 @@ export default class UtilsSmartConversationMessageComponent extends Component<Ut
     if (!this.collapsible) return;
 
     this.collapsed = !this.collapsed;
+  }
+
+  private get collapsible(): boolean {
+    return this.args.collapsible ?? true;
   }
 }
