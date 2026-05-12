@@ -6,6 +6,7 @@ import moment from 'moment';
 
 interface UtilsSmartConversationMessageComponentSignature {
   type: 'smart_reply' | 'user_prompt';
+  collapsible?: boolean;
   value: string;
   timestamp: number;
 }
@@ -14,7 +15,7 @@ export default class UtilsSmartConversationMessageComponent extends Component<Ut
   @tracked collapsed: boolean = true;
 
   get collapsible(): boolean {
-    return this.args.type === 'smart_reply';
+    return this.args.collapsible ?? true;
   }
 
   get computedClasses(): string {
