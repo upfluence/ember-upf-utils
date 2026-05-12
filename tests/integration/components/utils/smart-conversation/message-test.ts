@@ -21,20 +21,9 @@ module('Integration | Component | utils/smart-conversation/message', function (h
 
       assert.dom('.smart-conversation-message').exists();
       assert.dom('.smart-conversation-message').hasClass('smart-conversation-message--user_prompt');
-      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+      assert.dom('.smart-conversation-message--collapsed').exists();
       assert.dom('.smart-conversation-message .content').hasText('Gimme, gimme, gimme a creator after midnight');
       assert.dom('.smart-conversation-message span.font-color-gray-400').hasText('05/05/2026, 00:00');
-    });
-
-    test('it is not collapsible at all', async function (assert) {
-      await render(
-        hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
-      );
-
-      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
-
-      await click('.smart-conversation-message');
-      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
     });
 
     test('the extra-content named block is rendered when provided', async function (assert) {
@@ -72,20 +61,6 @@ module('Integration | Component | utils/smart-conversation/message', function (h
       assert.dom('.smart-conversation-message span.font-color-gray-400').hasText('22/04/2026, 00:00');
     });
 
-    test('it toggles collapsed state on click', async function (assert) {
-      await render(
-        hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
-      );
-
-      assert.dom('.smart-conversation-message--collapsed').exists();
-
-      await click('.smart-conversation-message');
-      assert.dom('.smart-conversation-message--collapsed').doesNotExist();
-
-      await click('.smart-conversation-message');
-      assert.dom('.smart-conversation-message--collapsed').exists();
-    });
-
     test('the extra-content named block is rendered when provided', async function (assert) {
       await render(
         hbs`
@@ -99,6 +74,74 @@ module('Integration | Component | utils/smart-conversation/message', function (h
 
       assert.dom('.extra-content').exists();
       assert.dom('.extra-content').hasText('Extra content');
+    });
+  });
+
+  module('Collapsible message', function () {
+    ['user_prompt', 'smart_reply'].forEach((type) => {
+      hooks.beforeEach(function () {
+        this.type = type;
+      });
+
+      test(`By default, message is collapsible for ${type}`, async function (assert) {
+        await render(
+          hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+        );
+
+        assert.dom('.smart-conversation-message--collapsed').exists();
+
+        await click('.smart-conversation-message');
+        assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+      });
+
+      test('when no @collapsible argument is provided, it defaults to true', async function (assert) {
+        await render(
+          hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+        );
+
+        assert.dom('.smart-conversation-message--collapsed').exists();
+      });
+
+      test('when a falsy @collapsible argument is provided, message is not collapsed', async function (assert) {
+        await render(
+          hbs`<Utils::SmartConversation::Message @collapsible={{false}} @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+        );
+
+        assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+      });
+
+      test('when a falsy @collapsible argument is provided, message is not collapsible', async function (assert) {
+        await render(
+          hbs`<Utils::SmartConversation::Message @collapsible={{false}} @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+        );
+
+        assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+
+        await click('.smart-conversation-message');
+        assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+      });
+
+      test('when a truthy @collapsible argument is provided, message is collapsed', async function (assert) {
+        await render(
+          hbs`<Utils::SmartConversation::Message @collapsible={{true}} @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+        );
+
+        assert.dom('.smart-conversation-message--collapsed').exists();
+      });
+
+      test('it toggles collapsed state on click', async function (assert) {
+        await render(
+          hbs`<Utils::SmartConversation::Message @type={{this.type}} @value={{this.value}} @timestamp={{this.timestamp}}/>`
+        );
+
+        assert.dom('.smart-conversation-message--collapsed').exists();
+
+        await click('.smart-conversation-message');
+        assert.dom('.smart-conversation-message--collapsed').doesNotExist();
+
+        await click('.smart-conversation-message');
+        assert.dom('.smart-conversation-message--collapsed').exists();
+      });
     });
   });
 });
