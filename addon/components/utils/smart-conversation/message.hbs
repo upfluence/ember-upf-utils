@@ -3,6 +3,7 @@
   role="button"
   data-control-name="smart-conversation-message"
   {{on "click" this.toggleCollapsed}}
+  ...attributes
 >
   <div class="content" {{did-insert this.measureOverflow}}>
     {{#if (eq @type "smart_reply")}}
