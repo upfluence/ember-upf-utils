@@ -4,7 +4,7 @@
   data-control-name="smart-conversation-message"
   {{on "click" this.toggleCollapsed}}
 >
-  <div class="content">
+  <div class="content" {{did-insert this.measureOverflow}}>
     {{#if (eq @type "smart_reply")}}
       <Utils::SmartBlob @size="md" />
     {{/if}}

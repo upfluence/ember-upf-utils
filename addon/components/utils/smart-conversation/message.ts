@@ -11,13 +11,16 @@ interface UtilsSmartConversationMessageComponentSignature {
   timestamp: number;
 }
 
+const COLLAPSED_MAX_HEIGHT = 130;
+
 export default class UtilsSmartConversationMessageComponent extends Component<UtilsSmartConversationMessageComponentSignature> {
   @tracked collapsed: boolean = true;
+  @tracked overflows: boolean = false;
 
   get computedClasses(): string {
     const classes = ['smart-conversation-message', `smart-conversation-message--${this.args.type}`];
 
-    if (this.collapsible && this.collapsed) {
+    if (this.collapsible && this.collapsed && this.overflows) {
       classes.push('smart-conversation-message--collapsed');
     }
 
@@ -29,10 +32,15 @@ export default class UtilsSmartConversationMessageComponent extends Component<Ut
   }
 
   @action
+  measureOverflow(element: HTMLElement): void {
+    this.overflows = element.scrollHeight > COLLAPSED_MAX_HEIGHT;
+  }
+
+  @action
   toggleCollapsed(event: MouseEvent): void {
     event.stopPropagation();
 
-    if (!this.collapsible) return;
+    if (!this.collapsible || !this.overflows) return;
 
     this.collapsed = !this.collapsed;
   }
