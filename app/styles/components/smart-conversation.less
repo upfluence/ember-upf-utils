@@ -8,6 +8,8 @@
   max-width: 70%;
 
   .content {
+    --collapsed-max-height: 130px;
+
     border-radius: var(--border-radius-lg);
     display: flex;
     gap: var(--spacing-px-18);
@@ -32,7 +34,7 @@
   }
 
   &--collapsed .content {
-    max-height: 130px;
+    max-height: var(--collapsed-max-height);
     overflow-y: hidden;
 
     &::after {
