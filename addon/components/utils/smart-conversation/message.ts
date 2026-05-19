@@ -11,8 +11,6 @@ interface UtilsSmartConversationMessageComponentSignature {
   timestamp: number;
 }
 
-const COLLAPSED_MAX_HEIGHT = 130;
-
 export default class UtilsSmartConversationMessageComponent extends Component<UtilsSmartConversationMessageComponentSignature> {
   @tracked collapsed: boolean = true;
   @tracked overflows: boolean = false;
@@ -33,7 +31,9 @@ export default class UtilsSmartConversationMessageComponent extends Component<Ut
 
   @action
   measureOverflow(element: HTMLElement): void {
-    this.overflows = element.scrollHeight > COLLAPSED_MAX_HEIGHT;
+    const maxHeight = parseFloat(getComputedStyle(element).getPropertyValue('--collapsed-max-height'));
+
+    this.overflows = element.scrollHeight > maxHeight;
   }
 
   @action
