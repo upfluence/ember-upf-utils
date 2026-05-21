@@ -4,28 +4,25 @@ Ember Upfluence Utilities. This repository contains a load of shared code which 
 
 [Short description of the addon.]
 
+## Compatibility
 
-Compatibility
-------------------------------------------------------------------------------
+- Ember.js v3.24 or above
+- Ember CLI v3.24 or above
+- Node.js v12 or above
 
-* Ember.js v3.24 or above
-* Ember CLI v3.24 or above
-* Node.js v12 or above
+## Installation
 
-
-Installation
-------------------------------------------------------------------------------
-
-* `git clone` this repository
-* `npm install`
+- `git clone` this repository
+- `npm install`
 
 ## Developing
 
 **Styles** are stored in `app/styles`.
-**Components** and **Templates** are stored in `addon/components`. *(Pod Structure)*
+**Components** and **Templates** are stored in `addon/components`. _(Pod Structure)_
 
 #### Compiling
-*Let's say you are working on **search** *
+
+_Let's say you are working on **search** _
 
 ```bash
 # in upfluence/ember-upf-utils
@@ -33,10 +30,13 @@ $> ember build
 ```
 
 In `upfluence/facade-web/package.json` replace :
+
 ```json
 "ember-upf-utils": "upfluence/ember-upf-utils",
 ```
+
 by :
+
 ```json
 "ember-upf-utils": "file:../ember-upf-utils"
 ```
@@ -49,24 +49,22 @@ $> npm install ember-upf-utils
 
 ### Linting
 
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+- `npm run lint:hbs`
+- `npm run lint:js`
+- `npm run lint:js -- --fix`
 
 ### Running tests
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
+- `ember test` – Runs the test suite on the current Ember version
+- `ember test --server` – Runs the test suite in "watch mode"
+- `ember try:each` – Runs the test suite against multiple Ember versions
 
 ### Running the dummy application
 
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-See the [Contributing](CONTRIBUTING.md) guide for details.
+- `ember serve`
+- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+  See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).

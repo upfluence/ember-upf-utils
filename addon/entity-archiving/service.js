@@ -1,5 +1,6 @@
-import { Promise } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
+
+import { Promise } from 'rsvp';
 
 export default Service.extend({
   ajax: service(),

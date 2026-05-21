@@ -1,7 +1,7 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-import { parseAddressComponents } from '@upfluence/ember-upf-utils/utils/address-parser';
 import { createSampleAddressComponents } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
+import { parseAddressComponents } from '@upfluence/ember-upf-utils/utils/address-parser';
+import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 
 module('Unit | Utility | address-parser', function (hooks) {
   setupTest(hooks);

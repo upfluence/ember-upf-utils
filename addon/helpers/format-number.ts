@@ -14,8 +14,8 @@ function getFormatter(number: number): Intl.NumberFormat {
         ? { notation: 'compact', minimumFractionDigits: 0, maximumFractionDigits: 0 }
         : { notation: 'compact', minimumFractionDigits: 0, maximumFractionDigits: 1 }
       : absoluteValue >= ROUND_TO_INTEGER_ABOVE
-      ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
-      : { minimumFractionDigits: 0, maximumFractionDigits: 2 };
+        ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
+        : { minimumFractionDigits: 0, maximumFractionDigits: 2 };
 
   return new Intl.NumberFormat(['en-EN', 'fr-FR'], options);
 }

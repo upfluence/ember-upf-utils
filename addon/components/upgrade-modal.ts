@@ -1,9 +1,10 @@
 import { getOwner } from '@ember/application';
-import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+
 import { IntlService } from 'ember-intl';
 
 interface UpgradeModalArgs {

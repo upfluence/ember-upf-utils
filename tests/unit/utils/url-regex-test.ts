@@ -1,6 +1,6 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
 import { URL_REGEX } from '@upfluence/ember-upf-utils/utils/url-regex';
+import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 
 const VALID_URLS = [
   'toto.com',

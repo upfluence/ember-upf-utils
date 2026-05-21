@@ -1,8 +1,8 @@
-import { action } from '@ember/object';
 import { assert } from '@ember/debug';
+import { action } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
-import { tracked } from '@glimmer/tracking';
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
 interface UtilsSocialMediaHandleArgs {
   socialNetwork: string;

@@ -1,14 +1,12 @@
 import { action } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
-
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { type IntlService } from 'ember-intl';
-
 import { type FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
-import { scheduleOnce } from '@ember/runloop';
+import { type IntlService } from 'ember-intl';
 
 export type UtmFields = {
   utm_source: string;

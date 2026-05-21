@@ -1,9 +1,10 @@
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { inject as service } from '@ember/service';
-import type { IntlService } from 'ember-intl';
+
 import type { FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
+import type { IntlService } from 'ember-intl';
 
 const VARIABLE_REGEX = /\{\{([^}]+)\}\}/g;
 

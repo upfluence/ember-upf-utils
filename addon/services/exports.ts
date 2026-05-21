@@ -1,7 +1,8 @@
+import StoreService from '@ember-data/store';
 import Service, { inject as service } from '@ember/service';
 import { isEmpty } from '@ember/utils';
+
 import Configuration from '@upfluence/ember-upf-utils/configuration';
-import StoreService from '@ember-data/store';
 
 export default class ExportsService extends Service {
   @service declare store: StoreService;
