@@ -1,13 +1,12 @@
-import Modifier, { type ArgsFor, type PositionalArgs, type NamedArgs } from 'ember-modifier';
-import { registerDestructor } from '@ember/destroyable';
 import { assert } from '@ember/debug';
+import { registerDestructor } from '@ember/destroyable';
 import { inject as service } from '@ember/service';
 
+import { Loader } from '@googlemaps/js-api-loader';
+import type AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';
 import { parseAddressComponents } from '@upfluence/ember-upf-utils/utils/address-parser';
 import { CountryData } from '@upfluence/oss-components/utils/country-codes';
-import type AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';
-
-import { Loader } from '@googlemaps/js-api-loader';
+import Modifier, { type ArgsFor, type PositionalArgs, type NamedArgs } from 'ember-modifier';
 
 type GooglePlaceResult = google.maps.places.PlaceResult;
 type GoogleAutocomplete = google.maps.places.Autocomplete;

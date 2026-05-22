@@ -1,10 +1,11 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { setupIntl } from 'ember-intl/test-support';
 import { render, triggerKeyEvent } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-import typeIn from '@ember/test-helpers/dom/type-in';
 import click from '@ember/test-helpers/dom/click';
+import typeIn from '@ember/test-helpers/dom/type-in';
+
+import { hbs } from 'ember-cli-htmlbars';
+import { setupIntl } from 'ember-intl/test-support';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 import sinon from 'sinon';
 
 module('Integration | Component | utils/social-media-handle', function (hooks) {

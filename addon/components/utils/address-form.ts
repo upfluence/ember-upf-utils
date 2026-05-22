@@ -1,10 +1,11 @@
+import { action, get, set } from '@ember/object';
+import { next } from '@ember/runloop';
+import { isEmpty } from '@ember/utils';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action, get, set } from '@ember/object';
-import { isEmpty } from '@ember/utils';
-import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
-import { next } from '@ember/runloop';
+
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
+import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
 
 type FocusableInput =
   | 'first-name'

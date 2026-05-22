@@ -1,5 +1,7 @@
-<div class="fx-row fx-gap-px-18 fx-xalign-center padding-right-px-18 product-row {{if @plain 'product-row--plain'}}"
-     ...attributes>
+<div
+  class="fx-row fx-gap-px-18 fx-xalign-center padding-right-px-18 product-row {{if @plain 'product-row--plain'}}"
+  ...attributes
+>
   <div class="product-image-container {{if this.isDefaultImg 'product-image-container--default'}}">
     <img src={{this.productImageUrl}} onerror={{this.imageLoadError}} alt="Product" />
   </div>
@@ -12,8 +14,13 @@
       <OSS::Tag @label={{t "upf_utils.product_row.tag.selected"}} @icon="far fa-check" />
     {{/if}}
     {{#each this.buttonParams as |buttonParam|}}
-      <OSS::Button @size="md" @label={{buttonParam.label}} @icon={{buttonParam.icon}} @square={{buttonParam.square}}
-                   {{on "click" (fn buttonParam.function @product)}} />
+      <OSS::Button
+        @size="md"
+        @label={{buttonParam.label}}
+        @icon={{buttonParam.icon}}
+        @square={{buttonParam.square}}
+        {{on "click" (fn buttonParam.function @product)}}
+      />
     {{/each}}
   </div>
 </div>

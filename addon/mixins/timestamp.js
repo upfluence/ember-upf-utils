@@ -1,4 +1,5 @@
 import Mixin from '@ember/object/mixin';
+
 import moment from 'moment';
 
 export default Mixin.create({

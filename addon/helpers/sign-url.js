@@ -1,6 +1,7 @@
-import { inject as service } from '@ember/service';
 import Helper from '@ember/component/helper';
 import { observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+
 import serializeParams from '@upfluence/ember-upf-utils/utils/serialize-params';
 
 export default Helper.extend({

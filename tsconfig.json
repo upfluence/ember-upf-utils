@@ -32,7 +32,7 @@
       "@upfluence/oss-components": ["node_modules/@upfluence/oss-components/addon"],
       "@upfluence/oss-components/*": ["node_modules/@upfluence/oss-components/addon/*"]
     },
-    "types": [],
+    "types": []
   },
   "include": ["app/**/*", "addon/**/*", "tests/**/*", "types/**/*", "test-support/**/*", "addon-test-support/**/*"]
 }

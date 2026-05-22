@@ -1,9 +1,9 @@
 import Service, { inject as service } from '@ember/service';
-import { IntlService } from 'ember-intl';
 
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
 import EventsService, { ResourceEvent, prefixPath } from '@upfluence/hyperevents/services/events-service';
 import ToastService, { ToastOptions } from '@upfluence/oss-components/services/toast';
+import { IntlService } from 'ember-intl';
 
 type NotificationEvent = {
   resource: string;
@@ -135,7 +135,7 @@ export default class ActivityWatcher extends Service {
   @service declare intl: IntlService;
   @service declare session: any;
 
-  private declare _observer: Observable<ResourceEvent> | null;
+  declare private _observer: Observable<ResourceEvent> | null;
 
   watch(): void {
     if (this._observer) {

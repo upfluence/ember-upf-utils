@@ -1,10 +1,11 @@
-import { hbs } from 'ember-cli-htmlbars';
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import EmberObject from '@ember/object';
-import sinon from 'sinon';
 import { click, find, render, waitUntil } from '@ember/test-helpers';
+
 import { DEFAULT_IMAGE_URL } from '@upfluence/ember-upf-utils/components/utils/product-row';
+import { hbs } from 'ember-cli-htmlbars';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 module('Integration | Component | utils/product-row', function (hooks) {
   setupRenderingTest(hooks);

@@ -1,10 +1,10 @@
-import Component from '@glimmer/component';
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
+import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
+import Component from '@glimmer/component';
 
 import type { IntlService } from 'ember-intl';
-import { Router } from '@ember/routing';
 
 interface HTTPErrorsLimitModalArgs {
   limit: number;

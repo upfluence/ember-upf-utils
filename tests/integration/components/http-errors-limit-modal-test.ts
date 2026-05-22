@@ -1,10 +1,11 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import Service from '@ember/service';
 import { click, render } from '@ember/test-helpers';
+
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 import sinon from 'sinon';
-import Service from '@ember/service';
 
 class CSChat extends Service {
   openTicket = sinon.stub();

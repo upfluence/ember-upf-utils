@@ -1,14 +1,12 @@
 /* eslint-disable  qunit/no-conditional-assertions */
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-
-import EventsServiceMock from '@upfluence/hyperevents/test-support/services/events-service';
-
-import sinon from 'sinon';
 import Service from '@ember/service';
 
+import EventsServiceMock from '@upfluence/hyperevents/test-support/services/events-service';
 import { setupToast } from '@upfluence/oss-components/test-support';
 import { setupIntl } from 'ember-intl/test-support';
+import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 class SessionServiceMock extends Service {
   tooManyConnections: boolean = false;

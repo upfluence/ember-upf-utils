@@ -1,5 +1,6 @@
-import ENV from '../config/environment';
 import Configuration from '@upfluence/ember-upf-utils/configuration';
+
+import ENV from '../config/environment';
 
 export default {
   name: 'ember-upf-utils',

@@ -25,7 +25,10 @@ class MockAutocomplete {
   private listeners: Map<string, Function[]> = new Map();
   private mockPlace: MockPlaceResult = {};
 
-  constructor(public input: HTMLInputElement, public options?: Record<string, any>) {}
+  constructor(
+    public input: HTMLInputElement,
+    public options?: Record<string, any>
+  ) {}
 
   addListener(eventName: string, handler: Function): void {
     if (!this.listeners.has(eventName)) {

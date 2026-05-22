@@ -1,4 +1,5 @@
 import Helper from '@ember/component/helper';
+
 import tinycolor from 'tinycolor2';
 
 export function lightenColor(params /*, hash*/) {

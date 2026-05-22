@@ -1,12 +1,13 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-import { setupIntl } from 'ember-intl/test-support';
+
 import {
   PREVENT_COMPACT_NOTATION_BELOW,
   ROUND_TO_INTEGER_ABOVE
 } from '@upfluence/ember-upf-utils/helpers/format-number';
+import { hbs } from 'ember-cli-htmlbars';
+import { setupIntl } from 'ember-intl/test-support';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 
 module('Integration | Helper | format-number', function (hooks) {
   setupRenderingTest(hooks);

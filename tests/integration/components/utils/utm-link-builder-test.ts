@@ -1,12 +1,13 @@
-import { hbs } from 'ember-cli-htmlbars';
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { setupIntl } from 'ember-intl/test-support';
 import { render, focus, blur } from '@ember/test-helpers';
 import click from '@ember/test-helpers/dom/click';
-import sinon from 'sinon';
 import typeIn from '@ember/test-helpers/dom/type-in';
 import settled from '@ember/test-helpers/settled';
+
+import { hbs } from 'ember-cli-htmlbars';
+import { setupIntl } from 'ember-intl/test-support';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 module('Integration | Component | utils/utm-link-builder', function (hooks) {
   setupRenderingTest(hooks);
