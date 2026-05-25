@@ -1,0 +1,117 @@
+.account-banner {
+  container-type: inline-size;
+  container-name: account-banner;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-px-12);
+
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-px-18);
+  transition: ease-in-out 0.25s;
+
+  &__selection {
+    position: relative;
+    max-width: max-content;
+
+    &--unique-account {
+      pointer-events: none;
+    }
+
+    .upf-floating-menu {
+      top: 10px;
+      gap: var(--spacing-px-3);
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex: 1;
+    gap: var(--spacing-px-3);
+    flex-wrap: wrap;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--spacing-px-3);
+
+    &-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-px-6);
+
+      > span:first-child {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &--plain {
+    .background-color-white;
+  }
+
+  &--selected {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-50);
+  }
+
+  &--error {
+    .border-color-error;
+    background-color: var(--color-error-50);
+
+    .oss-radio-btn.oss-radio-btn--selected {
+      background-color: var(--color-error-500);
+      border-color: var(--color-error-500);
+    }
+  }
+
+  &--warning {
+    .border-color-warning;
+  }
+
+  &--success {
+    .border-color-success;
+  }
+
+  &--disabled {
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-border-default);
+
+    > i {
+      color: var(--color-gray-400);
+    }
+
+    > span {
+      color: var(--color-gray-400);
+    }
+  }
+
+  .upf-alert {
+    overflow: visible;
+
+    .indicator {
+      border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+    }
+
+    .main-container {
+      border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    }
+  }
+}
+
+@container account-banner (width < 340px) {
+  .account-banner:has(.account-banner__container-title > *:nth-child(2)) {
+    > div:first-child {
+      align-items: flex-start;
+    }
+  }
+
+  .account-banner:has(.account-banner__container-title > *:nth-child(2)) {
+    .account-banner__container-title {
+      flex-wrap: wrap;
+    }
+  }
+}
