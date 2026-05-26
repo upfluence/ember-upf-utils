@@ -385,7 +385,11 @@ module('Integration | Component | utils/account-banner', function (hooks) {
     });
 
     test('it renders alert when @alert is provided', async function (assert) {
-      this.set('alert', { skin: 'error', title: 'Error title', subtitle: 'Error subtitle' });
+      this.set('alert', {
+        skin: 'error',
+        title: 'Error title',
+        subtitle: 'Error subtitle'
+      });
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
 
       assert.dom('.upf-alert').exists();

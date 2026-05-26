@@ -93,7 +93,12 @@ export default class extends Component<UtilsProductRowArgs> {
   }
 
   createButtonArg(label: string, icon: string, square: boolean, callback: string): ButtonArgs {
-    return { label: label, icon: icon, square, function: this.args[callback as keyof UtilsProductRowArgs] };
+    return {
+      label: label,
+      icon: icon,
+      square,
+      function: this.args[callback as keyof UtilsProductRowArgs]
+    };
   }
 
   @action

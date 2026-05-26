@@ -67,7 +67,9 @@ module('Integration | Component | upgrade-modal', function (hooks) {
           await render(hbs`<UpgradeModal @hidden={{this.hidden}} @to={{this.to}} @closeAction={{this.closeStub}} />`);
 
           const tmp = document.createElement('DIV');
-          tmp.innerHTML = this.intl.t(`upgrade_modal.details.${key}`, { htmlSafe: true });
+          tmp.innerHTML = this.intl.t(`upgrade_modal.details.${key}`, {
+            htmlSafe: true
+          });
           assert
             .dom('.oss-modal-dialog .upf-banner .font-color-gray-500')
             .hasText(tmp.textContent || tmp.innerText || '');

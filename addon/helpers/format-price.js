@@ -1,8 +1,9 @@
 import Helper from '@ember/component/helper';
 
+import { formatMoneyHelper } from '@upfluence/oss-components/helpers/format-money';
+
 import { formatNumber } from '@upfluence/ember-upf-utils/helpers/format-number';
 import symbolMap from '@upfluence/ember-upf-utils/utils/currency';
-import { formatMoneyHelper } from '@upfluence/oss-components/helpers/format-money';
 
 const defaultOptions = {
   rate: 1,

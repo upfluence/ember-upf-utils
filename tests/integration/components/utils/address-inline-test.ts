@@ -1,12 +1,13 @@
 import EmberObject from '@ember/object';
 import { render, typeIn } from '@ember/test-helpers';
 
-import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
+
+import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 
 module('Integration | Component | utils/address-inline', function (hooks) {
   setupRenderingTest(hooks);
@@ -43,9 +44,16 @@ module('Integration | Component | utils/address-inline', function (hooks) {
         hbs`<Utils::AddressInline @value={{this.address}} @useGoogleAutocomplete={{false}}
                               @onChange={{this.onChange}} />`
       );
-      await typeIn('[data-control-name="address-inline"] .upf-input', 'reet', { delay: 0 });
+      await typeIn('[data-control-name="address-inline"] .upf-input', 'reet', {
+        delay: 0
+      });
       assert.equal(this.onChange.callCount, 4);
-      assert.true(this.onChange.lastCall.calledWith({ address: '123 Main Street', resolved_address: null }));
+      assert.true(
+        this.onChange.lastCall.calledWith({
+          address: '123 Main Street',
+          resolved_address: null
+        })
+      );
     });
   });
 

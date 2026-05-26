@@ -1,14 +1,15 @@
 import { render, find, settled, setupOnerror } from '@ember/test-helpers';
 
+import { hbs } from 'ember-cli-htmlbars';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 import {
   createMockPlaceResult,
   createSampleAddressComponents
 } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
-import { hbs } from 'ember-cli-htmlbars';
-import { setupRenderingTest } from 'ember-qunit';
-import { module, test } from 'qunit';
 
 module('Integration | Modifier | setup-autocomplete', function (hooks) {
   setupRenderingTest(hooks);
@@ -193,9 +194,17 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       const mockAutocomplete = this.mockLoader.getMockAutocompleteInstance();
       const mockPlace = createMockPlaceResult([
         { types: ['street_number'], long_name: '10', short_name: '10' },
-        { types: ['route'], long_name: 'Downing Street', short_name: 'Downing St' },
+        {
+          types: ['route'],
+          long_name: 'Downing Street',
+          short_name: 'Downing St'
+        },
         { types: ['postal_town'], long_name: 'London', short_name: 'London' },
-        { types: ['postal_code'], long_name: 'SW1A 2AA', short_name: 'SW1A 2AA' },
+        {
+          types: ['postal_code'],
+          long_name: 'SW1A 2AA',
+          short_name: 'SW1A 2AA'
+        },
         { types: ['country'], long_name: 'United Kingdom', short_name: 'GB' }
       ]);
 

@@ -102,7 +102,10 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
       this.validationErrors = {
         ...this.validationErrors,
         ...{
-          [field]: { type: 'error', value: this.intl.t('utms.errors.blank_field') }
+          [field]: {
+            type: 'error',
+            value: this.intl.t('utms.errors.blank_field')
+          }
         }
       };
       this.notifyChanges();

@@ -1,7 +1,8 @@
-import AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';
-import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 import { setupTest } from 'ember-qunit';
 import { module, test } from 'qunit';
+
+import AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';
+import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 
 module('Unit | Service | autocomplete-handler', function (hooks) {
   setupTest(hooks);

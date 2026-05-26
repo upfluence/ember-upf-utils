@@ -41,7 +41,9 @@ module('Unit | Service | activity-watcher', function (hooks) {
     });
 
     test('When an event of type "token_destroyed" is received, it invalidates the session if the token is the same', function (assert) {
-      this.sessionService.data = { authenticated: { access_token: 'some-token' } };
+      this.sessionService.data = {
+        authenticated: { access_token: 'some-token' }
+      };
 
       this.eventService.dispatch({
         resource: '/notification/some-uu-id',

@@ -21,7 +21,10 @@ export default class ApplicationController extends Controller {
     countryCode: 'US',
     zipcode: '10016'
   };
-  @tracked shippingAddress = { address: '69 Avenue Victor Hugo, Paris, France', resolved_address: null };
+  @tracked shippingAddress = {
+    address: '69 Avenue Victor Hugo, Paris, France',
+    resolved_address: null
+  };
   @tracked inputValue: string = '';
   @tracked ossInputValue: string = '';
 

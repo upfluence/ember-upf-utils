@@ -53,7 +53,9 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     );
 
     utmFields.utm_source = 'a';
-    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a', { delay: 0 });
+    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a', {
+      delay: 0
+    });
     assert.true(
       this.onChange.calledWith(
         '{link_url}?utm_source=a&utm_medium={medium_field}&utm_campaign={campaign_field}',
@@ -64,7 +66,9 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     );
 
     utmFields.utm_medium = 'b';
-    await typeIn('[data-control-name="utm_medium_input"] .upf-input', 'b', { delay: 0 });
+    await typeIn('[data-control-name="utm_medium_input"] .upf-input', 'b', {
+      delay: 0
+    });
     assert.true(
       this.onChange.calledWith(
         '{link_url}?utm_source=a&utm_medium=b&utm_campaign={campaign_field}',
@@ -75,7 +79,9 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     );
 
     utmFields.utm_campaign = 'c';
-    await typeIn('[data-control-name="utm_campaign_input"] .upf-input', 'c', { delay: 0 });
+    await typeIn('[data-control-name="utm_campaign_input"] .upf-input', 'c', {
+      delay: 0
+    });
     assert.true(this.onChange.calledWith('{link_url}?utm_source=a&utm_medium=b&utm_campaign=c', true, true, utmFields));
     await settled();
   });
@@ -83,7 +89,9 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
   test('If a space character is inputted, it is replaced with a + sign', async function (assert) {
     await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
     await click('.upf-toggle');
-    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', { delay: 0 });
+    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', {
+      delay: 0
+    });
     await settled();
     assert.dom('[data-control-name="utm_source_input"] .upf-input').hasValue('a+a');
   });
@@ -130,7 +138,9 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variables={{this.variables}} />`);
     await click('.upf-toggle');
 
-    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', { delay: 0 });
+    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', {
+      delay: 0
+    });
     await settled();
     assert.dom('[data-control-name="utm_source_input"] .upf-input').hasValue('a+a');
   });

@@ -1,5 +1,6 @@
-import UEDitFileUploader from '@upfluence/ember-upf-utils/components/u-edit/shared-triggers/modals/file-uploader';
 import { FileValidator } from '@upfluence/oss-components/types/uploader';
+
+import UEDitFileUploader from '@upfluence/ember-upf-utils/components/u-edit/shared-triggers/modals/file-uploader';
 
 export default class UEditPDFUploadComponent extends UEDitFileUploader {
   titleKey: string = 'pdf';

@@ -28,14 +28,26 @@ export default class extends Component<HTTPErrorsCodeArgs> {
   get errorHints(): { icon: string; label: string }[] {
     if (this.args.httpError === '404') {
       return [
-        { icon: 'fa-unlink', label: this.intl.t('errors.404.hints.url_accuracy_check') },
-        { icon: 'fa-key', label: this.intl.t('errors.404.hints.authorization_check') }
+        {
+          icon: 'fa-unlink',
+          label: this.intl.t('errors.404.hints.url_accuracy_check')
+        },
+        {
+          icon: 'fa-key',
+          label: this.intl.t('errors.404.hints.authorization_check')
+        }
       ];
     }
 
     return [
-      { icon: 'fa-bug', label: this.intl.t('errors.500.hints.technical_issue') },
-      { icon: 'fa-life-ring', label: this.intl.t('errors.500.hints.contact_support') }
+      {
+        icon: 'fa-bug',
+        label: this.intl.t('errors.500.hints.technical_issue')
+      },
+      {
+        icon: 'fa-life-ring',
+        label: this.intl.t('errors.500.hints.contact_support')
+      }
     ];
   }
 

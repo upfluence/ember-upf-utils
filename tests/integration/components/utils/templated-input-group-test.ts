@@ -179,7 +179,10 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
     });
 
     test('Feedback message from parent component is handled', async function (assert) {
-      this.feedbackMessage = { type: 'error', value: 'Error coming from parent' };
+      this.feedbackMessage = {
+        type: 'error',
+        value: 'Error coming from parent'
+      };
 
       await render(
         hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @feedbackMessage={{this.feedbackMessage}} />`

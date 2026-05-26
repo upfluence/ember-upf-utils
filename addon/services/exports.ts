@@ -126,20 +126,24 @@ export default class ExportsService extends Service {
    ** }
    */
   getLimit(callback: (response: any) => void): Promise<void> {
-    return fetch(`${this._exportURL}/export/file/limit`, { headers: this._baseHeaders, method: 'GET' }).then(
-      (response) => {
-        if (!response.ok) {
-          return Promise.reject();
-        }
-        return response.json().then((data: { limit: number; spent: number }) => {
-          return callback(data);
-        });
+    return fetch(`${this._exportURL}/export/file/limit`, {
+      headers: this._baseHeaders,
+      method: 'GET'
+    }).then((response) => {
+      if (!response.ok) {
+        return Promise.reject();
       }
-    );
+      return response.json().then((data: { limit: number; spent: number }) => {
+        return callback(data);
+      });
+    });
   }
 
   getAvailableExports(): Promise<any> {
-    return fetch(`${this._exportURL}/discovery`, { headers: this._baseHeaders, method: 'GET' }).then((response) => {
+    return fetch(`${this._exportURL}/discovery`, {
+      headers: this._baseHeaders,
+      method: 'GET'
+    }).then((response) => {
       if (!response.ok) {
         return Promise.reject();
       }

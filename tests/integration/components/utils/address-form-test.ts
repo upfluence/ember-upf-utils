@@ -1,12 +1,13 @@
 import EmberObject from '@ember/object';
 import { click, fillIn, findAll, render, typeIn } from '@ember/test-helpers';
 
-import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
+
+import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-support/services/autocomplete-handler';
 
 module('Integration | Component | utils/address-form', function (hooks) {
   setupRenderingTest(hooks);
@@ -122,7 +123,9 @@ module('Integration | Component | utils/address-form', function (hooks) {
       hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
     );
 
-    await typeIn('[data-control-name="address-form-city"] input', 'f', { delay: 0 });
+    await typeIn('[data-control-name="address-form-city"] input', 'f', {
+      delay: 0
+    });
     await click('[data-control-name="address-form-state"] .upf-input');
     await click('[data-control-name="address-form-state"] .upf-infinite-select__item:nth-child(1)');
     assert.ok(this.onChange.calledWith(this.address, true));
@@ -158,7 +161,9 @@ module('Integration | Component | utils/address-form', function (hooks) {
         hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} @useGoogleAutocomplete={{false}}
                                 @usePhoneNumberInput={{true}} />`
       );
-      await typeIn('[data-control-name="address-form-phone"] input', '+8', { delay: 0 });
+      await typeIn('[data-control-name="address-form-phone"] input', '+8', {
+        delay: 0
+      });
       assert.ok(this.onChange.calledWith(this.address, false));
     });
   });

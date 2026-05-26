@@ -11,8 +11,16 @@ function getFormatter(number: number): Intl.NumberFormat {
   const options: Intl.NumberFormatOptions =
     absoluteValue >= PREVENT_COMPACT_NOTATION_BELOW
       ? reduced >= 10
-        ? { notation: 'compact', minimumFractionDigits: 0, maximumFractionDigits: 0 }
-        : { notation: 'compact', minimumFractionDigits: 0, maximumFractionDigits: 1 }
+        ? {
+            notation: 'compact',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+          }
+        : {
+            notation: 'compact',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 1
+          }
       : absoluteValue >= ROUND_TO_INTEGER_ABOVE
         ? { minimumFractionDigits: 0, maximumFractionDigits: 0 }
         : { minimumFractionDigits: 0, maximumFractionDigits: 2 };
