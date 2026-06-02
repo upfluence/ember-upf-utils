@@ -40,12 +40,12 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   get feedbackMessage(): FeedbackMessage | undefined {
     return (
       this.args.feedbackMessage ??
-      (!this.isInputValid
-        ? {
+      (this.isInputValid
+        ? undefined
+        : {
             type: 'error',
             value: this.intl.t('upf_utils.templated_input_group.error.invalid_merge_field')
-          }
-        : undefined)
+          })
     );
   }
 
@@ -64,11 +64,11 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   onInput(): void {
     const matches = [...this._inputValue.matchAll(VARIABLE_REGEX)];
 
-    if (matches.length > 1) {
-      const lastVariable = matches[matches.length - 1][0];
-      this.inputValue = this._inputValue.replace(VARIABLE_REGEX, '').replace(/\s+/g, ' ') + lastVariable;
-      this.inputElement?.focus();
-    }
+    if (matches.length <= 1) return;
+
+    const lastVariable = matches[matches.length - 1][0];
+    this.inputValue = this._inputValue.replace(VARIABLE_REGEX, '').replace(/\s+/g, ' ') + lastVariable;
+    this.inputElement?.focus();
   }
 
   @action
@@ -83,9 +83,9 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
       const cursorPosition = this.inputElement?.selectionStart ?? this._inputValue.length;
 
       this.inputValue =
-        variablePosition !== -1
-          ? this._inputValue.slice(0, variablePosition) + formattedVariable
-          : this._inputValue.slice(0, cursorPosition) + formattedVariable + this._inputValue.slice(cursorPosition);
+        variablePosition === -1
+          ? this._inputValue.slice(0, cursorPosition) + formattedVariable + this._inputValue.slice(cursorPosition)
+          : this._inputValue.slice(0, variablePosition) + formattedVariable;
     }
 
     this.inputElement?.focus();
