@@ -40,12 +40,7 @@
       {{else}}
         <div class="fx-col fx-gap-px-6">
           <div class="fx-row">
-            <span class="font-color-gray-500 font-size-md">
-              {{t "utms.fields.source"}}
-            </span>
-            <span class="font-color-error-500">
-              *
-            </span>
+            <label {{required-input}}> {{t "utms.fields.source"}} </label>
           </div>
           <OSS::InputContainer
             @value={{this.utmSource}}
@@ -59,12 +54,7 @@
 
         <div class="fx-col fx-gap-px-6">
           <div class="fx-row">
-            <span class="font-color-gray-500 font-size-md">
-              {{t "utms.fields.medium"}}
-            </span>
-            <span class="font-color-error-500">
-              *
-            </span>
+            <label {{required-input}}> {{t "utms.fields.medium"}} </label>
           </div>
           <OSS::InputContainer
             @value={{this.utmMedium}}
@@ -78,12 +68,7 @@
 
         <div class="fx-col fx-gap-px-6">
           <div class="fx-row">
-            <span class="font-color-gray-500 font-size-md">
-              {{t "utms.fields.campaign"}}
-            </span>
-            <span class="font-color-error-500">
-              *
-            </span>
+            <label {{required-input}}> {{t "utms.fields.campaign"}} </label>
           </div>
           <OSS::InputContainer
             @value={{this.utmCampaign}}
@@ -97,16 +82,17 @@
       {{/if}}
     </div>
     {{#if this.displayPreview}}
-      <hr />
+      <hr class="margin-bottom-px-12 margin-top-px-12" />
       <div class="fx-1 fx-col fx-gap-px-6">
-        <span class="font-size-md font-color-gray-500">{{t "utms.preview"}}</span>
+        <span class="font-size-md font-color-gray-900">{{t "utms.preview"}}</span>
         <p class="link-preview">
           <span class="font-color-primary-500">{{this.fieldUrl}}</span>
           <span>
             &quest;utm_source=<span class="font-color-primary-500">{{this.fieldSource}}</span>
           </span>
-          <span>&amp;utm_medium=<span class="font-color-primary-500">{{this.fieldMedium}}</span></span>
-          <span class="text-color-gray-500">
+          <span>&amp;utm_medium=<span class="font-color-primary-500">{{this.fieldMedium}}</span>
+          </span>
+          <span>
             &amp;utm_campaign=<span class="font-color-primary-500">{{this.fieldCampaign}}</span>
           </span>
         </p>

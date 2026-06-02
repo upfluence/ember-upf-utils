@@ -1,13 +1,15 @@
 <div class="templated-input-group" ...attributes>
   <div class="fx-col fx-gap-px-3">
     <div class="fx-row fx-malign-space-between">
-      <div class="font-color-gray-500 font-size-md" data-control-name="templated-input-group-title">
-        {{#if @required}}
-          <span {{required-input}}>{{@title}}</span>
-        {{else}}
-          <span>{{@title}}</span>
-        {{/if}}
-      </div>
+      {{#if @required}}
+        <label {{required-input}} data-control-name="templated-input-group-title">
+          {{@title}}
+        </label>
+      {{else}}
+        <label data-control-name="templated-input-group-title">
+          {{@title}}
+        </label>
+      {{/if}}
       {{#unless @disabled}}
         <OSS::Link
           @icon="fa-plus"
@@ -44,7 +46,7 @@
         {{/each}}
       </div>
     </div>
-    <span class="font-color-gray-500 text-size-4" data-control-name="templated-input-group-subtitle">
+    <span class="font-color-gray-900 text-size-4" data-control-name="templated-input-group-subtitle">
       {{@subtitle}}
     </span>
   </div>
