@@ -29,14 +29,19 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   @tracked inputElement?: HTMLInputElement | null;
   @tracked insertVariableLink?: HTMLElement | null;
 
-  get inputValue(): string {
-    return this.args.value;
+  constructor(owner: unknown, args: TemplatedInputGroupArgs) {
+    super(owner, args);
+    this._inputValue = args.value ?? '';
   }
 
   set inputValue(value: string) {
     this._inputValue = value;
     this.displayLocalValidationError = false;
     this.args.onChange(value, this.isInputValid);
+  }
+
+  get inputValue(): string {
+    return this._inputValue;
   }
 
   get feedbackMessage(): FeedbackMessage | undefined {
@@ -47,37 +52,37 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
     const shouldDisplayLocalValidationError =
       this.displayLocalValidationError && this.hasInputValue && !this.isInputValid;
 
-    if (!shouldDisplayLocalValidationError) return undefined;
-
-    return {
-      type: 'error',
-      value: this.intl.t('upf_utils.templated_input_group.error.invalid_merge_field')
-    };
+    return shouldDisplayLocalValidationError
+      ? {
+          type: 'error',
+          value: this.intl.t('upf_utils.templated_input_group.error.invalid_merge_field')
+        }
+      : undefined;
   }
 
   get isInputValid(): boolean {
     return (
-      !this.variableMatches ||
-      (this.variableMatches.length === 1 && this.args.variables.includes(this.variableMatches[0].slice(2, -2)))
+      !this.matchedVariables ||
+      (this.matchedVariables.length === 1 && this.args.variables.includes(this.matchedVariables[0].slice(2, -2)))
     );
   }
 
-  get variableMatches(): RegExpMatchArray | null {
-    return this._inputValue.match(VARIABLE_REGEX);
+  get matchedVariables(): RegExpMatchArray | null {
+    return this.inputValue.match(VARIABLE_REGEX);
   }
 
   get hasInputValue(): boolean {
-    return this._inputValue.trim().length > 0;
+    return this.inputValue.trim().length > 0;
   }
 
   @action
   onInput(): void {
-    const matches = [...this._inputValue.matchAll(VARIABLE_REGEX)];
+    const matches = [...this.inputValue.matchAll(VARIABLE_REGEX)];
 
     if (matches.length <= 1) return;
 
     const lastVariable = matches[matches.length - 1][0];
-    this.inputValue = this._inputValue.replace(VARIABLE_REGEX, '').replace(/\s+/g, ' ') + lastVariable;
+    this.inputValue = this.inputValue.replace(VARIABLE_REGEX, '').replace(/\s+/g, ' ') + lastVariable;
     this.inputElement?.focus();
   }
 
@@ -86,16 +91,16 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
     e.stopPropagation();
     const formattedVariable = `{{${variable}}}`;
 
-    if (this.variableMatches) {
-      this.inputValue = this._inputValue.replace(VARIABLE_REGEX, formattedVariable);
+    if (this.matchedVariables) {
+      this.inputValue = this.inputValue.replace(VARIABLE_REGEX, formattedVariable);
     } else {
-      const variablePosition = this._inputValue.indexOf('{');
-      const cursorPosition = this.inputElement?.selectionStart ?? this._inputValue.length;
+      const variablePosition = this.inputValue.indexOf('{');
+      const cursorPosition = this.inputElement?.selectionStart ?? this.inputValue.length;
 
       this.inputValue =
         variablePosition === -1
-          ? this._inputValue.slice(0, cursorPosition) + formattedVariable + this._inputValue.slice(cursorPosition)
-          : this._inputValue.slice(0, variablePosition) + formattedVariable;
+          ? this.inputValue.slice(0, cursorPosition) + formattedVariable + this.inputValue.slice(cursorPosition)
+          : this.inputValue.slice(0, variablePosition) + formattedVariable;
     }
 
     this.inputElement?.focus();
@@ -104,8 +109,8 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @action
   triggerVariableInput(): void {
-    const lastOpenIndex = this._inputValue.lastIndexOf('{{');
-    const lastCloseIndex = this._inputValue.lastIndexOf('}}');
+    const lastOpenIndex = this.inputValue.lastIndexOf('{{');
+    const lastCloseIndex = this.inputValue.lastIndexOf('}}');
 
     this.displayTemplateVariables = lastOpenIndex !== -1 && lastOpenIndex > lastCloseIndex;
   }
@@ -139,7 +144,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   @action
   registerInput(e: HTMLElement): void {
     this.inputElement = e.querySelector('input');
-    this._inputValue = this.inputElement?.value ?? this.args.value ?? '';
+    this._inputValue = this.inputElement?.value ?? this.inputValue;
   }
 
   @action
