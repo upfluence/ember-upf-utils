@@ -24,6 +24,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   @service declare intl: IntlService;
 
   @tracked displayTemplateVariables = false;
+  @tracked displayLocalValidationError = false;
   @tracked _inputValue = '';
   @tracked inputElement?: HTMLInputElement | null;
   @tracked insertVariableLink?: HTMLElement | null;
@@ -34,19 +35,24 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   set inputValue(value: string) {
     this._inputValue = value;
+    this.displayLocalValidationError = false;
     this.args.onChange(value, this.isInputValid);
   }
 
   get feedbackMessage(): FeedbackMessage | undefined {
-    return (
-      this.args.feedbackMessage ??
-      (this.isInputValid
-        ? undefined
-        : {
-            type: 'error',
-            value: this.intl.t('upf_utils.templated_input_group.error.invalid_merge_field')
-          })
-    );
+    return this.args.feedbackMessage ?? this.localFeedbackMessage;
+  }
+
+  get localFeedbackMessage(): FeedbackMessage | undefined {
+    const shouldDisplayLocalValidationError =
+      this.displayLocalValidationError && this.hasInputValue && !this.isInputValid;
+
+    if (!shouldDisplayLocalValidationError) return undefined;
+
+    return {
+      type: 'error',
+      value: this.intl.t('upf_utils.templated_input_group.error.invalid_merge_field')
+    };
   }
 
   get isInputValid(): boolean {
@@ -58,6 +64,10 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   get variableMatches(): RegExpMatchArray | null {
     return this._inputValue.match(VARIABLE_REGEX);
+  }
+
+  get hasInputValue(): boolean {
+    return this._inputValue.trim().length > 0;
   }
 
   @action
@@ -101,6 +111,11 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   }
 
   @action
+  validateInput(): void {
+    this.displayLocalValidationError = this.hasInputValue && !this.isInputValid;
+  }
+
+  @action
   toggleTemplateVariables(e: MouseEvent): void {
     e.stopPropagation();
     e.preventDefault();
@@ -124,6 +139,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   @action
   registerInput(e: HTMLElement): void {
     this.inputElement = e.querySelector('input');
+    this._inputValue = this.inputElement?.value ?? this.args.value ?? '';
   }
 
   @action
