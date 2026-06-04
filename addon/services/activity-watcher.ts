@@ -11,6 +11,7 @@ type NotificationEvent = {
     notification_type: string;
     timestamp: number;
     data: any;
+    read: boolean;
   };
 };
 
@@ -162,6 +163,8 @@ export default class ActivityWatcher extends Service {
       this.checkIfUserNeedsToBeDisconnected(evt);
       return;
     }
+
+    if (evt.payload.read) return;
 
     const notif = this.buildNotification(evt);
 
