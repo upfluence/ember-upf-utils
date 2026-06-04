@@ -25,23 +25,18 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @tracked displayTemplateVariables = false;
   @tracked displayLocalValidationError = false;
-  @tracked _inputValue = '';
+  @tracked _inputValue = this.args.value ?? '';
   @tracked inputElement?: HTMLInputElement | null;
   @tracked insertVariableLink?: HTMLElement | null;
-
-  constructor(owner: unknown, args: TemplatedInputGroupArgs) {
-    super(owner, args);
-    this._inputValue = args.value ?? '';
-  }
 
   set inputValue(value: string) {
     this._inputValue = value;
     this.displayLocalValidationError = false;
-    this.args.onChange(value, this.isInputValid);
+    this.args.onChange(value, this.isVariableFormat);
   }
 
   get inputValue(): string {
-    return this._inputValue;
+    return this.args.value;
   }
 
   get feedbackMessage(): FeedbackMessage | undefined {
@@ -50,7 +45,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   get localFeedbackMessage(): FeedbackMessage | undefined {
     const shouldDisplayLocalValidationError =
-      this.displayLocalValidationError && this.hasInputValue && !this.isInputValid;
+      this.displayLocalValidationError && this.hasInputValue && !this.isVariableFormat;
 
     return shouldDisplayLocalValidationError
       ? {
@@ -60,7 +55,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
       : undefined;
   }
 
-  get isInputValid(): boolean {
+  get isVariableFormat(): boolean {
     return (
       !this.matchedVariables ||
       (this.matchedVariables.length === 1 && this.args.variables.includes(this.matchedVariables[0].slice(2, -2)))
@@ -117,7 +112,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @action
   validateInput(): void {
-    this.displayLocalValidationError = this.hasInputValue && !this.isInputValid;
+    this.displayLocalValidationError = this.hasInputValue && !this.isVariableFormat;
   }
 
   @action

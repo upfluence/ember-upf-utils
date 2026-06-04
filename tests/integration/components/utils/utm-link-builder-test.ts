@@ -132,6 +132,19 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
       .containsText('Insert variable');
   });
 
+  test('If variables are enabled and a space character is inputed, it is replaced with a + sign', async function (assert) {
+    this.variables = ['InstagramUsername', 'TiktokUsername'];
+
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variables={{this.variables}} />`);
+    await click('.upf-toggle');
+
+    await typeIn('[data-control-name="utm_source_input"] .upf-input', 'a a', {
+      delay: 0
+    });
+    await settled();
+    assert.dom('[data-control-name="utm_source_input"] .upf-input').hasValue('a+a');
+  });
+
   test('When link params are passed, UTM link builder is toggled and filled with values', async function (assert) {
     this.linkParams = {
       utm_source: 'source',
