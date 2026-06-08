@@ -17,6 +17,8 @@
           @value={{this.utmSource}}
           @placeholder={{t "utms.fields.source_placeholder"}}
           @required={{true}}
+          @feedbackMessage={{this.validationErrors.utmSource}}
+          {{on "focusout" (fn this.validateField "utmSource")}}
           data-control-name="utm_source_input"
         />
         <Utils::TemplatedInputGroup
@@ -26,6 +28,8 @@
           @value={{this.utmMedium}}
           @placeholder={{t "utms.fields.medium_placeholder"}}
           @required={{true}}
+          @feedbackMessage={{this.validationErrors.utmMedium}}
+          {{on "focusout" (fn this.validateField "utmMedium")}}
           data-control-name="utm_medium_input"
         />
         <Utils::TemplatedInputGroup
@@ -35,6 +39,8 @@
           @value={{this.utmCampaign}}
           @placeholder={{t "utms.fields.campaign_placeholder"}}
           @required={{true}}
+          @feedbackMessage={{this.validationErrors.utmCampaign}}
+          {{on "focusout" (fn this.validateField "utmCampaign")}}
           data-control-name="utm_campaign_input"
         />
       {{else}}
