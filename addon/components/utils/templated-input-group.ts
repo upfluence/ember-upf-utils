@@ -32,7 +32,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   set inputValue(value: string) {
     this._inputValue = value;
     this.displayLocalValidationError = false;
-    this.args.onChange(value, this.isVariableFormat);
+    this.args.onChange(value, this.isInputValid);
   }
 
   get inputValue(): string {
@@ -45,7 +45,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   get localFeedbackMessage(): FeedbackMessage | undefined {
     const shouldDisplayLocalValidationError =
-      this.displayLocalValidationError && this.hasInputValue && !this.isVariableFormat;
+      this.displayLocalValidationError && this.hasInputValue && !this.isInputValid;
 
     return shouldDisplayLocalValidationError
       ? {
@@ -55,14 +55,14 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
       : undefined;
   }
 
-  get isVariableFormat(): boolean {
+  get isInputValid(): boolean {
     return (
-      !this.matchedVariables ||
-      (this.matchedVariables.length === 1 && this.args.variables.includes(this.matchedVariables[0].slice(2, -2)))
+      !this.isVariableFormat ||
+      (this.isVariableFormat.length === 1 && this.args.variables.includes(this.isVariableFormat[0].slice(2, -2)))
     );
   }
 
-  get matchedVariables(): RegExpMatchArray | null {
+  get isVariableFormat(): RegExpMatchArray | null {
     return this.inputValue.match(VARIABLE_REGEX);
   }
 
@@ -86,7 +86,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
     e.stopPropagation();
     const formattedVariable = `{{${variable}}}`;
 
-    if (this.matchedVariables) {
+    if (this.isVariableFormat) {
       this.inputValue = this.inputValue.replace(VARIABLE_REGEX, formattedVariable);
     } else {
       const variablePosition = this.inputValue.indexOf('{');
@@ -112,7 +112,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @action
   validateInput(): void {
-    this.displayLocalValidationError = this.hasInputValue && !this.isVariableFormat;
+    this.displayLocalValidationError = this.hasInputValue && !this.isInputValid;
   }
 
   @action
