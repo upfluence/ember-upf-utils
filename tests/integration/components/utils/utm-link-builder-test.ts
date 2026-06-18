@@ -113,6 +113,20 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     });
   });
 
+  test('When one blank UTM field is blurred, all blank required fields display an error', async function (assert) {
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
+    await click('.upf-toggle');
+    await focus('[data-control-name="utm_source_input"] input');
+    await blur('[data-control-name="utm_source_input"] input');
+
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach((field) => {
+      assert.dom(`[data-control-name="${field}_input"] + .font-color-error-500`).exists();
+      assert
+        .dom(`[data-control-name="${field}_input"] + .font-color-error-500`)
+        .hasText(this.intl.t('utms.errors.blank_field'));
+    });
+  });
+
   test('If variables are unavailable, templated input group component is not rendered', async function (assert) {
     this.variables = ['InstagramUsername', 'TiktokUsername'];
 
@@ -143,6 +157,19 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
     });
     await settled();
     assert.dom('[data-control-name="utm_source_input"] .upf-input').hasValue('a+a');
+  });
+
+  test('When variables are enabled and one blank UTM field is blurred, all blank required fields display an error', async function (assert) {
+    this.variables = ['InstagramUsername', 'TiktokUsername'];
+
+    await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} @variables={{this.variables}} />`);
+    await click('.upf-toggle');
+    await focus('[data-control-name="utm_source_input"] input');
+    await blur('[data-control-name="utm_source_input"] input');
+
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach((field) => {
+      assert.dom(`[data-control-name="${field}_input"]`).includesText(this.intl.t('utms.errors.blank_field'));
+    });
   });
 
   test('When link params are passed, UTM link builder is toggled and filled with values', async function (assert) {

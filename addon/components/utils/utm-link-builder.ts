@@ -14,6 +14,9 @@ export type UtmFields = {
   utm_campaign: string;
 };
 
+const UTM_FIELDS = ['utmSource', 'utmMedium', 'utmCampaign'] as const;
+type UtmField = (typeof UTM_FIELDS)[number];
+
 interface UtilsUtmLinkBuilderArgs {
   url: string;
   title?: string;
@@ -97,16 +100,11 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   }
 
   @action
-  validateField(field: string): void {
-    if (isBlank(this[field as keyof this])) {
+  validateField(field: UtmField): void {
+    if (isBlank(this[field])) {
       this.validationErrors = {
         ...this.validationErrors,
-        ...{
-          [field]: {
-            type: 'error',
-            value: this.intl.t('utms.errors.blank_field')
-          }
-        }
+        ...this.blankValidationErrors
       };
       this.notifyChanges();
       return;
@@ -127,6 +125,18 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
 
   get previewUrl(): string {
     return `${this.fieldUrl}?utm_source=${this.fieldSource}&utm_medium=${this.fieldMedium}&utm_campaign=${this.fieldCampaign}`;
+  }
+
+  get blankValidationErrors(): Record<string, FeedbackMessage> {
+    return UTM_FIELDS.reduce<Record<string, FeedbackMessage>>((errors, utmField) => {
+      if (isBlank(this[utmField])) {
+        errors[utmField] = {
+          type: 'error',
+          value: this.intl.t('utms.errors.blank_field')
+        };
+      }
+      return errors;
+    }, {});
   }
 
   get fieldUrl(): string {

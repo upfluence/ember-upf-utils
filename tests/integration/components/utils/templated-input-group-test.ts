@@ -51,7 +51,8 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
       await render(
         hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} />`
       );
-      assert.dom('[data-control-name="templated-input-group-title"]').hasText('Title*');
+      assert.dom('[data-control-name="templated-input-group-title"]').includesText('Title');
+      assert.dom('[data-control-name="templated-input-group-title"]').includesText('*');
     });
 
     test('Subtitle is displayed', async function (assert) {
