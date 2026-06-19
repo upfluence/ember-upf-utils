@@ -25,7 +25,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @tracked displayTemplateVariables = false;
   @tracked displayLocalValidationError = false;
-  @tracked _inputValue = this.args.value ?? '';
+  @tracked _inputValue = '';
   @tracked inputElement?: HTMLInputElement | null;
   @tracked insertVariableLink?: HTMLElement | null;
 
@@ -36,7 +36,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   }
 
   get inputValue(): string {
-    return this._inputValue;
+    return this.args.value;
   }
 
   get feedbackMessage(): FeedbackMessage | undefined {
@@ -63,21 +63,21 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   }
 
   get isVariableFormat(): RegExpMatchArray | null {
-    return this.inputValue.match(VARIABLE_REGEX);
+    return this._inputValue.match(VARIABLE_REGEX);
   }
 
   get hasInputValue(): boolean {
-    return this.inputValue.trim().length > 0;
+    return this._inputValue.trim().length > 0;
   }
 
   @action
   onInput(): void {
-    const matches = [...this.inputValue.matchAll(VARIABLE_REGEX)];
+    const matches = [...this._inputValue.matchAll(VARIABLE_REGEX)];
 
     if (matches.length <= 1) return;
 
     const lastVariable = matches[matches.length - 1][0];
-    this.inputValue = this.inputValue.replace(VARIABLE_REGEX, '').replace(/\s+/g, ' ') + lastVariable;
+    this.inputValue = this._inputValue.replace(VARIABLE_REGEX, '').replace(/\s+/g, ' ') + lastVariable;
     this.inputElement?.focus();
   }
 
@@ -87,15 +87,15 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
     const formattedVariable = `{{${variable}}}`;
 
     if (this.isVariableFormat) {
-      this.inputValue = this.inputValue.replace(VARIABLE_REGEX, formattedVariable);
+      this.inputValue = this._inputValue.replace(VARIABLE_REGEX, formattedVariable);
     } else {
-      const variablePosition = this.inputValue.indexOf('{');
-      const cursorPosition = this.inputElement?.selectionStart ?? this.inputValue.length;
+      const variablePosition = this._inputValue.indexOf('{');
+      const cursorPosition = this.inputElement?.selectionStart ?? this._inputValue.length;
 
       this.inputValue =
         variablePosition === -1
-          ? this.inputValue.slice(0, cursorPosition) + formattedVariable + this.inputValue.slice(cursorPosition)
-          : this.inputValue.slice(0, variablePosition) + formattedVariable;
+          ? this._inputValue.slice(0, cursorPosition) + formattedVariable + this._inputValue.slice(cursorPosition)
+          : this._inputValue.slice(0, variablePosition) + formattedVariable;
     }
 
     this.inputElement?.focus();
@@ -104,8 +104,8 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
 
   @action
   triggerVariableInput(): void {
-    const lastOpenIndex = this.inputValue.lastIndexOf('{{');
-    const lastCloseIndex = this.inputValue.lastIndexOf('}}');
+    const lastOpenIndex = this._inputValue.lastIndexOf('{{');
+    const lastCloseIndex = this._inputValue.lastIndexOf('}}');
 
     this.displayTemplateVariables = lastOpenIndex !== -1 && lastOpenIndex > lastCloseIndex;
   }
