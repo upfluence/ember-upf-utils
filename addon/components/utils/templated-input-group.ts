@@ -36,7 +36,7 @@ export default class UtilsTemplatedInputGroup extends Component<TemplatedInputGr
   }
 
   get inputValue(): string {
-    return this.args.value;
+    return this._inputValue;
   }
 
   get feedbackMessage(): FeedbackMessage | undefined {
