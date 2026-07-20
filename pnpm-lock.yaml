@@ -20,9 +20,6 @@ importers:
       '@upfluence/ember-brand-manager':
         specifier: ^1.0.4
         version: 1.0.4(@babel/core@7.26.0)
-      '@upfluence/hyperevents':
-        specifier: ^1.0.0
-        version: 1.0.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
       calculate-cache-key-for-tree:
         specifier: ^2.0.0
         version: 2.0.0
@@ -156,6 +153,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^5.0.0
         version: 5.62.0(eslint@7.32.0)(typescript@4.9.5)
+      '@upfluence/hyperevents':
+        specifier: ^1.0.0
+        version: 1.0.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
       '@upfluence/oss-components':
         specifier: ^3.91.4
         version: 3.91.4(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
