@@ -157,8 +157,8 @@ importers:
         specifier: ^5.0.0
         version: 5.62.0(eslint@7.32.0)(typescript@4.9.5)
       '@upfluence/oss-components':
-        specifier: ^3.91.4
-        version: 3.91.4(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
+        specifier: ^3.98.6
+        version: 3.98.6(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
       '@upfluence/w-conf':
         specifier: ^0.2.0
         version: 0.2.0(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.8.3))(prettier@3.8.3)
@@ -1534,8 +1534,8 @@ packages:
     peerDependencies:
       ember-source: '>=3.28'
 
-  '@upfluence/oss-components@3.91.4':
-    resolution: {integrity: sha512-36JKFcaFYf7lJcKwdPyTZf9sM45opBF9H5lrmz/U7Rex4RKpY02w/bIe3iqxvKfX6qKwD4cEIp16H9m8gW3oAw==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.91.4/eb74c191923ed4d5c34948d8d14659f7c3b93cf7}
+  '@upfluence/oss-components@3.98.6':
+    resolution: {integrity: sha512-4sU+Lq35QoduxGXQ/hCzCpreCp70BSO6HWExIjonH9SmwugxvOGd2/b441b4k577hEUfre+51JG9HwsnAIOAZA==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.98.6/a9b3514aabea841cb1b6e1a4a5ad5e041c7495de}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       qunit: ^2.x
@@ -8858,10 +8858,10 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/oss-components@3.91.4(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
+  '@upfluence/oss-components@3.98.6(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
-      '@embroider/macros': 1.16.10
+      '@embroider/macros': 1.19.7
       '@embroider/util': 1.13.5(ember-source@3.28.12(@babel/core@7.26.0))
       '@floating-ui/dom': 1.7.5
       '@fortawesome/fontawesome-pro': git+https://git@github.com:upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420

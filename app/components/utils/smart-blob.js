@@ -1,1 +1,1 @@
-export { default } from '@upfluence/ember-upf-utils/components/utils/smart-blob';
+export { default } from '@upfluence/oss-components/components/o-s-s/smart/blob';
