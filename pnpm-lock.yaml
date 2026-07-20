@@ -157,8 +157,8 @@ importers:
         specifier: ^5.0.0
         version: 5.62.0(eslint@7.32.0)(typescript@4.9.5)
       '@upfluence/oss-components':
-        specifier: upfluence/oss-components#pn/incorporate-smart-blob
-        version: https://codeload.github.com/upfluence/oss-components/tar.gz/ad936c50529afee0afc784f4361c9cbc8898c605(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
+        specifier: ^3.98.6
+        version: 3.98.6(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)
       '@upfluence/w-conf':
         specifier: ^0.2.0
         version: 0.2.0(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.8.3))(prettier@3.8.3)
@@ -1534,9 +1534,8 @@ packages:
     peerDependencies:
       ember-source: '>=3.28'
 
-  '@upfluence/oss-components@https://codeload.github.com/upfluence/oss-components/tar.gz/ad936c50529afee0afc784f4361c9cbc8898c605':
-    resolution: {gitHosted: true, integrity: sha512-CZd4tUDf0V3QgP+Mv1rl4Q6ZkgGZdiBZCo/IOHVerUV69DXr27cN7wOH3p1wKLPjRbS9AVssOTftQ45kLOVMbA==, tarball: https://codeload.github.com/upfluence/oss-components/tar.gz/ad936c50529afee0afc784f4361c9cbc8898c605}
-    version: 3.95.2
+  '@upfluence/oss-components@3.98.6':
+    resolution: {integrity: sha512-4sU+Lq35QoduxGXQ/hCzCpreCp70BSO6HWExIjonH9SmwugxvOGd2/b441b4k577hEUfre+51JG9HwsnAIOAZA==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.98.6/a9b3514aabea841cb1b6e1a4a5ad5e041c7495de}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       qunit: ^2.x
@@ -8859,7 +8858,7 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/oss-components@https://codeload.github.com/upfluence/oss-components/tar.gz/ad936c50529afee0afc784f4361c9cbc8898c605(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
+  '@upfluence/oss-components@3.98.6(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@4.9.5)(webpack@5.97.1)':
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
       '@embroider/macros': 1.19.7
