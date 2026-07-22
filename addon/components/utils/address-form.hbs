@@ -107,7 +107,7 @@
     </div>
 
     <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{(if this.provincesForCountry (modifier "required-input"))}}>
+      <label key={{@address.countryCode}} {{(if this.provincesForCountry (modifier "required-input"))}}>
         {{t "upf_utils.address_form.state"}}
       </label>
       {{#if this.provincesForCountry}}
