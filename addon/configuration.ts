@@ -20,7 +20,7 @@ export default {
   __initialized__: false,
 
   load(config) {
-    for (let property in this) {
+    for (const property in this) {
       // eslint-disable-next-line no-prototype-builtins
       if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
         this[property] = get(config, property) === undefined ? DEFAULTS[property] : get(config, property);

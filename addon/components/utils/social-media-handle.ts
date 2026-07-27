@@ -98,7 +98,7 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
 
   private cleanHandleFormatting(handle: string): string {
     handle = handle.endsWith('/') ? handle.slice(0, -1) : handle;
-    let urlSplit = handle.split('/');
+    const urlSplit = handle.split('/');
     return urlSplit.pop()?.replace('@', '') || '';
   }
 

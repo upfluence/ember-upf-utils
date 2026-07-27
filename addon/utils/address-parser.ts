@@ -2,7 +2,7 @@ import { countries } from '@upfluence/oss-components/utils/country-codes';
 
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
-const ADDRESS_COMPONENT_TYPES = [
+export const ADDRESS_COMPONENT_TYPES = [
   'street_number',
   'route',
   'subpremise',

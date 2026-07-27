@@ -81,11 +81,17 @@ export function logoIconGenerator(): string {
 
 export default class extends Component<LogoMakerArgs> {
   @tracked localLogoIcon: string | undefined;
-  @tracked selectedIcon: string = this.args.icon;
-  @tracked selectedColor: string = this.args.color;
+  @tracked selectedIcon: string;
+  @tracked selectedColor: string;
 
   campaignColors = DEFAULT_COLORS;
   campaignIcons = DEFAULT_ICONS;
+
+  constructor(owner: unknown, args: LogoMakerArgs) {
+    super(owner, args);
+    this.selectedIcon = this.args.icon;
+    this.selectedColor = this.args.color;
+  }
 
   get selectedIconClass(): string {
     return `logo-icon--selected logo-icon-color_${this.selectedColor}`;

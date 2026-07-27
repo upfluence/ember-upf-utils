@@ -22,7 +22,7 @@ class AutocompleteHandlerServiceMock extends Service implements AutocompleteHand
 }
 
 class MockAutocomplete {
-  private listeners: Map<string, Function[]> = new Map();
+  private listeners: Map<string, (() => void)[]> = new Map();
   private mockPlace: MockPlaceResult = {};
 
   constructor(
@@ -30,7 +30,7 @@ class MockAutocomplete {
     public options?: Record<string, any>
   ) {}
 
-  addListener(eventName: string, handler: Function): void {
+  addListener(eventName: string, handler: () => void): void {
     if (!this.listeners.has(eventName)) {
       this.listeners.set(eventName, []);
     }
@@ -62,18 +62,19 @@ class MockLoader {
   constructor(public config?: Record<string, any>) {}
 
   async importLibrary(libraryName: string): Promise<any> {
-    if (libraryName === 'places') {
-      const self = this;
-      return {
-        Autocomplete: class {
-          constructor(input: HTMLInputElement, options?: Record<string, any>) {
-            self.mockAutocompleteInstance = new MockAutocomplete(input, options);
-            return self.mockAutocompleteInstance;
-          }
+    if (libraryName !== 'places') return {};
+
+    const setMockAutocompleteInstance = (instance: MockAutocomplete): MockAutocomplete => {
+      this.mockAutocompleteInstance = instance;
+      return instance;
+    };
+    return {
+      Autocomplete: class {
+        constructor(input: HTMLInputElement, options?: Record<string, any>) {
+          return setMockAutocompleteInstance(new MockAutocomplete(input, options));
         }
-      };
-    }
-    return {};
+      }
+    };
   }
 
   getMockAutocompleteInstance(): MockAutocomplete | null {

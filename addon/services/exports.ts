@@ -61,7 +61,7 @@ export default class ExportsService extends Service {
     maxSize: number,
     tags: string[]
   ): Promise<any> {
-    let payload: any = { destination: { to: exportingTo } };
+    const payload: any = { destination: { to: exportingTo } };
 
     if (isEmpty(influencerIds)) {
       payload.source = { from: exportingFrom, filters: filters };
@@ -169,8 +169,8 @@ export default class ExportsService extends Service {
     });
   }
 
-  createEntity(data: Object, callback: (response: any) => void): Promise<any> {
-    let url = `${this._exportURL}/entities`;
+  createEntity(data: object, callback: (response: any) => void): Promise<any> {
+    const url = `${this._exportURL}/entities`;
     const headers = new Headers(this._baseHeaders);
     headers.append('Content-Type', 'application/json');
     return fetch(url, {

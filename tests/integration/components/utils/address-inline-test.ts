@@ -47,7 +47,7 @@ module('Integration | Component | utils/address-inline', function (hooks) {
       await typeIn('[data-control-name="address-inline"] .upf-input', 'reet', {
         delay: 0
       });
-      assert.equal(this.onChange.callCount, 4);
+      assert.strictEqual(this.onChange.callCount, 4);
       assert.true(
         this.onChange.lastCall.calledWith({
           address: '123 Main Street',
