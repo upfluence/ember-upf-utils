@@ -172,7 +172,6 @@ module('Unit | Service | activity-watcher', function (hooks) {
 
     eventTypesTestCases.forEach((testCase: any) => {
       test('it dispatches events for ' + testCase.notification.notification_type, function (assert) {
-
         this.eventService.dispatch({
           resource: '/notification/some-uu-id',
           payload: testCase.notification
@@ -181,10 +180,12 @@ module('Unit | Service | activity-watcher', function (hooks) {
         if (testCase.wantErrorTitle || testCase.wantErrorMessage) {
           assert.strictEqual(
             this.toastErrorStub.firstCall.args[0].toString(),
-            this.intl.t(`notifications.${testCase.notification.notification_type}.description`, {
-              ...testCase.notification.data,
-              htmlSafe: true
-            })
+            this.intl
+              .t(`notifications.${testCase.notification.notification_type}.description`, {
+                ...testCase.notification.data,
+                htmlSafe: true
+              })
+              .toString()
           );
           assert.strictEqual(this.toastErrorStub.firstCall.args[1], testCase.wantErrorTitle);
         }
@@ -192,10 +193,12 @@ module('Unit | Service | activity-watcher', function (hooks) {
         if (testCase.wantInfoTitle || testCase.wantInfoMessage) {
           assert.strictEqual(
             this.toastInfoStub.firstCall.args[0].toString(),
-            this.intl.t(`notifications.${testCase.notification.notification_type}.description`, {
-              ...testCase.notification.data,
-              htmlSafe: true
-            })
+            this.intl
+              .t(`notifications.${testCase.notification.notification_type}.description`, {
+                ...testCase.notification.data,
+                htmlSafe: true
+              })
+              .toString()
           );
           assert.strictEqual(this.toastInfoStub.firstCall.args[1], testCase.wantInfoTitle);
         }
