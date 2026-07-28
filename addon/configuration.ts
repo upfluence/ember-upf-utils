@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { get } from '@ember/object';
 import { typeOf } from '@ember/utils';
 
-const DEFAULTS = {
+const DEFAULTS: Record<string, unknown> = {
   uploaderUrl: 'http://localhost:8080/upload',
   exportUrl: 'http://localhost:9001/export',
   meURL: 'http://localhost:9000/me',
@@ -10,7 +9,15 @@ const DEFAULTS = {
   scope: ['facade_web']
 };
 
-export default {
+type Defaults = typeof DEFAULTS;
+
+interface Configuration extends Defaults {
+  __initialized__: boolean;
+  load(config: unknown): void;
+  [key: string]: unknown;
+}
+
+const configuration: Configuration = {
   uploaderUrl: DEFAULTS.uploaderUrl,
   exportUrl: DEFAULTS.exportUrl,
   settingsURL: DEFAULTS.settingsURL,
@@ -19,14 +26,15 @@ export default {
 
   __initialized__: false,
 
-  load(config) {
+  load(config: unknown) {
     for (const property in this) {
-      // eslint-disable-next-line no-prototype-builtins
-      if (this.hasOwnProperty(property) && typeOf(this[property]) !== 'function') {
-        this[property] = get(config, property) === undefined ? DEFAULTS[property] : get(config, property);
-      }
+      if (!Object.prototype.hasOwnProperty.call(this, property) || typeOf(this[property]) === 'function') continue;
+
+      this[property] = get(config, property) ?? DEFAULTS[property];
     }
 
     this.__initialized__ = true;
   }
 };
+
+export default configuration;

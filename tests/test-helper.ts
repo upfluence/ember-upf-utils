@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { setApplication } from '@ember/test-helpers';
 
 import { forceModulesToBeLoaded, sendCoverage } from 'ember-cli-code-coverage/test-support';
