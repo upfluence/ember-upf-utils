@@ -93,8 +93,7 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   }
 
   @action
-  notifyChanges(target?: string): void {
-    // @ts-expect-error dynamic property access via string index
+  notifyChanges(target?: UtmField): void {
     if (target) this[target] = this[target].replaceAll(' ', '+');
     this.args.onChange(this.previewUrl, this.utmsEnabled, this.utmsValid, this.utmFields);
   }
