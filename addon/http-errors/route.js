@@ -12,6 +12,8 @@ export default class HttpErrorsRoute extends Route {
   setupController(controller, error) {
     super.setupController(controller, error);
 
+    controller.hintContext = this.hintContext ?? 'default';
+
     // eslint-disable-next-line no-prototype-builtins
     if (error && error.hasOwnProperty('path')) {
       this.errorValue = NOT_FOUND;

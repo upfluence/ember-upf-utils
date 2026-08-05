@@ -6,7 +6,8 @@ import Component from '@glimmer/component';
 import type { IntlService } from 'ember-intl';
 
 interface HTTPErrorsCodeArgs {
-  httpError: '404' | '500' | 'default';
+  httpError: "404" | "500" | "default";
+  hintContext: "default" | "creator";
 }
 
 export default class extends Component<HTTPErrorsCodeArgs> {
@@ -32,10 +33,14 @@ export default class extends Component<HTTPErrorsCodeArgs> {
           icon: 'fa-unlink',
           label: this.intl.t('errors.404.hints.url_accuracy_check')
         },
-        {
-          icon: 'fa-key',
-          label: this.intl.t('errors.404.hints.authorization_check')
-        }
+        ...(this.args.hintContext !== 'creator'
+          ? [
+              {
+                icon: 'fa-key',
+                label: this.intl.t('errors.404.hints.authorization_check')
+              }
+            ]
+          : [])
       ];
     }
 
