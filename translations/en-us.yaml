@@ -35,6 +35,7 @@ upf_utils:
       selected: Selected
   templated_input_group:
     insert_variable: Insert variable
+    recommended: Recommended
     template_variables:
       Username: Username
       FirstName: First name

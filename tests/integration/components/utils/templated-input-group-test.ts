@@ -126,6 +126,23 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
       assert.dom('.upf-floating-menu--visible').hasText('Instagram username Tiktok username');
     });
 
+    test('Username variable is marked as recommended', async function (assert) {
+      this.variables = ['Username', 'FirstName'];
+
+      await render(
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} />`
+      );
+
+      await click('[data-control-name="templated-input-group-insert-variable-link"]');
+      assert
+        .dom('.upf-floating-menu--visible .upf-floating-menu__item:nth-child(1) .upf-tag')
+        .hasText(this.intl.t('upf_utils.templated_input_group.recommended'));
+      assert
+        .dom('.upf-floating-menu--visible .upf-floating-menu__item:nth-child(1) .upf-tag')
+        .hasClass('upf-tag--regular');
+      assert.dom('.upf-floating-menu--visible .upf-floating-menu__item:nth-child(2) .upf-tag').doesNotExist();
+    });
+
     test('Dropdown variables list is opened when {{ is typed in input', async function (assert) {
       await render(
         hbs`<Utils::TemplatedInputGroup @title={{this.title}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} />`
