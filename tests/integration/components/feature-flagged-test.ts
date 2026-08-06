@@ -32,19 +32,6 @@ module('Integration | Component | feature-flagged', (hooks) => {
       `);
 
       assert.dom('.allowed').hasText('Allowed content');
-    });
-
-    test('It does not render the inverse block', async function (assert) {
-      this.allowStub.resolves(true);
-
-      await render(hbs`
-        {{#feature-flagged "managed_billing"}}
-          <span class="allowed">Allowed content</span>
-        {{else}}
-          <span class="denied">Denied content</span>
-        {{/feature-flagged}}
-      `);
-
       assert.dom('.denied').doesNotExist();
     });
 
