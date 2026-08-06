@@ -56,7 +56,7 @@ module('Integration | Component | http-errors-code', function (hooks) {
           .dom('[data-control-name="http-error-code-hints"] > div:first-child')
           .hasText(this.intl.t('errors.404.hints.url_accuracy_check'));
       });
-    })
+    });
 
     test('the right actions are displayed', async function (assert) {
       const redirectStub = sinon.stub(window, 'open');

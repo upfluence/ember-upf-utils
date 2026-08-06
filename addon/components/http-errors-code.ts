@@ -6,8 +6,8 @@ import Component from '@glimmer/component';
 import type { IntlService } from 'ember-intl';
 
 interface HTTPErrorsCodeArgs {
-  httpError: "404" | "500" | "default";
-  hintContext: "default" | "creator";
+  httpError: '404' | '500' | 'default';
+  hintContext: 'default' | 'creator';
 }
 
 export default class extends Component<HTTPErrorsCodeArgs> {
