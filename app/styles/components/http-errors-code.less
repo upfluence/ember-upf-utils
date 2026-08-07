@@ -10,10 +10,24 @@
       width: 15px;
     }
   }
+
+  .http-error-code-cta-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-px-12);
+  }
 }
 
 @media (max-width: 1200px) {
   .http-error-code-wrapper img {
     display: none;
+  }
+}
+
+@media (max-width: 780px) {
+  .http-error-code-wrapper {
+    .http-error-code-cta-wrapper {
+      flex-direction: column;
+    }
   }
 }

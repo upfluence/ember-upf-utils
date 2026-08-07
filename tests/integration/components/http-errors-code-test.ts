@@ -34,17 +34,28 @@ module('Integration | Component | http-errors-code', function (hooks) {
   });
 
   module('404 error', function () {
-    test('the right hints are displayed', async function (assert) {
-      await render(hbs`<HttpErrorsCode @httpError="404" />`);
-      assert.dom('[data-control-name="http-error-code-hints"] > div').exists({ count: 2 });
-      assert.dom('[data-control-name="http-error-code-hints"] > div:first-child i.far').hasClass('fa-unlink');
-      assert
-        .dom('[data-control-name="http-error-code-hints"] > div:first-child')
-        .hasText(this.intl.t('errors.404.hints.url_accuracy_check'));
-      assert.dom('[data-control-name="http-error-code-hints"] > div:last-child i.far').hasClass('fa-key');
-      assert
-        .dom('[data-control-name="http-error-code-hints"] > div:last-child')
-        .hasText(this.intl.t('errors.404.hints.authorization_check'));
+    module('hints', function () {
+      test('by default, the right hints are displayed', async function (assert) {
+        await render(hbs`<HttpErrorsCode @httpError="404" />`);
+        assert.dom('[data-control-name="http-error-code-hints"] > div').exists({ count: 2 });
+        assert.dom('[data-control-name="http-error-code-hints"] > div:first-child i.far').hasClass('fa-unlink');
+        assert
+          .dom('[data-control-name="http-error-code-hints"] > div:first-child')
+          .hasText(this.intl.t('errors.404.hints.url_accuracy_check'));
+        assert.dom('[data-control-name="http-error-code-hints"] > div:last-child i.far').hasClass('fa-key');
+        assert
+          .dom('[data-control-name="http-error-code-hints"] > div:last-child')
+          .hasText(this.intl.t('errors.404.hints.authorization_check'));
+      });
+
+      test('with creator context, the right hints are displayed', async function (assert) {
+        await render(hbs`<HttpErrorsCode @httpError="404" @hintContext="creator" />`);
+        assert.dom('[data-control-name="http-error-code-hints"] > div').exists({ count: 1 });
+        assert.dom('[data-control-name="http-error-code-hints"] > div:first-child i.far').hasClass('fa-unlink');
+        assert
+          .dom('[data-control-name="http-error-code-hints"] > div:first-child')
+          .hasText(this.intl.t('errors.404.hints.url_accuracy_check'));
+      });
     });
 
     test('the right actions are displayed', async function (assert) {

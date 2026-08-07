@@ -1,5 +1,5 @@
 {{#if (eq this.httpError "402")}}
   <HttpErrorsLimitModal @limit={{this.limit}} @used={{this.used}} />
 {{else}}
-  <HttpErrorsCode @httpError={{this.httpError}} />
+  <HttpErrorsCode @httpError={{this.httpError}} @hintContext={{this.hintContext}} />
 {{/if}}
