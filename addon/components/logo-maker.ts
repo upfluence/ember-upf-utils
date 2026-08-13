@@ -1,6 +1,9 @@
 import { action } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+
+import { LOGO_COLORS, LOGO_ICONS } from '@upfluence/oss-components/utils/logo-config';
 
 interface LogoMakerArgs {
   icon: string;
@@ -8,70 +11,8 @@ interface LogoMakerArgs {
   onChange(icon: string, color: string): void;
 }
 
-export const DEFAULT_ICONS = [
-  'rabbit',
-  'star',
-  'heart',
-  'rocket-launch',
-  'money-bill',
-  'glass-whiskey-rocks',
-  'joystick',
-  'scroll',
-  'carrot',
-  'volleyball-ball',
-  'crown',
-  'chart-bar',
-  'users',
-  'saxophone',
-  'duck',
-  'university',
-  'tree-palm',
-  'trophy',
-  'pizza-slice',
-  'popcorn',
-  'chart-line',
-  'analytics',
-  'hat-wizard',
-  'chart-network',
-  'leaf',
-  'utensils',
-  'ufo',
-  'hat-winter',
-  'guitar',
-  'parachute-box',
-  'sheep',
-  'boot',
-  'shopping-basket',
-  'shopping-cart',
-  'shopping-bag',
-  'tags',
-  'meteor',
-  'globe-americas',
-  'globe-snow',
-  'user',
-  'paper-plane-top',
-  'handshake',
-  'octagon-xmark'
-];
-
-export const DEFAULT_COLORS = [
-  'stone',
-  'rose',
-  'orange',
-  'yellow',
-  'lime',
-  'emerald',
-  'teal',
-  'cyan',
-  'sky',
-  'blue',
-  'indigo',
-  'violet',
-  'purple',
-  'fuschia',
-  'pink',
-  'slate'
-];
+export const DEFAULT_ICONS = [...LOGO_ICONS, 'user', 'paper-plane-top', 'handshake', 'octagon-xmark'];
+export const DEFAULT_COLORS = LOGO_COLORS;
 
 export function logoIconGenerator(): string {
   return `${DEFAULT_ICONS[Math.floor(Math.random() * DEFAULT_ICONS.length)]}:${
@@ -80,17 +21,17 @@ export function logoIconGenerator(): string {
 }
 
 export default class extends Component<LogoMakerArgs> {
-  @tracked localLogoIcon: string | undefined;
-  @tracked selectedIcon: string;
-  @tracked selectedColor: string;
+  @tracked localLogoIcon?: string;
+  @tracked selectedIcon: string = DEFAULT_ICONS[0];
+  @tracked selectedColor: string = DEFAULT_COLORS[0];
 
   campaignColors = DEFAULT_COLORS;
   campaignIcons = DEFAULT_ICONS;
 
   constructor(owner: unknown, args: LogoMakerArgs) {
     super(owner, args);
-    this.selectedIcon = this.args.icon;
-    this.selectedColor = this.args.color;
+
+    scheduleOnce('afterRender', this, this.initializeSelectedLogo);
   }
 
   get selectedIconClass(): string {
@@ -107,5 +48,10 @@ export default class extends Component<LogoMakerArgs> {
   setLogoColor(color: string): void {
     this.selectedColor = color;
     this.args.onChange(this.selectedIcon, this.selectedColor);
+  }
+
+  private initializeSelectedLogo(): void {
+    this.selectedIcon = this.args.icon;
+    this.selectedColor = this.args.color;
   }
 }
