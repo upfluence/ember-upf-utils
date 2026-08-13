@@ -5,7 +5,11 @@ import { module, test } from 'qunit';
 import sinon from 'sinon';
 
 import Configuration from '@upfluence/ember-upf-utils/configuration';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore serializeParams is not typed
 import deactivatedAccountHandler from '@upfluence/ember-upf-utils/decorators/deactivated-account-handler';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore serializeParams is not typed
 import HttpErrorsRoute from '@upfluence/ember-upf-utils/http-errors/route';
 
 const SETTINGS_URL = '#settings';

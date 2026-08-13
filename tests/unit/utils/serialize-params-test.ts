@@ -1,6 +1,8 @@
 import { setupTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore serializeParams is not typed
 import serializeParams from '@upfluence/ember-upf-utils/utils/serialize-params';
 
 module('Unit | Utility | serialize-params', (hooks) => {

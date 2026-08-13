@@ -4,6 +4,8 @@ import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore serializeParams is not typed
 import { formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';
 
 module('Integration | Helper | format-price', (hooks) => {

@@ -3,6 +3,8 @@ import EmberObject from '@ember/object';
 import { setupTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import HttpErrorsRoute from '@upfluence/ember-upf-utils/http-errors/route';
 
 interface ErrorController {
