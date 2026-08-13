@@ -2,20 +2,17 @@ import { countries } from '@upfluence/oss-components/utils/country-codes';
 
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
-export const ADDRESS_COMPONENT_TYPES = [
-  'street_number',
-  'route',
-  'subpremise',
-  'postal_code',
-  'postal_code_suffix',
-  'locality',
-  'postal_town',
-  'administrative_area_level_1',
-  'country'
-] as const;
-
 type GoogleAddressComponent = google.maps.GeocoderAddressComponent;
-type AddressComponentType = (typeof ADDRESS_COMPONENT_TYPES)[number];
+type AddressComponentType =
+  | 'street_number'
+  | 'route'
+  | 'subpremise'
+  | 'postal_code'
+  | 'postal_code_suffix'
+  | 'locality'
+  | 'postal_town'
+  | 'administrative_area_level_1'
+  | 'country';
 
 export function parseAddressComponents(
   components: GoogleAddressComponent[],
