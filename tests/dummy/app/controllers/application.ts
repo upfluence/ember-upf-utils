@@ -28,8 +28,8 @@ export default class ApplicationController extends Controller {
   @tracked inputValue: string = '';
   @tracked ossInputValue: string = '';
 
-  constructor() {
-    super(...arguments);
+  constructor(...args: ConstructorParameters<typeof Controller>) {
+    super(...args);
     console.log('Put some stuff here if needed!');
   }
 

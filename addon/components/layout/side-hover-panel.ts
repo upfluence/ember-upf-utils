@@ -18,7 +18,7 @@ export default class SideHoverPanel extends Component<SideHoverPanelArgs> {
   panelBackdrop: HTMLElement | null = null;
 
   get computedClassNames(): string {
-    let classes = ['__side-hover-panel'];
+    const classes = ['__side-hover-panel'];
     if (this.args.isOverContent) {
       classes.push('__side-hover-panel--over-content');
     }

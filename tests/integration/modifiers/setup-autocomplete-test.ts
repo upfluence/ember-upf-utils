@@ -215,8 +215,9 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     module('for error management', () => {
       test('handles missing callback gracefully', async function (assert) {
         assert.expect(1);
+
         setupOnerror((error: Error) => {
-          assert.equal(
+          assert.strictEqual(
             error.message,
             'Assertion Failed: [modifier][setup-autocomplete] The callback is mandatory and must be a function'
           );
@@ -227,8 +228,9 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
       test('handles missing input element gracefully', async function (assert) {
         assert.expect(1);
+
         setupOnerror((error: Error) => {
-          assert.equal(
+          assert.strictEqual(
             error.message,
             'Assertion Failed: [modifier][setup-autocomplete] No input[type="text"] element found in the provided element or its children'
           );
@@ -239,8 +241,9 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
       test('handles missing input element in its children gracefully', async function (assert) {
         assert.expect(1);
+
         setupOnerror((error: Error) => {
-          assert.equal(
+          assert.strictEqual(
             error.message,
             'Assertion Failed: [modifier][setup-autocomplete] No input[type="text"] element found in the provided element or its children'
           );

@@ -137,7 +137,6 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
   private setupAutoComplete(): Promise<void> {
     const loaderInstance: Loader = this.autocompleteHandler.getLoader();
 
-    // @ts-ignore
     return loaderInstance.importLibrary('places').then(({ Autocomplete }: google.maps.PlacesLibrary) => {
       this.initializeAutocomplete(Autocomplete);
     });

@@ -80,7 +80,7 @@ export default class extends Component<UtilsProductRowArgs> {
   }
 
   get buttonParams(): ButtonArgs[] {
-    let displayedButtons: ButtonArgs[] = [];
+    const displayedButtons: ButtonArgs[] = [];
     COMPONENT_EVENT.forEach((methodArg: string) => {
       if (typeof this.args[methodArg as keyof UtilsProductRowArgs] === 'function') {
         displayedButtons.push(

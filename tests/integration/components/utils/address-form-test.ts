@@ -214,7 +214,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       await click('[data-control-name="address-form-state"] .upf-input');
       await click('[data-control-name="address-form-state"] .upf-infinite-select__item:nth-child(1)');
 
-      assert.equal(this.address.state, 'Alabama');
+      assert.strictEqual(this.address.state, 'Alabama');
     });
 
     test('when all fields and country & province/state are filled, the onChange action is called with truthy validity', async function (assert) {
@@ -388,8 +388,8 @@ module('Integration | Component | utils/address-form', function (hooks) {
       await fillIn('[data-control-name="address-form-address1"] > input', '12 Foo bar');
       await fillIn('[data-control-name="address-form-address2"] > input', 'Apt B');
 
-      assert.equal(this.address.line1, '12 Foo bar');
-      assert.equal(this.address.line2, 'Apt B');
+      assert.strictEqual(this.address.line1, '12 Foo bar');
+      assert.strictEqual(this.address.line2, 'Apt B');
     });
   });
 });

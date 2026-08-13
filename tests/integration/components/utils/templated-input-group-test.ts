@@ -97,7 +97,7 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
     });
   });
 
-  module('Dropdown variables list', () => {
+  module('Dropdown variables list', (hooks) => {
     hooks.beforeEach(function () {
       this.onChange = (value: string) => {
         this.set('value', value);

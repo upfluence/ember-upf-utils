@@ -40,7 +40,7 @@ module('Integration | Component | utils/utm-link-builder', function (hooks) {
   });
 
   test('The @onChange method is called when inputs are updated', async function (assert) {
-    let utmFields = { utm_source: '', utm_campaign: '', utm_medium: '' };
+    const utmFields = { utm_source: '', utm_campaign: '', utm_medium: '' };
     await render(hbs`<Utils::UtmLinkBuilder @onChange={{this.onChange}} />`);
     await click('.upf-toggle');
     assert.true(

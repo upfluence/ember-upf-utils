@@ -180,25 +180,29 @@ module('Unit | Service | activity-watcher', function (hooks) {
         });
 
         if (testCase.wantErrorTitle || testCase.wantErrorMessage) {
-          assert.equal(
+          assert.strictEqual(
             this.toastErrorStub.firstCall.args[0].toString(),
-            this.intl.t(`notifications.${testCase.notification.notification_type}.description`, {
-              ...testCase.notification.data,
-              htmlSafe: true
-            })
+            this.intl
+              .t(`notifications.${testCase.notification.notification_type}.description`, {
+                ...testCase.notification.data,
+                htmlSafe: true
+              })
+              .toString()
           );
-          assert.equal(this.toastErrorStub.firstCall.args[1], testCase.wantErrorTitle);
+          assert.strictEqual(this.toastErrorStub.firstCall.args[1], testCase.wantErrorTitle);
         }
 
         if (testCase.wantInfoTitle || testCase.wantInfoMessage) {
-          assert.equal(
+          assert.strictEqual(
             this.toastInfoStub.firstCall.args[0].toString(),
-            this.intl.t(`notifications.${testCase.notification.notification_type}.description`, {
-              ...testCase.notification.data,
-              htmlSafe: true
-            })
+            this.intl
+              .t(`notifications.${testCase.notification.notification_type}.description`, {
+                ...testCase.notification.data,
+                htmlSafe: true
+              })
+              .toString()
           );
-          assert.equal(this.toastInfoStub.firstCall.args[1], testCase.wantInfoTitle);
+          assert.strictEqual(this.toastInfoStub.firstCall.args[1], testCase.wantInfoTitle);
         }
       });
     });

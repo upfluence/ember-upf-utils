@@ -29,7 +29,7 @@ export default class HttpErrorsRoute extends Route {
           limit: error.errors[0].limit_total
         });
         controller.httpError = '402';
-      } catch (e) {
+      } catch {
         controller.httpError = 'default';
       }
 
