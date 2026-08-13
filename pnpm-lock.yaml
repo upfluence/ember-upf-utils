@@ -44,9 +44,6 @@ importers:
       ember-modifier:
         specifier: ^3.2.7
         version: 3.2.7(@babel/core@7.26.0)
-      ember-named-blocks-polyfill:
-        specifier: ^0.2.4
-        version: 0.2.5
       moment:
         specifier: ^2.29.4
         version: 2.30.1
@@ -3345,10 +3342,6 @@ packages:
   ember-modifier@3.2.7:
     resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
     engines: {node: 12.* || >= 14}
-
-  ember-named-blocks-polyfill@0.2.5:
-    resolution: {integrity: sha512-OVMxzkfqJrEvmiky7gFzmuTaImCGm7DOudHWTdMBPO7E+dQSunrcRsJMgO9ZZ56suqBIz/yXbEURrmGS+avHxA==}
-    engines: {node: 10.* || >= 12}
 
   ember-page-title@6.2.2:
     resolution: {integrity: sha512-YTXA+cylZrh9zO0zwjlaAGReT2MVOxAMnVO1OOygFrs1JBs4D6CKV3tImoilg3AvIXFBeJfFNNUbJOdRd9IGGg==}
@@ -11324,13 +11317,6 @@ snapshots:
       ember-compatibility-helpers: 1.2.7(@babel/core@7.26.0)
     transitivePeerDependencies:
       - '@babel/core'
-      - supports-color
-
-  ember-named-blocks-polyfill@0.2.5:
-    dependencies:
-      ember-cli-babel: 7.26.11
-      ember-cli-version-checker: 5.1.2
-    transitivePeerDependencies:
       - supports-color
 
   ember-page-title@6.2.2:

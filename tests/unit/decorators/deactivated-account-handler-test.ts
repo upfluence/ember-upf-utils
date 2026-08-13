@@ -99,7 +99,7 @@ module('Unit | Decorator | deactivated-account-handler', (hooks) => {
     });
   });
 
-  module('Applied to a bare route', () => {
+  module('Applied to a bare route', (hooks) => {
     hooks.beforeEach(function () {
       class BareRoute {
         setupController(): void {

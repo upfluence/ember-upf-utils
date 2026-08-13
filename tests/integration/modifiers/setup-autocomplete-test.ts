@@ -43,6 +43,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
   module('Callback functionality', () => {
     test('callback is called with parsed address data', async function (assert) {
+      assert.expect(1);
 
       this.handleAddress = (result: AutocompletionAddress) => {
         assert.ok(result, 'callback receives address result');
@@ -59,6 +60,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     });
 
     test('callback receives all expected address fields', async function (assert) {
+      assert.expect(6);
 
       this.handleAddress = (result: AutocompletionAddress) => {
         assert.ok('address1' in result, 'result has address1');
@@ -176,6 +178,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
     });
 
     test('handles international addresses correctly', async function (assert) {
+      assert.expect(4);
 
       this.handleAddress = (result: AutocompletionAddress) => {
         assert.strictEqual(result.address1, '10 Downing Street');
@@ -211,6 +214,8 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
     module('for error management', () => {
       test('handles missing callback gracefully', async function (assert) {
+        assert.expect(1);
+
         setupOnerror((error: Error) => {
           assert.strictEqual(
             error.message,
@@ -222,6 +227,8 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       });
 
       test('handles missing input element gracefully', async function (assert) {
+        assert.expect(1);
+
         setupOnerror((error: Error) => {
           assert.strictEqual(
             error.message,
@@ -233,6 +240,8 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
       });
 
       test('handles missing input element in its children gracefully', async function (assert) {
+        assert.expect(1);
+
         setupOnerror((error: Error) => {
           assert.strictEqual(
             error.message,

@@ -172,6 +172,8 @@ module('Unit | Service | activity-watcher', function (hooks) {
 
     eventTypesTestCases.forEach((testCase: any) => {
       test('it dispatches events for ' + testCase.notification.notification_type, function (assert) {
+        assert.expect(2);
+
         this.eventService.dispatch({
           resource: '/notification/some-uu-id',
           payload: testCase.notification
