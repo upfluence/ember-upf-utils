@@ -34,7 +34,7 @@
       >
         {{#each @variables as |variable|}}
           <div
-            class="upf-floating-menu__item fx-row"
+            class="upf-floating-menu__item fx-row fx-malign-space-between fx-xalign-center"
             role="button"
             {{on "mousedown" this.preventBlur}}
             {{on "click" (fn this.insertVariable variable)}}
@@ -42,6 +42,9 @@
             <span class="text-ellipsis">
               {{t (concat "upf_utils.templated_input_group.template_variables." variable)}}
             </span>
+            {{#if (eq variable "Username")}}
+              <OSS::Tag @label={{t "upf_utils.templated_input_group.recommended"}} @skin="primary" />
+            {{/if}}
           </div>
         {{/each}}
       </div>
