@@ -37,7 +37,7 @@
     "@embroider/macros": "^1.16.1",
     "@googlemaps/js-api-loader": "^1.16.2",
     "@upfluence/ember-brand-manager": "^1.0.5",
-    "@upfluence/hyperevents": "^1.0.0",
+    "@upfluence/hyperevents": "^1.0.1",
     "calculate-cache-key-for-tree": "^2.0.0",
     "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^7.26.10",
@@ -80,8 +80,8 @@
     "@types/qunit": "^2.11.2",
     "@types/rsvp": "^4.0.4",
     "@types/sinon": "^10.0.6",
-    "@upfluence/oss-components": "^3.98.15",
-    "@upfluence/w-conf": "^0.3.2",
+    "@upfluence/oss-components": "^3.99.5",
+    "@upfluence/w-conf": "^0.4.0",
     "ember-cli": "~3.28.6",
     "ember-cli-code-coverage": "^3.0.0",
     "ember-cli-dependency-checker": "^3.2.0",
@@ -106,7 +106,7 @@
     "prettier": "^3.8.1",
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
-    "typescript": "^4.4.4",
+    "typescript": "5.9.3",
     "webpack": "5"
   },
   "directories": {
