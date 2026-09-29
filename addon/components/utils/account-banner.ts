@@ -27,6 +27,7 @@ interface UtilsAccountBannerArgs {
   skin?: SkinType;
   plain?: boolean;
   alert?: Alert;
+  currency?: string;
 
   canSelectItem?: boolean;
   selectableItems?: any[];

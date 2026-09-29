@@ -14,7 +14,12 @@
       <div class="account-banner__container">
         {{#if @title}}
           <div class="account-banner__container-title">
-            <span class="font-weight-semibold font-size-md font-color-gray-900">{{@title}}</span>
+            <span
+              class="font-weight-semibold font-size-md font-color-gray-900"
+              data-control-name={{concat "account-banner-title" (if @currency (concat "-" @currency))}}
+            >
+              {{@title}}
+            </span>
             {{#if (has-block "title-suffix")}}
               {{yield to="title-suffix"}}
             {{/if}}

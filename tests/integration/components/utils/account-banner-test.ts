@@ -103,7 +103,14 @@ module('Integration | Component | utils/account-banner', function (hooks) {
     test('it renders @title', async function (assert) {
       await render(hbs`<Utils::AccountBanner @title="title" />`);
 
-      assert.dom('.account-banner').containsText('title');
+      assert.dom('[data-control-name="account-banner-title"]').containsText('title');
+    });
+
+    test('When @currency is provided, the data-control-name includes the currency', async function (assert) {
+      await render(hbs`<Utils::AccountBanner @title="title" @currency="USD" />`);
+
+      assert.dom('[data-control-name="account-banner-title"]').doesNotExist();
+      assert.dom('[data-control-name="account-banner-title-USD"]').containsText('title');
     });
 
     test('it renders the title-suffix block', async function (assert) {
