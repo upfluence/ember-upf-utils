@@ -134,7 +134,6 @@ export default class ActivityWatcher extends Service {
   @service declare eventsService: EventsService;
   @service declare toast: ToastService;
   @service declare intl: IntlService;
-  @service declare session: any;
 
   declare private _observer: Observable<ResourceEvent> | null;
 
@@ -159,11 +158,6 @@ export default class ActivityWatcher extends Service {
   }
 
   private processEvent(evt: NotificationEvent): void {
-    if (evt.payload.notification_type === 'token_destroyed') {
-      this.checkIfUserNeedsToBeDisconnected(evt);
-      return;
-    }
-
     if (evt.payload.read) return;
 
     const notif = this.buildNotification(evt);
@@ -184,13 +178,6 @@ export default class ActivityWatcher extends Service {
       case 'error':
         this.toast.error(notif.message, notif.title, toastOpts);
         break;
-    }
-  }
-
-  private checkIfUserNeedsToBeDisconnected(event: NotificationEvent): void {
-    if (this.session.data.authenticated.access_token === event.payload.data.access_token) {
-      this.session.tooManyConnections = true;
-      this.session.invalidate();
     }
   }
 
