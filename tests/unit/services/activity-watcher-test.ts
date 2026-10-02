@@ -1,18 +1,9 @@
 /* eslint-disable  qunit/no-conditional-assertions */
-import Service from '@ember/service';
-
 import EventsServiceMock from '@upfluence/hyperevents/test-support/services/events-service';
 import { setupToast } from '@upfluence/oss-components/test-support';
 import { setupIntl } from 'ember-intl/test-support';
 import { setupTest } from 'ember-qunit';
 import { module, test } from 'qunit';
-import sinon from 'sinon';
-
-class SessionServiceMock extends Service {
-  tooManyConnections: boolean = false;
-
-  invalidate = sinon.stub();
-}
 
 module('Unit | Service | activity-watcher', function (hooks) {
   setupTest(hooks);
@@ -21,10 +12,8 @@ module('Unit | Service | activity-watcher', function (hooks) {
 
   hooks.beforeEach(function () {
     this.owner.register('service:events-service', EventsServiceMock);
-    this.owner.register('service:session', SessionServiceMock);
 
     this.eventService = this.owner.lookup('service:events-service');
-    this.sessionService = this.owner.lookup('service:session');
     this.activityWatcher = this.owner.lookup('service:activity-watcher');
   });
 
@@ -40,11 +29,7 @@ module('Unit | Service | activity-watcher', function (hooks) {
       this.activityWatcher.watch();
     });
 
-    test('When an event of type "token_destroyed" is received, it invalidates the session if the token is the same', function (assert) {
-      this.sessionService.data = {
-        authenticated: { access_token: 'some-token' }
-      };
-
+    test('When an event of type "token_destroyed" is received, it does not display any toast', function (assert) {
       this.eventService.dispatch({
         resource: '/notification/some-uu-id',
         payload: {
@@ -55,7 +40,8 @@ module('Unit | Service | activity-watcher', function (hooks) {
         }
       });
 
-      assert.true(this.sessionService.invalidate.calledOnce);
+      assert.true(this.toastErrorStub.notCalled);
+      assert.true(this.toastInfoStub.notCalled);
     });
 
     const eventTypesTestCases = [
