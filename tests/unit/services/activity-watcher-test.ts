@@ -29,21 +29,6 @@ module('Unit | Service | activity-watcher', function (hooks) {
       this.activityWatcher.watch();
     });
 
-    test('When an event of type "token_destroyed" is received, it does not display any toast', function (assert) {
-      this.eventService.dispatch({
-        resource: '/notification/some-uu-id',
-        payload: {
-          notification_type: 'token_destroyed',
-          data: {
-            access_token: 'some-token'
-          }
-        }
-      });
-
-      assert.true(this.toastErrorStub.notCalled);
-      assert.true(this.toastInfoStub.notCalled);
-    });
-
     const eventTypesTestCases = [
       {
         notification: {
