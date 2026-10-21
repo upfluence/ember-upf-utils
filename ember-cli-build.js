@@ -2,8 +2,10 @@
 'use strict';
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const { withBrandAssets } = require('@upfluence/ember-brand-bundler/ember-cli');
 
 module.exports = function (defaults) {
+  const brand = process.env.BRAND ?? 'default';
   let app = new EmberAddon(defaults, {
     // Add options here
   });
@@ -16,7 +18,7 @@ module.exports = function (defaults) {
   */
 
   const { maybeEmbroider } = require('@embroider/test-setup');
-  return maybeEmbroider(app, {
+  return maybeEmbroider(withBrandAssets(app, { brand, pageTitle: process.env.BRAND_PAGE_TITLE }), {
     skipBabel: [
       {
         package: 'qunit'

@@ -1,0 +1,3 @@
+onlyBuiltDependencies:
+  - '@upfluence/ember-brand-bundler'
+  - '@upfluence/ember-brand-manager'

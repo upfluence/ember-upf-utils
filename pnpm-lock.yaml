@@ -18,8 +18,8 @@ importers:
         specifier: ^1.16.2
         version: 1.16.8
       '@upfluence/ember-brand-manager':
-        specifier: ^1.0.5
-        version: 1.0.5(@babel/core@7.26.0)
+        specifier: github:upfluence/ember-brand-manager#pn/explicit-brand-management&path:/packages/ember-brand-manager
+        version: https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574#path:/packages/ember-brand-manager(@babel/core@7.26.0)
       '@upfluence/hyperevents':
         specifier: ^1.0.1
         version: 1.0.1(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))
@@ -135,6 +135,9 @@ importers:
       '@types/sinon':
         specifier: ^10.0.6
         version: 10.0.20
+      '@upfluence/ember-brand-bundler':
+        specifier: github:upfluence/ember-brand-manager#pn/explicit-brand-management&path:/packages/ember-brand-bundler
+        version: https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574#path:/packages/ember-brand-bundler
       '@upfluence/oss-components':
         specifier: ^3.99.5
         version: 3.99.5(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0)))(ember-source@3.28.12(@babel/core@7.26.0))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)
@@ -2145,8 +2148,14 @@ packages:
     resolution: {integrity: sha512-Vwj9lUIW5Xq3wQ9w6gv3R86g1hMK8f2zNOdGTAgeXUMMXFK78G9ruCjjqutHMNJc0+CH7LYRnHeUB9IT8wFmcw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@upfluence/ember-brand-manager@1.0.5':
-    resolution: {integrity: sha512-1osrfo6kYJaGA2RsPiT4OoqVbF6n2vnEATBu/PxYH9/E9GrgisHXpdrREwMQrPl8f82g9dips012GOE+9VyIKw==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/1.0.5/2d5fda72b20bbfca4d4cdfd0fe66057c83cd0f16}
+  '@upfluence/ember-brand-bundler@https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574#path:/packages/ember-brand-bundler':
+    resolution: {gitHosted: true, path: /packages/ember-brand-bundler, tarball: https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574}
+    version: 0.0.0
+    engines: {node: '>=22'}
+
+  '@upfluence/ember-brand-manager@https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574#path:/packages/ember-brand-manager':
+    resolution: {gitHosted: true, path: /packages/ember-brand-manager, tarball: https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574}
+    version: 1.0.5
     engines: {node: 12.* || 14.* || >= 16}
 
   '@upfluence/hyperevents@1.0.1':
@@ -9175,7 +9184,7 @@ snapshots:
 
   '@ember/render-modifiers@2.1.0(@babel/core@7.26.0)(ember-source@3.28.12(@babel/core@7.26.0))':
     dependencies:
-      '@embroider/macros': 1.16.10
+      '@embroider/macros': 1.21.1
       ember-cli-babel: 7.26.11
       ember-modifier-manager-polyfill: 1.2.0(@babel/core@7.26.0)
       ember-source: 3.28.12(@babel/core@7.26.0)
@@ -10120,11 +10129,18 @@ snapshots:
       '@typescript-eslint/types': 8.70.1
       eslint-visitor-keys: 5.0.1
 
-  '@upfluence/ember-brand-manager@1.0.5(@babel/core@7.26.0)':
+  '@upfluence/ember-brand-bundler@https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574#path:/packages/ember-brand-bundler':
     dependencies:
-      '@embroider/macros': 1.16.10
+      '@embroider/macros': 1.21.1
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
+    transitivePeerDependencies:
+      - '@glint/template'
+      - supports-color
+
+  '@upfluence/ember-brand-manager@https://codeload.github.com/upfluence/ember-brand-manager/tar.gz/8644af960c0f9461434c8ea67247484ad914a574#path:/packages/ember-brand-manager(@babel/core@7.26.0)':
+    dependencies:
+      '@embroider/macros': 1.21.1
       ember-cli-babel: 8.3.2(@babel/core@7.26.0)
       ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.3.0

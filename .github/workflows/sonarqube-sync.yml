@@ -5,7 +5,6 @@ on:
     branches:
       - master
 env:
-  NODE_VERSION: '20'
   GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
   FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
 
@@ -23,7 +22,7 @@ jobs:
           version: '${{ vars.PNPM_VERSION }}'
       - uses: actions/setup-node@v4
         with:
-          node-version: '${{ env.NODE_VERSION }}'
+          node-version: '${{ vars.NODE_VERSION }}'
           cache: 'pnpm'
       - name: Install Dependencies
         run: pnpm install
