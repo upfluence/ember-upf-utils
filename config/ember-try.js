@@ -7,7 +7,14 @@ module.exports = async function () {
     packageManager: 'pnpm',
     command: 'pnpm test:ember',
     scenarios: [
-      { name: 'ember-lts-3.28' },
+      {
+        name: 'ember-lts-3.28',
+        npm: {
+          devDependencies: {
+            'ember-source': '~3.28.8'
+          }
+        }
+      },
       ...JSON.parse(process.env.EMBER_TRY_SCENARIOS || '[]').flatMap((scenario) =>
         variants.map((variant) => ({
           ...scenario,
