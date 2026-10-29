@@ -20,9 +20,6 @@ importers:
       '@upfluence/ember-brand-manager':
         specifier: ^1.0.5
         version: 1.0.5(@babel/core@7.26.0)
-      '@upfluence/hyperevents':
-        specifier: ^1.0.1
-        version: 1.0.1(@babel/core@7.26.0)(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1))
       calculate-cache-key-for-tree:
         specifier: ^2.0.0
         version: 2.0.0
@@ -135,6 +132,9 @@ importers:
       '@types/sinon':
         specifier: ^10.0.6
         version: 10.0.20
+      '@upfluence/hyperevents':
+        specifier: ^1.0.1
+        version: 1.0.1(@babel/core@7.26.0)(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1))
       '@upfluence/oss-components':
         specifier: ^3.99.5
         version: 3.99.5(@babel/core@7.26.0)(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1)))(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)
