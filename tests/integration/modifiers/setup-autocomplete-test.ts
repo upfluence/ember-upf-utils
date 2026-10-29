@@ -16,7 +16,7 @@ module('Integration | Modifier | setup-autocomplete', function (hooks) {
 
   hooks.beforeEach(function () {
     this.owner.register('service:autocomplete-handler', AutocompleteHandlerServiceMock);
-    const service = this.owner.lookup('service:autocomplete-handler');
+    const service = this.owner.lookup('service:autocomplete-handler') as AutocompleteHandlerServiceMock;
     this.mockLoader = service.getLoader();
   });
 
