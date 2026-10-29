@@ -169,8 +169,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@babel/core@7.26.0)
       ember-page-title:
-        specifier: ^6.2.2
-        version: 6.2.2
+        specifier: ^8.0.0
+        version: 8.2.4(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1))
       ember-qunit:
         specifier: ^5.1.5
         version: 5.1.5(@ember/test-helpers@2.9.4(@babel/core@7.26.0)(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1)))(qunit@2.23.1)
@@ -1844,6 +1844,9 @@ packages:
 
   '@oxc-project/types@0.130.0':
     resolution: {integrity: sha512-ibD2usx9JRu7f5pu2tMKMI4cpA4NgXJQoYRP4pQ7Pxmn1l6k/53qWtQWZayhYy3X4QZkt90Ot+mJEaeXouio6Q==}
+
+  '@simple-dom/document@1.4.0':
+    resolution: {integrity: sha512-/RUeVH4kuD3rzo5/91+h4Z1meLSLP66eXqpVAw/4aZmYozkeqUkMprq0znL4psX/adEed5cBgiNJcfMz/eKZLg==}
 
   '@simple-dom/interface@1.4.0':
     resolution: {integrity: sha512-l5qumKFWU0S+4ZzMaLXFU8tQZsicHEMEyAxI5kDFGhJsRqDwe0a7/iPA/GdxlGyDKseQQAgIz5kzU7eXTrlSpA==}
@@ -3925,9 +3928,11 @@ packages:
     resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
     engines: {node: 12.* || >= 14}
 
-  ember-page-title@6.2.2:
-    resolution: {integrity: sha512-YTXA+cylZrh9zO0zwjlaAGReT2MVOxAMnVO1OOygFrs1JBs4D6CKV3tImoilg3AvIXFBeJfFNNUbJOdRd9IGGg==}
-    engines: {node: 10.* || >= 12}
+  ember-page-title@8.2.4:
+    resolution: {integrity: sha512-ZZ912IRItIEfD5+35w65DT9TmqppK+suXJeaJenD5OSuvujUnYl6KxBpyAbfjw4mYtURwJO/TmSe+4GGJbsJ0w==}
+    engines: {node: 16.* || >= 18}
+    peerDependencies:
+      ember-source: '>= 3.28.0'
 
   ember-qunit@5.1.5:
     resolution: {integrity: sha512-2cFA4oMygh43RtVcMaBrr086Tpdhgbn3fVZ2awLkzF/rnSN0D0PSRpd7hAD7OdBPerC/ZYRwzVyGXLoW/Zes4A==}
@@ -9743,6 +9748,10 @@ snapshots:
 
   '@oxc-project/types@0.130.0': {}
 
+  '@simple-dom/document@1.4.0':
+    dependencies:
+      '@simple-dom/interface': 1.4.0
+
   '@simple-dom/interface@1.4.0': {}
 
   '@sindresorhus/is@0.14.0': {}
@@ -12811,9 +12820,11 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-page-title@6.2.2:
+  ember-page-title@8.2.4(ember-source@4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1)):
     dependencies:
-      ember-cli-babel: 7.26.11
+      '@embroider/addon-shim': 1.10.3
+      '@simple-dom/document': 1.4.0
+      ember-source: 4.12.4(@babel/core@7.26.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(webpack@5.97.1)
     transitivePeerDependencies:
       - supports-color
 
