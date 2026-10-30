@@ -1,6 +1,6 @@
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
-import { Router } from '@ember/routing';
+import type RouterService from '@ember/routing/router-service';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
@@ -17,7 +17,7 @@ export default class UpgradeModal extends Component<UpgradeModalArgs> {
   @service declare assetMap: any;
   @service declare intl: IntlService;
   @service declare currentUser: any;
-  @service declare router: Router;
+  @service declare router: RouterService;
 
   @tracked hasSubscription: boolean = false;
 
@@ -51,7 +51,7 @@ export default class UpgradeModal extends Component<UpgradeModalArgs> {
 
   @action
   clickedCTA(): void {
-    const csChat = getOwner(this).lookup('service:cs-chat');
+    const csChat = getOwner(this)!.lookup('service:cs-chat') as { openTicket(): void } | undefined;
 
     if (this.canSelfUpgrade) {
       this.router.transitionTo('settings.accounts.billing');

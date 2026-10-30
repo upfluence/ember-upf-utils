@@ -25,7 +25,7 @@ module('Integration | Component | utils/product-row', function (hooks) {
       providerProductId: 4791551229996,
       imageUrl:
         'https://cdn.shopify.com/s/files/1/0363/6694/2252/products/Giorgio-Armani-Rouge-dArmani-Lipstick.jpg?v=1585157413'
-    });
+    } as object);
 
     this.onSelect = sinon.stub();
     this.onView = sinon.stub();

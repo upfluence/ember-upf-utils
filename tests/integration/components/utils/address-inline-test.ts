@@ -18,7 +18,7 @@ module('Integration | Component | utils/address-inline', function (hooks) {
     this.address = EmberObject.create({
       address: '123 Main St',
       resolved_address: null
-    });
+    } as object);
     this.onChange = sinon.stub();
   });
 

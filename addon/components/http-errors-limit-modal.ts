@@ -1,6 +1,6 @@
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
-import { Router } from '@ember/routing';
+import type RouterService from '@ember/routing/router-service';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 
@@ -13,7 +13,7 @@ interface HTTPErrorsLimitModalArgs {
 
 export default class extends Component<HTTPErrorsLimitModalArgs> {
   @service declare intl: IntlService;
-  @service declare router: Router;
+  @service declare router: RouterService;
 
   csChat?: any;
 
@@ -23,7 +23,7 @@ export default class extends Component<HTTPErrorsLimitModalArgs> {
     // We have been dealing w/ a bad design here which is that CSChat is defined in ember-identity and not in
     // ember-upf-utils. It actually works because we are 100% sure that it will be present in the context of one of our
     // running apps.
-    this.csChat = getOwner(this).lookup('service:cs-chat');
+    this.csChat = getOwner(this)!.lookup('service:cs-chat');
   }
 
   @action

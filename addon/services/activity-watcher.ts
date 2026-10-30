@@ -1,4 +1,5 @@
 import Service, { inject as service } from '@ember/service';
+import type { SafeString } from '@ember/template';
 
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
 import EventsService, { ResourceEvent, prefixPath } from '@upfluence/hyperevents/services/events-service';
@@ -22,26 +23,30 @@ type RenderedNotification = {
   avatarUrl?: string;
 };
 
-function renderNotificationMessage(message: string, title: string): RenderedNotification {
+function renderNotificationMessage(message: string | SafeString, title: string): RenderedNotification {
   return {
     title,
-    message,
+    message: message as string,
     type: 'info'
   };
 }
 
-function renderNotificationErrorMessage(message: string, title: string): RenderedNotification {
+function renderNotificationErrorMessage(message: string | SafeString, title: string): RenderedNotification {
   return {
     title,
-    message,
+    message: message as string,
     type: 'error'
   };
 }
 
-function renderNotificationMessageWithAvatar(message: string, title: string, avatarUrl: string): RenderedNotification {
+function renderNotificationMessageWithAvatar(
+  message: string | SafeString,
+  title: string,
+  avatarUrl: string
+): RenderedNotification {
   return {
     title,
-    message,
+    message: message as string,
     type: 'info',
     avatarUrl: avatarUrl
   };
