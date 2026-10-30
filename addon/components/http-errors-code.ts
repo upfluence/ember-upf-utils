@@ -23,7 +23,7 @@ export default class extends Component<HTTPErrorsCodeArgs> {
     // We have been dealing w/ a bad design here which is that CSChat is defined in ember-identity and not in
     // ember-upf-utils. It actually works because we are 100% sure that it will be present in the context of one of our
     // running apps.
-    this.csChat = getOwner(this).lookup('service:cs-chat');
+    this.csChat = getOwner(this)!.lookup('service:cs-chat');
   }
 
   get errorHints(): { icon: string; label: string }[] {
