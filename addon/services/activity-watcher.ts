@@ -1,4 +1,4 @@
-import Service, { inject as service } from '@ember/service';
+import Service, { service } from '@ember/service';
 import type { SafeString } from '@ember/template';
 
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
