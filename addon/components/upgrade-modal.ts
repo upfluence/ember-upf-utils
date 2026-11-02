@@ -1,7 +1,7 @@
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 import type RouterService from '@ember/routing/router-service';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
