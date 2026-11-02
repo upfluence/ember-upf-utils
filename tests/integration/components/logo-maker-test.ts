@@ -1,10 +1,13 @@
 import { click, render } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
-import { setupIntl } from 'ember-intl/test-support';
+import { setupIntl, type TestContext } from 'ember-intl/test-support';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
+
+const COLOR_LABEL_SELECTOR = '[data-control-name="logo-maker-color-label"]';
+const ICON_LABEL_SELECTOR = '[data-control-name="logo-maker-icon-label"]';
 
 module('Integration | Component | logo-maker', function (hooks) {
   setupRenderingTest(hooks);
@@ -42,6 +45,20 @@ module('Integration | Component | logo-maker', function (hooks) {
     assert.dom('.logo-icon--selected .fad.fa-popcorn').exists();
     await click('.logo-icon:nth-of-type(1)');
     assert.dom('.logo-icon--selected .fad.fa-rabbit').exists();
+  });
+
+  module('Labels', () => {
+    test('The color label is marked as required', async function (this: TestContext, assert) {
+      await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
+
+      assert.dom(COLOR_LABEL_SELECTOR).hasText(`${this.intl.t('logo_maker.color_selector.label')}*`);
+    });
+
+    test('The icon label is marked as required', async function (this: TestContext, assert) {
+      await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
+
+      assert.dom(ICON_LABEL_SELECTOR).hasText(`${this.intl.t('logo_maker.icon_selector.label')}*`);
+    });
   });
 
   module('@onChange method', function () {
