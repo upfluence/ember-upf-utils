@@ -1,6 +1,4 @@
-import { render, triggerKeyEvent } from '@ember/test-helpers';
-import click from '@ember/test-helpers/dom/click';
-import typeIn from '@ember/test-helpers/dom/type-in';
+import { render, triggerKeyEvent, click, typeIn } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';

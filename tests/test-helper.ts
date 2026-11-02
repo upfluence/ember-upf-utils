@@ -2,7 +2,8 @@ import { setApplication } from '@ember/test-helpers';
 
 import config from 'dummy/config/environment';
 import { forceModulesToBeLoaded, sendCoverage } from 'ember-cli-code-coverage/test-support';
-import { start } from 'ember-qunit';
+import { setupEmberOnerrorValidation, start } from 'ember-qunit';
+import { loadTests } from 'ember-qunit/test-loader';
 // @ts-expect-error ember-sinon-qunit does not ship with types
 import setupSinon from 'ember-sinon-qunit';
 import QUnit from 'qunit';
@@ -12,6 +13,8 @@ import { setup } from 'qunit-dom';
 import Application from '../app';
 
 setup(QUnit.assert);
+setupEmberOnerrorValidation();
+loadTests();
 QUnit.done(async function () {
   forceModulesToBeLoaded();
   await sendCoverage();
