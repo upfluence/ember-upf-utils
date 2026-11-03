@@ -10,6 +10,11 @@ overrides:
   '@upfluence/hyperevents': github:upfluence/hyperevents#pn/cd-383-ember-7-3&path:/packages/hyperevents
   '@upfluence/oss-components': github:upfluence/oss-components#pn/cd-383-ember-7-3
 
+patchedDependencies:
+  ember-cli-ifa@0.10.0:
+    hash: f32485d45b2ff4c212f836bd56cc5bc515f6cebba4bc692f04baa81c3e0d1883
+    path: patches/ember-cli-ifa@0.10.0.patch
+
 importers:
 
   .:
@@ -8586,7 +8591,7 @@ snapshots:
       ember-auto-import: 2.13.1(webpack@5.97.1)
       ember-cli-babel: 8.3.2(@babel/core@7.26.0)
       ember-cli-htmlbars: 7.0.1(@babel/core@7.26.0)(ember-source@7.3.1(@glimmer/component@2.2.1))
-      ember-cli-ifa: 0.10.0
+      ember-cli-ifa: 0.10.0(patch_hash=f32485d45b2ff4c212f836bd56cc5bc515f6cebba4bc692f04baa81c3e0d1883)
       ember-cli-less: 2.0.6
       ember-cli-typescript: 5.3.0
       ember-intl: 7.5.0(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(typescript@5.9.3)(webpack@5.97.1)
@@ -10140,7 +10145,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli-ifa@0.10.0:
+  ember-cli-ifa@0.10.0(patch_hash=f32485d45b2ff4c212f836bd56cc5bc515f6cebba4bc692f04baa81c3e0d1883):
     dependencies:
       ember-cli-babel: 7.26.11
     transitivePeerDependencies:

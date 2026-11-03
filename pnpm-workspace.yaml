@@ -8,3 +8,6 @@ overrides:
   '@upfluence/ember-brand-manager': 'github:upfluence/ember-brand-manager#pn/cd-383-ember-7-3'
   '@upfluence/hyperevents': 'github:upfluence/hyperevents#pn/cd-383-ember-7-3&path:/packages/hyperevents'
   '@upfluence/oss-components': 'github:upfluence/oss-components#pn/cd-383-ember-7-3'
+
+patchedDependencies:
+  ember-cli-ifa@0.10.0: patches/ember-cli-ifa@0.10.0.patch
