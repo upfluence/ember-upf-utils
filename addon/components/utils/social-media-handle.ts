@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import type Owner from '@ember/owner';
 
 interface UtilsSocialMediaHandleArgs {
   socialNetwork: string;
@@ -40,7 +41,7 @@ export default class UtilsSocialMediaHandle extends Component<UtilsSocialMediaHa
   socialMediaNetworks: SocialNetworkData[] = SOCIAL_MEDIA_NETWORKS;
   socialMediaIcons: Record<string, string> = SOCIAL_MEDIA_ICONS;
 
-  constructor(owner: unknown, args: UtilsSocialMediaHandleArgs) {
+  constructor(owner: Owner, args: UtilsSocialMediaHandleArgs) {
     super(owner, args);
 
     assert('[Utils::SocialMediaHandle] The @onChange parameter is mandatory', typeof args.onChange === 'function');

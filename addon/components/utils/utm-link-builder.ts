@@ -7,6 +7,7 @@ import { tracked } from '@glimmer/tracking';
 
 import { type FeedbackMessage } from '@upfluence/oss-components/components/o-s-s/input-container';
 import { type IntlService } from 'ember-intl';
+import type Owner from '@ember/owner';
 
 export type UtmFields = {
   utm_source: string;
@@ -36,7 +37,7 @@ export default class UtilsUtmLinkBuilder extends Component<UtilsUtmLinkBuilderAr
   @tracked utmCampaign: string = '';
   @tracked validationErrors: Record<string, FeedbackMessage> = {};
 
-  constructor(owner: unknown, args: UtilsUtmLinkBuilderArgs) {
+  constructor(owner: Owner, args: UtilsUtmLinkBuilderArgs) {
     super(owner, args);
 
     scheduleOnce('afterRender', this, this.initializeUTMParams);

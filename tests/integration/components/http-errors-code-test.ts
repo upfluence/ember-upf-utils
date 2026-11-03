@@ -14,7 +14,10 @@ class CSChat extends Service {
 
 module('Integration | Component | http-errors-code', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
+  hooks.beforeEach(function () {
+    this.intl = this.owner.lookup('service:intl');
+  });
 
   hooks.beforeEach(function () {
     this.owner.register('service:cs-chat', CSChat);

@@ -7,6 +7,7 @@ import { tracked } from '@glimmer/tracking';
 import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
 
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
+import type Owner from '@ember/owner';
 
 type FocusableInput =
   | 'first-name'
@@ -46,7 +47,7 @@ export default class extends Component<UtilsAddressFormArgs> {
   addressKey: AddressKey = 'address';
   validatedAddressFields = [...BASE_VALIDATED_ADDRESS_FIELDS];
 
-  constructor(owner: unknown, args: UtilsAddressFormArgs) {
+  constructor(owner: Owner, args: UtilsAddressFormArgs) {
     super(owner, args);
     if (args.addressKey) this.addressKey = args.addressKey;
     this.validatedAddressFieldsHandler();

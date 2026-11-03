@@ -5,6 +5,7 @@ import { service } from '@ember/service';
 import Component from '@glimmer/component';
 
 import type { IntlService } from 'ember-intl';
+import type Owner from '@ember/owner';
 
 interface HTTPErrorsLimitModalArgs {
   limit: number;
@@ -17,7 +18,7 @@ export default class extends Component<HTTPErrorsLimitModalArgs> {
 
   csChat?: any;
 
-  constructor(owner: unknown, args: HTTPErrorsLimitModalArgs) {
+  constructor(owner: Owner, args: HTTPErrorsLimitModalArgs) {
     super(owner, args);
 
     // We have been dealing w/ a bad design here which is that CSChat is defined in ember-identity and not in

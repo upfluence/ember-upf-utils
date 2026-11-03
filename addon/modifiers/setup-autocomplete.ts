@@ -8,6 +8,7 @@ import Modifier, { type ArgsFor, type PositionalArgs, type NamedArgs } from 'emb
 
 import type AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';
 import { parseAddressComponents } from '@upfluence/ember-upf-utils/utils/address-parser';
+import type Owner from '@ember/owner';
 
 type GooglePlaceResult = google.maps.places.PlaceResult;
 type GoogleAutocomplete = google.maps.places.Autocomplete;
@@ -64,7 +65,7 @@ export default class SetupAutocompleteModifier extends Modifier<SetupAutocomplet
 
   private callback: ((result: AutocompletionAddress) => void) | null = null;
 
-  constructor(owner: unknown, args: ArgsFor<SetupAutocompleteSignature>) {
+  constructor(owner: Owner, args: ArgsFor<SetupAutocompleteSignature>) {
     super(owner, args);
     registerDestructor(this, cleanup);
   }

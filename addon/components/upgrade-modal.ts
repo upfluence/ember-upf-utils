@@ -6,6 +6,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { IntlService } from 'ember-intl';
+import type Owner from '@ember/owner';
 
 interface UpgradeModalArgs {
   hidden: boolean;
@@ -21,7 +22,7 @@ export default class UpgradeModal extends Component<UpgradeModalArgs> {
 
   @tracked hasSubscription: boolean = false;
 
-  constructor(owner: unknown, args: UpgradeModalArgs) {
+  constructor(owner: Owner, args: UpgradeModalArgs) {
     super(owner, args);
 
     this.currentUser.fetch().then(({ account_subscriptions }: { account_subscriptions: any[] }) => {

@@ -17,7 +17,10 @@ class CsChatMock extends Service {
 
 module('Integration | Component | upgrade-modal', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
+  hooks.beforeEach(function () {
+    this.intl = this.owner.lookup('service:intl');
+  });
 
   hooks.beforeEach(function () {
     this.closeStub = sinon.stub();

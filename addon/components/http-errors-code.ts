@@ -4,6 +4,7 @@ import { service } from '@ember/service';
 import Component from '@glimmer/component';
 
 import type { IntlService } from 'ember-intl';
+import type Owner from '@ember/owner';
 
 interface HTTPErrorsCodeArgs {
   httpError: '404' | '500' | 'default';
@@ -17,7 +18,7 @@ export default class extends Component<HTTPErrorsCodeArgs> {
 
   self = location.href;
 
-  constructor(owner: unknown, args: HTTPErrorsCodeArgs) {
+  constructor(owner: Owner, args: HTTPErrorsCodeArgs) {
     super(owner, args);
 
     // We have been dealing w/ a bad design here which is that CSChat is defined in ember-identity and not in

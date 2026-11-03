@@ -11,7 +11,7 @@ import { AutocompleteHandlerServiceMock } from '@upfluence/ember-upf-utils/test-
 
 module('Integration | Component | utils/address-inline', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
 
   hooks.beforeEach(function () {
     this.owner.register('service:autocomplete-handler', AutocompleteHandlerServiceMock);

@@ -9,7 +9,7 @@ const SELECTABLE_ITEMS = [{ label: 'Account A' }, { label: 'Account B' }, { labe
 
 module('Integration | Component | utils/account-banner', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
 
   module('rendering', function () {
     test('it renders', async function (assert) {

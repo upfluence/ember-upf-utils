@@ -3,6 +3,7 @@ import { click, find, render, waitUntil } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
+import { setupIntl } from 'ember-intl/test-support';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
@@ -10,6 +11,7 @@ import { DEFAULT_IMAGE_URL } from '@upfluence/ember-upf-utils/components/utils/p
 
 module('Integration | Component | utils/product-row', function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks, 'en-us');
 
   hooks.beforeEach(function () {
     this.intl = this.owner.lookup('service:intl');

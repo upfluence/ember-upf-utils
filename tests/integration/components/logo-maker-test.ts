@@ -8,7 +8,7 @@ import sinon from 'sinon';
 
 module('Integration | Component | logo-maker', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
 
   hooks.beforeEach(function () {
     this.onChangeStub = sinon.stub();

@@ -12,7 +12,7 @@ import {
 
 module('Integration | Helper | format-number', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
 
   module('Basic formatting', function () {
     test('Round the number when the threshold is lower and there are decimals', async function (assert) {

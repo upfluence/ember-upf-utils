@@ -16,7 +16,7 @@ const URL: string = 'https://www.test.com/350x150.png';
 
 module('Integration | Component | u-edit/shared-triggers/modals/image-upload', function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
 
   hooks.beforeEach(function () {
     this.owner.register('service:uploader', MockUploader);

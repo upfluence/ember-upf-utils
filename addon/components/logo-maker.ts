@@ -4,6 +4,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { LOGO_COLORS, LOGO_ICONS } from '@upfluence/oss-components/utils/logo-config';
+import type Owner from '@ember/owner';
 
 interface LogoMakerArgs {
   icon: string;
@@ -28,7 +29,7 @@ export default class extends Component<LogoMakerArgs> {
   campaignColors = DEFAULT_COLORS;
   campaignIcons = DEFAULT_ICONS;
 
-  constructor(owner: unknown, args: LogoMakerArgs) {
+  constructor(owner: Owner, args: LogoMakerArgs) {
     super(owner, args);
 
     scheduleOnce('afterRender', this, this.initializeSelectedLogo);

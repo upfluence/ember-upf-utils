@@ -8,13 +8,14 @@ import { module, test } from 'qunit';
 module('Unit | Service | activity-watcher', function (hooks) {
   setupTest(hooks);
   setupToast(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, 'en-us');
 
   hooks.beforeEach(function () {
     this.owner.register('service:events-service', EventsServiceMock);
 
     this.eventService = this.owner.lookup('service:events-service');
     this.activityWatcher = this.owner.lookup('service:activity-watcher');
+    this.intl = this.owner.lookup('service:intl');
   });
 
   test('it does nothing if not watching', function (assert) {
