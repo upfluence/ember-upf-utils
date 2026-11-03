@@ -1,6 +1,6 @@
 <div class="logo-maker fx-col fx-gap-px-18" ...attributes>
   <div class="fx-col fx-gap-px-12">
-    <label {{required-input}} data-control-name="logo-maker-color-label">{{t "logo_maker.color_selector.label"}}</label>
+    <label {{required-input}}>{{t "logo_maker.color_selector.label"}}</label>
     <div class="color-swatches fx-row fx-wrap fx-gap-px-6">
 
       {{#each this.campaignColors as |color|}}
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="fx-col fx-gap-px-12">
-    <label {{required-input}} data-control-name="logo-maker-icon-label">{{t "logo_maker.icon_selector.label"}}</label>
+    <label {{required-input}}>{{t "logo_maker.icon_selector.label"}}</label>
     <div class="fx-row fx-wrap fx-gap-px-6">
       {{#each this.campaignIcons as |icon|}}
         <div

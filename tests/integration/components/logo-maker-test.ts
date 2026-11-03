@@ -6,8 +6,8 @@ import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-const COLOR_LABEL_SELECTOR = '[data-control-name="logo-maker-color-label"]';
-const ICON_LABEL_SELECTOR = '[data-control-name="logo-maker-icon-label"]';
+const COLOR_LABEL_SELECTOR = '.logo-maker > div:first-child > label';
+const ICON_LABEL_SELECTOR = '.logo-maker > div:last-child > label';
 
 module('Integration | Component | logo-maker', function (hooks) {
   setupRenderingTest(hooks);
