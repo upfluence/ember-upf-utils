@@ -49,10 +49,6 @@
     "moment": "^2.29.4",
     "tinycolor2": "^1.4.1"
   },
-  "peerDependencies": {
-    "@upfluence/hyperevents": "^1.x",
-    "@upfluence/oss-components": "^3.x"
-  },
   "devDependencies": {
     "@ember/optional-features": "^3.0.0",
     "@ember/test-helpers": "^5.4.1",
