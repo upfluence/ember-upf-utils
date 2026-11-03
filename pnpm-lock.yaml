@@ -39,8 +39,8 @@ importers:
         specifier: ^2.0.6
         version: 2.0.6
       ember-cli-typescript:
-        specifier: ^4.2.1
-        version: 4.2.1
+        specifier: ^5.3.0
+        version: 5.3.0
       ember-modifier:
         specifier: ^3.2.7
         version: 3.2.7(@babel/core@7.26.0)
@@ -3012,10 +3012,6 @@ packages:
   ember-cli-typescript@3.0.0:
     resolution: {integrity: sha512-lo5YArbJzJi5ssvaGqTt6+FnhTALnSvYVuxM7lfyL1UCMudyNJ94ovH5C7n5il7ATd6WsNiAPRUO/v+s5Jq/aA==}
     engines: {node: 8.* || >= 10.*}
-
-  ember-cli-typescript@4.2.1:
-    resolution: {integrity: sha512-0iKTZ+/wH6UB/VTWKvGuXlmwiE8HSIGcxHamwNhEC5x1mN3z8RfvsFZdQWYUzIWFN2Tek0gmepGRPTwWdBYl/A==}
-    engines: {node: 10.* || >= 12.*}
 
   ember-cli-typescript@5.3.0:
     resolution: {integrity: sha512-gFA+ZwmsvvFwo2Jz/B9GMduEn+fPoGb69qWGP0Tp3+Tu5xypDtIKVSZ5086I3Cr19cLXD4HkrOR3YQvdUKzAkQ==}
@@ -9783,21 +9779,6 @@ snapshots:
       walk-sync: 2.2.0
     transitivePeerDependencies:
       - '@babel/core'
-      - supports-color
-
-  ember-cli-typescript@4.2.1:
-    dependencies:
-      ansi-to-html: 0.6.15
-      broccoli-stew: 3.0.0
-      debug: 4.4.0
-      execa: 4.1.0
-      fs-extra: 9.1.0
-      resolve: 1.22.10
-      rsvp: 4.8.5
-      semver: 7.6.3
-      stagehand: 1.0.1
-      walk-sync: 2.2.0
-    transitivePeerDependencies:
       - supports-color
 
   ember-cli-typescript@5.3.0:
