@@ -38,7 +38,7 @@
     "@ember/string": "^3.1.1",
     "@embroider/macros": "^1.20.6",
     "@googlemaps/js-api-loader": "^1.16.2",
-    "@upfluence/ember-brand-manager": "github:upfluence/ember-brand-manager#pn/cd-383-ember-7-3",
+    "@upfluence/ember-brand-manager": "github:upfluence/ember-brand-manager#feature/ember-upgrade-4-to-7",
     "calculate-cache-key-for-tree": "^2.0.0",
     "ember-auto-import": "^2.13.1",
     "ember-cli-babel": "^8.2.0",
