@@ -6,14 +6,30 @@ Ember Upfluence Utilities. This repository contains a load of shared code which 
 
 ## Compatibility
 
-- Ember.js v3.24 or above
-- Ember CLI v3.24 or above
-- Node.js v12 or above
+- Ember.js v6.12 or above
+- Node.js v22 or above
+
+> **Breaking:** support for Ember versions below 6.12 has been dropped. The addon now relies on native types and on the
+> `service` import from `@ember/service`.
 
 ## Installation
 
+```bash
+pnpm add @upfluence/ember-upf-utils
+```
+
+Required peer dependencies:
+
+- `ember-source` `^6.12.0`
+- `@upfluence/oss-components` `>=3`
+- `@upfluence/hyperevents` `>=1`
+
+The host app must also provide `ember-intl`, as the addon's components rely on the `intl` service.
+
+To work on the addon itself:
+
 - `git clone` this repository
-- `npm install`
+- `make install` (runs `pnpm install`)
 
 ## Developing
 
@@ -49,20 +65,20 @@ $> npm install ember-upf-utils
 
 ### Linting
 
-- `npm run lint:hbs`
-- `npm run lint:js`
-- `npm run lint:js -- --fix`
+- `pnpm lint:hbs`
+- `pnpm lint:js`
+- `pnpm lint:js --fix`
 
 ### Running tests
 
-- `ember test` – Runs the test suite on the current Ember version
-- `ember test --server` – Runs the test suite in "watch mode"
+- `make tests` – Runs the test suite once on the current Ember version
+- `make testserver` – Runs the test suite in "watch mode"
 - `ember try:each` – Runs the test suite against multiple Ember versions
 
 ### Running the dummy application
 
-- `ember serve`
-- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+- `make start` (runs `ember serve --port 0`)
+- The port is random: visit the dummy application at the URL printed in the output.
   See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## License
