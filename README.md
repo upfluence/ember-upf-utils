@@ -36,33 +36,6 @@ To work on the addon itself:
 **Styles** are stored in `app/styles`.
 **Components** and **Templates** are stored in `addon/components`. _(Pod Structure)_
 
-#### Compiling
-
-_Let's say you are working on **search** _
-
-```bash
-# in upfluence/ember-upf-utils
-$> ember build
-```
-
-In `upfluence/facade-web/package.json` replace :
-
-```json
-"ember-upf-utils": "upfluence/ember-upf-utils",
-```
-
-by :
-
-```json
-"ember-upf-utils": "file:../ember-upf-utils"
-```
-
-```bash
-# In the service using it
-$> npm uninstall ember-upf-utils
-$> npm install ember-upf-utils
-```
-
 ### Linting
 
 - `pnpm lint:hbs`
