@@ -34,7 +34,7 @@ To work on the addon itself:
 ## Developing
 
 **Styles** are stored in `app/styles`.
-**Components** and **Templates** are stored in `addon/components`. _(Pod Structure)_
+**Components** and **Templates** are stored in `addon/components`.
 
 ### Linting
 
