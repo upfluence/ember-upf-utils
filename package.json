@@ -31,7 +31,7 @@
     "postpack": "ember ts:clean"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": ">= 22"
   },
   "dependencies": {
     "@babel/core": "^7.25.2",
@@ -50,8 +50,9 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "@upfluence/hyperevents": "^1.x",
-    "@upfluence/oss-components": "^3.x"
+    "@upfluence/hyperevents": ">= 1",
+    "@upfluence/oss-components": ">=3",
+    "ember-source": "^6.12.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.1.0",
