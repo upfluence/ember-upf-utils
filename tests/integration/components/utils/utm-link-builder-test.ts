@@ -1,7 +1,4 @@
-import { render, focus, blur } from '@ember/test-helpers';
-import click from '@ember/test-helpers/dom/click';
-import typeIn from '@ember/test-helpers/dom/type-in';
-import settled from '@ember/test-helpers/settled';
+import { render, focus, blur, click, typeIn, settled } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';

@@ -1,6 +1,6 @@
 import { get, computed } from '@ember/object';
 import Mixin from '@ember/object/mixin';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 import { formatPrice } from '@upfluence/ember-upf-utils/helpers/format-price';
 

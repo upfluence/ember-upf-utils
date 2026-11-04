@@ -45,14 +45,14 @@ module('Unit | Service | autocomplete-handler', function (hooks) {
     });
 
     test('getLoader returns a MockLoader instance', function (assert) {
-      const service = this.owner.lookup('service:autocomplete-handler') as AutocompleteHandlerServiceMock;
+      const service = this.owner.lookup('service:autocomplete-handler') as unknown as AutocompleteHandlerServiceMock;
       const loader = service.getLoader();
 
       assert.ok(loader);
     });
 
     test('MockLoader importLibrary returns places library', async function (assert) {
-      const service = this.owner.lookup('service:autocomplete-handler') as AutocompleteHandlerServiceMock;
+      const service = this.owner.lookup('service:autocomplete-handler') as unknown as AutocompleteHandlerServiceMock;
       const loader = service.getLoader();
       const placesLib = await loader.importLibrary('places');
 
@@ -61,7 +61,7 @@ module('Unit | Service | autocomplete-handler', function (hooks) {
     });
 
     test('MockLoader can be accessed for test assertions', function (assert) {
-      const service = this.owner.lookup('service:autocomplete-handler') as AutocompleteHandlerServiceMock;
+      const service = this.owner.lookup('service:autocomplete-handler') as unknown as AutocompleteHandlerServiceMock;
       const mockLoader = service.getLoader();
 
       assert.ok(mockLoader.getMockAutocompleteInstance);

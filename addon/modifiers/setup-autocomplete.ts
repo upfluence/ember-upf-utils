@@ -1,6 +1,6 @@
 import { assert } from '@ember/debug';
 import { registerDestructor } from '@ember/destroyable';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { CountryData } from '@upfluence/oss-components/utils/country-codes';

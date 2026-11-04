@@ -1,3 +1,4 @@
+import type EngineInstance from '@ember/engine/instance';
 import Service from '@ember/service';
 import { click, render } from '@ember/test-helpers';
 
@@ -147,7 +148,7 @@ module('Integration | Component | http-errors-code', function (hooks) {
   });
 
   test('When cs-chat button is missing, there is no Contact support button', async function (assert) {
-    this.owner.unregister('service:cs-chat');
+    (this.owner as unknown as EngineInstance).unregister('service:cs-chat');
     await render(hbs`<HttpErrorsCode @httpError="default" />`);
     assert.dom('.upf-btn').exists({ count: 1 });
     assert.dom('.upf-btn.upf-btn--default').doesNotExist();
