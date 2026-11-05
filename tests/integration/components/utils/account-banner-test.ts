@@ -4,6 +4,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 const SELECTABLE_ITEMS = [{ label: 'Account A' }, { label: 'Account B' }, { label: 'Account C' }];
 
@@ -412,6 +413,65 @@ module('Integration | Component | utils/account-banner', function (hooks) {
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
 
       assert.dom('.upf-link').exists();
+    });
+
+    test('it calls alert onClick when provided', async function (assert) {
+      const onClick = sinon.stub();
+      this.set('alert', { skin: 'error', title: 'Error', onClick });
+
+      await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
+      await click('.upf-link');
+
+      assert.true(onClick.calledOnce);
+      assert.ok(onClick.firstCall.args[0] instanceof MouseEvent);
+    });
+
+    test('it prioritizes alert onClick over opening the alert link', async function (assert) {
+      const onClick = sinon.stub();
+      const openStub = sinon.stub(window, 'open');
+      this.set('alert', {
+        skin: 'error',
+        title: 'Error',
+        onClick,
+        link: { label: 'Link', href: 'https://example.com' }
+      });
+
+      await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
+      await click('.upf-link');
+
+      assert.true(onClick.calledOnce);
+      assert.notOk(openStub.called);
+      openStub.restore();
+    });
+
+    test('it opens the alert link in a new tab by default', async function (assert) {
+      const openStub = sinon.stub(window, 'open');
+      this.set('alert', {
+        skin: 'error',
+        title: 'Error',
+        link: { label: 'Link', href: 'https://example.com' }
+      });
+
+      await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
+      await click('.upf-link');
+
+      assert.true(openStub.calledOnceWithExactly('https://example.com', '_blank'));
+      openStub.restore();
+    });
+
+    test('it opens the alert link with its target', async function (assert) {
+      const openStub = sinon.stub(window, 'open');
+      this.set('alert', {
+        skin: 'error',
+        title: 'Error',
+        link: { label: 'Link', href: 'https://example.com', target: '_self' }
+      });
+
+      await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
+      await click('.upf-link');
+
+      assert.true(openStub.calledOnceWithExactly('https://example.com', '_self'));
+      openStub.restore();
     });
 
     test('it does not render link when alert has no link', async function (assert) {

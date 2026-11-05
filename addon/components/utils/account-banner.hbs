@@ -96,11 +96,8 @@
       @plain={{@alert.plain}}
     >
       <:extra-content>
-        {{#if @alert.link}}
-          <OSS::Link
-            @label={{@alert.link.label}}
-            @link={{hash href=@alert.link.href target=(or @alert.link.target "_blank")}}
-          />
+        {{#if (or @alert.link @alert.onClick)}}
+          <OSS::Link @label={{@alert.link.label}} {{on "click" this.onClick}} />
         {{/if}}
       </:extra-content>
     </OSS::Alert>
