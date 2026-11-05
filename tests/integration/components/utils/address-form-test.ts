@@ -1,6 +1,7 @@
 import EmberObject from '@ember/object';
-import { click, fillIn, findAll, render, typeIn } from '@ember/test-helpers';
+import { click, fillIn, findAll, render, triggerEvent, typeIn } from '@ember/test-helpers';
 
+import type { FormInstance } from '@upfluence/oss-components/services/form-manager';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
 import { setupRenderingTest } from 'ember-qunit';
@@ -118,6 +119,184 @@ module('Integration | Component | utils/address-form', function (hooks) {
     assert.ok(this.onChange.calledOnceWith(this.address, true));
   });
 
+  test('it uses the standardized address labels and placeholders', async function (assert) {
+    this.address.countryCode = '';
+
+    await render(
+      hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
+    );
+
+    const labels = findAll('label').map((label) => label.textContent?.replace('*', '').trim());
+
+    assert.ok(labels.includes('First name'));
+    assert.dom('[data-control-name="address-form-first-name"] input').hasAttribute('placeholder', 'e.g., John');
+    assert.ok(labels.includes('Last name'));
+    assert.dom('[data-control-name="address-form-last-name"] input').hasAttribute('placeholder', 'e.g., Doe');
+    assert.dom('[data-control-name="address-form-phone"] input').hasAttribute('placeholder', '(415) 000 0000');
+    assert.ok(labels.includes('Address line 1'));
+    assert
+      .dom('[data-control-name="address-form-address1"] input')
+      .hasAttribute('placeholder', 'e.g., 123 Market Street');
+    assert.ok(labels.includes('Address line 2'));
+    assert
+      .dom('[data-control-name="address-form-address2"] input')
+      .hasAttribute('placeholder', 'e.g., Apt 4B, Building C');
+    assert.dom('[data-control-name="address-form-country"] .upf-input').hasText('Select country');
+    assert.ok(labels.includes('City'));
+    assert.dom('[data-control-name="address-form-city"] input').hasAttribute('placeholder', 'e.g., San Francisco');
+    assert.ok(labels.includes('State/Province'));
+    assert.dom('[data-control-name="address-form-state"] input').hasAttribute('placeholder', 'e.g., California');
+    assert.ok(labels.includes('Postal code'));
+    assert.dom('[data-control-name="address-form-zipcode"] input').hasAttribute('placeholder', 'e.g., 94103');
+  });
+
+  module('When a form instance is provided', function () {
+    test('an empty phone number reports a required error instead of a format error', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.phone = '';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}} />`
+      );
+
+      assert.false(this.formInstance.validateForm());
+      const errors = this.formInstance.getErrors();
+      assert.strictEqual(errors['phone.submit']?.kind, 'blank');
+      assert.notOk(errors['phone.format.submit']);
+    });
+
+    test('it keeps an existing phone value without initializing the phone selector', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      const savedPhone = this.address.phone;
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @usePhoneNumberInput={{true}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
+      );
+
+      assert.dom('[data-control-name="address-form-phone"] input').hasValue('');
+      assert.strictEqual(this.address.phone, savedPhone);
+      assert.true(this.formInstance.validateForm());
+    });
+
+    test('it validates required fields on submission and displays inline feedback', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.firstName = '';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
+      );
+
+      assert.false(this.formInstance.validateForm());
+      assert.strictEqual(this.formInstance.getErrors()['firstName.submit']?.message.value, 'This field is required.');
+    });
+
+    test('it keeps address line 2 optional', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.address2 = '';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} />`
+      );
+
+      assert.true(this.formInstance.validateForm());
+      assert.notOk(this.formInstance.getErrors()['address2.submit']);
+    });
+
+    test('it validates short address lines on blur without adding a phone rule to the basic input', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.address1 = 'a';
+      this.address.phone = 'ext. 12';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
+      );
+      await triggerEvent('[data-control-name="address-form-address1"] input', 'blur');
+
+      assert.strictEqual(
+        this.formInstance.getErrors()['address1.format.blur']?.message.value,
+        'Invalid format. Make sure the value is correct.'
+      );
+      assert.notOk(this.formInstance.getErrors()['phone.format.blur']);
+    });
+
+    test('it does not apply the OSS phone format validation to the basic input', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.phone = 'call me';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} />`
+      );
+      await triggerEvent('[data-control-name="address-form-phone"] input', 'blur');
+
+      assert.notOk(this.formInstance.getErrors()['phone.format.blur']);
+    });
+
+    test('it validates country code length on submission', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.countryCode = 'USA';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} />`
+      );
+
+      assert.false(this.formInstance.validateForm());
+      assert.strictEqual(this.formInstance.getErrors()['countryCode.format.submit']?.kind, 'invalid');
+    });
+
+    test('it validates postal codes longer than the previous limit on blur', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.zipcode = '1'.repeat(256);
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} />`
+      );
+      await triggerEvent('[data-control-name="address-form-zipcode"] input', 'blur');
+
+      assert.strictEqual(this.formInstance.getErrors()['zipcode.format.blur']?.kind, 'invalid');
+    });
+
+    test('it clears a field error when the user starts typing in that field', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.firstName = '';
+      this.address.address1 = 'a';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @useGoogleAutocomplete={{false}} />`
+      );
+
+      await triggerEvent('[data-control-name="address-form-address1"] input', 'blur');
+      await triggerEvent('form', 'submit');
+      assert.ok(this.formInstance.getErrors()['firstName.submit']);
+      assert.dom('[data-control-name="address-form-first-name"] + span').hasText('This field is required.');
+
+      await typeIn('[data-control-name="address-form-first-name"] input', 'J', { delay: 0 });
+      assert.notOk(this.formInstance.getErrors()['firstName.submit']);
+      assert.dom('[data-control-name="address-form-first-name"] + span').doesNotExist();
+
+      await typeIn('[data-control-name="address-form-address1"] input', 'b', { delay: 0 });
+      assert.notOk(this.formInstance.getErrors()['address1.submit']);
+    });
+  });
+
+  module('When form callbacks are provided', function () {
+    test('it creates a form instance and forwards its submit result', async function (assert) {
+      this.onFormSetup = sinon.stub();
+      this.onFormSubmit = sinon.stub();
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @onFormSubmit={{this.onFormSubmit}} @useGoogleAutocomplete={{false}} />`
+      );
+
+      const formInstance = this.onFormSetup.firstCall.args[0];
+      assert.ok(formInstance);
+      assert.true(formInstance.validateForm());
+      assert.deepEqual(formInstance.getErrors(), {});
+
+      await triggerEvent('form', 'submit');
+      assert.ok(this.onFormSubmit.calledWith(true));
+    });
+  });
+
   test('onChange action is called with truthy validity check when all fields are filled', async function (assert) {
     await render(
       hbs`<Utils::AddressForm @address={{this.address}} @useGoogleAutocomplete={{false}} @onChange={{this.onChange}} />`
@@ -156,15 +335,29 @@ module('Integration | Component | utils/address-form', function (hooks) {
       assert.dom('[data-control-name="address-form-phone"]').hasClass('oss-input-container');
     });
 
-    test('onChange action is called with falsy validity check if the phone number has a double country prefix', async function (assert) {
+    test('it preserves the stored phone value in the basic input', async function (assert) {
       await render(
-        hbs`<Utils::AddressForm @address={{this.address}} @onChange={{this.onChange}} @useGoogleAutocomplete={{false}}
+        hbs`<Utils::AddressForm @address={{this.address}} @usePhoneNumberInput={{false}} @useGoogleAutocomplete={{false}}
+                                @onChange={{this.onChange}} />`
+      );
+
+      assert.dom('[data-control-name="address-form-phone"] input').hasValue('+3348408934');
+    });
+
+    test('phone input format errors are added to the form feedback', async function (assert) {
+      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
+      this.address.phone = '';
+
+      await render(
+        hbs`<Utils::AddressForm @address={{this.address}} @onFormSetup={{this.onFormSetup}} @onChange={{this.onChange}} @useGoogleAutocomplete={{false}}
                                 @usePhoneNumberInput={{true}} />`
       );
       await typeIn('[data-control-name="address-form-phone"] input', '+8', {
         delay: 0
       });
+      await triggerEvent('[data-control-name="address-form-phone"] input', 'blur');
       assert.ok(this.onChange.calledWith(this.address, false));
+      assert.strictEqual(this.formInstance.getErrors()['phone.format.blur']?.kind, 'invalid');
     });
   });
 
