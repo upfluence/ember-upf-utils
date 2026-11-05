@@ -2,6 +2,7 @@ import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 import { Router } from '@ember/routing';
 import { inject as service } from '@ember/service';
+import type AssetMapService from '@upfluence/oss-components/services/asset-map';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
@@ -14,7 +15,7 @@ interface UpgradeModalArgs {
 }
 
 export default class UpgradeModal extends Component<UpgradeModalArgs> {
-  @service declare assetMap: any;
+  @service declare assetMap: AssetMapService;
   @service declare intl: IntlService;
   @service declare currentUser: any;
   @service declare router: Router;
