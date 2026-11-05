@@ -415,13 +415,12 @@ module('Integration | Component | utils/account-banner', function (hooks) {
       assert.dom('.upf-link').exists();
     });
 
-    test('it calls alert onClick when provided', async function (assert) {
+    test('it calls the alert link onClick when provided', async function (assert) {
       const onClick = sinon.stub();
       this.set('alert', {
         skin: 'error',
         title: 'Error',
-        onClick,
-        link: { label: 'Link', href: 'https://example.com' }
+        link: { label: 'Link', onClick }
       });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
@@ -431,21 +430,20 @@ module('Integration | Component | utils/account-banner', function (hooks) {
       assert.ok(onClick.firstCall.args[0] instanceof MouseEvent);
     });
 
-    test('it prioritizes alert onClick over opening the alert link', async function (assert) {
+    test('it does not open the alert link when using onClick', async function (assert) {
       const onClick = sinon.stub();
       const openStub = sinon.stub(window, 'open');
       this.set('alert', {
         skin: 'error',
         title: 'Error',
-        onClick,
-        link: { label: 'Link', href: 'https://example.com' }
+        link: { label: 'Link', onClick }
       });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
       await click('.upf-link');
 
       assert.true(onClick.calledOnce);
-      assert.notOk(openStub.called);
+      assert.ok(openStub.notCalled);
       openStub.restore();
     });
 

@@ -96,7 +96,7 @@
       @plain={{@alert.plain}}
     >
       <:extra-content>
-        {{#if (or @alert.link @alert.onClick)}}
+        {{#if @alert.link}}
           <OSS::Link @label={{@alert.link.label}} {{on "click" this.onClick}} />
         {{/if}}
       </:extra-content>
