@@ -1,160 +1,279 @@
-<div class="fx-col fx-gap-px-12" ...attributes>
-  {{#unless @hideNameAttrs}}
-    <div class="fx-row fx-gap-px-12">
-      <div class="fx-col fx-gap-px-6 fx-1">
-        <label {{required-input}}>
-          {{t "upf_utils.address_form.first_name"}}
-        </label>
-        <OSS::InputContainer
-          @value={{@address.firstName}}
-          @onChange={{fn this.onFieldUpdate "firstName"}}
-          @placeholder={{t "upf_utils.address_form.placeholder.first_name"}}
-          data-control-name="address-form-first-name"
-          {{(if (eq @focus "first-name") (modifier "enable-input-autofocus"))}}
-        />
+<OSS::Form @onSetup={{this.onFormSetup}} @onSubmit={{this.onFormSubmit}} ...attributes>
+  <:content>
+    <div class="fx-col fx-gap-px-12">
+      {{#unless @hideNameAttrs}}
+        <div class="fx-row fx-gap-px-12">
+          <div class="fx-col fx-gap-px-6 fx-1">
+            <label {{required-input}}>
+              {{t "upf_utils.address_form.first_name"}}
+            </label>
+            <OSS::InputContainer
+              @value={{@address.firstName}}
+              @onChange={{fn this.onFieldUpdate "firstName"}}
+              @placeholder={{t "upf_utils.address_form.placeholder.first_name"}}
+              @feedbackMessage={{form-field-feedback this.formInstance.id "firstName.submit"}}
+              data-control-name={{this.fieldControlNames.firstName}}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="firstName.submit"
+                validator=(fn this.validateFieldPresence "firstName")
+                validateOnBlur=false
+              }}
+            />
+          </div>
+
+          <div class="fx-col fx-gap-px-6 fx-1">
+            <label {{required-input}}>
+              {{t "upf_utils.address_form.last_name"}}
+            </label>
+            <OSS::InputContainer
+              @value={{@address.lastName}}
+              @onChange={{fn this.onFieldUpdate "lastName"}}
+              @placeholder={{t "upf_utils.address_form.placeholder.last_name"}}
+              @feedbackMessage={{form-field-feedback this.formInstance.id "lastName.submit"}}
+              data-control-name={{this.fieldControlNames.lastName}}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="lastName.submit"
+                validator=(fn this.validateFieldPresence "lastName")
+                validateOnBlur=false
+              }}
+            />
+          </div>
+        </div>
+
+      {{/unless}}
+
+      {{#unless @hidePhoneNumber}}
+        <div class="fx-col fx-gap-px-6">
+          <label {{required-input}}>
+            {{t "upf_utils.address_form.phone_number"}}
+          </label>
+          {{#if @usePhoneNumberInput}}
+            <OSS::PhoneNumberInput
+              @prefix={{this.phoneNumberPrefix}}
+              @number={{this.phoneNumber}}
+              @onChange={{this.onPhoneNumberUpdate}}
+              @validates={{this.onPhoneNumberValidation}}
+              @errorMessage={{or
+                (get (form-field-feedback this.formInstance.id "phone.format.blur") "value")
+                (get (form-field-feedback this.formInstance.id "phone.submit") "value")
+              }}
+              data-control-name={{this.fieldControlNames.phone}}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="phone.submit"
+                validator=(fn this.validateFieldPresence "phone")
+                validateOnBlur=false
+              }}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="phone.format.blur"
+                validator=this.validatePhoneFormat
+              }}
+            />
+          {{else}}
+            <OSS::InputContainer
+              @value={{@address.phone}}
+              @onChange={{fn this.onFieldUpdate "phone"}}
+              @placeholder={{t "upf_utils.address_form.placeholder.phone"}}
+              @feedbackMessage={{form-field-feedback this.formInstance.id "phone.submit"}}
+              data-control-name="address-form-phone"
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="phone.submit"
+                validator=(fn this.validateFieldPresence "phone")
+                validateOnBlur=false
+              }}
+            />
+          {{/if}}
+        </div>
+      {{/unless}}
+
+      <div class="fx-row fx-gap-px-12">
+        <div class="fx-col fx-gap-px-6 fx-1" data-control-name="address-form">
+          <label {{required-input}}>
+            {{t "upf_utils.address_form.line_1"}}
+          </label>
+          {{#if this.useGoogleAutocomplete}}
+            <OSS::InputContainer
+              @value={{get @address (concat this.addressKey "1")}}
+              @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
+              @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
+              @feedbackMessage={{or
+                (form-field-feedback this.formInstance.id "address1.format.blur")
+                (form-field-feedback this.formInstance.id "address1.submit")
+              }}
+              data-control-name={{this.fieldControlNames.address1}}
+              {{setup-autocomplete callback=this.onAddressSelected}}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="address1.format.blur"
+                validator=this.validateAddressLineFormat
+              }}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="address1.submit"
+                validator=(fn this.validateFieldPresence (concat this.addressKey "1"))
+                validateOnBlur=false
+              }}
+            />
+          {{else}}
+            <OSS::InputContainer
+              @value={{get @address (concat this.addressKey "1")}}
+              @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
+              @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
+              @feedbackMessage={{or
+                (form-field-feedback this.formInstance.id "address1.format.blur")
+                (form-field-feedback this.formInstance.id "address1.submit")
+              }}
+              data-control-name="address-form-address1"
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="address1.format.blur"
+                validator=this.validateAddressLineFormat
+              }}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="address1.submit"
+                validator=(fn this.validateFieldPresence (concat this.addressKey "1"))
+                validateOnBlur=false
+              }}
+            />
+          {{/if}}
+        </div>
+
+        <div class="fx-col fx-gap-px-6 fx-1">
+          <label>{{t "upf_utils.address_form.line_2"}}</label>
+          <OSS::InputContainer
+            @value={{get @address (concat this.addressKey "2")}}
+            @onChange={{fn this.onFieldUpdate (concat this.addressKey "2")}}
+            @placeholder={{t "upf_utils.address_form.placeholder.line2"}}
+            data-control-name="address-form-address2"
+            {{register-form-field
+              form=this.formInstance.id
+              fieldId="address2.submit"
+              validator=(fn this.validateFieldPresence (concat this.addressKey "2"))
+              validateOnBlur=false
+            }}
+          />
+        </div>
       </div>
 
-      <div class="fx-col fx-gap-px-6 fx-1">
-        <label {{required-input}}>
-          {{t "upf_utils.address_form.last_name"}}
-        </label>
-        <OSS::InputContainer
-          @value={{@address.lastName}}
-          @onChange={{fn this.onFieldUpdate "lastName"}}
-          @placeholder={{t "upf_utils.address_form.placeholder.last_name"}}
-          data-control-name="address-form-last-name"
-          {{(if (eq @focus "last-name") (modifier "enable-input-autofocus"))}}
-        />
+      <div class="fx-row fx-gap-px-12">
+        <div class="fx-col fx-gap-px-6 fx-1">
+          <label {{required-input}}>
+            {{t "upf_utils.address_form.country"}}
+          </label>
+          <OSS::CountrySelector
+            @sourceList={{this.countries}}
+            @onChange={{this.applyCountry}}
+            @value={{@address.countryCode}}
+            @feedbackMessage={{or
+              (form-field-feedback this.formInstance.id "countryCode.format.submit")
+              (form-field-feedback this.formInstance.id "countryCode.submit")
+            }}
+            data-control-name={{this.fieldControlNames.countryCode}}
+            {{register-form-field
+              form=this.formInstance.id
+              fieldId="countryCode.format.submit"
+              validator=this.validateCountryFormat
+              validateOnBlur=false
+            }}
+            {{register-form-field
+              form=this.formInstance.id
+              fieldId="countryCode.submit"
+              validator=(fn this.validateFieldPresence "countryCode")
+              validateOnBlur=false
+            }}
+          />
+        </div>
+
+        <div class="fx-col fx-gap-px-6 fx-1">
+          {{#if this.provincesForCountry}}
+            <label {{required-input}}>{{t "upf_utils.address_form.state"}}</label>
+          {{else}}
+            <label>{{t "upf_utils.address_form.state"}}</label>
+          {{/if}}
+          {{#if this.provincesForCountry}}
+            <OSS::ProvinceSelector
+              @value={{@address.state}}
+              @sourceList={{this.provincesForCountry}}
+              @onChange={{this.applyProvince}}
+              @feedbackMessage={{form-field-feedback this.formInstance.id "state.submit"}}
+              data-control-name={{this.fieldControlNames.state}}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="state.submit"
+                validator=(fn this.validateFieldPresence "state")
+                validateOnBlur=false
+              }}
+            />
+          {{else}}
+            <OSS::InputContainer
+              @value={{@address.state}}
+              @onChange={{fn this.onFieldUpdate "state"}}
+              @placeholder={{t "upf_utils.address_form.placeholder.state"}}
+              @feedbackMessage={{form-field-feedback this.formInstance.id "state.submit"}}
+              data-control-name={{this.fieldControlNames.state}}
+              {{register-form-field
+                form=this.formInstance.id
+                fieldId="state.submit"
+                validator=(fn this.validateFieldPresence "state")
+                validateOnBlur=false
+              }}
+            />
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="fx-row fx-gap-px-12">
+        <div class="fx-col fx-gap-px-6 fx-1">
+          <label {{required-input}}>
+            {{t "upf_utils.address_form.city"}}
+          </label>
+          <OSS::InputContainer
+            @value={{@address.city}}
+            @onChange={{fn this.onFieldUpdate "city"}}
+            @placeholder={{t "upf_utils.address_form.placeholder.city"}}
+            @feedbackMessage={{form-field-feedback this.formInstance.id "city.submit"}}
+            data-control-name={{this.fieldControlNames.city}}
+            {{register-form-field
+              form=this.formInstance.id
+              fieldId="city.submit"
+              validator=(fn this.validateFieldPresence "city")
+              validateOnBlur=false
+            }}
+          />
+        </div>
+
+        <div class="fx-col fx-gap-px-6 fx-1">
+          <label {{required-input}}>
+            {{t "upf_utils.address_form.postal_code"}}
+          </label>
+          <OSS::InputContainer
+            @value={{@address.zipcode}}
+            @onChange={{fn this.onFieldUpdate "zipcode"}}
+            @placeholder={{t "upf_utils.address_form.placeholder.postal_code"}}
+            @feedbackMessage={{or
+              (form-field-feedback this.formInstance.id "zipcode.format.blur")
+              (form-field-feedback this.formInstance.id "zipcode.submit")
+            }}
+            data-control-name={{this.fieldControlNames.zipcode}}
+            {{register-form-field
+              form=this.formInstance.id
+              fieldId="zipcode.format.blur"
+              validator=this.validateZipcodeFormat
+            }}
+            {{register-form-field
+              form=this.formInstance.id
+              fieldId="zipcode.submit"
+              validator=(fn this.validateFieldPresence "zipcode")
+              validateOnBlur=false
+            }}
+          />
+        </div>
       </div>
     </div>
-  {{/unless}}
-
-  {{#unless @hidePhoneNumber}}
-    <div class="fx-col fx-gap-px-6">
-      <label {{required-input}}>
-        {{t "upf_utils.address_form.phone_number"}}
-      </label>
-      {{#if @usePhoneNumberInput}}
-        <OSS::PhoneNumberInput
-          @prefix={{this.phoneNumberPrefix}}
-          @number={{this.phoneNumber}}
-          @onChange={{this.onPhoneNumberUpdate}}
-          @validates={{this.onPhoneNumberValidation}}
-          data-control-name="address-form-phone"
-          {{(if (eq @focus "phone") (modifier "enable-input-autofocus"))}}
-        />
-      {{else}}
-        <OSS::InputContainer
-          @value={{@address.phone}}
-          @placeholder={{t "upf_utils.address_form.placeholder.phone"}}
-          data-control-name="address-form-phone"
-          {{(if (eq @focus "phone") (modifier "enable-input-autofocus"))}}
-        />
-      {{/if}}
-    </div>
-  {{/unless}}
-
-  <div class="fx-row fx-gap-px-12">
-    <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{required-input}}>
-        {{t "upf_utils.address_form.line_1"}}
-      </label>
-      {{#if this.useGoogleAutocomplete}}
-        <OSS::InputContainer
-          @value={{get @address (concat this.addressKey "1")}}
-          @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
-          @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
-          data-control-name="address-form-address1"
-          {{(if (eq @focus "line1") (modifier "enable-input-autofocus"))}}
-          {{setup-autocomplete callback=this.onAddressSelected}}
-        />
-      {{else}}
-        <OSS::InputContainer
-          @value={{get @address (concat this.addressKey "1")}}
-          @onChange={{fn this.onFieldUpdate (concat this.addressKey "1")}}
-          @placeholder={{t "upf_utils.address_form.placeholder.line1"}}
-          data-control-name="address-form-address1"
-          {{(if (eq @focus "line1") (modifier "enable-input-autofocus"))}}
-        />
-      {{/if}}
-    </div>
-
-    <div class="fx-col fx-gap-px-6 fx-1">
-      <label>
-        {{t "upf_utils.address_form.line_2"}}
-      </label>
-      <OSS::InputContainer
-        @value={{get @address (concat this.addressKey "2")}}
-        @onChange={{fn this.onFieldUpdate (concat this.addressKey "2")}}
-        @placeholder={{t "upf_utils.address_form.placeholder.line2"}}
-        data-control-name="address-form-address2"
-        {{(if (eq @focus "line2") (modifier "enable-input-autofocus"))}}
-      />
-    </div>
-  </div>
-
-  <div class="fx-row fx-gap-px-12">
-    <div class="fx-col fx-gap-px-6 fx-1" data-control-name="address-form">
-      <label {{required-input}}>
-        {{t "upf_utils.address_form.country"}}
-      </label>
-      <OSS::CountrySelector
-        @sourceList={{this.countries}}
-        @onChange={{this.applyCountry}}
-        @value={{@address.countryCode}}
-        data-control-name="address-form-country"
-      />
-    </div>
-
-    <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{(if this.provincesForCountry (modifier "required-input"))}}>
-        {{t "upf_utils.address_form.state"}}
-      </label>
-      {{#if this.provincesForCountry}}
-        <OSS::ProvinceSelector
-          @value={{@address.state}}
-          @sourceList={{this.provincesForCountry}}
-          @onChange={{this.applyProvince}}
-          data-control-name="address-form-state"
-          {{(if (eq @focus "state") (modifier "enable-input-autofocus"))}}
-        />
-      {{else}}
-        <OSS::InputContainer
-          @value={{@address.state}}
-          @onChange={{fn this.onFieldUpdate "state"}}
-          @placeholder={{t "upf_utils.address_form.placeholder.state"}}
-          data-control-name="address-form-state"
-          {{(if (eq @focus "state") (modifier "enable-input-autofocus"))}}
-        />
-      {{/if}}
-    </div>
-  </div>
-
-  <div class="fx-row fx-gap-px-12">
-    <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{required-input}}>
-        {{t "upf_utils.address_form.city"}}
-      </label>
-      <OSS::InputContainer
-        @value={{@address.city}}
-        @onChange={{fn this.onFieldUpdate "city"}}
-        @placeholder={{t "upf_utils.address_form.placeholder.city"}}
-        data-control-name="address-form-city"
-        {{(if (eq @focus "city") (modifier "enable-input-autofocus"))}}
-      />
-    </div>
-
-    <div class="fx-col fx-gap-px-6 fx-1">
-      <label {{required-input}}>
-        {{t "upf_utils.address_form.postal_code"}}
-      </label>
-      <OSS::InputContainer
-        @value={{@address.zipcode}}
-        @onChange={{fn this.onFieldUpdate "zipcode"}}
-        @placeholder={{t "upf_utils.address_form.placeholder.postal_code"}}
-        data-control-name="address-form-zipcode"
-        {{(if (eq @focus "zipcode") (modifier "enable-input-autofocus"))}}
-      />
-    </div>
-  </div>
-</div>
+  </:content>
+</OSS::Form>

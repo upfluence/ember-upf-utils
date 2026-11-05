@@ -1,23 +1,24 @@
 upf_utils:
   address_form:
-    first_name: First Name
-    last_name: Last Name
-    line_1: Address Line 1
-    line_2: Address Line 2
+    first_name: First name
+    last_name: Last name
+    line_1: Address line 1
+    line_2: Address line 2
     city: City
     state: State/Province
     country: Country
-    postal_code: Postal Code
-    phone_number: Phone Number
+    postal_code: Postal code
+    phone_number: Phone number
     placeholder:
-      first_name: Enter first name
-      last_name: Enter last name
-      phone: +1 (415) 000-0000
-      line1: Enter address
-      line2: Enter address (optional)
-      state: Enter state or province
-      postal_code: Enter postal code
-      city: Enter city
+      first_name: 'e.g., John'
+      last_name: 'e.g., Doe'
+      phone: 'e.g., +1 555 123 4567'
+      line1: 'e.g., 123 Market Street'
+      line2: 'e.g., Apt 4B, Building C'
+      country: Select country
+      state: 'e.g., California'
+      postal_code: 'e.g., 94103'
+      city: 'e.g., San Francisco'
   social_media_handle:
     input_placeholder: '@Handle or account URL'
     networks:
@@ -48,6 +49,10 @@ upf_utils:
       PinterestUsername: Pinterest username
     error:
       invalid_merge_field: You must use one of the existing variables
+oss-components:
+  country-selector:
+    placeholder:
+      country: Select country
 new: new
 processed_features:
   alert: Rarely Responds
