@@ -417,7 +417,12 @@ module('Integration | Component | utils/account-banner', function (hooks) {
 
     test('it calls alert onClick when provided', async function (assert) {
       const onClick = sinon.stub();
-      this.set('alert', { skin: 'error', title: 'Error', onClick });
+      this.set('alert', {
+        skin: 'error',
+        title: 'Error',
+        onClick,
+        link: { label: 'Link', href: 'https://example.com' }
+      });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
       await click('.upf-link');
