@@ -9,7 +9,8 @@
     "ember-addon"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "tag": "beta"
   },
   "scripts": {
     "build": "ember build --environment=production",
@@ -38,7 +39,7 @@
     "@ember/string": "^3.1.1",
     "@embroider/macros": "^1.20.6",
     "@googlemaps/js-api-loader": "^1.16.2",
-    "@upfluence/ember-brand-manager": "^1.0.5",
+    "@upfluence/ember-brand-manager": "2.0.0-beta.1",
     "calculate-cache-key-for-tree": "^2.0.0",
     "ember-auto-import": "^2.13.1",
     "ember-cli-babel": "^8.2.0",

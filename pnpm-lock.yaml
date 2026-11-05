@@ -21,8 +21,8 @@ importers:
         specifier: ^1.16.2
         version: 1.16.8
       '@upfluence/ember-brand-manager':
-        specifier: ^1.0.5
-        version: 1.0.5(@babel/core@7.26.0)
+        specifier: 2.0.0-beta.1
+        version: 2.0.0-beta.1(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       calculate-cache-key-for-tree:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1714,9 +1714,11 @@ packages:
     resolution: {integrity: sha512-Vwj9lUIW5Xq3wQ9w6gv3R86g1hMK8f2zNOdGTAgeXUMMXFK78G9ruCjjqutHMNJc0+CH7LYRnHeUB9IT8wFmcw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@upfluence/ember-brand-manager@1.0.5':
-    resolution: {integrity: sha512-1osrfo6kYJaGA2RsPiT4OoqVbF6n2vnEATBu/PxYH9/E9GrgisHXpdrREwMQrPl8f82g9dips012GOE+9VyIKw==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/1.0.5/2d5fda72b20bbfca4d4cdfd0fe66057c83cd0f16}
-    engines: {node: 12.* || 14.* || >= 16}
+  '@upfluence/ember-brand-manager@2.0.0-beta.1':
+    resolution: {integrity: sha512-KJbWcrM2MMRIFu91zuLjMgu8jgnnWgfREsYmnnJsemvakGbE/SjWzJYC/iOACpaVrfI958zEgWq1LfvCHrBO7A==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/2.0.0-beta.1/1c072d11a4c9f3e9a8b48daa20f8172d2328f655}
+    engines: {node: 20.* || >= 22}
+    peerDependencies:
+      ember-source: ^6.12.0
 
   '@upfluence/hyperevents@1.0.1':
     resolution: {integrity: sha512-rGfTvdAMUc623+cWV4FBCKppKSBdiHQlwoLdRAYniSi6xHqCNC5v0m9WWC+ixuzsWIASGOoWWS0+8vyIKp5otg==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/1.0.1/d74eee8df9e7b7ad51bf31577b0b0cb5c3e1e5dc}
@@ -8157,16 +8159,17 @@ snapshots:
       '@typescript-eslint/types': 8.70.1
       eslint-visitor-keys: 5.0.1
 
-  '@upfluence/ember-brand-manager@1.0.5(@babel/core@7.26.0)':
+  '@upfluence/ember-brand-manager@2.0.0-beta.1(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
     dependencies:
+      '@babel/core': 7.26.0
       '@embroider/macros': 1.21.1(@babel/core@7.26.0)
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
       ember-cli-babel: 8.3.2(@babel/core@7.26.0)
       ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.3.0
+      ember-source: 6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)
     transitivePeerDependencies:
-      - '@babel/core'
       - '@glint/template'
       - supports-color
 
