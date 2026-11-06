@@ -20,13 +20,15 @@
           @skin="primary"
           @icon={{if (eq @httpError "500") "fa-redo" "fa-arrow-left"}}
           @label={{t (concat "errors." @httpError ".cta")}}
-          {{on "click" (redirect-to url=(if (eq @httpError "404") "/" this.self))}}
+          {{on "click" this.goBack}}
+          data-control-name="http-error-code-primary-cta"
         />
         {{#if this.csChat}}
           <OSS::Button
             @icon="fa-comment"
             @label={{t (concat "errors." @httpError ".contact_support")}}
             {{on "click" this.openSupportChannel}}
+            data-control-name="http-error-code-intercom-cta"
           />
         {{/if}}
       </div>

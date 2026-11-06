@@ -69,6 +69,7 @@
     "@upfluence/hyperevents": "^1.0.1",
     "@upfluence/oss-components": "^3.99.5",
     "@upfluence/w-conf": "^0.4.0",
+    "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~6.12.0",
     "ember-cli-code-coverage": "^3.0.0",
     "ember-cli-dependency-checker": "^3.3.2",
