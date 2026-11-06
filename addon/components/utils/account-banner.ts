@@ -90,15 +90,15 @@ export default class extends Component<UtilsAccountBannerArgs> {
   }
 
   @action
-    onClick(e: PointerEvent): void {
-      const link = this.args.alert?.link;
+  onClick(e: PointerEvent): void {
+    const link = this.args.alert?.link;
 
-      if (!link) return;
+    if (!link) return;
 
-      if ('onClick' in link) {
-        link.onClick(e);
-      } else {
-        window.open(link.href, link.target ?? '_blank');
-      }
+    if ('onClick' in link) {
+      link.onClick(e);
+    } else {
+      window.open(link.href, link.target ?? '_blank');
     }
+  }
 }
