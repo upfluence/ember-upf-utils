@@ -13,7 +13,9 @@ export type Alert = {
   title?: string;
   subtitle?: string;
   plain?: boolean;
-  link?: { label: string; href: string; target?: string };
+  link?:
+    | { label: string; href: string; target?: string }
+    | { label: string; onClick: (e: PointerEvent) => unknown };
 };
 
 interface UtilsAccountBannerArgs {
@@ -85,5 +87,18 @@ export default class extends Component<UtilsAccountBannerArgs> {
   @action
   closeSelectionDropdown(): void {
     this.displaySelectableItems = false;
+  }
+
+  @action
+  onClick(e: PointerEvent): void {
+    const link = this.args.alert?.link;
+
+    if (!link) return;
+
+    if ('onClick' in link) {
+      link.onClick(e);
+    } else {
+      window.open(link.href, link.target ?? '_blank');
+    }
   }
 }
