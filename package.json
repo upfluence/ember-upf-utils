@@ -51,8 +51,8 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "@upfluence/hyperevents": ">= 1",
-    "@upfluence/oss-components": ">=3",
+    "@upfluence/hyperevents": "^2.0.0-beta.0",
+    "@upfluence/oss-components": "^4.0.0-beta.0",
     "ember-source": "^6.12.0"
   },
   "devDependencies": {
@@ -66,8 +66,8 @@
     "@types/qunit": "^2.19.14",
     "@types/rsvp": "^4.0.4",
     "@types/sinon": "^10.0.6",
-    "@upfluence/hyperevents": "^1.0.1",
-    "@upfluence/oss-components": "^3.99.5",
+    "@upfluence/hyperevents": "2.0.0-beta.1",
+    "@upfluence/oss-components": "4.0.0-beta.3",
     "@upfluence/w-conf": "^0.4.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~6.12.0",
