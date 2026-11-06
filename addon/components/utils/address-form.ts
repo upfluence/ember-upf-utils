@@ -11,16 +11,16 @@ import type { IntlService } from 'ember-intl';
 
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
-type FocusableInput =
-  | 'first-name'
-  | 'last-name'
-  | 'line1'
-  | 'line2'
-  | 'country'
-  | 'city'
-  | 'state'
-  | 'zipcode'
-  | 'phone';
+import {
+  ADDRESS_FORM_FIELD_CONTROL_NAMES,
+  BASE_VALIDATED_ADDRESS_FIELDS,
+  EXTRA_VALIDATED_ADDRESS_FIELDS,
+  FOCUSABLE_CONTROL_NAMES
+} from './address-form-utils';
+import type { AddressKey, FocusableInput, ProvinceData } from './address-form-utils';
+
+export { ADDRESS_FORM_FIELD_CONTROL_NAMES, ADDRESS_FORM_FIELD_ORDER } from './address-form-utils';
+export type { AddressFormField } from './address-form-utils';
 
 interface UtilsAddressFormArgs {
   address: any;
@@ -34,57 +34,6 @@ interface UtilsAddressFormArgs {
   onFormSubmit?(isValid: boolean): void;
   onChange?(address: any, isValid: boolean): void;
 }
-
-type ProvinceData = { code: string; name: string };
-type AddressKey = 'address' | 'line';
-
-export type AddressFormField =
-  | 'firstName'
-  | 'lastName'
-  | 'phone'
-  | 'address1'
-  | 'address2'
-  | 'countryCode'
-  | 'state'
-  | 'city'
-  | 'zipcode';
-
-export const ADDRESS_FORM_FIELD_CONTROL_NAMES: Record<AddressFormField, string> = {
-  firstName: 'address-form-first-name',
-  lastName: 'address-form-last-name',
-  phone: 'address-form-phone',
-  address1: 'address-form-address1',
-  address2: 'address-form-address2',
-  countryCode: 'address-form-country',
-  state: 'address-form-state',
-  city: 'address-form-city',
-  zipcode: 'address-form-zipcode'
-};
-
-export const ADDRESS_FORM_FIELD_ORDER: AddressFormField[] = [
-  'firstName',
-  'lastName',
-  'phone',
-  'address1',
-  'countryCode',
-  'state',
-  'city',
-  'zipcode'
-];
-
-const FOCUSABLE_CONTROL_NAMES: Partial<Record<FocusableInput, string>> = {
-  'first-name': ADDRESS_FORM_FIELD_CONTROL_NAMES.firstName,
-  'last-name': ADDRESS_FORM_FIELD_CONTROL_NAMES.lastName,
-  line1: ADDRESS_FORM_FIELD_CONTROL_NAMES.address1,
-  line2: ADDRESS_FORM_FIELD_CONTROL_NAMES.address2,
-  city: ADDRESS_FORM_FIELD_CONTROL_NAMES.city,
-  state: ADDRESS_FORM_FIELD_CONTROL_NAMES.state,
-  zipcode: ADDRESS_FORM_FIELD_CONTROL_NAMES.zipcode,
-  phone: ADDRESS_FORM_FIELD_CONTROL_NAMES.phone
-};
-
-const BASE_VALIDATED_ADDRESS_FIELDS: string[] = ['city', 'countryCode', 'zipcode'];
-const EXTRA_VALIDATED_ADDRESS_FIELDS: string[] = ['firstName', 'lastName'];
 
 export default class extends Component<UtilsAddressFormArgs> {
   @service declare intl: IntlService;
@@ -174,26 +123,17 @@ export default class extends Component<UtilsAddressFormArgs> {
 
   @action
   validateAddressLineFormat(): Feedback | undefined {
-    const addressLine: string = get(this.args.address, `${this.addressKey}1`) || '';
-    if (isEmpty(addressLine) || addressLine.length >= 3) return;
-
-    return this.invalidFormatFeedback();
+    return this.validateField(`${this.addressKey}1`, (value) => value.length >= 3);
   }
 
   @action
   validateCountryFormat(): Feedback | undefined {
-    const countryCode: string = get(this.args.address, 'countryCode') || '';
-    if (isEmpty(countryCode) || countryCode.length <= 2) return;
-
-    return this.invalidFormatFeedback();
+    return this.validateField('countryCode', (value) => value.length <= 2);
   }
 
   @action
   validateZipcodeFormat(): Feedback | undefined {
-    const zipcode: string = get(this.args.address, 'zipcode') || '';
-    if (isEmpty(zipcode) || zipcode.length <= 255) return;
-
-    return this.invalidFormatFeedback();
+    return this.validateField('zipcode', (value) => value.length <= 255);
   }
 
   @action
@@ -265,6 +205,13 @@ export default class extends Component<UtilsAddressFormArgs> {
       kind: 'invalid',
       message: { type: 'error', value: this.intl.t('oss-components.forms.errors.invalid_format') }
     };
+  }
+
+  private validateField(fieldPath: string, isValid: (value: string) => boolean): Feedback | undefined {
+    const value: string = get(this.args.address, fieldPath) || '';
+    if (isEmpty(value) || isValid(value)) return;
+
+    return this.invalidFormatFeedback();
   }
 
   private validatedAddressFieldsHandler(): void {
