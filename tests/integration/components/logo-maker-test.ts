@@ -51,13 +51,15 @@ module('Integration | Component | logo-maker', function (hooks) {
     test('The color label is marked as required', async function (this: TestContext, assert) {
       await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
 
-      assert.dom(COLOR_LABEL_SELECTOR).hasText(`${this.intl.t('logo_maker.color_selector.label')}*`);
+      assert.formField(COLOR_LABEL_SELECTOR).isRequired();
+      assert.formField(COLOR_LABEL_SELECTOR).hasLabel(this.intl.t('logo_maker.color_selector.label'));
     });
 
     test('The icon label is marked as required', async function (this: TestContext, assert) {
       await render(hbs`<LogoMaker @icon={{this.icon}} @color={{this.color}} @onChange={{this.onChangeStub}}/>`);
 
-      assert.dom(ICON_LABEL_SELECTOR).hasText(`${this.intl.t('logo_maker.icon_selector.label')}*`);
+      assert.formField(ICON_LABEL_SELECTOR).isRequired();
+      assert.formField(ICON_LABEL_SELECTOR).hasLabel(this.intl.t('logo_maker.icon_selector.label'));
     });
   });
 
