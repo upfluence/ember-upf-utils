@@ -61,4 +61,9 @@ export default class extends Component<HTTPErrorsCodeArgs> {
     event.stopPropagation();
     this.csChat?.openTicket(this.intl.t(`errors.${this.args.httpError}.support_message`));
   }
+
+  @action
+  goBack(): void {
+    window.open(this.args.httpError === '404' ? '/' : this.self, '_self');
+  }
 }
