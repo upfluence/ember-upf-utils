@@ -1,4 +1,4 @@
-import { click, render, findAll } from '@ember/test-helpers';
+import { click, render, findAll, TestContext } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
@@ -7,6 +7,17 @@ import { module, test } from 'qunit';
 import sinon from 'sinon';
 
 const SELECTABLE_ITEMS = [{ label: 'Account A' }, { label: 'Account B' }, { label: 'Account C' }];
+
+function setAlert(
+  self: TestContext,
+  link: { label: string; href?: string; target?: string; onClick?: (e: PointerEvent) => unknown }
+): void {
+  self.set('alert', {
+    skin: 'error',
+    title: 'Error',
+    link
+  });
+}
 
 module('Integration | Component | utils/account-banner', function (hooks) {
   setupRenderingTest(hooks);
@@ -404,11 +415,7 @@ module('Integration | Component | utils/account-banner', function (hooks) {
     });
 
     test('it renders alert link when provided', async function (assert) {
-      this.set('alert', {
-        skin: 'error',
-        title: 'Error',
-        link: { label: 'Link', href: 'https://example.com' }
-      });
+      setAlert(this, { label: 'Link', href: 'https://example.com' });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
 
@@ -417,11 +424,7 @@ module('Integration | Component | utils/account-banner', function (hooks) {
 
     test('it calls the alert link onClick when provided', async function (assert) {
       const onClick = sinon.stub();
-      this.set('alert', {
-        skin: 'error',
-        title: 'Error',
-        link: { label: 'Link', onClick }
-      });
+      setAlert(this, { label: 'Link', onClick });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
       await click('.upf-link');
@@ -430,14 +433,10 @@ module('Integration | Component | utils/account-banner', function (hooks) {
       assert.ok(onClick.firstCall.args[0] instanceof MouseEvent);
     });
 
-    test('it does not open the alert link when using onClick', async function (assert) {
+    test('it does not trigger window.open when onClick is passed', async function (assert) {
       const onClick = sinon.stub();
       const openStub = sinon.stub(window, 'open');
-      this.set('alert', {
-        skin: 'error',
-        title: 'Error',
-        link: { label: 'Link', onClick }
-      });
+      setAlert(this, { label: 'Link', onClick });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
       await click('.upf-link');
@@ -449,11 +448,7 @@ module('Integration | Component | utils/account-banner', function (hooks) {
 
     test('it opens the alert link in a new tab by default', async function (assert) {
       const openStub = sinon.stub(window, 'open');
-      this.set('alert', {
-        skin: 'error',
-        title: 'Error',
-        link: { label: 'Link', href: 'https://example.com' }
-      });
+      setAlert(this, { label: 'Link', href: 'https://example.com' });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
       await click('.upf-link');
@@ -464,10 +459,10 @@ module('Integration | Component | utils/account-banner', function (hooks) {
 
     test('it opens the alert link with its target', async function (assert) {
       const openStub = sinon.stub(window, 'open');
-      this.set('alert', {
-        skin: 'error',
-        title: 'Error',
-        link: { label: 'Link', href: 'https://example.com', target: '_self' }
+      setAlert(this, {
+        label: 'Link',
+        href: 'https://example.com',
+        target: '_self'
       });
 
       await render(hbs`<Utils::AccountBanner @alert={{this.alert}} />`);
