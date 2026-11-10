@@ -21,5 +21,4 @@ Related to: #<!-- enter issue number here -->
 - [ ] Properly assigned
 - [ ] Added/updated tests
 - [ ] Added/updated documentation
-- [ ] Migrated touched components to Glimmer Components
 - [ ] Properly labeled
