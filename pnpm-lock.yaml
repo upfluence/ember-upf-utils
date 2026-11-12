@@ -82,14 +82,17 @@ importers:
         specifier: ^10.0.6
         version: 10.0.20
       '@upfluence/hyperevents':
-        specifier: ^1.0.1
-        version: 1.0.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
+        specifier: 2.0.0-beta.1
+        version: 2.0.0-beta.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       '@upfluence/oss-components':
-        specifier: ^3.99.5
-        version: 3.99.5(@babel/core@7.26.0)(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)
+        specifier: 4.0.0-beta.3
+        version: 4.0.0-beta.3(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)
       '@upfluence/w-conf':
         specifier: ^0.4.0
         version: 0.4.0(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.8.3))(@typescript-eslint/parser@8.70.1(eslint@10.8.0)(typescript@5.9.3))(eslint@10.8.0)(prettier@3.8.3)(typescript@5.9.3)
+      broccoli-asset-rev:
+        specifier: ^3.0.0
+        version: 3.0.0
       ember-cli:
         specifier: ~6.12.0
         version: 6.12.0(@babel/core@7.26.0)(@types/node@22.10.5)(ejs@3.1.10)(handlebars@4.7.8)(underscore@1.13.7)
@@ -913,8 +916,8 @@ packages:
     resolution: {integrity: sha512-GYbaiC1v9inbiwVg5s+Sd14Jc66NYxg23mEOocgWAZFCtOfhMnRLaLAA6SytW76myVVYImGHX5PFK4PVuH2yng==}
     engines: {node: 12.* || 14.* || >= 16}
 
-  '@embroider/macros@1.11.1':
-    resolution: {integrity: sha512-yg4Pl5Sw26lKrrtLwk2UEgYkKkztq+Hatn67QYL5A3I3T4IE/bRA3o6xvIslrJNnhyER7jCc2pwusxt3O4HubA==}
+  '@embroider/macros@1.21.1':
+    resolution: {integrity: sha512-57jR1QobqR3NKZX8bGi8ljONPfQdmQ01/LAzkwx/InGySyiC1HkvgPT4NdNWAFtK5Q00SYGYMQzJXZg3/zh9cQ==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       '@glint/template': ^1.0.0
@@ -922,8 +925,8 @@ packages:
       '@glint/template':
         optional: true
 
-  '@embroider/macros@1.21.1':
-    resolution: {integrity: sha512-57jR1QobqR3NKZX8bGi8ljONPfQdmQ01/LAzkwx/InGySyiC1HkvgPT4NdNWAFtK5Q00SYGYMQzJXZg3/zh9cQ==}
+  '@embroider/macros@1.21.4':
+    resolution: {integrity: sha512-5fPpOtQyQCK9RsMdtXZliUPKWAkdzJ8jCWIQotq9ZaeLMsvT4OkMBaSiZz5uED8GwDRmOXsJt2Ub3Zq6WtKqcw==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       '@glint/template': ^1.0.0
@@ -935,16 +938,16 @@ packages:
     resolution: {integrity: sha512-WFsw8nQpHZiWGEDYpa/A79KEFfTisqteXbY+jg9eZiww1r1G+LZvsmdszDp86TkotUSCqrMbK/ewn0jR1CJmqg==}
     engines: {node: 12.* || 14.* || >= 16}
 
-  '@embroider/shared-internals@2.1.0':
-    resolution: {integrity: sha512-9hKbMxW7wDWt1BqdpnLZ5W6ETrmAg9HnfBwf1IDkT+8he5nOdTD0PNtruMjm7V0Tb9p9hI7O+UXSa8ZnX1BQXg==}
-    engines: {node: 12.* || 14.* || >= 16}
-
   '@embroider/shared-internals@2.8.1':
     resolution: {integrity: sha512-zi0CENFD1e0DH7c9M/rNKJnFnt2c3+736J3lguBddZdmaIV6Cb8l3HQSkskSW5O4ady+SavemLKO3hCjQQJBIw==}
     engines: {node: 12.* || 14.* || >= 16}
 
   '@embroider/shared-internals@3.2.0':
     resolution: {integrity: sha512-TzLZnwfhhrNkdTVGGyysovvciFCwyxEgMbzF9AZMzNbFlXirhocQSpGjy9V4AQArklu4wDFRYqqe5GMKULGIkw==}
+    engines: {node: 12.* || 14.* || >= 16}
+
+  '@embroider/shared-internals@3.2.1':
+    resolution: {integrity: sha512-ZHTVF1Md6HiPPdpi5ESU5JlG2m4HRXIVebCka6BoMIfzyPlSjgYmpflv6Cmiq9UUyhe+/3LTMdx53vAV7O9g2Q==}
     engines: {node: 12.* || 14.* || >= 16}
 
   '@embroider/test-setup@4.0.0':
@@ -1720,14 +1723,14 @@ packages:
     peerDependencies:
       ember-source: ^6.12.0
 
-  '@upfluence/hyperevents@1.0.1':
-    resolution: {integrity: sha512-rGfTvdAMUc623+cWV4FBCKppKSBdiHQlwoLdRAYniSi6xHqCNC5v0m9WWC+ixuzsWIASGOoWWS0+8vyIKp5otg==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/1.0.1/d74eee8df9e7b7ad51bf31577b0b0cb5c3e1e5dc}
+  '@upfluence/hyperevents@2.0.0-beta.1':
+    resolution: {integrity: sha512-eBxL+IuABO8fewrNdxGWZKDjSlAtfcL+mcw8P93bU+G6sS/OX0uu4GbYbj+T+v0uakgScLSpVtkit6+5RZ6MmA==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/2.0.0-beta.1/85c7b6121d77108d6e8f68e5721aeacb6b87b098}
     peerDependencies:
-      ember-source: '>=3.28'
+      ember-source: ^3.28.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
-  '@upfluence/oss-components@3.99.5':
-    resolution: {integrity: sha512-1eB5M5kwz0T0wJ90diXtDuNcGTKTrZa+XRubA4hJbrt75YU/fNaRj5/RXqH3Bv2dMZ3C6ToC/X0yXatH+GK4yw==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/3.99.5/dd7d55fc9d0d88bcead328a7a318ece7623a32a9}
-    engines: {node: 12.* || 14.* || >= 16}
+  '@upfluence/oss-components@4.0.0-beta.3':
+    resolution: {integrity: sha512-g5IZudlrvex+c0gJvKmmKPpumOeXYptjnF92GLnW2Z0g40M5mEDXaCFVqRN2odFufp/son3D1CURs3CMuZp5wg==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/4.0.0-beta.3/e7511a24550cdd52035bb32a019110cfae64a96f}
+    engines: {node: 20.* || 22.* || 24.*}
     peerDependencies:
       qunit: "^2.x ||\_^3.x"
 
@@ -1979,10 +1982,6 @@ packages:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
 
-  babel-import-util@1.4.1:
-    resolution: {integrity: sha512-TNdiTQdPhXlx02pzG//UyVPSKE7SNWjY0n4So/ZnjQpWwaM5LvWBLkWa1JKll5u06HNscHD91XZPuwrMg1kadQ==}
-    engines: {node: '>= 12.*'}
-
   babel-import-util@2.1.1:
     resolution: {integrity: sha512-3qBQWRjzP9NreSH/YrOEU1Lj5F60+pWSLP0kIdCWxjFHH7pX2YPHIxQ67el4gnMNfYoDxSDGcT0zpVlZ+gVtQA==}
     engines: {node: '>= 12.*'}
@@ -2150,6 +2149,12 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
 
+  broccoli-asset-rev@3.0.0:
+    resolution: {integrity: sha512-gAHQZnwvtl74tGevUqGuWoyOdJUdMMv0TjGSMzbdyGImr9fZcnM6xmggDA8bUawrMto9NFi00ZtNUgA4dQiUBw==}
+
+  broccoli-asset-rewrite@2.0.0:
+    resolution: {integrity: sha512-dqhxdQpooNi7LHe8J9Jdxp6o3YPFWl4vQmint6zrsn2sVbOo+wpyiX3erUSt0IBtjNkAxqJjuvS375o2cLBHTA==}
+
   broccoli-babel-transpiler@7.8.1:
     resolution: {integrity: sha512-6IXBgfRt7HZ61g67ssBc6lBb3Smw3DPZ9dEYirgtvXWpRZ2A9M22nxy6opEwJDgDJzlu/bB7ToppW33OFkA1gA==}
     engines: {node: '>= 6'}
@@ -2179,6 +2184,9 @@ packages:
   broccoli-file-creator@2.1.1:
     resolution: {integrity: sha512-YpjOExWr92C5vhnK0kmD81kM7U09kdIRZk9w4ZDCDHuHXW+VE/x6AGEOQQW3loBQQ6Jk+k+TSm8dESy4uZsnjw==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
+
+  broccoli-filter@1.3.0:
+    resolution: {integrity: sha512-VXJXw7eBfG82CFxaBDjYmyN7V72D4In2zwLVQJd/h3mBfF3CMdRTsv2L20lmRTtCv1sAHcB+LgMso90e/KYiLw==}
 
   broccoli-funnel-reducer@1.0.0:
     resolution: {integrity: sha512-SaOCEdh+wnt2jFUV2Qb32m7LXyElvFwW3NKNaEJyi5PGQNwxfqpkc0KI6AbQANKgdj/40U2UC0WuGThFwuEUaA==}
@@ -2701,6 +2709,9 @@ packages:
   copy-anything@2.0.6:
     resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==}
 
+  copy-dereference@1.0.0:
+    resolution: {integrity: sha512-40TSLuhhbiKeszZhK9LfNdazC67Ue4kq/gGwN5sdxEUWPXTIMmKmGmgD9mPfNKVAeecEW+NfEIpBaZoACCQLLw==}
+
   core-js-compat@3.50.0:
     resolution: {integrity: sha512-XGpFGbMLHwSt74YLTKho7Ib242qi6O8MSX+sRokV4oz7iKXvQWGYZthjIhjRGMxjzVkAubBO512dKGYcefmX3Q==}
     engines: {node: '>=6.4.0'}
@@ -2968,9 +2979,12 @@ packages:
     resolution: {integrity: sha512-N9Y80oZfcfWLsqickMfRd9YByVcTGyhYRnYQ2XVPVrp6jyUyOeRWmEAPh7ERSXpp8Ws4hr/JB9QVQrn/yZa+Ag==}
     engines: {node: 12.* || 14.* || >= 16}
 
-  ember-cli-ifa@0.10.0:
-    resolution: {integrity: sha512-qtX7WqX15sldqwDWfa2+o68yNtV1UhTyQtCddDh2WLioENer696ZkZlKh8QNSYUvY/DADWbmCphl9n8S9beQDw==}
-    engines: {node: 10.* || >= 12}
+  ember-cli-htmlbars@7.0.1:
+    resolution: {integrity: sha512-bNVAwTvBOmk7KjGCN0Vq81w8FAWQ1zXwCS1CUUHTeWdcFypRsv0qUEkTtwxho4H3BYaoqMCXPS45Js9WWtEXYw==}
+    engines: {node: '>= 20'}
+    peerDependencies:
+      '@babel/core': '>= 7'
+      ember-source: '>= 4.0.0'
 
   ember-cli-inject-live-reload@2.1.0:
     resolution: {integrity: sha512-YV5wYRD5PJHmxaxaJt18u6LE6Y+wo455BnmcpN+hGNlChy2piM9/GMvYgTAz/8Vin8RJ5KekqP/w/NEaRndc/A==}
@@ -3976,6 +3990,7 @@ packages:
   image-size@0.5.5:
     resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
+    deprecated: Please migrate to image-size@2.x
     hasBin: true
 
   imurmurhash@0.1.4:
@@ -7296,22 +7311,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@embroider/macros@1.11.1':
+  '@embroider/macros@1.21.1(@babel/core@7.26.0)':
     dependencies:
-      '@embroider/shared-internals': 2.1.0
+      '@embroider/shared-internals': 3.2.0
       assert-never: 1.4.0
-      babel-import-util: 1.4.1
-      ember-cli-babel: 7.26.11
+      babel-import-util: 3.0.1
+      ember-cli-babel: 8.3.2(@babel/core@7.26.0)
       find-up: 5.0.0
       lodash: 4.18.1
       resolve: 1.22.12
       semver: 7.8.5
     transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
-  '@embroider/macros@1.21.1(@babel/core@7.26.0)':
+  '@embroider/macros@1.21.4(@babel/core@7.26.0)':
     dependencies:
-      '@embroider/shared-internals': 3.2.0
+      '@embroider/shared-internals': 3.2.1
       assert-never: 1.4.0
       babel-import-util: 3.0.1
       ember-cli-babel: 8.3.2(@babel/core@7.26.0)
@@ -7327,17 +7343,6 @@ snapshots:
     dependencies:
       mem: 8.1.1
       resolve.exports: 2.0.3
-
-  '@embroider/shared-internals@2.1.0':
-    dependencies:
-      babel-import-util: 1.4.1
-      ember-rfc176-data: 0.3.18
-      fs-extra: 9.1.0
-      js-string-escape: 1.0.1
-      lodash: 4.18.1
-      resolve-package-path: 4.0.3
-      semver: 7.8.5
-      typescript-memoize: 1.1.1
 
   '@embroider/shared-internals@2.8.1':
     dependencies:
@@ -7357,6 +7362,24 @@ snapshots:
       - supports-color
 
   '@embroider/shared-internals@3.2.0':
+    dependencies:
+      babel-import-util: 3.0.1
+      debug: 4.4.3
+      ember-rfc176-data: 0.3.18
+      fs-extra: 9.1.0
+      is-subdir: 1.2.0
+      js-string-escape: 1.0.1
+      lodash: 4.18.1
+      minimatch: 3.1.5
+      pkg-entry-points: 1.1.2
+      resolve-package-path: 4.0.3
+      resolve.exports: 2.0.3
+      semver: 7.8.5
+      typescript-memoize: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@embroider/shared-internals@3.2.1':
     dependencies:
       babel-import-util: 3.0.1
       debug: 4.4.3
@@ -8173,10 +8196,10 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/hyperevents@1.0.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
+  '@upfluence/hyperevents@2.0.0-beta.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
     dependencies:
       '@embroider/addon-shim': 1.10.3
-      '@embroider/macros': 1.11.1
+      '@embroider/macros': 1.21.4(@babel/core@7.26.0)
       '@glimmer/tracking': 1.1.2
       decorator-transforms: 2.4.0(@babel/core@7.26.0)
       ember-modifier: 3.2.0(@babel/core@7.26.0)
@@ -8186,8 +8209,9 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/oss-components@3.99.5(@babel/core@7.26.0)(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)':
+  '@upfluence/oss-components@4.0.0-beta.3(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)':
     dependencies:
+      '@babel/core': 7.26.0
       '@ember/render-modifiers': 2.1.0(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       '@embroider/macros': 1.21.1(@babel/core@7.26.0)
       '@embroider/util': 1.13.5(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
@@ -8197,12 +8221,12 @@ snapshots:
       bootstrap: 3.4.1
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
+      broccoli-plugin: 4.0.7
       calculate-cache-key-for-tree: 2.0.0
       dompurify: 3.4.15
       ember-auto-import: 2.13.1(webpack@5.97.1)
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.3.0
-      ember-cli-ifa: 0.10.0
+      ember-cli-babel: 8.3.2(@babel/core@7.26.0)
+      ember-cli-htmlbars: 7.0.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       ember-cli-less: 2.0.6
       ember-cli-typescript: 5.3.0
       ember-intl: 6.5.6(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(typescript@5.9.3)(webpack@5.97.1)
@@ -8211,7 +8235,6 @@ snapshots:
       qunit: 2.23.1
       resolve: 1.22.12
     transitivePeerDependencies:
-      - '@babel/core'
       - '@ember/test-helpers'
       - '@glint/environment-ember-loose'
       - '@glint/template'
@@ -8426,7 +8449,7 @@ snapshots:
 
   array-buffer-byte-length@1.0.2:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       is-array-buffer: 3.0.5
 
   array-equal@1.0.2: {}
@@ -8438,11 +8461,11 @@ snapshots:
   arraybuffer.prototype.slice@1.0.4:
     dependencies:
       array-buffer-byte-length: 1.0.2
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       define-properties: 1.2.1
       es-abstract: 1.23.9
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       is-array-buffer: 3.0.5
 
   assert-never@1.4.0: {}
@@ -8498,8 +8521,6 @@ snapshots:
       possible-typed-array-names: 1.0.0
 
   axobject-query@4.1.0: {}
-
-  babel-import-util@1.4.1: {}
 
   babel-import-util@2.1.1: {}
 
@@ -8718,6 +8739,23 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
+  broccoli-asset-rev@3.0.0:
+    dependencies:
+      broccoli-asset-rewrite: 2.0.0
+      broccoli-filter: 1.3.0
+      broccoli-persistent-filter: 1.4.6
+      json-stable-stringify: 1.3.0
+      minimatch: 3.1.5
+      rsvp: 3.6.2
+    transitivePeerDependencies:
+      - supports-color
+
+  broccoli-asset-rewrite@2.0.0:
+    dependencies:
+      broccoli-filter: 1.3.0
+    transitivePeerDependencies:
+      - supports-color
+
   broccoli-babel-transpiler@7.8.1:
     dependencies:
       '@babel/core': 7.26.0
@@ -8806,6 +8844,20 @@ snapshots:
     dependencies:
       broccoli-plugin: 1.3.1
       mkdirp: 0.5.6
+
+  broccoli-filter@1.3.0:
+    dependencies:
+      broccoli-kitchen-sink-helpers: 0.3.1
+      broccoli-plugin: 1.3.1
+      copy-dereference: 1.0.0
+      debug: 2.6.9
+      mkdirp: 0.5.6
+      promise-map-series: 0.2.3
+      rsvp: 3.6.2
+      symlink-or-copy: 1.3.1
+      walk-sync: 0.3.4
+    transitivePeerDependencies:
+      - supports-color
 
   broccoli-funnel-reducer@1.0.0: {}
 
@@ -8973,7 +9025,7 @@ snapshots:
       broccoli-output-wrapper: 3.2.5
       fs-merger: 3.2.1
       promise-map-series: 0.3.0
-      quick-temp: 0.1.8
+      quick-temp: 0.1.9
       rimraf: 3.0.2
       symlink-or-copy: 1.3.1
     transitivePeerDependencies:
@@ -9330,6 +9382,8 @@ snapshots:
     dependencies:
       is-what: 3.14.1
 
+  copy-dereference@1.0.0: {}
+
   core-js-compat@3.50.0:
     dependencies:
       browserslist: 4.29.0
@@ -9386,19 +9440,19 @@ snapshots:
 
   data-view-buffer@1.0.2:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
       is-data-view: 1.0.2
 
   data-view-byte-length@1.0.2:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
       is-data-view: 1.0.2
 
   data-view-byte-offset@1.0.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
       is-data-view: 1.0.2
 
@@ -9498,7 +9552,7 @@ snapshots:
 
   dunder-proto@1.0.1:
     dependencies:
-      call-bind-apply-helpers: 1.0.1
+      call-bind-apply-helpers: 1.0.2
       es-errors: 1.3.0
       gopd: 1.2.0
 
@@ -9689,9 +9743,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli-ifa@0.10.0:
+  ember-cli-htmlbars@7.0.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)):
     dependencies:
-      ember-cli-babel: 7.26.11
+      '@babel/core': 7.26.0
+      '@ember/edition-utils': 1.2.0
+      babel-plugin-ember-template-compilation: 2.3.0
+      broccoli-debug: 0.6.5
+      broccoli-persistent-filter: 3.1.3
+      broccoli-plugin: 4.0.7
+      ember-source: 6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)
+      fs-tree-diff: 2.0.1
+      heimdalljs-logger: 0.1.10
+      js-string-escape: 1.0.1
+      silent-error: 1.1.1
+      walk-sync: 4.0.2
     transitivePeerDependencies:
       - supports-color
 
@@ -10357,9 +10422,9 @@ snapshots:
   es-set-tostringtag@2.1.0:
     dependencies:
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       has-tostringtag: 1.0.2
-      hasown: 2.0.2
+      hasown: 2.0.4
 
   es-to-primitive@1.3.0:
     dependencies:
@@ -10969,11 +11034,11 @@ snapshots:
 
   function.prototype.name@1.1.8:
     dependencies:
-      call-bind: 1.0.8
-      call-bound: 1.0.3
+      call-bind: 1.0.9
+      call-bound: 1.0.4
       define-properties: 1.2.1
       functions-have-names: 1.2.3
-      hasown: 2.0.2
+      hasown: 2.0.4
       is-callable: 1.2.7
 
   functions-have-names@1.2.3: {}
@@ -10986,7 +11051,7 @@ snapshots:
 
   get-intrinsic@1.2.7:
     dependencies:
-      call-bind-apply-helpers: 1.0.1
+      call-bind-apply-helpers: 1.0.2
       es-define-property: 1.0.1
       es-errors: 1.3.0
       es-object-atoms: 1.0.0
@@ -11015,7 +11080,7 @@ snapshots:
   get-proto@1.0.1:
     dependencies:
       dunder-proto: 1.0.1
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.2
 
   get-stdin@8.0.0: {}
 
@@ -11036,9 +11101,9 @@ snapshots:
 
   get-symbol-description@1.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
 
   get-tsconfig@4.14.3:
     dependencies:
@@ -11389,7 +11454,7 @@ snapshots:
   internal-slot@1.1.0:
     dependencies:
       es-errors: 1.3.0
-      hasown: 2.0.2
+      hasown: 2.0.4
       side-channel: 1.1.0
 
   intl-messageformat@10.7.11:
@@ -11412,15 +11477,15 @@ snapshots:
 
   is-array-buffer@3.0.5:
     dependencies:
-      call-bind: 1.0.8
-      call-bound: 1.0.3
-      get-intrinsic: 1.2.7
+      call-bind: 1.0.9
+      call-bound: 1.0.4
+      get-intrinsic: 1.3.0
 
   is-arrayish@0.2.1: {}
 
   is-async-function@2.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       get-proto: 1.0.1
       has-tostringtag: 1.0.2
       safe-regex-test: 1.1.0
@@ -11431,7 +11496,7 @@ snapshots:
 
   is-boolean-object@1.2.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       has-tostringtag: 1.0.2
 
   is-callable@1.2.7: {}
@@ -11446,13 +11511,13 @@ snapshots:
 
   is-data-view@1.0.2:
     dependencies:
-      call-bound: 1.0.3
-      get-intrinsic: 1.2.7
+      call-bound: 1.0.4
+      get-intrinsic: 1.3.0
       is-typed-array: 1.1.15
 
   is-date-object@1.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       has-tostringtag: 1.0.2
 
   is-docker@2.2.1: {}
@@ -11461,7 +11526,7 @@ snapshots:
 
   is-finalizationregistry@1.1.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
 
   is-fullwidth-code-point@2.0.0: {}
 
@@ -11469,7 +11534,7 @@ snapshots:
 
   is-generator-function@1.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       get-proto: 1.0.1
       has-tostringtag: 1.0.2
       safe-regex-test: 1.1.0
@@ -11488,7 +11553,7 @@ snapshots:
 
   is-number-object@1.1.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       has-tostringtag: 1.0.2
 
   is-number@7.0.0: {}
@@ -11499,16 +11564,16 @@ snapshots:
 
   is-regex@1.2.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       gopd: 1.2.0
       has-tostringtag: 1.0.2
-      hasown: 2.0.2
+      hasown: 2.0.4
 
   is-set@2.0.3: {}
 
   is-shared-array-buffer@1.0.4:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
 
   is-stream@2.0.1: {}
 
@@ -11516,7 +11581,7 @@ snapshots:
 
   is-string@1.1.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       has-tostringtag: 1.0.2
 
   is-subdir@1.2.0:
@@ -11525,7 +11590,7 @@ snapshots:
 
   is-symbol@1.1.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       has-symbols: 1.1.0
       safe-regex-test: 1.1.0
 
@@ -11541,12 +11606,12 @@ snapshots:
 
   is-weakref@1.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
 
   is-weakset@2.0.4:
     dependencies:
-      call-bound: 1.0.3
-      get-intrinsic: 1.2.7
+      call-bound: 1.0.4
+      get-intrinsic: 1.3.0
 
   is-what@3.14.1: {}
 
@@ -11884,7 +11949,7 @@ snapshots:
 
   matcher-collection@1.1.2:
     dependencies:
-      minimatch: 3.1.2
+      minimatch: 3.1.5
 
   matcher-collection@2.0.1:
     dependencies:
@@ -12141,10 +12206,10 @@ snapshots:
 
   object.assign@4.1.7:
     dependencies:
-      call-bind: 1.0.8
-      call-bound: 1.0.3
+      call-bind: 1.0.9
+      call-bound: 1.0.4
       define-properties: 1.2.1
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.2
       has-symbols: 1.1.0
       object-keys: 1.1.1
 
@@ -12208,7 +12273,7 @@ snapshots:
 
   own-keys@1.0.1:
     dependencies:
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       object-keys: 1.1.1
       safe-push-apply: 1.0.0
 
@@ -12583,12 +12648,12 @@ snapshots:
 
   reflect.getprototypeof@1.0.10:
     dependencies:
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       define-properties: 1.2.1
       es-abstract: 1.23.9
       es-errors: 1.3.0
-      es-object-atoms: 1.0.0
-      get-intrinsic: 1.2.7
+      es-object-atoms: 1.1.2
+      get-intrinsic: 1.3.0
       get-proto: 1.0.1
       which-builtin-type: 1.2.1
 
@@ -12602,7 +12667,7 @@ snapshots:
 
   regexp.prototype.flags@1.5.4:
     dependencies:
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       define-properties: 1.2.1
       es-errors: 1.3.0
       get-proto: 1.0.1
@@ -12778,9 +12843,9 @@ snapshots:
 
   safe-array-concat@1.1.3:
     dependencies:
-      call-bind: 1.0.8
-      call-bound: 1.0.3
-      get-intrinsic: 1.2.7
+      call-bind: 1.0.9
+      call-bound: 1.0.4
+      get-intrinsic: 1.3.0
       has-symbols: 1.1.0
       isarray: 2.0.5
 
@@ -12797,7 +12862,7 @@ snapshots:
 
   safe-regex-test@1.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
       is-regex: 1.2.1
 
@@ -12905,7 +12970,7 @@ snapshots:
       define-data-property: 1.1.4
       es-errors: 1.3.0
       function-bind: 1.1.2
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       gopd: 1.2.0
       has-property-descriptors: 1.0.2
 
@@ -12920,7 +12985,7 @@ snapshots:
     dependencies:
       dunder-proto: 1.0.1
       es-errors: 1.3.0
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.2
 
   setprototypeof@1.1.0: {}
 
@@ -12954,16 +13019,16 @@ snapshots:
 
   side-channel-map@1.0.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       object-inspect: 1.13.3
 
   side-channel-weakmap@1.0.2:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
-      get-intrinsic: 1.2.7
+      get-intrinsic: 1.3.0
       object-inspect: 1.13.3
       side-channel-map: 1.0.1
 
@@ -13158,26 +13223,26 @@ snapshots:
 
   string.prototype.trim@1.2.10:
     dependencies:
-      call-bind: 1.0.8
-      call-bound: 1.0.3
+      call-bind: 1.0.9
+      call-bound: 1.0.4
       define-data-property: 1.1.4
       define-properties: 1.2.1
       es-abstract: 1.23.9
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.2
       has-property-descriptors: 1.0.2
 
   string.prototype.trimend@1.0.9:
     dependencies:
-      call-bind: 1.0.8
-      call-bound: 1.0.3
+      call-bind: 1.0.9
+      call-bound: 1.0.4
       define-properties: 1.2.1
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.2
 
   string.prototype.trimstart@1.0.8:
     dependencies:
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       define-properties: 1.2.1
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.2
 
   string_decoder@0.10.31: {}
 
@@ -13491,13 +13556,13 @@ snapshots:
 
   typed-array-buffer@1.0.3:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       es-errors: 1.3.0
       is-typed-array: 1.1.15
 
   typed-array-byte-length@1.0.3:
     dependencies:
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       for-each: 0.3.3
       gopd: 1.2.0
       has-proto: 1.2.0
@@ -13506,7 +13571,7 @@ snapshots:
   typed-array-byte-offset@1.0.4:
     dependencies:
       available-typed-arrays: 1.0.7
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       for-each: 0.3.3
       gopd: 1.2.0
       has-proto: 1.2.0
@@ -13515,7 +13580,7 @@ snapshots:
 
   typed-array-length@1.0.7:
     dependencies:
-      call-bind: 1.0.8
+      call-bind: 1.0.9
       for-each: 0.3.3
       gopd: 1.2.0
       is-typed-array: 1.1.15
@@ -13544,7 +13609,7 @@ snapshots:
 
   unbox-primitive@1.1.0:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
@@ -13719,7 +13784,7 @@ snapshots:
 
   which-builtin-type@1.2.1:
     dependencies:
-      call-bound: 1.0.3
+      call-bound: 1.0.4
       function.prototype.name: 1.1.8
       has-tostringtag: 1.0.2
       is-async-function: 2.1.0
@@ -13743,8 +13808,8 @@ snapshots:
   which-typed-array@1.1.18:
     dependencies:
       available-typed-arrays: 1.0.7
-      call-bind: 1.0.8
-      call-bound: 1.0.3
+      call-bind: 1.0.9
+      call-bound: 1.0.4
       for-each: 0.3.3
       gopd: 1.2.0
       has-tostringtag: 1.0.2
