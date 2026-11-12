@@ -32,7 +32,7 @@
     "postpack": "ember ts:clean"
   },
   "engines": {
-    "node": ">= 22"
+    "node": ">= 24"
   },
   "dependencies": {
     "@babel/core": "^7.25.2",
