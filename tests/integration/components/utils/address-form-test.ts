@@ -25,7 +25,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
       countryCode: 'US',
       zipcode: 'iam',
       phone: '+3348408934'
-    });
+    } as object);
 
     this.onChange = sinon.stub();
   });
@@ -42,7 +42,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
         countryCode: '',
         zipcode: '',
         phone: ''
-      });
+      } as object);
     });
 
     test('It focuses the first name input when @focus is set to first-name', async function (assert) {
@@ -377,7 +377,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
         countryCode: 'US',
         zipcode: 'iam',
         phone: '+3348408934'
-      });
+      } as object);
     });
 
     test('The address line is correctly update', async function (assert) {
