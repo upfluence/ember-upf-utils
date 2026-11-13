@@ -51,8 +51,8 @@
     "tinycolor2": "^1.4.1"
   },
   "peerDependencies": {
-    "@upfluence/hyperevents": "^2.0.0-beta.0",
-    "@upfluence/oss-components": "^4.0.0-beta.0",
+    "@upfluence/hyperevents": "^2.0.0",
+    "@upfluence/oss-components": "^4.0.0",
     "ember-source": "^6.12.0"
   },
   "devDependencies": {
