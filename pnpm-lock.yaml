@@ -21,8 +21,8 @@ importers:
         specifier: ^1.16.2
         version: 1.16.8
       '@upfluence/ember-brand-manager':
-        specifier: 2.0.0-beta.1
-        version: 2.0.0-beta.1(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
+        specifier: ^2.0.0
+        version: 2.0.0(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       calculate-cache-key-for-tree:
         specifier: ^2.0.0
         version: 2.0.0
@@ -82,11 +82,11 @@ importers:
         specifier: ^10.0.6
         version: 10.0.20
       '@upfluence/hyperevents':
-        specifier: 2.0.0-beta.1
-        version: 2.0.0-beta.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
+        specifier: 2.0.0
+        version: 2.0.0(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       '@upfluence/oss-components':
-        specifier: 4.0.0-beta.3
-        version: 4.0.0-beta.3(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)
+        specifier: 4.0.0
+        version: 4.0.0(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)
       '@upfluence/w-conf':
         specifier: ^0.4.0
         version: 0.4.0(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.8.3))(@typescript-eslint/parser@8.70.1(eslint@10.8.0)(typescript@5.9.3))(eslint@10.8.0)(prettier@3.8.3)(typescript@5.9.3)
@@ -1717,21 +1717,23 @@ packages:
     resolution: {integrity: sha512-Vwj9lUIW5Xq3wQ9w6gv3R86g1hMK8f2zNOdGTAgeXUMMXFK78G9ruCjjqutHMNJc0+CH7LYRnHeUB9IT8wFmcw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@upfluence/ember-brand-manager@2.0.0-beta.1':
-    resolution: {integrity: sha512-KJbWcrM2MMRIFu91zuLjMgu8jgnnWgfREsYmnnJsemvakGbE/SjWzJYC/iOACpaVrfI958zEgWq1LfvCHrBO7A==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/2.0.0-beta.1/1c072d11a4c9f3e9a8b48daa20f8172d2328f655}
-    engines: {node: 20.* || >= 22}
+  '@upfluence/ember-brand-manager@2.0.0':
+    resolution: {integrity: sha512-RoHMAPBc3s+h5hbdK1QBk3WgOjjGTRiqI0kSEJJl/rFk3f4AveN1l5st23cV0FtXFT8aFpR5SsnQMhNdOdTRWA==, tarball: https://npm.pkg.github.com/download/@upfluence/ember-brand-manager/2.0.0/5076d52f0bbc0eb78d9b7c1c2aa36bb4ead2f5c8}
+    engines: {node: '>= 24'}
     peerDependencies:
       ember-source: ^6.12.0
 
-  '@upfluence/hyperevents@2.0.0-beta.1':
-    resolution: {integrity: sha512-eBxL+IuABO8fewrNdxGWZKDjSlAtfcL+mcw8P93bU+G6sS/OX0uu4GbYbj+T+v0uakgScLSpVtkit6+5RZ6MmA==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/2.0.0-beta.1/85c7b6121d77108d6e8f68e5721aeacb6b87b098}
+  '@upfluence/hyperevents@2.0.0':
+    resolution: {integrity: sha512-3XkCSH4+qGk1HJWmiYTZ7wMxytrlP5Th1Zko+mOc5fLW7MZdZCG7Y1vMAKtw/F26DjLMblbJqinryDHmPyVXFw==, tarball: https://npm.pkg.github.com/download/@upfluence/hyperevents/2.0.0/d6120267579e739d5818259de1b659be8a60d458}
+    engines: {node: '>= 24'}
     peerDependencies:
-      ember-source: ^3.28.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+      ember-source: ^6.12.0
 
-  '@upfluence/oss-components@4.0.0-beta.3':
-    resolution: {integrity: sha512-g5IZudlrvex+c0gJvKmmKPpumOeXYptjnF92GLnW2Z0g40M5mEDXaCFVqRN2odFufp/son3D1CURs3CMuZp5wg==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/4.0.0-beta.3/e7511a24550cdd52035bb32a019110cfae64a96f}
-    engines: {node: 20.* || 22.* || 24.*}
+  '@upfluence/oss-components@4.0.0':
+    resolution: {integrity: sha512-VAvguGzbF+qFNGyirgnrDbiRHpa7dHtY1qv2tI/bHUsYNIhgm8QK3bE9WBTZv+O2Qs/ySDbe09nI4i/WpU20+A==, tarball: https://npm.pkg.github.com/download/@upfluence/oss-components/4.0.0/fde075884483c5d7f12870026bfec2e36a77ad50}
+    engines: {node: '>= 24'}
     peerDependencies:
+      ember-source: ^6.12.0
       qunit: "^2.x ||\_^3.x"
 
   '@upfluence/w-conf@0.4.0':
@@ -7268,7 +7270,7 @@ snapshots:
 
   '@ember/render-modifiers@2.1.0(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
     dependencies:
-      '@embroider/macros': 1.21.1(@babel/core@7.26.0)
+      '@embroider/macros': 1.21.4(@babel/core@7.26.0)
       ember-cli-babel: 7.26.11
       ember-modifier-manager-polyfill: 1.2.0(@babel/core@7.26.0)
       ember-source: 6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)
@@ -7404,7 +7406,7 @@ snapshots:
 
   '@embroider/util@1.13.5(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
     dependencies:
-      '@embroider/macros': 1.21.1(@babel/core@7.26.0)
+      '@embroider/macros': 1.21.4(@babel/core@7.26.0)
       broccoli-funnel: 3.0.8
       ember-cli-babel: 7.26.11
       ember-source: 6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)
@@ -8182,10 +8184,10 @@ snapshots:
       '@typescript-eslint/types': 8.70.1
       eslint-visitor-keys: 5.0.1
 
-  '@upfluence/ember-brand-manager@2.0.0-beta.1(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
+  '@upfluence/ember-brand-manager@2.0.0(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
     dependencies:
       '@babel/core': 7.26.0
-      '@embroider/macros': 1.21.1(@babel/core@7.26.0)
+      '@embroider/macros': 1.21.4(@babel/core@7.26.0)
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
       ember-cli-babel: 8.3.2(@babel/core@7.26.0)
@@ -8196,7 +8198,7 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/hyperevents@2.0.0-beta.1(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
+  '@upfluence/hyperevents@2.0.0(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))':
     dependencies:
       '@embroider/addon-shim': 1.10.3
       '@embroider/macros': 1.21.4(@babel/core@7.26.0)
@@ -8209,11 +8211,11 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@upfluence/oss-components@4.0.0-beta.3(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)':
+  '@upfluence/oss-components@4.0.0(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))(qunit@2.23.1)(typescript@5.9.3)(webpack@5.97.1)':
     dependencies:
       '@babel/core': 7.26.0
       '@ember/render-modifiers': 2.1.0(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
-      '@embroider/macros': 1.21.1(@babel/core@7.26.0)
+      '@embroider/macros': 1.21.4(@babel/core@7.26.0)
       '@embroider/util': 1.13.5(@babel/core@7.26.0)(ember-source@6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5))
       '@floating-ui/dom': 1.8.0
       '@fortawesome/fontawesome-pro': git+https://git@github.com:upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420
@@ -8231,6 +8233,7 @@ snapshots:
       ember-cli-typescript: 5.3.0
       ember-intl: 6.5.6(@ember/test-helpers@5.7.0(@babel/core@7.26.0))(typescript@5.9.3)(webpack@5.97.1)
       ember-modifier: 3.2.7(@babel/core@7.26.0)
+      ember-source: 6.12.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(rsvp@4.8.5)
       ember-truth-helpers: 3.1.1
       qunit: 2.23.1
       resolve: 1.22.12
@@ -8238,7 +8241,6 @@ snapshots:
       - '@ember/test-helpers'
       - '@glint/environment-ember-loose'
       - '@glint/template'
-      - ember-source
       - supports-color
       - typescript
       - webpack
