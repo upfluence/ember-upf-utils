@@ -67,8 +67,7 @@ To work on the addon itself:
 
 - `make start` (runs `ember serve --port 0`)
 - The port is random: visit the dummy application at the URL printed in the output.
-  See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the MIT License.
