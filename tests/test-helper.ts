@@ -1,5 +1,6 @@
 import { setApplication } from '@ember/test-helpers';
 
+import registerAssertions from '@upfluence/oss-components/test-support/register-assertions';
 import config from 'dummy/config/environment';
 import { forceModulesToBeLoaded, sendCoverage } from 'ember-cli-code-coverage/test-support';
 import { setupEmberOnerrorValidation, start } from 'ember-qunit';
@@ -13,6 +14,7 @@ import { setup } from 'qunit-dom';
 import Application from '../app';
 
 setup(QUnit.assert);
+registerAssertions(QUnit.assert);
 setupEmberOnerrorValidation();
 loadTests();
 QUnit.done(async function () {
