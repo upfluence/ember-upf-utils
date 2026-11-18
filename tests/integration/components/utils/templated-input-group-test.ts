@@ -62,6 +62,21 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
       assert.dom('[data-control-name="templated-input-group-subtitle"]').containsText('Subtitle');
     });
 
+    test('The after-subtitle block is displayed between the subtitle and the input', async function (assert) {
+      await render(
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}}>
+          <:after-subtitle><span data-control-name="after-subtitle-content">Recommendations</span></:after-subtitle>
+        </Utils::TemplatedInputGroup>`
+      );
+
+      assert.dom('[data-control-name="after-subtitle-content"]').hasText('Recommendations');
+      assert
+        .dom(
+          '.templated-input-group > [data-control-name="after-subtitle-content"] + .fx-col > [data-control-name="templated-input-group-input-container"]'
+        )
+        .exists();
+    });
+
     test('Placeholder is displayed', async function (assert) {
       await render(
         hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} />`
