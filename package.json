@@ -43,7 +43,7 @@
     "calculate-cache-key-for-tree": "^2.0.0",
     "ember-auto-import": "^2.13.1",
     "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.3.0",
+    "ember-cli-htmlbars": "^7.0.1",
     "ember-cli-less": "^2.0.6",
     "ember-cli-typescript": "^5.3.0",
     "ember-modifier": "^3.2.7",
@@ -52,7 +52,7 @@
   },
   "peerDependencies": {
     "@upfluence/hyperevents": "^2.0.0",
-    "@upfluence/oss-components": "^4.0.0",
+    "@upfluence/oss-components": "^4.0.0 || ^5.0.0-beta.0",
     "ember-source": "^6.12.0"
   },
   "devDependencies": {
@@ -65,9 +65,9 @@
     "@types/google.maps": "^3.54.6",
     "@types/qunit": "^2.19.14",
     "@types/rsvp": "^4.0.4",
-    "@types/sinon": "^10.0.6",
+    "@types/sinon": "^22.0.2",
     "@upfluence/hyperevents": "2.0.0",
-    "@upfluence/oss-components": "4.0.0",
+    "@upfluence/oss-components": "5.0.0-beta.0",
     "@upfluence/w-conf": "^0.4.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~6.12.0",
@@ -82,7 +82,7 @@
     "ember-page-title": "^8.0.0",
     "ember-qunit": "^9.0.4",
     "ember-resolver": "^13.2.0",
-    "ember-sinon-qunit": "^6.0.0",
+    "ember-sinon-qunit": "^7.5.0",
     "ember-source": "~6.12.1",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^3.15.0",
@@ -93,6 +93,7 @@
     "prettier": "^3.8.1",
     "qunit": "^2.22.0",
     "qunit-dom": "^3.2.1",
+    "sinon": "^22.1.0",
     "typescript": "5.9.3",
     "webpack": "^5.95.0"
   },
