@@ -1,4 +1,4 @@
-import { click, render, findAll, TestContext } from '@ember/test-helpers';
+import { click, render, findAll, type TestContext } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';

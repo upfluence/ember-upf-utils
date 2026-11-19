@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 
-import { IntlService } from 'ember-intl';
+import type { IntlService } from 'ember-intl';
 
 export default class Application extends Route {
   @service declare intl: IntlService;

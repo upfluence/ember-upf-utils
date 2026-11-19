@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 
-import { AutocompleteHandlerBase } from '@upfluence/ember-upf-utils/services/autocomplete-handler';
+import type { AutocompleteHandlerBase } from '@upfluence/ember-upf-utils/services/autocomplete-handler';
 
 type MockGoogleAddressComponent = {
   types: string[];

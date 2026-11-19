@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "target": "es2021",
     "allowJs": true,
@@ -29,10 +30,6 @@
       "@upfluence/ember-upf-utils/test-support": ["addon-test-support"],
       "@upfluence/ember-upf-utils/test-support/*": ["addon-test-support/*"],
       "*": ["types/*"],
-      "@upfluence/oss-components": ["node_modules/@upfluence/oss-components/addon"],
-      "@upfluence/oss-components/*": ["node_modules/@upfluence/oss-components/addon/*"],
-      "@upfluence/oss-components/test-support": ["node_modules/@upfluence/oss-components/addon-test-support"],
-      "@upfluence/oss-components/test-support/*": ["node_modules/@upfluence/oss-components/addon-test-support/*"],
     },
     "types": []
   },

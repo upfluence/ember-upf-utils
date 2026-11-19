@@ -3,7 +3,7 @@ import { registerDestructor } from '@ember/destroyable';
 import { service } from '@ember/service';
 
 import { Loader } from '@googlemaps/js-api-loader';
-import { CountryData } from '@upfluence/oss-components/utils/country-codes';
+import type { CountryData } from '@upfluence/oss-components/utils/country-codes';
 import Modifier, { type ArgsFor, type PositionalArgs, type NamedArgs } from 'ember-modifier';
 
 import type AutocompleteHandlerService from '@upfluence/ember-upf-utils/services/autocomplete-handler';

@@ -1,4 +1,4 @@
-import { FileValidator } from '@upfluence/oss-components/types/uploader';
+import type { FileValidator } from '@upfluence/oss-components/types/uploader';
 
 import UEDitFileUploader from '@upfluence/ember-upf-utils/components/u-edit/shared-triggers/modals/file-uploader';
 

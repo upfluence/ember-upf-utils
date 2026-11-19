@@ -2,11 +2,11 @@ import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 import type RouterService from '@ember/routing/router-service';
 import { service } from '@ember/service';
-import type AssetMapService from '@upfluence/oss-components/services/asset-map';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { IntlService } from 'ember-intl';
+import type AssetMapService from '@upfluence/oss-components/services/asset-map';
+import type { IntlService } from 'ember-intl';
 
 interface UpgradeModalArgs {
   hidden: boolean;

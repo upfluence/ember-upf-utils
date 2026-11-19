@@ -4,7 +4,7 @@ import { isEmpty } from '@ember/utils';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
+import { type CountryData, countries } from '@upfluence/oss-components/utils/country-codes';
 
 import { type AutocompletionAddress } from '@upfluence/ember-upf-utils/modifiers/setup-autocomplete';
 
