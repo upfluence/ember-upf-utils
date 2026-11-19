@@ -2,9 +2,9 @@ import Service, { service } from '@ember/service';
 import type { SafeString } from '@ember/template';
 
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
-import EventsService, { type ResourceEvent, prefixPath } from '@upfluence/hyperevents/services/events-service';
-import ToastService, { type ToastOptions } from '@upfluence/oss-components/services/toast';
-import type { IntlService } from 'ember-intl';
+import EventsService, { ResourceEvent, prefixPath } from '@upfluence/hyperevents/services/events-service';
+import ToastService, { ToastOptions } from '@upfluence/oss-components/services/toast';
+import { IntlService } from 'ember-intl';
 
 type NotificationEvent = {
   resource: string;

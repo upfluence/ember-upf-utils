@@ -3,8 +3,7 @@ import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import type UploaderInterface from '@upfluence/oss-components/types/uploader';
-import { type FileArtifact, FilePrivacy } from '@upfluence/oss-components/types/uploader';
+import UploaderInterface, { FileArtifact, FilePrivacy } from '@upfluence/oss-components/types/uploader';
 
 interface UEditFileUploaderSignature {
   insertFile(fileURL: string): void;

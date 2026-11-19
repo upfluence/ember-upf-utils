@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "target": "es2021",
     "allowJs": true,
