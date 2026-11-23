@@ -235,8 +235,6 @@ export default class extends Component<UtilsAddressFormArgs> {
   private focusAddressField(): void {
     const controlName = this.args.focus && FOCUSABLE_CONTROL_NAMES[this.args.focus];
     if (controlName)
-      next(() =>
-        document.querySelector<HTMLInputElement>(`[data-control-name="${controlName}"] input:not([disabled])`)?.focus()
-      );
+      next(() => document.querySelector<HTMLElement>(`[data-control-name="${controlName}"] .upf-input`)?.focus());
   }
 }
