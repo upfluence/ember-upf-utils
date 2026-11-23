@@ -62,6 +62,21 @@ module('Integration | Component | utils/templated-input-group', function (hooks)
       assert.dom('[data-control-name="templated-input-group-subtitle"]').containsText('Subtitle');
     });
 
+    test('The suffix block is displayed between the subtitle and the input', async function (assert) {
+      await render(
+        hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}}>
+          <:suffix><span data-control-name="suffix-content">Recommendations</span></:suffix>
+        </Utils::TemplatedInputGroup>`
+      );
+
+      assert.dom('[data-control-name="suffix-content"]').hasText('Recommendations');
+      assert
+        .dom(
+          '.templated-input-group > [data-control-name="suffix-content"] + .fx-col > [data-control-name="templated-input-group-input-container"]'
+        )
+        .exists();
+    });
+
     test('Placeholder is displayed', async function (assert) {
       await render(
         hbs`<Utils::TemplatedInputGroup @title={{this.title}} @subtitle={{this.subtitle}} @placeholder={{this.placeholder}} @value={{this.value}} @variables={{this.variables}} @onChange={{this.onChange}} @required={{true}} />`
