@@ -29,6 +29,7 @@ module('Integration | Component | utils/address-form', function (hooks) {
     } as object);
 
     this.onChange = sinon.stub();
+    this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
   });
 
   module('@focus paramter', (hooks) => {
@@ -152,7 +153,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
 
   module('When a form instance is provided', function () {
     test('an empty phone number reports a required error instead of a format error', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.phone = '';
 
       await render(
@@ -166,7 +166,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it keeps an existing phone value without initializing the phone selector', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       const savedPhone = this.address.phone;
 
       await render(
@@ -179,7 +178,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it validates required fields on submission and displays inline feedback', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.firstName = '';
 
       await render(
@@ -191,7 +189,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it keeps address line 2 optional', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.address2 = '';
 
       await render(
@@ -203,7 +200,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it validates short address lines on blur without adding a phone rule to the basic input', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.address1 = 'a';
       this.address.phone = 'ext. 12';
 
@@ -220,7 +216,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it does not apply the OSS phone format validation to the basic input', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.phone = 'call me';
 
       await render(
@@ -232,7 +227,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it validates country code length on submission', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.countryCode = 'USA';
 
       await render(
@@ -244,7 +238,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it validates postal codes longer than the previous limit on blur', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.zipcode = '1'.repeat(256);
 
       await render(
@@ -256,7 +249,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('it clears a field error when the user starts typing in that field', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.firstName = '';
       this.address.address1 = 'a';
 
@@ -345,7 +337,6 @@ module('Integration | Component | utils/address-form', function (hooks) {
     });
 
     test('phone input format errors are added to the form feedback', async function (assert) {
-      this.onFormSetup = (formInstance: FormInstance) => (this.formInstance = formInstance);
       this.address.phone = '';
 
       await render(

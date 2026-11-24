@@ -1,13 +1,16 @@
-export type FocusableInput =
-  | 'first-name'
-  | 'last-name'
-  | 'line1'
-  | 'line2'
-  | 'country'
-  | 'city'
-  | 'state'
-  | 'zipcode'
-  | 'phone';
+export const FOCUSABLE_INPUTS = [
+  'first-name',
+  'last-name',
+  'line1',
+  'line2',
+  'country',
+  'city',
+  'state',
+  'zipcode',
+  'phone'
+] as const;
+
+export type FocusableInput = (typeof FOCUSABLE_INPUTS)[number];
 
 export type ProvinceData = { code: string; name: string };
 export type AddressKey = 'address' | 'line';
