@@ -2,6 +2,7 @@ import type EngineInstance from '@ember/engine/instance';
 import Service from '@ember/service';
 import { click, render } from '@ember/test-helpers';
 
+import type AssetMapService from '@upfluence/oss-components/services/asset-map';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupIntl } from 'ember-intl/test-support';
 import { setupRenderingTest } from 'ember-qunit';
@@ -32,6 +33,15 @@ module('Integration | Component | http-errors-code', function (hooks) {
         .dom('[data-control-name="http-error-code-subtitle"]')
         .hasText(this.intl.t(`errors.${statusCode}.subtitle`));
     });
+  });
+
+  test('the illustration URL comes from the asset map', async function (assert) {
+    await render(hbs`<HttpErrorsCode @httpError="404" />`);
+
+    const assetMap = this.owner.lookup('service:asset-map') as AssetMapService;
+    assert
+      .dom('.http-error-code-wrapper img')
+      .hasAttribute('src', assetMap.resolve('@upfluence/ember-upf-utils/assets/images/ufo-abduction.svg'));
   });
 
   module('404 error', function () {
